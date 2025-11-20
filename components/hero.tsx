@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useScroll, useSpring } from "framer-motion"
+import { motion, useScroll, useSpring, useTransform } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { useRef, useEffect, useState } from "react"
 
@@ -24,6 +24,10 @@ export function Hero() {
     damping: 20, // Adjusted damping to match
     restDelta: 0.001,
   })
+
+  // Create a fade-to-black opacity value based on scroll progress
+  // Fades in during the last 10% of the scroll
+  const fadeOpacity = useTransform(scrollYProgress, [0.9, 1], [0, 1])
 
   // Map scroll progress to video time
   // We'll update the video time in a useEffect to avoid render loop issues
@@ -84,7 +88,7 @@ export function Hero() {
         finishLoading()
       })
       .catch((err) => {
-        console.error("Video load failed", err)
+        console.warn("Video preload fetch failed, falling back to direct source")
         // Fallback to regular loading if fetch fails
         setVideoSrc("/videos/timelapse-intra.mp4")
         finishLoading()
@@ -149,6 +153,13 @@ export function Hero() {
           >
             {/* UI Overlays */}
             <div className="absolute inset-0 bg-tech-grid-sm opacity-10 z-10 pointer-events-none" />
+
+            {/* Fade to black overlay */}
+            <motion.div
+              className="absolute inset-0 bg-black z-10 pointer-events-none"
+              style={{ opacity: fadeOpacity }}
+            />
+
             <div className="absolute top-0 left-0 w-full h-1 bg-accent shadow-[0_0_10px_#23300e] z-20" />
             <div className="absolute top-4 left-4 font-mono text-xs text-emerald-500 z-20 bg-black/50 px-2 py-1">
               TIMELINE: {isLoading ? `INITIALIZING ${Math.round(loadingProgress)}%` : "SYNCED"}
