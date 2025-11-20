@@ -43,7 +43,7 @@ export function Hero() {
 
   return (
     <section ref={containerRef} className="relative h-[300vh] border-b border-border">
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
+      <div className="sticky top-0 h-screen flex items-center overflow-hidden pt-16">
         {/* Background Grid */}
         <div className="absolute inset-0 bg-tech-grid opacity-20 pointer-events-none" />
 

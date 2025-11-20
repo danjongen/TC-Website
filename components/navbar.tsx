@@ -19,8 +19,9 @@ export function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <div className="container mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="text-xl font-bold tracking-tighter uppercase">
-          <span className="hidden md:inline">Technically Creative</span>
-          <span className="md:hidden">TC</span>
+          {/* Switched to lg breakpoint to prevent text cutoff on tablets */}
+          <span className="hidden lg:inline">Technically Creative</span>
+          <span className="lg:hidden">TC</span>
         </Link>
 
         {/* Desktop Nav */}
