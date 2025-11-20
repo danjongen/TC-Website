@@ -26,8 +26,9 @@ export function Hero() {
   })
 
   // Create a fade-to-black opacity value based on scroll progress
-  // Fades in during the last 10% of the scroll
-  const fadeOpacity = useTransform(scrollYProgress, [0.9, 1], [0, 1])
+  const fadeOpacity = useTransform(scrollYProgress, [0.8, 0.95], [0, 1])
+  const blurEffect = useTransform(scrollYProgress, [0.8, 0.95], ["0px", "10px"])
+  const scaleEffect = useTransform(scrollYProgress, [0.8, 0.95], [1, 0.95])
 
   // Map scroll progress to video time
   // We'll update the video time in a useEffect to avoid render loop issues
@@ -88,7 +89,7 @@ export function Hero() {
         finishLoading()
       })
       .catch((err) => {
-        console.warn("Video preload fetch failed, falling back to direct source")
+        console.warn("Video preload failed, falling back to direct stream", err)
         // Fallback to regular loading if fetch fails
         setVideoSrc("/videos/timelapse-intra.mp4")
         finishLoading()
@@ -149,6 +150,7 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+            style={{ scale: scaleEffect }}
             className="relative h-[250px] sm:h-[300px] md:h-[600px] w-full border border-border bg-black/50 backdrop-blur-sm overflow-hidden rounded-sm"
           >
             {/* UI Overlays */}
@@ -157,7 +159,7 @@ export function Hero() {
             {/* Fade to black overlay */}
             <motion.div
               className="absolute inset-0 bg-black z-10 pointer-events-none"
-              style={{ opacity: fadeOpacity }}
+              style={{ opacity: fadeOpacity, backdropFilter: blurEffect }}
             />
 
             <div className="absolute top-0 left-0 w-full h-1 bg-accent shadow-[0_0_10px_#23300e] z-20" />
