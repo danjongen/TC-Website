@@ -43,24 +43,24 @@ export function Hero() {
 
   return (
     <section ref={containerRef} className="relative h-[300vh] border-b border-border">
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden pt-16">
+      <div className="sticky top-0 h-screen flex items-start md:items-center overflow-hidden pt-24 md:pt-16">
         {/* Background Grid */}
         <div className="absolute inset-0 bg-tech-grid opacity-20 pointer-events-none" />
 
-        <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+        <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-8 md:gap-12 items-center relative z-10">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="inline-block mb-6 px-2 py-1 border border-accent text-xs font-mono text-emerald-500 uppercase tracking-widest">
+            <div className="inline-block mb-4 md:mb-6 px-2 py-1 border border-accent text-xs font-mono text-emerald-500 uppercase tracking-widest">
               System Status: Online
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.1] mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-4 md:mb-6">
               Complex productions. <br />
               <span className="text-muted-foreground">Made manageable.</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-md mb-8 leading-relaxed">
+            <p className="text-base md:text-xl text-muted-foreground max-w-md mb-6 md:mb-8 leading-relaxed">
               High-stakes shows delivered through automation, scalable systems, and systematic execution.
             </p>
 
@@ -85,7 +85,7 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-            className="relative h-[400px] md:h-[600px] w-full border border-border bg-black/50 backdrop-blur-sm overflow-hidden rounded-sm"
+            className="relative h-[250px] sm:h-[300px] md:h-[600px] w-full border border-border bg-black/50 backdrop-blur-sm overflow-hidden rounded-sm"
           >
             {/* UI Overlays */}
             <div className="absolute inset-0 bg-tech-grid-sm opacity-10 z-10 pointer-events-none" />
