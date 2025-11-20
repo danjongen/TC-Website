@@ -10,7 +10,7 @@ export function Hero() {
   const [videoDuration, setVideoDuration] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [loadingProgress, setLoadingProgress] = useState(0)
-  const [videoSrc, setVideoSrc] = useState("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Technical_timelapse_visualization_202511201%20%281%29-2YLj5WqSFM1jKU4ycO8cYbvM4bMyTB.mp4")
+  const [videoSrc, setVideoSrc] = useState("/videos/timelapse-intra.mp4")
 
   // Track scroll progress through the container
   const { scrollYProgress } = useScroll({
@@ -69,13 +69,16 @@ export function Hero() {
         if (buffered.length > 0) {
           const loaded = buffered.end(buffered.length - 1)
           const progress = (loaded / video.duration) * 100
-          // Cap visual progress at 90% until fully ready
           setLoadingProgress(Math.min(progress, 90))
         }
       }
     }
 
     video.addEventListener("progress", handleProgress)
+
+    if (video.readyState >= 1) {
+      setVideoDuration(video.duration)
+    }
 
     // Force preload
     fetch("/videos/timelapse-intra.mp4")
@@ -90,8 +93,6 @@ export function Hero() {
       })
       .catch((err) => {
         console.warn("Video preload failed, falling back to direct stream", err)
-        // Fallback to regular loading if fetch fails
-        setVideoSrc("/videos/timelapse-intra.mp4")
         finishLoading()
       })
 
@@ -188,7 +189,7 @@ export function Hero() {
             <video
               ref={videoRef}
               src={videoSrc}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isLoading ? "opacity-0" : "opacity-100"}`}
+              className="absolute inset-0 w-full h-full object-cover"
               muted
               playsInline
               preload="auto"
