@@ -10,7 +10,7 @@ export function Hero() {
   const [videoDuration, setVideoDuration] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [loadingProgress, setLoadingProgress] = useState(0)
-  const [videoSrc, setVideoSrc] = useState("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TC_TL_INTRA-ZKLgdJRVRbUbQYPAfBBunXwcuIseGG.mp4")
+  const [videoSrc, setVideoSrc] = useState("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Technical_timelapse_visualization_202511201%20%281%29-2YLj5WqSFM1jKU4ycO8cYbvM4bMyTB.mp4")
 
   // Track scroll progress through the container
   const { scrollYProgress } = useScroll({
@@ -73,7 +73,7 @@ export function Hero() {
     video.addEventListener("progress", handleProgress)
 
     // Force preload
-    fetch("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TC_TL_INTRA-ZKLgdJRVRbUbQYPAfBBunXwcuIseGG.mp4")
+    fetch("/videos/timelapse-intra.mp4")
       .then((response) => {
         if (!response.ok) throw new Error("Network response was not ok")
         return response.blob()
@@ -85,7 +85,8 @@ export function Hero() {
       })
       .catch((err) => {
         console.error("Video load failed", err)
-        // Fallback to regular loading if fetch fails - the video element will try to load the src directly
+        // Fallback to regular loading if fetch fails
+        setVideoSrc("/videos/timelapse-intra.mp4")
         finishLoading()
       })
 
