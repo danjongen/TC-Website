@@ -10,7 +10,7 @@ export function Hero() {
   const [videoDuration, setVideoDuration] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [loadingProgress, setLoadingProgress] = useState(0)
-  const [videoSrc, setVideoSrc] = useState("/videos/timelapse-v3.mp4")
+  const [videoSrc, setVideoSrc] = useState("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TC_TL_INTRA-ZKLgdJRVRbUbQYPAfBBunXwcuIseGG.mp4")
 
   // Track scroll progress through the container
   const { scrollYProgress } = useScroll({
@@ -81,7 +81,8 @@ export function Hero() {
     }
 
     const handleError = (e: any) => {
-      console.error("[v0] Video error:", e)
+      console.warn("[v0] Video error occurred:", e)
+      // Even if error occurs, we finish loading to remove the overlay so user might see something or at least not get stuck
       finishLoading()
     }
 
@@ -186,6 +187,7 @@ export function Hero() {
               muted
               playsInline
               preload="auto"
+              crossOrigin="anonymous"
             />
           </motion.div>
         </div>
