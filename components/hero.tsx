@@ -20,8 +20,8 @@ export function Hero() {
 
   // Smooth out the scroll progress for smoother playback
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
+    stiffness: 50, // Reduced stiffness for smoother, less jittery movement
+    damping: 20, // Adjusted damping to match
     restDelta: 0.001,
   })
 
@@ -32,7 +32,9 @@ export function Hero() {
       if (videoRef.current && videoDuration > 0 && !isLoading) {
         const time = latest * videoDuration
         // Ensure we don't exceed duration
-        videoRef.current.currentTime = Math.min(time, videoDuration)
+        if (Number.isFinite(time)) {
+          videoRef.current.currentTime = time
+        }
       }
     })
     return () => unsubscribe()
