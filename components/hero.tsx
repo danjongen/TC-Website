@@ -10,7 +10,7 @@ export function Hero() {
   const [videoDuration, setVideoDuration] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [loadingProgress, setLoadingProgress] = useState(0)
-  const [videoSrc, setVideoSrc] = useState("/videos/timelapse-intra.mp4")
+  const [videoSrc, setVideoSrc] = useState("/videos/timelapse-v3.mp4")
 
   // Track scroll progress through the container
   const { scrollYProgress } = useScroll({
@@ -20,8 +20,8 @@ export function Hero() {
 
   // Smooth out the scroll progress for smoother playback
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 50, // Reduced stiffness for smoother, less jittery movement
-    damping: 20, // Adjusted damping to match
+    stiffness: 50,
+    damping: 20,
     restDelta: 0.001,
   })
 
@@ -31,12 +31,10 @@ export function Hero() {
   const scaleEffect = useTransform(scrollYProgress, [0.8, 0.95], [1, 0.95])
 
   // Map scroll progress to video time
-  // We'll update the video time in a useEffect to avoid render loop issues
   useEffect(() => {
     const unsubscribe = smoothProgress.on("change", (latest) => {
       if (videoRef.current && videoDuration > 0 && !isLoading) {
         const time = latest * videoDuration
-        // Ensure we don't exceed duration
         if (Number.isFinite(time)) {
           videoRef.current.currentTime = time
         }
@@ -49,8 +47,9 @@ export function Hero() {
     const video = videoRef.current
     if (!video) return
 
-    // Added minimum loading time to ensure the UI is visible and feels "technical"
-    const minLoadTime = 1500 // 1.5 seconds minimum loading time
+    console.log("[v0] Video component mounted")
+
+    const minLoadTime = 1500
     const startTime = Date.now()
 
     const finishLoading = () => {
@@ -74,38 +73,32 @@ export function Hero() {
       }
     }
 
-    video.addEventListener("progress", handleProgress)
-
-    if (video.readyState >= 1) {
+    const handleLoadedMetadata = () => {
+      console.log("[v0] Video metadata loaded", video.duration)
       setVideoDuration(video.duration)
+      video.pause()
+      finishLoading()
     }
 
-    // Force preload
-    fetch("/videos/timelapse-intra.mp4")
-      .then((response) => {
-        if (!response.ok) throw new Error("Network response was not ok")
-        return response.blob()
-      })
-      .then((blob) => {
-        const url = URL.createObjectURL(blob)
-        setVideoSrc(url)
-        finishLoading()
-      })
-      .catch((err) => {
-        console.warn("Video preload failed, falling back to direct stream", err)
-        finishLoading()
-      })
+    const handleError = (e: any) => {
+      console.error("[v0] Video error:", e)
+      finishLoading()
+    }
+
+    video.addEventListener("progress", handleProgress)
+    video.addEventListener("loadedmetadata", handleLoadedMetadata)
+    video.addEventListener("error", handleError)
+
+    if (video.readyState >= 1) {
+      handleLoadedMetadata()
+    }
 
     return () => {
       video.removeEventListener("progress", handleProgress)
+      video.removeEventListener("loadedmetadata", handleLoadedMetadata)
+      video.removeEventListener("error", handleError)
     }
   }, [])
-
-  const handleLoadedMetadata = () => {
-    if (videoRef.current) {
-      setVideoDuration(videoRef.current.duration)
-    }
-  }
 
   return (
     <section ref={containerRef} className="relative h-[300vh] border-b border-border">
@@ -193,7 +186,6 @@ export function Hero() {
               muted
               playsInline
               preload="auto"
-              onLoadedMetadata={handleLoadedMetadata}
             />
           </motion.div>
         </div>
