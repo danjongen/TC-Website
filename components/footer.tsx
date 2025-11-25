@@ -1,13 +1,16 @@
+import Link from "next/link"
 import { Mail, Phone, MapPin } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="py-16 bg-background">
-      <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* Brand */}
-          <div>
-            <div className="text-xl font-bold uppercase tracking-tighter mb-4">TECHNICALLY CREATIVE</div>
+    <footer className="py-12 sm:py-16 bg-background">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
+          {/* Brand - full width on mobile */}
+          <div className="col-span-2 md:col-span-1">
+            <div className="text-lg sm:text-xl font-bold uppercase tracking-tighter mb-3 sm:mb-4">
+              TECHNICALLY CREATIVE
+            </div>
             <p className="text-sm text-muted-foreground mb-4">
               Production engineering for high-stakes live events. Automation, precision, and systematic execution.
             </p>
@@ -16,20 +19,20 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-wide mb-4">Contact</h4>
-            <div className="space-y-3">
+            <h4 className="text-sm font-bold uppercase tracking-wide mb-3 sm:mb-4">Contact</h4>
+            <div className="space-y-2 sm:space-y-3">
               <a
                 href="mailto:info@tc.agency"
                 className="flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors"
               >
-                <Mail className="w-4 h-4" />
-                info@tc.agency
+                <Mail className="w-4 h-4 flex-shrink-0" />
+                <span className="break-all">info@tc.agency</span>
               </a>
               <a
                 href="tel:+13135551234"
                 className="flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors"
               >
-                <Phone className="w-4 h-4" />
+                <Phone className="w-4 h-4 flex-shrink-0" />
                 +1 (313) 555-1234
               </a>
             </div>
@@ -37,8 +40,8 @@ export function Footer() {
 
           {/* Locations */}
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-wide mb-4">Locations</h4>
-            <div className="space-y-2 text-sm text-muted-foreground">
+            <h4 className="text-sm font-bold uppercase tracking-wide mb-3 sm:mb-4">Locations</h4>
+            <div className="space-y-1 sm:space-y-2 text-sm text-muted-foreground">
               <p className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
                 <span>Detroit, MI (HQ)</span>
@@ -49,21 +52,29 @@ export function Footer() {
           </div>
 
           {/* Services */}
-          <div>
-            <h4 className="text-sm font-bold uppercase tracking-wide mb-4">Services</h4>
-            <div className="space-y-2 text-sm text-muted-foreground">
-              <p>Technical Direction</p>
-              <p>Production Management</p>
+          <div className="col-span-2 sm:col-span-1">
+            <h4 className="text-sm font-bold uppercase tracking-wide mb-3 sm:mb-4">Services</h4>
+            <div className="grid grid-cols-2 sm:grid-cols-1 gap-1 sm:gap-2 text-sm text-muted-foreground">
+              <Link href="/services/automation" className="hover:text-white transition-colors">
+                Workflow Automation
+              </Link>
+              <Link href="/services/unreal-engine" className="hover:text-white transition-colors">
+                Unreal Engine
+              </Link>
+              <Link href="/services/3d-scanning" className="hover:text-white transition-colors">
+                3D Scanning
+              </Link>
               <p>System Integration</p>
-              <p>Workflow Automation</p>
-              <p>3D Scanning & Unreal</p>
+              <p>Technical Direction</p>
             </div>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-          <p>© {new Date().getFullYear()} Technically Creative (TC Agency). All rights reserved.</p>
-          <div className="flex gap-6">
+        <div className="pt-6 sm:pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
+          <p className="text-center sm:text-left">
+            © {new Date().getFullYear()} Technically Creative (TC Agency). All rights reserved.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
             <a href="#" className="hover:text-white transition-colors">
               Privacy Policy
             </a>
