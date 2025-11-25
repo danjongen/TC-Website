@@ -11,11 +11,13 @@ const _geistMono = V0_Font_Geist_Mono({ subsets: ['latin'], weight: ["100","200"
 const inter = Inter({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap", // Added font-display swap for faster text rendering
 })
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap", // Added font-display swap for faster text rendering
 })
 
 export const metadata: Metadata = {

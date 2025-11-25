@@ -1,14 +1,12 @@
+"use client"
+
+import { useState } from "react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
-
-export const metadata: Metadata = {
-  title: "Capabilities | TC Agency — Technically Creative",
-  description:
-    "Technical capabilities at TC Agency: production engineering, automation, 3D scanning, Unreal Engine integration, and custom fabrication.",
-}
+import Image from "next/image"
+import { ArrowRight, ChevronDown, Check } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
 
 const services = [
   {
@@ -16,118 +14,283 @@ const services = [
     title: "Technical Direction",
     desc: "End-to-end technical leadership. One point of control for all production systems.",
     href: null,
+    details: [
+      "Single point of technical accountability",
+      "Cross-departmental coordination",
+      "Risk assessment and mitigation",
+      "Vendor management and selection",
+      "Technical specification development",
+    ],
+    specs: { projects: "200+", uptime: "99.97%", response: "<2hr" },
   },
   {
     num: "02",
     title: "Production Management",
     desc: "Complete production oversight. Timeline, budget, and logistics executed with precision.",
     href: null,
+    details: [
+      "Budget tracking and forecasting",
+      "Timeline management with dependencies",
+      "Resource allocation optimization",
+      "Logistics coordination",
+      "Stakeholder reporting",
+    ],
+    specs: { onTime: "98%", budgetVariance: "<3%", efficiency: "+40%" },
   },
   {
     num: "03",
     title: "Design & Visualization",
     desc: "From concept to technical blueprint. Accurate visualization before build begins.",
     href: null,
+    details: [
+      "3D CAD modeling and drafting",
+      "Photorealistic rendering",
+      "Technical drawing packages",
+      "Structural engineering support",
+      "Revision control systems",
+    ],
+    specs: { accuracy: "99.5%", revisions: "Unlimited", formats: "15+" },
   },
   {
     num: "04",
     title: "Workflow Automation",
     desc: "Custom automation that eliminates manual tasks. Faster setup. Fewer errors. Repeatable results.",
     href: "/services/automation",
+    details: [
+      "Custom script development",
+      "Show control system programming",
+      "Data pipeline automation",
+      "Error handling and recovery",
+      "Documentation generation",
+    ],
+    specs: { timeSaved: "60%", errorReduction: "95%", repeatability: "100%" },
   },
   {
     num: "05",
     title: "System Integration",
     desc: "All your tech talking to each other. One system. One interface. Zero gaps.",
     href: null,
+    details: [
+      "Protocol translation (OSC, MIDI, DMX, sACN)",
+      "Network architecture design",
+      "Redundancy planning",
+      "Real-time monitoring dashboards",
+      "Failover automation",
+    ],
+    specs: { protocols: "20+", latency: "<1ms", uptime: "99.99%" },
   },
   {
     num: "06",
-    title: "3D Scanning & Unreal",
+    title: "3D Scanning & Surveying",
     desc: "3D venue scanning and real-time visualization. See your show before you build it.",
     href: "/services/3d-scanning",
+    details: [
+      "LiDAR point cloud capture",
+      "Photogrammetry processing",
+      "As-built documentation",
+      "Clash detection analysis",
+      "BIM integration",
+    ],
+    specs: { accuracy: "±2mm", range: "300m", density: "1M pts/sec" },
   },
   {
     num: "07",
     title: "Unreal Engine Integration",
     desc: "Real-time rendering, virtual production, and LED content workflows.",
     href: "/services/unreal-engine",
+    details: [
+      "nDisplay configuration",
+      "Real-time content rendering",
+      "Camera tracking integration",
+      "LED volume calibration",
+      "Performance optimization",
+    ],
+    specs: { fps: "120+", resolution: "16K+", latency: "<8ms" },
   },
   {
     num: "08",
     title: "Aerial Surveying",
     desc: "Aerial data capture for venue and site analysis. Topology, layouts, and conditions documented.",
     href: "/services/3d-scanning",
+    details: [
+      "Drone-based photogrammetry",
+      "Thermal imaging",
+      "Orthomosaic mapping",
+      "Volumetric calculations",
+      "Progress documentation",
+    ],
+    specs: { coverage: "100 acres/day", resolution: "1cm/px", altitude: "400ft" },
   },
   {
     num: "09",
     title: "Custom Fabrication",
     desc: "Custom-engineered hardware for productions that require solutions that don't exist yet.",
     href: null,
+    details: [
+      "Mechanical design and prototyping",
+      "CNC machining and 3D printing",
+      "Cable and harness assembly",
+      "Structural engineering",
+      "Load testing and certification",
+    ],
+    specs: { leadTime: "2-6 weeks", materials: "50+", tolerance: "±0.1mm" },
   },
 ]
 
+const partners = [
+  "disguise",
+  "Holoplot",
+  "ROE Visual",
+  "Tait Navigator",
+  "Leica Geosystems",
+  "MA Lighting",
+  "BlackTrax",
+  "Notch",
+  "TouchDesigner",
+]
+
 export default function CapabilitiesPage() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
   return (
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      <section className="pt-32 pb-24 border-b border-border">
+      {/* Hero Section */}
+      <section className="pt-32 pb-16 border-b border-border">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl">
-            <p className="text-sm font-mono text-emerald-500 mb-4 uppercase tracking-widest">02 / Capabilities</p>
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-8">
-              Full-spectrum production engineering.
-            </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              From concept visualization to show execution. Every technical discipline under one roof, working as a
-              unified system.
-            </p>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="text-sm font-mono text-emerald-500 mb-4 uppercase tracking-widest">02 / Capabilities</p>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+                Full-spectrum production engineering.
+              </h1>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                From concept visualization to show execution. Every technical discipline under one roof, working as a
+                unified system.
+              </p>
+            </div>
+            <div className="relative aspect-video overflow-hidden border border-border">
+              <Image
+                src="/images/dsf3815.jpg"
+                alt="TC Agency production control environment"
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4">
+                <p className="text-xs font-mono text-emerald-500 uppercase">Live Production Environment</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-24 border-b border-border">
+      {/* Accordion Capabilities Section */}
+      <section className="py-16 border-b border-border">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {services.map((service) => (
-              <div
-                key={service.num}
-                className="group p-6 border border-border bg-zinc-950 hover:bg-zinc-900 hover:border-zinc-700 transition-all duration-150"
-              >
-                <span className="text-xs font-mono text-emerald-500">{service.num}</span>
-                <h3 className="text-lg font-bold mt-3 mb-2">{service.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{service.desc}</p>
-                {service.href && (
-                  <Link
-                    href={service.href}
-                    className="inline-flex items-center gap-2 text-sm font-mono text-emerald-500 hover:text-emerald-400"
-                  >
-                    Learn More <ArrowRight className="w-4 h-4" />
-                  </Link>
-                )}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold mb-2">Service Capabilities</h2>
+            <p className="text-muted-foreground">Click to expand detailed specifications and deliverables.</p>
+          </div>
+
+          <div className="space-y-2">
+            {services.map((service, index) => (
+              <div key={service.num} className="border border-border bg-zinc-950 overflow-hidden">
+                {/* Accordion Header */}
+                <button
+                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                  className="w-full p-5 flex items-center justify-between text-left hover:bg-zinc-900 transition-colors duration-150"
+                  aria-expanded={openIndex === index}
+                >
+                  <div className="flex items-center gap-4">
+                    <span className="text-xs font-mono text-emerald-500 w-6">{service.num}</span>
+                    <div>
+                      <h3 className="text-lg font-bold">{service.title}</h3>
+                      <p className="text-sm text-muted-foreground mt-1 hidden sm:block">{service.desc}</p>
+                    </div>
+                  </div>
+                  <ChevronDown
+                    className={`w-5 h-5 text-muted-foreground transition-transform duration-200 ${
+                      openIndex === index ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                {/* Accordion Content */}
+                <AnimatePresence>
+                  {openIndex === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 pb-5 pt-2 border-t border-border">
+                        {/* Mobile description */}
+                        <p className="text-sm text-muted-foreground mb-4 sm:hidden">{service.desc}</p>
+
+                        <div className="grid md:grid-cols-2 gap-6">
+                          {/* Deliverables */}
+                          <div>
+                            <h4 className="text-xs font-mono text-emerald-500 uppercase mb-3">Deliverables</h4>
+                            <ul className="space-y-2">
+                              {service.details.map((detail, i) => (
+                                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                                  <Check className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
+                                  {detail}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          {/* Specifications */}
+                          <div>
+                            <h4 className="text-xs font-mono text-emerald-500 uppercase mb-3">Specifications</h4>
+                            <div className="grid grid-cols-3 gap-4">
+                              {Object.entries(service.specs).map(([key, value]) => (
+                                <div key={key}>
+                                  <p className="text-xl font-bold">{value}</p>
+                                  <p className="text-xs text-muted-foreground capitalize">
+                                    {key.replace(/([A-Z])/g, " $1").trim()}
+                                  </p>
+                                </div>
+                              ))}
+                            </div>
+
+                            {service.href && (
+                              <Link
+                                href={service.href}
+                                className="inline-flex items-center gap-2 mt-6 text-sm font-mono text-emerald-500 hover:text-emerald-400 transition-colors"
+                              >
+                                View Full Documentation <ArrowRight className="w-4 h-4" />
+                              </Link>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-24 border-b border-border bg-zinc-950">
+      {/* Technology Partners */}
+      <section className="py-16 border-b border-border bg-zinc-950">
         <div className="container mx-auto px-6">
-          <h2 className="text-2xl font-bold mb-8">Technology Partners</h2>
+          <h2 className="text-xs font-mono text-emerald-500 uppercase tracking-widest mb-6">Technology Partners</h2>
           <div className="flex flex-wrap gap-x-8 gap-y-4">
-            {[
-              "disguise",
-              "Holoplot",
-              "ROE Visual",
-              "Tait Navigator",
-              "Leica Geosystems",
-              "MA Lighting",
-              "BlackTrax",
-              "Notch",
-              "TouchDesigner",
-            ].map((partner) => (
-              <span key={partner} className="text-sm text-muted-foreground font-mono">
+            {partners.map((partner) => (
+              <span
+                key={partner}
+                className="text-sm text-muted-foreground font-mono hover:text-white transition-colors"
+              >
                 {partner}
               </span>
             ))}
@@ -135,18 +298,20 @@ export default function CapabilitiesPage() {
         </div>
       </section>
 
+      {/* CTA */}
       <section className="py-24">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-6">Need a specific capability?</h2>
+          <h2 className="text-3xl font-bold mb-4">Need a specific capability?</h2>
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
             If you don't see what you need, let's talk. We build custom solutions for unique challenges.
           </p>
-          <a
+          <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-bold hover:bg-gray-200 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-bold hover:bg-gray-200 transition-colors duration-150"
           >
             Discuss Your Project
-          </a>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </section>
 
