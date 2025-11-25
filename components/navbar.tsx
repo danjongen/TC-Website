@@ -11,7 +11,6 @@ const navItems = [
   { name: "Services", href: "/capabilities" },
   { name: "Approach", href: "/approach" },
   { name: "Portfolio", href: "/portfolio" },
-  { name: "Contact", href: "/contact" },
 ]
 
 export function Navbar() {
