@@ -20,12 +20,16 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Technically Creative | Production Engineering",
-    template: "%s | Technically Creative",
+    default: "TC Agency | Technically Creative — Production Engineering & Technical Direction",
+    template: "%s | TC Agency — Technically Creative",
   },
   description:
-    "High-stakes shows delivered through automation, scalable systems, and systematic execution. End-to-end technical leadership for complex productions.",
+    "TC Agency (tc.agency) is Technically Creative — the official home for production engineering, technical direction, and live event automation. High-stakes shows delivered through scalable systems and systematic execution. TC Agency provides end-to-end technical leadership for complex productions worldwide.",
   keywords: [
+    "TC Agency",
+    "tc.agency",
+    "Technically Creative",
+    "TC",
     "production engineering",
     "technical direction",
     "live events",
@@ -33,34 +37,48 @@ export const metadata: Metadata = {
     "concert production",
     "system integration",
     "workflow automation",
+    "event technology",
+    "production management",
+    "technical production",
+    "live production",
+    "touring production",
+    "stage automation",
+    "3D scanning",
+    "aerial surveying",
+    "custom fabrication",
   ],
-  authors: [{ name: "Technically Creative" }],
-  creator: "Technically Creative",
-  publisher: "Technically Creative",
+  authors: [{ name: "TC Agency" }, { name: "Technically Creative" }],
+  creator: "TC Agency — Technically Creative",
+  publisher: "TC Agency",
   metadataBase: new URL("https://tc.agency"),
+  applicationName: "TC Agency",
   alternates: {
-    canonical: "/",
+    canonical: "https://tc.agency",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://tc.agency",
-    siteName: "Technically Creative",
-    title: "Technically Creative | Production Engineering",
-    description: "High-stakes shows delivered through automation, scalable systems, and systematic execution.",
+    siteName: "TC Agency — Technically Creative",
+    title: "TC Agency | Technically Creative — Production Engineering & Technical Direction",
+    description:
+      "TC Agency (tc.agency) is Technically Creative — production engineering, technical direction, and live event automation. The official home for high-stakes show delivery.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Technically Creative - Production Engineering",
+        alt: "TC Agency — Technically Creative | Production Engineering",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Technically Creative | Production Engineering",
-    description: "High-stakes shows delivered through automation, scalable systems, and systematic execution.",
+    site: "@tc_agency",
+    creator: "@tc_agency",
+    title: "TC Agency | Technically Creative — Production Engineering",
+    description:
+      "TC Agency (tc.agency) is Technically Creative — production engineering, technical direction, and live event automation.",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -79,6 +97,11 @@ export const metadata: Metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
+  verification: {
+    // Add verification codes when available
+    // google: "your-google-verification-code",
+  },
+  category: "technology",
     generator: 'v0.app'
 }
 
