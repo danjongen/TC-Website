@@ -11,24 +11,6 @@ const clients = [
   { name: "OpenAI", logo: "OPENAI" },
 ]
 
-const partners = [
-  "disguise",
-  "Holoplot",
-  "ROE Visual",
-  "Tait Navigator",
-  "Leica Geosystems",
-  "Brompton Technology",
-  "Sennheiser",
-  "Shure",
-  "d&b audiotechnik",
-  "L-Acoustics",
-  "Robe Lighting",
-  "MA Lighting",
-  "BlackTrax",
-  "Notch",
-  "TouchDesigner",
-]
-
 export function Clients() {
   return (
     <section className="py-16 md:py-24 border-b border-border bg-background">
@@ -42,7 +24,7 @@ export function Clients() {
         </div>
 
         {/* Client Logos Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
           {clients.map((client, index) => (
             <motion.div
               key={client.name}
@@ -60,27 +42,6 @@ export function Clients() {
               </div>
             </motion.div>
           ))}
-        </div>
-
-        {/* Technology Partners */}
-        <div className="border-t border-border pt-12">
-          <h3 className="text-xs font-mono text-zinc-600 mb-6 uppercase tracking-widest">
-            Technology Partners & Vendor Integrations
-          </h3>
-          <div className="flex flex-wrap gap-x-8 gap-y-4">
-            {partners.map((partner, index) => (
-              <motion.span
-                key={partner}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05, duration: 0.3 }}
-                className="text-sm text-zinc-500 hover:text-white transition-colors cursor-default"
-              >
-                {partner}
-              </motion.span>
-            ))}
-          </div>
         </div>
       </div>
     </section>
