@@ -1,13 +1,47 @@
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import type { Metadata } from "next"
-import { CTA } from "@/components/cta"
+import { ContactForm } from "@/components/contact-form"
+import { Mail, Phone, MapPin, Clock } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Contact | TC Agency — Technically Creative",
   description:
     "Get in touch with TC Agency. Email info@tc.agency or call +1 (313) 555-1234. Offices in Detroit, Los Angeles, and Las Vegas.",
 }
+
+const contactInfo = [
+  {
+    icon: Mail,
+    label: "Email",
+    value: "info@tc.agency",
+    href: "mailto:info@tc.agency",
+  },
+  {
+    icon: Phone,
+    label: "Phone",
+    value: "+1 (313) 555-1234",
+    href: "tel:+13135551234",
+  },
+  {
+    icon: MapPin,
+    label: "Headquarters",
+    value: "Detroit, MI",
+    href: null,
+  },
+  {
+    icon: Clock,
+    label: "Response Time",
+    value: "< 24 hours",
+    href: null,
+  },
+]
+
+const offices = [
+  { city: "Detroit", role: "Headquarters", timezone: "EST" },
+  { city: "Los Angeles", role: "West Coast Operations", timezone: "PST" },
+  { city: "Las Vegas", role: "Venue Support", timezone: "PST" },
+]
 
 export default function ContactPage() {
   return (
@@ -26,7 +60,76 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <CTA />
+      <section className="py-24 border-b border-border">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16">
+            {/* Contact Info */}
+            <div>
+              <h2 className="text-2xl font-bold mb-8">Direct Contact</h2>
+
+              <div className="grid grid-cols-2 gap-6 mb-12">
+                {contactInfo.map((item) => (
+                  <div key={item.label} className="bg-zinc-900/50 border border-border p-4">
+                    <item.icon className="w-5 h-5 text-emerald-500 mb-3" />
+                    <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-1">
+                      {item.label}
+                    </p>
+                    {item.href ? (
+                      <a href={item.href} className="font-medium hover:text-emerald-500 transition-colors">
+                        {item.value}
+                      </a>
+                    ) : (
+                      <p className="font-medium">{item.value}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              <h3 className="text-lg font-bold mb-4">Office Locations</h3>
+              <div className="space-y-3">
+                {offices.map((office) => (
+                  <div key={office.city} className="flex justify-between items-center py-3 border-b border-border">
+                    <div>
+                      <p className="font-medium">{office.city}</p>
+                      <p className="text-sm text-muted-foreground">{office.role}</p>
+                    </div>
+                    <span className="text-xs font-mono text-muted-foreground">{office.timezone}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Trust indicators */}
+              <div className="mt-12 p-6 bg-zinc-900/30 border border-border">
+                <p className="text-sm font-mono text-emerald-500 uppercase tracking-widest mb-4">Why Work With Us</p>
+                <ul className="space-y-3 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-500 mt-1">—</span>
+                    <span>100+ stadium-scale productions delivered</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-500 mt-1">—</span>
+                    <span>99.99% system uptime across all shows</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-500 mt-1">—</span>
+                    <span>24/7 technical support during productions</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-500 mt-1">—</span>
+                    <span>Trusted by Fortune 500 brands and global artists</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div>
+              <h2 className="text-2xl font-bold mb-8">Start a Conversation</h2>
+              <ContactForm />
+            </div>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </main>
