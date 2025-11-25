@@ -3,7 +3,6 @@
 import { motion, useScroll, useSpring, useTransform } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { useRef, useEffect, useState } from "react"
-import { WorkflowSimulator } from "./workflow-simulator"
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null)
@@ -131,10 +130,6 @@ export function Hero() {
               >
                 Explore Capabilities
               </a>
-            </div>
-
-            <div className="mt-8 hidden lg:block">
-              <WorkflowSimulator />
             </div>
           </motion.div>
 
