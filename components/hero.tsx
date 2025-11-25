@@ -3,6 +3,7 @@
 import { motion, useScroll, useSpring, useTransform } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { useRef, useEffect, useState } from "react"
+import { WorkflowSimulator } from "./workflow-simulator"
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null)
@@ -92,7 +93,7 @@ export function Hero() {
   return (
     <section ref={containerRef} className="relative h-[300vh] border-b border-border">
       <div className="sticky top-0 h-screen flex items-start md:items-center overflow-hidden pt-24 md:pt-16">
-        <div className="absolute inset-0 bg-tech-grid opacity-20 pointer-events-none" />
+        <div className="absolute inset-0 bg-blueprint-grid opacity-30 pointer-events-none" />
 
         <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-8 md:gap-12 items-center relative z-10">
           <motion.div
@@ -107,28 +108,33 @@ export function Hero() {
               </span>
               System Status: Online
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-4 md:mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-4 md:mb-6 text-balance">
               Complex productions. <br />
               <span className="text-muted-foreground">Made manageable.</span>
             </h1>
             <p className="text-base md:text-xl text-muted-foreground max-w-md mb-6 md:mb-8 leading-relaxed">
-              High-stakes shows delivered through automation, scalable systems, and systematic execution.
+              Our automation ensures <span className="text-foreground font-medium">99.99% uptime</span> via redundant
+              systems. High-stakes shows delivered through scalable architecture and systematic execution.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="#contact"
+                href="/contact"
                 className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-black font-bold hover:bg-gray-200 transition-colors duration-150"
               >
                 Start a Project
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-150" />
               </a>
               <a
-                href="#services"
+                href="/capabilities"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border text-white font-medium hover:border-white transition-colors duration-150"
               >
-                Explore Services
+                Explore Capabilities
               </a>
+            </div>
+
+            <div className="mt-8 hidden lg:block">
+              <WorkflowSimulator />
             </div>
           </motion.div>
 

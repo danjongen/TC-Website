@@ -39,6 +39,13 @@
   --sidebar-accent-foreground: #fafafa;
   --sidebar-border: #262626;
   --sidebar-ring: #525252;
+
+  /* Added calm engineering palette */
+  --calm-blue: #1e3a8a;
+  --neutral-gray: #6b7280;
+  --accent-white: #f9fafb;
+  --engineering-green: #059669;
+  --system-amber: #d97706;
 }
 
 @theme inline {
@@ -78,6 +85,11 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-calm-blue: var(--calm-blue);
+  --color-neutral-gray: var(--neutral-gray);
+  --color-accent-white: var(--accent-white);
+  --color-engineering-green: var(--engineering-green);
+  --color-system-amber: var(--system-amber);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --animate-accordion-down: accordion-down 0.2s ease-out;
@@ -128,5 +140,18 @@
     background-size: 20px 20px;
     background-image: linear-gradient(to right, #1a1a1a 1px, transparent 1px),
       linear-gradient(to bottom, #1a1a1a 1px, transparent 1px);
+  }
+
+  /* Added blueprint grid for engineering aesthetic */
+  .bg-blueprint-grid {
+    background-size: 60px 60px;
+    background-image: linear-gradient(to right, rgba(30, 58, 138, 0.15) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(30, 58, 138, 0.15) 1px, transparent 1px);
+  }
+
+  .bg-blueprint-grid-dense {
+    background-size: 20px 20px;
+    background-image: linear-gradient(to right, rgba(30, 58, 138, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(30, 58, 138, 0.08) 1px, transparent 1px);
   }
 }
