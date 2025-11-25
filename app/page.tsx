@@ -1,13 +1,9 @@
 import { Navbar } from "@/components/navbar"
 import { Hero } from "@/components/hero"
-import { About } from "@/components/about"
 import { Clients } from "@/components/clients"
-import { Services } from "@/components/services"
-import { Approach } from "@/components/approach"
-import { Showcase } from "@/components/showcase"
-import { Work } from "@/components/work"
-import { CTA } from "@/components/cta"
 import { Footer } from "@/components/footer"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -25,63 +21,15 @@ const jsonLd = {
       description:
         "TC Agency (tc.agency) is Technically Creative — production engineering, technical direction, and live event automation for high-stakes shows worldwide.",
       email: "info@tc.agency",
-      sameAs: [],
-      knowsAbout: [
-        "Production Engineering",
-        "Technical Direction",
-        "Live Event Automation",
-        "Concert Production",
-        "System Integration",
-        "Workflow Automation",
-        "3D Scanning",
-        "Aerial Surveying",
-        "Custom Fabrication",
-      ],
     },
     {
       "@type": "WebSite",
       "@id": "https://tc.agency/#website",
       url: "https://tc.agency",
       name: "TC Agency — Technically Creative",
-      description:
-        "The official website of TC Agency (Technically Creative) — production engineering and technical direction.",
       publisher: {
         "@id": "https://tc.agency/#organization",
       },
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://tc.agency/#webpage",
-      url: "https://tc.agency",
-      name: "TC Agency | Technically Creative — Production Engineering & Technical Direction",
-      isPartOf: {
-        "@id": "https://tc.agency/#website",
-      },
-      about: {
-        "@id": "https://tc.agency/#organization",
-      },
-      description:
-        "TC Agency (tc.agency) is Technically Creative — the official home for production engineering, technical direction, and live event automation.",
-    },
-    {
-      "@type": "ProfessionalService",
-      "@id": "https://tc.agency/#service",
-      name: "TC Agency Production Services",
-      provider: {
-        "@id": "https://tc.agency/#organization",
-      },
-      serviceType: [
-        "Technical Direction",
-        "Production Management",
-        "Design & Visualization",
-        "Workflow Automation",
-        "System Integration",
-        "3D Scanning & Unreal",
-        "Aerial Surveying",
-        "Custom Fabrication",
-        "Training & Documentation",
-      ],
-      areaServed: "Worldwide",
     },
   ],
 }
@@ -94,12 +42,33 @@ export default function Home() {
         <Navbar />
         <Hero />
         <Clients />
-        <About />
-        <Services />
-        <Approach />
-        <Showcase />
-        <Work />
-        <CTA />
+
+        {/* Quick Navigation Cards */}
+        <section className="py-24 border-b border-border">
+          <div className="container mx-auto px-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { title: "Our Mission", desc: "Why we exist and what drives us", href: "/mission" },
+                { title: "Capabilities", desc: "Technical services and expertise", href: "/capabilities" },
+                { title: "Our Approach", desc: "How we deliver complex productions", href: "/approach" },
+                { title: "Portfolio", desc: "Featured projects and case studies", href: "/portfolio" },
+              ].map((item) => (
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  className="group p-6 border border-border bg-zinc-950 hover:bg-zinc-900 hover:border-zinc-700 transition-all duration-150"
+                >
+                  <h3 className="text-lg font-bold mb-2 group-hover:text-white transition-colors">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">{item.desc}</p>
+                  <span className="inline-flex items-center gap-2 text-sm font-mono text-emerald-500">
+                    Explore <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <Footer />
       </main>
     </>

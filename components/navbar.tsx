@@ -1,19 +1,22 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { AnimatePresence, motion } from "framer-motion"
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 
 const navItems = [
-  { name: "What We Do", href: "#services" },
-  { name: "Who We Work With", href: "#clients" },
-  { name: "How We Work", href: "#approach" },
-  { name: "Get In Touch", href: "#contact" },
+  { name: "Mission", href: "/mission" },
+  { name: "Capabilities", href: "/capabilities" },
+  { name: "Approach", href: "/approach" },
+  { name: "Portfolio", href: "/portfolio" },
+  { name: "Contact", href: "/contact" },
 ]
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     if (isOpen) {
@@ -25,6 +28,11 @@ export function Navbar() {
       document.body.style.overflow = ""
     }
   }, [isOpen])
+
+  // Close menu on route change
+  useEffect(() => {
+    setIsOpen(false)
+  }, [pathname])
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
@@ -40,13 +48,15 @@ export function Navbar() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-medium text-muted-foreground hover:text-white transition-colors duration-150"
+              className={`text-sm font-medium transition-colors duration-150 ${
+                pathname === item.href ? "text-white" : "text-muted-foreground hover:text-white"
+              }`}
             >
               {item.name}
             </Link>
           ))}
           <Link
-            href="#contact"
+            href="/contact"
             className="px-4 py-2 bg-white text-black text-sm font-bold hover:bg-gray-200 transition-colors duration-150"
           >
             Start a Project
@@ -78,8 +88,9 @@ export function Navbar() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="block py-4 text-xl font-bold text-white border-b border-border"
-                    onClick={() => setIsOpen(false)}
+                    className={`block py-4 text-xl font-bold border-b border-border ${
+                      pathname === item.href ? "text-emerald-500" : "text-white"
+                    }`}
                   >
                     {item.name}
                   </Link>
@@ -88,9 +99,8 @@ export function Navbar() {
 
               <div className="mt-8">
                 <Link
-                  href="#contact"
+                  href="/contact"
                   className="block w-full px-6 py-4 bg-white text-black text-center text-lg font-bold"
-                  onClick={() => setIsOpen(false)}
                 >
                   Start a Project
                 </Link>
