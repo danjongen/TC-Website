@@ -1,6 +1,4 @@
 "use client"
-
-import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 
@@ -67,19 +65,21 @@ export function Services() {
           {services.map((service, index) => {
             const content = (
               <>
-                <div className="absolute top-0 left-0 w-full h-[1px] bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute top-0 left-0 w-full h-[1px] bg-accent opacity-0 group-hover:opacity-100 transition-opacity duration-150" />
                 <div className="font-mono text-xs text-muted-foreground mb-4">
                   {(index + 1).toString().padStart(2, "0")}
                 </div>
                 <div className="flex items-start justify-between gap-2">
-                  <h4 className="text-xl font-bold mb-3 group-hover:text-white transition-colors">{service.title}</h4>
+                  <h4 className="text-xl font-bold mb-3 group-hover:text-white transition-colors duration-150">
+                    {service.title}
+                  </h4>
                   {service.href && (
-                    <ArrowUpRight className="w-5 h-5 text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                    <ArrowUpRight className="w-5 h-5 text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-150 flex-shrink-0" />
                   )}
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">{service.desc}</p>
                 {service.href && (
-                  <div className="mt-4 text-xs font-mono text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="mt-4 text-xs font-mono text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
                     View Details →
                   </div>
                 )}
@@ -87,13 +87,9 @@ export function Services() {
             )
 
             return (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="bg-background p-8 hover:bg-accent/10 transition-colors group relative"
+                className="bg-background p-8 hover:bg-accent/10 transition-colors duration-150 group relative"
               >
                 {service.href ? (
                   <Link href={service.href} className="block">
@@ -102,7 +98,7 @@ export function Services() {
                 ) : (
                   content
                 )}
-              </motion.div>
+              </div>
             )
           })}
         </div>
