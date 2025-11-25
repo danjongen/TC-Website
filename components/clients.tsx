@@ -12,13 +12,21 @@ const clients = [
 ]
 
 const partners = [
+  "disguise",
+  "Holoplot",
+  "ROE Visual",
+  "Tait Navigator",
+  "Leica Geosystems",
+  "Brompton Technology",
   "Sennheiser",
   "Shure",
   "d&b audiotechnik",
   "L-Acoustics",
   "Robe Lighting",
-  "disguise",
-  "Brompton Technology",
+  "MA Lighting",
+  "BlackTrax",
+  "Notch",
+  "TouchDesigner",
 ]
 
 export function Clients() {
