@@ -1,14 +1,29 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 const clients = [
-  { name: "Ford", logo: "FORD" },
-  { name: "The Sphere", logo: "SPHERE" },
-  { name: "Backstreet Boys", logo: "BSB" },
-  { name: "Visa", logo: "VISA" },
-  { name: "Samsung", logo: "SAMSUNG" },
-  { name: "OpenAI", logo: "OPENAI" },
+  {
+    name: "Ford",
+    logo: "/images/ford-logo-flat.png",
+  },
+  {
+    name: "The Sphere",
+    logo: "/images/msg-sphere-logo.png",
+  },
+  {
+    name: "Backstreet Boys",
+    logo: "/images/backstreet-20boys.png",
+  },
+  {
+    name: "Google",
+    logo: "/images/google-favicon-2025.png",
+  },
+  {
+    name: "Samsung",
+    logo: "/images/samsung-orig-wordmark-blue-rgb.png",
+  },
 ]
 
 export function Clients() {
@@ -23,22 +38,24 @@ export function Clients() {
           </p>
         </div>
 
-        {/* Client Logos Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8">
           {clients.map((client, index) => (
             <motion.div
               key={client.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="group relative aspect-[3/2] border border-border bg-zinc-950 flex items-center justify-center p-6 hover:border-emerald-900/50 transition-colors"
+              transition={{ delay: index * 0.05, duration: 0.3 }}
+              className="group relative aspect-[3/2] border border-border bg-zinc-950 flex items-center justify-center p-6 md:p-8 hover:border-zinc-700 transition-all duration-300"
             >
-              <span className="text-xl md:text-2xl font-bold tracking-tighter text-zinc-600 group-hover:text-white transition-colors">
-                {client.logo}
-              </span>
-              <div className="absolute bottom-2 left-2 text-[10px] font-mono text-zinc-700 uppercase">
-                {client.name}
+              <div className="relative w-full h-full flex items-center justify-center">
+                <Image
+                  src={client.logo || "/placeholder.svg"}
+                  alt={client.name}
+                  fill
+                  className="object-contain p-4 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                />
               </div>
             </motion.div>
           ))}
