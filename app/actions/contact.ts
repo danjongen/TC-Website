@@ -56,8 +56,9 @@ Submitted: ${new Date().toLocaleString("en-US", { timeZone: "America/Detroit" })
 `
 
   try {
+    // Once verified, change back to: "TC Agency Contact Form <noreply@tc.agency>"
     await resend.emails.send({
-      from: "TC Agency Contact Form <noreply@tc.agency>",
+      from: "TC Agency <onboarding@resend.dev>",
       to: ["info@tc.agency"],
       replyTo: data.email,
       subject: `New Inquiry: ${data.name}${data.company ? ` from ${data.company}` : ""}`,
