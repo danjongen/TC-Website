@@ -32,11 +32,26 @@ const clients = [
   {
     name: "OpenAI",
     logo: "/images/openai-logo.svg",
-    invert: true, // Black logo needs to be inverted to white
+    invert: true,
   },
   {
     name: "Visa",
     logo: "/images/visa-logo.webp",
+    invert: false,
+  },
+  {
+    name: "Daniel Caesar",
+    logo: "/images/daniel-caesar-logo.png",
+    invert: true,
+  },
+  {
+    name: "Jelly Roll",
+    logo: "/images/jelly-roll-logo.png",
+    invert: false,
+  },
+  {
+    name: "No Doubt",
+    logo: "/images/no-doubt-logo.png",
     invert: false,
   },
 ]
@@ -53,7 +68,7 @@ export function Clients() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
           {clients.map((client, index) => (
             <motion.div
               key={client.name}
