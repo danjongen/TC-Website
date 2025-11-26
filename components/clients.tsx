@@ -7,22 +7,37 @@ const clients = [
   {
     name: "Ford",
     logo: "/images/ford-logo-flat.png",
+    invert: false,
   },
   {
     name: "The Sphere",
     logo: "/images/msg-sphere-logo.png",
+    invert: false,
   },
   {
     name: "Backstreet Boys",
     logo: "/images/backstreet-20boys.png",
+    invert: false,
   },
   {
     name: "Google",
     logo: "/images/google-favicon-2025.png",
+    invert: false,
   },
   {
     name: "Samsung",
     logo: "/images/samsung-orig-wordmark-blue-rgb.png",
+    invert: false,
+  },
+  {
+    name: "OpenAI",
+    logo: "/images/openai-logo.svg",
+    invert: true, // Black logo needs to be inverted to white
+  },
+  {
+    name: "Visa",
+    logo: "/images/visa-logo.webp",
+    invert: false,
   },
 ]
 
@@ -38,7 +53,7 @@ export function Clients() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4 md:gap-6">
           {clients.map((client, index) => (
             <motion.div
               key={client.name}
@@ -46,17 +61,24 @@ export function Clients() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05, duration: 0.3 }}
-              className="group relative aspect-[3/2] border border-border bg-zinc-950 flex items-center justify-center p-6 md:p-8 hover:border-zinc-700 transition-all duration-300"
+              className="group relative border border-border bg-zinc-950 flex flex-col items-center justify-center p-6 md:p-8 hover:border-zinc-700 transition-all duration-300"
             >
-              <div className="relative w-full h-full flex items-center justify-center">
+              {/* Logo container - larger height */}
+              <div className="relative w-full h-16 md:h-20 flex items-center justify-center mb-4">
                 <Image
                   src={client.logo || "/placeholder.svg"}
                   alt={client.name}
                   fill
-                  className="object-contain p-4 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
-                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                  className={`object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 ${
+                    client.invert ? "invert group-hover:invert" : ""
+                  }`}
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 14vw"
                 />
               </div>
+              {/* Client name label underneath */}
+              <span className="text-xs font-mono text-zinc-600 group-hover:text-zinc-400 transition-colors uppercase tracking-wider">
+                {client.name}
+              </span>
             </motion.div>
           ))}
         </div>
