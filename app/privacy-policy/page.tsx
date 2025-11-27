@@ -5,12 +5,12 @@ import { Footer } from "@/components/footer"
 import { ArrowLeft } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Global Privacy Policy",
+  title: "Global Privacy Policy | TC Agency",
   description: "TC Agency global privacy policy covering GDPR, CCPA, PIPEDA, and international data protection.",
   openGraph: {
     title: "Global Privacy Policy | TC Agency",
     description: "TC Agency global privacy policy covering GDPR, CCPA, PIPEDA, and international data protection.",
-    url: "https://tc.agency/privacy",
+    url: "https://tc.agency/privacy-policy",
   },
 }
 
@@ -31,9 +31,23 @@ export default function PrivacyPolicy() {
           </Link>
 
           {/* Header */}
-          <header className="mb-12">
+          <header className="mb-12 border-b border-zinc-800 pb-8">
+            <p className="text-xs font-mono text-zinc-500 mb-2">Last updated: November 27, 2025</p>
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Global Privacy Policy</h1>
-            <p className="text-zinc-500 text-sm">Last updated: November 27, 2025</p>
+            <div className="text-sm text-zinc-400">
+              <p>Technically Creative LLC (TC Agency)</p>
+              <p>Detroit, MI, USA</p>
+              <p>
+                <a href="mailto:info@tc.agency" className="text-white hover:underline">
+                  info@tc.agency
+                </a>
+              </p>
+              <p>
+                <a href="tel:+13132615200" className="text-white hover:underline">
+                  +1 313 261 5200
+                </a>
+              </p>
+            </div>
           </header>
 
           {/* Content */}

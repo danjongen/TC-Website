@@ -55,7 +55,7 @@ export function CookieConsent() {
             <p className="text-xs text-zinc-400 leading-relaxed mb-4">
               We use cookies and similar technologies to analyze site traffic and optimize your experience. By clicking
               "Accept", you consent to the use of analytics cookies. You can change your preferences at any time.{" "}
-              <Link href="/privacy" className="text-white underline underline-offset-2 hover:text-zinc-300">
+              <Link href="/cookie-policy" className="text-white underline underline-offset-2 hover:text-zinc-300">
                 Learn more
               </Link>
             </p>
@@ -73,7 +73,7 @@ export function CookieConsent() {
                 Decline
               </button>
               <Link
-                href="/privacy"
+                href="/cookie-policy"
                 className="px-4 py-2 text-zinc-400 text-xs font-semibold hover:text-white transition-colors"
               >
                 Cookie Policy
