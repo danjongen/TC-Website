@@ -13,7 +13,6 @@ const clients = [
     name: "The Sphere",
     logo: "/images/sphere-logo.jpg",
     invert: false,
-    isLight: true,
   },
   {
     name: "Backstreet Boys",
@@ -54,7 +53,6 @@ const clients = [
     name: "No Doubt",
     logo: "/images/no-doubt-logo.png",
     invert: false,
-    isLight: true,
   },
 ]
 
@@ -86,11 +84,7 @@ export function Clients() {
                   src={client.logo || "/placeholder.svg"}
                   alt={client.name}
                   fill
-                  className={`object-contain transition-all duration-300 ${
-                    client.isLight
-                      ? "opacity-70 group-hover:opacity-100"
-                      : "grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100"
-                  } ${client.invert ? "invert group-hover:invert" : ""}`}
+                  className={`object-contain transition-all duration-300 ${"grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100"} ${client.invert ? "invert group-hover:invert" : ""}`}
                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 14vw"
                 />
               </div>
