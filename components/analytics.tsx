@@ -2,21 +2,19 @@
 
 import Script from "next/script"
 
-// Google Analytics 4 Component
-export function GoogleAnalytics({ measurementId }: { measurementId: string }) {
-  if (!measurementId) return null
+const GA_MEASUREMENT_ID = "G-J8BEX66DS9"
 
+// Google Analytics 4 Component
+export function GoogleAnalytics() {
   return (
     <>
-      <Script src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`} strategy="afterInteractive" />
+      <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} strategy="afterInteractive" />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${measurementId}', {
-            page_path: window.location.pathname,
-          });
+          gtag('config', '${GA_MEASUREMENT_ID}');
         `}
       </Script>
     </>
@@ -42,13 +40,11 @@ export function MicrosoftClarity({ projectId }: { projectId: string }) {
 
 // Combined Analytics Provider
 export function Analytics() {
-  // These IDs should be set as environment variables in production
-  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ""
   const clarityId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID || ""
 
   return (
     <>
-      <GoogleAnalytics measurementId={gaId} />
+      <GoogleAnalytics />
       <MicrosoftClarity projectId={clarityId} />
     </>
   )
