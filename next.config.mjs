@@ -1,12 +1,54 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // <CHANGE> Enable React strict mode for better error detection
+  reactStrictMode: true,
+
+  // <CHANGE> Enable TypeScript strict checks (was ignoring errors)
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
+
+  // <CHANGE> Enable Vercel's automatic image optimization
   images: {
-    unoptimized: true,
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'hebbkx1anhila5yf.public.blob.vercel-storage.com',
+      },
+    ],
   },
- 
+
+  // <CHANGE> Enable experimental features for performance
+  experimental: {
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
+  },
+
+  // <CHANGE> Security headers
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+        ],
+      },
+    ]
+  },
 }
 
 export default nextConfig

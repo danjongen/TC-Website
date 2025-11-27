@@ -3,9 +3,12 @@ import type { Metadata, Viewport } from "next"
 
 import "./globals.css"
 
-import { Analytics } from "@/components/analytics"
+import { Analytics as NextAnalytics } from "@/components/analytics"
 import { CookieConsent } from "@/components/cookie-consent"
 import { ScrollToTop } from "@/components/scroll-to-top"
+
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { Inter, JetBrains_Mono, Geist_Mono as V0_Font_Geist_Mono } from 'next/font/google'
 
@@ -16,12 +19,16 @@ const inter = Inter({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
+  preload: true,
+  fallback: ["system-ui", "arial"],
 })
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
+  preload: true,
+  fallback: ["Consolas", "Monaco", "monospace"],
 })
 
 export const metadata: Metadata = {
@@ -119,9 +126,15 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#050505",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#000000" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
   width: "device-width",
   initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  colorScheme: "dark",
 }
 
 export default function RootLayout({
@@ -130,7 +143,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.clarity.ms" />
+      </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground selection:bg-accent selection:text-white`}
       >
@@ -141,9 +161,11 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <Analytics />
+        <NextAnalytics />
         {children}
         <CookieConsent />
+        <VercelAnalytics />
+        <SpeedInsights />
       </body>
     </html>
   )
