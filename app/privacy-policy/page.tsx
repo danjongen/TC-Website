@@ -58,11 +58,11 @@ export default function PrivacyPolicy() {
             <section>
               <h2 className="text-xl font-semibold text-white mb-4">1. Introduction</h2>
               <p className="text-zinc-400 leading-relaxed">
-                Technically Creative LLC, operating as TC Agency ("we", "our", "us"), is committed to protecting your
-                privacy. This Privacy Policy explains how we collect, use, store, disclose, and safeguard personal
-                information when you visit tc.agency or interact with us. This policy applies globally and is designed
-                to meet major privacy regulations including GDPR, UK-GDPR, CCPA/CPRA, PIPEDA, and the Australia Privacy
-                Act.
+                Technically Creative LLC, operating as TC Agency, TC, and Tech Creative ("we", "our", "us", "Technically
+                Creative"), is committed to protecting your privacy. This Privacy Policy explains how we collect, use,
+                store, disclose, and safeguard personal information when you visit tc.agency or interact with us. This
+                policy applies globally and is designed to meet major privacy regulations including GDPR, UK-GDPR,
+                CCPA/CPRA, PIPEDA, and the Australia Privacy Act.
               </p>
             </section>
 
