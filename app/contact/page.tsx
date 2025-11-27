@@ -103,6 +103,12 @@ export default function ContactPage() {
       <section className="py-24 border-b border-border">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16">
+            {/* Contact Form */}
+            <div>
+              <h2 className="text-2xl font-bold mb-8">Start a Conversation</h2>
+              <ContactForm />
+            </div>
+
             {/* Contact Info */}
             <div>
               <h2 className="text-2xl font-bold mb-8">Direct Contact</h2>
@@ -160,12 +166,6 @@ export default function ContactPage() {
                   </li>
                 </ul>
               </div>
-            </div>
-
-            {/* Contact Form */}
-            <div>
-              <h2 className="text-2xl font-bold mb-8">Start a Conversation</h2>
-              <ContactForm />
             </div>
           </div>
         </div>
