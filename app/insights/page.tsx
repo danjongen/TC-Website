@@ -1,8 +1,9 @@
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import type { Metadata } from "next"
-import { Bell, ArrowRight } from "lucide-react"
+import { Bell } from "lucide-react"
 import { BreadcrumbSchema } from "@/components/structured-data"
+import { NewsletterForm } from "@/components/newsletter-form"
 
 export const metadata: Metadata = {
   title: "Insights | TC Agency — Technically Creative",
@@ -71,26 +72,13 @@ export default function InsightsPage() {
               </div>
             </div>
 
-            {/* Newsletter Signup */}
+            {/* Newsletter Signup - now using client component */}
             <div className="max-w-md mx-auto">
               <div className="flex items-center justify-center gap-2 mb-6">
                 <Bell className="w-5 h-5 text-emerald-500" />
                 <span className="text-sm font-mono text-muted-foreground">Get notified when we launch</span>
               </div>
-              <form className="flex flex-col sm:flex-row gap-4">
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="flex-grow px-4 py-3 bg-zinc-900 border border-border text-white placeholder:text-muted-foreground focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
-                  aria-label="Email address for notifications"
-                />
-                <button
-                  type="submit"
-                  className="px-6 py-3 bg-white text-black font-bold hover:bg-gray-200 transition-colors inline-flex items-center justify-center gap-2"
-                >
-                  Notify Me <ArrowRight className="w-4 h-4" />
-                </button>
-              </form>
+              <NewsletterForm />
               <p className="text-xs text-muted-foreground mt-4">No spam. Unsubscribe anytime.</p>
             </div>
           </div>
