@@ -57,7 +57,7 @@ export function Services() {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="mb-16">
-          <h2 className="text-xs font-mono text-gray-400 mb-4 uppercase tracking-widest">02 / Capabilities</h2>
+          <h2 className="text-xs font-mono text-gray-400 mb-4 uppercase tracking-widest">02 / Services</h2>
           <h3 className="text-3xl font-bold">Core Services</h3>
         </div>
 

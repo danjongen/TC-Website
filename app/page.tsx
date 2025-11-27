@@ -37,7 +37,7 @@ export default function Home() {
                 <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 list-none p-0 m-0">
                   {[
                     { title: "Our Mission", desc: "Why we exist and what drives us", href: "/mission" },
-                    { title: "Capabilities", desc: "Technical services and expertise", href: "/capabilities" },
+                    { title: "Services", desc: "Technical services and expertise", href: "/capabilities" },
                     { title: "Our Approach", desc: "How we deliver complex productions", href: "/approach" },
                     { title: "Portfolio", desc: "Featured projects and case studies", href: "/portfolio" },
                   ].map((item) => (

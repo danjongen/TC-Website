@@ -171,7 +171,7 @@ export default function CapabilitiesPage() {
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "https://tc.agency" },
-          { name: "Capabilities", url: "https://tc.agency/capabilities" },
+          { name: "Services", url: "https://tc.agency/capabilities" },
         ]}
       />
 
@@ -182,7 +182,7 @@ export default function CapabilitiesPage() {
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="text-sm font-mono text-emerald-500 mb-4 uppercase tracking-widest">02 / Capabilities</p>
+              <p className="text-sm font-mono text-emerald-500 mb-4 uppercase tracking-widest">02 / Services</p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
                 Full-spectrum production engineering.
               </h1>

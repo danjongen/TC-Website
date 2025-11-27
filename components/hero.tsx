@@ -153,7 +153,7 @@ export function Hero() {
                 href="/capabilities"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-400 text-white font-medium hover:border-white hover:bg-white/5 transition-all duration-150"
               >
-                View Capabilities
+                View Services
               </a>
             </div>
           </motion.div>

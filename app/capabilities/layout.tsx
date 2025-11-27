@@ -2,7 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Capabilities | TC Agency — Technically Creative",
+  title: "Services | TC Agency — Technically Creative",
   description:
     "Full-spectrum production engineering services: technical direction, automation, system integration, 3D scanning, Unreal Engine, and custom fabrication.",
   keywords: [
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "show control systems",
   ],
   openGraph: {
-    title: "Capabilities | TC Agency — Technically Creative",
+    title: "Services | TC Agency — Technically Creative",
     description:
       "Full-spectrum production engineering. Every technical discipline under one roof, working as a unified system.",
     url: "https://tc.agency/capabilities",
@@ -27,14 +27,14 @@ export const metadata: Metadata = {
         url: "/images/dsf3815.jpg",
         width: 1200,
         height: 630,
-        alt: "TC Agency production capabilities",
+        alt: "TC Agency production services",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Capabilities | TC Agency",
+    title: "Services | TC Agency",
     description: "Full-spectrum production engineering for high-stakes live events.",
     images: ["/images/dsf3815.jpg"],
   },

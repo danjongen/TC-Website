@@ -104,7 +104,7 @@ export function ServiceSchema({ services }: { services: { name: string; descript
           "@id": "https://tc.agency/#organization",
         },
         areaServed: "Worldwide",
-        url: service.url || "https://tc.agency/capabilities",
+        url: service.url || "https://tc.agency/services",
       },
     })),
   }

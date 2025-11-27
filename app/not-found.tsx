@@ -44,7 +44,7 @@ export default function NotFound() {
             <p className="text-sm text-muted-foreground mb-4">Looking for something specific?</p>
             <nav className="flex flex-wrap items-center justify-center gap-6 text-sm">
               <Link href="/capabilities" className="hover:text-foreground transition-colors text-muted-foreground">
-                Capabilities
+                Services
               </Link>
               <Link href="/approach" className="hover:text-foreground transition-colors text-muted-foreground">
                 Approach
