@@ -35,7 +35,10 @@ export default function DoNotSell() {
               Do Not Sell or Share My Personal Information
             </h1>
             <div className="text-sm text-zinc-400">
-              <p>Technically Creative LLC (TC Agency)</p>
+              <p>
+                Technically Creative LLC, operating as TC Agency, TC, and Tech Creative ("we", "our", "us", "Technically
+                Creative")
+              </p>
               <p>Detroit, MI, USA</p>
               <p>
                 <a href="mailto:info@tc.agency" className="text-white hover:underline">
@@ -91,7 +94,9 @@ export default function DoNotSell() {
               <p className="text-zinc-400 leading-relaxed mb-4">To exercise your privacy rights or ask questions:</p>
               <div className="bg-zinc-900 border border-zinc-800 p-4">
                 <p className="text-sm text-zinc-400">
-                  <strong className="text-white">Technically Creative LLC (TC Agency)</strong>
+                  <strong className="text-white">
+                    Technically Creative LLC, operating as TC Agency, TC, and Tech Creative
+                  </strong>
                   <br />
                   Detroit, MI, USA
                   <br />

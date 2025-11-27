@@ -33,7 +33,10 @@ export default function CookiePolicy() {
             <p className="text-xs font-mono text-zinc-500 mb-2">Last updated: November 27, 2025</p>
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Cookie Policy</h1>
             <div className="text-sm text-zinc-400">
-              <p>Technically Creative LLC (TC Agency)</p>
+              <p>
+                Technically Creative LLC, operating as TC Agency, TC, and Tech Creative ("we", "our", "us", "Technically
+                Creative")
+              </p>
               <p>Detroit, MI, USA</p>
               <p>
                 <a href="mailto:info@tc.agency" className="text-white hover:underline">
@@ -145,7 +148,9 @@ export default function CookiePolicy() {
               <h2 className="text-xl font-semibold text-white mb-4">7. Contact Us</h2>
               <div className="bg-zinc-900 border border-zinc-800 p-4">
                 <p className="text-sm text-zinc-400">
-                  <strong className="text-white">Technically Creative LLC (TC Agency)</strong>
+                  <strong className="text-white">
+                    Technically Creative LLC, operating as TC Agency, TC, and Tech Creative
+                  </strong>
                   <br />
                   Detroit, MI, USA
                   <br />
