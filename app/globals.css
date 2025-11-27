@@ -4,7 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Technical Calm design system - monochromatic with signal orange accent */
+/* Technical Calm design system - monochromatic with emerald accent */
 :root {
   /* Core monochromatic palette */
   --background: #000000;
@@ -20,8 +20,8 @@
   --muted: #141414;
   --muted-foreground: #737373;
 
-  /* Signal orange for CTAs only - replacing emerald */
-  --accent: #ff4d00;
+  /* Restored emerald green accent for CTAs */
+  --accent: #10b981;
   --accent-foreground: #000000;
 
   --destructive: #dc2626;
@@ -57,8 +57,8 @@
   --sidebar-border: #262626;
   --sidebar-ring: #404040;
 
-  /* Technical Calm specific tokens */
-  --signal-orange: #ff4d00;
+  /* Updated accent tokens to emerald green */
+  --signal-green: #10b981;
   --system-green: #22c55e;
   --data-blue: #3b82f6;
 }
