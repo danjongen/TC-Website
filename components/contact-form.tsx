@@ -1,5 +1,6 @@
 "use client"
 
+import { useActionState } from "react"
 import { useFormStatus } from "react-dom"
 import { submitContactForm } from "@/app/actions/contact"
 import { Loader2 } from "lucide-react"
@@ -26,8 +27,14 @@ function SubmitButton() {
 }
 
 export function ContactForm() {
+  const [state, formAction] = useActionState(submitContactForm, null)
+
   return (
-    <form action={submitContactForm} className="space-y-6">
+    <form action={formAction} className="space-y-6">
+      {state?.error && (
+        <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-400 text-sm">{state.error}</div>
+      )}
+
       {/* Name & Company */}
       <div className="grid md:grid-cols-2 gap-4">
         <div>

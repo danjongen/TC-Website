@@ -6,7 +6,10 @@ import { Resend } from "resend"
 // Initialize Resend with API key from environment
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-export async function submitContactForm(formData: FormData) {
+export async function submitContactForm(
+  prevState: { error: string } | null,
+  formData: FormData,
+): Promise<{ error: string } | null> {
   const data = {
     name: formData.get("name") as string,
     company: formData.get("company") as string,
