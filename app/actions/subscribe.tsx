@@ -123,18 +123,25 @@ export async function subscribeToNewsletter(formData: FormData) {
 }
 
 export async function unsubscribeFromNewsletter(email: string) {
+  console.log("[v0] Unsubscribe attempt for:", email)
+
   if (!email || !email.includes("@")) {
     return { success: false, message: "Invalid email address." }
   }
 
   if (!AUDIENCE_ID) {
+    console.log("[v0] Missing AUDIENCE_ID")
     return { success: false, message: "Unsubscribe service is not configured." }
   }
 
   try {
     // Get contact ID by email
+    console.log("[v0] Fetching contacts from audience:", AUDIENCE_ID)
     const contacts = await resend.contacts.list({ audienceId: AUDIENCE_ID })
+    console.log("[v0] Contacts response:", JSON.stringify(contacts, null, 2))
+
     const contact = contacts.data?.data?.find((c: any) => c.email === email)
+    console.log("[v0] Found contact:", contact)
 
     if (!contact) {
       return { success: false, message: "Email not found in our records." }
@@ -143,11 +150,13 @@ export async function unsubscribeFromNewsletter(email: string) {
     await delay(600)
 
     // Update contact to unsubscribed
-    await resend.contacts.update({
+    console.log("[v0] Updating contact to unsubscribed:", contact.id)
+    const updateResult = await resend.contacts.update({
       id: contact.id,
       audienceId: AUDIENCE_ID,
       unsubscribed: true,
     })
+    console.log("[v0] Update result:", JSON.stringify(updateResult, null, 2))
 
     return { success: true, message: "You've been unsubscribed. We're sorry to see you go." }
   } catch (error: any) {
