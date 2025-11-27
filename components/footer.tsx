@@ -100,7 +100,7 @@ export function Footer() {
                 © {new Date().getFullYear()} Technically Creative LLC (TC Agency). All rights reserved.
               </p>
               <a
-                href="https://linkedin.com/company/tc-agency"
+                href="https://linkedin.com/company/technicallycreative"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white transition-colors"
