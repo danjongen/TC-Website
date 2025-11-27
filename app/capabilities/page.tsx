@@ -136,6 +136,23 @@ const services = [
     ],
     specs: { leadTime: "2-6 weeks", materials: "50+", tolerance: "±0.1mm" },
   },
+  {
+    num: "10",
+    title: "Executive & Strategic Consulting",
+    desc: "High-stakes leadership for productions that demand clarity and certainty.",
+    href: "/services/consulting",
+    details: [
+      "Strategic planning and production road-mapping",
+      "Early-phase feasibility and scenario modelling",
+      "Commercial guidance, budget intelligence, and financial steering",
+      "Cross-department alignment and leadership support",
+      "Risk forecasting, mitigation, and decision frameworks",
+      "Vendor strategy, negotiation positioning, and contract shaping",
+      "Systems, workflow, and automation strategy",
+      "Executive representation with clients, partners, and stakeholders",
+    ],
+    specs: { decisionVelocity: "+40%", riskReduction: "60%", alignment: "100%" },
+  },
 ]
 
 const partners = [
