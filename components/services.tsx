@@ -53,11 +53,11 @@ const services = [
 export function Services() {
   return (
     <section id="services" className="py-24 border-b border-border bg-background relative">
-      <div className="absolute inset-0 bg-tech-grid opacity-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-data-grid pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="mb-16">
-          <h2 className="text-sm font-mono text-emerald-700 mb-4 uppercase tracking-widest">02 / Capabilities</h2>
+          <h2 className="text-xs font-mono text-gray-400 mb-4 uppercase tracking-widest">02 / Capabilities</h2>
           <h3 className="text-3xl font-bold">Core Services</h3>
         </div>
 
@@ -65,21 +65,21 @@ export function Services() {
           {services.map((service, index) => {
             const content = (
               <>
-                <div className="absolute top-0 left-0 w-full h-[1px] bg-accent opacity-0 group-hover:opacity-100 transition-opacity duration-150" />
-                <div className="font-mono text-xs text-muted-foreground mb-4">
-                  {(index + 1).toString().padStart(2, "0")}
-                </div>
+                <div
+                  className={`absolute top-0 left-0 w-full h-px ${service.href ? "bg-signal-orange" : "bg-white"} opacity-0 group-hover:opacity-100 transition-opacity duration-150`}
+                />
+                <div className="font-mono text-xs text-gray-400 mb-4">{(index + 1).toString().padStart(2, "0")}</div>
                 <div className="flex items-start justify-between gap-2">
                   <h4 className="text-xl font-bold mb-3 group-hover:text-white transition-colors duration-150">
                     {service.title}
                   </h4>
                   {service.href && (
-                    <ArrowUpRight className="w-5 h-5 text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-150 flex-shrink-0" />
+                    <ArrowUpRight className="w-5 h-5 text-signal-orange opacity-0 group-hover:opacity-100 transition-opacity duration-150 flex-shrink-0" />
                   )}
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">{service.desc}</p>
+                <p className="text-sm text-gray-300 leading-relaxed">{service.desc}</p>
                 {service.href && (
-                  <div className="mt-4 text-xs font-mono text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+                  <div className="mt-4 text-xs font-mono text-signal-orange opacity-0 group-hover:opacity-100 transition-opacity duration-150">
                     View Details →
                   </div>
                 )}
@@ -90,7 +90,7 @@ export function Services() {
               <div
                 key={index}
                 className={`bg-background p-8 transition-colors duration-150 group relative ${
-                  service.href ? "hover:bg-accent/10 cursor-pointer" : ""
+                  service.href ? "hover:bg-white/5 cursor-pointer" : ""
                 }`}
               >
                 {service.href ? (

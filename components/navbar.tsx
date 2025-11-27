@@ -29,7 +29,6 @@ export function Navbar() {
     }
   }, [isOpen])
 
-  // Close menu on route change
   useEffect(() => {
     setIsOpen(false)
   }, [pathname])
@@ -37,9 +36,9 @@ export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
       <div className="container mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
-        <Link href="/" className="text-lg sm:text-xl font-bold tracking-tighter uppercase">
-          <span className="hidden lg:inline">Technically Creative</span>
-          <span className="lg:hidden">TC</span>
+        <Link href="/" className="font-mono text-sm sm:text-base font-bold tracking-tight uppercase">
+          <span className="hidden lg:inline">TECHNICALLY_CREATIVE</span>
+          <span className="lg:hidden">TC_</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -49,7 +48,7 @@ export function Navbar() {
               key={item.name}
               href={item.href}
               className={`text-sm font-medium transition-colors duration-150 ${
-                pathname === item.href ? "text-white" : "text-muted-foreground hover:text-white"
+                pathname === item.href ? "text-white" : "text-gray-300 hover:text-white"
               }`}
             >
               {item.name}
@@ -57,7 +56,7 @@ export function Navbar() {
           ))}
           <Link
             href="/contact"
-            className="px-4 py-2 bg-white text-black text-sm font-bold hover:bg-gray-200 transition-colors duration-150"
+            className="px-4 py-2 bg-signal-orange text-black text-sm font-bold hover:bg-orange-400 transition-colors duration-150"
           >
             Start a Project
           </Link>
@@ -85,14 +84,15 @@ export function Navbar() {
           >
             <nav className="flex flex-col h-full p-6">
               <div className="flex flex-col gap-1">
-                {navItems.map((item) => (
+                {navItems.map((item, index) => (
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`block py-4 text-xl font-bold border-b border-border ${
-                      pathname === item.href ? "text-emerald-500" : "text-white"
+                    className={`flex items-baseline gap-3 py-4 text-xl font-bold border-b border-border ${
+                      pathname === item.href ? "text-white" : "text-gray-300"
                     }`}
                   >
+                    <span className="font-mono text-xs text-gray-400">{String(index + 1).padStart(2, "0")}</span>
                     {item.name}
                   </Link>
                 ))}
@@ -101,18 +101,18 @@ export function Navbar() {
               <div className="mt-8">
                 <Link
                   href="/contact"
-                  className="block w-full px-6 py-4 bg-white text-black text-center text-lg font-bold"
+                  className="block w-full px-6 py-4 bg-signal-orange text-black text-center text-lg font-bold"
                 >
                   Start a Project
                 </Link>
               </div>
 
               <div className="mt-auto pb-8">
-                <p className="text-xs font-mono text-muted-foreground uppercase tracking-wide mb-2">Direct Contact</p>
+                <p className="text-xs font-mono text-gray-400 uppercase tracking-wide mb-2">Direct Contact</p>
                 <a href="mailto:info@tc.agency" className="block text-sm text-white mb-1">
                   info@tc.agency
                 </a>
-                <a href="tel:+13132615200" className="block text-sm text-muted-foreground">
+                <a href="tel:+13132615200" className="block text-sm text-gray-400">
                   +1 313 261 5200
                 </a>
               </div>

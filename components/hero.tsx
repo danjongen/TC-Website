@@ -92,7 +92,7 @@ export function Hero() {
   return (
     <section ref={containerRef} className="relative h-[300vh] border-b border-border">
       <div className="sticky top-0 h-screen flex items-start md:items-center overflow-hidden pt-24 md:pt-16">
-        <div className="absolute inset-0 bg-blueprint-grid opacity-30 pointer-events-none" />
+        <div className="absolute inset-0 bg-data-grid pointer-events-none" />
 
         <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-8 md:gap-12 items-center relative z-10">
           <motion.div
@@ -100,35 +100,38 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
-            <div className="inline-flex items-center gap-2 mb-4 md:mb-6 px-2 py-1 border border-accent text-xs font-mono text-emerald-500 uppercase tracking-widest">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            <div className="inline-flex items-center gap-2 mb-4 md:mb-6 px-3 py-1.5 border border-gray-400 text-xs font-mono text-gray-200 uppercase tracking-widest">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
               </span>
-              System Status: Online
+              Systems Online
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-4 md:mb-6 text-balance">
-              Complex productions. <br />
-              <span className="text-muted-foreground">Made manageable.</span>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-4 md:mb-6 text-balance">
+              Production infrastructure <br />
+              <span className="text-gray-300">for live events.</span>
             </h1>
-            <p className="text-base md:text-xl text-muted-foreground max-w-md mb-6 md:mb-8 leading-relaxed">
-              Our automation ensures <span className="text-foreground font-medium">99.99% uptime</span> via redundant
-              systems. High-stakes shows delivered through scalable architecture and systematic execution.
+
+            <p className="text-base md:text-lg text-gray-300 max-w-md mb-6 md:mb-8 leading-relaxed">
+              We engineer the systems behind high-stakes productions.
+              <span className="text-white font-mono text-sm ml-1">99.99% uptime</span> through redundant architecture
+              and systematic execution.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="/contact"
-                className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-black font-bold hover:bg-gray-200 transition-colors duration-150"
+                className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-signal-orange text-black font-bold hover:bg-orange-400 transition-colors duration-150"
               >
                 Start a Project
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-150" />
               </a>
               <a
                 href="/capabilities"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border text-white font-medium hover:border-white transition-colors duration-150"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-400 text-white font-medium hover:border-white hover:bg-white/5 transition-all duration-150"
               >
-                Explore Capabilities
+                View Capabilities
               </a>
             </div>
           </motion.div>
@@ -137,29 +140,25 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.1 }}
-            className="relative h-[250px] sm:h-[300px] md:h-[600px] w-full border border-border bg-black/50 overflow-hidden"
+            className="relative h-[250px] sm:h-[300px] md:h-[600px] w-full border border-border bg-black overflow-hidden"
           >
-            <div className="absolute inset-0 bg-tech-grid-sm opacity-10 z-10 pointer-events-none" />
-
             <motion.div
               className="absolute inset-0 bg-black z-10 pointer-events-none"
               style={{ opacity: fadeOpacity }}
             />
 
-            <div className="absolute top-0 left-0 w-full h-1 bg-accent z-20" />
-            <div className="absolute top-4 left-4 font-mono text-xs text-emerald-500 z-20 bg-black/50 px-2 py-1">
-              TIMELINE: {isLoading ? `${Math.round(loadingProgress)}%` : "SYNCED"}
+            <div className="absolute top-0 left-0 w-full h-px bg-gray-400 z-20" />
+            <div className="absolute top-3 left-3 font-mono text-xs text-gray-300 z-20 bg-black/80 px-2 py-1 border border-gray-500">
+              {isLoading ? `LOADING ${Math.round(loadingProgress)}%` : "TIMELINE SYNCED"}
             </div>
-            <div className="absolute bottom-4 right-4 font-mono text-xs text-emerald-500 z-20 bg-black/50 px-2 py-1">
-              SCRUB MODE
-            </div>
+            <div className="absolute bottom-3 right-3 font-mono text-xs text-gray-400 z-20">SCROLL TO SCRUB</div>
 
             {isLoading && (
-              <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black/90">
-                <div className="font-mono text-emerald-500 text-xs mb-2 tracking-widest">LOADING</div>
-                <div className="w-48 h-1 bg-zinc-800 overflow-hidden">
+              <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black">
+                <div className="font-mono text-gray-400 text-xs mb-3 tracking-widest">LOADING TIMELINE</div>
+                <div className="w-48 h-px bg-gray-500 overflow-hidden">
                   <motion.div
-                    className="h-full bg-emerald-500"
+                    className="h-full bg-white"
                     initial={{ width: 0 }}
                     animate={{ width: `${loadingProgress}%` }}
                     transition={{ duration: 0.1 }}
