@@ -92,6 +92,14 @@ export default function TermsOfService() {
                 trademark, and other intellectual property laws. You may not reproduce, distribute, modify, or create
                 derivative works without our prior written consent.
               </p>
+              {/* Third-Party Trademarks subsection */}
+              <h3 className="text-lg font-semibold text-white mt-6 mb-3">Third-Party Trademarks</h3>
+              <p className="text-zinc-400 leading-relaxed">
+                Client names, logos, product marks, event names, and other trademarks displayed on this website are the
+                property of their respective owners. Their inclusion does not imply endorsement, and TC Agency does not
+                claim ownership of any third-party trademarks. They are used solely for identification, portfolio
+                representation, or descriptive purposes.
+              </p>
             </section>
 
             <section>
