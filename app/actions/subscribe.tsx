@@ -6,6 +6,8 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 
 const AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID || ""
 
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+
 export async function subscribeToNewsletter(formData: FormData) {
   const email = formData.get("email") as string
 
@@ -24,6 +26,8 @@ export async function subscribeToNewsletter(formData: FormData) {
       unsubscribed: false,
       audienceId: AUDIENCE_ID,
     })
+
+    await delay(600)
 
     await resend.emails.send({
       from: "TC Agency <info@tc.agency>",
@@ -102,6 +106,10 @@ export async function subscribeToNewsletter(formData: FormData) {
   } catch (error: any) {
     if (error?.message?.includes("already exists")) {
       return { success: true, message: "You're already subscribed! We'll notify you when we launch." }
+    }
+
+    if (error?.message?.includes("rate_limit") || error?.message?.includes("429")) {
+      return { success: false, message: "Too many requests. Please wait a moment and try again." }
     }
 
     console.error("[v0] Newsletter subscription error:", error)
