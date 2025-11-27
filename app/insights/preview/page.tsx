@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Clock, Tag, AlertTriangle } from "lucide-react"
 import { BreadcrumbSchema } from "@/components/structured-data"
+import { redirect } from "next/navigation"
 
 export const metadata: Metadata = {
   title: "Insights Preview | TC Agency",
@@ -77,7 +78,19 @@ const posts = [
 
 const categories = ["All", "Case Study", "Technical Guide", "Industry Trends", "Best Practices"]
 
-export default function InsightsPreviewPage() {
+export default async function InsightsPreviewPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ key?: string }>
+}) {
+  const params = await searchParams
+  const previewSecret = process.env.PREVIEW_SECRET
+
+  // Redirect to public page if no secret or wrong secret
+  if (!previewSecret || params.key !== previewSecret) {
+    redirect("/insights")
+  }
+
   return (
     <main className="min-h-screen bg-background text-foreground">
       <BreadcrumbSchema

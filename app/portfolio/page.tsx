@@ -4,7 +4,6 @@ import type { Metadata } from "next"
 import { Bell } from "lucide-react"
 import { BreadcrumbSchema } from "@/components/structured-data"
 import { NewsletterForm } from "@/components/newsletter-form"
-import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Portfolio | TC Agency — Technically Creative",
@@ -97,16 +96,6 @@ export default function PortfolioPage() {
               </div>
               <NewsletterForm />
               <p className="text-xs text-muted-foreground mt-4">No spam. Unsubscribe anytime.</p>
-            </div>
-
-            {/* Preview Link */}
-            <div className="mt-16 pt-8 border-t border-border">
-              <Link
-                href="/portfolio/preview"
-                className="text-xs font-mono text-muted-foreground hover:text-emerald-500 transition-colors uppercase tracking-widest"
-              >
-                Team Preview →
-              </Link>
             </div>
           </div>
         </div>

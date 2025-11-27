@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Quote } from "lucide-react"
 import { BreadcrumbSchema, ProjectSchema } from "@/components/structured-data"
+import { redirect } from "next/navigation"
 
 export const metadata: Metadata = {
   title: "Portfolio Preview | TC Agency — Technically Creative",
@@ -85,7 +86,18 @@ const impactMetrics = [
   { value: "40%", label: "Avg. Efficiency Gain" },
 ]
 
-export default function PortfolioPreviewPage() {
+export default async function PortfolioPreviewPage({
+  searchParams,
+}: {
+  searchParams: { key?: string }
+}) {
+  const previewSecret = process.env.PREVIEW_SECRET
+
+  // Redirect to public page if no secret or wrong secret
+  if (!previewSecret || searchParams.key !== previewSecret) {
+    redirect("/portfolio")
+  }
+
   return (
     <main className="min-h-screen bg-background text-foreground">
       {/* Preview Mode Banner */}
