@@ -80,7 +80,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.15 }}
-            className="fixed inset-0 top-14 sm:top-16 bg-black z-40 md:hidden overflow-y-auto"
+            className="fixed inset-0 top-14 sm:top-16 bg-black text-white z-50 md:hidden overflow-y-auto"
           >
             <nav className="flex flex-col h-full p-6">
               <div className="flex flex-col gap-1">
@@ -88,7 +88,7 @@ export function Navbar() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`flex items-baseline gap-3 py-4 text-xl font-bold border-b border-border ${
+                    className={`flex items-baseline gap-3 py-4 text-xl font-bold border-b border-gray-800 ${
                       pathname === item.href ? "text-white" : "text-gray-300"
                     }`}
                   >
