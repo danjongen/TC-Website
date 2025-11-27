@@ -2,16 +2,58 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import type { Metadata } from "next"
 import Image from "next/image"
+import { BreadcrumbSchema } from "@/components/structured-data"
 
 export const metadata: Metadata = {
   title: "Mission | TC Agency — Technically Creative",
   description:
-    "Our mission at TC Agency (Technically Creative) — delivering engineering-grade production systems for high-stakes live events worldwide.",
+    "Our mission at TC Agency (Technically Creative) — delivering engineering-grade production systems for high-stakes live events worldwide. Systems over heroes. Automation over manual.",
+  keywords: [
+    "production engineering mission",
+    "technical direction philosophy",
+    "live event systems",
+    "production automation",
+    "event technology company",
+    "touring production services",
+    "concert technical direction",
+    "systematic production approach",
+  ],
+  openGraph: {
+    title: "Our Mission | TC Agency — Technically Creative",
+    description: "Engineering calm into chaos. We bring systematic precision to high-stakes live production.",
+    url: "https://tc.agency/mission",
+    siteName: "TC Agency",
+    images: [
+      {
+        url: "/images/dsf3815.jpg",
+        width: 1200,
+        height: 630,
+        alt: "TC Agency mission - engineering-grade production",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Our Mission | TC Agency",
+    description: "Engineering calm into chaos. Systematic precision for high-stakes productions.",
+    images: ["/images/dsf3815.jpg"],
+  },
+  alternates: {
+    canonical: "https://tc.agency/mission",
+  },
 }
 
 export default function MissionPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://tc.agency" },
+          { name: "Mission", url: "https://tc.agency/mission" },
+        ]}
+      />
+
       <Navbar />
 
       <section className="pt-32 pb-24 border-b border-border">

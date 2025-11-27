@@ -4,11 +4,50 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Quote } from "lucide-react"
+import { BreadcrumbSchema, ProjectSchema } from "@/components/structured-data"
 
 export const metadata: Metadata = {
   title: "Portfolio | TC Agency — Technically Creative",
   description:
-    "Featured productions by TC Agency: stadium tours, immersive experiences, and technical innovations for world-class clients.",
+    "Featured productions by TC Agency: stadium tours, immersive LED experiences, and technical innovations. Backstreet Boys, The Sphere, Samsung, Ford, and more.",
+  keywords: [
+    "live event portfolio",
+    "concert production case studies",
+    "stadium tour technical direction",
+    "LED video wall projects",
+    "immersive experience production",
+    "touring production portfolio",
+    "event technology projects",
+    "Sphere Las Vegas production",
+    "Backstreet Boys tour",
+    "Samsung event production",
+    "Ford product launch",
+  ],
+  openGraph: {
+    title: "Portfolio | TC Agency — Technically Creative",
+    description:
+      "Stadium tours, immersive installations, and technical innovations for the world's most demanding productions.",
+    url: "https://tc.agency/portfolio",
+    siteName: "TC Agency",
+    images: [
+      {
+        url: "/images/dsf3010.jpg",
+        width: 1200,
+        height: 630,
+        alt: "TC Agency portfolio - engineering at scale",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Portfolio | TC Agency",
+    description: "Engineering at scale. Stadium tours, immersive installations, and technical innovations.",
+    images: ["/images/dsf3010.jpg"],
+  },
+  alternates: {
+    canonical: "https://tc.agency/portfolio",
+  },
 }
 
 const projects = [
@@ -84,6 +123,23 @@ const impactMetrics = [
 export default function PortfolioPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://tc.agency" },
+          { name: "Portfolio", url: "https://tc.agency/portfolio" },
+        ]}
+      />
+      {projects.map((project) => (
+        <ProjectSchema
+          key={project.slug}
+          name={project.title}
+          description={`${project.role} for ${project.client}`}
+          image={`https://tc.agency${project.image}`}
+          client={project.client}
+          datePublished={`${project.year}-01-01`}
+        />
+      ))}
+
       <Navbar />
 
       <section className="pt-32 pb-24 border-b border-border">

@@ -2,10 +2,44 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import type { Metadata } from "next"
 import Image from "next/image"
+import { BreadcrumbSchema } from "@/components/structured-data"
 
 export const metadata: Metadata = {
   title: "Approach | TC Agency — Technically Creative",
-  description: "How TC Agency delivers complex productions: our systematic methodology from discovery to execution.",
+  description:
+    "How TC Agency delivers complex productions: our systematic methodology from discovery to execution. Systematic. Documented. Repeatable.",
+  keywords: [
+    "production methodology",
+    "technical direction process",
+    "live event workflow",
+    "production engineering approach",
+    "event production phases",
+  ],
+  openGraph: {
+    title: "Our Approach | TC Agency — Technically Creative",
+    description:
+      "Every project follows the same rigorous methodology. No surprises, no guesswork—just predictable, excellent results.",
+    url: "https://tc.agency/approach",
+    siteName: "TC Agency",
+    images: [
+      {
+        url: "/images/dsf3917.jpg",
+        width: 1200,
+        height: 630,
+        alt: "TC Agency production methodology",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Our Approach | TC Agency",
+    description: "Systematic. Documented. Repeatable. See how we deliver complex productions.",
+    images: ["/images/dsf3917.jpg"],
+  },
+  alternates: {
+    canonical: "https://tc.agency/approach",
+  },
 }
 
 const phases = [
@@ -49,6 +83,13 @@ const phases = [
 export default function ApproachPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://tc.agency" },
+          { name: "Approach", url: "https://tc.agency/approach" },
+        ]}
+      />
+
       <Navbar />
 
       <section className="pt-32 pb-24 border-b border-border">

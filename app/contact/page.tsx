@@ -3,11 +3,44 @@ import { Footer } from "@/components/footer"
 import type { Metadata } from "next"
 import { ContactForm } from "@/components/contact-form"
 import { Mail, Phone, MapPin, Clock } from "lucide-react"
+import { BreadcrumbSchema } from "@/components/structured-data"
 
 export const metadata: Metadata = {
   title: "Contact | TC Agency — Technically Creative",
   description:
-    "Get in touch with TC Agency. Email info@tc.agency or call +1 (313) 555-1234. Offices in Detroit, Los Angeles, and Las Vegas.",
+    "Get in touch with TC Agency for production engineering and technical direction. Email info@tc.agency. Offices in Detroit, Los Angeles, and Las Vegas.",
+  keywords: [
+    "contact TC Agency",
+    "production engineering quote",
+    "technical direction services",
+    "live event production contact",
+    "hire technical director",
+  ],
+  openGraph: {
+    title: "Contact Us | TC Agency — Technically Creative",
+    description:
+      "Ready to discuss your next production? Contact TC Agency for engineering-grade technical direction and production management.",
+    url: "https://tc.agency/contact",
+    siteName: "TC Agency",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Contact TC Agency",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact TC Agency",
+    description: "Let's build something. Get in touch for your next production.",
+    images: ["/og-image.jpg"],
+  },
+  alternates: {
+    canonical: "https://tc.agency/contact",
+  },
 }
 
 const contactInfo = [
@@ -46,6 +79,13 @@ const offices = [
 export default function ContactPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://tc.agency" },
+          { name: "Contact", url: "https://tc.agency/contact" },
+        ]}
+      />
+
       <Navbar />
 
       <section className="pt-32 pb-12 border-b border-border">

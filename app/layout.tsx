@@ -3,6 +3,8 @@ import type { Metadata, Viewport } from "next"
 
 import "./globals.css"
 
+import { Analytics } from "@/components/analytics"
+
 import { Inter, JetBrains_Mono, Geist_Mono as V0_Font_Geist_Mono } from 'next/font/google'
 
 // Initialize fonts
@@ -11,13 +13,13 @@ const _geistMono = V0_Font_Geist_Mono({ subsets: ['latin'], weight: ["100","200"
 const inter = Inter({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-  display: "swap", // Added font-display swap for faster text rendering
+  display: "swap",
 })
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-  display: "swap", // Added font-display swap for faster text rendering
+  display: "swap",
 })
 
 export const metadata: Metadata = {
@@ -48,6 +50,14 @@ export const metadata: Metadata = {
     "3D scanning",
     "aerial surveying",
     "custom fabrication",
+    "LED video wall",
+    "broadcast engineering",
+    "venue technology",
+    "show control",
+    "live event technology",
+    "production systems",
+    "technical producer",
+    "event engineering",
   ],
   authors: [{ name: "TC Agency" }, { name: "Technically Creative" }],
   creator: "TC Agency — Technically Creative",
@@ -100,7 +110,6 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   verification: {
-    // Add verification codes when available
     google: "ADD_YOUR_GOOGLE_VERIFICATION_CODE_HERE",
   },
   category: "technology",
@@ -123,6 +132,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground selection:bg-accent selection:text-white`}
       >
+        <Analytics />
         {children}
       </body>
     </html>

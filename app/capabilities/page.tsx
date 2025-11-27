@@ -7,6 +7,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, ChevronDown, Check } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import { ServiceSchema, BreadcrumbSchema } from "@/components/structured-data"
 
 const services = [
   {
@@ -158,8 +159,22 @@ const partners = [
 export default function CapabilitiesPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
+  const servicesForSchema = services.map((s) => ({
+    name: s.title,
+    description: s.desc,
+    url: s.href || undefined,
+  }))
+
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <ServiceSchema services={servicesForSchema} />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://tc.agency" },
+          { name: "Capabilities", url: "https://tc.agency/capabilities" },
+        ]}
+      />
+
       <Navbar />
 
       {/* Hero Section */}

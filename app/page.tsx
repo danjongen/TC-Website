@@ -4,6 +4,7 @@ import { Clients } from "@/components/clients"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import { OrganizationSchema, WebsiteSchema, LocalBusinessSchema } from "@/components/structured-data"
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -37,7 +38,10 @@ const jsonLd = {
 export default function Home() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <OrganizationSchema />
+      <WebsiteSchema />
+      <LocalBusinessSchema />
+
       <main className="min-h-screen bg-background text-foreground selection:bg-emerald-900 selection:text-white">
         <Navbar />
         <Hero />
