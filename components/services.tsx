@@ -66,7 +66,7 @@ export function Services() {
             const content = (
               <>
                 <div
-                  className={`absolute top-0 left-0 w-full h-px ${service.href ? "bg-signal-orange" : "bg-white"} opacity-0 group-hover:opacity-100 transition-opacity duration-150`}
+                  className={`absolute top-0 left-0 w-full h-px ${service.href ? "bg-emerald-500" : "bg-white"} opacity-0 group-hover:opacity-100 transition-opacity duration-150`}
                 />
                 <div className="font-mono text-xs text-gray-400 mb-4">{(index + 1).toString().padStart(2, "0")}</div>
                 <div className="flex items-start justify-between gap-2">
@@ -74,12 +74,12 @@ export function Services() {
                     {service.title}
                   </h4>
                   {service.href && (
-                    <ArrowUpRight className="w-5 h-5 text-signal-orange opacity-0 group-hover:opacity-100 transition-opacity duration-150 flex-shrink-0" />
+                    <ArrowUpRight className="w-5 h-5 text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-150 flex-shrink-0" />
                   )}
                 </div>
                 <p className="text-sm text-gray-300 leading-relaxed">{service.desc}</p>
                 {service.href && (
-                  <div className="mt-4 text-xs font-mono text-signal-orange opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+                  <div className="mt-4 text-xs font-mono text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
                     View Details →
                   </div>
                 )}

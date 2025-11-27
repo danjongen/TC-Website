@@ -144,7 +144,7 @@ export function Hero() {
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="/contact"
-                className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-signal-orange text-black font-bold hover:bg-orange-400 transition-colors duration-150"
+                className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-500 text-white font-bold hover:bg-emerald-400 transition-colors duration-150"
               >
                 Start a Project
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-150" />

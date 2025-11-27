@@ -26,7 +26,7 @@ export function CTA() {
       id="contact"
       className="py-16 sm:py-24 lg:py-32 border-b border-border bg-background relative overflow-hidden"
     >
-      <div className="absolute top-0 left-0 w-full h-px bg-signal-orange" />
+      <div className="absolute top-0 left-0 w-full h-px bg-emerald-500" />
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
@@ -64,7 +64,7 @@ export function CTA() {
                   <p className="text-xs font-mono text-gray-400 uppercase tracking-wide mb-1">Email</p>
                   <a
                     href="mailto:info@tc.agency"
-                    className="text-white hover:text-signal-orange transition-colors font-medium text-sm sm:text-base"
+                    className="text-white hover:text-emerald-500 transition-colors font-medium text-sm sm:text-base"
                   >
                     info@tc.agency
                   </a>
@@ -80,7 +80,7 @@ export function CTA() {
                   <p className="text-xs font-mono text-gray-400 uppercase tracking-wide mb-1">Phone</p>
                   <a
                     href="tel:+13132615200"
-                    className="text-white hover:text-signal-orange transition-colors font-medium text-sm sm:text-base"
+                    className="text-white hover:text-emerald-500 transition-colors font-medium text-sm sm:text-base"
                   >
                     +1 313 261 5200
                   </a>
@@ -214,7 +214,7 @@ export function CTA() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-signal-orange text-black font-bold uppercase py-3 sm:py-4 text-sm sm:text-base hover:bg-orange-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full bg-emerald-500 text-white font-bold uppercase py-3 sm:py-4 text-sm sm:text-base hover:bg-emerald-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
                     <>

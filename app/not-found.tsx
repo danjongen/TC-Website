@@ -10,7 +10,7 @@ export default function NotFound() {
         <div className="max-w-2xl mx-auto px-6 py-24 text-center">
           {/* System status indicator */}
           <div className="inline-flex items-center gap-2 px-3 py-1 border border-border bg-muted/50 mb-8">
-            <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
+            <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
             <span className="font-mono text-xs text-muted-foreground tracking-wider">ERR_404_NOT_FOUND</span>
           </div>
 
