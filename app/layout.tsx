@@ -101,7 +101,7 @@ export const metadata: Metadata = {
   },
   verification: {
     // Add verification codes when available
-    // google: "your-google-verification-code",
+    google: "ADD_YOUR_GOOGLE_VERIFICATION_CODE_HERE",
   },
   category: "technology",
     generator: 'v0.app'
