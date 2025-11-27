@@ -90,9 +90,13 @@ export function Hero() {
   }, [])
 
   return (
-    <section ref={containerRef} className="relative h-[300vh] border-b border-border">
+    <section
+      ref={containerRef}
+      className="relative h-[300vh] border-b border-border"
+      aria-label="Hero section showcasing TC Production Engineering"
+    >
       <div className="sticky top-0 h-screen flex items-start md:items-center overflow-hidden pt-24 md:pt-16">
-        <div className="absolute inset-0 bg-data-grid pointer-events-none" />
+        <div className="absolute inset-0 bg-data-grid pointer-events-none" aria-hidden="true" />
 
         <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-8 md:gap-12 items-center relative z-10">
           <motion.div
@@ -100,7 +104,10 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
-            <div className="inline-flex items-center gap-2 mb-4 md:mb-6 px-3 py-1.5 border border-gray-400 text-xs font-mono text-gray-200 uppercase tracking-widest">
+            <div
+              className="inline-flex items-center gap-2 mb-4 md:mb-6 px-3 py-1.5 border border-gray-400 text-xs font-mono text-gray-200 uppercase tracking-widest"
+              aria-hidden="true"
+            >
               <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
@@ -109,14 +116,16 @@ export function Hero() {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-4 md:mb-6 text-balance">
-              Production infrastructure <br />
-              <span className="text-gray-300">for live events.</span>
+              Production Engineering <br />
+              <span className="text-gray-300">for High-Stakes Events</span>
             </h1>
 
             <p className="text-base md:text-lg text-gray-300 max-w-md mb-6 md:mb-8 leading-relaxed">
-              We engineer the systems behind high-stakes productions.
-              <span className="text-white font-mono text-sm ml-1">99.99% uptime</span> through redundant architecture
-              and systematic execution.
+              We specialize in <strong className="text-white font-medium">event automation</strong>,{" "}
+              <strong className="text-white font-medium">network infrastructure</strong>, and{" "}
+              <strong className="text-white font-medium">technical risk mitigation</strong> for non-repeatable
+              productions.
+              <span className="text-white font-mono text-sm ml-1">99.99% uptime</span> through systematic execution.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -141,20 +150,32 @@ export function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.1 }}
             className="relative h-[250px] sm:h-[300px] md:h-[600px] w-full border border-border bg-black overflow-hidden"
+            role="img"
+            aria-label="Time-lapse visualization of live event production infrastructure setup"
           >
             <motion.div
               className="absolute inset-0 bg-black z-10 pointer-events-none"
               style={{ opacity: fadeOpacity }}
+              aria-hidden="true"
             />
 
-            <div className="absolute top-0 left-0 w-full h-px bg-gray-400 z-20" />
-            <div className="absolute top-3 left-3 font-mono text-xs text-gray-300 z-20 bg-black/80 px-2 py-1 border border-gray-500">
+            <div className="absolute top-0 left-0 w-full h-px bg-gray-400 z-20" aria-hidden="true" />
+            <div
+              className="absolute top-3 left-3 font-mono text-xs text-gray-300 z-20 bg-black/80 px-2 py-1 border border-gray-500"
+              aria-live="polite"
+            >
               {isLoading ? `LOADING ${Math.round(loadingProgress)}%` : "TIMELINE SYNCED"}
             </div>
-            <div className="absolute bottom-3 right-3 font-mono text-xs text-gray-400 z-20">SCROLL TO SCRUB</div>
+            <div className="absolute bottom-3 right-3 font-mono text-xs text-gray-400 z-20" aria-hidden="true">
+              SCROLL TO SCRUB
+            </div>
 
             {isLoading && (
-              <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black">
+              <div
+                className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black"
+                role="status"
+                aria-label="Loading video"
+              >
                 <div className="font-mono text-gray-400 text-xs mb-3 tracking-widest">LOADING TIMELINE</div>
                 <div className="w-48 h-px bg-gray-500 overflow-hidden">
                   <motion.div
