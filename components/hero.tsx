@@ -116,16 +116,12 @@ export function Hero() {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-4 md:mb-6 text-balance">
-              Production Engineering <br />
-              <span className="text-gray-300">for High-Stakes Events</span>
+              Production Engineering, <br />
+              <span className="text-gray-300">Done Right.</span>
             </h1>
 
-            <p className="text-base md:text-lg text-gray-300 max-w-md mb-6 md:mb-8 leading-relaxed">
-              We specialize in <strong className="text-white font-medium">event automation</strong>,{" "}
-              <strong className="text-white font-medium">network infrastructure</strong>, and{" "}
-              <strong className="text-white font-medium">technical risk mitigation</strong> for non-repeatable
-              productions.
-              <span className="text-white font-mono text-sm ml-1">99.99% uptime</span> through systematic execution.
+            <p className="text-lg md:text-xl text-gray-300 max-w-md mb-6 md:mb-8 font-mono tracking-wide">
+              Systems. Automation. Reliability.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
