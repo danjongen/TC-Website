@@ -88,8 +88,13 @@ export async function subscribeToNewsletter(formData: FormData) {
                         <p style="margin: 0 0 8px 0; font-size: 14px; color: #666;">
                           Detroit, MI, USA
                         </p>
-                        <p style="margin: 0; font-size: 12px; color: #444;">
+                        <p style="margin: 0 0 16px 0; font-size: 12px; color: #444;">
                           You're receiving this because you subscribed at tc.agency
+                        </p>
+                        <p style="margin: 0;">
+                          <a href="https://tc.agency/unsubscribe?email=${encodeURIComponent(email)}" style="font-size: 12px; color: #666; text-decoration: underline;">
+                            Unsubscribe
+                          </a>
                         </p>
                       </td>
                     </tr>
@@ -114,5 +119,39 @@ export async function subscribeToNewsletter(formData: FormData) {
 
     console.error("[v0] Newsletter subscription error:", error)
     return { success: false, message: "Something went wrong. Please try again." }
+  }
+}
+
+export async function unsubscribeFromNewsletter(email: string) {
+  if (!email || !email.includes("@")) {
+    return { success: false, message: "Invalid email address." }
+  }
+
+  if (!AUDIENCE_ID) {
+    return { success: false, message: "Unsubscribe service is not configured." }
+  }
+
+  try {
+    // Get contact ID by email
+    const contacts = await resend.contacts.list({ audienceId: AUDIENCE_ID })
+    const contact = contacts.data?.data?.find((c: any) => c.email === email)
+
+    if (!contact) {
+      return { success: false, message: "Email not found in our records." }
+    }
+
+    await delay(600)
+
+    // Update contact to unsubscribed
+    await resend.contacts.update({
+      id: contact.id,
+      audienceId: AUDIENCE_ID,
+      unsubscribed: true,
+    })
+
+    return { success: true, message: "You've been unsubscribed. We're sorry to see you go." }
+  } catch (error: any) {
+    console.error("[v0] Unsubscribe error:", error)
+    return { success: false, message: "Something went wrong. Please try again or contact info@tc.agency." }
   }
 }
