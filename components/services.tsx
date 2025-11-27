@@ -4,6 +4,11 @@ import { ArrowUpRight } from "lucide-react"
 
 const services = [
   {
+    title: "Executive & Strategic Consulting",
+    desc: "High-stakes leadership for productions that demand clarity and certainty.",
+    href: "/services/consulting",
+  },
+  {
     title: "Technical Direction",
     desc: "End-to-end technical leadership. One point of control for all production systems",
     href: null,
@@ -19,6 +24,11 @@ const services = [
     href: null,
   },
   {
+    title: "Unreal Engine Integration",
+    desc: "Real-time rendering, virtual production, and LED content workflows.",
+    href: "/services/unreal-engine",
+  },
+  {
     title: "Workflow Automation",
     desc: "Custom automation that eliminates manual tasks. Faster setup. Fewer errors. Repeatable results.",
     href: "/services/automation",
@@ -29,24 +39,14 @@ const services = [
     href: null,
   },
   {
-    title: "3D Scanning & Unreal",
+    title: "3D Scanning & Surveying",
     desc: "3D venue scanning and real-time visualization. See your show before you build it.",
-    href: "/services/unreal-engine",
+    href: "/services/3d-scanning",
   },
   {
     title: "Aerial Surveying",
     desc: "Aerial data capture for venue and site analysis. Topology, as built layouts, and site conditions documented.",
     href: "/services/3d-scanning",
-  },
-  {
-    title: "Custom Fabrication",
-    desc: "Custom-engineered hardware for productions that require solutions that don't exist yet",
-    href: null,
-  },
-  {
-    title: "Training & Documentation",
-    desc: "Documented processes and trained teams. Your production knowledge, systematized and transferable.",
-    href: null,
   },
 ]
 
