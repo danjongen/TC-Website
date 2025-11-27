@@ -82,7 +82,7 @@ export function CookieConsent() {
           </div>
           <button
             onClick={handleClose}
-            className="text-zinc-500 hover:text-white transition-colors p-1"
+            className="text-zinc-500 hover:text-white transition-colors p-1 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-zinc-900 rounded"
             aria-label="Close cookie banner"
           >
             <X className="w-4 h-4" />

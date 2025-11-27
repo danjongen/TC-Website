@@ -5,18 +5,21 @@ import Image from "next/image"
 const showcaseItems = [
   {
     image: "/images/dsf3917.jpg",
+    alt: "Large-scale structural rigging system supporting LED panels and lighting fixtures in stadium venue",
     label: "STRUCTURAL SYSTEMS",
     stat: "180,000 lbs",
     statLabel: "Rigging Load",
   },
   {
     image: "/images/dsf3010.jpg",
+    alt: "High-density LED video wall installation showing vibrant visual content at immersive event",
     label: "LED INTEGRATION",
     stat: "16K+",
     statLabel: "Pixels/sqm",
   },
   {
     image: "/images/dscf9211.jpg",
+    alt: "Massive crowd experiencing 8K resolution content delivery on wraparound LED canyon display",
     label: "CONTENT DELIVERY",
     stat: "8K",
     statLabel: "Resolution",
@@ -79,7 +82,7 @@ export function Showcase() {
             <div key={index} className="relative aspect-[4/3] overflow-hidden border border-border group">
               <Image
                 src={item.image || "/placeholder.svg"}
-                alt={item.label}
+                alt={item.alt}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />

@@ -42,7 +42,10 @@ export default function Home() {
       <WebsiteSchema />
       <LocalBusinessSchema />
 
-      <main className="min-h-screen bg-background text-foreground selection:bg-emerald-900 selection:text-white">
+      <main
+        id="main-content"
+        className="min-h-screen bg-background text-foreground selection:bg-emerald-900 selection:text-white"
+      >
         <Navbar />
         <Hero />
         <Clients />

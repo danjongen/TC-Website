@@ -176,6 +176,7 @@ export function Hero() {
               playsInline
               preload="auto"
               crossOrigin="anonymous"
+              aria-label="Time-lapse video of live event production setup, controlled by page scroll"
             />
           </motion.div>
         </div>

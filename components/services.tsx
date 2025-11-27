@@ -89,7 +89,9 @@ export function Services() {
             return (
               <div
                 key={index}
-                className="bg-background p-8 hover:bg-accent/10 transition-colors duration-150 group relative"
+                className={`bg-background p-8 transition-colors duration-150 group relative ${
+                  service.href ? "hover:bg-accent/10 cursor-pointer" : ""
+                }`}
               >
                 {service.href ? (
                   <Link href={service.href} className="block">
