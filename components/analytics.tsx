@@ -1,12 +1,14 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import Script from "next/script"
 
 const GA_MEASUREMENT_ID = "G-J8BEX66DS9"
 const CLARITY_PROJECT_ID = "ucf0zh9oje"
+const CONSENT_COOKIE_NAME = "tc_cookie_consent"
 
 // Google Analytics 4 Component
-export function GoogleAnalytics() {
+function GoogleAnalytics() {
   return (
     <>
       <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} strategy="afterInteractive" />
@@ -23,7 +25,7 @@ export function GoogleAnalytics() {
 }
 
 // Microsoft Clarity Component
-export function MicrosoftClarity() {
+function MicrosoftClarity() {
   return (
     <Script id="microsoft-clarity" strategy="afterInteractive">
       {`
@@ -37,8 +39,20 @@ export function MicrosoftClarity() {
   )
 }
 
-// Combined Analytics Provider
+// Combined Analytics Provider - only loads if user has consented
 export function Analytics() {
+  const [hasConsent, setHasConsent] = useState(false)
+
+  useEffect(() => {
+    const storedConsent = localStorage.getItem(CONSENT_COOKIE_NAME)
+    setHasConsent(storedConsent === "accepted")
+  }, [])
+
+  // Don't load analytics until user has accepted cookies
+  if (!hasConsent) {
+    return null
+  }
+
   return (
     <>
       <GoogleAnalytics />

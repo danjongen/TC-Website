@@ -75,13 +75,18 @@ export function Footer() {
             © {new Date().getFullYear()} Technically Creative (TC Agency). All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
-            <a href="#" className="hover:text-white transition-colors">
+            <Link href="/privacy" className="hover:text-white transition-colors">
               Privacy Policy
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
+            </Link>
+            <Link href="/terms" className="hover:text-white transition-colors">
               Terms of Service
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
+            </Link>
+            <a
+              href="https://linkedin.com/company/tc-agency"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
               LinkedIn
             </a>
           </div>

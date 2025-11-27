@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from "next"
 import "./globals.css"
 
 import { Analytics } from "@/components/analytics"
+import { CookieConsent } from "@/components/cookie-consent"
 
 import { Inter, JetBrains_Mono, Geist_Mono as V0_Font_Geist_Mono } from 'next/font/google'
 
@@ -134,6 +135,7 @@ export default function RootLayout({
       >
         <Analytics />
         {children}
+        <CookieConsent />
       </body>
     </html>
   )
