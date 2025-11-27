@@ -56,7 +56,7 @@ export function LocalBusinessSchema() {
     name: "TC Agency",
     image: "https://tc.agency/og-image.jpg",
     url: "https://tc.agency",
-    telephone: "+1-555-TC-AGENCY",
+    telephone: "+1-313-261-5200",
     email: "info@tc.agency",
     address: {
       "@type": "PostalAddress",

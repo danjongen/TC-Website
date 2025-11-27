@@ -29,11 +29,11 @@ export function Footer() {
                 <span className="break-all">info@tc.agency</span>
               </a>
               <a
-                href="tel:+13135551234"
+                href="tel:+13132615200"
                 className="flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors"
               >
                 <Phone className="w-4 h-4 flex-shrink-0" />
-                +1 (313) 555-1234
+                +1 313 261 5200
               </a>
             </div>
           </div>

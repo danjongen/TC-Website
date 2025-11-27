@@ -111,8 +111,8 @@ export function Navbar() {
                 <a href="mailto:info@tc.agency" className="block text-sm text-white mb-1">
                   info@tc.agency
                 </a>
-                <a href="tel:+13135551234" className="block text-sm text-muted-foreground">
-                  +1 (313) 555-1234
+                <a href="tel:+13132615200" className="block text-sm text-muted-foreground">
+                  +1 313 261 5200
                 </a>
               </div>
             </nav>

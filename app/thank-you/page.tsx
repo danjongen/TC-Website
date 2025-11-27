@@ -43,8 +43,8 @@ export default function ThankYouPage() {
 
             <p className="text-sm text-muted-foreground mb-8">
               For urgent production inquiries, call directly:{" "}
-              <a href="tel:+13135551234" className="text-white hover:text-emerald-500 transition-colors">
-                +1 (313) 555-1234
+              <a href="tel:+13132615200" className="text-white hover:text-emerald-500 transition-colors">
+                +1 313 261 5200
               </a>
             </p>
 

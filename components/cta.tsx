@@ -86,10 +86,10 @@ export function CTA() {
                 <div>
                   <p className="text-xs font-mono text-muted-foreground uppercase tracking-wide mb-1">Phone</p>
                   <a
-                    href="tel:+13135551234"
+                    href="tel:+13132615200"
                     className="text-white hover:text-emerald-500 transition-colors font-medium text-sm sm:text-base"
                   >
-                    +1 (313) 555-1234
+                    +1 313 261 5200
                   </a>
                 </div>
               </div>

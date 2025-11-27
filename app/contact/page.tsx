@@ -53,8 +53,8 @@ const contactInfo = [
   {
     icon: Phone,
     label: "Phone",
-    value: "+1 (313) 555-1234",
-    href: "tel:+13135551234",
+    value: "+1 313 261 5200",
+    href: "tel:+13132615200",
   },
   {
     icon: MapPin,
