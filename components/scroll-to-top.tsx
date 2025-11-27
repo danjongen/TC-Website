@@ -7,8 +7,8 @@ export function ScrollToTop() {
   const pathname = usePathname()
 
   useEffect(() => {
-    // Scroll to top when pathname changes
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" })
+    // "auto" provides immediate scroll without animation (similar to instant)
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" })
   }, [pathname])
 
   return null
