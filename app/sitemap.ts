@@ -82,12 +82,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
-    {
-      url: `${baseUrl}/thank-you`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
+    // Service pages
     {
       url: `${baseUrl}/services/unreal-engine`,
       lastModified: new Date(),
@@ -106,41 +101,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    // Legal pages (low priority but should be indexed)
     {
       url: `${baseUrl}/privacy-policy`,
       lastModified: new Date(),
       changeFrequency: "yearly",
-      priority: 0.4,
+      priority: 0.3,
     },
     {
       url: `${baseUrl}/terms-of-service`,
       lastModified: new Date(),
       changeFrequency: "yearly",
-      priority: 0.4,
+      priority: 0.3,
     },
     {
       url: `${baseUrl}/cookie-policy`,
       lastModified: new Date(),
       changeFrequency: "yearly",
-      priority: 0.4,
-    },
-    {
-      url: `${baseUrl}/do-not-sell`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.4,
+      priority: 0.3,
     },
     {
       url: `${baseUrl}/accessibility`,
       lastModified: new Date(),
       changeFrequency: "yearly",
-      priority: 0.4,
-    },
-    {
-      url: `${baseUrl}/security`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.4,
+      priority: 0.3,
     },
   ]
 }

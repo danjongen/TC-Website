@@ -7,6 +7,10 @@ import { ArrowRight, CheckCircle } from "lucide-react"
 export const metadata: Metadata = {
   title: "Thank You | TC Agency — Technically Creative",
   description: "Thank you for contacting TC Agency. We'll be in touch within 24 hours.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 export default function ThankYouPage() {

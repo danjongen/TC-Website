@@ -7,7 +7,8 @@ export function OrganizationSchema() {
     "@type": "Organization",
     "@id": "https://tc.agency/#organization",
     name: "TC Agency",
-    alternateName: ["Technically Creative", "TC", "tc.agency"],
+    legalName: "Technically Creative LLC",
+    alternateName: ["Technically Creative", "TC", "tc.agency", "TC Production Engineering"],
     url: "https://tc.agency",
     logo: {
       "@type": "ImageObject",
@@ -19,13 +20,20 @@ export function OrganizationSchema() {
     description:
       "TC Agency (tc.agency) is Technically Creative — production engineering, technical direction, and live event automation for high-stakes shows worldwide.",
     email: "info@tc.agency",
+    telephone: "+1-313-261-5200",
     foundingDate: "2020",
     numberOfEmployees: {
       "@type": "QuantitativeValue",
       minValue: 10,
       maxValue: 50,
     },
-    slogan: "Technically Creative",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Detroit",
+      addressRegion: "MI",
+      addressCountry: "US",
+    },
+    slogan: "Systems & Rigor for High-Stakes Events",
     knowsAbout: [
       "Production Engineering",
       "Technical Direction",
@@ -38,11 +46,7 @@ export function OrganizationSchema() {
       "Concert Production",
       "Broadcast Engineering",
     ],
-    sameAs: [
-      "https://www.linkedin.com/company/tc-agency",
-      "https://twitter.com/tc_agency",
-      "https://www.instagram.com/tc_agency",
-    ],
+    sameAs: ["https://www.linkedin.com/company/technicallycreative"],
   }
 
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
@@ -53,21 +57,21 @@ export function LocalBusinessSchema() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "@id": "https://tc.agency/#localbusiness",
-    name: "TC Agency",
+    name: "TC Agency — Technically Creative",
     image: "https://tc.agency/og-image.jpg",
     url: "https://tc.agency",
     telephone: "+1-313-261-5200",
     email: "info@tc.agency",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Los Angeles",
-      addressRegion: "CA",
+      addressLocality: "Detroit",
+      addressRegion: "MI",
       addressCountry: "US",
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 34.0522,
-      longitude: -118.2437,
+      latitude: 42.3314,
+      longitude: -83.0458,
     },
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
@@ -76,23 +80,9 @@ export function LocalBusinessSchema() {
       closes: "18:00",
     },
     priceRange: "$$$",
-    areaServed: {
-      "@type": "GeoCircle",
-      geoMidpoint: {
-        "@type": "GeoCoordinates",
-        latitude: 34.0522,
-        longitude: -118.2437,
-      },
-      geoRadius: "5000",
-    },
     serviceArea: {
       "@type": "Place",
       name: "Worldwide",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5",
-      reviewCount: "47",
     },
   }
 
@@ -129,18 +119,11 @@ export function WebsiteSchema() {
     "@id": "https://tc.agency/#website",
     url: "https://tc.agency",
     name: "TC Agency — Technically Creative",
-    description: "Production engineering, technical direction, and live event automation.",
+    description: "Production engineering, technical direction, and live event automation for high-stakes events.",
     publisher: {
       "@id": "https://tc.agency/#organization",
     },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: "https://tc.agency/search?q={search_term_string}",
-      },
-      "query-input": "required name=search_term_string",
-    },
+    inLanguage: "en-US",
   }
 
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
@@ -205,6 +188,46 @@ export function ProjectSchema({
     },
     about: client,
     datePublished,
+  }
+
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+}
+
+export function ArticleSchema({
+  headline,
+  description,
+  image,
+  datePublished,
+  dateModified,
+  author,
+}: {
+  headline: string
+  description: string
+  image: string
+  datePublished: string
+  dateModified?: string
+  author?: string
+}) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline,
+    description,
+    image,
+    datePublished,
+    dateModified: dateModified || datePublished,
+    author: {
+      "@type": "Organization",
+      "@id": "https://tc.agency/#organization",
+      name: author || "TC Agency",
+    },
+    publisher: {
+      "@id": "https://tc.agency/#organization",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": "https://tc.agency/insights",
+    },
   }
 
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />

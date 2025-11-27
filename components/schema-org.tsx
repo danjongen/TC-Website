@@ -7,6 +7,7 @@ export function ProfessionalServiceSchema() {
     "@type": "ProfessionalService",
     "@id": "https://tc.agency/#professionalservice",
     name: "TC Production Engineering",
+    legalName: "Technically Creative LLC",
     alternateName: ["TC Agency", "Technically Creative", "TC", "tc.agency"],
     url: "https://tc.agency",
     logo: {
@@ -107,12 +108,7 @@ export function ProfessionalServiceSchema() {
     currenciesAccepted: "USD",
     paymentAccepted: "Invoice, Wire Transfer",
 
-    // Social profiles
-    sameAs: [
-      "https://www.linkedin.com/company/technicallycreative",
-      "https://twitter.com/tc_agency",
-      "https://www.instagram.com/tc_agency",
-    ],
+    sameAs: ["https://www.linkedin.com/company/technicallycreative"],
 
     // Parent organization reference
     parentOrganization: {
