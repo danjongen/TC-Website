@@ -70,25 +70,44 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="pt-6 sm:pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-          <p className="text-center sm:text-left">
-            © {new Date().getFullYear()} Technically Creative (TC Agency). All rights reserved.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
-            <Link href="/privacy" className="hover:text-white transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="hover:text-white transition-colors">
-              Terms of Service
-            </Link>
-            <a
-              href="https://linkedin.com/company/tc-agency"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
-            >
-              LinkedIn
-            </a>
+        <div className="pt-6 sm:pt-8 border-t border-border">
+          <div className="flex flex-col gap-6">
+            {/* Legal Links - Two rows */}
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
+              <Link href="/privacy" className="hover:text-white transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="hover:text-white transition-colors">
+                Terms of Service
+              </Link>
+              <Link href="/cookie-policy" className="hover:text-white transition-colors">
+                Cookie Policy
+              </Link>
+              <Link href="/do-not-sell" className="hover:text-white transition-colors">
+                Do Not Sell or Share My Personal Information
+              </Link>
+              <Link href="/accessibility" className="hover:text-white transition-colors">
+                Accessibility
+              </Link>
+              <Link href="/security" className="hover:text-white transition-colors">
+                Security
+              </Link>
+            </div>
+
+            {/* Copyright and Social */}
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
+              <p className="text-center sm:text-left">
+                © {new Date().getFullYear()} Technically Creative LLC (TC Agency). All rights reserved.
+              </p>
+              <a
+                href="https://linkedin.com/company/tc-agency"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
+                LinkedIn
+              </a>
+            </div>
           </div>
         </div>
       </div>
