@@ -11,8 +11,9 @@ const clients = [
   },
   {
     name: "The Sphere",
-    logo: "/images/msg-sphere-logo.png",
+    logo: "/images/sphere-logo.jpg",
     invert: false,
+    isLight: true,
   },
   {
     name: "Backstreet Boys",
