@@ -1,5 +1,9 @@
+"use client"
+
 import Link from "next/link"
 import { Mail, Phone, MapPin } from "lucide-react"
+
+const MATRIX_GREEN = "#00D26A"
 
 export function Footer() {
   return (
@@ -23,14 +27,19 @@ export function Footer() {
             <div className="space-y-2 sm:space-y-3">
               <a
                 href="mailto:info@tc.agency"
-                className="flex items-center gap-2 text-sm text-gray-300 hover:text-[#00FF41] transition-colors"
+                className="flex items-center gap-2 text-sm text-gray-300 transition-colors"
+                style={{ ["--hover-color" as string]: MATRIX_GREEN }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#d1d5db")}
               >
                 <Mail className="w-4 h-4 flex-shrink-0 text-gray-400" />
                 <span className="break-all">info@tc.agency</span>
               </a>
               <a
                 href="tel:+13132615200"
-                className="flex items-center gap-2 text-sm text-gray-300 hover:text-[#00FF41] transition-colors"
+                className="flex items-center gap-2 text-sm text-gray-300 transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#d1d5db")}
               >
                 <Phone className="w-4 h-4 flex-shrink-0 text-gray-400" />
                 +1 313 261 5200
@@ -59,13 +68,28 @@ export function Footer() {
           <div className="col-span-2 sm:col-span-1">
             <h4 className="text-xs font-mono font-bold uppercase tracking-wide mb-3 sm:mb-4 text-gray-400">Services</h4>
             <div className="grid grid-cols-2 sm:grid-cols-1 gap-1 sm:gap-2 text-sm text-gray-300">
-              <Link href="/services/automation" className="hover:text-[#00FF41] transition-colors">
+              <Link
+                href="/services/automation"
+                className="transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#d1d5db")}
+              >
                 Workflow Automation
               </Link>
-              <Link href="/services/unreal-engine" className="hover:text-[#00FF41] transition-colors">
+              <Link
+                href="/services/unreal-engine"
+                className="transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#d1d5db")}
+              >
                 Unreal Engine
               </Link>
-              <Link href="/services/3d-scanning" className="hover:text-[#00FF41] transition-colors">
+              <Link
+                href="/services/3d-scanning"
+                className="transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#d1d5db")}
+              >
                 3D Scanning
               </Link>
               <p className="text-gray-400">System Integration</p>
@@ -78,22 +102,52 @@ export function Footer() {
           <div className="flex flex-col gap-6">
             {/* Legal Links */}
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-gray-400">
-              <Link href="/privacy-policy" className="hover:text-[#00FF41] transition-colors">
+              <Link
+                href="/privacy-policy"
+                className="transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#9ca3af")}
+              >
                 Privacy Policy
               </Link>
-              <Link href="/terms-of-service" className="hover:text-[#00FF41] transition-colors">
+              <Link
+                href="/terms-of-service"
+                className="transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#9ca3af")}
+              >
                 Terms of Service
               </Link>
-              <Link href="/cookie-policy" className="hover:text-[#00FF41] transition-colors">
+              <Link
+                href="/cookie-policy"
+                className="transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#9ca3af")}
+              >
                 Cookie Policy
               </Link>
-              <Link href="/do-not-sell" className="hover:text-[#00FF41] transition-colors">
+              <Link
+                href="/do-not-sell"
+                className="transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#9ca3af")}
+              >
                 Do Not Sell or Share My Personal Information
               </Link>
-              <Link href="/accessibility" className="hover:text-[#00FF41] transition-colors">
+              <Link
+                href="/accessibility"
+                className="transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#9ca3af")}
+              >
                 Accessibility
               </Link>
-              <Link href="/security" className="hover:text-[#00FF41] transition-colors">
+              <Link
+                href="/security"
+                className="transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#9ca3af")}
+              >
                 Security
               </Link>
             </div>
@@ -107,7 +161,9 @@ export function Footer() {
                 href="https://linkedin.com/company/technicallycreative"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#00FF41] transition-colors"
+                className="transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#9ca3af")}
               >
                 LinkedIn
               </a>

@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 
+const MATRIX_GREEN = "#00D26A"
+
 const navItems = [
   { name: "Mission", href: "/mission" },
   { name: "Services", href: "/capabilities" },
@@ -62,7 +64,7 @@ export function Navbar() {
             <Link
               href="/contact"
               className="px-4 py-2 text-sm font-bold transition-all duration-150 glow-matrix-hover"
-              style={{ backgroundColor: "#00FF41", color: "#000000" }}
+              style={{ backgroundColor: MATRIX_GREEN, color: "#000000" }}
             >
               Start a Project
             </Link>
@@ -131,7 +133,7 @@ export function Navbar() {
                 href="/contact"
                 onClick={() => setIsOpen(false)}
                 className="block w-full px-6 py-4 text-center text-lg font-bold"
-                style={{ backgroundColor: "#00FF41", color: "#000000" }}
+                style={{ backgroundColor: MATRIX_GREEN, color: "#000000" }}
               >
                 Start a Project
               </Link>

@@ -2,6 +2,8 @@
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 
+const MATRIX_GREEN = "#00D26A"
+
 const services = [
   {
     title: "Executive & Strategic Consulting",
@@ -67,7 +69,7 @@ export function Services() {
               <>
                 <div
                   className={`absolute top-0 left-0 w-full h-px opacity-0 group-hover:opacity-100 transition-opacity duration-150`}
-                  style={{ backgroundColor: service.href ? "#00FF41" : "#ffffff" }}
+                  style={{ backgroundColor: service.href ? MATRIX_GREEN : "#ffffff" }}
                 />
                 <div className="font-mono text-xs text-gray-400 mb-4">{(index + 1).toString().padStart(2, "0")}</div>
                 <div className="flex items-start justify-between gap-2">
@@ -77,7 +79,7 @@ export function Services() {
                   {service.href && (
                     <ArrowUpRight
                       className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity duration-150 flex-shrink-0"
-                      style={{ color: "#00FF41" }}
+                      style={{ color: MATRIX_GREEN }}
                     />
                   )}
                 </div>
@@ -85,7 +87,7 @@ export function Services() {
                 {service.href && (
                   <div
                     className="mt-4 text-xs font-mono opacity-0 group-hover:opacity-100 transition-opacity duration-150"
-                    style={{ color: "#00FF41" }}
+                    style={{ color: MATRIX_GREEN }}
                   >
                     View Details →
                   </div>

@@ -4,6 +4,8 @@ import { motion, useScroll, useSpring, useTransform } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { useRef, useEffect, useState } from "react"
 
+const MATRIX_GREEN = "#00D26A"
+
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -128,11 +130,11 @@ export function Hero() {
               <span className="relative flex h-1.5 w-1.5">
                 <span
                   className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
-                  style={{ backgroundColor: "#00FF41" }}
+                  style={{ backgroundColor: MATRIX_GREEN }}
                 ></span>
                 <span
                   className="relative inline-flex rounded-full h-1.5 w-1.5"
-                  style={{ backgroundColor: "#00FF41" }}
+                  style={{ backgroundColor: MATRIX_GREEN }}
                 ></span>
               </span>
               Systems Online
@@ -151,7 +153,7 @@ export function Hero() {
               <a
                 href="/contact"
                 className="group inline-flex items-center justify-center gap-2 px-6 py-3 font-bold transition-all duration-150 glow-matrix-hover"
-                style={{ backgroundColor: "#00FF41", color: "#000000" }}
+                style={{ backgroundColor: MATRIX_GREEN, color: "#000000" }}
               >
                 Start a Project
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-150" />
@@ -183,7 +185,7 @@ export function Hero() {
               <div className="absolute top-0 left-0 w-full h-px bg-gray-400 z-20" aria-hidden="true" />
               <div
                 className="absolute top-3 left-3 font-mono text-xs z-20 px-2 py-1 border border-gray-500"
-                style={{ backgroundColor: "rgba(0, 13, 0, 0.9)", color: "#00FF41" }}
+                style={{ backgroundColor: "rgba(0, 13, 0, 0.9)", color: MATRIX_GREEN }}
                 aria-live="polite"
               >
                 {isLoading ? `LOADING ${Math.round(loadingProgress)}%` : "TIMELINE SYNCED"}
@@ -198,13 +200,16 @@ export function Hero() {
                   role="status"
                   aria-label="Loading video"
                 >
-                  <div className="font-mono text-xs mb-3 tracking-widest text-glow-matrix" style={{ color: "#00FF41" }}>
+                  <div
+                    className="font-mono text-xs mb-3 tracking-widest text-glow-matrix"
+                    style={{ color: MATRIX_GREEN }}
+                  >
                     LOADING TIMELINE
                   </div>
                   <div className="w-48 h-px bg-gray-500 overflow-hidden">
                     <motion.div
                       className="h-full"
-                      style={{ backgroundColor: "#00FF41" }}
+                      style={{ backgroundColor: MATRIX_GREEN }}
                       initial={{ width: 0 }}
                       animate={{ width: `${loadingProgress}%` }}
                       transition={{ duration: 0.1 }}

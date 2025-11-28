@@ -6,6 +6,8 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight, Check, Loader2, Mail, Phone, MapPin } from "lucide-react"
 
+const MATRIX_GREEN = "#00D26A"
+
 export function CTA() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
@@ -26,7 +28,7 @@ export function CTA() {
       id="contact"
       className="py-16 sm:py-24 lg:py-32 border-b border-border bg-background relative overflow-hidden"
     >
-      <div className="absolute top-0 left-0 w-full h-px" style={{ backgroundColor: "#00FF41" }} />
+      <div className="absolute top-0 left-0 w-full h-px" style={{ backgroundColor: MATRIX_GREEN }} />
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
@@ -64,7 +66,10 @@ export function CTA() {
                   <p className="text-xs font-mono text-gray-400 uppercase tracking-wide mb-1">Email</p>
                   <a
                     href="mailto:info@tc.agency"
-                    className="text-white transition-colors font-medium text-sm sm:text-base hover:text-[#00FF41]"
+                    className={`text-white transition-colors font-medium text-sm sm:text-base hover:text-[${MATRIX_GREEN}]`}
+                    style={{ ["--hover-color" as string]: MATRIX_GREEN }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "#ffffff")}
                   >
                     info@tc.agency
                   </a>
@@ -80,7 +85,9 @@ export function CTA() {
                   <p className="text-xs font-mono text-gray-400 uppercase tracking-wide mb-1">Phone</p>
                   <a
                     href="tel:+13132615200"
-                    className="text-white transition-colors font-medium text-sm sm:text-base hover:text-[#00FF41]"
+                    className="text-white transition-colors font-medium text-sm sm:text-base"
+                    onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "#ffffff")}
                   >
                     +1 313 261 5200
                   </a>
@@ -141,7 +148,10 @@ export function CTA() {
                       id="name"
                       required
                       type="text"
-                      className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:border-[#00FF41] focus:outline-none transition-colors"
+                      className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:outline-none transition-colors"
+                      style={{ ["--focus-border" as string]: MATRIX_GREEN }}
+                      onFocus={(e) => (e.currentTarget.style.borderColor = MATRIX_GREEN)}
+                      onBlur={(e) => (e.currentTarget.style.borderColor = "")}
                       placeholder="Your name"
                     />
                   </div>
@@ -152,7 +162,9 @@ export function CTA() {
                     <input
                       id="company"
                       type="text"
-                      className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:border-[#00FF41] focus:outline-none transition-colors"
+                      className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:outline-none transition-colors"
+                      onFocus={(e) => (e.currentTarget.style.borderColor = MATRIX_GREEN)}
+                      onBlur={(e) => (e.currentTarget.style.borderColor = "")}
                       placeholder="Your company"
                     />
                   </div>
@@ -166,7 +178,9 @@ export function CTA() {
                       id="email"
                       required
                       type="email"
-                      className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:border-[#00FF41] focus:outline-none transition-colors"
+                      className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:outline-none transition-colors"
+                      onFocus={(e) => (e.currentTarget.style.borderColor = MATRIX_GREEN)}
+                      onBlur={(e) => (e.currentTarget.style.borderColor = "")}
                       placeholder="your@email.com"
                     />
                   </div>
@@ -177,7 +191,9 @@ export function CTA() {
                     <input
                       id="phone"
                       type="tel"
-                      className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:border-[#00FF41] focus:outline-none transition-colors"
+                      className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:outline-none transition-colors"
+                      onFocus={(e) => (e.currentTarget.style.borderColor = MATRIX_GREEN)}
+                      onBlur={(e) => (e.currentTarget.style.borderColor = "")}
                       placeholder="+1 (555) 000-0000"
                     />
                   </div>
@@ -188,7 +204,9 @@ export function CTA() {
                   </label>
                   <select
                     id="project-type"
-                    className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:border-[#00FF41] focus:outline-none transition-colors"
+                    className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:outline-none transition-colors"
+                    onFocus={(e) => (e.currentTarget.style.borderColor = MATRIX_GREEN)}
+                    onBlur={(e) => (e.currentTarget.style.borderColor = "")}
                   >
                     <option value="">Select a project type</option>
                     <option value="tour">Concert / Tour Production</option>
@@ -207,7 +225,9 @@ export function CTA() {
                     id="message"
                     required
                     rows={3}
-                    className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:border-[#00FF41] focus:outline-none transition-colors resize-none sm:rows-4"
+                    className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:outline-none transition-colors resize-none sm:rows-4"
+                    onFocus={(e) => (e.currentTarget.style.borderColor = MATRIX_GREEN)}
+                    onBlur={(e) => (e.currentTarget.style.borderColor = "")}
                     placeholder="Tell us about your project..."
                   />
                 </div>
@@ -215,7 +235,7 @@ export function CTA() {
                   type="submit"
                   disabled={isSubmitting}
                   className="w-full font-bold uppercase py-3 sm:py-4 text-sm sm:text-base transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 glow-matrix-hover"
-                  style={{ backgroundColor: "#00FF41", color: "#000000" }}
+                  style={{ backgroundColor: MATRIX_GREEN, color: "#000000" }}
                 >
                   {isSubmitting ? (
                     <>
