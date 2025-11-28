@@ -61,8 +61,8 @@ export function Navbar() {
             ))}
             <Link
               href="/contact"
-              className="px-4 py-2 text-sm font-bold transition-colors duration-150"
-              style={{ backgroundColor: "#10b981", color: "#ffffff" }}
+              className="px-4 py-2 text-sm font-bold transition-all duration-150 glow-matrix-hover"
+              style={{ backgroundColor: "#00FF41", color: "#000000" }}
             >
               Start a Project
             </Link>
@@ -131,7 +131,7 @@ export function Navbar() {
                 href="/contact"
                 onClick={() => setIsOpen(false)}
                 className="block w-full px-6 py-4 text-center text-lg font-bold"
-                style={{ backgroundColor: "#10b981", color: "#ffffff" }}
+                style={{ backgroundColor: "#00FF41", color: "#000000" }}
               >
                 Start a Project
               </Link>

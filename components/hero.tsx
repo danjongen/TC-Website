@@ -122,12 +122,18 @@ export function Hero() {
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
             <div
-              className="inline-flex items-center gap-2 mb-4 md:mb-6 px-3 py-1.5 border border-gray-400 text-xs font-mono text-gray-200 uppercase tracking-widest"
+              className="inline-flex items-center gap-2 mb-4 md:mb-6 px-3 py-1.5 border border-gray-400 text-xs font-mono text-gray-200 uppercase tracking-widest glow-matrix"
               aria-hidden="true"
             >
               <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
+                <span
+                  className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+                  style={{ backgroundColor: "#00FF41" }}
+                ></span>
+                <span
+                  className="relative inline-flex rounded-full h-1.5 w-1.5"
+                  style={{ backgroundColor: "#00FF41" }}
+                ></span>
               </span>
               Systems Online
             </div>
@@ -144,7 +150,8 @@ export function Hero() {
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="/contact"
-                className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-500 text-white font-bold hover:bg-emerald-400 transition-colors duration-150"
+                className="group inline-flex items-center justify-center gap-2 px-6 py-3 font-bold transition-all duration-150 glow-matrix-hover"
+                style={{ backgroundColor: "#00FF41", color: "#000000" }}
               >
                 Start a Project
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-150" />
@@ -175,7 +182,8 @@ export function Hero() {
 
               <div className="absolute top-0 left-0 w-full h-px bg-gray-400 z-20" aria-hidden="true" />
               <div
-                className="absolute top-3 left-3 font-mono text-xs text-gray-300 z-20 bg-black/80 px-2 py-1 border border-gray-500"
+                className="absolute top-3 left-3 font-mono text-xs z-20 px-2 py-1 border border-gray-500"
+                style={{ backgroundColor: "rgba(0, 13, 0, 0.9)", color: "#00FF41" }}
                 aria-live="polite"
               >
                 {isLoading ? `LOADING ${Math.round(loadingProgress)}%` : "TIMELINE SYNCED"}
@@ -190,10 +198,13 @@ export function Hero() {
                   role="status"
                   aria-label="Loading video"
                 >
-                  <div className="font-mono text-gray-400 text-xs mb-3 tracking-widest">LOADING TIMELINE</div>
+                  <div className="font-mono text-xs mb-3 tracking-widest text-glow-matrix" style={{ color: "#00FF41" }}>
+                    LOADING TIMELINE
+                  </div>
                   <div className="w-48 h-px bg-gray-500 overflow-hidden">
                     <motion.div
-                      className="h-full bg-white"
+                      className="h-full"
+                      style={{ backgroundColor: "#00FF41" }}
                       initial={{ width: 0 }}
                       animate={{ width: `${loadingProgress}%` }}
                       transition={{ duration: 0.1 }}

@@ -26,7 +26,7 @@ export function CTA() {
       id="contact"
       className="py-16 sm:py-24 lg:py-32 border-b border-border bg-background relative overflow-hidden"
     >
-      <div className="absolute top-0 left-0 w-full h-px bg-emerald-500" />
+      <div className="absolute top-0 left-0 w-full h-px" style={{ backgroundColor: "#00FF41" }} />
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
@@ -64,7 +64,7 @@ export function CTA() {
                   <p className="text-xs font-mono text-gray-400 uppercase tracking-wide mb-1">Email</p>
                   <a
                     href="mailto:info@tc.agency"
-                    className="text-white hover:text-emerald-500 transition-colors font-medium text-sm sm:text-base"
+                    className="text-white transition-colors font-medium text-sm sm:text-base hover:text-[#00FF41]"
                   >
                     info@tc.agency
                   </a>
@@ -80,7 +80,7 @@ export function CTA() {
                   <p className="text-xs font-mono text-gray-400 uppercase tracking-wide mb-1">Phone</p>
                   <a
                     href="tel:+13132615200"
-                    className="text-white hover:text-emerald-500 transition-colors font-medium text-sm sm:text-base"
+                    className="text-white transition-colors font-medium text-sm sm:text-base hover:text-[#00FF41]"
                   >
                     +1 313 261 5200
                   </a>
@@ -141,7 +141,7 @@ export function CTA() {
                       id="name"
                       required
                       type="text"
-                      className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:border-white focus:outline-none transition-colors"
+                      className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:border-[#00FF41] focus:outline-none transition-colors"
                       placeholder="Your name"
                     />
                   </div>
@@ -152,7 +152,7 @@ export function CTA() {
                     <input
                       id="company"
                       type="text"
-                      className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:border-white focus:outline-none transition-colors"
+                      className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:border-[#00FF41] focus:outline-none transition-colors"
                       placeholder="Your company"
                     />
                   </div>
@@ -166,7 +166,7 @@ export function CTA() {
                       id="email"
                       required
                       type="email"
-                      className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:border-white focus:outline-none transition-colors"
+                      className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:border-[#00FF41] focus:outline-none transition-colors"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -177,7 +177,7 @@ export function CTA() {
                     <input
                       id="phone"
                       type="tel"
-                      className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:border-white focus:outline-none transition-colors"
+                      className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:border-[#00FF41] focus:outline-none transition-colors"
                       placeholder="+1 (555) 000-0000"
                     />
                   </div>
@@ -188,7 +188,7 @@ export function CTA() {
                   </label>
                   <select
                     id="project-type"
-                    className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:border-white focus:outline-none transition-colors"
+                    className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:border-[#00FF41] focus:outline-none transition-colors"
                   >
                     <option value="">Select a project type</option>
                     <option value="tour">Concert / Tour Production</option>
@@ -207,14 +207,15 @@ export function CTA() {
                     id="message"
                     required
                     rows={3}
-                    className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:border-white focus:outline-none transition-colors resize-none sm:rows-4"
+                    className="w-full bg-background border border-border p-3 text-white text-sm sm:text-base focus:border-[#00FF41] focus:outline-none transition-colors resize-none sm:rows-4"
                     placeholder="Tell us about your project..."
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-emerald-500 text-white font-bold uppercase py-3 sm:py-4 text-sm sm:text-base hover:bg-emerald-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full font-bold uppercase py-3 sm:py-4 text-sm sm:text-base transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 glow-matrix-hover"
+                  style={{ backgroundColor: "#00FF41", color: "#000000" }}
                 >
                   {isSubmitting ? (
                     <>

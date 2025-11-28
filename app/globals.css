@@ -4,7 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Technical Calm design system - monochromatic with emerald accent */
+/* Technical Calm design system - monochromatic with Matrix Green accent */
 :root {
   /* Core monochromatic palette */
   --background: #000000;
@@ -20,8 +20,10 @@
   --muted: #141414;
   --muted-foreground: #737373;
 
-  /* Restored emerald green accent for CTAs */
-  --accent: #10b981;
+  /* Matrix Green accent system */
+  --accent: #00ff41;
+  --accent-secondary: #008f11;
+  --accent-dark: #000d00;
   --accent-foreground: #000000;
 
   --destructive: #dc2626;
@@ -57,9 +59,11 @@
   --sidebar-border: #262626;
   --sidebar-ring: #404040;
 
-  /* Updated accent tokens to emerald green */
-  --signal-green: #10b981;
-  --system-green: #22c55e;
+  /* Matrix Green tokens */
+  --matrix-green: #00ff41;
+  --matrix-green-secondary: #008f11;
+  --matrix-green-dark: #000d00;
+  --system-green: #00ff41;
   --data-blue: #3b82f6;
 }
 
@@ -101,8 +105,10 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Technical Calm color tokens */
-  --color-signal-green: var(--signal-green);
+  /* Matrix Green color tokens */
+  --color-matrix-green: var(--matrix-green);
+  --color-matrix-green-secondary: var(--matrix-green-secondary);
+  --color-matrix-green-dark: var(--matrix-green-dark);
   --color-system-green: var(--system-green);
   --color-data-blue: var(--data-blue);
   --color-gray-100: var(--gray-100);
@@ -175,5 +181,24 @@
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.02em;
+  }
+
+  /* Matrix Green glow effect - max 8% intensity */
+  .glow-matrix {
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.08);
+  }
+
+  .glow-matrix-hover:hover {
+    box-shadow: 0 0 24px rgba(0, 255, 65, 0.08);
+  }
+
+  /* Matrix Green text glow for terminal/code blocks */
+  .text-glow-matrix {
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.08);
+  }
+
+  /* Matrix Green border glow */
+  .border-glow-matrix {
+    box-shadow: inset 0 0 0 1px rgba(0, 255, 65, 0.15);
   }
 }
