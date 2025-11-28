@@ -30,17 +30,26 @@ export const metadata: Metadata = {
     title: "Executive & Strategic Consulting — TC Agency",
     description:
       "High-level production and technical strategy for shows and programs that demand clarity, reliability, and senior leadership.",
-    url: "https://tc.agency/services/consulting",
+    url: "https://www.tc.agency/services/consulting",
     type: "website",
+    images: [
+      {
+        url: "/og/consulting.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Executive & Strategic Consulting — TC Production Engineering",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Executive & Strategic Consulting — TC Agency",
     description:
       "High-level production and technical strategy for shows and programs that demand clarity, reliability, and senior leadership.",
+    images: ["/og/consulting.jpg"],
   },
   alternates: {
-    canonical: "https://tc.agency/services/consulting",
+    canonical: "https://www.tc.agency/services/consulting",
   },
 }
 
