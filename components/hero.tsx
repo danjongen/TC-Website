@@ -110,7 +110,7 @@ export function Hero() {
     <section
       ref={containerRef}
       className={`relative border-b border-border ${isMobile ? "h-screen" : "h-[300vh]"}`}
-      aria-label="Hero section showcasing TC Production Engineering"
+      aria-label="Hero section showcasing TC Production Engineering and Technical Direction"
     >
       <div className="sticky top-0 h-screen flex items-start md:items-center overflow-hidden pt-24 md:pt-16">
         <div className="absolute inset-0 bg-data-grid pointer-events-none" aria-hidden="true" />
@@ -132,13 +132,13 @@ export function Hero() {
               Systems Online
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-4 md:mb-6 text-balance">
-              Production Engineering, <br />
-              <span className="text-gray-300">Done Right.</span>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] mb-4 md:mb-6 text-balance">
+              Technical Direction and Production Engineering for High-Stakes Events
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-300 max-w-md mb-6 md:mb-8 font-mono tracking-wide">
-              Systems. Automation. Reliability.
+            <p className="text-base md:text-lg text-gray-300 max-w-lg mb-6 md:mb-8 leading-relaxed">
+              Premium production engineering and technical direction for global brands and artists, led by Executive
+              Technical Producer Daniel Jongen.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -165,7 +165,7 @@ export function Hero() {
               transition={{ duration: 0.3, delay: 0.1 }}
               className="relative h-[600px] w-full border border-border bg-black overflow-hidden"
               role="img"
-              aria-label="Time-lapse visualization of live event production infrastructure setup"
+              aria-label="Time-lapse visualization of technical direction and production engineering by Executive Technical Producer Daniel Jongen"
             >
               <motion.div
                 className="absolute inset-0 bg-black z-10 pointer-events-none"

@@ -1,5 +1,5 @@
 // JSON-LD Structured Data for TC Agency
-// Comprehensive schema graph with Organization, LocalBusiness, ProfessionalService, and Person entities
+// Comprehensive schema graph with Organization, LocalBusiness, ProfessionalService, Person, and FAQPage entities
 
 export function SchemaOrgGraph() {
   const schema = {
@@ -20,7 +20,7 @@ export function SchemaOrgGraph() {
         },
         image: "https://tc.agency/og-image.jpg",
         description:
-          "Technically Creative delivers high-stakes production engineering, technical direction, and production management for global brands and artists.",
+          "Technically Creative delivers premium production engineering, technical direction, and production management for global brands and artists, led by Executive Technical Producer Daniel Jongen.",
         email: "info@tc.agency",
         telephone: "+1-313-261-5200",
         address: {
@@ -32,9 +32,7 @@ export function SchemaOrgGraph() {
         priceRange: "$$$",
         areaServed: "Worldwide",
         sameAs: ["https://www.linkedin.com/company/technicallycreative"],
-        founder: {
-          "@id": "https://tc.agency/#danieljongen",
-        },
+        founder: { "@id": "https://tc.agency/#danieljongen" },
         knowsAbout: [
           "Technical Direction",
           "Corporate Technical Direction",
@@ -49,52 +47,18 @@ export function SchemaOrgGraph() {
           "Risk Mitigation for Live Events",
         ],
         keywords:
-          "technical direction, production direction, production manager, production engineering, best technical director, best production manager, corporate technical director, event engineering, touring technical director, Daniel Jongen, Tech Creative, TC Agency",
+          "technical direction, production direction, production manager, production engineering, best technical director, best production manager, corporate technical director, event engineering, touring technical director, Executive Technical Producer, Daniel Jongen, Tech Creative, TC Agency",
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "TC Agency Services",
           itemListElement: [
-            {
-              "@type": "Offer",
-              itemOffered: { "@type": "Service", name: "Technical Direction" },
-            },
-            {
-              "@type": "Offer",
-              itemOffered: { "@type": "Service", name: "Production Management" },
-            },
-            {
-              "@type": "Offer",
-              itemOffered: { "@type": "Service", name: "Production Engineering" },
-            },
-            {
-              "@type": "Offer",
-              itemOffered: { "@type": "Service", name: "Broadcast Network Infrastructure" },
-            },
-            {
-              "@type": "Offer",
-              itemOffered: { "@type": "Service", name: "Event Automation Systems" },
-            },
-            {
-              "@type": "Offer",
-              itemOffered: { "@type": "Service", name: "LED Video Wall Integration" },
-            },
-            {
-              "@type": "Offer",
-              itemOffered: { "@type": "Service", name: "Technical Risk Mitigation" },
-            },
-          ],
-        },
-        department: {
-          "@type": "ProfessionalService",
-          "@id": "https://tc.agency/#productionengineering",
-          name: "TC Production Engineering",
-          description:
-            "Production engineering specializing in automation, network infrastructure, LED systems, and risk mitigation for high-stakes projects.",
-          url: "https://tc.agency/",
-          makesOffer: [
-            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Event Automation Systems" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Technical Direction" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Production Management" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Production Engineering" } },
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Broadcast Network Infrastructure" } },
-            { "@type": "Offer", itemOffered: { "@type": "Service", name: "LED Integration" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Event Automation Systems" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "LED Video Wall Integration" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Technical Risk Mitigation" } },
           ],
         },
       },
@@ -102,9 +66,9 @@ export function SchemaOrgGraph() {
         "@type": "Person",
         "@id": "https://tc.agency/#danieljongen",
         name: "Daniel Jongen",
-        jobTitle: ["Technical Director", "Production Engineer", "Production Manager"],
+        jobTitle: ["Executive Technical Producer", "Technical Director", "Production Engineer", "Production Manager"],
         description:
-          "Daniel Jongen is a senior Technical Director and Production Engineer known for delivering high-stakes, high-precision technical direction and production management for global brands, tours, and immersive experiences.",
+          "Executive Technical Producer Daniel Jongen leads high-stakes technical direction, production engineering, and production management for global brands, tours, and immersive experiences.",
         image: "https://tc.agency/daniel-headshot.jpg",
         url: "https://tc.agency/about",
         worksFor: { "@id": "https://tc.agency/#organization" },
@@ -121,6 +85,35 @@ export function SchemaOrgGraph() {
           "Broadcast Engineering",
           "LED Systems Engineering",
           "Risk Mitigation",
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "Who leads production engineering and technical direction at Technically Creative?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Technically Creative is led by Executive Technical Producer Daniel Jongen, known for engineering high-stakes productions for global brands and artists.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Who is the best corporate technical director for complex events?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Technically Creative, led by Executive Technical Producer Daniel Jongen, delivers corporate event engineering and technical direction for global brands with precision and reliability.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "What makes a technical director effective in high-stakes live events?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Effective technical directors integrate creative, engineering, and operational systems with strict risk mitigation. Executive Technical Producer Daniel Jongen specializes in engineering large-format productions requiring precision and redundancy.",
+            },
+          },
         ],
       },
     ],
