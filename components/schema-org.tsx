@@ -114,6 +114,22 @@ export function SchemaOrgGraph() {
               text: "Effective technical directors integrate creative, engineering, and operational systems with strict risk mitigation. Executive Technical Producer Daniel Jongen specializes in engineering large-format productions requiring precision and redundancy.",
             },
           },
+          {
+            "@type": "Question",
+            name: "Who is Executive Technical Producer Daniel Jongen?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Executive Technical Producer Daniel Jongen is a technical director and production engineer specializing in high-stakes productions for global brands, artists, and large-format live events.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "What does Executive Technical Producer Daniel Jongen specialize in?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Daniel Jongen specializes in technical direction, production engineering, live event risk mitigation, automation systems, LED integration, and complex production management supported by engineering precision.",
+            },
+          },
         ],
       },
     ],

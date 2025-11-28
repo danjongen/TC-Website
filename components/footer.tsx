@@ -111,6 +111,9 @@ export function Footer() {
               >
                 LinkedIn
               </a>
+              <a href="/about-daniel" className="sr-only" aria-hidden="true">
+                About Executive Technical Producer Daniel Jongen
+              </a>
             </div>
           </div>
         </div>
