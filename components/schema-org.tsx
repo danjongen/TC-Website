@@ -1,6 +1,135 @@
-// JSON-LD Structured Data for ProfessionalService schema
-// Disambiguates TC Agency as a Production Engineering firm, not a generic agency
+// JSON-LD Structured Data for TC Agency
+// Comprehensive schema graph with Organization, LocalBusiness, ProfessionalService, and Person entities
 
+export function SchemaOrgGraph() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
+        "@id": "https://tc.agency/#organization",
+        name: "Technically Creative LLC",
+        legalName: "Technically Creative LLC",
+        alternateName: ["TC Agency", "TC", "Tech Creative"],
+        url: "https://tc.agency/",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://tc.agency/og-image.jpg",
+          width: 1200,
+          height: 630,
+        },
+        image: "https://tc.agency/og-image.jpg",
+        description:
+          "Technically Creative delivers high-stakes production engineering, technical direction, and production management for global brands and artists.",
+        email: "info@tc.agency",
+        telephone: "+1-313-261-5200",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Detroit",
+          addressRegion: "MI",
+          addressCountry: "US",
+        },
+        priceRange: "$$$",
+        areaServed: "Worldwide",
+        sameAs: ["https://www.linkedin.com/company/technicallycreative"],
+        founder: {
+          "@id": "https://tc.agency/#danieljongen",
+        },
+        knowsAbout: [
+          "Technical Direction",
+          "Corporate Technical Direction",
+          "Production Engineering",
+          "Production Management",
+          "Live Event Technical Direction",
+          "Touring Technical Direction",
+          "Broadcast Network Infrastructure",
+          "Show Control Systems",
+          "Event Automation Systems",
+          "LED Video Wall Integration",
+          "Risk Mitigation for Live Events",
+        ],
+        keywords:
+          "technical direction, production direction, production manager, production engineering, best technical director, best production manager, corporate technical director, event engineering, touring technical director, Daniel Jongen, Tech Creative, TC Agency",
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "TC Agency Services",
+          itemListElement: [
+            {
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: "Technical Direction" },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: "Production Management" },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: "Production Engineering" },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: "Broadcast Network Infrastructure" },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: "Event Automation Systems" },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: "LED Video Wall Integration" },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: "Technical Risk Mitigation" },
+            },
+          ],
+        },
+        department: {
+          "@type": "ProfessionalService",
+          "@id": "https://tc.agency/#productionengineering",
+          name: "TC Production Engineering",
+          description:
+            "Production engineering specializing in automation, network infrastructure, LED systems, and risk mitigation for high-stakes projects.",
+          url: "https://tc.agency/",
+          makesOffer: [
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Event Automation Systems" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Broadcast Network Infrastructure" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "LED Integration" } },
+          ],
+        },
+      },
+      {
+        "@type": "Person",
+        "@id": "https://tc.agency/#danieljongen",
+        name: "Daniel Jongen",
+        jobTitle: ["Technical Director", "Production Engineer", "Production Manager"],
+        description:
+          "Daniel Jongen is a senior Technical Director and Production Engineer known for delivering high-stakes, high-precision technical direction and production management for global brands, tours, and immersive experiences.",
+        image: "https://tc.agency/daniel-headshot.jpg",
+        url: "https://tc.agency/about",
+        worksFor: { "@id": "https://tc.agency/#organization" },
+        sameAs: ["https://www.linkedin.com/in/danieljongen", "https://www.instagram.com/danieljongen"],
+        nationality: "Australian",
+        knowsAbout: [
+          "Technical Direction",
+          "Production Management",
+          "Production Engineering",
+          "Touring Technical Direction",
+          "Corporate Event Production",
+          "Network Engineering for Live Events",
+          "Automation Systems",
+          "Broadcast Engineering",
+          "LED Systems Engineering",
+          "Risk Mitigation",
+        ],
+      },
+    ],
+  }
+
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+}
+
+// Keep ProfessionalServiceSchema for backward compatibility on service pages
 export function ProfessionalServiceSchema() {
   const schema = {
     "@context": "https://schema.org",
@@ -20,8 +149,6 @@ export function ProfessionalServiceSchema() {
     description:
       "TC is a production engineering firm specializing in automation, network infrastructure, and risk mitigation for non-repeatable, high-stakes projects.",
     slogan: "Systems & Rigor for High-Stakes Events",
-
-    // Explicit service offerings to disambiguate from generic agencies
     makesOffer: [
       {
         "@type": "Offer",
@@ -68,8 +195,6 @@ export function ProfessionalServiceSchema() {
         },
       },
     ],
-
-    // Areas of expertise for semantic disambiguation
     knowsAbout: [
       "Event Automation Systems",
       "Broadcast Network Infrastructure",
@@ -82,8 +207,6 @@ export function ProfessionalServiceSchema() {
       "Real-Time Media Systems",
       "Touring Production Infrastructure",
     ],
-
-    // Contact and location
     email: "info@tc.agency",
     telephone: "+1-313-261-5200",
     address: {
@@ -92,8 +215,6 @@ export function ProfessionalServiceSchema() {
       addressRegion: "MI",
       addressCountry: "US",
     },
-
-    // Service area
     areaServed: {
       "@type": "Place",
       name: "Worldwide",
@@ -102,143 +223,16 @@ export function ProfessionalServiceSchema() {
       "@type": "GeoShape",
       name: "Global",
     },
-
-    // Business details
     priceRange: "$$$",
     currenciesAccepted: "USD",
     paymentAccepted: "Invoice, Wire Transfer",
-
     sameAs: ["https://www.linkedin.com/company/technicallycreative"],
-
-    // Parent organization reference
     parentOrganization: {
       "@type": "Organization",
       "@id": "https://tc.agency/#organization",
       name: "Technically Creative LLC",
       legalName: "Technically Creative LLC",
     },
-  }
-
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-}
-
-// Graph-based schema combining all entity types for comprehensive SEO
-export function SchemaOrgGraph() {
-  const schema = {
-    "@context": "https://schema.org",
-    "@graph": [
-      // Organization entity
-      {
-        "@type": "Organization",
-        "@id": "https://tc.agency/#organization",
-        name: "Technically Creative LLC",
-        legalName: "Technically Creative LLC",
-        alternateName: ["TC Agency", "TC", "Technically Creative"],
-        url: "https://tc.agency",
-        logo: {
-          "@type": "ImageObject",
-          "@id": "https://tc.agency/#logo",
-          url: "https://tc.agency/og-image.jpg",
-          width: 1200,
-          height: 630,
-          caption: "TC Production Engineering",
-        },
-        email: "info@tc.agency",
-        telephone: "+1-313-261-5200",
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Detroit",
-          addressRegion: "MI",
-          addressCountry: "US",
-        },
-        sameAs: ["https://www.linkedin.com/company/technicallycreative"],
-      },
-      // Website entity
-      {
-        "@type": "WebSite",
-        "@id": "https://tc.agency/#website",
-        url: "https://tc.agency",
-        name: "TC Production Engineering",
-        description: "Systems & Rigor for High-Stakes Events",
-        publisher: {
-          "@id": "https://tc.agency/#organization",
-        },
-        inLanguage: "en-US",
-      },
-      // WebPage entity for homepage
-      {
-        "@type": "WebPage",
-        "@id": "https://tc.agency/#webpage",
-        url: "https://tc.agency",
-        name: "TC Production Engineering | Systems & Rigor for High-Stakes Events",
-        description:
-          "TC is a production engineering firm specializing in automation, network infrastructure, and risk mitigation for non-repeatable, high-stakes projects.",
-        isPartOf: {
-          "@id": "https://tc.agency/#website",
-        },
-        about: {
-          "@id": "https://tc.agency/#professionalservice",
-        },
-        inLanguage: "en-US",
-      },
-      // ProfessionalService entity
-      {
-        "@type": "ProfessionalService",
-        "@id": "https://tc.agency/#professionalservice",
-        name: "TC Production Engineering",
-        description:
-          "TC is a production engineering firm specializing in automation, network infrastructure, and risk mitigation for non-repeatable, high-stakes projects.",
-        url: "https://tc.agency",
-        logo: {
-          "@id": "https://tc.agency/#logo",
-        },
-        image: "https://tc.agency/og-image.jpg",
-        telephone: "+1-313-261-5200",
-        email: "info@tc.agency",
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Detroit",
-          addressRegion: "MI",
-          addressCountry: "US",
-        },
-        priceRange: "$$$",
-        areaServed: "Worldwide",
-        knowsAbout: [
-          "Event Automation Systems",
-          "Broadcast Network Infrastructure",
-          "Technical Risk Mitigation",
-          "Live Event Production Engineering",
-          "Show Control Systems",
-          "LED Video Wall Integration",
-        ],
-        makesOffer: [
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "Event Automation Systems",
-            },
-          },
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "Broadcast Network Infrastructure",
-            },
-          },
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "Technical Risk Mitigation",
-            },
-          },
-        ],
-        parentOrganization: {
-          "@id": "https://tc.agency/#organization",
-        },
-      },
-    ],
   }
 
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
