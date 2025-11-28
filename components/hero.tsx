@@ -141,12 +141,13 @@ export function Hero() {
             </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] mb-4 md:mb-6 text-balance">
-              Technical Direction and Production Engineering for High-Stakes Events
+              Production Engineering, Done Right.
             </h1>
 
+            <span className="sr-only">Technical Direction and Production Engineering for High-Stakes Events</span>
+
             <p className="text-base md:text-lg text-gray-300 max-w-lg mb-6 md:mb-8 leading-relaxed">
-              Premium production engineering and technical direction for global brands and artists, led by Executive
-              Technical Producer Daniel Jongen.
+              Systems. Automation. Reliability.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
