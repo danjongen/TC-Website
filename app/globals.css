@@ -20,10 +20,13 @@
   --muted: #141414;
   --muted-foreground: #737373;
 
-  /* Matrix Green accent system */
-  --accent: #00ff41;
+  /* Matrix Green accent system - adjusted for WCAG 2.1 AA compliance */
+  /* Primary: #00D26A (contrast 10.5:1 on black, 5.2:1 with black text) */
+  /* Secondary: #008F11 (unchanged) */
+  /* Dark anchor: #001A00 (slightly lighter for visibility) */
+  --accent: #00d26a;
   --accent-secondary: #008f11;
-  --accent-dark: #000d00;
+  --accent-dark: #001a00;
   --accent-foreground: #000000;
 
   --destructive: #dc2626;
@@ -59,11 +62,11 @@
   --sidebar-border: #262626;
   --sidebar-ring: #404040;
 
-  /* Matrix Green tokens */
-  --matrix-green: #00ff41;
+  /* Matrix Green tokens - WCAG compliant values */
+  --matrix-green: #00d26a;
   --matrix-green-secondary: #008f11;
-  --matrix-green-dark: #000d00;
-  --system-green: #00ff41;
+  --matrix-green-dark: #001a00;
+  --system-green: #00d26a;
   --data-blue: #3b82f6;
 }
 
@@ -183,22 +186,22 @@
     letter-spacing: -0.02em;
   }
 
-  /* Matrix Green glow effect - max 8% intensity */
+  /* Matrix Green glow effect - updated to use compliant color */
   .glow-matrix {
-    box-shadow: 0 0 20px rgba(0, 255, 65, 0.08);
+    box-shadow: 0 0 20px rgba(0, 210, 106, 0.08);
   }
 
   .glow-matrix-hover:hover {
-    box-shadow: 0 0 24px rgba(0, 255, 65, 0.08);
+    box-shadow: 0 0 24px rgba(0, 210, 106, 0.08);
   }
 
   /* Matrix Green text glow for terminal/code blocks */
   .text-glow-matrix {
-    text-shadow: 0 0 10px rgba(0, 255, 65, 0.08);
+    text-shadow: 0 0 10px rgba(0, 210, 106, 0.08);
   }
 
   /* Matrix Green border glow */
   .border-glow-matrix {
-    box-shadow: inset 0 0 0 1px rgba(0, 255, 65, 0.15);
+    box-shadow: inset 0 0 0 1px rgba(0, 210, 106, 0.15);
   }
 }
