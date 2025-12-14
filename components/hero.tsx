@@ -3,6 +3,9 @@ import { ArrowRight } from "lucide-react"
 
 const MATRIX_GREEN = "#00D26A"
 
+// PERFORMANCE: Hero is Server Component by default
+// HeroInteractive (video/animations) is lazy-loaded client component
+// This keeps ~80KB of Framer Motion out of the critical path
 export function Hero() {
   return (
     <section className="relative border-b border-border h-screen" aria-label="Hero section">

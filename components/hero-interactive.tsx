@@ -10,6 +10,9 @@ interface HeroInteractiveProps {
 
 const MATRIX_GREEN = "#00D26A"
 
+// PERFORMANCE: This component is client-only for video scroll interactions
+// Lazy-loaded via React.lazy() to defer Framer Motion bundle (~80KB)
+// DO NOT move back to Server Component - animations require client hooks
 export function HeroInteractive({ videoSrc, isMobile }: HeroInteractiveProps) {
   const containerRef = useRef<HTMLElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -35,6 +38,8 @@ export function HeroInteractive({ videoSrc, isMobile }: HeroInteractiveProps) {
       ref={containerRef}
       className={`relative border-b border-border ${isMobile ? "h-screen" : "h-[300vh]"}`}
       aria-label="Hero section showcasing TC Production Engineering and Technical Direction"
-    ></section>
+    >
+      {/* Placeholder for additional code */}
+    </section>
   )
 }

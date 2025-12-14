@@ -10,12 +10,14 @@ import { ScrollToTop } from "@/components/scroll-to-top"
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
-import { Inter, JetBrains_Mono } from "next/font/google"
-
 import { Inter, JetBrains_Mono, Geist_Mono as V0_Font_Geist_Mono } from 'next/font/google'
 
 // Initialize fonts
 const _geistMono = V0_Font_Geist_Mono({ subsets: ['latin'], weight: ["100","200","300","400","500","600","700","800","900"] })
+
+// PERFORMANCE GUARDRAIL: Keep font weights to 3 max per family to reduce bundle size (~80KB savings)
+// Only load weights: 400 (regular), 600 (semibold), 700 (bold)
+// DO NOT add additional weights without checking PERFORMANCE.md
 
 const inter = Inter({
   variable: "--font-geist-sans",
