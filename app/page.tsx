@@ -11,6 +11,11 @@ import { SchemaOrgGraph } from "@/components/schema-org"
 // DO NOT use: fetch(..., { cache: 'no-store' })
 // See PERFORMANCE.md for guidelines.
 
+// This reduces TTFB from ~2s to <200ms by serving pre-rendered HTML from CDN
+// CRITICAL: Do NOT add cookies(), headers(), or searchParams to this page
+export const dynamic = "force-static"
+export const revalidate = 3600 // Revalidate every 1 hour
+
 export default function Home() {
   return (
     <>

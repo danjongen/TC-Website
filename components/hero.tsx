@@ -1,5 +1,3 @@
-"use client"
-
 import { HeroInteractive } from "./hero-interactive"
 import { ArrowRight } from "lucide-react"
 

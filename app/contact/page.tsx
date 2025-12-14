@@ -5,6 +5,10 @@ import { ContactForm } from "@/components/contact-form"
 import { Mail, Phone, MapPin, Clock } from "lucide-react"
 import { BreadcrumbSchema } from "@/components/structured-data"
 
+// Form uses server actions which don't require dynamic rendering
+export const dynamic = "force-static"
+export const revalidate = 86400 // Revalidate every 24 hours
+
 export const metadata: Metadata = {
   title: "Contact | TC Agency — Technically Creative",
   description:
