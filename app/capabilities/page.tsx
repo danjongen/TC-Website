@@ -1,13 +1,13 @@
-"use client"
-
-import { useState } from "react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, ChevronDown, Check } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+import { ArrowRight } from "lucide-react"
 import { ServiceSchema, BreadcrumbSchema } from "@/components/structured-data"
+import { CapabilitiesAccordion } from "@/components/capabilities-accordion"
+
+export const dynamic = "force-static"
+export const revalidate = 3600 // Revalidate every hour
 
 const services = [
   {
@@ -174,8 +174,6 @@ const partners = [
 ]
 
 export default function CapabilitiesPage() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
-
   const servicesForSchema = services.map((s) => ({
     name: s.title,
     description: s.desc,
@@ -234,88 +232,7 @@ export default function CapabilitiesPage() {
             <p className="text-muted-foreground">Click to expand detailed specifications and deliverables.</p>
           </div>
 
-          <div className="space-y-2">
-            {services.map((service, index) => (
-              <div key={service.num} className="border border-border bg-zinc-950 overflow-hidden">
-                {/* Accordion Header */}
-                <button
-                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                  className="w-full p-5 flex items-center justify-between text-left hover:bg-zinc-900 transition-colors duration-150"
-                  aria-expanded={openIndex === index}
-                >
-                  <div className="flex items-center gap-4">
-                    <span className="text-xs font-mono text-emerald-500 w-6">{service.num}</span>
-                    <div>
-                      <h3 className="text-lg font-bold">{service.title}</h3>
-                      <p className="text-sm text-muted-foreground mt-1 hidden sm:block">{service.desc}</p>
-                    </div>
-                  </div>
-                  <ChevronDown
-                    className={`w-5 h-5 text-muted-foreground transition-transform duration-200 ${
-                      openIndex === index ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-
-                {/* Accordion Content */}
-                <AnimatePresence>
-                  {openIndex === index && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-5 pb-5 pt-2 border-t border-border">
-                        {/* Mobile description */}
-                        <p className="text-sm text-muted-foreground mb-4 sm:hidden">{service.desc}</p>
-
-                        <div className="grid md:grid-cols-2 gap-6">
-                          {/* Deliverables */}
-                          <div>
-                            <h4 className="text-xs font-mono text-emerald-500 uppercase mb-3">Deliverables</h4>
-                            <ul className="space-y-2">
-                              {service.details.map((detail, i) => (
-                                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                                  <Check className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
-                                  {detail}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-
-                          {/* Specifications */}
-                          <div>
-                            <h4 className="text-xs font-mono text-emerald-500 uppercase mb-3">Specifications</h4>
-                            <div className="grid grid-cols-3 gap-4">
-                              {Object.entries(service.specs).map(([key, value]) => (
-                                <div key={key}>
-                                  <p className="text-xl font-bold">{value}</p>
-                                  <p className="text-xs text-muted-foreground capitalize">
-                                    {key.replace(/([A-Z])/g, " $1").trim()}
-                                  </p>
-                                </div>
-                              ))}
-                            </div>
-
-                            {service.href && (
-                              <Link
-                                href={service.href}
-                                className="inline-flex items-center gap-2 mt-6 text-sm font-mono text-emerald-500 hover:text-emerald-400 transition-colors"
-                              >
-                                View Full Documentation <ArrowRight className="w-4 h-4" />
-                              </Link>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-          </div>
+          <CapabilitiesAccordion services={services} />
         </div>
       </section>
 
