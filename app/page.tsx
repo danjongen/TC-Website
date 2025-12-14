@@ -6,6 +6,11 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { SchemaOrgGraph } from "@/components/schema-org"
 
+// PERFORMANCE GUARDRAIL: This page MUST remain static for optimal Core Web Vitals.
+// DO NOT add: export const dynamic = 'force-dynamic'
+// DO NOT use: fetch(..., { cache: 'no-store' })
+// See PERFORMANCE.md for guidelines.
+
 export default function Home() {
   return (
     <>
