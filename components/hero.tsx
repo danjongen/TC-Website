@@ -70,7 +70,7 @@ export function Hero() {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-150" />
               </a>
               <a
-                href="/capabilities"
+                href="/services"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-400 text-white font-medium hover:border-white hover:bg-white/5 transition-all duration-150"
               >
                 View Services
