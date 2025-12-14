@@ -110,16 +110,16 @@ export default function AboutPage() {
         <section className="py-24 border-b border-border">
           <div className="container mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Headshot */}
-              <div className="relative aspect-[4/5] max-w-md mx-auto lg:mx-0 border border-border bg-zinc-950 overflow-hidden">
+              <div className="relative aspect-[4/5] max-w-md mx-auto lg:mx-0 border border-border bg-zinc-900 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 via-zinc-950 to-black" />
                 <Image
-                  src="/professional-headshot-executive-producer.jpg"
+                  src="/daniel-jongen-headshot.png"
                   alt="Executive Technical Producer Daniel Jongen — Technical Direction and Production Engineering leader at TC Agency"
                   fill
-                  className="object-cover"
+                  className="object-cover object-center relative z-10 mix-blend-lighten"
                   priority
                 />
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent z-20">
                   <p className="font-mono text-xs text-gray-400 uppercase tracking-wider">
                     Executive Technical Producer
                   </p>
