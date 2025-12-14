@@ -81,7 +81,7 @@
     },
     {
       "source": "/engineering",
-      "destination": "/capabilities",
+      "destination": "/services",
       "permanent": true
     },
     {
@@ -107,6 +107,11 @@
     {
       "source": "/news",
       "destination": "/insights",
+      "permanent": true
+    },
+    {
+      "source": "/capabilities",
+      "destination": "/services",
       "permanent": true
     }
   ]

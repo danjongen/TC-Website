@@ -1,14 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // <CHANGE> Enable React strict mode for better error detection
+  // Enable React strict mode for better error detection
   reactStrictMode: true,
 
-  // <CHANGE> Enable TypeScript strict checks (was ignoring errors)
+  // Enable TypeScript strict checks (was ignoring errors)
   typescript: {
     ignoreBuildErrors: false,
   },
 
-  // <CHANGE> Enable Vercel's automatic image optimization
+  // Enable Vercel's automatic image optimization
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
@@ -22,12 +22,11 @@ const nextConfig = {
     ],
   },
 
-  // <CHANGE> Enable experimental features for performance
+  // Enable experimental features for performance
   experimental: {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
   },
 
-  // <CHANGE> Security headers
   async headers() {
     return [
       {
@@ -46,6 +45,16 @@ const nextConfig = {
             value: 'strict-origin-when-cross-origin',
           },
         ],
+      },
+    ]
+  },
+
+  async redirects() {
+    return [
+      {
+        source: '/capabilities',
+        destination: '/services',
+        permanent: true,
       },
     ]
   },

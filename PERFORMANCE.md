@@ -14,7 +14,7 @@ These pages should **never** use `export const dynamic = 'force-dynamic'`:
 - `/about-daniel`
 - `/mission`
 - `/approach`
-- `/capabilities`
+- `/services` (main services page)
 - `/services/*` (All service pages: consulting, automation, unreal-engine, 3d-scanning)
 - `/accessibility`
 - `/privacy-policy`
