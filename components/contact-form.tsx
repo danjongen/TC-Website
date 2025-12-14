@@ -12,7 +12,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="w-full py-4 bg-white text-black font-bold uppercase tracking-wide hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+      className="w-full py-4 bg-black text-white font-medium hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
     >
       {pending ? (
         <>
@@ -31,153 +31,41 @@ export function ContactForm() {
 
   return (
     <form action={formAction} className="space-y-6">
-      {state?.error && (
-        <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-400 text-sm">{state.error}</div>
-      )}
+      {state?.error && <div className="p-4 bg-red-50 border border-red-200 text-red-600 text-sm">{state.error}</div>}
 
-      {/* Name & Company */}
-      <div className="grid md:grid-cols-2 gap-4">
-        <div>
-          <label
-            htmlFor="name"
-            className="block text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2"
-          >
-            Name *
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            required
-            className="w-full px-4 py-3 bg-zinc-900 border border-border text-white placeholder:text-muted-foreground focus:outline-none focus:border-emerald-500 transition-colors"
-            placeholder="Your name"
-          />
-        </div>
-        <div>
-          <label
-            htmlFor="company"
-            className="block text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2"
-          >
-            Company
-          </label>
-          <input
-            type="text"
-            id="company"
-            name="company"
-            className="w-full px-4 py-3 bg-zinc-900 border border-border text-white placeholder:text-muted-foreground focus:outline-none focus:border-emerald-500 transition-colors"
-            placeholder="Company name"
-          />
-        </div>
-      </div>
-
-      {/* Email & Phone */}
-      <div className="grid md:grid-cols-2 gap-4">
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2"
-          >
-            Email *
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            className="w-full px-4 py-3 bg-zinc-900 border border-border text-white placeholder:text-muted-foreground focus:outline-none focus:border-emerald-500 transition-colors"
-            placeholder="email@company.com"
-          />
-        </div>
-        <div>
-          <label
-            htmlFor="phone"
-            className="block text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2"
-          >
-            Phone
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            className="w-full px-4 py-3 bg-zinc-900 border border-border text-white placeholder:text-muted-foreground focus:outline-none focus:border-emerald-500 transition-colors"
-            placeholder="+1 (555) 000-0000"
-          />
-        </div>
-      </div>
-
-      {/* Project Type */}
+      {/* Name */}
       <div>
-        <label
-          htmlFor="projectType"
-          className="block text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2"
-        >
-          Project Type
+        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+          Name *
         </label>
-        <select
-          id="projectType"
-          name="projectType"
-          className="w-full px-4 py-3 bg-zinc-900 border border-border text-white focus:outline-none focus:border-emerald-500 transition-colors"
-        >
-          <option value="">Select project type</option>
-          <option value="tour">Tour Production</option>
-          <option value="corporate">Corporate Event</option>
-          <option value="installation">Permanent Installation</option>
-          <option value="broadcast">Broadcast / Live Stream</option>
-          <option value="consultation">Technical Consultation</option>
-          <option value="other">Other</option>
-        </select>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          className="w-full px-4 py-3 bg-white border border-gray-300 text-black placeholder:text-gray-400 focus:outline-none focus:border-black transition-colors"
+          placeholder="Your name"
+        />
       </div>
 
-      {/* Budget & Timeline */}
-      <div className="grid md:grid-cols-2 gap-4">
-        <div>
-          <label
-            htmlFor="budget"
-            className="block text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2"
-          >
-            Budget Range
-          </label>
-          <select
-            id="budget"
-            name="budget"
-            className="w-full px-4 py-3 bg-zinc-900 border border-border text-white focus:outline-none focus:border-emerald-500 transition-colors"
-          >
-            <option value="">Select budget</option>
-            <option value="under-100k">Under $100K</option>
-            <option value="100k-500k">$100K - $500K</option>
-            <option value="500k-1m">$500K - $1M</option>
-            <option value="1m-5m">$1M - $5M</option>
-            <option value="over-5m">$5M+</option>
-          </select>
-        </div>
-        <div>
-          <label
-            htmlFor="timeline"
-            className="block text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2"
-          >
-            Timeline
-          </label>
-          <select
-            id="timeline"
-            name="timeline"
-            className="w-full px-4 py-3 bg-zinc-900 border border-border text-white focus:outline-none focus:border-emerald-500 transition-colors"
-          >
-            <option value="">Select timeline</option>
-            <option value="immediate">Immediate (0-30 days)</option>
-            <option value="1-3-months">1-3 months</option>
-            <option value="3-6-months">3-6 months</option>
-            <option value="6-12-months">6-12 months</option>
-            <option value="planning">Just planning</option>
-          </select>
-        </div>
-      </div>
-
-      {/* Message */}
+      {/* Email */}
       <div>
-        <label
-          htmlFor="message"
-          className="block text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2"
-        >
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+          Email *
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          className="w-full px-4 py-3 bg-white border border-gray-300 text-black placeholder:text-gray-400 focus:outline-none focus:border-black transition-colors"
+          placeholder="email@company.com"
+        />
+      </div>
+
+      {/* Project Details */}
+      <div>
+        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
           Project Details *
         </label>
         <textarea
@@ -185,30 +73,28 @@ export function ContactForm() {
           name="message"
           rows={5}
           required
-          className="w-full px-4 py-3 bg-zinc-900 border border-border text-white placeholder:text-muted-foreground focus:outline-none focus:border-emerald-500 transition-colors resize-none"
-          placeholder="Tell us about your project, venue, scale, and any specific technical requirements..."
+          className="w-full px-4 py-3 bg-white border border-gray-300 text-black placeholder:text-gray-400 focus:outline-none focus:border-black transition-colors resize-none"
+          placeholder="Tell us about your project: scope, timeline, venue, scale, and any known constraints or risks..."
         />
       </div>
 
-      <div className="flex items-start gap-3 pt-4">
+      <div className="flex items-start gap-3">
         <input
           type="checkbox"
-          id="riskAcceptance"
-          name="riskAcceptance"
+          id="riskAcknowledgment"
+          name="riskAcknowledgment"
           required
-          className="mt-1 w-4 h-4 border border-border bg-zinc-900 checked:bg-emerald-500 focus:ring-emerald-500"
+          className="mt-1 w-4 h-4 border-gray-300 text-black focus:ring-black"
         />
-        <label htmlFor="riskAcceptance" className="text-sm text-gray-300 leading-relaxed">
-          I understand that risks must be explicitly accepted and documented before work proceeds. I agree to
-          participate in clear communication about project constraints, failure modes, and contingencies.
+        <label htmlFor="riskAcknowledgment" className="text-sm text-gray-600 leading-relaxed">
+          I understand that risks must be explicitly accepted before work begins. TC Agency will document and
+          communicate all identified risks, and I agree to acknowledge them before proceeding. *
         </label>
       </div>
 
       <SubmitButton />
 
-      <p className="text-xs text-muted-foreground text-center">
-        By submitting, you agree to be contacted about your inquiry. We never share your information.
-      </p>
+      <p className="text-xs text-gray-500 text-center">We respond within 24 hours. Your information is never shared.</p>
     </form>
   )
 }
