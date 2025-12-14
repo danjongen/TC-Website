@@ -8,11 +8,11 @@ import { Menu, X } from "lucide-react"
 const MATRIX_GREEN = "#00D26A"
 
 const navItems = [
-  { name: "About", href: "/about" },
+  { name: "Home", href: "/" },
   { name: "Services", href: "/services" },
   { name: "Approach", href: "/approach" },
-  { name: "Portfolio", href: "/portfolio" },
-  { name: "Insights", href: "/insights" },
+  { name: "Case Studies", href: "/portfolio" },
+  { name: "Contact", href: "/contact" },
 ]
 
 export function Navbar() {
@@ -61,13 +61,6 @@ export function Navbar() {
                 {item.name}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              className="px-4 py-2 text-sm font-bold transition-all duration-150 glow-matrix-hover"
-              style={{ backgroundColor: MATRIX_GREEN, color: "#000000" }}
-            >
-              Start a Project
-            </Link>
           </nav>
 
           <button
@@ -126,29 +119,6 @@ export function Navbar() {
                   {item.name}
                 </Link>
               ))}
-            </div>
-
-            <div className="mt-8">
-              <Link
-                href="/contact"
-                onClick={() => setIsOpen(false)}
-                className="block w-full px-6 py-4 text-center text-lg font-bold"
-                style={{ backgroundColor: MATRIX_GREEN, color: "#000000" }}
-              >
-                Start a Project
-              </Link>
-            </div>
-
-            <div className="mt-auto pb-8">
-              <p className="text-xs font-mono uppercase tracking-wide mb-2" style={{ color: "#666666" }}>
-                Direct Contact
-              </p>
-              <a href="mailto:info@tc.agency" className="block text-sm mb-1" style={{ color: "#ffffff" }}>
-                info@tc.agency
-              </a>
-              <a href="tel:+13132615200" className="block text-sm" style={{ color: "#999999" }}>
-                +1 313 261 5200
-              </a>
             </div>
           </nav>
         </div>

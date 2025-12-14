@@ -190,6 +190,20 @@ export function ContactForm() {
         />
       </div>
 
+      <div className="flex items-start gap-3 pt-4">
+        <input
+          type="checkbox"
+          id="riskAcceptance"
+          name="riskAcceptance"
+          required
+          className="mt-1 w-4 h-4 border border-border bg-zinc-900 checked:bg-emerald-500 focus:ring-emerald-500"
+        />
+        <label htmlFor="riskAcceptance" className="text-sm text-gray-300 leading-relaxed">
+          I understand that risks must be explicitly accepted and documented before work proceeds. I agree to
+          participate in clear communication about project constraints, failure modes, and contingencies.
+        </label>
+      </div>
+
       <SubmitButton />
 
       <p className="text-xs text-muted-foreground text-center">

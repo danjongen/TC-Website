@@ -1,91 +1,127 @@
 import { Navbar } from "@/components/navbar"
-import { Hero } from "@/components/hero"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight } from "lucide-react"
 import { SchemaOrgGraph } from "@/components/schema-org"
 
-// PERFORMANCE GUARDRAIL: This page MUST remain static for optimal Core Web Vitals.
-// DO NOT add: export const dynamic = 'force-dynamic'
-// DO NOT use: fetch(..., { cache: 'no-store' })
-// See PERFORMANCE.md for guidelines.
-
-// This reduces TTFB from ~2s to <200ms by serving pre-rendered HTML from CDN
-// CRITICAL: Do NOT add cookies(), headers(), or searchParams to this page
+// PERFORMANCE: Homepage is STATIC for optimal Core Web Vitals
 export const dynamic = "force-static"
-export const revalidate = 3600 // Revalidate every 1 hour
+export const revalidate = 3600
 
 export default function Home() {
   return (
     <>
       <SchemaOrgGraph />
 
-      <div className="min-h-screen bg-background text-foreground selection:bg-emerald-900 selection:text-white">
-        {/* Header landmark containing navigation */}
-        <header role="banner">
-          <Navbar />
-        </header>
+      <div className="min-h-screen bg-white text-black">
+        <Navbar />
 
-        {/* Main content landmark */}
-        <main id="main-content" role="main">
-          {/* Hero section with primary H1 */}
-          <Hero />
+        <main>
+          <section className="pt-32 pb-24 border-b border-gray-200">
+            <div className="container mx-auto px-6 max-w-5xl">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
+                We Handle Live Production Risks So You Don't Have To Regret Them Later.
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-700 leading-relaxed max-w-4xl">
+                We've built and exited businesses in high-stakes operations. Seen enough failures from ambiguity to
+                know: reliability comes from naming risks upfront, not promising perfection. We deliver systems that
+                work—because we acknowledge what can break.
+              </p>
+            </div>
+          </section>
 
-          {/* Risk Ownership Section */}
-          <section className="py-24 md:py-32 border-b border-border">
-            <div className="container mx-auto px-6">
-              <div className="max-w-4xl">
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">Risk Ownership</h2>
-                <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-                  We don't pitch perfect plans. We name the risks you're already carrying and take ownership of specific
-                  failure modes.
-                </p>
+          <section className="py-24 border-b border-gray-200">
+            <div className="container mx-auto px-6 max-w-5xl">
+              <h2 className="text-3xl md:text-4xl font-bold mb-12">Services</h2>
 
-                <div className="space-y-6 mb-12">
-                  <div className="border-l-2 border-gray-700 pl-6">
-                    <h3 className="text-xl font-bold mb-2">Political Constraints → Scope Creep</h3>
-                    <p className="text-gray-400 leading-relaxed">
-                      When stakeholders can't say no, requirements drift. We've seen it turn 3-month builds into 9-month
-                      scrambles. We document every assumption change and own the "no" when it protects delivery.
-                    </p>
-                  </div>
+              <div className="grid md:grid-cols-2 gap-12">
+                <div>
+                  <h3 className="text-2xl font-bold mb-4">Technical Direction</h3>
+                  <ul className="space-y-3 text-gray-700">
+                    <li className="flex gap-3">
+                      <span className="text-gray-400 mt-1">—</span>
+                      <span>Identify hidden dependencies in partial specs to prevent mid-event failures</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-gray-400 mt-1">—</span>
+                      <span>Map failure modes across multi-vendor systems before rehearsal</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-gray-400 mt-1">—</span>
+                      <span>Structure clear escalation paths when things go sideways on show day</span>
+                    </li>
+                  </ul>
+                </div>
 
-                  <div className="border-l-2 border-gray-700 pl-6">
-                    <h3 className="text-xl font-bold mb-2">Vendor Lock-In → Single Points of Failure</h3>
-                    <p className="text-gray-400 leading-relaxed">
-                      One proprietary system goes dark, the show stops. We've designed around this by building
-                      redundancy at the protocol level—not just backup hardware, but alternative signal paths that don't
-                      depend on one vendor's uptime.
-                    </p>
-                  </div>
+                <div>
+                  <h3 className="text-2xl font-bold mb-4">Production Engineering</h3>
+                  <ul className="space-y-3 text-gray-700">
+                    <li className="flex gap-3">
+                      <span className="text-gray-400 mt-1">—</span>
+                      <span>Design redundant signal routing that survives single-device failures</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-gray-400 mt-1">—</span>
+                      <span>Build load calculations that account for phase imbalance, not just total draw</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-gray-400 mt-1">—</span>
+                      <span>Document system topologies so troubleshooting doesn't require the original installer</span>
+                    </li>
+                  </ul>
+                </div>
 
-                  <div className="border-l-2 border-gray-700 pl-6">
-                    <h3 className="text-xl font-bold mb-2">Partial Documentation → Cascading Failures</h3>
-                    <p className="text-gray-400 leading-relaxed">
-                      Incomplete handoffs are the norm. We've seen one missing cable spec cascade into three days of
-                      troubleshooting on-site. We structure against it: every system map includes failure modes, not
-                      just happy paths.
-                    </p>
-                  </div>
+                <div>
+                  <h3 className="text-2xl font-bold mb-4">Systems Integration</h3>
+                  <ul className="space-y-3 text-gray-700">
+                    <li className="flex gap-3">
+                      <span className="text-gray-400 mt-1">—</span>
+                      <span>Verify vendor compatibility before gear hits site, not during load-in</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-gray-400 mt-1">—</span>
+                      <span>Build protocol bridges when systems refuse to talk to each other</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-gray-400 mt-1">—</span>
+                      <span>Test failover sequences under simulated failure conditions</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-2xl font-bold mb-4">Automation</h3>
+                  <ul className="space-y-3 text-gray-700">
+                    <li className="flex gap-3">
+                      <span className="text-gray-400 mt-1">—</span>
+                      <span>Remove human error from repetitive cue sequences</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-gray-400 mt-1">—</span>
+                      <span>Build runbooks that work when the person who wrote them isn't on-site</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-gray-400 mt-1">—</span>
+                      <span>Design monitoring that alerts before audiences notice problems</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Client Logos Inline */}
-          <section className="py-16 border-b border-border">
+          <section className="py-16 border-b border-gray-200">
             <div className="container mx-auto px-6">
-              <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-10 gap-8 items-center opacity-60">
+              <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-10 gap-8 items-center opacity-40">
                 {[
                   { name: "Ford", logo: "/images/ford-logo-flat.png" },
                   { name: "The Sphere", logo: "/images/sphere-logo.jpg" },
                   { name: "Backstreet Boys", logo: "/images/backstreet-20boys.png" },
                   { name: "Google", logo: "/images/google-favicon-2025.png" },
                   { name: "Samsung", logo: "/images/samsung-orig-wordmark-blue-rgb.png" },
-                  { name: "OpenAI", logo: "/images/openai-logo.svg", invert: true },
+                  { name: "OpenAI", logo: "/images/openai-logo.svg" },
                   { name: "Visa", logo: "/images/visa-logo.webp" },
-                  { name: "Daniel Caesar", logo: "/images/daniel-caesar-logo.png", invert: true },
+                  { name: "Daniel Caesar", logo: "/images/daniel-caesar-logo.png" },
                   { name: "Jelly Roll", logo: "/images/jelly-roll-logo.png" },
                   { name: "No Doubt", logo: "/images/no-doubt-logo.png" },
                 ].map((client) => (
@@ -94,7 +130,7 @@ export default function Home() {
                       src={client.logo || "/placeholder.svg"}
                       alt={client.name}
                       fill
-                      className={`object-contain ${client.invert ? "invert" : ""}`}
+                      className="object-contain"
                       sizes="(max-width: 768px) 33vw, (max-width: 1024px) 20vw, 10vw"
                     />
                   </div>
@@ -103,156 +139,150 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Ambiguity Handling Section */}
-          <section className="py-24 md:py-32 border-b border-border">
-            <div className="container mx-auto px-6">
-              <div className="max-w-4xl">
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">Ambiguity Handling</h2>
-                <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-                  Most production environments have incomplete information by default. We proceed responsibly—not
-                  recklessly.
-                </p>
+          <section className="py-24 border-b border-gray-200">
+            <div className="container mx-auto px-6 max-w-5xl">
+              <h2 className="text-3xl md:text-4xl font-bold mb-8">Approach</h2>
+              <p className="text-xl text-gray-700 mb-12 leading-relaxed">
+                Ambiguity is standard in live work. Incomplete drawings, late vendor changes, stakeholder
+                disagreements—these aren't edge cases. Here's how we handle it without pretending it doesn't exist.
+              </p>
 
-                <div className="space-y-6">
-                  <div className="border-l-2 border-gray-700 pl-6">
-                    <h3 className="text-xl font-bold mb-2">We've seen partial info turn into cascading failures</h3>
-                    <p className="text-gray-400 leading-relaxed mb-4">
-                      A venue says "power is handled"—but doesn't specify phase, grounding, or breaker capacity. Show
-                      day, we trip circuits. Now we verify: amp draw per phase, ground impedance, backup generator
-                      specs. No assumptions.
-                    </p>
-                    <p className="text-gray-400 leading-relaxed">
-                      <strong className="text-white">How we structure against it:</strong> Every unclear handoff gets a
-                      written confirmation loop. If specs are missing, we list what we're assuming and what happens if
-                      we're wrong. The client signs off or provides clarity. Either way, it's documented before we
-                      deploy.
-                    </p>
-                  </div>
+              <div className="space-y-12">
+                <div className="border-l-4 border-black pl-6">
+                  <h3 className="text-2xl font-bold mb-4">Acknowledge It's Standard</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Most projects start with partial information. Venue says "power is handled"—doesn't specify phase,
+                    grounding, breaker capacity. Show day, we trip circuits. Now we verify: amp draw per phase, ground
+                    impedance, backup generator specs. No assumptions, documented confirmations.
+                  </p>
+                </div>
+
+                <div className="border-l-4 border-black pl-6">
+                  <h3 className="text-2xl font-bold mb-4">Risk Assessment Matrix</h3>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Every unclear handoff gets written confirmation. If specs are missing, we list what we're assuming
+                    and what happens if we're wrong. The client signs off or provides clarity. Either way, it's
+                    documented before deployment.
+                  </p>
+                  <p className="text-gray-700 leading-relaxed">
+                    We turn down work where risks aren't acknowledged. If stakeholders can't agree on failure tolerance,
+                    we don't proceed. Clarity over contracts.
+                  </p>
+                </div>
+
+                <div className="border-l-4 border-black pl-6">
+                  <h3 className="text-2xl font-bold mb-4">Staged Commitments</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Build in phases. Test failover at each stage. If vendor gear doesn't integrate as promised, we know
+                    before show day. Budget includes contingency for rework—not because we plan to fail, but because
+                    reality rarely matches the RFP.
+                  </p>
+                </div>
+
+                <div className="border-l-4 border-black pl-6">
+                  <h3 className="text-2xl font-bold mb-4">Transferable System, Not Hero Culture</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Any senior TD could execute this framework. Documented runbooks, modular system architecture,
+                    training protocols with verification checkpoints. Knowledge transfer isn't a handoff meeting—it's
+                    structured onboarding. We don't build dependency on one person.
+                  </p>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Scalability Section */}
-          <section className="py-24 md:py-32 border-b border-border">
-            <div className="container mx-auto px-6">
-              <div className="max-w-4xl">
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">Scalability</h2>
-                <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-                  Heroic individual effort doesn't scale. We build repeatable processes that work without one person
-                  being on-call 24/7.
-                </p>
+          <section className="py-24 border-b border-gray-200">
+            <div className="container mx-auto px-6 max-w-5xl">
+              <h2 className="text-3xl md:text-4xl font-bold mb-12">Case Studies</h2>
 
-                <div className="space-y-6">
-                  <div className="border-l-2 border-gray-700 pl-6">
-                    <h3 className="text-xl font-bold mb-2">Documented Runbooks, Not Tribal Knowledge</h3>
-                    <p className="text-gray-400 leading-relaxed">
-                      We've inherited systems where only one engineer knew the startup sequence. When they left, the
-                      system became a black box. We document every critical path: boot order, failover procedures,
-                      rollback steps. If it's mission-critical, it's written down.
-                    </p>
+              <div className="space-y-16">
+                <div>
+                  <div className="flex items-baseline gap-4 mb-4">
+                    <span className="text-sm font-mono text-gray-400">01</span>
+                    <h3 className="text-2xl font-bold">
+                      Global Brand Launch: Navigated Late Vendor Changes Without Downtime
+                    </h3>
                   </div>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    <strong>Challenge:</strong> Primary LED vendor pulled out 6 weeks before show. Replacement system
+                    had different protocol stack, incompatible control software.
+                  </p>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    <strong>Process:</strong> We'd documented protocol requirements in staging, not just vendor names.
+                    Built middleware translator in 72 hours, tested failover with backup content servers. Client saw the
+                    risk matrix update—accepted staged rollout rather than demand full rehearsal on original timeline.
+                  </p>
+                  <p className="text-gray-700 leading-relaxed">
+                    <strong>Outcome:</strong> Show launched on schedule. Post-event debrief became template for future
+                    vendor contingency planning across their events team.
+                  </p>
+                </div>
 
-                  <div className="border-l-2 border-gray-700 pl-6">
-                    <h3 className="text-xl font-bold mb-2">Modular Systems, Not Monolithic Dependencies</h3>
-                    <p className="text-gray-400 leading-relaxed">
-                      One custom script breaks, the whole show stops. We architect for replaceability: video routing
-                      that doesn't depend on one software version, control systems with documented APIs, signal chains
-                      that can swap components without reconfiguring everything downstream.
-                    </p>
+                <div>
+                  <div className="flex items-baseline gap-4 mb-4">
+                    <span className="text-sm font-mono text-gray-400">02</span>
+                    <h3 className="text-2xl font-bold">
+                      Stadium Residency: Eliminated Single Points of Failure in 90-Show Run
+                    </h3>
                   </div>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    <strong>Challenge:</strong> Artist's creative relied on one proprietary media server. No backup that
+                    could hot-swap without reconfiguring entire visual system.
+                  </p>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    <strong>Process:</strong> We didn't redesign the creative. Built parallel signal paths at protocol
+                    level—backup server could take over mid-show without operator intervention. Tested failure scenarios
+                    weekly during first month. Documented runbook for local crew handoff.
+                  </p>
+                  <p className="text-gray-700 leading-relaxed">
+                    <strong>Outcome:</strong> Zero unplanned downtime across 90 shows. When primary server did fail
+                    (show 47), automatic failover kept video running. Audience never noticed.
+                  </p>
+                </div>
 
-                  <div className="border-l-2 border-gray-700 pl-6">
-                    <h3 className="text-xl font-bold mb-2">Training Protocols, Not Just Expertise Transfer</h3>
-                    <p className="text-gray-400 leading-relaxed">
-                      We build training environments that mirror production: same configs, same interfaces, same failure
-                      modes. New operators get hands-on practice before show day. Knowledge transfer isn't a handoff
-                      meeting—it's structured onboarding with verification checkpoints.
-                    </p>
+                <div>
+                  <div className="flex items-baseline gap-4 mb-4">
+                    <span className="text-sm font-mono text-gray-400">03</span>
+                    <h3 className="text-2xl font-bold">
+                      Corporate Installation: Removed Founder Dependency from Critical System
+                    </h3>
                   </div>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    <strong>Challenge:</strong> Venue control system required specific engineer on-call 24/7. When they
+                    left company, system became black box.
+                  </p>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    <strong>Process:</strong> Reverse-engineered control logic. Documented boot sequences, failover
+                    procedures, rollback steps. Built training environment mirroring production. Onboarded three new
+                    operators with hands-on verification before original engineer departed.
+                  </p>
+                  <p className="text-gray-700 leading-relaxed">
+                    <strong>Outcome:</strong> System uptime maintained. Client now has operational redundancy and
+                    documented knowledge base. No heroics required.
+                  </p>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Client Filter Section */}
-          <section className="py-24 md:py-32">
-            <div className="container mx-auto px-6">
-              <div className="max-w-4xl">
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">Client Filter</h2>
-                <p className="text-xl text-gray-300 leading-relaxed">
-                  We attract operators who value preparation over panic. If you're looking for someone to promise
-                  perfection, we're not the right fit. If you want someone to own specific risks and execute with clear
-                  communication when things get ambiguous—let's talk.
+          <section className="py-24">
+            <div className="container mx-auto px-6 max-w-5xl">
+              <div className="border-l-4 border-black pl-6">
+                <p className="text-2xl md:text-3xl font-bold mb-6 leading-tight">
+                  If you're serious about accountability in high-stakes environments, let's talk. We don't chase
+                  miracles.
                 </p>
+                <Link
+                  href="/contact"
+                  className="inline-block px-8 py-4 bg-black text-white font-bold hover:bg-gray-800 transition-colors"
+                >
+                  Start a Conversation
+                </Link>
               </div>
-            </div>
-          </section>
-
-          {/* Navigation section */}
-          <section aria-labelledby="navigation-heading" className="py-24 border-b border-border">
-            <div className="container mx-auto px-6">
-              {/* Screen reader only heading for section */}
-              <h2 id="navigation-heading" className="sr-only">
-                Explore TC Production Engineering
-              </h2>
-
-              <nav aria-label="Page sections">
-                <ul className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 list-none p-0 m-0">
-                  {[
-                    {
-                      title: "About",
-                      desc: "Meet the team behind TC Agency",
-                      href: "/about",
-                      cta: "Meet the Team",
-                    },
-                    {
-                      title: "Services",
-                      desc: "Technical direction, automation, and engineering",
-                      href: "/services",
-                      cta: "View Services",
-                    },
-                    {
-                      title: "Approach",
-                      desc: "How we deliver complex productions",
-                      href: "/approach",
-                      cta: "Learn More",
-                    },
-                    {
-                      title: "Portfolio",
-                      desc: "Featured projects and case studies",
-                      href: "/portfolio",
-                      cta: "See Our Work",
-                    },
-                    {
-                      title: "Insights",
-                      desc: "Technical articles and industry perspectives",
-                      href: "/insights",
-                      cta: "Read Insights",
-                    },
-                  ].map((item) => (
-                    <li key={item.title}>
-                      <Link
-                        href={item.href}
-                        className="group flex flex-col h-full p-6 border border-border bg-zinc-950 hover:bg-zinc-900 hover:border-zinc-700 transition-all duration-150"
-                      >
-                        <h3 className="text-lg font-bold mb-2 group-hover:text-white transition-colors">
-                          {item.title}
-                        </h3>
-                        <p className="text-sm text-muted-foreground mb-4 flex-grow">{item.desc}</p>
-                        <span className="inline-flex items-center gap-2 text-sm font-mono text-emerald-500">
-                          {item.cta} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
             </div>
           </section>
         </main>
 
-        {/* Footer landmark */}
         <Footer />
       </div>
     </>
