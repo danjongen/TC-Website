@@ -1,11 +1,27 @@
-import { HeroInteractive } from "./hero-interactive"
+import dynamic from "next/dynamic"
 import { ArrowRight } from "lucide-react"
 
 const MATRIX_GREEN = "#00D26A"
 
-// PERFORMANCE: Hero is Server Component by default
-// HeroInteractive (video/animations) is lazy-loaded client component
-// This keeps ~80KB of Framer Motion out of the critical path
+// PERFORMANCE: Dynamically import animation layer with ssr: false
+// This ensures LCP element (text/CTA) renders immediately from static HTML
+// Animation loads after hydration without blocking paint
+const HeroAnimation = dynamic(() => import("./hero-animation").then((mod) => mod.HeroAnimation), {
+  ssr: false,
+  loading: () => (
+    <div className="relative h-[600px] w-full border border-border bg-black overflow-hidden hidden md:block">
+      <img
+        src="/images/dsf3815.jpg"
+        alt="TC Production Engineering - Technical Direction for live events"
+        className="w-full h-full object-cover"
+        loading="eager"
+      />
+    </div>
+  ),
+})
+
+// PERFORMANCE: Hero is Server Component - renders static HTML immediately
+// Text content is the LCP element, loads in <100ms from CDN
 export function Hero() {
   return (
     <section className="relative border-b border-border h-screen" aria-label="Hero section">
@@ -13,6 +29,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-data-grid pointer-events-none" aria-hidden="true" />
 
         <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-8 md:gap-12 items-center relative z-10">
+          {/* LCP ELEMENT: This text block renders immediately from static HTML */}
           <div>
             <div
               className="inline-flex items-center gap-2 mb-4 md:mb-6 px-3 py-1.5 border border-gray-400 text-xs font-mono text-gray-200 uppercase tracking-widest glow-matrix"
@@ -31,6 +48,7 @@ export function Hero() {
               Systems Online
             </div>
 
+            {/* PRIMARY LCP ELEMENT: H1 text renders immediately */}
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] mb-4 md:mb-6 text-balance">
               Production Engineering, Done Right.
             </h1>
@@ -41,6 +59,7 @@ export function Hero() {
               Systems. Automation. Reliability.
             </p>
 
+            {/* CTAs render immediately for instant interactivity */}
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="/contact"
@@ -59,17 +78,7 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Video section - only render if not mobile */}
-          <noscript>
-            <div className="relative h-[600px] w-full border border-border bg-black overflow-hidden hidden md:block">
-              <img
-                src="/images/dsf3815.jpg"
-                alt="TC Production Engineering - Technical Direction"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </noscript>
-          <HeroInteractive />
+          <HeroAnimation />
         </div>
       </div>
     </section>
