@@ -44,12 +44,38 @@ export default function Home() {
               </h2>
 
               <nav aria-label="Page sections">
-                <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 list-none p-0 m-0">
+                <ul className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 list-none p-0 m-0">
                   {[
-                    { title: "About", desc: "Meet Executive Technical Producer Daniel Jongen", href: "/about" },
-                    { title: "Services", desc: "Technical services and expertise", href: "/capabilities" },
-                    { title: "Our Approach", desc: "How we deliver complex productions", href: "/approach" },
-                    { title: "Portfolio", desc: "Featured projects and case studies", href: "/portfolio" },
+                    {
+                      title: "About",
+                      desc: "Meet the team behind TC Agency",
+                      href: "/about",
+                      cta: "Meet the Team",
+                    },
+                    {
+                      title: "Services",
+                      desc: "Technical direction, automation, and engineering",
+                      href: "/services",
+                      cta: "View Services",
+                    },
+                    {
+                      title: "Approach",
+                      desc: "How we deliver complex productions",
+                      href: "/approach",
+                      cta: "Learn More",
+                    },
+                    {
+                      title: "Portfolio",
+                      desc: "Featured projects and case studies",
+                      href: "/portfolio",
+                      cta: "See Our Work",
+                    },
+                    {
+                      title: "Insights",
+                      desc: "Technical articles and industry perspectives",
+                      href: "/insights",
+                      cta: "Read Insights",
+                    },
                   ].map((item) => (
                     <li key={item.title}>
                       <Link
@@ -61,7 +87,7 @@ export default function Home() {
                         </h3>
                         <p className="text-sm text-muted-foreground mb-4 flex-grow">{item.desc}</p>
                         <span className="inline-flex items-center gap-2 text-sm font-mono text-emerald-500">
-                          Explore <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          {item.cta} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </span>
                       </Link>
                     </li>

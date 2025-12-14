@@ -8,8 +8,8 @@ import { Menu, X } from "lucide-react"
 const MATRIX_GREEN = "#00D26A"
 
 const navItems = [
-  { name: "About", href: "/about" },
-  { name: "Services", href: "/services" },
+  { name: "Mission", href: "/mission" },
+  { name: "Services", href: "/capabilities" },
   { name: "Approach", href: "/approach" },
   { name: "Portfolio", href: "/portfolio" },
   { name: "Insights", href: "/insights" },
