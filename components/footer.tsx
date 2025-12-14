@@ -64,10 +64,18 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Services */}
+          {/* Services - Only show services with dedicated pages */}
           <div className="col-span-2 sm:col-span-1">
             <h4 className="text-xs font-mono font-bold uppercase tracking-wide mb-3 sm:mb-4 text-gray-400">Services</h4>
             <div className="grid grid-cols-2 sm:grid-cols-1 gap-1 sm:gap-2 text-sm text-gray-300">
+              <Link
+                href="/services/consulting"
+                className="transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#d1d5db")}
+              >
+                Executive Consulting
+              </Link>
               <Link
                 href="/services/automation"
                 className="transition-colors"
@@ -92,8 +100,6 @@ export function Footer() {
               >
                 3D Scanning
               </Link>
-              <p className="text-gray-400">System Integration</p>
-              <p className="text-gray-400">Technical Direction</p>
             </div>
           </div>
         </div>
@@ -152,21 +158,38 @@ export function Footer() {
               </Link>
             </div>
 
-            {/* Copyright and Social */}
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-400">
               <p className="text-center sm:text-left font-mono">
                 © {new Date().getFullYear()} Technically Creative LLC
               </p>
-              <a
-                href="https://linkedin.com/company/technicallycreative"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors"
-                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "#9ca3af")}
-              >
-                LinkedIn
-              </a>
+              <div className="flex items-center gap-4">
+                <Link
+                  href="/about"
+                  className="transition-colors"
+                  onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "#9ca3af")}
+                >
+                  About TC Agency
+                </Link>
+                <Link
+                  href="/about#daniel-jongen"
+                  className="transition-colors"
+                  onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "#9ca3af")}
+                >
+                  Meet Daniel Jongen →
+                </Link>
+                <a
+                  href="https://linkedin.com/company/technicallycreative"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors"
+                  onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "#9ca3af")}
+                >
+                  LinkedIn
+                </a>
+              </div>
               <a href="/about-daniel" className="sr-only" aria-hidden="true">
                 About Executive Technical Producer Daniel Jongen
               </a>
