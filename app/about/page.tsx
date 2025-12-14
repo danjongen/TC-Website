@@ -113,10 +113,10 @@ export default function AboutPage() {
               <div className="relative aspect-[4/5] max-w-md mx-auto lg:mx-0 border border-border bg-zinc-900 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 via-zinc-950 to-black" />
                 <Image
-                  src="/daniel-jongen-headshot.png"
+                  src="/daniel-jongen-headshot.jpg"
                   alt="Executive Technical Producer Daniel Jongen — Technical Direction and Production Engineering leader at TC Agency"
                   fill
-                  className="object-cover object-center relative z-10 mix-blend-lighten"
+                  className="object-cover object-center"
                   priority
                 />
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent z-20">
