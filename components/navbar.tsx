@@ -9,7 +9,7 @@ const MATRIX_GREEN = "#00D26A"
 
 const navItems = [
   { name: "About", href: "/about" },
-  { name: "Services", href: "/capabilities" },
+  { name: "Services", href: "/services" },
   { name: "Approach", href: "/approach" },
   { name: "Portfolio", href: "/portfolio" },
   { name: "Insights", href: "/insights" },
