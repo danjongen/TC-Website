@@ -2,6 +2,7 @@
 
 import { useScroll, useSpring } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
+import { X } from "lucide-react"
 
 const MATRIX_GREEN = "#00D26A"
 
@@ -16,6 +17,9 @@ export function HeroAnimation() {
   const [loadingProgress, setLoadingProgress] = useState(0)
   const [isMounted, setIsMounted] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const [autoProgressTimer, setAutoProgressTimer] = useState<NodeJS.Timeout | null>(null)
+  const [isSkipped, setIsSkipped] = useState(false)
+  const [showScrollHint, setShowScrollHint] = useState(true)
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
@@ -32,6 +36,23 @@ export function HeroAnimation() {
     })
   }, [])
 
+  useEffect(() => {
+    if (!isLoading && !isSkipped) {
+      const timer = setTimeout(() => {
+        setShowScrollHint(false)
+        if (videoRef.current && videoDuration > 0) {
+          // Auto-play video to end
+          videoRef.current.currentTime = videoDuration
+        }
+      }, 4000)
+      setAutoProgressTimer(timer)
+
+      return () => {
+        if (timer) clearTimeout(timer)
+      }
+    }
+  }, [isLoading, isSkipped, videoDuration])
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -44,9 +65,15 @@ export function HeroAnimation() {
   })
 
   useEffect(() => {
-    if (prefersReducedMotion) return
+    if (prefersReducedMotion || isSkipped) return
 
     const unsubscribe = smoothProgress.on("change", (latest) => {
+      if (autoProgressTimer) {
+        clearTimeout(autoProgressTimer)
+        setAutoProgressTimer(null)
+      }
+      setShowScrollHint(false)
+
       if (videoRef.current && videoDuration > 0 && !isLoading) {
         const targetTime = latest * videoDuration
         if (Math.abs(videoRef.current.currentTime - targetTime) > 0.1) {
@@ -56,7 +83,7 @@ export function HeroAnimation() {
     })
 
     return () => unsubscribe()
-  }, [smoothProgress, videoDuration, isLoading, prefersReducedMotion])
+  }, [smoothProgress, videoDuration, isLoading, prefersReducedMotion, isSkipped, autoProgressTimer])
 
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768
 
@@ -81,6 +108,18 @@ export function HeroAnimation() {
     }
   }
 
+  const handleSkip = () => {
+    setIsSkipped(true)
+    setShowScrollHint(false)
+    if (autoProgressTimer) {
+      clearTimeout(autoProgressTimer)
+      setAutoProgressTimer(null)
+    }
+    if (videoRef.current && videoDuration > 0) {
+      videoRef.current.currentTime = videoDuration
+    }
+  }
+
   if (isMobile) {
     return null
   }
@@ -95,7 +134,7 @@ export function HeroAnimation() {
         transition: "opacity 0.3s ease-in",
       }}
     >
-      {/* Loading state */}
+      {/* Loading state - removed percentage display as per recommendation */}
       {isLoading && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black z-20">
           <div className="text-center space-y-4">
@@ -110,10 +149,21 @@ export function HeroAnimation() {
                 }}
               />
             </div>
-            <div className="text-xs font-mono" style={{ color: MATRIX_GREEN }}>
-              {Math.round(loadingProgress)}%
-            </div>
           </div>
+        </div>
+      )}
+
+      {!isLoading && showScrollHint && !isSkipped && (
+        <div className="absolute inset-x-0 bottom-12 flex flex-col items-center justify-center z-30 pointer-events-none">
+          <div className="text-xs font-mono text-gray-400 mb-2 animate-pulse">SCROLL TO EXPLORE</div>
+          <button
+            onClick={handleSkip}
+            className="pointer-events-auto flex items-center gap-2 px-3 py-1.5 text-xs font-mono text-gray-400 hover:text-white border border-gray-700 hover:border-gray-500 bg-black/80 backdrop-blur-sm transition-all duration-150"
+            aria-label="Skip scroll interaction"
+          >
+            <X className="w-3 h-3" />
+            SKIP
+          </button>
         </div>
       )}
 
