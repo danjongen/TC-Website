@@ -6,63 +6,158 @@ const MATRIX_GREEN = "#00D26A"
 
 export function Footer() {
   return (
-    <footer className="py-16 border-t border-gray-200 bg-gray-50">
+    <footer className="py-16 border-t border-zinc-800 bg-black">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
-            <div className="font-mono text-sm font-bold mb-4">tc.agency</div>
-            <p className="text-gray-600 text-sm leading-relaxed max-w-md">
-              Production engineering and executive technical direction for failure-intolerant environments. We name
-              risks upfront and only proceed when they're explicitly accepted.
+            <div className="font-mono text-sm font-bold mb-4 text-white">TECHNICALLY_CREATIVE</div>
+            <p className="text-zinc-400 text-sm leading-relaxed max-w-md">
+              Production engineering and executive technical direction for failure-intolerant environments. We deliver
+              systems that work when it matters most.
             </p>
           </div>
 
-          {/* Navigation */}
+          {/* Services */}
           <div>
-            <h4 className="font-mono text-xs uppercase tracking-wide text-gray-400 mb-4">Navigation</h4>
+            <h4 className="font-mono text-xs uppercase tracking-wide text-zinc-500 mb-4">Services</h4>
             <div className="space-y-2">
-              <Link href="/services" className="block text-sm text-gray-600 hover:text-black">
-                Services
+              <Link
+                href="/services/consulting"
+                className="block text-sm text-zinc-400 transition-colors"
+                style={{ ["--hover-color" as string]: MATRIX_GREEN }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+              >
+                Executive Consulting
               </Link>
-              <Link href="/approach" className="block text-sm text-gray-600 hover:text-black">
-                Approach
+              <Link
+                href="/services/automation"
+                className="block text-sm text-zinc-400 transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+              >
+                Workflow Automation
               </Link>
-              <Link href="/portfolio" className="block text-sm text-gray-600 hover:text-black">
-                Case Studies
+              <Link
+                href="/services/unreal-engine"
+                className="block text-sm text-zinc-400 transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+              >
+                Unreal Engine
               </Link>
-              <Link href="/contact" className="block text-sm text-gray-600 hover:text-black">
+              <Link
+                href="/services/3d-scanning"
+                className="block text-sm text-zinc-400 transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+              >
+                3D Scanning
+              </Link>
+            </div>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h4 className="font-mono text-xs uppercase tracking-wide text-zinc-500 mb-4">Company</h4>
+            <div className="space-y-2">
+              <Link
+                href="/about"
+                className="block text-sm text-zinc-400 transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+              >
+                About TC Agency
+              </Link>
+              <Link
+                href="/about#daniel-jongen"
+                className="block text-sm text-zinc-400 transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+              >
+                Meet Daniel Jongen
+              </Link>
+              <Link
+                href="/portfolio"
+                className="block text-sm text-zinc-400 transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+              >
+                Portfolio
+              </Link>
+              <Link
+                href="/contact"
+                className="block text-sm text-zinc-400 transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+              >
                 Contact
               </Link>
             </div>
           </div>
+        </div>
 
-          {/* Contact */}
-          <div>
-            <h4 className="font-mono text-xs uppercase tracking-wide text-gray-400 mb-4">Contact</h4>
-            <div className="space-y-2 text-sm text-gray-600">
-              <a href="mailto:info@tc.agency" className="block hover:text-black">
+        {/* Contact Info */}
+        <div className="py-8 border-t border-zinc-800 mb-8">
+          <div className="grid md:grid-cols-3 gap-6 text-sm">
+            <div>
+              <p className="text-zinc-500 mb-1">Email</p>
+              <a
+                href="mailto:info@tc.agency"
+                className="text-white transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "white")}
+              >
                 info@tc.agency
               </a>
-              <a href="tel:+13132615200" className="block hover:text-black">
+            </div>
+            <div>
+              <p className="text-zinc-500 mb-1">Phone</p>
+              <a
+                href="tel:+13132615200"
+                className="text-white transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "white")}
+              >
                 +1 313 261 5200
               </a>
-              <p>Detroit, MI</p>
+            </div>
+            <div>
+              <p className="text-zinc-500 mb-1">Location</p>
+              <p className="text-white">Detroit, MI</p>
             </div>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-gray-400">© {new Date().getFullYear()} Technically Creative LLC</p>
-          <div className="flex gap-6 text-xs text-gray-400">
-            <Link href="/privacy-policy" className="hover:text-black">
-              Privacy
+        <div className="pt-8 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-zinc-500">
+            © {new Date().getFullYear()} Technically Creative LLC. All rights reserved.
+          </p>
+          <div className="flex gap-6 text-xs text-zinc-500">
+            <Link
+              href="/privacy-policy"
+              className="transition-colors"
+              onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+            >
+              Privacy Policy
             </Link>
-            <Link href="/terms-of-service" className="hover:text-black">
-              Terms
+            <Link
+              href="/terms-of-service"
+              className="transition-colors"
+              onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+            >
+              Terms of Service
             </Link>
           </div>
         </div>
+
+        {/* Hidden SEO link */}
+        <Link href="/about-daniel" className="sr-only">
+          About Daniel Jongen - Executive Technical Producer
+        </Link>
       </div>
     </footer>
   )

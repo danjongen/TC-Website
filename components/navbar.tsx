@@ -9,9 +9,11 @@ const MATRIX_GREEN = "#00D26A"
 
 const navItems = [
   { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
   { name: "Approach", href: "/approach" },
-  { name: "Case Studies", href: "/portfolio" },
+  { name: "Portfolio", href: "/portfolio" },
+  { name: "Insights", href: "/insights" },
   { name: "Contact", href: "/contact" },
 ]
 
@@ -36,10 +38,10 @@ export function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-gray-200 bg-white">
+      <header className="fixed top-0 left-0 right-0 z-40 border-b border-zinc-800 bg-black/90 backdrop-blur-sm">
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="font-mono text-sm font-bold tracking-tight text-black">
-            tc.agency
+          <Link href="/" className="font-mono text-sm font-bold tracking-tight text-white">
+            TECHNICALLY_CREATIVE
           </Link>
 
           {/* Desktop Nav */}
@@ -48,9 +50,10 @@ export function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`text-sm transition-colors ${
-                  pathname === item.href ? "text-black font-medium" : "text-gray-500 hover:text-black"
-                }`}
+                className="text-sm text-zinc-400 transition-colors hover:text-white"
+                style={{
+                  color: pathname === item.href ? MATRIX_GREEN : undefined,
+                }}
               >
                 {item.name}
               </Link>
@@ -58,7 +61,7 @@ export function Navbar() {
           </nav>
 
           <button
-            className="md:hidden p-2 -mr-2 text-black"
+            className="md:hidden p-2 -mr-2 text-white"
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
@@ -69,12 +72,12 @@ export function Navbar() {
       </header>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 md:hidden bg-white">
-          <div className="h-16 border-b border-gray-200 flex items-center justify-between px-6">
-            <Link href="/" className="font-mono text-sm font-bold text-black">
-              tc.agency
+        <div className="fixed inset-0 z-50 md:hidden bg-black">
+          <div className="h-16 border-b border-zinc-800 flex items-center justify-between px-6">
+            <Link href="/" className="font-mono text-sm font-bold text-white">
+              TECHNICALLY_CREATIVE
             </Link>
-            <button className="p-2 -mr-2 text-black" onClick={() => setIsOpen(false)} aria-label="Close menu">
+            <button className="p-2 -mr-2 text-white" onClick={() => setIsOpen(false)} aria-label="Close menu">
               <X className="w-5 h-5" />
             </button>
           </div>
@@ -85,9 +88,10 @@ export function Navbar() {
                 key={item.name}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className={`py-4 text-lg border-b border-gray-100 ${
-                  pathname === item.href ? "text-black font-medium" : "text-gray-500"
-                }`}
+                className="py-4 text-lg border-b border-zinc-800 text-white"
+                style={{
+                  color: pathname === item.href ? MATRIX_GREEN : undefined,
+                }}
               >
                 {item.name}
               </Link>
