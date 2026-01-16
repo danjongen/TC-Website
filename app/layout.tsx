@@ -111,7 +111,7 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   verification: {
-    google: "ADD_YOUR_GOOGLE_VERIFICATION_CODE_HERE",
+    google: "9ZvZgBy1j2MKJiCFigAViaQVHFrgHmmCghz6EN1JzBU",
   },
   category: "technology",
     generator: 'v0.app'
