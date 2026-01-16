@@ -110,9 +110,6 @@ export const metadata: Metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
-  verification: {
-    google: "9ZvZgBy1j2MKJiCFigAViaQVHFrgHmmCghz6EN1JzBU",
-  },
   category: "technology",
     generator: 'v0.app'
 }
