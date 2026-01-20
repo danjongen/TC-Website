@@ -37,8 +37,8 @@ interface RateLimitConfig {
 /**
  * Get client IP from headers
  */
-function getClientIp(): string {
-  const headersList = headers()
+async function getClientIp(): Promise<string> {
+  const headersList = await headers()
 
   // Check various headers for IP (in order of priority)
   const ip =
@@ -158,7 +158,7 @@ export async function rateLimitContactForm(): Promise<{
   result: RateLimitResult
   ip: string
 }> {
-  const ip = getClientIp()
+  const ip = await getClientIp()
   const hourlyKey = `contact-form:hourly:${ip}`
   const burstKey = `contact-form:burst:${ip}`
 
