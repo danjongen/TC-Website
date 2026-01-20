@@ -88,6 +88,16 @@ export function SchemaOrgGraph() {
         ],
       },
       {
+        "@type": "WebSite",
+        "@id": "https://tc.agency/#website",
+        name: "TC Agency",
+        url: "https://tc.agency",
+        description:
+          "Technical Direction and Production Engineering for entertainment, automotive, and tech industries.",
+        publisher: { "@id": "https://tc.agency/#organization" },
+        inLanguage: "en-US",
+      },
+      {
         "@type": "FAQPage",
         mainEntity: [
           {

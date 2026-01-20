@@ -1,9 +1,28 @@
 "use client"
 
-import { useActionState } from "react"
+import { useActionState, useRef, useEffect } from "react"
 import { useFormStatus } from "react-dom"
 import { submitContactForm } from "@/app/actions/contact"
 import { Loader2 } from "lucide-react"
+import Script from "next/script"
+
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (element: string | HTMLElement, options: TurnstileOptions) => string
+      reset: (widgetId: string) => void
+      remove: (widgetId: string) => void
+    }
+  }
+}
+
+interface TurnstileOptions {
+  sitekey: string
+  callback?: (token: string) => void
+  "error-callback"?: () => void
+  theme?: "light" | "dark" | "auto"
+  size?: "normal" | "compact"
+}
 
 function SubmitButton() {
   const { pending } = useFormStatus()
@@ -28,12 +47,98 @@ function SubmitButton() {
 
 export function ContactForm() {
   const [state, formAction] = useActionState(submitContactForm, null)
+  const turnstileRef = useRef<HTMLDivElement>(null)
+  const widgetIdRef = useRef<string | null>(null)
+  const turnstileTokenRef = useRef<HTMLInputElement>(null)
+
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
+
+  useEffect(() => {
+    // Skip Turnstile in development if no key is provided
+    if (!siteKey) {
+      console.warn('[Contact Form] Turnstile site key not found. Running without CAPTCHA protection.')
+      return
+    }
+
+    const renderTurnstile = () => {
+      if (window.turnstile && turnstileRef.current && !widgetIdRef.current) {
+        try {
+          widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
+            sitekey: siteKey,
+            theme: "dark",
+            size: "normal",
+            callback: (token: string) => {
+              if (turnstileTokenRef.current) {
+                turnstileTokenRef.current.value = token
+              }
+            },
+            "error-callback": () => {
+              console.error('[Contact Form] Turnstile verification failed')
+            },
+          })
+        } catch (error) {
+          console.error('[Contact Form] Turnstile render error:', error)
+        }
+      }
+    }
+
+    // Try to render immediately if script already loaded
+    if (window.turnstile) {
+      renderTurnstile()
+    } else {
+      // Wait for script to load
+      const checkInterval = setInterval(() => {
+        if (window.turnstile) {
+          renderTurnstile()
+          clearInterval(checkInterval)
+        }
+      }, 100)
+
+      return () => clearInterval(checkInterval)
+    }
+  }, [siteKey])
 
   return (
-    <form action={formAction} className="space-y-6">
-      {state?.error && (
-        <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-400 text-sm">{state.error}</div>
+    <>
+      {siteKey && (
+        <Script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          strategy="lazyOnload"
+        />
       )}
+      <form action={formAction} className="space-y-6">
+        {state?.error && (
+          <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-400 text-sm">{state.error}</div>
+        )}
+        {state?.success && (
+          <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm">
+            {state.success}
+          </div>
+        )}
+
+        {/* Honeypot field - hidden from users, catches bots */}
+        <input
+          type="text"
+          name="company_website"
+          autoComplete="off"
+          tabIndex={-1}
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            left: "-9999px",
+            width: "1px",
+            height: "1px",
+            opacity: 0,
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Turnstile token (hidden) */}
+        <input
+          ref={turnstileTokenRef}
+          type="hidden"
+          name="cf-turnstile-response"
+        />
 
       {/* Name & Company */}
       <div className="grid md:grid-cols-2 gap-4">
@@ -190,11 +295,19 @@ export function ContactForm() {
         />
       </div>
 
+      {/* Cloudflare Turnstile CAPTCHA */}
+      {siteKey && (
+        <div className="flex justify-center">
+          <div ref={turnstileRef} />
+        </div>
+      )}
+
       <SubmitButton />
 
       <p className="text-xs text-muted-foreground text-center">
         By submitting, you agree to be contacted about your inquiry. We never share your information.
       </p>
     </form>
+    </>
   )
 }
