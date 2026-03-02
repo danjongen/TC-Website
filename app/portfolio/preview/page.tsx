@@ -3,7 +3,7 @@ import { Footer } from "@/components/footer"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Quote } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { BreadcrumbSchema, ProjectSchema } from "@/components/structured-data"
 import { redirect } from "next/navigation"
 
@@ -24,7 +24,7 @@ const projects = [
     role: "Automation, Power & Data Systems",
     image: "/images/66a0205.jpg",
     year: "2024",
-    metric: "40% faster setup",
+    metric: "60 GHz backhaul",
   },
   {
     slug: "sphere-residency",
@@ -35,55 +35,13 @@ const projects = [
     year: "2024",
     metric: "16K resolution",
   },
-  {
-    slug: "immersive-experience",
-    title: "Immersive LED Experience",
-    client: "Samsung",
-    role: "System Integration",
-    image: "/images/dscf9211.jpg",
-    year: "2023",
-    metric: "12M pixels",
-  },
-  {
-    slug: "global-product-launch",
-    title: "Global Product Launch",
-    client: "Ford",
-    role: "Production Engineering",
-    image: "/images/dsf3917.jpg",
-    year: "2023",
-    metric: "5 continents",
-  },
-]
-
-const testimonials = [
-  {
-    quote:
-      "TC's automation systems reduced our setup time by 40% and eliminated the human error that plagued previous tours. They don't just solve problems—they engineer them out of existence.",
-    client: "Production Manager",
-    company: "Major Touring Artist",
-    metric: "40% faster setup",
-  },
-  {
-    quote:
-      "When you're running a $50M production, you need partners who think in systems, not just equipment. TC delivered infrastructure we could trust completely.",
-    client: "Technical Director",
-    company: "Fortune 100 Brand",
-    metric: "99.99% uptime",
-  },
-  {
-    quote:
-      "Their pre-visualization saved us weeks of on-site troubleshooting. We solved problems in Unreal Engine that would have cost hundreds of thousands on the arena floor.",
-    client: "Show Designer",
-    company: "Global Entertainment Company",
-    metric: "$200K saved",
-  },
 ]
 
 const impactMetrics = [
-  { value: "500+", label: "Shows Delivered" },
-  { value: "99.99%", label: "System Uptime" },
-  { value: "$2B+", label: "Production Value Supported" },
-  { value: "40%", label: "Avg. Efficiency Gain" },
+  { value: "200+", label: "Productions Delivered" },
+  { value: "99.97%", label: "System Uptime" },
+  { value: "30+", label: "Countries" },
+  { value: "<2hr", label: "Response Time" },
 ]
 
 export default async function PortfolioPreviewPage({
@@ -177,30 +135,6 @@ export default async function PortfolioPreviewPage({
                   </span>
                 </div>
               </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-24 border-b border-border bg-zinc-900/20">
-        <div className="container mx-auto px-6">
-          <h2 className="text-2xl font-bold mb-4">Client Perspectives</h2>
-          <p className="text-muted-foreground mb-12 max-w-2xl">
-            What production leaders say about working with TC Agency.
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-zinc-900/50 border border-border p-6 flex flex-col">
-                <Quote className="w-8 h-8 text-emerald-500/30 mb-4" />
-                <p className="text-sm leading-relaxed mb-6 flex-grow">{testimonial.quote}</p>
-                <div className="border-t border-border pt-4">
-                  <p className="font-medium text-sm">{testimonial.client}</p>
-                  <p className="text-xs text-muted-foreground">{testimonial.company}</p>
-                  <p className="text-xs font-mono text-emerald-500 mt-2">{testimonial.metric}</p>
-                </div>
-              </div>
             ))}
           </div>
         </div>

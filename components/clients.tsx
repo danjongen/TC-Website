@@ -30,11 +30,6 @@ const clients = [
     invert: false,
   },
   {
-    name: "OpenAI",
-    logo: "/images/openai-logo.svg",
-    invert: true,
-  },
-  {
     name: "Visa",
     logo: "/images/visa-logo.webp",
     invert: false,

@@ -65,6 +65,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/insights/ufo-pod-touring-control-infrastructure`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/portfolio/backstreet-boys-into-the-millennium`,
       lastModified: new Date(),
       changeFrequency: "monthly",
@@ -72,18 +78,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/portfolio/sphere-residency`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/portfolio/immersive-experience`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/portfolio/global-product-launch`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,

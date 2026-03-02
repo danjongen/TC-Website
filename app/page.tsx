@@ -25,6 +25,27 @@ export default function Home() {
           {/* Client logos section */}
           <Clients />
 
+          {/* Trust Metrics */}
+          <section className="py-16 border-b border-border">
+            <div className="container mx-auto px-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {[
+                  { value: "200+", label: "Productions Delivered" },
+                  { value: "99.97%", label: "System Uptime" },
+                  { value: "30+", label: "Countries" },
+                  { value: "<2hr", label: "Response Time" },
+                ].map((metric) => (
+                  <div key={metric.label} className="text-center">
+                    <p className="text-3xl font-bold text-emerald-500">{metric.value}</p>
+                    <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider mt-1">
+                      {metric.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
           {/* Navigation section */}
           <section aria-labelledby="navigation-heading" className="py-24 border-b border-border">
             <div className="container mx-auto px-6">
