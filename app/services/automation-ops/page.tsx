@@ -332,8 +332,8 @@ export default function AutomationOpsPage() {
           <div className="max-w-3xl">
             <div className="space-y-8">
               {howItWorks.map((step, i) => (
-                <div key={i} className="flex gap-6">
-                  <div className="font-mono text-emerald-500 text-sm w-8">{(i + 1).toString().padStart(2, "0")}</div>
+                <div key={i} className="flex items-baseline gap-6">
+                  <div className="font-mono text-emerald-500 text-sm w-8 shrink-0">{(i + 1).toString().padStart(2, "0")}</div>
                   <div>
                     <h3 className="font-bold mb-2">{step.phase}</h3>
                     <p className="text-sm text-muted-foreground">{step.desc}</p>
