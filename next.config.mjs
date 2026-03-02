@@ -27,6 +27,22 @@ const nextConfig = {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
   },
 
+  // Redirects for renamed service pages
+  async redirects() {
+    return [
+      {
+        source: '/services/consulting',
+        destination: '/services/executive-consulting',
+        permanent: true,
+      },
+      {
+        source: '/services/automation',
+        destination: '/services/workflow-automation',
+        permanent: true,
+      },
+    ]
+  },
+
   // <CHANGE> Security headers
   async headers() {
     return [

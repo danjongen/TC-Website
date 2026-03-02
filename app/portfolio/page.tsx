@@ -1,14 +1,15 @@
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import type { Metadata } from "next"
-import { Bell } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 import { BreadcrumbSchema } from "@/components/structured-data"
-import { NewsletterForm } from "@/components/newsletter-form"
 
 export const metadata: Metadata = {
   title: "Portfolio | TC Agency — Technically Creative",
   description:
-    "Featured productions by TC Agency: stadium tours, immersive LED experiences, and technical innovations. Backstreet Boys, The Sphere, Samsung, Ford, and more.",
+    "Featured productions by TC Agency: stadium tours, immersive LED experiences, and technical innovations. Backstreet Boys, The Sphere, Samsung, Ford, Google, OpenAI, and more.",
   keywords: [
     "live event portfolio",
     "concert production case studies",
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
         url: "/images/dsf3010.jpg",
         width: 1200,
         height: 630,
-        alt: "TC Agency portfolio - engineering at scale",
+        alt: "TC Agency portfolio: engineering at scale",
       },
     ],
     type: "website",
@@ -49,6 +50,63 @@ export const metadata: Metadata = {
   },
 }
 
+const projects = [
+  {
+    slug: "backstreet-boys-into-the-millennium",
+    client: "Backstreet Boys",
+    title: "Into The Millennium World Tour",
+    role: "Automation, Power & Data Systems",
+    tech: "Show control, 48 automation axes, 12,000+ data points",
+    image: "/images/66a0205.jpg",
+    hasDetail: true,
+  },
+  {
+    slug: "sphere-residency",
+    client: "The Sphere",
+    title: "Sphere Residency",
+    role: "Technical Direction",
+    tech: "16K content, 1.2B pixels, 164,000 LED panels",
+    image: "/images/dsf3010.jpg",
+    hasDetail: true,
+  },
+  {
+    slug: "immersive-experience",
+    client: "Samsung",
+    title: "Immersive LED Experience",
+    role: "System Integration",
+    tech: "360-degree display, spatial audio, interactive zones",
+    image: "/images/dscf9211.jpg",
+    hasDetail: true,
+  },
+  {
+    slug: "global-product-launch",
+    client: "Ford",
+    title: "Global Product Launch",
+    role: "Production Engineering",
+    tech: "4-continent broadcast, synchronized reveals, 2.3M viewers",
+    image: "/images/dsf3917.jpg",
+    hasDetail: true,
+  },
+  {
+    slug: "google-technical-production",
+    client: "Google",
+    title: "Technical Production",
+    role: "Technical Direction & System Integration",
+    tech: "Multi-venue production, real-time content systems",
+    image: "/images/foh-control.jpg",
+    hasDetail: false,
+  },
+  {
+    slug: "openai-production-support",
+    client: "OpenAI",
+    title: "Production Support",
+    role: "Production Engineering",
+    tech: "Live broadcast infrastructure, network engineering",
+    image: "/images/rainbow-stage.jpg",
+    hasDetail: false,
+  },
+]
+
 export default function PortfolioPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -61,43 +119,83 @@ export default function PortfolioPage() {
 
       <Navbar />
 
-      {/* Coming Soon Hero */}
-      <section className="pt-32 pb-24 min-h-[80vh] flex items-center">
+      {/* Hero */}
+      <section className="pt-32 pb-16 border-b border-border">
         <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center">
+          <div className="max-w-3xl">
             <p className="text-sm font-mono text-emerald-500 mb-6 uppercase tracking-widest">04 / Portfolio</p>
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-8">Coming Soon</h1>
-            <p className="text-xl text-muted-foreground leading-relaxed mb-12">
-              We're curating our most impactful productions—stadium tours, immersive installations, and technical
-              innovations that pushed the boundaries of live entertainment. Be the first to explore our work.
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">Selected work.</h1>
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              Stadium tours, immersive installations, global broadcasts, and technical innovations for the world's most
+              demanding productions.
             </p>
-
-            {/* Teaser Topics */}
-            <div className="grid sm:grid-cols-3 gap-4 mb-12">
-              <div className="p-4 border border-border bg-zinc-950/50">
-                <p className="text-xs font-mono text-emerald-500 uppercase mb-2">Stadium Tours</p>
-                <p className="text-sm text-muted-foreground">Automation systems for global touring artists</p>
-              </div>
-              <div className="p-4 border border-border bg-zinc-950/50">
-                <p className="text-xs font-mono text-emerald-500 uppercase mb-2">Immersive Installations</p>
-                <p className="text-sm text-muted-foreground">LED experiences and spatial computing</p>
-              </div>
-              <div className="p-4 border border-border bg-zinc-950/50">
-                <p className="text-xs font-mono text-emerald-500 uppercase mb-2">Brand Activations</p>
-                <p className="text-sm text-muted-foreground">Technical production for global launches</p>
-              </div>
-            </div>
-
-            {/* Newsletter Signup */}
-            <div className="max-w-md mx-auto">
-              <div className="flex items-center justify-center gap-2 mb-6">
-                <Bell className="w-5 h-5 text-emerald-500" />
-                <span className="text-sm font-mono text-muted-foreground">Get notified when we launch</span>
-              </div>
-              <NewsletterForm />
-              <p className="text-xs text-muted-foreground mt-4">No spam. Unsubscribe anytime.</p>
-            </div>
           </div>
+        </div>
+      </section>
+
+      {/* Project Grid */}
+      <section className="py-16">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project) => {
+              const content = (
+                <div className="group relative overflow-hidden border border-border bg-zinc-950 hover:border-emerald-900/50 transition-colors">
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={project.image}
+                      alt={`${project.client}: ${project.title}`}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                    <div className="absolute top-4 left-4">
+                      <span className="text-xs font-mono text-emerald-500 uppercase tracking-widest">
+                        {project.client}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h2 className="text-lg font-bold mb-1">{project.title}</h2>
+                    <p className="text-sm text-muted-foreground mb-3">{project.role}</p>
+                    <p className="text-xs font-mono text-muted-foreground">{project.tech}</p>
+                    {project.hasDetail && (
+                      <div className="mt-4 flex items-center gap-2 text-sm font-mono text-emerald-500">
+                        View project <ArrowRight className="w-3 h-3" />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )
+
+              if (project.hasDetail) {
+                return (
+                  <Link key={project.slug} href={`/portfolio/${project.slug}`} className="block">
+                    {content}
+                  </Link>
+                )
+              }
+
+              return <div key={project.slug}>{content}</div>
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-24 border-t border-border">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold mb-4">Ready for your project?</h2>
+          <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
+            Every production is different. Tell us about yours and we will show you how we can help.
+          </p>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-bold hover:bg-gray-200 transition-colors duration-150"
+          >
+            Start a Conversation
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </section>
 

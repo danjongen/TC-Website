@@ -96,13 +96,43 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     // Service pages
     {
+      url: `${baseUrl}/services/executive-consulting`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/services/technical-direction`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/services/production-management`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/services/design-visualization`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/services/unreal-engine`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/services/automation`,
+      url: `${baseUrl}/services/workflow-automation`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/services/system-integration`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
@@ -114,7 +144,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/services/consulting`,
+      url: `${baseUrl}/services/aerial-surveying`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/services/custom-fabrication`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/services/automation-ops`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
