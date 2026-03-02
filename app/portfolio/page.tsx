@@ -9,7 +9,7 @@ import { BreadcrumbSchema } from "@/components/structured-data"
 export const metadata: Metadata = {
   title: "Portfolio | TC Agency — Technically Creative",
   description:
-    "Featured productions by TC Agency: stadium tours, immersive LED experiences, and technical innovations. Backstreet Boys, The Sphere, Samsung, Ford, Google, OpenAI, and more.",
+    "Featured productions by TC Agency: stadium tours, immersive LED experiences, and technical innovations. Backstreet Boys, The Sphere, Samsung, Ford, Google, and more.",
   keywords: [
     "live event portfolio",
     "concert production case studies",
@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     "Backstreet Boys tour",
     "Samsung event production",
     "Ford product launch",
+    "Google Think 2025",
   ],
   openGraph: {
     title: "Portfolio | TC Agency — Technically Creative",
@@ -88,21 +89,12 @@ const projects = [
     hasDetail: true,
   },
   {
-    slug: "google-technical-production",
+    slug: "google-think-2025",
     client: "Google",
-    title: "Technical Production",
+    title: "Think! 2025",
     role: "Technical Direction & System Integration",
-    tech: "Multi-venue production, real-time content systems",
+    tech: "Multi-venue production, real-time content systems, LED integration",
     image: "/images/foh-control.jpg",
-    hasDetail: false,
-  },
-  {
-    slug: "openai-production-support",
-    client: "OpenAI",
-    title: "Production Support",
-    role: "Production Engineering",
-    tech: "Live broadcast infrastructure, network engineering",
-    image: "/images/rainbow-stage.jpg",
     hasDetail: false,
   },
 ]
