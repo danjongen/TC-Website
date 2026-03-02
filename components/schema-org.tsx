@@ -45,6 +45,8 @@ export function SchemaOrgGraph() {
           "Event Automation Systems",
           "LED Video Wall Integration",
           "Risk Mitigation for Live Events",
+          "Business Operations Automation",
+          "AI Operations",
         ],
         keywords:
           "technical direction, production direction, production manager, production engineering, best technical director, best production manager, corporate technical director, event engineering, touring technical director, Executive Technical Producer, Daniel Jongen, Tech Creative, TC Agency",
@@ -59,6 +61,7 @@ export function SchemaOrgGraph() {
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Event Automation Systems" } },
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "LED Video Wall Integration" } },
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Technical Risk Mitigation" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Automation & AI Operations" } },
           ],
         },
       },
