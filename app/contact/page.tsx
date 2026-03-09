@@ -154,7 +154,7 @@ export default function ContactPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-emerald-500 mt-1">—</span>
-                    <span>99.99% system uptime across all shows</span>
+                    <span>Zero critical failures across all productions</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-emerald-500 mt-1">—</span>
