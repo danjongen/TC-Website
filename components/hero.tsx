@@ -3,10 +3,13 @@ import dynamic from "next/dynamic"
 
 const MATRIX_GREEN = "#00D26A"
 
-const HeroAnimation = dynamic(() => import("./hero-animation").then((mod) => mod.HeroAnimation), {
-  ssr: false,
-  loading: () => <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 to-black" />,
-})
+const HeroAnimation = dynamic(
+  () => import("./hero-animation").then((mod) => ({ default: mod.HeroAnimation })),
+  {
+    ssr: false,
+    loading: () => <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 to-black" />,
+  }
+)
 
 export function Hero() {
   return (
