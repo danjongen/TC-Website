@@ -45,6 +45,8 @@ export function SchemaOrgGraph() {
           "Event Automation Systems",
           "LED Video Wall Integration",
           "Risk Mitigation for Live Events",
+          "Business Operations Automation",
+          "AI Operations",
         ],
         keywords:
           "technical direction, production direction, production manager, production engineering, best technical director, best production manager, corporate technical director, event engineering, touring technical director, Executive Technical Producer, Daniel Jongen, Tech Creative, TC Agency",
@@ -59,6 +61,7 @@ export function SchemaOrgGraph() {
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Event Automation Systems" } },
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "LED Video Wall Integration" } },
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Technical Risk Mitigation" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Automation & AI Operations" } },
           ],
         },
       },
@@ -72,7 +75,7 @@ export function SchemaOrgGraph() {
         image: "https://tc.agency/daniel-headshot.jpg",
         url: "https://tc.agency/about",
         worksFor: { "@id": "https://tc.agency/#organization" },
-        sameAs: ["https://www.linkedin.com/in/danieljongen", "https://www.instagram.com/danieljongen"],
+        sameAs: ["https://www.linkedin.com/in/danieljongen"],
         nationality: "Australian",
         knowsAbout: [
           "Technical Direction",
@@ -86,6 +89,16 @@ export function SchemaOrgGraph() {
           "LED Systems Engineering",
           "Risk Mitigation",
         ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://tc.agency/#website",
+        name: "TC Agency",
+        url: "https://tc.agency",
+        description:
+          "Technical Direction and Production Engineering for entertainment, automotive, and tech industries.",
+        publisher: { "@id": "https://tc.agency/#organization" },
+        inLanguage: "en-US",
       },
       {
         "@type": "FAQPage",

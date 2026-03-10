@@ -9,7 +9,7 @@ const MATRIX_GREEN = "#00D26A"
 // PERFORMANCE: Animation-only client component
 // Loaded via dynamic import with ssr: false
 // Starts animation after mount to avoid blocking LCP
-export function HeroAnimation() {
+export default function HeroAnimation() {
   const containerRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const [videoDuration, setVideoDuration] = useState(0)

@@ -9,12 +9,12 @@ import { CapabilitiesAccordion } from "@/components/capabilities-accordion"
 export const dynamic = "force-static"
 export const revalidate = 3600 // Revalidate every hour
 
-const services = [
+const services: { num: string; title: string; desc: string; href: string; details: string[]; specs: Record<string, string> }[] = [
   {
     num: "01",
     title: "Executive & Strategic Consulting",
     desc: "High-stakes leadership for productions that demand clarity and certainty.",
-    href: "/services/consulting",
+    href: "/services/executive-consulting",
     details: [
       "Strategic planning and production road-mapping",
       "Early-phase feasibility and scenario modelling",
@@ -31,7 +31,7 @@ const services = [
     num: "02",
     title: "Technical Direction",
     desc: "End-to-end technical leadership. One point of control for all production systems.",
-    href: null,
+    href: "/services/technical-direction",
     details: [
       "Single point of technical accountability",
       "Cross-departmental coordination",
@@ -45,7 +45,7 @@ const services = [
     num: "03",
     title: "Production Management",
     desc: "Complete production oversight. Timeline, budget, and logistics executed with precision.",
-    href: null,
+    href: "/services/production-management",
     details: [
       "Budget tracking and forecasting",
       "Timeline management with dependencies",
@@ -59,7 +59,7 @@ const services = [
     num: "04",
     title: "Design & Visualization",
     desc: "From concept to technical blueprint. Accurate visualization before build begins.",
-    href: null,
+    href: "/services/design-visualization",
     details: [
       "3D CAD modeling and drafting",
       "Photorealistic rendering",
@@ -87,7 +87,7 @@ const services = [
     num: "06",
     title: "Workflow Automation",
     desc: "Custom automation that eliminates manual tasks. Faster setup. Fewer errors. Repeatable results.",
-    href: "/services/automation",
+    href: "/services/workflow-automation",
     details: [
       "Custom script development",
       "Show control system programming",
@@ -101,7 +101,7 @@ const services = [
     num: "07",
     title: "System Integration",
     desc: "All your tech talking to each other. One system. One interface. Zero gaps.",
-    href: null,
+    href: "/services/system-integration",
     details: [
       "Protocol translation (OSC, MIDI, DMX, sACN)",
       "Network architecture design",
@@ -109,7 +109,7 @@ const services = [
       "Real-time monitoring dashboards",
       "Failover automation",
     ],
-    specs: { protocols: "20+", latency: "<1ms", uptime: "99.99%" },
+    specs: { protocols: "20+", latency: "<1ms", uptime: "100%" },
   },
   {
     num: "08",
@@ -129,7 +129,7 @@ const services = [
     num: "09",
     title: "Aerial Surveying",
     desc: "Aerial data capture for venue and site analysis. Topology, layouts, and conditions documented.",
-    href: "/services/3d-scanning",
+    href: "/services/aerial-surveying",
     details: [
       "Drone-based photogrammetry",
       "Thermal imaging",
@@ -143,7 +143,7 @@ const services = [
     num: "10",
     title: "Custom Fabrication",
     desc: "Custom-engineered hardware for productions that require solutions that don't exist yet.",
-    href: null,
+    href: "/services/custom-fabrication",
     details: [
       "Mechanical design and prototyping",
       "CNC machining and 3D printing",
@@ -152,6 +152,21 @@ const services = [
       "Load testing and certification",
     ],
     specs: { leadTime: "2-6 weeks", materials: "50+", tolerance: "±0.1mm" },
+  },
+  {
+    num: "11",
+    title: "Automation & AI Operations",
+    desc: "Business operations automation and AI-powered tools. The systems we built for ourselves, now available for yours.",
+    href: "/services/automation-ops",
+    details: [
+      "Automated order and shipping notifications",
+      "Inventory management and reorder triggers",
+      "Supplier tracking and follow-ups",
+      "AI-powered inbox triage and customer communication",
+      "Automated reporting across platforms",
+      "Cash flow monitoring and forecasting",
+    ],
+    specs: { setup: "One-time", platforms: "10+", uptime: "99.9%" },
   },
 ]
 

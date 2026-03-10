@@ -124,7 +124,18 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">7. Disclaimer of Warranties</h2>
+              <h2 className="text-xl font-semibold text-white mb-4">7. Payment Terms</h2>
+              <ul className="list-disc list-inside text-zinc-400 space-y-1">
+                <li>All fees are quoted in USD unless otherwise specified</li>
+                <li>Payment is due within 30 days of invoice date unless otherwise agreed in a separate Statement of Work</li>
+                <li>Late payments accrue interest at 1.5% per month or the maximum rate permitted by law</li>
+                <li>Client is responsible for all costs of collection, including reasonable attorney's fees</li>
+                <li>TC Agency reserves the right to suspend services for overdue accounts exceeding 30 days past due</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white mb-4">8. Disclaimer of Warranties</h2>
               <p className="text-zinc-400 leading-relaxed">
                 This website is provided "as is" without warranties of any kind, either express or implied. We do not
                 warrant that the website will be uninterrupted, error-free, or free of viruses or other harmful
@@ -133,16 +144,33 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">8. Limitation of Liability</h2>
-              <p className="text-zinc-400 leading-relaxed">
+              <h2 className="text-xl font-semibold text-white mb-4">9. Limitation of Liability</h2>
+              <p className="text-zinc-400 leading-relaxed mb-4">
                 To the fullest extent permitted by law, TC Agency shall not be liable for any indirect, incidental,
                 special, consequential, or punitive damages arising out of your access to or use of this website, even
                 if we have been advised of the possibility of such damages.
               </p>
+              <ul className="list-disc list-inside text-zinc-400 space-y-1">
+                <li>In no event shall TC Agency's total cumulative liability exceed the amounts paid by Client in the 12 months preceding the claim</li>
+                <li>This limitation applies regardless of the form of action, whether in contract, tort, or otherwise</li>
+              </ul>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">9. Third-Party Links</h2>
+              <h2 className="text-xl font-semibold text-white mb-4">10. Dispute Resolution</h2>
+              <ul className="list-disc list-inside text-zinc-400 space-y-1">
+                <li>Parties agree to first attempt resolution through good-faith negotiation for 30 days</li>
+                <li>If unresolved, disputes shall be submitted to binding arbitration administered by the American Arbitration Association under its Commercial Arbitration Rules</li>
+                <li>Arbitration shall take place in Wayne County, Michigan</li>
+                <li>The arbitrator's decision shall be final and binding</li>
+                <li>Each party bears its own costs; arbitrator fees split equally</li>
+                <li>Nothing in this section prevents either party from seeking injunctive relief in court</li>
+                <li>Small claims court actions (under $10,000) are exempt from the arbitration requirement</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white mb-4">11. Third-Party Links</h2>
               <p className="text-zinc-400 leading-relaxed">
                 Our website may contain links to third-party websites. These links are provided for convenience only. We
                 do not endorse or assume responsibility for the content, privacy policies, or practices of any
@@ -151,16 +179,21 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">10. Indemnification</h2>
-              <p className="text-zinc-400 leading-relaxed">
+              <h2 className="text-xl font-semibold text-white mb-4">12. Indemnification</h2>
+              <p className="text-zinc-400 leading-relaxed mb-4">
                 You agree to indemnify and hold harmless TC Agency and its officers, directors, employees, and agents
                 from any claims, damages, losses, liabilities, and expenses arising out of your use of this website or
                 violation of these Terms of Service.
               </p>
+              <p className="text-zinc-400 leading-relaxed">
+                TC Agency shall likewise indemnify and hold harmless Client and its officers, directors, employees, and
+                agents from any claims, damages, losses, liabilities, and expenses arising out of TC Agency's gross
+                negligence, willful misconduct, or violation of applicable law.
+              </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">11. Governing Law</h2>
+              <h2 className="text-xl font-semibold text-white mb-4">13. Governing Law</h2>
               <p className="text-zinc-400 leading-relaxed">
                 These Terms of Service shall be governed by and construed in accordance with the laws of the State of
                 Michigan, United States, without regard to its conflict of law provisions.
@@ -168,7 +201,7 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">12. Changes to Terms</h2>
+              <h2 className="text-xl font-semibold text-white mb-4">14. Changes to Terms</h2>
               <p className="text-zinc-400 leading-relaxed">
                 We reserve the right to modify these Terms of Service at any time. Changes will be effective immediately
                 upon posting to this page. Your continued use of the website after changes are posted constitutes
@@ -177,7 +210,7 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">13. Severability</h2>
+              <h2 className="text-xl font-semibold text-white mb-4">15. Severability</h2>
               <p className="text-zinc-400 leading-relaxed">
                 If any provision of these Terms of Service is found to be unenforceable, the remaining provisions will
                 continue in full force and effect.
@@ -185,7 +218,7 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">14. Contact Information</h2>
+              <h2 className="text-xl font-semibold text-white mb-4">16. Contact Information</h2>
               <p className="text-zinc-400 leading-relaxed">
                 For questions about these Terms of Service, please contact us:
               </p>
