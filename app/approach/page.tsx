@@ -4,6 +4,10 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import { BreadcrumbSchema } from "@/components/structured-data"
 
+// Marketing pages should be static to enable CDN edge caching
+export const dynamic = "force-static"
+export const revalidate = 86400 // Revalidate every 24 hours
+
 export const metadata: Metadata = {
   title: "Approach | TC Agency — Technically Creative",
   description:

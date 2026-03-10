@@ -70,8 +70,8 @@ export function Showcase() {
               <div className="text-xs font-mono text-zinc-500">Latency</div>
             </div>
             <div className="text-right">
-              <div className="text-2xl font-bold text-white">99.99%</div>
-              <div className="text-xs font-mono text-zinc-500">Uptime</div>
+              <div className="text-2xl font-bold text-white">100%</div>
+              <div className="text-xs font-mono text-zinc-500">Show Completion</div>
             </div>
           </div>
         </div>

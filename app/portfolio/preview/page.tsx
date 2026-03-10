@@ -68,7 +68,7 @@ const testimonials = [
       "When you're running a $50M production, you need partners who think in systems, not just equipment. TC delivered infrastructure we could trust completely.",
     client: "Technical Director",
     company: "Fortune 100 Brand",
-    metric: "99.99% uptime",
+    metric: "Zero critical failures",
   },
   {
     quote:
@@ -81,7 +81,7 @@ const testimonials = [
 
 const impactMetrics = [
   { value: "500+", label: "Shows Delivered" },
-  { value: "99.99%", label: "System Uptime" },
+  { value: "100%", label: "Show Completion" },
   { value: "$2B+", label: "Production Value Supported" },
   { value: "40%", label: "Avg. Efficiency Gain" },
 ]
