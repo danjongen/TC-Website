@@ -75,7 +75,7 @@ export function SchemaOrgGraph() {
         image: "https://tc.agency/daniel-headshot.jpg",
         url: "https://tc.agency/about",
         worksFor: { "@id": "https://tc.agency/#organization" },
-        sameAs: ["https://www.linkedin.com/in/danieljongen", "https://www.instagram.com/danieljongen"],
+        sameAs: ["https://www.linkedin.com/in/danieljongen"],
         nationality: "Australian",
         knowsAbout: [
           "Technical Direction",
