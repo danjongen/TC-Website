@@ -178,7 +178,7 @@ export default function HeroAnimation() {
         onProgress={handleProgress}
         poster="/images/dsf3815.jpg"
       >
-        <source src="/videos/hero-video.mp4" type="video/mp4" />
+        <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TC_TL_INTRA-ZKLgdJRVRbUbQYPAfBBunXwcuIseGG.mp4" type="video/mp4" />
         <track kind="captions" />
       </video>
 
