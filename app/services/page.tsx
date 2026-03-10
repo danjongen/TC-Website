@@ -9,7 +9,7 @@ import { CapabilitiesAccordion } from "@/components/capabilities-accordion"
 export const dynamic = "force-static"
 export const revalidate = 3600 // Revalidate every hour
 
-const services = [
+const services: { num: string; title: string; desc: string; href: string; details: string[]; specs: Record<string, string> }[] = [
   {
     num: "01",
     title: "Executive & Strategic Consulting",
