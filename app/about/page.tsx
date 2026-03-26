@@ -39,14 +39,14 @@ export const revalidate = 86400 // 24 hours
 
 export default function AboutPage() {
   const expertise = [
-    "Technical Direction",
-    "Production Engineering",
-    "Production Management",
-    "Automation Systems",
-    "LED Systems",
-    "Broadcast Infrastructure",
-    "Show Control",
-    "Risk Mitigation",
+    { name: "Technical Direction", href: "/services/technical-direction" },
+    { name: "Production Engineering", href: "/capabilities" },
+    { name: "Production Management", href: "/services/production-management" },
+    { name: "Automation Systems", href: "/services/workflow-automation" },
+    { name: "LED Systems", href: "/services/system-integration" },
+    { name: "Broadcast Infrastructure", href: "/services/system-integration" },
+    { name: "Show Control", href: "/services/system-integration" },
+    { name: "Risk Mitigation", href: "/services/executive-consulting" },
   ]
 
   const credentials = [
@@ -159,13 +159,15 @@ export default function AboutPage() {
                   <p className="font-mono text-sm text-gray-400 mb-4 uppercase tracking-wider">Areas of Expertise</p>
                   <div className="grid grid-cols-2 gap-3">
                     {expertise.map((item, index) => (
-                      <div
-                        key={item}
-                        className="flex items-center gap-3 p-3 border border-border bg-zinc-950 hover:bg-zinc-900 transition-colors"
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className="flex items-center gap-3 p-3 border border-border bg-zinc-950 hover:bg-zinc-900 hover:border-emerald-900/50 transition-colors group"
                       >
                         <span className="font-mono text-xs text-gray-500">{String(index + 1).padStart(2, "0")}</span>
-                        <span className="text-sm font-medium">{item}</span>
-                      </div>
+                        <span className="text-sm font-medium group-hover:text-emerald-500 transition-colors">{item.name}</span>
+                        <ArrowRight className="w-3 h-3 ml-auto text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </Link>
                     ))}
                   </div>
                 </div>

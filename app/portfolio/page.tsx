@@ -9,7 +9,7 @@ import { BreadcrumbSchema } from "@/components/structured-data"
 export const metadata: Metadata = {
   title: "Portfolio | TC Agency — Technically Creative",
   description:
-    "Featured productions by TC Agency: stadium tours, immersive LED experiences, and technical innovations. Backstreet Boys, The Sphere, Samsung, Ford, and more.",
+    "Featured productions by TC Agency: stadium tours, immersive installations, and technical innovations for the world's most demanding productions.",
   keywords: [
     "live event portfolio",
     "concert production case studies",
@@ -20,8 +20,6 @@ export const metadata: Metadata = {
     "event technology projects",
     "Sphere Las Vegas production",
     "Backstreet Boys tour",
-    "Samsung event production",
-    "Ford product launch",
   ],
   openGraph: {
     title: "Portfolio | TC Agency — Technically Creative",
@@ -69,24 +67,6 @@ const projects = [
     image: "/images/dsf3010.jpg",
     hasDetail: true,
   },
-  {
-    slug: "immersive-experience",
-    client: "Samsung",
-    title: "Immersive LED Experience",
-    role: "System Integration",
-    tech: "360-degree display, spatial audio, interactive zones",
-    image: "/images/dscf9211.jpg",
-    hasDetail: true,
-  },
-  {
-    slug: "global-product-launch",
-    client: "Ford",
-    title: "Global Product Launch",
-    role: "Production Engineering",
-    tech: "4-continent broadcast, synchronized reveals, 2.3M viewers",
-    image: "/images/dsf3917.jpg",
-    hasDetail: true,
-  },
 ]
 
 export default function PortfolioPage() {
@@ -118,7 +98,7 @@ export default function PortfolioPage() {
       {/* Project Grid */}
       <section className="py-16">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl">
             {projects.map((project) => {
               const content = (
                 <div className="group relative overflow-hidden border border-border bg-zinc-950 hover:border-emerald-900/50 transition-colors">

@@ -3,7 +3,7 @@ import { Footer } from "@/components/footer"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 import { notFound } from "next/navigation"
 
 const projects: Record<
@@ -19,6 +19,7 @@ const projects: Record<
     solution: string
     results: string[]
     specs: { label: string; value: string }[]
+    services: { title: string; href: string; desc: string }[]
   }
 > = {
   "backstreet-boys-into-the-millennium": {
@@ -28,22 +29,37 @@ const projects: Record<
     year: "2024",
     image: "/images/66a0205.jpg",
     description:
-      "A 50+ city world tour featuring a massive LED stage structure, automated performer platforms, and integrated show control systems.",
+      "A 50+ city world tour featuring a self-contained touring control infrastructure (UFO Pod) engineered for RF-hostile arena environments. The system delivered conditioned power, 60 GHz deterministic backhaul, three-layer timecode redundancy, and full remote observability from a single roll-in rack.",
     challenge:
-      "Coordinating complex automation sequences with live performance timing across multiple touring configurations and venue types.",
+      "18,000 devices in a steel bowl. 2.4 GHz unusable. 5 GHz collapses under audience ingress load. Venue Wi-Fi unpredictable. Shore power unstable. WAN subject to dropouts. The production needed infrastructure that operated independently of every one of those failure domains.",
     solution:
-      "We designed a unified show control system that synchronizes all automation, lighting, video, and audio cues through a single interface. Custom-built performer tracking ensures safety while enabling dynamic staging.",
+      "We designed a layered resilience model where every critical system had a fallback. Power continuity via inline EcoFlow battery with shore power as primary input, eliminating reboots during generator sag or ISP power resets. Transport via 60 GHz point-to-point backhaul (Wave AP to Wave Nano) providing deterministic, directional throughput immune to crowd RF collapse. Dual ISP WAN with health-checked auto failover through a Dream Machine core. Three-layer timecode redundancy: sACN as primary, wireless distribution as Layer 1 fallback, and a dedicated direct RF timecode path as Layer 2. If sACN failed, the network degraded, or the wireless path dropped, an automatic RF switch engaged and sent timecode directly to the receiving unit, removing all IP stack dependency. Network failure did not equal timing failure. A custom unified GUI integrated Dream Machine API, UISP metrics, Wave link health, EcoFlow battery telemetry, circuit-level draw monitoring, and integrated rack cameras into a single observability layer. Nothing was blind.",
     results: [
-      "Zero automation failures across 50+ shows",
-      "30% reduction in setup time vs previous tour",
-      "Real-time performer position monitoring",
-      "Seamless integration of 5 automation vendors",
+      "Stable 60 GHz modulation under full 18,000-person crowd load",
+      "Zero timing failures across 50+ shows via RF timecode failover",
+      "Full remote observability: link health, battery SOC, circuit loads, rack cameras",
+      "Single roll-in deployment: double-wide slam rack with integrated mast",
+      "No reboots during generator sag or ISP power resets",
     ],
     specs: [
-      { label: "LED Surface", value: "2,400 m²" },
+      { label: "Sustained Draw", value: "~450W" },
+      { label: "Backhaul", value: "60 GHz PtP" },
+      { label: "Timecode Layers", value: "3" },
       { label: "Automation Axes", value: "48" },
       { label: "Data Points", value: "12,000+" },
-      { label: "Setup Time", value: "8 hours" },
+      { label: "Power Headroom", value: ">2x" },
+    ],
+    services: [
+      {
+        title: "Workflow Automation",
+        href: "/services/workflow-automation",
+        desc: "Automated show control, timecode distribution, and data pipeline systems",
+      },
+      {
+        title: "System Integration",
+        href: "/services/system-integration",
+        desc: "Multi-vendor unification: 60 GHz backhaul, sACN, RF timecode, power conditioning",
+      },
     ],
   },
   "sphere-residency": {
@@ -70,55 +86,22 @@ const projects: Record<
       { label: "Pixel Count", value: "1.2B" },
       { label: "Refresh Rate", value: "120Hz" },
     ],
-  },
-  "immersive-experience": {
-    title: "Immersive LED Experience",
-    client: "Samsung",
-    role: "System Integration",
-    year: "2023",
-    image: "/images/dscf9211.jpg",
-    description:
-      "A permanent immersive installation showcasing next-generation display technology in a 360-degree environment.",
-    challenge:
-      "Integrating multiple display technologies, spatial audio, and interactive elements into a seamless visitor experience.",
-    solution:
-      "Built a unified control system that orchestrates all display, audio, and interactive elements through a single management interface with scheduled content rotation.",
-    results: [
-      "99.9% system uptime",
-      "Automated daily content scheduling",
-      "Remote monitoring and management",
-      "Scalable to additional venues",
-    ],
-    specs: [
-      { label: "Display Area", value: "800 m²" },
-      { label: "Audio Channels", value: "64" },
-      { label: "Interactive Zones", value: "12" },
-      { label: "Daily Visitors", value: "5,000+" },
-    ],
-  },
-  "global-product-launch": {
-    title: "Global Product Launch",
-    client: "Ford",
-    role: "Production Engineering",
-    year: "2023",
-    image: "/images/dsf3917.jpg",
-    description:
-      "A synchronized global product reveal broadcast live from multiple continents with real-time audience interaction.",
-    challenge:
-      "Coordinating live production across 4 time zones with synchronized reveals and audience participation elements.",
-    solution:
-      "Engineered a distributed production system with redundant communication links, synchronized timecode, and failover protocols for each location.",
-    results: [
-      "4 continents synchronized to frame",
-      "Zero downtime during 3-hour broadcast",
-      "Real-time audience polling integration",
-      "Redundant satellite and fiber links",
-    ],
-    specs: [
-      { label: "Locations", value: "4" },
-      { label: "Live Viewers", value: "2.3M" },
-      { label: "Broadcast Duration", value: "3 hours" },
-      { label: "Latency", value: "<100ms" },
+    services: [
+      {
+        title: "Technical Direction",
+        href: "/services/technical-direction",
+        desc: "End-to-end technical oversight for the world's most complex venue",
+      },
+      {
+        title: "Design & Visualization",
+        href: "/services/design-visualization",
+        desc: "Custom previsualization pipeline for dome geometry",
+      },
+      {
+        title: "System Integration",
+        href: "/services/system-integration",
+        desc: "16K content distribution across 164,000 LED panels",
+      },
     ],
   },
 }
@@ -200,23 +183,47 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 <ul className="space-y-2">
                   {project.results.map((result, i) => (
                     <li key={i} className="flex items-center gap-3 text-muted-foreground">
-                      <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
+                      <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full shrink-0" />
                       {result}
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
-            <div>
-              <h2 className="text-sm font-mono text-emerald-500 uppercase mb-4">Technical Specs</h2>
-              <div className="space-y-4">
-                {project.specs.map((spec) => (
-                  <div key={spec.label} className="p-4 border border-border bg-zinc-950">
-                    <p className="text-2xl font-bold">{spec.value}</p>
-                    <p className="text-xs text-muted-foreground uppercase">{spec.label}</p>
-                  </div>
-                ))}
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-sm font-mono text-emerald-500 uppercase mb-4">Technical Specs</h2>
+                <div className="space-y-4">
+                  {project.specs.map((spec) => (
+                    <div key={spec.label} className="p-4 border border-border bg-zinc-950">
+                      <p className="text-2xl font-bold">{spec.value}</p>
+                      <p className="text-xs text-muted-foreground uppercase">{spec.label}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
+              {project.services.length > 0 && (
+                <div>
+                  <h2 className="text-sm font-mono text-emerald-500 uppercase mb-4">Services Used</h2>
+                  <div className="space-y-3">
+                    {project.services.map((service) => (
+                      <Link
+                        key={service.href}
+                        href={service.href}
+                        className="block p-4 border border-border bg-zinc-950 hover:border-emerald-900/50 transition-colors group"
+                      >
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="font-medium group-hover:text-emerald-500 transition-colors">
+                            {service.title}
+                          </span>
+                          <ArrowRight className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </div>
+                        <p className="text-xs text-muted-foreground">{service.desc}</p>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -225,12 +232,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       <section className="py-24">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold mb-6">Ready for your project?</h2>
-          <a
+          <Link
             href="/contact"
             className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-bold hover:bg-gray-200 transition-colors"
           >
             Start a Conversation
-          </a>
+          </Link>
         </div>
       </section>
 

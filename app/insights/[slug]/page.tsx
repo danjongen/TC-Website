@@ -4,7 +4,7 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, Clock, Share2, Linkedin, Twitter } from "lucide-react"
-import { BreadcrumbSchema } from "@/components/structured-data"
+import { BreadcrumbSchema, ArticleSchema } from "@/components/structured-data"
 import { notFound } from "next/navigation"
 
 // Static post data (in production, this would come from a CMS)
@@ -71,6 +71,40 @@ const posts: Record<
     author: "TC Engineering Team",
     role: "Workflow Automation",
   },
+  "ufo-pod-touring-control-infrastructure": {
+    title: "UFO Pod: RF-Resilient Touring Control Infrastructure",
+    excerpt:
+      "How we built a self-contained, redundant control node for 18,000-person arenas where 2.4 GHz is unusable and 5 GHz collapses under crowd load.",
+    content: [
+      "The UFO Pod was a self-contained, touring-grade control infrastructure node designed to operate independently of every failure domain in a live arena environment. It was deployed on the Backstreet Boys Into The Millennium world tour.",
+      "## Environment Reality",
+      "18,000 devices in a steel bowl. 2.4 GHz unusable. 5 GHz collapses under audience ingress load. Venue Wi-Fi unpredictable. Shore power unstable. WAN subject to dropouts. The system had to operate independently of all of those failure domains.",
+      "## System Architecture",
+      "This was a layered resilience model with five domains: power continuity, WAN redundancy, RF-isolated backhaul, timecode redundancy, and full observability. Every layer had a fallback.",
+      "## Power Architecture",
+      "**EcoFlow battery system inline** with shore power as primary input. The battery served as a ride-through and continuity layer, not a backup. Segmented internal circuits with circuit-level telemetry and SOC logging. Sustained draw sat around 450W with headroom exceeding 2x. The battery ensured no reboots during generator sag, no drops during ISP power resets, and controlled shutdown if required. All metrics were exposed via API.",
+      "## Transport Layer: 60 GHz Backhaul",
+      "This was not Wi-Fi distribution. It was deterministic point-to-point transport using Ubiquiti Wave AP to Wave Nano at 60 GHz. Why 60 GHz: highly directional beamforming, minimal side-lobe bleed, oxygen absorption limits propagation, virtually no consumer interference, and clean spectrum inside an arena bowl. In a room where 2.4 and 5 GHz are noise floors, 60 GHz becomes surgical. The result: stable modulation rates, predictable throughput, and zero crowd-based RF collapse.",
+      "## WAN Redundancy",
+      "**Dual ISP uplinks** through a Dream Machine core with health-checked auto failover. WAN1 primary, WAN2 secondary. Failover was automatic and session-stable. Production users did not perceive transition events.",
+      "## Timecode Redundancy Architecture",
+      "This is where the system gets serious. Primary communication ran on sACN, providing network-distributed timing and control within the pod. Two additional redundancy layers were engineered on top.",
+      "**Layer 1: Wireless Redundancy.** Wireless distribution of timecode inside the pod environment, allowing mobility, reduced physical patch dependency, and rapid reconfiguration.",
+      "**Layer 2: Direct RF Timecode Auto-Failover.** A dedicated RF timecode transmission path existed independent of IP. If sACN failed, network transport degraded, or the wireless path dropped, an automatic RF switch engaged and sent timecode directly to the receiving unit. This removed IP stack dependency, VLAN misconfiguration risk, and switch failure dependency. Timecode continuity was preserved outside of Ethernet entirely. Network failure did not equal timing failure. In a show environment, that distinction matters.",
+      "## Observability Layer",
+      "The real differentiator was not redundancy. It was visibility. A custom unified GUI integrated Dream Machine API, UISP metrics, Wave link health, RSSI and modulation rates, WAN health and failover logs, EcoFlow battery telemetry, circuit-level draw monitoring, and integrated rack cameras. Operators could remotely see 60 GHz alignment health, packet loss trends, battery discharge curves, circuit loads, failover events, and physical rack state. Every subsystem had telemetry. Nothing was blind.",
+      "## Deployment Logic",
+      "Double-wide slam rack with integrated mast for Wave, EtherCON front termination, fiber-ready SFP+, touring strain relief, and single roll-in deployment. This was deployable infrastructure, not scattered components.",
+      "## Engineering Philosophy",
+      "Every failure domain was isolated. Power instability handled by the battery layer. WAN instability handled by dual ISP. RF congestion avoided via 60 GHz. IP dependency mitigated by RF timecode fallback. Human troubleshooting reduced via telemetry. The system was built assuming something would fail. Nothing critical depended on a single layer.",
+    ],
+    image: "/images/66a0205.jpg",
+    category: "Case Study",
+    readTime: "10 min read",
+    date: "March 2, 2026",
+    author: "TC Engineering Team",
+    role: "System Integration",
+  },
 }
 
 type Params = Promise<{ slug: string }>
@@ -124,6 +158,13 @@ export default async function InsightPost({ params }: { params: Params }) {
           { name: "Insights", url: "https://tc.agency/insights" },
           { name: post.title, url: `https://tc.agency/insights/${slug}` },
         ]}
+      />
+      <ArticleSchema
+        headline={post.title}
+        description={post.excerpt}
+        image={post.image}
+        datePublished={post.date}
+        url={`https://tc.agency/insights/${slug}`}
       />
 
       <Navbar />
