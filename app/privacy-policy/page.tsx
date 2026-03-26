@@ -167,7 +167,25 @@ export default function PrivacyPolicy() {
                   </a>
                 </p>
               </div>
-              <p className="text-zinc-400 leading-relaxed mt-4">
+              <h3 className="text-lg font-medium text-white mb-2 mt-6">Cookie Categories</h3>
+              <ul className="list-disc list-inside text-zinc-400 space-y-1 mb-4">
+                <li>
+                  <strong className="text-white">Essential Cookies:</strong> Required for site functionality (session
+                  management, security). Cannot be disabled.
+                </li>
+                <li>
+                  <strong className="text-white">Analytics Cookies:</strong> Google Analytics 4 and Microsoft Clarity.
+                  Used to understand site usage and improve our services. Can be disabled via cookie preferences.
+                </li>
+                <li>
+                  <strong className="text-white">Functional Cookies:</strong> Remember your preferences (e.g., cookie
+                  consent choices). Can be disabled.
+                </li>
+              </ul>
+              <p className="text-zinc-400 leading-relaxed mb-4">
+                We do not use marketing or advertising cookies.
+              </p>
+              <p className="text-zinc-400 leading-relaxed">
                 Users may change or withdraw consent via browser settings or our cookie preferences link.
               </p>
             </section>
@@ -219,8 +237,81 @@ export default function PrivacyPolicy() {
                 <li>Request data portability</li>
                 <li>Lodge a complaint with a supervisory authority</li>
               </ul>
-              <p className="text-zinc-400 leading-relaxed mt-4">
-                California residents have additional rights under CCPA/CPRA. We do not sell or share personal data.
+
+              <h3 className="text-lg font-medium text-white mb-2 mt-6">Supervisory Authorities</h3>
+              <p className="text-zinc-400 leading-relaxed mb-2">
+                If you wish to lodge a complaint, you may contact:
+              </p>
+              <ul className="list-disc list-inside text-zinc-400 space-y-1 mb-4">
+                <li>
+                  <strong className="text-white">UK:</strong> Information Commissioner&apos;s Office (ICO) at{" "}
+                  <a
+                    href="https://ico.org.uk"
+                    className="text-white underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    ico.org.uk
+                  </a>
+                </li>
+                <li>
+                  <strong className="text-white">EU:</strong> Your local data protection authority. A list is available
+                  at{" "}
+                  <a
+                    href="https://edpb.europa.eu"
+                    className="text-white underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    edpb.europa.eu
+                  </a>
+                </li>
+                <li>
+                  <strong className="text-white">Australia:</strong> Office of the Australian Information Commissioner
+                  (OAIC) at{" "}
+                  <a
+                    href="https://oaic.gov.au"
+                    className="text-white underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    oaic.gov.au
+                  </a>
+                </li>
+              </ul>
+
+              <h3 className="text-lg font-medium text-white mb-2 mt-6">California-Specific Rights (CCPA/CPRA)</h3>
+              <p className="text-zinc-400 leading-relaxed mb-2">
+                California residents have the following additional rights:
+              </p>
+              <ul className="list-disc list-inside text-zinc-400 space-y-1 mb-4">
+                <li>
+                  <strong className="text-white">Right to Know:</strong> You may request disclosure of categories and
+                  specific pieces of personal information collected.
+                </li>
+                <li>
+                  <strong className="text-white">Right to Delete:</strong> You may request deletion of personal
+                  information, subject to legal exceptions.
+                </li>
+                <li>
+                  <strong className="text-white">Right to Opt-Out:</strong> We do not sell personal information. If this
+                  changes, we will provide a &quot;Do Not Sell My Personal Information&quot; link.
+                </li>
+                <li>
+                  <strong className="text-white">Right to Non-Discrimination:</strong> We will not discriminate against
+                  you for exercising your privacy rights.
+                </li>
+              </ul>
+              <p className="text-zinc-400 leading-relaxed">
+                To exercise these rights, contact us at{" "}
+                <a href="mailto:info@tc.agency" className="text-white underline">
+                  info@tc.agency
+                </a>{" "}
+                or call{" "}
+                <a href="tel:+13132615200" className="text-white underline">
+                  +1 313 261 5200
+                </a>
+                . We will respond within 45 days.
               </p>
             </section>
 
@@ -241,7 +332,26 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">10. International Transfers</h2>
+              <h2 className="text-xl font-semibold text-white mb-4">10. Data Breach Notification</h2>
+              <p className="text-zinc-400 leading-relaxed mb-4">
+                In the event of a data breach affecting your personal information, we will notify affected individuals
+                within 72 hours of becoming aware of the breach, as required by GDPR Article 33.
+              </p>
+              <p className="text-zinc-400 leading-relaxed mb-2">Notification will include:</p>
+              <ul className="list-disc list-inside text-zinc-400 space-y-1 mb-4">
+                <li>Nature of the breach</li>
+                <li>Categories of data affected</li>
+                <li>Approximate number of individuals affected</li>
+                <li>Likely consequences of the breach</li>
+                <li>Measures taken to address the breach</li>
+              </ul>
+              <p className="text-zinc-400 leading-relaxed">
+                We will also notify the relevant supervisory authority where required by law.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white mb-4">11. International Transfers</h2>
               <p className="text-zinc-400 leading-relaxed">
                 Your data may be processed outside your country of residence. Where required, we use mechanisms such as
                 Standard Contractual Clauses.
@@ -249,28 +359,28 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">11. Third-Party Services</h2>
+              <h2 className="text-xl font-semibold text-white mb-4">12. Third-Party Services</h2>
               <p className="text-zinc-400 leading-relaxed">
                 Our website may link to third-party sites. Their privacy practices are not governed by this policy.
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">12. Children's Privacy</h2>
+              <h2 className="text-xl font-semibold text-white mb-4">13. Children's Privacy</h2>
               <p className="text-zinc-400 leading-relaxed">
                 Our site is not intended for children under 16. We do not knowingly collect data from minors.
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">13. Changes to This Policy</h2>
+              <h2 className="text-xl font-semibold text-white mb-4">14. Changes to This Policy</h2>
               <p className="text-zinc-400 leading-relaxed">
                 We may update this Privacy Policy periodically. Material changes will be highlighted on this page.
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">14. Contact Us</h2>
+              <h2 className="text-xl font-semibold text-white mb-4">15. Contact Us</h2>
               <div className="bg-zinc-900 border border-zinc-800 p-4">
                 <p className="text-sm text-zinc-400">
                   <strong className="text-white">

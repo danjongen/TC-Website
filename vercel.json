@@ -75,8 +75,13 @@
   ],
   "redirects": [
     {
+      "source": "/mission",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
       "source": "/engineering",
-      "destination": "/capabilities",
+      "destination": "/services",
       "permanent": true
     },
     {
@@ -90,11 +95,6 @@
       "permanent": true
     },
     {
-      "source": "/mission",
-      "destination": "/about",
-      "permanent": true
-    },
-    {
       "source": "/blog",
       "destination": "/insights",
       "permanent": true
@@ -102,6 +102,11 @@
     {
       "source": "/news",
       "destination": "/insights",
+      "permanent": true
+    },
+    {
+      "source": "/capabilities",
+      "destination": "/services",
       "permanent": true
     }
   ]

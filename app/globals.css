@@ -4,70 +4,85 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Technical Calm design system - monochromatic with Matrix Green accent */
+/* Reverted to dark theme with Matrix Green accents */
 :root {
-  /* Core monochromatic palette */
-  --background: #000000;
-  --foreground: #fafafa;
-  --card: #0a0a0a;
-  --card-foreground: #fafafa;
-  --popover: #0a0a0a;
-  --popover-foreground: #fafafa;
-  --primary: #fafafa;
-  --primary-foreground: #000000;
-  --secondary: #141414;
-  --secondary-foreground: #fafafa;
-  --muted: #141414;
-  --muted-foreground: #737373;
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
 
-  /* Matrix Green accent system - adjusted for WCAG 2.1 AA compliance */
-  /* Primary: #00D26A (contrast 10.5:1 on black, 5.2:1 with black text) */
-  /* Secondary: #008F11 (unchanged) */
-  /* Dark anchor: #001A00 (slightly lighter for visibility) */
-  --accent: #00d26a;
-  --accent-secondary: #008f11;
-  --accent-dark: #001a00;
-  --accent-foreground: #000000;
+  --radius: 0.625rem;
 
-  --destructive: #dc2626;
-  --destructive-foreground: #fafafa;
-
-  /* 5-step gray scale for hierarchy */
-  --gray-100: #fafafa;
-  --gray-200: #a3a3a3;
-  --gray-300: #737373;
-  --gray-400: #404040;
-  --gray-500: #171717;
-
-  --border: #262626;
-  --input: #262626;
-  --ring: #404040;
-
-  /* Chart colors - muted, data-focused */
-  --chart-1: #fafafa;
-  --chart-2: #a3a3a3;
-  --chart-3: #737373;
-  --chart-4: #404040;
-  --chart-5: #262626;
-
-  --radius: 0rem;
-
-  /* Sidebar */
-  --sidebar: #0a0a0a;
-  --sidebar-foreground: #fafafa;
-  --sidebar-primary: #fafafa;
-  --sidebar-primary-foreground: #000000;
-  --sidebar-accent: #141414;
-  --sidebar-accent-foreground: #fafafa;
-  --sidebar-border: #262626;
-  --sidebar-ring: #404040;
-
-  /* Matrix Green tokens - WCAG compliant values */
+  /* Matrix Green Color System - WCAG 2.1 AA Compliant */
   --matrix-green: #00d26a;
   --matrix-green-secondary: #008f11;
-  --matrix-green-dark: #001a00;
-  --system-green: #00d26a;
-  --data-blue: #3b82f6;
+  --matrix-green-dark: #000d00;
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
 }
 
 @theme inline {
@@ -108,22 +123,8 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Matrix Green color tokens */
-  --color-matrix-green: var(--matrix-green);
-  --color-matrix-green-secondary: var(--matrix-green-secondary);
-  --color-matrix-green-dark: var(--matrix-green-dark);
-  --color-system-green: var(--system-green);
-  --color-data-blue: var(--data-blue);
-  --color-gray-100: var(--gray-100);
-  --color-gray-200: var(--gray-200);
-  --color-gray-300: var(--gray-300);
-  --color-gray-400: var(--gray-400);
-  --color-gray-500: var(--gray-500);
-
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 
   @keyframes accordion-down {
     from {
@@ -159,49 +160,12 @@
     text-wrap: balance;
   }
 
-  /* Technical Grid - 8px based for precision alignment */
-  .bg-tech-grid {
-    background-size: 32px 32px;
-    background-image: linear-gradient(to right, #1a1a1a 1px, transparent 1px),
-      linear-gradient(to bottom, #1a1a1a 1px, transparent 1px);
-  }
-
-  .bg-tech-grid-sm {
-    background-size: 16px 16px;
-    background-image: linear-gradient(to right, #1a1a1a 1px, transparent 1px),
-      linear-gradient(to bottom, #1a1a1a 1px, transparent 1px);
-  }
-
-  /* Subtle grid for data-dense sections */
-  .bg-data-grid {
-    background-size: 8px 8px;
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  }
-
-  /* Monospace data styling */
-  .font-data {
-    font-family: var(--font-mono);
-    font-variant-numeric: tabular-nums;
-    letter-spacing: -0.02em;
-  }
-
-  /* Matrix Green glow effect - updated to use compliant color */
+  /* Matrix Green glow utilities */
   .glow-matrix {
     box-shadow: 0 0 20px rgba(0, 210, 106, 0.08);
   }
 
   .glow-matrix-hover:hover {
-    box-shadow: 0 0 24px rgba(0, 210, 106, 0.08);
-  }
-
-  /* Matrix Green text glow for terminal/code blocks */
-  .text-glow-matrix {
-    text-shadow: 0 0 10px rgba(0, 210, 106, 0.08);
-  }
-
-  /* Matrix Green border glow */
-  .border-glow-matrix {
-    box-shadow: inset 0 0 0 1px rgba(0, 210, 106, 0.15);
+    box-shadow: 0 0 30px rgba(0, 210, 106, 0.12);
   }
 }

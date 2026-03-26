@@ -228,8 +228,8 @@ export default function SystemIntegrationPage() {
                     <p className="text-sm text-muted-foreground mt-1">Inter-system latency across bridged protocols</p>
                   </div>
                   <div>
-                    <p className="text-4xl font-bold text-emerald-500">99.99%</p>
-                    <p className="text-sm text-muted-foreground mt-1">Network uptime with redundancy architecture</p>
+                    <p className="text-4xl font-bold text-emerald-500">100%</p>
+                    <p className="text-sm text-muted-foreground mt-1">Show completion rate with redundancy architecture</p>
                   </div>
                 </div>
               </div>
