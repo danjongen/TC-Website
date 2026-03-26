@@ -95,6 +95,7 @@ export function Hero() {
 
     video.addEventListener("progress", handleProgress)
     video.addEventListener("loadedmetadata", handleLoadedMetadata)
+    video.addEventListener("canplay", handleLoadedMetadata)
     video.addEventListener("error", handleError)
 
     if (video.readyState >= 1) {
@@ -104,6 +105,7 @@ export function Hero() {
     return () => {
       video.removeEventListener("progress", handleProgress)
       video.removeEventListener("loadedmetadata", handleLoadedMetadata)
+      video.removeEventListener("canplay", handleLoadedMetadata)
       video.removeEventListener("error", handleError)
     }
   }, [isMobile])
@@ -226,7 +228,6 @@ export function Hero() {
                 muted
                 playsInline
                 preload="auto"
-                crossOrigin="anonymous"
                 aria-label="Time-lapse video of live event production setup, controlled by page scroll"
               />
             </motion.div>
