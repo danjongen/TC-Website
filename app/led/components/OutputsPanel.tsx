@@ -2,7 +2,7 @@
 import { useState } from "react"
 import type { Cabinet, Derived, WallConfig } from "../lib/types"
 import { buildSummary } from "../lib/summary"
-import { downloadBlob, renderPanelMapPdf, renderSpecPdf } from "../lib/pdf"
+import { downloadBlob, renderPanelMapPng, renderSpecPdf } from "../lib/pdf"
 
 export function OutputsPanel({
   cab,
@@ -42,8 +42,8 @@ export function OutputsPanel({
   async function downloadMap() {
     setBusy("map")
     try {
-      const blob = await renderPanelMapPdf(cab, cfg)
-      downloadBlob(blob, fileSafe(`${cfg.project_code || "LED"}_MAP.pdf`))
+      const blob = await renderPanelMapPng(cab, cfg)
+      downloadBlob(blob, fileSafe(`${cfg.project_code || "LED"}_MAP.png`))
     } finally {
       setBusy(null)
     }
@@ -84,7 +84,7 @@ export function OutputsPanel({
             onClick={downloadMap}
             disabled={busy !== null}
           >
-            {busy === "map" ? "BUILDING /" : "DOWNLOAD MAP / PDF"}
+            {busy === "map" ? "BUILDING /" : "DOWNLOAD MAP / PNG"}
           </button>
         </div>
 

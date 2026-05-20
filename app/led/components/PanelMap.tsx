@@ -38,7 +38,6 @@ export function PanelMap({
   const showEveryNRow = labelStride(rows)
 
   const entry = signalEntryXY(cfg.signal_entry, padX, padY, cols, rows, tileW, tileH)
-  const audience = audienceLine(cfg.audience_position, padX, padY, cols, rows, tileW, tileH)
 
   return (
     <div className="panel">
@@ -161,29 +160,6 @@ export function PanelMap({
             />
           </g>
 
-          {/* Audience indicator */}
-          <g>
-            <line
-              x1={audience.x1}
-              y1={audience.y1}
-              x2={audience.x2}
-              y2={audience.y2}
-              stroke={COLORS.accent}
-              strokeWidth={1}
-              strokeDasharray="3 3"
-            />
-            <text
-              x={audience.tx}
-              y={audience.ty}
-              fontFamily="var(--font-led-mono), monospace"
-              fontSize={9}
-              fill={COLORS.accent}
-              textAnchor={audience.anchor}
-            >
-              AUDIENCE
-            </text>
-          </g>
-
           <defs>
             <marker
               id="arrowAccent"
@@ -303,60 +279,3 @@ function signalEntryXY(
   }
 }
 
-function audienceLine(
-  s: WallConfig["audience_position"],
-  padX: number,
-  padY: number,
-  cols: number,
-  rows: number,
-  tileW: number,
-  tileH: number
-) {
-  const wallLeft = padX
-  const wallRight = padX + cols * tileW
-  const wallTop = padY
-  const wallBottom = padY + rows * tileH
-  const off = 30
-  switch (s) {
-    case "bottom":
-      return {
-        x1: wallLeft,
-        y1: wallBottom + off,
-        x2: wallRight,
-        y2: wallBottom + off,
-        tx: (wallLeft + wallRight) / 2,
-        ty: wallBottom + off + 12,
-        anchor: "middle" as const,
-      }
-    case "top":
-      return {
-        x1: wallLeft,
-        y1: wallTop - off,
-        x2: wallRight,
-        y2: wallTop - off,
-        tx: (wallLeft + wallRight) / 2,
-        ty: wallTop - off - 4,
-        anchor: "middle" as const,
-      }
-    case "left":
-      return {
-        x1: wallLeft - off,
-        y1: wallTop,
-        x2: wallLeft - off,
-        y2: wallBottom,
-        tx: wallLeft - off - 4,
-        ty: (wallTop + wallBottom) / 2,
-        anchor: "end" as const,
-      }
-    case "right":
-      return {
-        x1: wallRight + off,
-        y1: wallTop,
-        x2: wallRight + off,
-        y2: wallBottom,
-        tx: wallRight + off + 4,
-        ty: (wallTop + wallBottom) / 2,
-        anchor: "start" as const,
-      }
-  }
-}

@@ -8,7 +8,7 @@ import { SpecSheet } from "../../components/SpecSheet"
 import { derive } from "../../lib/derive"
 import { decodeConfig } from "../../lib/encode"
 import { buildSummary } from "../../lib/summary"
-import { downloadBlob, renderPanelMapPdf, renderSpecPdf } from "../../lib/pdf"
+import { downloadBlob, renderPanelMapPng, renderSpecPdf } from "../../lib/pdf"
 
 export default function SharePage({
   params,
@@ -58,8 +58,8 @@ export default function SharePage({
     if (!cfg) return
     setBusy("map")
     try {
-      const blob = await renderPanelMapPdf(cab, cfg)
-      downloadBlob(blob, fileSafe(`${cfg.project_code || "LED"}_MAP.pdf`))
+      const blob = await renderPanelMapPng(cab, cfg)
+      downloadBlob(blob, fileSafe(`${cfg.project_code || "LED"}_MAP.png`))
     } finally {
       setBusy(null)
     }
@@ -112,7 +112,7 @@ export default function SharePage({
               onClick={downloadMap}
               disabled={busy !== null}
             >
-              {busy === "map" ? "BUILDING /" : "DOWNLOAD MAP / PDF"}
+              {busy === "map" ? "BUILDING /" : "DOWNLOAD MAP / PNG"}
             </button>
             <button type="button" className="cta" onClick={() => copy(summary, "summary")}>
               {copied === "summary" ? "COPIED" : "COPY SUMMARY"}

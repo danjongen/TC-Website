@@ -94,6 +94,14 @@ export function Footer() {
               >
                 Contact
               </Link>
+              <Link
+                href="/led"
+                className="block text-sm text-zinc-400 transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+              >
+                LED Spec Tool
+              </Link>
             </div>
           </div>
         </div>

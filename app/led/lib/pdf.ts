@@ -1,11 +1,11 @@
 /**
- * Branded PDF generation for Spec Sheet (Letter landscape) and
- * Panel Map (Tabloid landscape). Client-only / no server cost.
+ * Branded output generation for the LED tool.
  *
- * jsPDF is used directly for the spec sheet (text + rect APIs)
- * because it gives deterministic layout vs DOM-to-PDF.
- * svg2pdf.js is used for the panel map since the panel map is
- * already a precise SVG we want pixel-accurate.
+ *  - Spec Sheet PDF — Letter landscape, jsPDF, embedded Space Mono.
+ *  - Panel Map PNG — high-contrast functional artifact for content
+ *    mapping in AE/PS. Bright, one-cabinet-per-cell, TC watermark.
+ *
+ * Everything runs client-side.
  */
 
 import type { Cabinet, Derived, WallConfig } from "./types"
@@ -13,6 +13,60 @@ import { fmt, padWidth } from "./derive"
 import { COLORS } from "./brand"
 
 const PT_PER_IN = 72
+
+// ---------- font loading ----------
+
+let fontPromise: Promise<{ regular: string; bold: string }> | null = null
+
+async function fetchTtfBase64(url: string): Promise<string> {
+  const res = await fetch(url)
+  if (!res.ok) throw new Error(`Failed to load font ${url} (${res.status})`)
+  const buf = await res.arrayBuffer()
+  let bin = ""
+  const bytes = new Uint8Array(buf)
+  for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i])
+  return btoa(bin)
+}
+
+function loadSpaceMonoBase64() {
+  if (!fontPromise) {
+    fontPromise = Promise.all([
+      fetchTtfBase64("/fonts/SpaceMono-Regular.ttf"),
+      fetchTtfBase64("/fonts/SpaceMono-Bold.ttf"),
+    ]).then(([regular, bold]) => ({ regular, bold }))
+  }
+  return fontPromise
+}
+
+async function registerSpaceMono(doc: any) {
+  try {
+    const { regular, bold } = await loadSpaceMonoBase64()
+    doc.addFileToVFS("SpaceMono-Regular.ttf", regular)
+    doc.addFont("SpaceMono-Regular.ttf", "SpaceMono", "normal")
+    doc.addFileToVFS("SpaceMono-Bold.ttf", bold)
+    doc.addFont("SpaceMono-Bold.ttf", "SpaceMono", "bold")
+    doc.setFont("SpaceMono", "normal")
+  } catch {
+    // Fall back to built-in courier if font fetch fails.
+    doc.setFont("courier", "normal")
+  }
+}
+
+// Ensure the page has Space Mono fully loaded before drawing on canvas.
+async function ensureCanvasFonts() {
+  if (typeof document === "undefined") return
+  const fonts: any = (document as any).fonts
+  if (!fonts) return
+  try {
+    await Promise.all([
+      fonts.load('700 14px "Space Mono"'),
+      fonts.load('400 12px "Space Mono"'),
+    ])
+    if (fonts.ready) await fonts.ready
+  } catch {
+    /* ignore */
+  }
+}
 
 // ---------- shared helpers ----------
 
@@ -67,12 +121,11 @@ export async function renderSpecPdf(
   const W = 11 * PT_PER_IN
   const H = 8.5 * PT_PER_IN
 
+  await registerSpaceMono(doc)
+
   // Background fill
   setFill(doc, COLORS.bg)
   doc.rect(0, 0, W, H, "F")
-
-  // Use Courier (mono) for everything to stay clinical and legible.
-  doc.setFont("courier", "normal")
 
   const M = 24 // page margin in pt
 
@@ -81,14 +134,15 @@ export async function renderSpecPdf(
   doc.setLineWidth(0.5)
   doc.line(M, M + 22, W - M, M + 22)
 
-  setFill(doc, COLORS.ink)
-  // TC glyph
+  // TC glyph + wordmark
   drawGlyph(doc, M, M + 4, 12, COLORS.ink)
   setText(doc, COLORS.ink)
+  doc.setFont("SpaceMono", "bold")
   doc.setFontSize(8)
   doc.text("TECHNICALLY CREATIVE / DETROIT", M + 18, M + 14)
 
   setText(doc, COLORS.inkDim)
+  doc.setFont("SpaceMono", "normal")
   doc.setFontSize(8)
   const headerRight = `SPEC SHEET   ${cfg.project_code || "—"}   REV ${cfg.rev || "—"}   ${cfg.issued_date || "—"}`
   doc.text(headerRight, W - M, M + 14, { align: "right" })
@@ -106,7 +160,6 @@ export async function renderSpecPdf(
   drawKV(doc, M + 520, projY2, "PITCH", `${cab.pixel_pitch_mm.toFixed(2)} mm`, 90)
   drawKV(doc, M + 630, projY2, "TOURING", cab.touring_rated ? "YES" : "NO", 60)
 
-  // Divider
   setStroke(doc, COLORS.line)
   doc.line(M, projY2 + 22, W - M, projY2 + 22)
 
@@ -118,7 +171,6 @@ export async function renderSpecPdf(
   drawHero(doc, M + 1 * heroW, heroY, heroW, heroH, "PIXELS", `${fmt.int(d.pixels_wide)}x${fmt.int(d.pixels_high)}`, `${fmt.int(d.pixels_total)} TOTAL`)
   drawHero(doc, M + 2 * heroW, heroY, heroW, heroH, "WALL", `${d.wall_width_m.toFixed(2)}x${d.wall_height_m.toFixed(2)} m`, `${d.wall_width_imperial} x ${d.wall_height_imperial}`)
   drawHero(doc, M + 3 * heroW, heroY, heroW, heroH, "POWER", `${fmt.num(d.amps_max_per_phase, 0)} A`, `MAX / ${fmt.num(d.amps_avg_per_phase, 0)} A AVG / ${cfg.power_service}`)
-  // Hero divider
   setStroke(doc, COLORS.line)
   doc.line(M, heroY + heroH + 4, W - M, heroY + heroH + 4)
 
@@ -152,20 +204,20 @@ export async function renderSpecPdf(
   const wtY2 = wtY + 28
   drawKV(doc, M, wtY2, "DAISY CHAIN", `${cab.daisy_chain_limit} cabs / line`, 160)
   drawKV(doc, M + 170, wtY2, "SIGNAL ENTRY", signalEntryLabel(cfg.signal_entry), 150)
-  drawKV(doc, M + 330, wtY2, "AUDIENCE", cfg.audience_position.toUpperCase(), 110)
-  drawKV(doc, M + 450, wtY2, "IP FRONT/REAR", `${cab.ip_rating_front} / ${cab.ip_rating_rear}`, 140)
-  drawKV(doc, M + 600, wtY2, "SERVICE", `${cab.service_access.toUpperCase()} / ${cab.service_depth_mm}mm`, 160)
+  drawKV(doc, M + 330, wtY2, "IP FRONT/REAR", `${cab.ip_rating_front} / ${cab.ip_rating_rear}`, 140)
+  drawKV(doc, M + 480, wtY2, "SERVICE", `${cab.service_access.toUpperCase()} / ${cab.service_depth_mm}mm`, 160)
+  drawKV(doc, M + 650, wtY2, "SPARES", `${Math.max(1, Math.ceil(d.tiles_total * 0.05))} / 5%`, 110)
 
-  const wtY3 = wtY2 + 28
-  drawKV(doc, M, wtY3, "SPARES", `${Math.max(1, Math.ceil(d.tiles_total * 0.05))} cabs / 5%`, 180)
   if (cfg.notes) {
-    drawKV(doc, M + 200, wtY3, "NOTES", cfg.notes, W - 2 * M - 200)
+    const wtY3 = wtY2 + 28
+    drawKV(doc, M, wtY3, "NOTES", cfg.notes, W - 2 * M)
   }
 
   // Footer
   setStroke(doc, COLORS.line)
   doc.line(M, H - M - 22, W - M, H - M - 22)
   setText(doc, COLORS.inkFaint)
+  doc.setFont("SpaceMono", "normal")
   doc.setFontSize(7)
   doc.text(
     `SYSTEM / ${cab.manufacturer} ${cab.model} / ${d.processor_label}`,
@@ -185,9 +237,11 @@ export async function renderSpecPdf(
 
 function drawKV(doc: any, x: number, y: number, label: string, value: string, maxW: number) {
   setText(doc, COLORS.inkDim)
+  doc.setFont("SpaceMono", "normal")
   doc.setFontSize(7)
   doc.text(label, x, y)
   setText(doc, COLORS.ink)
+  doc.setFont("SpaceMono", "bold")
   doc.setFontSize(10)
   const t = truncateToWidth(doc, value, maxW)
   doc.text(t, x, y + 12)
@@ -205,15 +259,17 @@ function drawHero(
 ) {
   setStroke(doc, COLORS.line)
   doc.setLineWidth(0.5)
-  // vertical divider on the right (except for last column)
   doc.line(x + w, y, x + w, y + h)
   setText(doc, COLORS.inkDim)
+  doc.setFont("SpaceMono", "normal")
   doc.setFontSize(7)
   doc.text(label, x + 6, y + 12)
   setText(doc, COLORS.accent)
+  doc.setFont("SpaceMono", "bold")
   doc.setFontSize(20)
   doc.text(big, x + 6, y + 40)
   setText(doc, COLORS.inkDim)
+  doc.setFont("SpaceMono", "normal")
   doc.setFontSize(7)
   doc.text(sub, x + 6, y + 62)
 }
@@ -233,7 +289,6 @@ function truncateToWidth(doc: any, s: string, maxWidthPt: number): string {
 
 function drawGlyph(doc: any, x: number, y: number, size: number, hex: string) {
   setFill(doc, hex)
-  // square with corner cutout — same shape as the on-screen Glyph
   const s = size
   const cut = s * 0.375
   doc.lines(
@@ -251,209 +306,251 @@ function drawGlyph(doc: any, x: number, y: number, size: number, hex: string) {
   )
 }
 
-// ---------- panel map PDF ----------
+// ---------- panel map PNG ----------
 
-export async function renderPanelMapPdf(
+/**
+ * High-contrast functional panel map for content mapping in
+ * Photoshop / After Effects. One cell per cabinet, numbered grid,
+ * accent corners, TC glyph watermark. White-on-light so the
+ * artifact imports cleanly over any underlying content.
+ */
+export async function renderPanelMapPng(
   cab: Cabinet,
   cfg: WallConfig
 ): Promise<Blob> {
-  const doc = await makeDoc("l", 17, 11)
-  const W = 17 * PT_PER_IN
-  const H = 11 * PT_PER_IN
-
-  // Background
-  setFill(doc, COLORS.bg)
-  doc.rect(0, 0, W, H, "F")
-
-  doc.setFont("courier", "normal")
-
-  // Top strip (branded header)
-  const headerH = 32
-  setText(doc, COLORS.ink)
-  drawGlyph(doc, 18, 10, 14, COLORS.ink)
-  doc.setFontSize(9)
-  doc.text("TECHNICALLY CREATIVE / DETROIT", 38, 22)
-
-  setText(doc, COLORS.inkDim)
-  doc.text(
-    `PANEL MAP   ${cfg.project_code || "—"}   ${cab.manufacturer} ${cab.model}   ${cfg.tiles_wide}W x ${cfg.tiles_high}H / ${cfg.tiles_wide * cfg.tiles_high} CABS`,
-    W - 18,
-    22,
-    { align: "right" }
-  )
-  setStroke(doc, COLORS.line)
-  doc.line(18, headerH, W - 18, headerH)
-
-  // Footer strip
-  const footerY = H - 26
-  setStroke(doc, COLORS.line)
-  doc.line(18, footerY, W - 18, footerY)
-  setText(doc, COLORS.inkFaint)
-  doc.setFontSize(8)
-  doc.text(`SIGNAL ENTRY / ${signalEntryLabel(cfg.signal_entry)}`, 18, footerY + 14)
-  doc.text(`AUDIENCE / ${cfg.audience_position.toUpperCase()}`, 18 + 250, footerY + 14)
-  doc.text(`TILE / ${cab.tile_width_mm}x${cab.tile_height_mm}mm`, 18 + 460, footerY + 14)
-  doc.text(`PITCH / ${cab.pixel_pitch_mm.toFixed(2)}mm`, 18 + 660, footerY + 14)
-  doc.text(`CALC / 26-TCX-01-LEDTOOL`, W - 18, footerY + 14, { align: "right" })
-
-  // Draw the panel grid inside the available space
-  const padX = 60
-  const padY = 60
-  const gridX = padX
-  const gridY = headerH + padY
-  const gridW = W - 2 * padX
-  const gridH = footerY - headerH - 2 * padY
+  await ensureCanvasFonts()
 
   const cols = Math.max(1, cfg.tiles_wide)
   const rows = Math.max(1, cfg.tiles_high)
+
+  // Honor real cabinet aspect.
   const tileAspect = cab.tile_width_mm / cab.tile_height_mm
-  // Solve for the largest tile size that fits both width and height.
-  const tileWByW = gridW / cols
-  const tileHByH = gridH / rows
-  let tileH = Math.min(tileWByW / tileAspect, tileHByH)
-  let tileW = tileH * tileAspect
-  // Center the grid
-  const drawnW = cols * tileW
-  const drawnH = rows * tileH
-  const offsetX = gridX + (gridW - drawnW) / 2
-  const offsetY = gridY + (gridH - drawnH) / 2
 
+  // Target ~100px per cabinet in the long dimension, capped at 6000px
+  // total so AE / PS imports don't blow up.
+  const MAX_LONG = 6000
+  let cellH = 100
+  let cellW = cellH * tileAspect
+  const padHeader = 80
+  const padFooter = 60
+  const padSide = 60
+  const projectedW = cols * cellW + padSide * 2
+  const projectedH = rows * cellH + padHeader + padFooter
+  const scaleDown = Math.min(
+    1,
+    MAX_LONG / Math.max(projectedW, projectedH)
+  )
+  cellH = Math.floor(cellH * scaleDown)
+  cellW = Math.floor(cellH * tileAspect)
+  const padH = Math.floor(padHeader * scaleDown)
+  const padF = Math.floor(padFooter * scaleDown)
+  const padS = Math.floor(padSide * scaleDown)
+
+  const W = cols * cellW + padS * 2
+  const H = rows * cellH + padH + padF
+
+  const canvas = document.createElement("canvas")
+  canvas.width = W
+  canvas.height = H
+  const ctx = canvas.getContext("2d")!
+
+  // Background: very light gray so corners and borders pop and the
+  // artifact reads on any monitor / projector.
+  const BG = "#f4f4f4"
+  const TILE_A = "#ffffff"
+  const TILE_B = "#e6e6e6"
+  const BORDER = "#9a9a9a"
+  const TEXT = "#111111"
+  const DIM = "#555555"
+  const ACCENT = COLORS.accent
+
+  ctx.fillStyle = BG
+  ctx.fillRect(0, 0, W, H)
+
+  // Header
+  const headerBaseline = Math.max(22, Math.floor(padH * 0.55))
+  ctx.fillStyle = TEXT
+  ctx.font = `700 ${Math.max(14, Math.floor(padH * 0.32))}px "Space Mono", ui-monospace, monospace`
+  ctx.textBaseline = "alphabetic"
+  ctx.textAlign = "left"
+  // Glyph
+  drawCanvasGlyph(ctx, padS, headerBaseline - Math.floor(padH * 0.32), Math.floor(padH * 0.32), TEXT)
+  ctx.fillText(
+    "TECHNICALLY CREATIVE / DETROIT",
+    padS + Math.floor(padH * 0.32) + 8,
+    headerBaseline
+  )
+  ctx.font = `400 ${Math.max(11, Math.floor(padH * 0.22))}px "Space Mono", ui-monospace, monospace`
+  ctx.fillStyle = DIM
+  ctx.textAlign = "right"
+  ctx.fillText(
+    `PANEL MAP   ${cfg.project_code || "—"}   ${cab.manufacturer} ${cab.model}   ${cols}W × ${rows}H / ${cols * rows} CABS`,
+    W - padS,
+    headerBaseline
+  )
+
+  // Grid
+  const gridX = padS
+  const gridY = padH
+  const gridW = cols * cellW
+  const gridH = rows * cellH
   const pad = padWidth(cols * rows)
-  const axisPad = Math.max(2, padWidth(Math.max(cols, rows)))
-  const stride = labelStride(Math.max(cols, rows))
+  const numberFontPx = Math.max(8, Math.floor(Math.min(cellW, cellH) * 0.32))
 
-  // Axis labels — columns
-  setText(doc, COLORS.accent)
-  doc.setFontSize(7)
-  for (let c = 0; c < cols; c++) {
-    const show = c === 0 || c === cols - 1 || (c + 1) % stride === 0
-    if (!show) continue
-    doc.text(
-      String(c + 1).padStart(axisPad, "0"),
-      offsetX + c * tileW + tileW / 2,
-      offsetY - 8,
-      { align: "center" }
-    )
-  }
-  // Axis labels — rows
-  for (let r = 0; r < rows; r++) {
-    const show = r === 0 || r === rows - 1 || (r + 1) % stride === 0
-    if (!show) continue
-    doc.text(
-      String(r + 1).padStart(axisPad, "0"),
-      offsetX - 8,
-      offsetY + r * tileH + tileH / 2 + 3,
-      { align: "right" }
-    )
-  }
-
-  // Tiles
-  doc.setLineWidth(0.3)
-  setStroke(doc, COLORS.line)
-  const showNumbers = cols * rows <= 1200 && tileW >= 14 && tileH >= 14
-  const numberFontSize = Math.max(4, Math.min(10, tileH * 0.32))
+  ctx.textBaseline = "middle"
+  ctx.textAlign = "center"
+  ctx.lineWidth = 1
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
+      const x = gridX + c * cellW
+      const y = gridY + r * cellH
       const isCorner =
         (r === 0 && c === 0) ||
         (r === 0 && c === cols - 1) ||
         (r === rows - 1 && c === 0) ||
         (r === rows - 1 && c === cols - 1)
-      const checkerA = (r + c) % 2 === 0
-      const fill = isCorner ? "#0d3a1f" : checkerA ? COLORS.tileA : COLORS.tileB
-      setFill(doc, fill)
-      setStroke(doc, isCorner ? COLORS.accent : COLORS.line)
-      doc.setLineWidth(isCorner ? 0.9 : 0.3)
-      doc.rect(offsetX + c * tileW, offsetY + r * tileH, tileW, tileH, "FD")
-      if (showNumbers) {
-        setText(doc, isCorner ? COLORS.accent : COLORS.inkDim)
-        doc.setFontSize(numberFontSize)
-        doc.text(
-          String(r * cols + c + 1).padStart(pad, "0"),
-          offsetX + c * tileW + tileW / 2,
-          offsetY + r * tileH + tileH / 2 + numberFontSize / 3,
-          { align: "center" }
-        )
-      }
+      ctx.fillStyle = (r + c) % 2 === 0 ? TILE_A : TILE_B
+      ctx.fillRect(x, y, cellW, cellH)
+      ctx.strokeStyle = isCorner ? ACCENT : BORDER
+      ctx.lineWidth = isCorner ? Math.max(2, Math.floor(cellH * 0.04)) : 1
+      ctx.strokeRect(x + 0.5, y + 0.5, cellW - 1, cellH - 1)
+
+      const num = String(r * cols + c + 1).padStart(pad, "0")
+      ctx.fillStyle = isCorner ? ACCENT : TEXT
+      ctx.font = `700 ${numberFontPx}px "Space Mono", ui-monospace, monospace`
+      ctx.fillText(num, x + cellW / 2, y + cellH / 2 + 1)
     }
   }
 
-  // Signal entry arrow
-  const entry = entryPdfXY(cfg.signal_entry, offsetX, offsetY, drawnW, drawnH, tileW, tileH)
-  setFill(doc, COLORS.accent)
-  setStroke(doc, COLORS.accent)
-  doc.setLineWidth(1.2)
-  doc.circle(entry.cx, entry.cy, 6, "F")
-  doc.line(entry.cx, entry.cy, entry.lx, entry.ly)
-  setText(doc, COLORS.accent)
-  doc.setFontSize(7)
-  doc.text("SIGNAL IN", entry.tx, entry.ty, { align: entry.anchor })
+  // Signal entry arrow (small accent triangle at the corner)
+  drawSignalIn(ctx, cfg.signal_entry, gridX, gridY, gridW, gridH, ACCENT, cellW, cellH)
 
-  // Audience marker
-  const aud = audPdfLine(cfg.audience_position, offsetX, offsetY, drawnW, drawnH)
-  setStroke(doc, COLORS.accent)
-  doc.setLineDashPattern([3, 3], 0)
-  doc.setLineWidth(0.8)
-  doc.line(aud.x1, aud.y1, aud.x2, aud.y2)
-  doc.setLineDashPattern([], 0)
-  setText(doc, COLORS.accent)
-  doc.setFontSize(7)
-  doc.text("AUDIENCE", aud.tx, aud.ty, { align: aud.anchor })
+  // Watermark — TC glyph + wordmark in bottom-right corner of grid
+  const wmSize = Math.min(120, Math.floor(gridH * 0.18))
+  if (wmSize >= 28) {
+    ctx.save()
+    ctx.globalAlpha = 0.12
+    drawCanvasGlyph(ctx, gridX + gridW - wmSize - 12, gridY + gridH - wmSize - 12, wmSize, TEXT)
+    ctx.globalAlpha = 0.18
+    ctx.fillStyle = TEXT
+    ctx.font = `700 ${Math.floor(wmSize * 0.22)}px "Space Mono", ui-monospace, monospace`
+    ctx.textAlign = "right"
+    ctx.textBaseline = "alphabetic"
+    ctx.fillText(
+      "TECHNICALLY CREATIVE / DETROIT",
+      gridX + gridW - 12,
+      gridY + gridH - 14
+    )
+    ctx.restore()
+  }
 
-  return doc.output("blob") as Blob
+  // Footer
+  ctx.textBaseline = "alphabetic"
+  ctx.textAlign = "left"
+  ctx.fillStyle = DIM
+  ctx.font = `400 ${Math.max(11, Math.floor(padF * 0.32))}px "Space Mono", ui-monospace, monospace`
+  const footerY = H - Math.floor(padF * 0.4)
+  ctx.fillText(`SIGNAL ENTRY / ${signalEntryLabel(cfg.signal_entry)}`, padS, footerY)
+  ctx.fillText(
+    `TILE / ${cab.tile_width_mm}×${cab.tile_height_mm} mm   PITCH / ${cab.pixel_pitch_mm.toFixed(2)} mm`,
+    padS + Math.floor(W * 0.32),
+    footerY
+  )
+  ctx.textAlign = "right"
+  ctx.fillText(
+    `${cols * rows} CABS / NUMBERED L→R, T→B / CALC 26-TCX-01-LEDTOOL`,
+    W - padS,
+    footerY
+  )
+
+  return new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob(
+      (blob) => (blob ? resolve(blob) : reject(new Error("canvas.toBlob failed"))),
+      "image/png"
+    )
+  })
 }
 
-function labelStride(n: number): number {
-  if (n <= 10) return 1
-  if (n <= 25) return 5
-  if (n <= 60) return 10
-  return 20
-}
-
-function entryPdfXY(
-  s: WallConfig["signal_entry"],
-  ox: number,
-  oy: number,
-  w: number,
-  h: number,
-  tileW: number,
-  tileH: number
+function drawCanvasGlyph(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  size: number,
+  color: string
 ) {
-  const off = 18
-  const left = ox - off
-  const right = ox + w + off
-  const top = oy - off
-  const bottom = oy + h + off
+  const cut = size * 0.375
+  ctx.save()
+  ctx.fillStyle = color
+  ctx.beginPath()
+  ctx.moveTo(x, y)
+  ctx.lineTo(x + size, y)
+  ctx.lineTo(x + size, y + size - cut)
+  ctx.lineTo(x + size - cut, y + size)
+  ctx.lineTo(x, y + size)
+  ctx.closePath()
+  ctx.fill()
+  ctx.restore()
+}
+
+function drawSignalIn(
+  ctx: CanvasRenderingContext2D,
+  s: WallConfig["signal_entry"],
+  gx: number,
+  gy: number,
+  gw: number,
+  gh: number,
+  color: string,
+  cellW: number,
+  cellH: number
+) {
+  // Small accent circle just outside the corner with a label.
+  const r = Math.max(6, Math.floor(Math.min(cellW, cellH) * 0.18))
+  const off = r + 4
+  let cx = gx,
+    cy = gy,
+    tx = gx,
+    ty = gy,
+    align: CanvasTextAlign = "left"
   switch (s) {
     case "TL":
-      return { cx: left, cy: top, lx: ox + tileW / 2, ly: oy + tileH / 2, tx: left - 4, ty: top - 4, anchor: "right" as const }
+      cx = gx - off
+      cy = gy - off
+      tx = cx
+      ty = cy - r - 4
+      align = "left"
+      break
     case "TR":
-      return { cx: right, cy: top, lx: ox + w - tileW / 2, ly: oy + tileH / 2, tx: right + 4, ty: top - 4, anchor: "left" as const }
+      cx = gx + gw + off
+      cy = gy - off
+      tx = cx
+      ty = cy - r - 4
+      align = "right"
+      break
     case "BL":
-      return { cx: left, cy: bottom, lx: ox + tileW / 2, ly: oy + h - tileH / 2, tx: left - 4, ty: bottom + 10, anchor: "right" as const }
+      cx = gx - off
+      cy = gy + gh + off
+      tx = cx
+      ty = cy + r + 12
+      align = "left"
+      break
     case "BR":
-      return { cx: right, cy: bottom, lx: ox + w - tileW / 2, ly: oy + h - tileH / 2, tx: right + 4, ty: bottom + 10, anchor: "left" as const }
+      cx = gx + gw + off
+      cy = gy + gh + off
+      tx = cx
+      ty = cy + r + 12
+      align = "right"
+      break
   }
-}
-
-function audPdfLine(
-  s: WallConfig["audience_position"],
-  ox: number,
-  oy: number,
-  w: number,
-  h: number
-) {
-  const off = 28
-  switch (s) {
-    case "bottom":
-      return { x1: ox, y1: oy + h + off, x2: ox + w, y2: oy + h + off, tx: ox + w / 2, ty: oy + h + off + 10, anchor: "center" as const }
-    case "top":
-      return { x1: ox, y1: oy - off, x2: ox + w, y2: oy - off, tx: ox + w / 2, ty: oy - off - 4, anchor: "center" as const }
-    case "left":
-      return { x1: ox - off, y1: oy, x2: ox - off, y2: oy + h, tx: ox - off - 4, ty: oy + h / 2, anchor: "right" as const }
-    case "right":
-      return { x1: ox + w + off, y1: oy, x2: ox + w + off, y2: oy + h, tx: ox + w + off + 4, ty: oy + h / 2, anchor: "left" as const }
-  }
+  ctx.save()
+  ctx.fillStyle = color
+  ctx.beginPath()
+  ctx.arc(cx, cy, r, 0, Math.PI * 2)
+  ctx.fill()
+  ctx.font = `700 ${Math.max(10, r)}px "Space Mono", ui-monospace, monospace`
+  ctx.textAlign = align
+  ctx.textBaseline = "alphabetic"
+  ctx.fillText("SIGNAL IN", tx, ty)
+  ctx.restore()
 }
 
 // ---------- download helper ----------
