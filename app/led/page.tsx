@@ -2,6 +2,7 @@
 import { Suspense, useEffect, useMemo, useState } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { CabinetPicker } from "./components/CabinetPicker"
+import { FidoIngest } from "./components/FidoIngest"
 import { Footer } from "./components/Footer"
 import { Header } from "./components/Header"
 import { OutputsPanel } from "./components/OutputsPanel"
@@ -79,12 +80,14 @@ function Builder() {
   }, [])
 
   // Push URL token + share URL whenever cfg changes.
+  // Builder URL: /led?c=<token> (preserves edit state on refresh).
+  // Share URL:   /led/share/<token> (view-only, what gets sent out).
   useEffect(() => {
     const token = encodeConfig(cfg)
     const next = `${pathname}?c=${token}`
     router.replace(next, { scroll: false })
     if (typeof window !== "undefined") {
-      setShareUrl(`${window.location.origin}${pathname}?c=${token}`)
+      setShareUrl(`${window.location.origin}/led/share/${token}`)
     }
   }, [cfg, pathname, router])
 
@@ -106,6 +109,16 @@ function Builder() {
           <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-6">
             {/* LEFT / FORMS */}
             <div className="space-y-5">
+              <FidoIngest
+                onIngest={(r) =>
+                  update({
+                    ...(r.cabinet_id ? { cabinet_id: r.cabinet_id } : {}),
+                    tiles_wide: r.tiles_wide,
+                    tiles_high: r.tiles_high,
+                    power_service: r.power_service,
+                  })
+                }
+              />
               <ProjectForm cfg={cfg} onChange={update} />
               <CabinetPicker
                 selectedId={cfg.cabinet_id}

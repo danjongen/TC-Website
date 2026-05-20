@@ -2,6 +2,7 @@
 import { useState } from "react"
 import type { Cabinet, Derived, WallConfig } from "../lib/types"
 import { buildSummary } from "../lib/summary"
+import { downloadBlob, renderPanelMapPdf, renderSpecPdf } from "../lib/pdf"
 
 export function OutputsPanel({
   cab,
@@ -15,6 +16,7 @@ export function OutputsPanel({
   shareUrl: string
 }) {
   const [copied, setCopied] = useState<"link" | "summary" | null>(null)
+  const [busy, setBusy] = useState<"spec" | "map" | null>(null)
   const summary = buildSummary(cab, cfg, d, shareUrl)
 
   async function copy(text: string, key: "link" | "summary") {
@@ -27,12 +29,32 @@ export function OutputsPanel({
     }
   }
 
+  async function downloadSpec() {
+    setBusy("spec")
+    try {
+      const blob = await renderSpecPdf(cab, cfg, d)
+      downloadBlob(blob, fileSafe(`${cfg.project_code || "LED"}_SPEC.pdf`))
+    } finally {
+      setBusy(null)
+    }
+  }
+
+  async function downloadMap() {
+    setBusy("map")
+    try {
+      const blob = await renderPanelMapPdf(cab, cfg)
+      downloadBlob(blob, fileSafe(`${cfg.project_code || "LED"}_MAP.pdf`))
+    } finally {
+      setBusy(null)
+    }
+  }
+
   return (
     <div className="panel p-5">
       <div className="flex items-center justify-between mb-4">
         <h2 className="mono text-[12px] tracking-[0.08em] uppercase">04 / OUTPUTS</h2>
         <span className="mono text-[10px] uppercase text-[var(--led-ink-faint)]">
-          PHASE 1 / PREVIEW
+          SPEC / MAP / SUMMARY / LINK
         </span>
       </div>
 
@@ -45,6 +67,25 @@ export function OutputsPanel({
               {copied === "link" ? "COPIED" : "COPY"}
             </button>
           </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button
+            type="button"
+            className="cta cta-primary"
+            onClick={downloadSpec}
+            disabled={busy !== null}
+          >
+            {busy === "spec" ? "BUILDING /" : "DOWNLOAD SPEC / PDF"}
+          </button>
+          <button
+            type="button"
+            className="cta cta-primary"
+            onClick={downloadMap}
+            disabled={busy !== null}
+          >
+            {busy === "map" ? "BUILDING /" : "DOWNLOAD MAP / PDF"}
+          </button>
         </div>
 
         <div>
@@ -61,19 +102,11 @@ export function OutputsPanel({
             {summary}
           </pre>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <button type="button" className="cta" disabled title="Phase 2 / PDF generation">
-            DOWNLOAD SPEC / PDF
-          </button>
-          <button type="button" className="cta" disabled title="Phase 2 / PDF generation">
-            DOWNLOAD MAP / PDF
-          </button>
-        </div>
-        <p className="mono text-[10px] uppercase text-[var(--led-ink-faint)]">
-          PDF outputs ship in Phase 2 / share link + summary live now.
-        </p>
       </div>
     </div>
   )
+}
+
+function fileSafe(s: string): string {
+  return s.replace(/[^A-Za-z0-9._-]+/g, "_")
 }

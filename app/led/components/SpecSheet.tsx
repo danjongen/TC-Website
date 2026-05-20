@@ -112,9 +112,12 @@ export function SpecSheet({
       ) : null}
 
       {/* FOOTER STRIP */}
-      <div className="flex items-center justify-between px-5 py-3 text-[var(--led-ink-faint)]">
+      <div className="flex items-center justify-between px-5 py-3 text-[var(--led-ink-faint)] gap-4 flex-wrap">
         <span className="mono text-[10px] tracking-[0.08em] uppercase">
           SYSTEM / {cab.manufacturer} {cab.model} / {d.processor_label}
+        </span>
+        <span className="mono text-[10px] tracking-[0.08em] uppercase">
+          AMPS / PER CABINET PF {cab.power_factor.toFixed(2)}
         </span>
         <span className="mono text-[10px] tracking-[0.08em] uppercase">
           CALC / 26-TCX-01-LEDTOOL

@@ -119,3 +119,11 @@ export const fmt = {
     }),
   pad: (n: number, w = 3) => String(Math.max(0, Math.floor(n))).padStart(w, "0"),
 }
+
+/**
+ * Pad width based on the largest number we'll display.
+ * FidoLED convention: 01–99 stays 2-digit, 100+ grows to 3, etc.
+ */
+export function padWidth(max: number): number {
+  return Math.max(2, String(Math.max(1, Math.floor(max))).length)
+}

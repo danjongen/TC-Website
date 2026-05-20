@@ -1,11 +1,12 @@
 "use client"
 import type { Cabinet, WallConfig } from "../lib/types"
-import { fmt } from "../lib/derive"
+import { fmt, padWidth } from "../lib/derive"
 import { COLORS } from "../lib/brand"
 
 /**
- * SVG panel map. Cabinets numbered L→R, T→B starting at 001.
- * Corner cabinets in accent. Axis labels every 5 cols/rows.
+ * SVG panel map. Cabinets numbered L→R, T→B starting at 01
+ * (context-aware pad — grows to 001 once total > 99).
+ * Corner cabinets in accent. Axis labels every N cols/rows.
  * Signal entry corner shown with accent arrow.
  * Audience direction marked at appropriate edge.
  */
@@ -18,6 +19,8 @@ export function PanelMap({
 }) {
   const cols = Math.max(1, cfg.tiles_wide)
   const rows = Math.max(1, cfg.tiles_high)
+  const pad = padWidth(cols * rows)
+  const axisPad = Math.max(2, padWidth(Math.max(cols, rows)))
 
   // Match the real tile aspect (per cabinet) on screen.
   const tileAspect = cab.tile_width_mm / cab.tile_height_mm
@@ -67,7 +70,7 @@ export function PanelMap({
                 fill={COLORS.accent}
                 textAnchor="middle"
               >
-                {fmt.pad(c + 1, 2)}
+                {fmt.pad(c + 1, axisPad)}
               </text>
             )
           })}
@@ -85,7 +88,7 @@ export function PanelMap({
                 fill={COLORS.accent}
                 textAnchor="end"
               >
-                {fmt.pad(r + 1, 2)}
+                {fmt.pad(r + 1, axisPad)}
               </text>
             )
           })}
@@ -126,7 +129,7 @@ export function PanelMap({
                       fill={isCorner ? COLORS.accent : COLORS.inkDim}
                       textAnchor="middle"
                     >
-                      {fmt.pad(idx + 1, 3)}
+                      {fmt.pad(idx + 1, pad)}
                     </text>
                   ) : null}
                 </g>
