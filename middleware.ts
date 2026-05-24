@@ -28,7 +28,12 @@ export async function middleware(req: NextRequest) {
   // Open routes inside /led:
   // - the unlock page
   // - any /led/share/* (the client-facing artifact)
-  if (pathname === "/led/unlock" || pathname.startsWith("/led/share")) {
+  // - any /led/api/* (handles its own auth via the same cookie)
+  if (
+    pathname === "/led/unlock" ||
+    pathname.startsWith("/led/share") ||
+    pathname.startsWith("/led/api")
+  ) {
     return NextResponse.next()
   }
 

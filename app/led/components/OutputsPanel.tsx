@@ -3,17 +3,20 @@ import { useState } from "react"
 import type { Cabinet, Derived, WallConfig } from "../lib/types"
 import { buildSummary } from "../lib/summary"
 import { downloadBlob, renderPanelMapPng, renderSpecPdf } from "../lib/pdf"
+import { SaveToAirtable } from "./SaveToAirtable"
 
 export function OutputsPanel({
   cab,
   cfg,
   d,
   shareUrl,
+  onProjectCodeChange,
 }: {
   cab: Cabinet
   cfg: WallConfig
   d: Derived
   shareUrl: string
+  onProjectCodeChange?: (code: string) => void
 }) {
   const [copied, setCopied] = useState<"link" | "summary" | null>(null)
   const [busy, setBusy] = useState<"spec" | "map" | null>(null)
@@ -102,6 +105,16 @@ export function OutputsPanel({
             {summary}
           </pre>
         </div>
+
+        {onProjectCodeChange ? (
+          <SaveToAirtable
+            cab={cab}
+            cfg={cfg}
+            d={d}
+            shareUrl={shareUrl}
+            onSelectProjectCode={onProjectCodeChange}
+          />
+        ) : null}
       </div>
     </div>
   )

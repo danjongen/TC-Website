@@ -125,7 +125,13 @@ function Builder() {
                 onChange={(id) => update({ cabinet_id: id })}
               />
               <WallConfigForm cfg={cfg} onChange={update} />
-              <OutputsPanel cab={cab} cfg={cfg} d={d} shareUrl={shareUrl} />
+              <OutputsPanel
+                cab={cab}
+                cfg={cfg}
+                d={d}
+                shareUrl={shareUrl}
+                onProjectCodeChange={(code) => update({ project_code: code })}
+              />
             </div>
 
             {/* RIGHT / PREVIEW */}
