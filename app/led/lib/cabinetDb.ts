@@ -180,6 +180,37 @@ export async function createCabinet(
   }
 }
 
+// Published cabinets only, with a short module-level cache so the builder
+// endpoint and public share pages don't hit Airtable on every request.
+let _pubCache: { at: number; cabinets: Cabinet[] } | null = null
+const PUB_TTL_MS = 60_000
+
+export async function listPublishedCabinets(): Promise<Cabinet[]> {
+  const records = await listCabinetRecords()
+  return records.filter((r) => r.published && r.cabinet.id).map((r) => r.cabinet)
+}
+
+export async function getPublishedCabinetsCached(): Promise<Cabinet[]> {
+  const now = Date.now()
+  if (_pubCache && now - _pubCache.at < PUB_TTL_MS) return _pubCache.cabinets
+  const cabinets = await listPublishedCabinets()
+  _pubCache = { at: now, cabinets }
+  return cabinets
+}
+
+// Resolve a single published cabinet by id. Never throws — share pages are
+// public and must render even if Airtable is unreachable (caller falls back
+// to the built-in library).
+export async function resolvePublishedCabinet(id: string): Promise<Cabinet | null> {
+  if (!id) return null
+  try {
+    const cabs = await getPublishedCabinetsCached()
+    return cabs.find((c) => c.id === id) ?? null
+  } catch {
+    return null
+  }
+}
+
 export async function listCabinetRecords(): Promise<CabinetRecord[]> {
   const url = new URL(`${API_BASE}/${CABINET_DB.baseId}/${CABINET_DB.tableId}`)
   url.searchParams.set("pageSize", "100")

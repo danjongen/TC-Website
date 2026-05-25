@@ -1,5 +1,7 @@
 import { ShareView } from "../../components/ShareView"
 import { resolveShortLink } from "../../lib/shortlink"
+import { resolvePublishedCabinet } from "../../lib/cabinetDb"
+import { decodeConfig } from "../../lib/encode"
 
 export const metadata = {
   title: "LED Wall Spec / Shared",
@@ -33,5 +35,7 @@ export default async function ShortSharePage({
     )
   }
 
-  return <ShareView token={token} />
+  const cfg = decodeConfig(token)
+  const resolvedCabinet = cfg ? await resolvePublishedCabinet(cfg.cabinet_id) : null
+  return <ShareView token={token} resolvedCabinet={resolvedCabinet} />
 }

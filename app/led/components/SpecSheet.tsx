@@ -21,16 +21,16 @@ export function SpecSheet({
   return (
     <article className="panel" id="spec-sheet">
       {/* HEADER STRIP */}
-      <div className="flex items-center justify-between px-5 py-3 border-b hairline">
-        <div className="flex items-center gap-2.5">
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 px-5 py-3 border-b hairline">
+        <div className="flex items-center gap-2.5 min-w-0">
           <Glyph size={14} />
-          <span className="mono text-[10px] tracking-[0.08em] uppercase">
+          <span className="mono text-[10px] tracking-[0.08em] uppercase truncate">
             TECHNICALLY CREATIVE / DETROIT
           </span>
         </div>
-        <div className="mono text-[10px] tracking-[0.08em] uppercase text-[var(--led-ink-dim)] flex gap-4">
-          <span>SPEC SHEET</span>
-          <span>{cfg.project_code || "—"}</span>
+        <div className="mono text-[10px] tracking-[0.08em] uppercase text-[var(--led-ink-dim)] flex flex-wrap gap-x-4 gap-y-1 min-w-0">
+          <span className="hidden sm:inline">SPEC SHEET</span>
+          <span className="truncate">{cfg.project_code || "—"}</span>
           <span>REV {cfg.rev || "—"}</span>
           <span>{cfg.issued_date || "—"}</span>
         </div>

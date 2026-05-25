@@ -1,8 +1,7 @@
 "use client"
 import { useRef, useState } from "react"
-import { CABINETS } from "../data/cabinets"
 import { fuzzyMatchCabinet, parseFidoPdf } from "../lib/fidoParse"
-import type { PowerService } from "../lib/types"
+import type { Cabinet, PowerService } from "../lib/types"
 
 type IngestResult = {
   cabinet_id: string | null
@@ -13,8 +12,10 @@ type IngestResult = {
 }
 
 export function FidoIngest({
+  cabinets,
   onIngest,
 }: {
+  cabinets: Cabinet[]
   onIngest: (r: IngestResult) => void
 }) {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -40,7 +41,7 @@ export function FidoIngest({
       setStatus({ kind: "err", msg: r.error.toUpperCase() })
       return
     }
-    const matchId = fuzzyMatchCabinet(r.cabinetName, CABINETS)
+    const matchId = fuzzyMatchCabinet(r.cabinetName, cabinets)
     onIngest({
       cabinet_id: matchId,
       cabinetName: r.cabinetName,
