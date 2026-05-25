@@ -276,7 +276,12 @@ async function uploadAttachment(
     {
       method: "POST",
       headers: authHeaders(),
-      body: JSON.stringify(file),
+      // Airtable's content API expects the base64 payload under `file`.
+      body: JSON.stringify({
+        contentType: file.contentType,
+        filename: file.filename,
+        file: file.base64,
+      }),
     }
   )
   if (!res.ok) {
