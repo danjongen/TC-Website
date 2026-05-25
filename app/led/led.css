@@ -1,0 +1,124 @@
+/* TC LED tool / Section /08 brand tokens / scoped to .led-app */
+
+.led-app {
+  --led-bg: #0a0a0a;
+  --led-bg-1: #111111;
+  --led-bg-2: #161616;
+  --led-line: #2a2a2a;
+  --led-ink: #f4f4f4;
+  --led-ink-dim: #9a9a9a;
+  --led-ink-faint: #5a5a5a;
+  --led-accent: #00d26a;
+  --led-tile-a: #1a1a1a;
+  --led-tile-b: #242424;
+
+  background: var(--led-bg);
+  color: var(--led-ink);
+  font-family: var(--font-led-body, var(--font-sans));
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0;
+}
+
+.led-app .mono {
+  font-family: var(--font-led-mono);
+}
+
+.led-app .label {
+  font-family: var(--font-led-mono);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.6875rem; /* 11px */
+  color: var(--led-ink-dim);
+}
+
+.led-app .data {
+  font-family: var(--font-led-mono);
+  font-weight: 700;
+  color: var(--led-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.led-app input,
+.led-app select,
+.led-app textarea {
+  background: transparent;
+  border: 1px solid var(--led-line);
+  color: var(--led-ink);
+  font-family: var(--font-led-mono);
+  font-size: 0.875rem;
+  padding: 0.5rem 0.625rem;
+  width: 100%;
+  outline: none;
+  border-radius: 0;
+  transition: border-color 120ms ease;
+}
+
+.led-app input:focus,
+.led-app select:focus,
+.led-app textarea:focus {
+  border-color: var(--led-accent);
+}
+
+.led-app input::placeholder,
+.led-app textarea::placeholder {
+  color: var(--led-ink-faint);
+}
+
+.led-app select option {
+  background: var(--led-bg-1);
+  color: var(--led-ink);
+}
+
+.led-app .accent {
+  color: var(--led-accent);
+}
+
+.led-app .panel {
+  background: var(--led-bg-1);
+  border: 1px solid var(--led-line);
+}
+
+.led-app .hairline {
+  border-color: var(--led-line);
+}
+
+.led-app .cta {
+  font-family: var(--font-led-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--led-line);
+  color: var(--led-ink);
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 120ms ease, color 120ms ease;
+}
+
+.led-app .cta:hover {
+  border-color: var(--led-accent);
+  color: var(--led-accent);
+}
+
+.led-app .cta-primary {
+  border-color: var(--led-accent);
+  color: var(--led-accent);
+}
+
+.led-app .cta-primary:hover {
+  background: var(--led-accent);
+  color: var(--led-bg);
+}
+
+.led-app .scroll-fade::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.led-app .scroll-fade::-webkit-scrollbar-thumb {
+  background: var(--led-line);
+}
+.led-app .scroll-fade::-webkit-scrollbar-track {
+  background: transparent;
+}
