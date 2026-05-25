@@ -485,6 +485,81 @@ export async function renderPanelMapPng(
   })
 }
 
+// ---------- one-to-one pixel map PNG ----------
+
+/**
+ * True 1:1 pixel map. The canvas is the wall's exact pixel resolution
+ * (cols·tile_width_px × rows·tile_height_px), full-bleed: each cabinet
+ * fills its real pixel footprint as a high-contrast checker cell with its
+ * number. Dropped on the wall as full-screen content, one image pixel maps
+ * to one LED pixel. TC-branded near-black / accent-green checker.
+ */
+export async function renderPixelMapPng(
+  cab: Cabinet,
+  cfg: WallConfig
+): Promise<Blob> {
+  await ensureCanvasFonts()
+
+  const cols = Math.max(1, cfg.tiles_wide)
+  const rows = Math.max(1, cfg.tiles_high)
+  const tileW = Math.max(1, Math.round(cab.tile_width_px))
+  const tileH = Math.max(1, Math.round(cab.tile_height_px))
+  const W = cols * tileW
+  const H = rows * tileH
+
+  // Browser canvas hard limit. Downscaling would break the 1:1 guarantee,
+  // so refuse rather than silently produce a non-pixel-accurate map.
+  const MAX_DIM = 16384
+  if (W > MAX_DIM || H > MAX_DIM) {
+    throw new Error(
+      `pixel map ${W}×${H}px exceeds the ${MAX_DIM}px canvas limit — render on desktop or split the wall`
+    )
+  }
+
+  const canvas = document.createElement("canvas")
+  canvas.width = W
+  canvas.height = H
+  const ctx = canvas.getContext("2d")!
+
+  const DARK = "#0c0c0c"
+  const GREEN = COLORS.accent
+  const NUM_ON_DARK = "#ffffff"
+  const NUM_ON_GREEN = "#0a0a0a"
+
+  const pad = padWidth(cols * rows)
+  const fontPx = Math.max(
+    8,
+    Math.floor(Math.min(tileH * 0.34, (tileW * 0.82) / Math.max(1, pad * 0.6)))
+  )
+
+  ctx.textBaseline = "middle"
+  ctx.textAlign = "center"
+  ctx.font = `700 ${fontPx}px "Space Mono", ui-monospace, monospace`
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const x = c * tileW
+      const y = r * tileH
+      const even = (r + c) % 2 === 0
+      ctx.fillStyle = even ? DARK : GREEN
+      ctx.fillRect(x, y, tileW, tileH)
+      ctx.fillStyle = even ? NUM_ON_DARK : NUM_ON_GREEN
+      ctx.fillText(
+        String(r * cols + c + 1).padStart(pad, "0"),
+        x + tileW / 2,
+        y + tileH / 2 + 1
+      )
+    }
+  }
+
+  return new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob(
+      (blob) => (blob ? resolve(blob) : reject(new Error("canvas.toBlob failed"))),
+      "image/png"
+    )
+  })
+}
+
 function drawCanvasGlyph(
   ctx: CanvasRenderingContext2D,
   x: number,

@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react"
 import type { Cabinet, Derived, WallConfig } from "../lib/types"
 import { buildSummary } from "../lib/summary"
-import { downloadBlob, renderPanelMapPng, renderSpecPdf } from "../lib/pdf"
+import { fmt } from "../lib/derive"
+import { downloadBlob, renderPanelMapPng, renderPixelMapPng, renderSpecPdf } from "../lib/pdf"
 import { SaveToAirtable } from "./SaveToAirtable"
 
 export function OutputsPanel({
@@ -19,7 +20,8 @@ export function OutputsPanel({
   onProjectCodeChange?: (code: string) => void
 }) {
   const [copied, setCopied] = useState<"link" | "summary" | null>(null)
-  const [busy, setBusy] = useState<"spec" | "map" | null>(null)
+  const [busy, setBusy] = useState<"spec" | "map" | "pixel" | null>(null)
+  const [pixelErr, setPixelErr] = useState<string | null>(null)
   const [shortUrl, setShortUrl] = useState<string | null>(null)
 
   // Mint a short link for the current config (debounced). The builder's
@@ -86,7 +88,20 @@ export function OutputsPanel({
     setBusy("map")
     try {
       const blob = await renderPanelMapPng(cab, cfg)
-      downloadBlob(blob, fileSafe(`${cfg.project_code || "LED"}_MAP.png`))
+      downloadBlob(blob, fileSafe(`${cfg.project_code || "LED"}_LAYOUT.png`))
+    } finally {
+      setBusy(null)
+    }
+  }
+
+  async function downloadPixelMap() {
+    setBusy("pixel")
+    setPixelErr(null)
+    try {
+      const blob = await renderPixelMapPng(cab, cfg)
+      downloadBlob(blob, fileSafe(`${cfg.project_code || "LED"}_PIXELMAP.png`))
+    } catch (err) {
+      setPixelErr(err instanceof Error ? err.message : "render failed")
     } finally {
       setBusy(null)
     }
@@ -128,6 +143,26 @@ export function OutputsPanel({
           )}
         </div>
 
+        <div>
+          <button
+            type="button"
+            className="cta cta-primary w-full"
+            onClick={downloadPixelMap}
+            disabled={busy !== null}
+            title="1:1 content map — canvas is the wall's exact pixel resolution"
+          >
+            {busy === "pixel" ? "BUILDING /" : "DOWNLOAD PIXEL MAP / PNG / 1:1"}
+          </button>
+          <div className="mono text-[10px] uppercase text-[var(--led-ink-faint)] mt-1.5">
+            {fmt.int(d.pixels_wide)}×{fmt.int(d.pixels_high)} PX / ONE IMAGE PIXEL = ONE LED PIXEL
+          </div>
+          {pixelErr ? (
+            <div className="mono text-[10px] uppercase mt-1.5" style={{ color: "#ff5f5f" }}>
+              PIXEL MAP / {pixelErr}
+            </div>
+          ) : null}
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <button
             type="button"
@@ -142,8 +177,9 @@ export function OutputsPanel({
             className="cta cta-primary"
             onClick={downloadMap}
             disabled={busy !== null}
+            title="Cabinet layout diagram — labelled, for the technical spec set"
           >
-            {busy === "map" ? "BUILDING /" : "DOWNLOAD MAP / PNG"}
+            {busy === "map" ? "BUILDING /" : "DOWNLOAD LAYOUT / PNG"}
           </button>
         </div>
 
