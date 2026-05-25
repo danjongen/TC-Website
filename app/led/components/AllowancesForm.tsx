@@ -37,11 +37,11 @@ export function AllowancesForm({
 
   return (
     <div className="panel p-5">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-4">
         <h2 className="mono text-[12px] tracking-[0.08em] uppercase">
           05 / INSTALLED WEIGHT ALLOWANCES
         </h2>
-        <span className="mono text-[10px] uppercase text-[var(--led-ink-faint)]">
+        <span className="mono text-[10px] uppercase text-[var(--led-ink-faint)] shrink-0">
           % OF BASE WEIGHT
         </span>
       </div>
@@ -49,7 +49,7 @@ export function AllowancesForm({
       {/* Preset selector */}
       <div className="mb-4">
         <div className="label mb-1.5">PRESET</div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {(
             [
               ["standard", "INDUSTRY STANDARD"],
