@@ -10,7 +10,7 @@
 
 import type { Cabinet, Derived, WallConfig } from "./types"
 import { fmt, padWidth } from "./derive"
-import { COLORS } from "./brand"
+import { COLORS, DISCLAIMER } from "./brand"
 
 const PT_PER_IN = 72
 
@@ -213,6 +213,12 @@ export async function renderSpecPdf(
     drawKV(doc, M, wtY3, "NOTES", cfg.notes, W - 2 * M)
   }
 
+  // Disclaimer (accent, above footer divider)
+  setText(doc, COLORS.accent)
+  doc.setFont("SpaceMono", "normal")
+  doc.setFontSize(6.5)
+  doc.text(DISCLAIMER, W / 2, H - M - 30, { align: "center" })
+
   // Footer
   setStroke(doc, COLORS.line)
   doc.line(M, H - M - 22, W - M, H - M - 22)
@@ -332,7 +338,7 @@ export async function renderPanelMapPng(
   let cellH = 100
   let cellW = cellH * tileAspect
   const padHeader = 80
-  const padFooter = 60
+  const padFooter = 96 // room for footer info row + disclaimer row
   const padSide = 60
   const projectedW = cols * cellW + padSide * 2
   const projectedH = rows * cellH + padHeader + padFooter
@@ -444,24 +450,30 @@ export async function renderPanelMapPng(
     ctx.restore()
   }
 
-  // Footer
+  // Footer — info row (upper) + disclaimer row (lower).
   ctx.textBaseline = "alphabetic"
   ctx.textAlign = "left"
   ctx.fillStyle = DIM
-  ctx.font = `400 ${Math.max(11, Math.floor(padF * 0.32))}px "Space Mono", ui-monospace, monospace`
-  const footerY = H - Math.floor(padF * 0.4)
-  ctx.fillText(`SIGNAL ENTRY / ${signalEntryLabel(cfg.signal_entry)}`, padS, footerY)
+  ctx.font = `400 ${Math.max(11, Math.floor(padF * 0.18))}px "Space Mono", ui-monospace, monospace`
+  const infoY = H - padF + Math.floor(padF * 0.42)
+  ctx.fillText(`SIGNAL ENTRY / ${signalEntryLabel(cfg.signal_entry)}`, padS, infoY)
   ctx.fillText(
     `TILE / ${cab.tile_width_mm}×${cab.tile_height_mm} mm   PITCH / ${cab.pixel_pitch_mm.toFixed(2)} mm`,
     padS + Math.floor(W * 0.32),
-    footerY
+    infoY
   )
   ctx.textAlign = "right"
   ctx.fillText(
     `${cols * rows} CABS / NUMBERED L→R, T→B / CALC 26-TCX-01-LEDTOOL`,
     W - padS,
-    footerY
+    infoY
   )
+
+  // Disclaimer band along the bottom edge, accent.
+  ctx.textAlign = "center"
+  ctx.fillStyle = ACCENT
+  ctx.font = `700 ${Math.max(10, Math.floor(padF * 0.16))}px "Space Mono", ui-monospace, monospace`
+  ctx.fillText(DISCLAIMER, W / 2, H - Math.floor(padF * 0.18))
 
   return new Promise<Blob>((resolve, reject) => {
     canvas.toBlob(
