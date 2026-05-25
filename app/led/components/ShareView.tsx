@@ -8,7 +8,7 @@ import { SpecSheet } from "./SpecSheet"
 import { derive } from "../lib/derive"
 import { decodeConfig } from "../lib/encode"
 import { buildSummary } from "../lib/summary"
-import { downloadBlob, renderPanelMapPng, renderPixelMapPng, renderSpecPdf } from "../lib/pdf"
+import { downloadBlob, renderPixelMapPng, renderSpecPdf } from "../lib/pdf"
 import type { Cabinet } from "../lib/types"
 
 /**
@@ -35,7 +35,7 @@ export function ShareView({
   )
   const d = useMemo(() => (cfg ? derive(cab, cfg) : null), [cab, cfg])
 
-  const [busy, setBusy] = useState<"spec" | "map" | "pixel" | null>(null)
+  const [busy, setBusy] = useState<"spec" | "pixel" | null>(null)
   const [pixelErr, setPixelErr] = useState<string | null>(null)
   const [copied, setCopied] = useState<"link" | "summary" | null>(null)
 
@@ -62,17 +62,6 @@ export function ShareView({
     try {
       const blob = await renderSpecPdf(cab, cfg, d)
       downloadBlob(blob, fileSafe(`${cfg.project_code || "LED"}_SPEC.pdf`))
-    } finally {
-      setBusy(null)
-    }
-  }
-
-  async function downloadMap() {
-    if (!cfg) return
-    setBusy("map")
-    try {
-      const blob = await renderPanelMapPng(cab, cfg)
-      downloadBlob(blob, fileSafe(`${cfg.project_code || "LED"}_LAYOUT.png`))
     } finally {
       setBusy(null)
     }
@@ -136,17 +125,9 @@ export function ShareView({
               className="cta cta-primary"
               onClick={downloadSpec}
               disabled={busy !== null}
+              title="2-page PDF — spec sheet + cabinet layout map"
             >
               {busy === "spec" ? "BUILDING /" : "DOWNLOAD SPEC / PDF"}
-            </button>
-            <button
-              type="button"
-              className="cta cta-primary"
-              onClick={downloadMap}
-              disabled={busy !== null}
-              title="Cabinet layout diagram for the spec set"
-            >
-              {busy === "map" ? "BUILDING /" : "LAYOUT / PNG"}
             </button>
             <button type="button" className="cta" onClick={() => copy(summary, "summary")}>
               {copied === "summary" ? "COPIED" : "COPY SUMMARY"}

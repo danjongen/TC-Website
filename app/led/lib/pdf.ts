@@ -239,7 +239,85 @@ export async function renderSpecPdf(
     { align: "right" }
   )
 
+  // Page 2 — cabinet layout map, so the spec + layout ship as one document.
+  await addLayoutPage(doc, cab, cfg, W, H, M)
+
   return doc.output("blob") as Blob
+}
+
+/**
+ * Second page of the spec PDF: the cabinet layout diagram, fit to the
+ * same Letter-landscape page on the dark ground with a mirrored header /
+ * footer. The layout is rendered once (shared canvas) and embedded.
+ */
+async function addLayoutPage(
+  doc: any,
+  cab: Cabinet,
+  cfg: WallConfig,
+  W: number,
+  H: number,
+  M: number
+) {
+  doc.addPage([W, H], "l")
+
+  setFill(doc, COLORS.bg)
+  doc.rect(0, 0, W, H, "F")
+
+  // Header strip (mirrors page 1)
+  setStroke(doc, COLORS.line)
+  doc.setLineWidth(0.5)
+  doc.line(M, M + 22, W - M, M + 22)
+  drawGlyph(doc, M, M + 4, 12, COLORS.ink)
+  setText(doc, COLORS.ink)
+  doc.setFont("SpaceMono", "bold")
+  doc.setFontSize(8)
+  doc.text("TECHNICALLY CREATIVE / DETROIT", M + 18, M + 14)
+  setText(doc, COLORS.inkDim)
+  doc.setFont("SpaceMono", "normal")
+  doc.setFontSize(8)
+  doc.text(
+    `LAYOUT MAP   ${cfg.project_code || "—"}   ${cab.manufacturer} ${cab.model}`,
+    W - M,
+    M + 14,
+    { align: "right" }
+  )
+
+  // Layout image, fit within the page below header / above footer.
+  const canvas = await renderPanelMapCanvas(cab, cfg)
+  const dataUrl = canvas.toDataURL("image/png")
+  const topY = M + 34
+  const botY = H - M - 22
+  const boxW = W - 2 * M
+  const boxH = botY - topY
+  const ar = canvas.width / canvas.height
+  let drawW = boxW
+  let drawH = drawW / ar
+  if (drawH > boxH) {
+    drawH = boxH
+    drawW = drawH * ar
+  }
+  const ix = M + (boxW - drawW) / 2
+  const iy = topY + (boxH - drawH) / 2
+  doc.addImage(dataUrl, "PNG", ix, iy, drawW, drawH)
+
+  // Footer (mirrors page 1)
+  setStroke(doc, COLORS.line)
+  doc.line(M, H - M - 22, W - M, H - M - 22)
+  setText(doc, COLORS.inkFaint)
+  doc.setFont("SpaceMono", "normal")
+  doc.setFontSize(7)
+  doc.text(
+    `LAYOUT / ${cfg.tiles_wide}x${cfg.tiles_high} CABINETS / NUMBERED L-R T-B`,
+    M,
+    H - M - 8
+  )
+  doc.text("PAGE 2 / 2", W / 2, H - M - 8, { align: "center" })
+  doc.text(
+    `© ${new Date().getFullYear()} TECHNICALLY CREATIVE / DETROIT   CALC / 26-TCX-01-LEDTOOL`,
+    W - M,
+    H - M - 8,
+    { align: "right" }
+  )
 }
 
 function drawKV(doc: any, x: number, y: number, label: string, value: string, maxW: number) {
@@ -322,10 +400,10 @@ function drawGlyph(doc: any, x: number, y: number, size: number, hex: string) {
  * accent corners, TC glyph watermark. White-on-light so the
  * artifact imports cleanly over any underlying content.
  */
-export async function renderPanelMapPng(
+async function renderPanelMapCanvas(
   cab: Cabinet,
   cfg: WallConfig
-): Promise<Blob> {
+): Promise<HTMLCanvasElement> {
   await ensureCanvasFonts()
 
   const cols = Math.max(1, cfg.tiles_wide)
@@ -477,6 +555,18 @@ export async function renderPanelMapPng(
   ctx.font = `700 ${Math.max(10, Math.floor(padF * 0.16))}px "Space Mono", ui-monospace, monospace`
   ctx.fillText(DISCLAIMER, W / 2, H - Math.floor(padF * 0.18))
 
+  return canvas
+}
+
+export async function renderPanelMapPng(
+  cab: Cabinet,
+  cfg: WallConfig
+): Promise<Blob> {
+  const canvas = await renderPanelMapCanvas(cab, cfg)
+  return canvasToPng(canvas)
+}
+
+function canvasToPng(canvas: HTMLCanvasElement): Promise<Blob> {
   return new Promise<Blob>((resolve, reject) => {
     canvas.toBlob(
       (blob) => (blob ? resolve(blob) : reject(new Error("canvas.toBlob failed"))),
@@ -492,7 +582,7 @@ export async function renderPanelMapPng(
  * (cols·tile_width_px × rows·tile_height_px), full-bleed: each cabinet
  * fills its real pixel footprint as a high-contrast checker cell with its
  * number. Dropped on the wall as full-screen content, one image pixel maps
- * to one LED pixel. TC-branded near-black / accent-green checker.
+ * to one LED pixel. TC-branded near-black / softened-green checker.
  */
 export async function renderPixelMapPng(
   cab: Cabinet,
@@ -522,7 +612,10 @@ export async function renderPixelMapPng(
   const ctx = canvas.getContext("2d")!
 
   const DARK = "#0c0c0c"
-  const GREEN = COLORS.accent
+  // Softened, lower-luma green — not the raw brand accent (#00e58a) — so the
+  // full-screen map doesn't bloom on camera or fatigue the eye during
+  // commissioning. The site-wide brand accent is unchanged.
+  const GREEN = "#16a86a"
   const NUM_ON_DARK = "#ffffff"
   const NUM_ON_GREEN = "#0a0a0a"
 
