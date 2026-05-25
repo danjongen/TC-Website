@@ -1,6 +1,7 @@
 "use client"
 import { Suspense, useEffect, useMemo, useState } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { AllowancesForm } from "./components/AllowancesForm"
 import { CabinetPicker } from "./components/CabinetPicker"
 import { FidoIngest } from "./components/FidoIngest"
 import { Footer } from "./components/Footer"
@@ -39,6 +40,12 @@ const DEFAULT_CFG: WallConfig = {
   power_service: "208V-3PH",
   signal_entry: "TL",
   audience_position: "bottom",
+  allowance_preset: "standard",
+  cabling_pct: 3,
+  rigging_pct: 12,
+  top_rigging_pct: 5,
+  wind_bracing: false,
+  wind_bracing_pct: 10,
   processor_override: "",
   notes: "",
 }
@@ -100,15 +107,19 @@ function Builder() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header projectCode={cfg.project_code} rev={cfg.rev} issuedDate={cfg.issued_date} />
+      <div className="led-print-hide">
+        <Header projectCode={cfg.project_code} rev={cfg.rev} issuedDate={cfg.issued_date} />
+      </div>
 
       <main className="flex-1 px-4 md:px-8 py-6 md:py-8">
         <div className="max-w-[1480px] mx-auto">
-          <PageTitle />
+          <div className="led-print-hide">
+            <PageTitle />
+          </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-6">
-            {/* LEFT / FORMS */}
-            <div className="space-y-5">
+            {/* LEFT / FORMS — hidden in print */}
+            <div className="space-y-5 led-print-hide">
               <FidoIngest
                 onIngest={(r) =>
                   update({
@@ -125,6 +136,7 @@ function Builder() {
                 onChange={(id) => update({ cabinet_id: id })}
               />
               <WallConfigForm cfg={cfg} onChange={update} />
+              <AllowancesForm cfg={cfg} d={d} onChange={update} />
               <OutputsPanel
                 cab={cab}
                 cfg={cfg}
@@ -134,16 +146,20 @@ function Builder() {
               />
             </div>
 
-            {/* RIGHT / PREVIEW */}
+            {/* RIGHT / PREVIEW — only the spec sheet prints */}
             <div className="space-y-5 xl:sticky xl:top-4 xl:self-start">
               <SpecSheet cab={cab} cfg={cfg} d={d} />
-              <PanelMap cab={cab} cfg={cfg} />
+              <div className="led-print-hide">
+                <PanelMap cab={cab} cfg={cfg} />
+              </div>
             </div>
           </div>
         </div>
       </main>
 
-      <Footer cabinetLabel={`${cab.manufacturer} ${cab.model}`} processorLabel={d.processor_label} />
+      <div className="led-print-hide">
+        <Footer cabinetLabel={`${cab.manufacturer} ${cab.model}`} processorLabel={d.processor_label} />
+      </div>
     </div>
   )
 }

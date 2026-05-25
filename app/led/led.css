@@ -1,18 +1,25 @@
-/* TC LED tool / Section /08 brand tokens / scoped to .led-app */
+/* TC LED tool / brand tokens / scoped to .led-app */
 
 .led-app {
   --led-bg: #0a0a0a;
   --led-bg-1: #111111;
   --led-bg-2: #161616;
   --led-line: #2a2a2a;
-  --led-ink: #f4f4f4;
-  --led-ink-dim: #9a9a9a;
-  --led-ink-faint: #5a5a5a;
-  --led-accent: #00d26a;
+  --led-ink: #ffffff;
+  --led-ink-dim: #888888;
+  --led-ink-faint: #444444;
+  --led-accent: #00e58a;
+  --led-accent-dim: #00a864;
+  --led-error: #ff4444;
   --led-tile-a: #1a1a1a;
   --led-tile-b: #242424;
 
-  background: var(--led-bg);
+  background-color: var(--led-bg);
+  /* Faint structural document grid — should read as grid, not decoration. */
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 64px 64px;
   color: var(--led-ink);
   font-family: var(--font-led-body, var(--font-sans));
   -webkit-font-smoothing: antialiased;
@@ -21,6 +28,7 @@
 
 .led-app .mono {
   font-family: var(--font-led-mono);
+  font-feature-settings: "tnum" 1;
 }
 
 .led-app .label {
@@ -50,14 +58,20 @@
   padding: 0.5rem 0.625rem;
   width: 100%;
   outline: none;
-  border-radius: 0;
+  border-radius: 2px;
   transition: border-color 120ms ease;
 }
 
+/* Focus is white, not accent — accent is reserved for selection + signal. */
 .led-app input:focus,
 .led-app select:focus,
 .led-app textarea:focus {
-  border-color: var(--led-accent);
+  border-color: var(--led-ink);
+}
+
+/* Invalid styled inputs (e.g. ISO date) flag in red once dirty. */
+.led-app input[aria-invalid="true"] {
+  border-color: var(--led-error);
 }
 
 .led-app input::placeholder,
@@ -77,39 +91,66 @@
 .led-app .panel {
   background: var(--led-bg-1);
   border: 1px solid var(--led-line);
+  border-radius: 2px;
 }
 
 .led-app .hairline {
   border-color: var(--led-line);
 }
 
-.led-app .cta {
+/* All CTAs are equal-weight white outline; fill white on hover. No green. */
+.led-app .cta,
+.led-app .cta-primary {
   font-family: var(--font-led-mono);
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   padding: 0.625rem 0.875rem;
-  border: 1px solid var(--led-line);
+  border: 1px solid var(--led-ink);
   color: var(--led-ink);
   background: transparent;
   cursor: pointer;
-  transition: border-color 120ms ease, color 120ms ease;
+  border-radius: 2px;
+  transition: background-color 100ms linear, color 100ms linear;
 }
 
-.led-app .cta:hover {
-  border-color: var(--led-accent);
-  color: var(--led-accent);
-}
-
-.led-app .cta-primary {
-  border-color: var(--led-accent);
-  color: var(--led-accent);
-}
-
+.led-app .cta:hover,
 .led-app .cta-primary:hover {
-  background: var(--led-accent);
+  background: var(--led-ink);
   color: var(--led-bg);
+}
+
+.led-app .cta:active,
+.led-app .cta-primary:active {
+  background: var(--led-ink-dim);
+}
+
+.led-app .cta:disabled,
+.led-app .cta-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.led-app .cta:disabled:hover,
+.led-app .cta-primary:disabled:hover {
+  background: transparent;
+  color: var(--led-ink);
+}
+
+/* Value-change flash — readout briefly inverts to white, then settles. */
+.led-app .value-flash {
+  animation: led-flash 180ms linear;
+}
+@keyframes led-flash {
+  0% {
+    background-color: var(--led-ink);
+    color: var(--led-bg);
+  }
+  100% {
+    background-color: transparent;
+    color: inherit;
+  }
 }
 
 .led-app .scroll-fade::-webkit-scrollbar {
@@ -121,4 +162,31 @@
 }
 .led-app .scroll-fade::-webkit-scrollbar-track {
   background: transparent;
+}
+
+/* Print — strip inputs/chrome, leave a black-on-white spec sheet. */
+@media print {
+  .led-app {
+    background: #ffffff !important;
+    background-image: none !important;
+    color: #000000 !important;
+  }
+  .led-print-hide {
+    display: none !important;
+  }
+  .led-app .panel {
+    background: #ffffff !important;
+    border-color: #000000 !important;
+  }
+  .led-app .label {
+    color: #555555 !important;
+  }
+  .led-app .accent,
+  .led-app .mono,
+  .led-app .data {
+    color: #000000 !important;
+  }
+  .led-app .hairline {
+    border-color: #000000 !important;
+  }
 }

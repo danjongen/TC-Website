@@ -1,6 +1,6 @@
 "use client"
 import type { WallConfig } from "../lib/types"
-import { Field, TextInput } from "./Field"
+import { DateInput, Field, TextInput } from "./Field"
 
 export function ProjectForm({
   cfg,
@@ -46,11 +46,10 @@ export function ProjectForm({
             placeholder="Optional"
           />
         </Field>
-        <Field label="SHOW DATE">
-          <TextInput
-            type="date"
+        <Field label="SHOW DATE" hint="YYYY-MM-DD">
+          <DateInput
             value={cfg.show_date ?? ""}
-            onChange={(e) => onChange({ show_date: e.target.value })}
+            onChange={(v) => onChange({ show_date: v })}
           />
         </Field>
         <Field label="LEAD">
@@ -60,11 +59,10 @@ export function ProjectForm({
             placeholder="D. Jongen"
           />
         </Field>
-        <Field label="ISSUED DATE">
-          <TextInput
-            type="date"
+        <Field label="ISSUED DATE" hint="YYYY-MM-DD">
+          <DateInput
             value={cfg.issued_date}
-            onChange={(e) => onChange({ issued_date: e.target.value })}
+            onChange={(v) => onChange({ issued_date: v })}
           />
         </Field>
         <Field label="REV">

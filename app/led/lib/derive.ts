@@ -55,6 +55,27 @@ export function derive(cab: Cabinet, cfg: WallConfig): Derived {
   const area_m2 = wall_width_m * wall_height_m
   const weight_per_m2_kg = area_m2 > 0 ? total_weight_kg / area_m2 : 0
 
+  // Installed weight allowances (% of base wall weight). Wind bracing
+  // only counts when explicitly enabled.
+  const cabling_pct = Math.max(0, cfg.cabling_pct ?? 3)
+  const rigging_pct = Math.max(0, cfg.rigging_pct ?? 12)
+  const top_rigging_pct = Math.max(0, cfg.top_rigging_pct ?? 5)
+  const wind_on = cfg.wind_bracing === true
+  const wind_pct = wind_on ? Math.max(0, cfg.wind_bracing_pct ?? 10) : 0
+
+  const cabling_weight_kg = (total_weight_kg * cabling_pct) / 100
+  const rigging_weight_kg = (total_weight_kg * rigging_pct) / 100
+  const top_rigging_weight_kg = (total_weight_kg * top_rigging_pct) / 100
+  const wind_bracing_weight_kg = (total_weight_kg * wind_pct) / 100
+  const installed_weight_kg =
+    total_weight_kg +
+    cabling_weight_kg +
+    rigging_weight_kg +
+    top_rigging_weight_kg +
+    wind_bracing_weight_kg
+  const installed_weight_lb = installed_weight_kg / KG_PER_LB
+  const total_allowance_pct = cabling_pct + rigging_pct + top_rigging_pct + wind_pct
+
   const max_power_kw = (tiles_total * cab.max_power_w) / 1000
   const avg_power_kw = (tiles_total * cab.avg_power_w) / 1000
 
@@ -97,6 +118,13 @@ export function derive(cab: Cabinet, cfg: WallConfig): Derived {
     total_weight_lb,
     weight_per_row_kg,
     weight_per_m2_kg,
+    cabling_weight_kg,
+    rigging_weight_kg,
+    top_rigging_weight_kg,
+    wind_bracing_weight_kg,
+    installed_weight_kg,
+    installed_weight_lb,
+    total_allowance_pct,
     max_power_kw,
     avg_power_kw,
     max_apparent_kva,

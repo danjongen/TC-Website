@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import type { Cabinet, Derived, WallConfig } from "../lib/types"
 import { buildSummary } from "../lib/summary"
 import { downloadBlob, renderPanelMapPng, renderSpecPdf } from "../lib/pdf"
@@ -20,7 +20,47 @@ export function OutputsPanel({
 }) {
   const [copied, setCopied] = useState<"link" | "summary" | null>(null)
   const [busy, setBusy] = useState<"spec" | "map" | null>(null)
-  const summary = buildSummary(cab, cfg, d, shareUrl)
+  const [shortUrl, setShortUrl] = useState<string | null>(null)
+
+  // Mint a short link for the current config (debounced). The builder's
+  // own URL stays long for refresh-safe editing; only the *shared* link
+  // is shortened. Falls back to the long URL if Redis is unavailable.
+  useEffect(() => {
+    const token = shareUrl.split("/led/share/")[1]
+    if (!token) {
+      setShortUrl(null)
+      return
+    }
+    let cancelled = false
+    const t = setTimeout(async () => {
+      try {
+        const res = await fetch("/led/api/shorten", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token }),
+        })
+        const data = (await res.json()) as { id: string | null }
+        if (cancelled) return
+        if (data.id && typeof window !== "undefined") {
+          setShortUrl(`${window.location.origin}/led/s/${data.id}`)
+        } else {
+          setShortUrl(null)
+        }
+      } catch {
+        if (!cancelled) setShortUrl(null)
+      }
+    }, 900)
+    return () => {
+      cancelled = true
+      clearTimeout(t)
+    }
+  }, [shareUrl])
+
+  const displayUrl = shortUrl || shareUrl
+  const summary = buildSummary(cab, cfg, d, displayUrl)
+  // Share link only meaningful once the project is identified + sized.
+  const populated =
+    cfg.project_code.trim().length > 0 && cfg.tiles_wide > 0 && cfg.tiles_high > 0
 
   async function copy(text: string, key: "link" | "summary") {
     try {
@@ -63,13 +103,29 @@ export function OutputsPanel({
 
       <div className="space-y-4">
         <div>
-          <div className="label mb-1.5">SHARE LINK</div>
-          <div className="flex gap-2">
-            <input value={shareUrl} readOnly onFocus={(e) => e.currentTarget.select()} />
-            <button type="button" className="cta cta-primary" onClick={() => copy(shareUrl, "link")}>
-              {copied === "link" ? "COPIED" : "COPY"}
-            </button>
+          <div className="flex items-center justify-between mb-1.5">
+            <span className="label">SHARE LINK</span>
+            {populated ? (
+              <span className="mono text-[10px] uppercase text-[var(--led-ink-faint)]">
+                {shortUrl ? "SHORT" : "FULL"}
+              </span>
+            ) : null}
           </div>
+          {populated ? (
+            <div className="flex gap-2">
+              <input value={displayUrl} readOnly onFocus={(e) => e.currentTarget.select()} />
+              <button type="button" className="cta" onClick={() => copy(displayUrl, "link")}>
+                {copied === "link" ? "COPIED" : "COPY LINK"}
+              </button>
+            </div>
+          ) : (
+            <div
+              className="mono text-[11px] uppercase text-[var(--led-ink-faint)] px-3 py-2.5 border hairline"
+              style={{ background: "var(--led-bg-2)" }}
+            >
+              ENTER PROJECT CODE TO GENERATE SHARE LINK
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -95,7 +151,7 @@ export function OutputsPanel({
           <div className="flex items-center justify-between mb-1.5">
             <span className="label">SUMMARY TEXT</span>
             <button type="button" className="cta" onClick={() => copy(summary, "summary")}>
-              {copied === "summary" ? "COPIED" : "COPY"}
+              {copied === "summary" ? "COPIED" : "COPY TEXT"}
             </button>
           </div>
           <pre
