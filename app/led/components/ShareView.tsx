@@ -5,11 +5,12 @@ import { Footer } from "./Footer"
 import { Glyph } from "./Glyph"
 import { PanelMap } from "./PanelMap"
 import { SpecSheet } from "./SpecSheet"
+import { UnitsToggle } from "./UnitsToggle"
 import { derive } from "../lib/derive"
 import { decodeConfig } from "../lib/encode"
 import { buildSummary } from "../lib/summary"
 import { downloadBlob, renderPixelMapPng, renderSpecPdf } from "../lib/pdf"
-import type { Cabinet } from "../lib/types"
+import type { Cabinet, Units } from "../lib/types"
 
 /**
  * View-only spec page body. Used by both /led/share/[config] (long
@@ -38,13 +39,15 @@ export function ShareView({
   const [busy, setBusy] = useState<"spec" | "pixel" | null>(null)
   const [pixelErr, setPixelErr] = useState<string | null>(null)
   const [copied, setCopied] = useState<"link" | "summary" | null>(null)
+  const [units, setUnits] = useState<Units>(cfg?.units ?? "metric")
 
   if (!cfg || !d) {
     return <InvalidShare />
   }
 
+  const cfgU = { ...cfg, units }
   const shareUrl = typeof window !== "undefined" ? window.location.href : ""
-  const summary = buildSummary(cab, cfg, d, shareUrl)
+  const summary = buildSummary(cab, cfgU, d, shareUrl)
 
   async function copy(text: string, key: "link" | "summary") {
     try {
@@ -60,7 +63,7 @@ export function ShareView({
     if (!cfg || !d) return
     setBusy("spec")
     try {
-      const blob = await renderSpecPdf(cab, cfg, d)
+      const blob = await renderSpecPdf(cab, { ...cfg, units }, d)
       downloadBlob(blob, fileSafe(`${cfg.project_code || "LED"}_SPEC.pdf`))
     } finally {
       setBusy(null)
@@ -142,7 +145,10 @@ export function ShareView({
             </div>
           ) : null}
 
-          <SpecSheet cab={cab} cfg={cfg} d={d} />
+          <div className="flex justify-end">
+            <UnitsToggle units={units} onChange={setUnits} />
+          </div>
+          <SpecSheet cab={cab} cfg={cfgU} d={d} />
           <PanelMap cab={cab} cfg={cfg} />
 
           <div className="panel p-5">

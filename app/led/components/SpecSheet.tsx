@@ -1,5 +1,6 @@
 import type { Cabinet, Derived, WallConfig } from "../lib/types"
 import { fmt } from "../lib/derive"
+import { arealLabel, fmtAreal, fmtViewDist, fmtWallWH, fmtWallWHAlt, fmtWeight, unitsOf } from "../lib/units"
 import { DISCLAIMER } from "../lib/brand"
 import { Glyph } from "./Glyph"
 import { FlashValue } from "./FlashValue"
@@ -18,6 +19,7 @@ export function SpecSheet({
   cfg: WallConfig
   d: Derived
 }) {
+  const u = unitsOf(cfg)
   return (
     <article className="panel" id="spec-sheet">
       {/* HEADER STRIP */}
@@ -51,14 +53,14 @@ export function SpecSheet({
       <div className="grid grid-cols-2 md:grid-cols-4 border-b hairline">
         <Hero label="TILES" big={`${cfg.tiles_wide}×${cfg.tiles_high}`} sub={`${fmt.int(d.tiles_total)} TOTAL`} />
         <Hero label="PIXELS" big={`${fmt.int(d.pixels_wide)}×${fmt.int(d.pixels_high)}`} sub={`${fmt.int(d.pixels_total)} TOTAL`} />
-        <Hero label="WALL" big={`${d.wall_width_m.toFixed(2)}×${d.wall_height_m.toFixed(2)} m`} sub={`${d.wall_width_imperial} × ${d.wall_height_imperial}`} />
+        <Hero label="WALL" big={fmtWallWH(d, u)} sub={fmtWallWHAlt(d, u)} />
         <Hero label="POWER" big={`${fmt.num(d.amps_max_per_phase, 0)} A`} sub={`MAX / ${fmt.num(d.amps_avg_per_phase, 0)} A AVG / ${cfg.power_service}`} />
       </div>
 
       {/* A / OPTICAL */}
       <Band code="A" name="OPTICAL">
         <KV label="ASPECT" value={d.aspect_ratio} />
-        <KV label="VIEW DIST" value={`${d.optimal_viewing_distance_m.toFixed(1)} m / ${d.optimal_viewing_distance_ft} ft`} />
+        <KV label="VIEW DIST" value={fmtViewDist(d, u)} />
         <KV label="BRIGHTNESS" value={`${fmt.int(cab.brightness_nits)} nits`} />
         <KV label="REFRESH" value={`${fmt.int(cab.refresh_hz)} Hz`} />
         <KV label="BIT DEPTH" value={`${cab.bit_depth}-bit`} />
@@ -77,10 +79,10 @@ export function SpecSheet({
 
       {/* C / PHYSICAL */}
       <Band code="C" name="PHYSICAL">
-        <KV label="BASE WT" value={`${fmt.num(d.total_weight_kg, 0)} kg / ${fmt.int(d.total_weight_lb)} lb`} wide />
-        <KV label="WT / ROW" value={`${fmt.num(d.weight_per_row_kg, 0)} kg`} />
-        <KV label="WT / m²" value={`${fmt.num(d.weight_per_m2_kg, 0)} kg`} />
-        <KV label={`INSTALLED WT / +${fmt.num(d.total_allowance_pct, 0)}%`} value={`${fmt.num(d.installed_weight_kg, 0)} kg / ${fmt.int(d.installed_weight_lb)} lb`} wide />
+        <KV label="BASE WT" value={fmtWeight(d.total_weight_kg, u)} wide />
+        <KV label="WT / ROW" value={fmtWeight(d.weight_per_row_kg, u)} />
+        <KV label={arealLabel(u)} value={fmtAreal(d.weight_per_m2_kg, u)} />
+        <KV label={`INSTALLED WT / +${fmt.num(d.total_allowance_pct, 0)}%`} value={fmtWeight(d.installed_weight_kg, u)} wide />
       </Band>
 
       {/* D / SIGNAL */}

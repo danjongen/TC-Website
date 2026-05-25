@@ -37,6 +37,7 @@ export type SignalEntry = "TL" | "TR" | "BL" | "BR"
 export type AudiencePosition = "bottom" | "top" | "left" | "right"
 export type Shape = "rectangle"
 export type AllowancePreset = "standard" | "conservative" | "custom"
+export type Units = "metric" | "imperial"
 
 export type WallConfig = {
   project_code: string
@@ -67,6 +68,9 @@ export type WallConfig = {
 
   processor_override?: string
   notes?: string
+
+  // Display unit system (optional — old share links default to metric).
+  units?: Units
 }
 
 export type Derived = {

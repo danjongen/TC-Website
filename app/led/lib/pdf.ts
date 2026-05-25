@@ -10,6 +10,7 @@
 
 import type { Cabinet, Derived, WallConfig } from "./types"
 import { fmt, padWidth } from "./derive"
+import { arealLabel, fmtAreal, fmtViewDist, fmtWallWH, fmtWallWHAlt, fmtWeight, unitsOf } from "./units"
 import { COLORS, DISCLAIMER } from "./brand"
 
 const PT_PER_IN = 72
@@ -120,6 +121,7 @@ export async function renderSpecPdf(
   const doc = await makeDoc("l", 11, 8.5)
   const W = 11 * PT_PER_IN
   const H = 8.5 * PT_PER_IN
+  const u = unitsOf(cfg)
 
   await registerSpaceMono(doc)
 
@@ -169,7 +171,7 @@ export async function renderSpecPdf(
   const heroW = (W - 2 * M) / 4
   drawHero(doc, M + 0 * heroW, heroY, heroW, heroH, "TILES", `${cfg.tiles_wide}x${cfg.tiles_high}`, `${fmt.int(d.tiles_total)} TOTAL`)
   drawHero(doc, M + 1 * heroW, heroY, heroW, heroH, "PIXELS", `${fmt.int(d.pixels_wide)}x${fmt.int(d.pixels_high)}`, `${fmt.int(d.pixels_total)} TOTAL`)
-  drawHero(doc, M + 2 * heroW, heroY, heroW, heroH, "WALL", `${d.wall_width_m.toFixed(2)}x${d.wall_height_m.toFixed(2)} m`, `${d.wall_width_imperial} x ${d.wall_height_imperial}`)
+  drawHero(doc, M + 2 * heroW, heroY, heroW, heroH, "WALL", fmtWallWH(d, u, "x"), fmtWallWHAlt(d, u, "x"))
   drawHero(doc, M + 3 * heroW, heroY, heroW, heroH, "POWER", `${fmt.num(d.amps_max_per_phase, 0)} A`, `MAX / ${fmt.num(d.amps_avg_per_phase, 0)} A AVG / ${cfg.power_service}`)
   setStroke(doc, COLORS.line)
   doc.line(M, heroY + heroH + 4, W - M, heroY + heroH + 4)
@@ -177,7 +179,7 @@ export async function renderSpecPdf(
   // Context grid (optical)
   const ctxY = heroY + heroH + 22
   drawKV(doc, M, ctxY, "ASPECT", d.aspect_ratio, 120)
-  drawKV(doc, M + 130, ctxY, "VIEW DIST", `${d.optimal_viewing_distance_m.toFixed(1)} m / ${d.optimal_viewing_distance_ft} ft`, 180)
+  drawKV(doc, M + 130, ctxY, "VIEW DIST", fmtViewDist(d, u), 180)
   drawKV(doc, M + 320, ctxY, "BRIGHTNESS", `${fmt.int(cab.brightness_nits)} nits`, 130)
   drawKV(doc, M + 460, ctxY, "REFRESH", `${fmt.int(cab.refresh_hz)} Hz`, 100)
   drawKV(doc, M + 570, ctxY, "BIT DEPTH", `${cab.bit_depth}-bit`, 90)
@@ -196,10 +198,10 @@ export async function renderSpecPdf(
 
   // Weight + signal + logistics
   const wtY = ctxY2 + 36
-  drawKV(doc, M, wtY, "BASE WT", `${fmt.num(d.total_weight_kg, 0)} kg / ${fmt.int(d.total_weight_lb)} lb`, 170)
-  drawKV(doc, M + 180, wtY, `INSTALLED WT / +${fmt.num(d.total_allowance_pct, 0)}%`, `${fmt.num(d.installed_weight_kg, 0)} kg / ${fmt.int(d.installed_weight_lb)} lb`, 180)
-  drawKV(doc, M + 370, wtY, "WT / ROW", `${fmt.num(d.weight_per_row_kg, 0)} kg`, 80)
-  drawKV(doc, M + 460, wtY, "WT / m²", `${fmt.num(d.weight_per_m2_kg, 0)} kg`, 80)
+  drawKV(doc, M, wtY, "BASE WT", fmtWeight(d.total_weight_kg, u), 170)
+  drawKV(doc, M + 180, wtY, `INSTALLED WT / +${fmt.num(d.total_allowance_pct, 0)}%`, fmtWeight(d.installed_weight_kg, u), 180)
+  drawKV(doc, M + 370, wtY, "WT / ROW", fmtWeight(d.weight_per_row_kg, u), 80)
+  drawKV(doc, M + 460, wtY, arealLabel(u), fmtAreal(d.weight_per_m2_kg, u), 80)
   drawKV(doc, M + 550, wtY, "PROCESSOR", `${d.processor_count_required} x ${d.processor_label}`, 200)
 
   const wtY2 = wtY + 28
