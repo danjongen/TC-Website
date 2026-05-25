@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import type { Cabinet, Derived, WallConfig } from "../lib/types"
 import { buildSummary } from "../lib/summary"
 import { fmt } from "../lib/derive"
-import { downloadBlob, renderPanelMapPng, renderPixelMapPng, renderSpecPdf } from "../lib/pdf"
+import { downloadBlob, renderPixelMapPng, renderSpecPdf } from "../lib/pdf"
 import { SaveToAirtable } from "./SaveToAirtable"
 
 export function OutputsPanel({
@@ -20,7 +20,7 @@ export function OutputsPanel({
   onProjectCodeChange?: (code: string) => void
 }) {
   const [copied, setCopied] = useState<"link" | "summary" | null>(null)
-  const [busy, setBusy] = useState<"spec" | "map" | "pixel" | null>(null)
+  const [busy, setBusy] = useState<"spec" | "pixel" | null>(null)
   const [pixelErr, setPixelErr] = useState<string | null>(null)
   const [shortUrl, setShortUrl] = useState<string | null>(null)
 
@@ -84,16 +84,6 @@ export function OutputsPanel({
     }
   }
 
-  async function downloadMap() {
-    setBusy("map")
-    try {
-      const blob = await renderPanelMapPng(cab, cfg)
-      downloadBlob(blob, fileSafe(`${cfg.project_code || "LED"}_LAYOUT.png`))
-    } finally {
-      setBusy(null)
-    }
-  }
-
   async function downloadPixelMap() {
     setBusy("pixel")
     setPixelErr(null)
@@ -112,7 +102,7 @@ export function OutputsPanel({
       <div className="flex items-center justify-between mb-4">
         <h2 className="mono text-[12px] tracking-[0.08em] uppercase">04 / OUTPUTS</h2>
         <span className="mono text-[10px] uppercase text-[var(--led-ink-faint)]">
-          SPEC / MAP / SUMMARY / LINK
+          PIXEL / SPEC / SUMMARY / LINK
         </span>
       </div>
 
@@ -163,24 +153,19 @@ export function OutputsPanel({
           ) : null}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
           <button
             type="button"
-            className="cta cta-primary"
+            className="cta cta-primary w-full"
             onClick={downloadSpec}
             disabled={busy !== null}
+            title="2-page PDF — spec sheet + cabinet layout map"
           >
             {busy === "spec" ? "BUILDING /" : "DOWNLOAD SPEC / PDF"}
           </button>
-          <button
-            type="button"
-            className="cta cta-primary"
-            onClick={downloadMap}
-            disabled={busy !== null}
-            title="Cabinet layout diagram — labelled, for the technical spec set"
-          >
-            {busy === "map" ? "BUILDING /" : "DOWNLOAD LAYOUT / PNG"}
-          </button>
+          <div className="mono text-[10px] uppercase text-[var(--led-ink-faint)] mt-1.5">
+            2 PAGES / SPEC SHEET + CABINET LAYOUT
+          </div>
         </div>
 
         <div>
