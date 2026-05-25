@@ -6,8 +6,10 @@
   --led-bg-2: #161616;
   --led-line: #2a2a2a;
   --led-ink: #ffffff;
-  --led-ink-dim: #888888;
-  --led-ink-faint: #444444;
+  /* Dim/faint greys lifted for legibility on the near-black bg — faint now
+     clears WCAG AA (~4.9:1), dim ~8:1, while keeping the ink hierarchy. */
+  --led-ink-dim: #a6a6a6;
+  --led-ink-faint: #808080;
   --led-accent: #00e58a;
   --led-accent-dim: #00a864;
   --led-error: #ff4444;
