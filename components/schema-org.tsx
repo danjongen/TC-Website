@@ -14,11 +14,11 @@ export function SchemaOrgGraph() {
         url: "https://tc.agency/",
         logo: {
           "@type": "ImageObject",
-          url: "https://tc.agency/og-image.jpg",
+          url: "https://tc.agency/og-image.png",
           width: 1200,
           height: 630,
         },
-        image: "https://tc.agency/og-image.jpg",
+        image: "https://tc.agency/og-image.png",
         description:
           "Technically Creative delivers premium production engineering, technical direction, and production management for global brands and artists, led by Executive Technical Producer Daniel Jongen.",
         email: "info@tc.agency",
@@ -163,11 +163,11 @@ export function ProfessionalServiceSchema() {
     url: "https://tc.agency",
     logo: {
       "@type": "ImageObject",
-      url: "https://tc.agency/og-image.jpg",
+      url: "https://tc.agency/og-image.png",
       width: 1200,
       height: 630,
     },
-    image: "https://tc.agency/og-image.jpg",
+    image: "https://tc.agency/og-image.png",
     description:
       "TC is a production engineering firm specializing in automation, network infrastructure, and risk mitigation for non-repeatable, high-stakes projects.",
     slogan: "Systems & Rigor for High-Stakes Events",

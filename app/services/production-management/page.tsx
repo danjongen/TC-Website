@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Production Management — TC Agency",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     title: "Production Management | Live Event Production | TC Agency",
     description:
       "End-to-end production management for live events, tours, and installations. Timeline control, budget tracking, logistics coordination, and stakeholder communication.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
   },
   alternates: {
     canonical: "https://tc.agency/services/production-management",

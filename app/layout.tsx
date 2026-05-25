@@ -84,10 +84,10 @@ export const metadata: Metadata = {
       "Technically Creative delivers high-stakes technical direction, production engineering, and production management for global brands and artists, led by Executive Technical Producer Daniel Jongen.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "TC Agency — Technical Direction and Production Engineering led by Executive Technical Producer Daniel Jongen",
+        alt: "Technically Creative logo",
       },
     ],
   },
@@ -98,7 +98,7 @@ export const metadata: Metadata = {
     title: "Technical Direction and Production Engineering | TC Agency",
     description:
       "Technically Creative delivers high-stakes technical direction, production engineering, and production management for global brands and artists, led by Executive Technical Producer Daniel Jongen.",
-    images: ["/og-image.jpg"],
+    images: [{ url: "/og-image.png", alt: "Technically Creative logo" }],
   },
   robots: {
     index: true,
@@ -112,8 +112,13 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
   category: "technology",
