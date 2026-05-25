@@ -15,7 +15,7 @@ export function Footer({
         className="px-6 py-2 border-b hairline"
         style={{ background: "var(--led-bg-2)" }}
       >
-        <span className="mono text-[10px] tracking-[0.06em] uppercase accent">
+        <span className="mono text-[10px] tracking-[0.06em] uppercase text-[var(--led-ink-faint)]">
           {DISCLAIMER}
         </span>
       </div>

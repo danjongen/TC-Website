@@ -125,7 +125,7 @@ export function SaveToAirtable({
       <div className="flex items-center justify-between">
         <div className="label">SAVE TO AIRTABLE / PROJECT</div>
         {matchedProject ? (
-          <span className="mono text-[10px] uppercase accent">MATCHED</span>
+          <span className="mono text-[10px] uppercase text-[var(--led-ink)]">MATCHED</span>
         ) : projects ? (
           <span className="mono text-[10px] uppercase text-[var(--led-ink-faint)]">
             NO MATCH
@@ -225,9 +225,9 @@ export function SaveToAirtable({
         <div
           className="mono text-[10px] uppercase border px-3 py-2 flex items-center justify-between gap-3"
           style={{
-            borderColor: "rgba(0,210,106,0.4)",
-            color: "var(--led-accent)",
-            background: "rgba(0,210,106,0.05)",
+            borderColor: "var(--led-ink)",
+            color: "var(--led-ink)",
+            background: "transparent",
           }}
         >
           <span>SAVED / DOCUMENT CREATED</span>

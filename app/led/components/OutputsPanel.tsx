@@ -58,6 +58,9 @@ export function OutputsPanel({
 
   const displayUrl = shortUrl || shareUrl
   const summary = buildSummary(cab, cfg, d, displayUrl)
+  // Share link only meaningful once the project is identified + sized.
+  const populated =
+    cfg.project_code.trim().length > 0 && cfg.tiles_wide > 0 && cfg.tiles_high > 0
 
   async function copy(text: string, key: "link" | "summary") {
     try {
@@ -102,16 +105,27 @@ export function OutputsPanel({
         <div>
           <div className="flex items-center justify-between mb-1.5">
             <span className="label">SHARE LINK</span>
-            <span className="mono text-[10px] uppercase text-[var(--led-ink-faint)]">
-              {shortUrl ? "SHORT" : "FULL"}
-            </span>
+            {populated ? (
+              <span className="mono text-[10px] uppercase text-[var(--led-ink-faint)]">
+                {shortUrl ? "SHORT" : "FULL"}
+              </span>
+            ) : null}
           </div>
-          <div className="flex gap-2">
-            <input value={displayUrl} readOnly onFocus={(e) => e.currentTarget.select()} />
-            <button type="button" className="cta cta-primary" onClick={() => copy(displayUrl, "link")}>
-              {copied === "link" ? "COPIED" : "COPY"}
-            </button>
-          </div>
+          {populated ? (
+            <div className="flex gap-2">
+              <input value={displayUrl} readOnly onFocus={(e) => e.currentTarget.select()} />
+              <button type="button" className="cta" onClick={() => copy(displayUrl, "link")}>
+                {copied === "link" ? "COPIED" : "COPY LINK"}
+              </button>
+            </div>
+          ) : (
+            <div
+              className="mono text-[11px] uppercase text-[var(--led-ink-faint)] px-3 py-2.5 border hairline"
+              style={{ background: "var(--led-bg-2)" }}
+            >
+              ENTER PROJECT CODE TO GENERATE SHARE LINK
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -137,7 +151,7 @@ export function OutputsPanel({
           <div className="flex items-center justify-between mb-1.5">
             <span className="label">SUMMARY TEXT</span>
             <button type="button" className="cta" onClick={() => copy(summary, "summary")}>
-              {copied === "summary" ? "COPIED" : "COPY"}
+              {copied === "summary" ? "COPIED" : "COPY TEXT"}
             </button>
           </div>
           <pre

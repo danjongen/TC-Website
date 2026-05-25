@@ -71,9 +71,11 @@ export function FidoIngest({
   return (
     <div className="panel p-5">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="mono text-[12px] tracking-[0.08em] uppercase">00 / INGEST</h2>
+        <h2 className="mono text-[12px] tracking-[0.08em] uppercase text-[var(--led-ink-dim)]">
+          00 / INGEST
+        </h2>
         <span className="mono text-[10px] uppercase text-[var(--led-ink-faint)]">
-          FIDOLED iOS PDF / OPTIONAL
+          FIDOLED PDF / OPTIONAL FAST-PATH
         </span>
       </div>
 
@@ -92,16 +94,21 @@ export function FidoIngest({
         }}
         className="cursor-pointer text-center px-4 py-8 border transition-colors"
         style={{
-          borderColor: hover ? "var(--led-accent)" : "var(--led-line)",
-          borderStyle: "dashed",
-          background: hover ? "rgba(0,210,106,0.04)" : "var(--led-bg-2)",
+          borderColor:
+            status.kind === "err"
+              ? "var(--led-error)"
+              : hover
+              ? "var(--led-ink)"
+              : "var(--led-line)",
+          background: "var(--led-bg-2)",
+          borderRadius: 2,
         }}
       >
         <div
           className="mono text-[12px] tracking-[0.08em] uppercase"
-          style={{ color: hover ? "var(--led-accent)" : "var(--led-ink)" }}
+          style={{ color: hover ? "var(--led-ink)" : "var(--led-ink-dim)" }}
         >
-          {busy ? "PARSING /" : "DROP FIDOLED PDF / OR BROWSE"}
+          {busy ? "PARSING /" : "DROP PDF / OR BROWSE"}
         </div>
         <div className="mono text-[10px] uppercase text-[var(--led-ink-faint)] mt-2">
           AUTO-FILLS CABINET / TILE COUNTS / POWER SERVICE
@@ -126,14 +133,14 @@ export function FidoIngest({
           className="mono text-[10px] tracking-[0.08em] uppercase mt-3 px-3 py-2 border"
           style={{
             borderColor:
-              status.kind === "ok"
-                ? "var(--led-accent)"
+              status.kind === "err"
+                ? "var(--led-error)"
                 : status.kind === "warn"
                 ? "var(--led-ink-dim)"
-                : "var(--led-ink-faint)",
+                : "var(--led-line)",
             color:
-              status.kind === "ok"
-                ? "var(--led-accent)"
+              status.kind === "err"
+                ? "var(--led-error)"
                 : status.kind === "warn"
                 ? "var(--led-ink)"
                 : "var(--led-ink-dim)",

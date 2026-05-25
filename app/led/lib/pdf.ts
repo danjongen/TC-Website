@@ -213,8 +213,8 @@ export async function renderSpecPdf(
     drawKV(doc, M, wtY3, "NOTES", cfg.notes, W - 2 * M)
   }
 
-  // Disclaimer (accent, above footer divider)
-  setText(doc, COLORS.accent)
+  // Disclaimer (dim, above footer divider — clinical, no highlight)
+  setText(doc, COLORS.inkDim)
   doc.setFont("SpaceMono", "normal")
   doc.setFontSize(6.5)
   doc.text(DISCLAIMER, W / 2, H - M - 30, { align: "center" })
@@ -270,7 +270,8 @@ function drawHero(
   doc.setFont("SpaceMono", "normal")
   doc.setFontSize(7)
   doc.text(label, x + 6, y + 12)
-  setText(doc, COLORS.accent)
+  // Hero data values are white — accent is reserved for state, not data.
+  setText(doc, COLORS.ink)
   doc.setFont("SpaceMono", "bold")
   doc.setFontSize(20)
   doc.text(big, x + 6, y + 40)
@@ -469,9 +470,9 @@ export async function renderPanelMapPng(
     infoY
   )
 
-  // Disclaimer band along the bottom edge, accent.
+  // Disclaimer band along the bottom edge — dim, clinical, no highlight.
   ctx.textAlign = "center"
-  ctx.fillStyle = ACCENT
+  ctx.fillStyle = DIM
   ctx.font = `700 ${Math.max(10, Math.floor(padF * 0.16))}px "Space Mono", ui-monospace, monospace`
   ctx.fillText(DISCLAIMER, W / 2, H - Math.floor(padF * 0.18))
 

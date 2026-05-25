@@ -40,22 +40,28 @@ export function CabinetPicker({
           onChange={(e) => setQuery(e.target.value)}
           placeholder="SEARCH MANUFACTURER / MODEL / PITCH"
         />
-        <div className="flex gap-2">
-          {(["all", "fine", "mid", "outdoor"] as const).map((k) => (
-            <button
-              key={k}
-              type="button"
-              className="cta"
-              style={
-                pitchFilter === k
-                  ? { borderColor: "var(--led-accent)", color: "var(--led-accent)" }
-                  : undefined
-              }
-              onClick={() => setPitchFilter(k)}
-            >
-              {k.toUpperCase()}
-            </button>
-          ))}
+        <div>
+          <div className="label mb-1.5">FILTER</div>
+          <div className="flex gap-2">
+            {(["all", "fine", "mid", "outdoor"] as const).map((k) => (
+              <button
+                key={k}
+                type="button"
+                aria-pressed={pitchFilter === k}
+                className="mono text-[11px] tracking-[0.08em] uppercase px-3 py-1.5 border transition-colors"
+                style={{
+                  borderRadius: 2,
+                  borderColor: pitchFilter === k ? "var(--led-ink)" : "var(--led-line)",
+                  color: pitchFilter === k ? "var(--led-ink)" : "var(--led-ink-dim)",
+                  background: "transparent",
+                  cursor: "pointer",
+                }}
+                onClick={() => setPitchFilter(k)}
+              >
+                {k.toUpperCase()}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 

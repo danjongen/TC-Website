@@ -100,15 +100,19 @@ function Builder() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header projectCode={cfg.project_code} rev={cfg.rev} issuedDate={cfg.issued_date} />
+      <div className="led-print-hide">
+        <Header projectCode={cfg.project_code} rev={cfg.rev} issuedDate={cfg.issued_date} />
+      </div>
 
       <main className="flex-1 px-4 md:px-8 py-6 md:py-8">
         <div className="max-w-[1480px] mx-auto">
-          <PageTitle />
+          <div className="led-print-hide">
+            <PageTitle />
+          </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-6">
-            {/* LEFT / FORMS */}
-            <div className="space-y-5">
+            {/* LEFT / FORMS — hidden in print */}
+            <div className="space-y-5 led-print-hide">
               <FidoIngest
                 onIngest={(r) =>
                   update({
@@ -134,16 +138,20 @@ function Builder() {
               />
             </div>
 
-            {/* RIGHT / PREVIEW */}
+            {/* RIGHT / PREVIEW — only the spec sheet prints */}
             <div className="space-y-5 xl:sticky xl:top-4 xl:self-start">
               <SpecSheet cab={cab} cfg={cfg} d={d} />
-              <PanelMap cab={cab} cfg={cfg} />
+              <div className="led-print-hide">
+                <PanelMap cab={cab} cfg={cfg} />
+              </div>
             </div>
           </div>
         </div>
       </main>
 
-      <Footer cabinetLabel={`${cab.manufacturer} ${cab.model}`} processorLabel={d.processor_label} />
+      <div className="led-print-hide">
+        <Footer cabinetLabel={`${cab.manufacturer} ${cab.model}`} processorLabel={d.processor_label} />
+      </div>
     </div>
   )
 }
