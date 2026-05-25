@@ -36,6 +36,7 @@ export type PowerService = "208V-3PH" | "400V-3PH" | "480V-3PH"
 export type SignalEntry = "TL" | "TR" | "BL" | "BR"
 export type AudiencePosition = "bottom" | "top" | "left" | "right"
 export type Shape = "rectangle"
+export type AllowancePreset = "standard" | "conservative" | "custom"
 
 export type WallConfig = {
   project_code: string
@@ -54,6 +55,15 @@ export type WallConfig = {
   power_service: PowerService
   signal_entry: SignalEntry
   audience_position: AudiencePosition
+
+  // Installed weight allowances (all optional — old share links default).
+  // Percentages of base wall weight.
+  allowance_preset?: AllowancePreset
+  cabling_pct?: number
+  rigging_pct?: number
+  top_rigging_pct?: number
+  wind_bracing?: boolean
+  wind_bracing_pct?: number
 
   processor_override?: string
   notes?: string
@@ -75,6 +85,15 @@ export type Derived = {
   total_weight_lb: number
   weight_per_row_kg: number
   weight_per_m2_kg: number
+
+  // Installed weight allowances
+  cabling_weight_kg: number
+  rigging_weight_kg: number
+  top_rigging_weight_kg: number
+  wind_bracing_weight_kg: number
+  installed_weight_kg: number
+  installed_weight_lb: number
+  total_allowance_pct: number
   max_power_kw: number
   avg_power_kw: number
   max_apparent_kva: number

@@ -77,9 +77,10 @@ export function SpecSheet({
 
       {/* C / PHYSICAL */}
       <Band code="C" name="PHYSICAL">
-        <KV label="TOTAL WT" value={`${fmt.num(d.total_weight_kg, 0)} kg / ${fmt.int(d.total_weight_lb)} lb`} wide />
+        <KV label="BASE WT" value={`${fmt.num(d.total_weight_kg, 0)} kg / ${fmt.int(d.total_weight_lb)} lb`} wide />
         <KV label="WT / ROW" value={`${fmt.num(d.weight_per_row_kg, 0)} kg`} />
         <KV label="WT / m²" value={`${fmt.num(d.weight_per_m2_kg, 0)} kg`} />
+        <KV label={`INSTALLED WT / +${fmt.num(d.total_allowance_pct, 0)}%`} value={`${fmt.num(d.installed_weight_kg, 0)} kg / ${fmt.int(d.installed_weight_lb)} lb`} wide />
       </Band>
 
       {/* D / SIGNAL */}

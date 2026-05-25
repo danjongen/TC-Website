@@ -1,6 +1,7 @@
 "use client"
 import { Suspense, useEffect, useMemo, useState } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { AllowancesForm } from "./components/AllowancesForm"
 import { CabinetPicker } from "./components/CabinetPicker"
 import { FidoIngest } from "./components/FidoIngest"
 import { Footer } from "./components/Footer"
@@ -39,6 +40,12 @@ const DEFAULT_CFG: WallConfig = {
   power_service: "208V-3PH",
   signal_entry: "TL",
   audience_position: "bottom",
+  allowance_preset: "standard",
+  cabling_pct: 3,
+  rigging_pct: 12,
+  top_rigging_pct: 5,
+  wind_bracing: false,
+  wind_bracing_pct: 10,
   processor_override: "",
   notes: "",
 }
@@ -129,6 +136,7 @@ function Builder() {
                 onChange={(id) => update({ cabinet_id: id })}
               />
               <WallConfigForm cfg={cfg} onChange={update} />
+              <AllowancesForm cfg={cfg} d={d} onChange={update} />
               <OutputsPanel
                 cab={cab}
                 cfg={cfg}

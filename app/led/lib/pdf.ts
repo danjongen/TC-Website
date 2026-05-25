@@ -196,10 +196,11 @@ export async function renderSpecPdf(
 
   // Weight + signal + logistics
   const wtY = ctxY2 + 36
-  drawKV(doc, M, wtY, "TOTAL WEIGHT", `${fmt.num(d.total_weight_kg, 0)} kg / ${fmt.int(d.total_weight_lb)} lb`, 240)
-  drawKV(doc, M + 250, wtY, "WT / ROW", `${fmt.num(d.weight_per_row_kg, 0)} kg`, 110)
-  drawKV(doc, M + 370, wtY, "WT / m²", `${fmt.num(d.weight_per_m2_kg, 0)} kg`, 110)
-  drawKV(doc, M + 490, wtY, "PROCESSOR", `${d.processor_count_required} x ${d.processor_label}`, 270)
+  drawKV(doc, M, wtY, "BASE WT", `${fmt.num(d.total_weight_kg, 0)} kg / ${fmt.int(d.total_weight_lb)} lb`, 170)
+  drawKV(doc, M + 180, wtY, `INSTALLED WT / +${fmt.num(d.total_allowance_pct, 0)}%`, `${fmt.num(d.installed_weight_kg, 0)} kg / ${fmt.int(d.installed_weight_lb)} lb`, 180)
+  drawKV(doc, M + 370, wtY, "WT / ROW", `${fmt.num(d.weight_per_row_kg, 0)} kg`, 80)
+  drawKV(doc, M + 460, wtY, "WT / m²", `${fmt.num(d.weight_per_m2_kg, 0)} kg`, 80)
+  drawKV(doc, M + 550, wtY, "PROCESSOR", `${d.processor_count_required} x ${d.processor_label}`, 200)
 
   const wtY2 = wtY + 28
   drawKV(doc, M, wtY2, "DAISY CHAIN", `${cab.daisy_chain_limit} cabs / line`, 160)
