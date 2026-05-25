@@ -190,12 +190,33 @@ export async function listPublishedCabinets(): Promise<Cabinet[]> {
   return records.filter((r) => r.published && r.cabinet.id).map((r) => r.cabinet)
 }
 
+async function withRetry<T>(fn: () => Promise<T>, retries: number): Promise<T> {
+  let lastErr: unknown
+  for (let i = 0; i <= retries; i++) {
+    try {
+      return await fn()
+    } catch (err) {
+      lastErr = err
+      if (i < retries) await new Promise((r) => setTimeout(r, 250 * (i + 1)))
+    }
+  }
+  throw lastErr
+}
+
 export async function getPublishedCabinetsCached(): Promise<Cabinet[]> {
   const now = Date.now()
   if (_pubCache && now - _pubCache.at < PUB_TTL_MS) return _pubCache.cabinets
-  const cabinets = await listPublishedCabinets()
-  _pubCache = { at: now, cabinets }
-  return cabinets
+  try {
+    const cabinets = await withRetry(() => listPublishedCabinets(), 2)
+    _pubCache = { at: now, cabinets }
+    return cabinets
+  } catch (err) {
+    // A transient Airtable failure must not collapse the library: serve the
+    // last good copy (even if past its TTL) when we have one. Only surface
+    // the error if we have never successfully loaded.
+    if (_pubCache) return _pubCache.cabinets
+    throw err
+  }
 }
 
 // Resolve a single published cabinet by id. Never throws — share pages are

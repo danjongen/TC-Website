@@ -34,6 +34,7 @@ export async function GET() {
     return NextResponse.json({ cabinets })
   } catch (err) {
     const msg = err instanceof Error ? err.message : "unknown error"
+    console.error("[led/api/cabinets] failed:", msg)
     return NextResponse.json({ error: msg }, { status: 500 })
   }
 }
