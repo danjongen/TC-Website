@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Custom Fabrication — TC Production Engineering",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     title: "Custom Fabrication | Production Hardware Engineering | TC Agency",
     description:
       "Custom-engineered hardware for productions that require solutions that don't exist yet. From concept through delivery.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
   },
   alternates: {
     canonical: "https://tc.agency/services/custom-fabrication",

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     siteName: "TC Agency",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Daniel Jongen — Executive Technical Producer at TC Agency",

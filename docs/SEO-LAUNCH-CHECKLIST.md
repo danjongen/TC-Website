@@ -39,7 +39,7 @@ Print this checklist and complete each item before and after launch.
 
 - [ ] Verify Open Graph tags
   - og:title, og:description present (lines 76-78)
-  - og:image set and exists: `/public/og-image.jpg` (1200x630px)
+  - og:image set and exists: `/public/og-image.png` (1200x630px)
   - og:url uses correct domain: `https://tc.agency`
   - og:type is "website" (line 72)
 

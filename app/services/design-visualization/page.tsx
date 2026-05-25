@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Design & Visualization - TC Agency Production Engineering",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     title: "Design & Visualization | Technical Drafting & 3D Rendering | TC Agency",
     description:
       "From concept to production-ready blueprint. 3D CAD modeling, photorealistic rendering, and technical drafting that eliminates guesswork and reduces change orders.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
   },
   alternates: {
     canonical: "https://tc.agency/services/design-visualization",

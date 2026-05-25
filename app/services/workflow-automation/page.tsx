@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Workflow Automation — TC Agency Production Systems Engineering",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     title: "Workflow Automation | Production Systems Engineering | TC Agency",
     description:
       "Custom automation systems that eliminate manual tasks, reduce errors, and create repeatable production workflows for live events and broadcast.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
   },
   alternates: {
     canonical: "https://tc.agency/services/workflow-automation",
