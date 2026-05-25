@@ -133,7 +133,7 @@ function Band({
 
 function Hero({ label, big, sub }: { label: string; big: string; sub: string }) {
   return (
-    <div className="px-5 py-5 border-r hairline last:border-r-0">
+    <div className="px-5 py-5 border-b md:border-b-0 md:border-r hairline last:border-b-0 md:last:border-r-0">
       <div className="label mb-2">{label}</div>
       <FlashValue
         value={big}
