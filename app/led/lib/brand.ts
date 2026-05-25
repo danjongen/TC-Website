@@ -18,6 +18,18 @@ export const COLORS = {
 
 export const COPYRIGHT = "TECHNICALLY CREATIVE / DETROIT"
 
+/**
+ * Liability disclaimer. Shown on every screen and baked into every
+ * export. These numbers are derived from a cabinet library that may
+ * be incomplete or out of date — they are not a substitute for the
+ * manufacturer's own documentation.
+ */
+export const DISCLAIMER =
+  "PLANNING ESTIMATE ONLY / VERIFY ALL VALUES AGAINST MANUFACTURER DATASHEETS AND LOCAL CODE BEFORE PROCUREMENT, POWER, OR RIGGING / TC ACCEPTS NO LIABILITY FOR ERRORS OR OMISSIONS"
+
+export const DISCLAIMER_SHORT =
+  "PLANNING ESTIMATE ONLY / VERIFY AGAINST MANUFACTURER SPECS"
+
 export const WORDMARK_FULL = "TECHNICALLY CREATIVE / DETROIT"
 export const WORDMARK_SHORT = "TC / DETROIT"
 
