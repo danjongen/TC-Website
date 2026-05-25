@@ -9,16 +9,29 @@ import { derive } from "../lib/derive"
 import { decodeConfig } from "../lib/encode"
 import { buildSummary } from "../lib/summary"
 import { downloadBlob, renderPanelMapPng, renderSpecPdf } from "../lib/pdf"
+import type { Cabinet } from "../lib/types"
 
 /**
  * View-only spec page body. Used by both /led/share/[config] (long
  * token in the URL) and /led/s/[id] (short link resolved to a token).
+ *
+ * `resolvedCabinet` is looked up server-side from the published DB so links
+ * that reference a DB-only cabinet render correctly; it falls back to the
+ * built-in library, then the first built-in cabinet.
  */
-export function ShareView({ token }: { token: string }) {
+export function ShareView({
+  token,
+  resolvedCabinet = null,
+}: {
+  token: string
+  resolvedCabinet?: Cabinet | null
+}) {
   const cfg = useMemo(() => decodeConfig(token), [token])
   const cab = useMemo(
-    () => (cfg ? getCabinet(cfg.cabinet_id) ?? CABINETS[0] : CABINETS[0]),
-    [cfg]
+    () =>
+      resolvedCabinet ??
+      (cfg ? getCabinet(cfg.cabinet_id) ?? CABINETS[0] : CABINETS[0]),
+    [cfg, resolvedCabinet]
   )
   const d = useMemo(() => (cfg ? derive(cab, cfg) : null), [cab, cfg])
 

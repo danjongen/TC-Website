@@ -1,12 +1,13 @@
 "use client"
 import { useMemo, useState } from "react"
-import { CABINETS } from "../data/cabinets"
 import type { Cabinet } from "../lib/types"
 
 export function CabinetPicker({
+  cabinets,
   selectedId,
   onChange,
 }: {
+  cabinets: Cabinet[]
   selectedId: string
   onChange: (id: string) => void
 }) {
@@ -15,7 +16,7 @@ export function CabinetPicker({
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
-    return CABINETS.filter((c) => {
+    return cabinets.filter((c) => {
       const hay = `${c.manufacturer} ${c.model} ${c.pixel_pitch_mm}mm`.toLowerCase()
       if (q && !hay.includes(q)) return false
       if (pitchFilter === "fine" && c.pixel_pitch_mm >= 3) return false
@@ -23,14 +24,14 @@ export function CabinetPicker({
       if (pitchFilter === "outdoor" && c.pixel_pitch_mm < 6) return false
       return true
     })
-  }, [query, pitchFilter])
+  }, [cabinets, query, pitchFilter])
 
   return (
     <div className="panel p-5">
       <div className="flex items-center justify-between mb-4">
         <h2 className="mono text-[12px] tracking-[0.08em] uppercase">02 / CABINET</h2>
         <span className="mono text-[10px] uppercase text-[var(--led-ink-faint)]">
-          {CABINETS.length} IN LIBRARY
+          {cabinets.length} IN LIBRARY
         </span>
       </div>
 

@@ -11,10 +11,11 @@ import { PanelMap } from "./components/PanelMap"
 import { ProjectForm } from "./components/ProjectForm"
 import { SpecSheet } from "./components/SpecSheet"
 import { WallConfigForm } from "./components/WallConfigForm"
-import { CABINETS, getCabinet } from "./data/cabinets"
+import { CABINETS } from "./data/cabinets"
 import { derive } from "./lib/derive"
 import { decodeConfig, encodeConfig } from "./lib/encode"
 import type { WallConfig } from "./lib/types"
+import { useCabinetLibrary } from "./lib/useCabinetLibrary"
 
 function todayISO(): string {
   const d = new Date()
@@ -70,17 +71,19 @@ function Builder() {
   const router = useRouter()
   const pathname = usePathname()
   const params = useSearchParams()
+  const { cabinets, getCabinet } = useCabinetLibrary()
   const [cfg, setCfg] = useState<WallConfig>(DEFAULT_CFG)
   const [shareUrl, setShareUrl] = useState("")
 
-  // Decode initial state from URL ?c=<token> once on mount.
+  // Decode initial state from URL ?c=<token> once on mount. Keep the decoded
+  // cabinet_id as-is — it may reference a DB cabinet not yet loaded; display
+  // resolution below falls back gracefully.
   useEffect(() => {
     const token = params.get("c")
     if (token) {
       const decoded = decodeConfig(token)
       if (decoded) {
-        const cab = getCabinet(decoded.cabinet_id) ?? CABINETS[0]
-        setCfg({ ...DEFAULT_CFG, ...decoded, cabinet_id: cab.id })
+        setCfg({ ...DEFAULT_CFG, ...decoded })
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -98,7 +101,10 @@ function Builder() {
     }
   }, [cfg, pathname, router])
 
-  const cab = useMemo(() => getCabinet(cfg.cabinet_id) ?? CABINETS[0], [cfg.cabinet_id])
+  const cab = useMemo(
+    () => getCabinet(cfg.cabinet_id) ?? cabinets[0],
+    [getCabinet, cfg.cabinet_id, cabinets]
+  )
   const d = useMemo(() => derive(cab, cfg), [cab, cfg])
 
   function update(next: Partial<WallConfig>) {
@@ -121,6 +127,7 @@ function Builder() {
             {/* LEFT / FORMS — hidden in print */}
             <div className="space-y-5 led-print-hide">
               <FidoIngest
+                cabinets={cabinets}
                 onIngest={(r) =>
                   update({
                     ...(r.cabinet_id ? { cabinet_id: r.cabinet_id } : {}),
@@ -132,6 +139,7 @@ function Builder() {
               />
               <ProjectForm cfg={cfg} onChange={update} />
               <CabinetPicker
+                cabinets={cabinets}
                 selectedId={cfg.cabinet_id}
                 onChange={(id) => update({ cabinet_id: id })}
               />
