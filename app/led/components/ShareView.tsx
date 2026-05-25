@@ -8,7 +8,7 @@ import { SpecSheet } from "./SpecSheet"
 import { derive } from "../lib/derive"
 import { decodeConfig } from "../lib/encode"
 import { buildSummary } from "../lib/summary"
-import { downloadBlob, renderPanelMapPng, renderSpecPdf } from "../lib/pdf"
+import { downloadBlob, renderPanelMapPng, renderPixelMapPng, renderSpecPdf } from "../lib/pdf"
 import type { Cabinet } from "../lib/types"
 
 /**
@@ -35,7 +35,8 @@ export function ShareView({
   )
   const d = useMemo(() => (cfg ? derive(cab, cfg) : null), [cab, cfg])
 
-  const [busy, setBusy] = useState<"spec" | "map" | null>(null)
+  const [busy, setBusy] = useState<"spec" | "map" | "pixel" | null>(null)
+  const [pixelErr, setPixelErr] = useState<string | null>(null)
   const [copied, setCopied] = useState<"link" | "summary" | null>(null)
 
   if (!cfg || !d) {
@@ -71,7 +72,21 @@ export function ShareView({
     setBusy("map")
     try {
       const blob = await renderPanelMapPng(cab, cfg)
-      downloadBlob(blob, fileSafe(`${cfg.project_code || "LED"}_MAP.png`))
+      downloadBlob(blob, fileSafe(`${cfg.project_code || "LED"}_LAYOUT.png`))
+    } finally {
+      setBusy(null)
+    }
+  }
+
+  async function downloadPixelMap() {
+    if (!cfg) return
+    setBusy("pixel")
+    setPixelErr(null)
+    try {
+      const blob = await renderPixelMapPng(cab, cfg)
+      downloadBlob(blob, fileSafe(`${cfg.project_code || "LED"}_PIXELMAP.png`))
+    } catch (err) {
+      setPixelErr(err instanceof Error ? err.message : "render failed")
     } finally {
       setBusy(null)
     }
@@ -110,6 +125,15 @@ export function ShareView({
             <button
               type="button"
               className="cta cta-primary"
+              onClick={downloadPixelMap}
+              disabled={busy !== null}
+              title="1:1 content map — canvas is the wall's exact pixel resolution"
+            >
+              {busy === "pixel" ? "BUILDING /" : "PIXEL MAP / PNG / 1:1"}
+            </button>
+            <button
+              type="button"
+              className="cta cta-primary"
               onClick={downloadSpec}
               disabled={busy !== null}
             >
@@ -120,8 +144,9 @@ export function ShareView({
               className="cta cta-primary"
               onClick={downloadMap}
               disabled={busy !== null}
+              title="Cabinet layout diagram for the spec set"
             >
-              {busy === "map" ? "BUILDING /" : "DOWNLOAD MAP / PNG"}
+              {busy === "map" ? "BUILDING /" : "LAYOUT / PNG"}
             </button>
             <button type="button" className="cta" onClick={() => copy(summary, "summary")}>
               {copied === "summary" ? "COPIED" : "COPY SUMMARY"}
@@ -130,6 +155,11 @@ export function ShareView({
               {copied === "link" ? "COPIED" : "COPY LINK"}
             </button>
           </div>
+          {pixelErr ? (
+            <div className="mono text-[10px] uppercase" style={{ color: "#ff5f5f" }}>
+              PIXEL MAP / {pixelErr}
+            </div>
+          ) : null}
 
           <SpecSheet cab={cab} cfg={cfg} d={d} />
           <PanelMap cab={cab} cfg={cfg} />
