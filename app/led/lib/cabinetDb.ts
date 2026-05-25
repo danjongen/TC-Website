@@ -112,6 +112,74 @@ function toCabinet(fields: Record<string, unknown>): Cabinet {
   }
 }
 
+export type NewCabinetInput = {
+  fields: Partial<Record<string, string | number | boolean | null>> // keyed by our field names
+  confidence: "verified" | "datasheet" | "estimated"
+  published: boolean
+  source_url?: string | null
+  notes?: string
+}
+
+// Maps our friendly field names → Airtable field IDs for writes.
+const NAME_TO_FIELD: Record<string, string> = {
+  id: F.id,
+  manufacturer: F.manufacturer,
+  model: F.model,
+  pixel_pitch_mm: F.pixel_pitch_mm,
+  tile_width_mm: F.tile_width_mm,
+  tile_height_mm: F.tile_height_mm,
+  tile_width_px: F.tile_width_px,
+  tile_height_px: F.tile_height_px,
+  tile_weight_kg: F.tile_weight_kg,
+  max_power_w: F.max_power_w,
+  avg_power_w: F.avg_power_w,
+  brightness_nits: F.brightness_nits,
+  refresh_hz: F.refresh_hz,
+  bit_depth: F.bit_depth,
+  color_space: F.color_space,
+  scan_ratio: F.scan_ratio,
+  viewing_angle_h: F.viewing_angle_h,
+  viewing_angle_v: F.viewing_angle_v,
+  ip_rating_front: F.ip_rating_front,
+  ip_rating_rear: F.ip_rating_rear,
+  service_access: F.service_access,
+  service_depth_mm: F.service_depth_mm,
+  daisy_chain_limit: F.daisy_chain_limit,
+  power_factor: F.power_factor,
+}
+
+/**
+ * Create a draft cabinet record in LED Cabinet DB. Always unpublished
+ * unless explicitly told otherwise — ingest drafts await human review.
+ */
+export async function createCabinet(
+  input: NewCabinetInput
+): Promise<{ recordId: string; recordUrl: string }> {
+  const fields: Record<string, unknown> = {}
+  for (const [name, fid] of Object.entries(NAME_TO_FIELD)) {
+    const v = input.fields[name]
+    if (v !== undefined && v !== null && v !== "") fields[fid] = v
+  }
+  fields[F.confidence] = input.confidence
+  fields[F.published] = input.published
+  if (input.source_url) fields[F.source_url] = input.source_url
+  if (input.notes) fields[F.notes] = input.notes
+
+  const res = await fetch(`${API_BASE}/${CABINET_DB.baseId}/${CABINET_DB.tableId}`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${pat()}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ records: [{ fields }], typecast: true }),
+  })
+  if (!res.ok) throw new Error(`Airtable create cabinet ${res.status}: ${await res.text()}`)
+  const data = (await res.json()) as { records: Array<{ id: string }> }
+  const recordId = data.records[0]?.id
+  if (!recordId) throw new Error("Airtable create returned no record id")
+  return {
+    recordId,
+    recordUrl: `https://airtable.com/${CABINET_DB.baseId}/${CABINET_DB.tableId}/${recordId}`,
+  }
+}
+
 export async function listCabinetRecords(): Promise<CabinetRecord[]> {
   const url = new URL(`${API_BASE}/${CABINET_DB.baseId}/${CABINET_DB.tableId}`)
   url.searchParams.set("pageSize", "100")
