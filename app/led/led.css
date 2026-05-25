@@ -6,10 +6,11 @@
   --led-bg-2: #161616;
   --led-line: #2a2a2a;
   --led-ink: #ffffff;
-  /* Dim/faint greys lifted for legibility on the near-black bg — faint now
-     clears WCAG AA (~4.9:1), dim ~8:1, while keeping the ink hierarchy. */
-  --led-ink-dim: #a6a6a6;
-  --led-ink-faint: #808080;
+  /* Dim/faint greys kept bright for legibility on the near-black bg —
+     readable on phones and in sunlight. dim ~13:1, faint ~9:1 on #0a0a0a,
+     both well past WCAG AAA, while still reading as subordinate to white. */
+  --led-ink-dim: #d0d0d0;
+  --led-ink-faint: #b0b0b0;
   --led-accent: #00e58a;
   --led-accent-dim: #00a864;
   --led-error: #ff4444;
