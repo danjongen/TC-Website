@@ -57,12 +57,14 @@ export function buildShareMetadata(
 
 function Stat({ label, value, sub }: { label: string; value: string; sub: string }) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+    <div style={{ display: "flex", flexDirection: "column", flex: 1, minWidth: 0 }}>
       <div style={{ fontSize: 18, letterSpacing: 2, color: COLORS.inkDim, textTransform: "uppercase" }}>
         {label}
       </div>
-      <div style={{ fontSize: 40, fontWeight: 700, color: COLORS.ink, marginTop: 6 }}>{value}</div>
-      <div style={{ fontSize: 18, color: COLORS.inkDim, marginTop: 6 }}>{sub}</div>
+      <div style={{ fontSize: 32, fontWeight: 700, color: COLORS.ink, marginTop: 6, lineHeight: 1.1 }}>
+        {value}
+      </div>
+      <div style={{ fontSize: 17, color: COLORS.inkDim, marginTop: 6 }}>{sub}</div>
     </div>
   )
 }
@@ -74,6 +76,8 @@ function Stat({ label, value, sub }: { label: string; value: string; sub: string
 export function ogCard(cfg: WallConfig | null, cab: Cabinet | null) {
   const d = cfg && cab ? derive(cab, cfg) : null
   const u = cfg ? unitsOf(cfg) : "metric"
+  const title = projectTitle(cfg)
+  const titleSize = title.length > 34 ? 40 : title.length > 22 ? 52 : 66
 
   return (
     <div
@@ -109,8 +113,8 @@ export function ogCard(cfg: WallConfig | null, cab: Cabinet | null) {
       </div>
 
       {/* Title block */}
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ fontSize: 66, fontWeight: 700, lineHeight: 1.05 }}>{projectTitle(cfg)}</div>
+      <div style={{ display: "flex", flexDirection: "column", minWidth: 0 }}>
+        <div style={{ fontSize: titleSize, fontWeight: 700, lineHeight: 1.05 }}>{title}</div>
         <div style={{ display: "flex", fontSize: 24, color: COLORS.inkDim, marginTop: 16 }}>
           {[cfg?.client?.trim(), cab ? `${cab.manufacturer} ${cab.model}` : null]
             .filter(Boolean)
@@ -122,9 +126,9 @@ export function ogCard(cfg: WallConfig | null, cab: Cabinet | null) {
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div style={{ display: "flex", height: 4, background: COLORS.accent, width: 96, marginBottom: 28 }} />
         {d && cfg ? (
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <Stat label="Tiles" value={`${cfg.tiles_wide}×${cfg.tiles_high}`} sub={`${fmt.int(d.tiles_total)} total`} />
-            <Stat label="Pixels" value={`${fmt.int(d.pixels_wide)}×${fmt.int(d.pixels_high)}`} sub={`${fmt.int(d.pixels_total)} px`} />
+          <div style={{ display: "flex", gap: 28 }}>
+            <Stat label="Tiles" value={`${cfg.tiles_wide} × ${cfg.tiles_high}`} sub={`${fmt.int(d.tiles_total)} total`} />
+            <Stat label="Pixels" value={`${fmt.int(d.pixels_wide)} × ${fmt.int(d.pixels_high)}`} sub={`${fmt.int(d.pixels_total)} px`} />
             <Stat label="Wall" value={fmtWallWH(d, u)} sub={cab ? `${cab.pixel_pitch_mm.toFixed(2)} mm pitch` : ""} />
             <Stat label="Power" value={`${fmt.num(d.amps_max_per_phase, 0)} A`} sub={`max / ${cfg.power_service}`} />
           </div>
