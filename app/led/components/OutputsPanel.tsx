@@ -5,6 +5,7 @@ import { buildSummary } from "../lib/summary"
 import { fmt } from "../lib/derive"
 import { downloadBlob, renderPixelMapPng, renderSpecPdf } from "../lib/pdf"
 import { SaveToAirtable } from "./SaveToAirtable"
+import { SectionPanel } from "./SectionPanel"
 
 export function OutputsPanel({
   cab,
@@ -98,14 +99,7 @@ export function OutputsPanel({
   }
 
   return (
-    <div className="panel p-5">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="mono text-[12px] tracking-[0.08em] uppercase">04 / OUTPUTS</h2>
-        <span className="mono text-[10px] uppercase text-[var(--led-ink-faint)]">
-          PIXEL / SPEC / SUMMARY / LINK
-        </span>
-      </div>
-
+    <SectionPanel code="04" title="OUTPUTS" right="PIXEL / SPEC / SUMMARY / LINK" storageKey="outputs">
       <div className="space-y-4">
         <div>
           <div className="flex items-center justify-between mb-1.5">
@@ -193,7 +187,7 @@ export function OutputsPanel({
           />
         ) : null}
       </div>
-    </div>
+    </SectionPanel>
   )
 }
 

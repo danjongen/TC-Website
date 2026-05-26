@@ -36,6 +36,10 @@ export function buildSummary(
     `${pad("VIEW DIST")} ${fmtViewDist(d, u)} optimal`
   )
   lines.push("")
+  lines.push(
+    "Power = total connected load. Add continuous-load headroom + local code (NEC 125% in NA) and confirm final circuit / breaker sizing with the power vendor."
+  )
+  lines.push("")
   lines.push(`Full spec / ${shareUrl}`)
   return lines.join("\n")
 }

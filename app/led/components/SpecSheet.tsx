@@ -1,7 +1,7 @@
 import type { Cabinet, Derived, WallConfig } from "../lib/types"
 import { fmt } from "../lib/derive"
 import { arealLabel, fmtAreal, fmtViewDist, fmtWallWH, fmtWallWHAlt, fmtWeight, unitsOf } from "../lib/units"
-import { DISCLAIMER } from "../lib/brand"
+import { DISCLAIMER, POWER_NOTE } from "../lib/brand"
 import { Glyph } from "./Glyph"
 import { FlashValue } from "./FlashValue"
 
@@ -75,6 +75,11 @@ export function SpecSheet({
         <KV label="AVG POWER" value={`${fmt.num(d.avg_power_kw, 1)} kW`} />
         <KV label="APPARENT" value={`${fmt.num(d.max_apparent_kva, 1)} kVA`} />
         <KV label="HEAT LOAD" value={`${fmt.int(d.btu_per_hour)} BTU/hr`} />
+        <div className="md:col-span-4">
+          <span className="mono text-[10px] tracking-[0.06em] uppercase text-[var(--led-ink-faint)]">
+            {POWER_NOTE}
+          </span>
+        </div>
       </Band>
 
       {/* C / PHYSICAL */}

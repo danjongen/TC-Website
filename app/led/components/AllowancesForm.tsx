@@ -3,6 +3,7 @@ import type { AllowancePreset, Derived, Units, WallConfig } from "../lib/types"
 import { ALLOWANCE_NOTE, ALLOWANCE_PRESETS } from "../lib/brand"
 import { fmt } from "../lib/derive"
 import { fmtWeight, unitsOf } from "../lib/units"
+import { SectionPanel } from "./SectionPanel"
 
 export function AllowancesForm({
   cfg,
@@ -38,16 +39,12 @@ export function AllowancesForm({
   }
 
   return (
-    <div className="panel p-5">
-      <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-4">
-        <h2 className="mono text-[12px] tracking-[0.08em] uppercase">
-          05 / INSTALLED WEIGHT ALLOWANCES
-        </h2>
-        <span className="mono text-[10px] uppercase text-[var(--led-ink-faint)] shrink-0">
-          % OF BASE WEIGHT
-        </span>
-      </div>
-
+    <SectionPanel
+      code="05"
+      title="INSTALLED WEIGHT ALLOWANCES"
+      right="% OF BASE WEIGHT"
+      storageKey="allowances"
+    >
       {/* Preset selector */}
       <div className="mb-4">
         <div className="label mb-1.5">PRESET</div>
@@ -163,7 +160,7 @@ export function AllowancesForm({
       <p className="mono text-[10px] leading-relaxed text-[var(--led-ink-faint)] mt-3">
         {ALLOWANCE_NOTE}
       </p>
-    </div>
+    </SectionPanel>
   )
 }
 

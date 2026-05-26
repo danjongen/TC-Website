@@ -31,6 +31,16 @@ export const DISCLAIMER =
 export const DISCLAIMER_SHORT =
   "PLANNING ESTIMATE ONLY / VERIFY AGAINST MANUFACTURER SPECS"
 
+/**
+ * Power figures are the wall's total connected load (max = full white,
+ * avg = typical content). They are not a service-sizing spec: final
+ * circuit, breaker, and distro sizing must add continuous-load headroom
+ * per the local electrical code for the territory (e.g. NEC 125% in North
+ * America) and be confirmed by the power vendor / local electrician.
+ */
+export const POWER_NOTE =
+  "POWER = TOTAL CONNECTED LOAD / ADD CONTINUOUS-LOAD HEADROOM + LOCAL CODE (NEC 125% IN NORTH AMERICA) / CONFIRM FINAL CIRCUIT + BREAKER SIZING WITH THE POWER VENDOR"
+
 export const WORDMARK_FULL = "TECHNICALLY CREATIVE / DETROIT"
 export const WORDMARK_SHORT = "TC / DETROIT"
 

@@ -1,6 +1,7 @@
 "use client"
 import type { WallConfig } from "../lib/types"
 import { DateInput, Field, TextInput } from "./Field"
+import { SectionPanel } from "./SectionPanel"
 
 export function ProjectForm({
   cfg,
@@ -10,13 +11,7 @@ export function ProjectForm({
   onChange: (next: Partial<WallConfig>) => void
 }) {
   return (
-    <div className="panel p-5">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="mono text-[12px] tracking-[0.08em] uppercase">01 / PROJECT</h2>
-        <span className="mono text-[10px] uppercase text-[var(--led-ink-faint)]">
-          YY-CCC-##-TAG
-        </span>
-      </div>
+    <SectionPanel code="01" title="PROJECT" right="YY-CCC-##-TAG" storageKey="project">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Field label="PROJECT CODE" hint="26-BSB-01-LEDWALL">
           <TextInput
@@ -74,6 +69,6 @@ export function ProjectForm({
           />
         </Field>
       </div>
-    </div>
+    </SectionPanel>
   )
 }
