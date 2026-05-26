@@ -176,51 +176,84 @@ export async function renderSpecPdf(
   setStroke(doc, COLORS.line)
   doc.line(M, heroY + heroH + 4, W - M, heroY + heroH + 4)
 
-  // Context grid (optical)
-  const ctxY = heroY + heroH + 22
-  drawKV(doc, M, ctxY, "ASPECT", d.aspect_ratio, 120)
-  drawKV(doc, M + 130, ctxY, "VIEW DIST", fmtViewDist(d, u), 180)
-  drawKV(doc, M + 320, ctxY, "BRIGHTNESS", `${fmt.int(cab.brightness_nits)} nits`, 130)
-  drawKV(doc, M + 460, ctxY, "REFRESH", `${fmt.int(cab.refresh_hz)} Hz`, 100)
-  drawKV(doc, M + 570, ctxY, "BIT DEPTH", `${cab.bit_depth}-bit`, 90)
-  drawKV(doc, M + 670, ctxY, "COLOR", cab.color_space, 90)
+  // ---- sectioned readout: OPTICAL / POWER / PHYSICAL / SIGNAL ----
+  // Four labelled sections on a shared 4-column grid so each value sits in a
+  // consistent lane and the section titles tell you what you're looking at.
+  const colW = (W - 2 * M) / 4
+  const colX = (i: number) => M + i * colW
+  let y = heroY + heroH + 26
 
-  const ctxY2 = ctxY + 28
-  drawKV(doc, M, ctxY2, "SCAN", cab.scan_ratio, 90)
-  drawKV(doc, M + 100, ctxY2, "VIEW ANGLE", `${cab.viewing_angle_h}°H / ${cab.viewing_angle_v}°V`, 150)
-  drawKV(doc, M + 260, ctxY2, "MAX POWER", `${fmt.num(d.max_power_kw, 1)} kW`, 110)
-  drawKV(doc, M + 380, ctxY2, "AVG POWER", `${fmt.num(d.avg_power_kw, 1)} kW`, 110)
-  drawKV(doc, M + 500, ctxY2, "APPARENT", `${fmt.num(d.max_apparent_kva, 1)} kVA`, 110)
-  drawKV(doc, M + 620, ctxY2, "HEAT", `${fmt.int(d.btu_per_hour)} BTU/hr`, 140)
-
-  setStroke(doc, COLORS.line)
-  doc.line(M, ctxY2 + 22, W - M, ctxY2 + 22)
-
-  // Weight + signal + logistics
-  const wtY = ctxY2 + 36
-  drawKV(doc, M, wtY, "BASE WT", fmtWeight(d.total_weight_kg, u), 170)
-  drawKV(doc, M + 180, wtY, `INSTALLED WT / +${fmt.num(d.total_allowance_pct, 0)}%`, fmtWeight(d.installed_weight_kg, u), 180)
-  drawKV(doc, M + 370, wtY, "WT / ROW", fmtWeight(d.weight_per_row_kg, u), 80)
-  drawKV(doc, M + 460, wtY, arealLabel(u), fmtAreal(d.weight_per_m2_kg, u), 80)
-  drawKV(doc, M + 550, wtY, "PROCESSOR", `${d.processor_count_required} x ${d.processor_label}`, 200)
-
-  const wtY2 = wtY + 28
-  drawKV(doc, M, wtY2, "DAISY CHAIN", `${cab.daisy_chain_limit} cabs / line`, 160)
-  drawKV(doc, M + 170, wtY2, "SIGNAL ENTRY", signalEntryLabel(cfg.signal_entry), 150)
-  drawKV(doc, M + 330, wtY2, "IP FRONT/REAR", `${cab.ip_rating_front} / ${cab.ip_rating_rear}`, 140)
-  drawKV(doc, M + 480, wtY2, "SERVICE", `${cab.service_access.toUpperCase()} / ${cab.service_depth_mm}mm`, 160)
-  drawKV(doc, M + 650, wtY2, "SPARES", `${Math.max(1, Math.ceil(d.tiles_total * 0.05))} / 5%`, 110)
-
-  if (cfg.notes) {
-    const wtY3 = wtY2 + 28
-    drawKV(doc, M, wtY3, "NOTES", cfg.notes, W - 2 * M)
+  const sectionHeader = (name: string) => {
+    setText(doc, COLORS.ink)
+    doc.setFont("SpaceMono", "bold")
+    doc.setFontSize(9)
+    doc.text(name, M, y)
+    const tw = doc.getTextWidth(name)
+    setStroke(doc, COLORS.line)
+    doc.setLineWidth(0.5)
+    doc.line(M + tw + 12, y - 3, W - M, y - 3)
+    y += 18
   }
 
-  // Power note (continuous-load headroom / local-code reminder)
+  const kvRow = (items: Array<[string, string]>) => {
+    items.forEach(([label, value], i) => drawKV(doc, colX(i), y, label, value, colW - 16))
+    y += 30
+  }
+
+  sectionHeader("OPTICAL")
+  kvRow([
+    ["ASPECT", d.aspect_ratio],
+    ["VIEW DIST", fmtViewDist(d, u)],
+    ["BRIGHTNESS", `${fmt.int(cab.brightness_nits)} nits`],
+    ["REFRESH", `${fmt.int(cab.refresh_hz)} Hz`],
+  ])
+  kvRow([
+    ["BIT DEPTH", `${cab.bit_depth}-bit`],
+    ["COLOR", cab.color_space],
+    ["SCAN", cab.scan_ratio],
+    ["VIEW ANGLE", `${cab.viewing_angle_h}°H / ${cab.viewing_angle_v}°V`],
+  ])
+  y += 10
+
+  sectionHeader("POWER")
+  kvRow([
+    ["MAX POWER", `${fmt.num(d.max_power_kw, 1)} kW`],
+    ["AVG POWER", `${fmt.num(d.avg_power_kw, 1)} kW`],
+    ["APPARENT", `${fmt.num(d.max_apparent_kva, 1)} kVA`],
+    ["HEAT LOAD", `${fmt.int(d.btu_per_hour)} BTU/hr`],
+  ])
   setText(doc, COLORS.inkFaint)
   doc.setFont("SpaceMono", "normal")
   doc.setFontSize(6)
-  doc.text(POWER_NOTE, W / 2, H - M - 44, { align: "center" })
+  doc.text(POWER_NOTE, M, y - 8)
+  y += 10
+
+  sectionHeader("PHYSICAL")
+  kvRow([
+    ["BASE WT", fmtWeight(d.total_weight_kg, u)],
+    [`INSTALLED WT / +${fmt.num(d.total_allowance_pct, 0)}%`, fmtWeight(d.installed_weight_kg, u)],
+    ["WT / ROW", fmtWeight(d.weight_per_row_kg, u)],
+    [arealLabel(u), fmtAreal(d.weight_per_m2_kg, u)],
+  ])
+  y += 10
+
+  sectionHeader("SIGNAL")
+  kvRow([
+    ["PROCESSOR", `${d.processor_count_required} x ${d.processor_label}`],
+    ["DAISY CHAIN", `${cab.daisy_chain_limit} cabs / line`],
+    ["SIGNAL ENTRY", signalEntryLabel(cfg.signal_entry)],
+    ["AUDIENCE", cfg.audience_position.toUpperCase()],
+  ])
+  kvRow([
+    ["IP FRONT/REAR", `${cab.ip_rating_front} / ${cab.ip_rating_rear}`],
+    ["SERVICE", `${cab.service_access.toUpperCase()} / ${cab.service_depth_mm}mm`],
+    ["SPARES", `${Math.max(1, Math.ceil(d.tiles_total * 0.05))} / 5%`],
+  ])
+
+  if (cfg.notes) {
+    y += 6
+    drawKV(doc, M, y, "NOTES", cfg.notes, W - 2 * M)
+  }
 
   // Disclaimer (dim, above footer divider — clinical, no highlight)
   setText(doc, COLORS.inkDim)

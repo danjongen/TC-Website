@@ -57,8 +57,8 @@ export function SpecSheet({
         <Hero label="POWER" big={`${fmt.num(d.amps_max_per_phase, 0)} A`} sub={`MAX / ${fmt.num(d.amps_avg_per_phase, 0)} A AVG / ${cfg.power_service}`} />
       </div>
 
-      {/* A / OPTICAL */}
-      <Band code="A" name="OPTICAL">
+      {/* OPTICAL */}
+      <Band name="OPTICAL">
         <KV label="ASPECT" value={d.aspect_ratio} />
         <KV label="VIEW DIST" value={fmtViewDist(d, u)} />
         <KV label="BRIGHTNESS" value={`${fmt.int(cab.brightness_nits)} nits`} />
@@ -69,8 +69,8 @@ export function SpecSheet({
         <KV label="VIEW ANGLE" value={`${cab.viewing_angle_h}°H / ${cab.viewing_angle_v}°V`} />
       </Band>
 
-      {/* B / POWER */}
-      <Band code="B" name="POWER">
+      {/* POWER */}
+      <Band name="POWER">
         <KV label="MAX POWER" value={`${fmt.num(d.max_power_kw, 1)} kW`} />
         <KV label="AVG POWER" value={`${fmt.num(d.avg_power_kw, 1)} kW`} />
         <KV label="APPARENT" value={`${fmt.num(d.max_apparent_kva, 1)} kVA`} />
@@ -82,16 +82,16 @@ export function SpecSheet({
         </div>
       </Band>
 
-      {/* C / PHYSICAL */}
-      <Band code="C" name="PHYSICAL">
+      {/* PHYSICAL */}
+      <Band name="PHYSICAL">
         <KV label="BASE WT" value={fmtWeight(d.total_weight_kg, u)} wide />
         <KV label="WT / ROW" value={fmtWeight(d.weight_per_row_kg, u)} />
         <KV label={arealLabel(u)} value={fmtAreal(d.weight_per_m2_kg, u)} />
         <KV label={`INSTALLED WT / +${fmt.num(d.total_allowance_pct, 0)}%`} value={fmtWeight(d.installed_weight_kg, u)} wide />
       </Band>
 
-      {/* D / SIGNAL */}
-      <Band code="D" name="SIGNAL">
+      {/* SIGNAL */}
+      <Band name="SIGNAL">
         <KV label="PROCESSOR" value={`${d.processor_count_required} × ${d.processor_label}`} wide />
         <KV label="DAISY CHAIN" value={`${cab.daisy_chain_limit} cabs / line`} />
         <KV label="SIGNAL ENTRY" value={signalEntryLabel(cfg.signal_entry)} />
@@ -120,20 +120,21 @@ export function SpecSheet({
 }
 
 function Band({
-  code,
   name,
   children,
 }: {
-  code: string
   name: string
   children: React.ReactNode
 }) {
   return (
-    <section className="px-5 py-4 border-t hairline">
-      <header className="mono text-[11px] tracking-[0.08em] uppercase text-[var(--led-ink-dim)] mb-3">
-        {code} / {name}
+    <section className="px-5 py-5 border-t hairline">
+      <header className="flex items-center gap-3 mb-4">
+        <h3 className="mono text-[12px] font-bold tracking-[0.16em] uppercase whitespace-nowrap">
+          {name}
+        </h3>
+        <span className="flex-1 border-t hairline" />
       </header>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-3">{children}</div>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-4">{children}</div>
     </section>
   )
 }
@@ -165,7 +166,7 @@ function KV({
   return (
     <div className={wide ? "md:col-span-2" : undefined}>
       <div className="label">{label}</div>
-      <FlashValue value={value} className="mono text-[13px] font-bold mt-0.5 tabular-nums block" />
+      <FlashValue value={value} className="mono text-[14px] font-bold mt-1 tabular-nums block leading-snug" />
     </div>
   )
 }
