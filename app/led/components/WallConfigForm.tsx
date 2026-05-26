@@ -1,6 +1,7 @@
 "use client"
 import type { WallConfig } from "../lib/types"
 import { Field, Select, TextArea, TextInput } from "./Field"
+import { SectionPanel } from "./SectionPanel"
 
 export function WallConfigForm({
   cfg,
@@ -10,14 +11,7 @@ export function WallConfigForm({
   onChange: (next: Partial<WallConfig>) => void
 }) {
   return (
-    <div className="panel p-5">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="mono text-[12px] tracking-[0.08em] uppercase">03 / WALL</h2>
-        <span className="mono text-[10px] uppercase text-[var(--led-ink-faint)]">
-          RECTANGLE / V1
-        </span>
-      </div>
-
+    <SectionPanel code="03" title="WALL" right="RECTANGLE / V1" storageKey="wall">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Field label="TILES WIDE">
           <TextInput
@@ -85,7 +79,7 @@ export function WallConfigForm({
           />
         </Field>
       </div>
-    </div>
+    </SectionPanel>
   )
 }
 

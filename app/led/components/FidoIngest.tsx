@@ -2,6 +2,7 @@
 import { useRef, useState } from "react"
 import { fuzzyMatchCabinet, parseFidoPdf } from "../lib/fidoParse"
 import type { Cabinet, PowerService } from "../lib/types"
+import { SectionPanel } from "./SectionPanel"
 
 type IngestResult = {
   cabinet_id: string | null
@@ -70,16 +71,14 @@ export function FidoIngest({
   }
 
   return (
-    <div className="panel p-5">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="mono text-[12px] tracking-[0.08em] uppercase text-[var(--led-ink-dim)]">
-          00 / INGEST
-        </h2>
-        <span className="mono text-[10px] uppercase text-[var(--led-ink-faint)]">
-          FIDOLED PDF / OPTIONAL FAST-PATH
-        </span>
-      </div>
-
+    <SectionPanel
+      code="00"
+      title="INGEST"
+      right="FIDOLED PDF / OPTIONAL FAST-PATH"
+      storageKey="ingest"
+      dimTitle
+      defaultOpen={false}
+    >
       <div
         onDragOver={(e) => {
           e.preventDefault()
@@ -150,6 +149,6 @@ export function FidoIngest({
           {status.msg}
         </div>
       ) : null}
-    </div>
+    </SectionPanel>
   )
 }

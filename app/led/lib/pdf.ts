@@ -11,7 +11,7 @@
 import type { Cabinet, Derived, WallConfig } from "./types"
 import { fmt, padWidth } from "./derive"
 import { arealLabel, fmtAreal, fmtViewDist, fmtWallWH, fmtWallWHAlt, fmtWeight, unitsOf } from "./units"
-import { COLORS, DISCLAIMER } from "./brand"
+import { COLORS, DISCLAIMER, POWER_NOTE } from "./brand"
 
 const PT_PER_IN = 72
 
@@ -215,6 +215,12 @@ export async function renderSpecPdf(
     const wtY3 = wtY2 + 28
     drawKV(doc, M, wtY3, "NOTES", cfg.notes, W - 2 * M)
   }
+
+  // Power note (continuous-load headroom / local-code reminder)
+  setText(doc, COLORS.inkFaint)
+  doc.setFont("SpaceMono", "normal")
+  doc.setFontSize(6)
+  doc.text(POWER_NOTE, W / 2, H - M - 44, { align: "center" })
 
   // Disclaimer (dim, above footer divider — clinical, no highlight)
   setText(doc, COLORS.inkDim)

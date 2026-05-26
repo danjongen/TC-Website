@@ -1,6 +1,7 @@
 "use client"
 import { useMemo, useState } from "react"
 import type { Cabinet } from "../lib/types"
+import { SectionPanel } from "./SectionPanel"
 
 export function CabinetPicker({
   cabinets,
@@ -27,14 +28,7 @@ export function CabinetPicker({
   }, [cabinets, query, pitchFilter])
 
   return (
-    <div className="panel p-5">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="mono text-[12px] tracking-[0.08em] uppercase">02 / CABINET</h2>
-        <span className="mono text-[10px] uppercase text-[var(--led-ink-faint)]">
-          {cabinets.length} IN LIBRARY
-        </span>
-      </div>
-
+    <SectionPanel code="02" title="CABINET" right={`${cabinets.length} IN LIBRARY`} storageKey="cabinet">
       <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-3 mb-4">
         <input
           value={query}
@@ -81,7 +75,7 @@ export function CabinetPicker({
           </div>
         ) : null}
       </div>
-    </div>
+    </SectionPanel>
   )
 }
 

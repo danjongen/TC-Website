@@ -1,13 +1,24 @@
+import type { Metadata } from "next"
 import { ShareView } from "../../components/ShareView"
 import { resolvePublishedCabinet } from "../../lib/cabinetDb"
+import { getCabinet } from "../../data/cabinets"
 import { decodeConfig } from "../../lib/encode"
-
-export const metadata = {
-  title: "LED Wall Spec / Shared",
-  robots: { index: false, follow: false },
-}
+import { buildShareMetadata } from "../../lib/shareCard"
 
 export const dynamic = "force-dynamic"
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ config: string }>
+}): Promise<Metadata> {
+  const { config } = await params
+  const cfg = decodeConfig(config)
+  const cab = cfg
+    ? (await resolvePublishedCabinet(cfg.cabinet_id)) ?? getCabinet(cfg.cabinet_id) ?? null
+    : null
+  return buildShareMetadata(cfg, cab)
+}
 
 export default async function SharePage({
   params,
