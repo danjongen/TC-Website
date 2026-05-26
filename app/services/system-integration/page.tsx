@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "System Integration | Production Network Engineering | TC Agency",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     title: "System Integration | Production Network Engineering | TC Agency",
     description:
       "One system, one interface, zero gaps. TC Agency engineers fully integrated production networks for high-stakes live events.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
   },
   alternates: {
     canonical: "https://tc.agency/services/system-integration",

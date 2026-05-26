@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Automation & AI Operations by TC Agency",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: "Automation & AI Operations | TC Agency",
     description:
       "Automated workflows, operations systems, and AI-powered tools for businesses that want to stop doing things manually.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
   },
   alternates: {
     canonical: "https://tc.agency/services/automation-ops",

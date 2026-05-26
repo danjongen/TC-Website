@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Aerial Surveying | Drone Mapping & Photogrammetry | TC Agency",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     title: "Aerial Surveying | Drone Mapping & Photogrammetry | TC Agency",
     description:
       "FAA Part 107 certified drone operations for venue documentation, site analysis, and production planning.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
   },
   alternates: {
     canonical: "https://tc.agency/services/aerial-surveying",
