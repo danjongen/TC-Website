@@ -10,6 +10,7 @@ import { OutputsPanel } from "./components/OutputsPanel"
 import { PanelMap } from "./components/PanelMap"
 import { ProjectForm } from "./components/ProjectForm"
 import { SpecSheet } from "./components/SpecSheet"
+import { UnitsToggle } from "./components/UnitsToggle"
 import { WallConfigForm } from "./components/WallConfigForm"
 import { CABINETS } from "./data/cabinets"
 import { derive } from "./lib/derive"
@@ -49,6 +50,7 @@ const DEFAULT_CFG: WallConfig = {
   wind_bracing_pct: 10,
   processor_override: "",
   notes: "",
+  units: "metric",
 }
 
 export default function LedToolPage() {
@@ -156,6 +158,12 @@ function Builder() {
 
             {/* RIGHT / PREVIEW — only the spec sheet prints */}
             <div className="space-y-5 xl:sticky xl:top-4 xl:self-start">
+              <div className="led-print-hide flex justify-end">
+                <UnitsToggle
+                  units={cfg.units ?? "metric"}
+                  onChange={(units) => update({ units })}
+                />
+              </div>
               <SpecSheet cab={cab} cfg={cfg} d={d} />
               <div className="led-print-hide">
                 <PanelMap cab={cab} cfg={cfg} />

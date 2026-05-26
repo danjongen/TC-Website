@@ -1,7 +1,8 @@
 "use client"
-import type { AllowancePreset, Derived, WallConfig } from "../lib/types"
+import type { AllowancePreset, Derived, Units, WallConfig } from "../lib/types"
 import { ALLOWANCE_NOTE, ALLOWANCE_PRESETS } from "../lib/brand"
 import { fmt } from "../lib/derive"
+import { fmtWeight, unitsOf } from "../lib/units"
 
 export function AllowancesForm({
   cfg,
@@ -13,6 +14,7 @@ export function AllowancesForm({
   onChange: (next: Partial<WallConfig>) => void
 }) {
   const preset: AllowancePreset = cfg.allowance_preset ?? "standard"
+  const u = unitsOf(cfg)
   const cabling = cfg.cabling_pct ?? 3
   const rigging = cfg.rigging_pct ?? 12
   const topRig = cfg.top_rigging_pct ?? 5
@@ -132,18 +134,18 @@ export function AllowancesForm({
 
       {/* Breakdown */}
       <div className="mt-4 border-t hairline pt-4 space-y-1.5">
-        <Row label="BASE LED WALL" kg={d.total_weight_kg} lb={d.total_weight_lb} />
-        <Row label={`CABLING / ${cabling}%`} kg={d.cabling_weight_kg} />
-        <Row label={`RIGGING HW / ${rigging}%`} kg={d.rigging_weight_kg} />
-        <Row label={`TOP RIGGING / ${topRig}%`} kg={d.top_rigging_weight_kg} />
+        <Row label="BASE LED WALL" kg={d.total_weight_kg} u={u} />
+        <Row label={`CABLING / ${cabling}%`} kg={d.cabling_weight_kg} u={u} />
+        <Row label={`RIGGING HW / ${rigging}%`} kg={d.rigging_weight_kg} u={u} />
+        <Row label={`TOP RIGGING / ${topRig}%`} kg={d.top_rigging_weight_kg} u={u} />
         {windOn ? (
-          <Row label={`WIND BRACING / ${windPct}%`} kg={d.wind_bracing_weight_kg} />
+          <Row label={`WIND BRACING / ${windPct}%`} kg={d.wind_bracing_weight_kg} u={u} />
         ) : null}
         <div className="border-t hairline pt-1.5 mt-1.5">
           <Row
             label={`TOTAL INSTALLED / +${fmt.num(d.total_allowance_pct, 0)}%`}
             kg={d.installed_weight_kg}
-            lb={d.installed_weight_lb}
+            u={u}
             strong
           />
         </div>
@@ -208,16 +210,14 @@ function PctField({
 function Row({
   label,
   kg,
-  lb,
+  u,
   strong,
 }: {
   label: string
   kg: number
-  lb?: number
+  u: Units
   strong?: boolean
 }) {
-  const KG_PER_LB = 0.45359237
-  const lbVal = lb ?? kg / KG_PER_LB
   return (
     <div className="flex items-baseline justify-between gap-3">
       <span
@@ -230,7 +230,7 @@ function Row({
         className={`mono tabular-nums ${strong ? "text-[13px] font-bold" : "text-[11px]"}`}
         style={{ color: strong ? "var(--led-ink)" : "var(--led-ink-dim)" }}
       >
-        {fmt.num(kg, 0)} kg / {fmt.int(lbVal)} lb
+        {fmtWeight(kg, u)}
       </span>
     </div>
   )

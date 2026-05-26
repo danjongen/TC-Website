@@ -1,5 +1,6 @@
 import type { Cabinet, Derived, WallConfig } from "./types"
 import { fmt } from "./derive"
+import { fmtViewDist, fmtWallWH, fmtWeight, unitsOf } from "./units"
 
 export function buildSummary(
   cab: Cabinet,
@@ -7,6 +8,7 @@ export function buildSummary(
   d: Derived,
   shareUrl: string
 ): string {
+  const u = unitsOf(cfg)
   const lines: string[] = []
   lines.push(`${cfg.project_code || "—"} / ${cfg.project_name || "—"}`)
   lines.push("")
@@ -19,10 +21,10 @@ export function buildSummary(
     `${pad("RESOLUTION")} ${fmt.int(d.pixels_wide)} × ${fmt.int(d.pixels_high)} / ${fmt.int(d.pixels_total)} px`
   )
   lines.push(
-    `${pad("DIMENSIONS")} ${d.wall_width_m.toFixed(2)} × ${d.wall_height_m.toFixed(2)} m / ${d.wall_width_imperial} × ${d.wall_height_imperial}`
+    `${pad("DIMENSIONS")} ${fmtWallWH(d, u)}`
   )
   lines.push(
-    `${pad("WEIGHT")} ${fmt.num(d.total_weight_kg, 0)} kg / ${fmt.int(d.total_weight_lb)} lb`
+    `${pad("WEIGHT")} ${fmtWeight(d.total_weight_kg, u)}`
   )
   lines.push(
     `${pad("POWER")} ${fmt.num(d.amps_max_per_phase, 0)}A max / ${fmt.num(d.amps_avg_per_phase, 0)}A avg / ${cfg.power_service}`
@@ -31,7 +33,7 @@ export function buildSummary(
     `${pad("PROCESSORS")} ${d.processor_count_required} × ${d.processor_label} minimum`
   )
   lines.push(
-    `${pad("VIEW DIST")} ${d.optimal_viewing_distance_m.toFixed(1)} m optimal`
+    `${pad("VIEW DIST")} ${fmtViewDist(d, u)} optimal`
   )
   lines.push("")
   lines.push(`Full spec / ${shareUrl}`)
