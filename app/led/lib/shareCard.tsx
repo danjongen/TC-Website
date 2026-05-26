@@ -55,16 +55,34 @@ export function buildShareMetadata(
   }
 }
 
-function Stat({ label, value, sub }: { label: string; value: string; sub: string }) {
+function Stat({
+  label,
+  value,
+  sub,
+  size,
+}: {
+  label: string
+  value: string
+  sub: string
+  size: number
+}) {
   return (
     <div style={{ display: "flex", flexDirection: "column", flex: 1, minWidth: 0 }}>
       <div style={{ fontSize: 18, letterSpacing: 2, color: COLORS.inkDim, textTransform: "uppercase" }}>
         {label}
       </div>
-      <div style={{ fontSize: 32, fontWeight: 700, color: COLORS.ink, marginTop: 6, lineHeight: 1.1 }}>
+      <div
+        style={{
+          fontSize: size,
+          fontWeight: 700,
+          color: COLORS.ink,
+          marginTop: 8,
+          whiteSpace: "nowrap",
+        }}
+      >
         {value}
       </div>
-      <div style={{ fontSize: 17, color: COLORS.inkDim, marginTop: 6 }}>{sub}</div>
+      <div style={{ fontSize: 17, color: COLORS.inkDim, marginTop: 8, whiteSpace: "nowrap" }}>{sub}</div>
     </div>
   )
 }
@@ -78,6 +96,21 @@ export function ogCard(cfg: WallConfig | null, cab: Cabinet | null) {
   const u = cfg ? unitsOf(cfg) : "metric"
   const title = projectTitle(cfg)
   const titleSize = title.length > 34 ? 40 : title.length > 22 ? 52 : 66
+
+  const stats =
+    d && cfg
+      ? [
+          { label: "Tiles", value: `${cfg.tiles_wide} × ${cfg.tiles_high}`, sub: `${fmt.int(d.tiles_total)} total` },
+          { label: "Pixels", value: `${fmt.int(d.pixels_wide)} × ${fmt.int(d.pixels_high)}`, sub: `${fmt.int(d.pixels_total)} px` },
+          { label: "Wall", value: fmtWallWH(d, u), sub: cab ? `${cab.pixel_pitch_mm.toFixed(2)} mm pitch` : "" },
+          { label: "Power", value: `${fmt.num(d.amps_max_per_phase, 0)} A`, sub: `max / ${cfg.power_service}` },
+        ]
+      : null
+  // One uniform value size that keeps the widest stat on a single line in its
+  // column (~247px) — punchy for normal walls, auto-shrinks for extreme ones.
+  const statSize = stats
+    ? Math.max(20, Math.min(34, Math.floor(247 / (0.62 * Math.max(...stats.map((s) => s.value.length))))))
+    : 34
 
   return (
     <div
@@ -125,12 +158,11 @@ export function ogCard(cfg: WallConfig | null, cab: Cabinet | null) {
       {/* Stats + accent rule */}
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div style={{ display: "flex", height: 4, background: COLORS.accent, width: 96, marginBottom: 28 }} />
-        {d && cfg ? (
+        {stats ? (
           <div style={{ display: "flex", gap: 28 }}>
-            <Stat label="Tiles" value={`${cfg.tiles_wide} × ${cfg.tiles_high}`} sub={`${fmt.int(d.tiles_total)} total`} />
-            <Stat label="Pixels" value={`${fmt.int(d.pixels_wide)} × ${fmt.int(d.pixels_high)}`} sub={`${fmt.int(d.pixels_total)} px`} />
-            <Stat label="Wall" value={fmtWallWH(d, u)} sub={cab ? `${cab.pixel_pitch_mm.toFixed(2)} mm pitch` : ""} />
-            <Stat label="Power" value={`${fmt.num(d.amps_max_per_phase, 0)} A`} sub={`max / ${cfg.power_service}`} />
+            {stats.map((s) => (
+              <Stat key={s.label} label={s.label} value={s.value} sub={s.sub} size={statSize} />
+            ))}
           </div>
         ) : (
           <div style={{ display: "flex", fontSize: 24, color: COLORS.inkDim }}>
