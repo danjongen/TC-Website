@@ -52,7 +52,7 @@ export default function AboutPage() {
     { label: "Years Experience", value: "15+" },
     { label: "Global Productions", value: "200+" },
     { label: "Countries", value: "30+" },
-    { label: "Fortune 500 Clients", value: "50+" },
+    { label: "Global Brands", value: "Ford · Google · Visa" },
   ]
 
   const principles = [
@@ -128,7 +128,7 @@ export default function AboutPage() {
         <section aria-label="Live production at scale" className="relative">
           <div className="relative aspect-[21/9] w-full">
             <Image
-              src="/images/bsb-live-02.jpg"
+              src="/images/bsb-live-05.jpg"
               alt="Backstreet Boys live at the Sphere — large-format LED production engineered by TC Agency"
               fill
               className="object-cover"
@@ -150,7 +150,7 @@ export default function AboutPage() {
                   src="/daniel-jongen-headshot.jpg"
                   alt="Executive Technical Producer Daniel Jongen — Technical Direction and Production Engineering leader at TC Agency"
                   fill
-                  className="object-cover object-center"
+                  className="object-cover object-center grayscale contrast-110"
                   priority
                 />
                 <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/80 to-transparent">

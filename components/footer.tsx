@@ -78,12 +78,6 @@ export function Footer() {
               >
                 Contact
               </Link>
-              <Link
-                href="/led"
-                className="block text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
-              >
-                LED Spec Tool
-              </Link>
             </div>
           </div>
         </div>

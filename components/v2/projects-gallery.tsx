@@ -13,53 +13,49 @@ const PROJECTS = [
     client: "Backstreet Boys",
     role: "Automation, Power & Data Systems",
     image: "/images/bsb-live-02.jpg",
+    href: "/portfolio/backstreet-boys-into-the-millennium",
     index: "001",
   },
   {
-    title: "The Sphere Experience",
-    client: "Las Vegas, NV",
-    role: "Video Systems Integration",
+    title: "Sphere Residency",
+    client: "The Sphere — Las Vegas",
+    role: "Technical Direction",
     image: "/images/bsb-live-04.jpg",
+    href: "/portfolio/sphere-residency",
     index: "002",
   },
   {
-    title: "Immersive Stage Design",
-    client: "Global Festival",
-    role: "Technical Direction",
-    image: "/images/rainbow-stage.jpg",
+    title: "Immersive LED Experience",
+    client: "Samsung",
+    role: "System Integration",
+    image: "/images/dscf9211.jpg",
+    href: "/portfolio/immersive-experience",
     index: "003",
   },
   {
-    title: "Organic Structure Rig",
-    client: "Major Artist",
-    role: "Structural Engineering",
-    image: "/images/skeletal-stage.jpg",
+    title: "Global Product Launch",
+    client: "Ford",
+    role: "Production Engineering",
+    image: "/images/dsf3917.jpg",
+    href: "/portfolio/global-product-launch",
     index: "004",
-  },
-  {
-    title: "FOH Control Systems",
-    client: "Stadium Series",
-    role: "Workflow Automation",
-    image: "/images/foh-control.jpg",
-    index: "005",
-  },
-  {
-    title: "Vertical Lift System",
-    client: "Broadcast Spectacular",
-    role: "Automation Design",
-    image: "/images/vertical-lift.jpg",
-    index: "006",
   },
 ]
 
-function ProjectCard({ project }: { project: (typeof PROJECTS)[number] }) {
+function ProjectCard({ project, onCardFocus }: { project: (typeof PROJECTS)[number]; onCardFocus?: () => void }) {
   const ref = useRef<HTMLDivElement>(null)
   // per-card parallax: image drifts inside its frame as the card crosses the viewport
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] })
   const imageY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"])
 
   return (
-    <div ref={ref} className="group relative h-[70vh] w-[85vw] shrink-0 overflow-hidden md:h-[75vh] md:w-[60vw]">
+    <Link
+      href={project.href}
+      data-cursor="hover"
+      onFocus={onCardFocus}
+      className="block shrink-0 snap-start focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#00D26A]"
+    >
+      <div ref={ref} className="group relative h-[70vh] w-[85vw] overflow-hidden md:h-[75vh] md:w-[60vw]">
       <motion.div style={{ y: imageY }} className="absolute inset-[-14%]">
         <Image
           src={project.image}
@@ -72,12 +68,13 @@ function ProjectCard({ project }: { project: (typeof PROJECTS)[number] }) {
       <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-black/80 to-transparent" />
       <div className="absolute bottom-0 left-0 p-8 md:p-12">
         <p className="mb-3 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
-          {project.index} / 006 — {project.role.toUpperCase()}
+          {project.index} / 004 — {project.role.toUpperCase()}
         </p>
         <h3 className="text-3xl font-bold tracking-[-0.03em] text-white md:text-5xl">{project.title}</h3>
         <p className="mt-2 text-zinc-400">{project.client}</p>
       </div>
-    </div>
+      </div>
+    </Link>
   )
 }
 
@@ -146,8 +143,18 @@ export function ProjectsGallery() {
       <div ref={trackRef} className="relative h-[260vh]">
         <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
           <motion.div style={{ x }} className="flex gap-8 pl-6 md:pl-[8vw]">
-            {PROJECTS.map((p) => (
-              <ProjectCard key={p.index} project={p} />
+            {PROJECTS.map((p, i) => (
+              <ProjectCard
+                key={p.index}
+                project={p}
+                onCardFocus={() => {
+                  // keyboard path: focusing a card scrolls the pinned track to reveal it
+                  const el = trackRef.current
+                  if (!el) return
+                  const top = el.offsetTop + (i / PROJECTS.length) * (el.offsetHeight - window.innerHeight)
+                  window.scrollTo({ top, behavior: "auto" })
+                }}
+              />
             ))}
             <PortfolioCard />
           </motion.div>

@@ -50,28 +50,28 @@ const phases = [
   {
     num: "01",
     title: "Discovery",
-    duration: "Weeks 1-2",
+    duration: "",
     desc: "We audit your systems, identify friction points, and map your production requirements. No assumptions — just data.",
     outputs: ["Technical Requirements Doc", "System Architecture Map", "Risk Assessment"],
   },
   {
     num: "02",
     title: "Design",
-    duration: "Weeks 3-4",
+    duration: "",
     desc: "We architect your solution: workflows, integrations, automation logic. Everything visualized before we build.",
     outputs: ["Workflow Diagrams", "Integration Specifications", "3D Previsualization"],
   },
   {
     num: "03",
     title: "Build",
-    duration: "Weeks 5-8",
+    duration: "",
     desc: "We construct and configure all systems. Every component tested in isolation and integration.",
     outputs: ["Configured Systems", "Automation Scripts", "Integration Layer"],
   },
   {
     num: "04",
     title: "Deploy",
-    duration: "Weeks 9-10",
+    duration: "",
     desc: "On-site installation, team training, and live rehearsal support. We stay until it works.",
     outputs: ["Installed Systems", "Trained Team", "Documentation Package"],
   },
@@ -123,7 +123,7 @@ export default function ApproachPage() {
       <section aria-label="Large-scale production" className="relative">
         <div className="relative aspect-[21/9] w-full">
           <Image
-            src="/images/bsb-live-04.jpg"
+            src="/images/bsb-live-03.jpg"
             alt="Large-scale live production at the Sphere — the methodology in action"
             fill
             className="object-cover"

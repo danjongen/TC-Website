@@ -1,5 +1,3 @@
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
 import Link from "next/link"
 import Image from "next/image"
 import { ServiceSchema, BreadcrumbSchema } from "@/components/structured-data"
@@ -79,7 +77,7 @@ const services: { num: string; title: string; desc: string; href: string; detail
       "LED volume calibration",
       "Performance optimization",
     ],
-    specs: { fps: "120+", resolution: "16K+", latency: "<8ms" },
+    specs: { resolution: "Up to 16K", engine: "Unreal", scope: "Previz to show" },
   },
   {
     num: "06",
@@ -107,7 +105,7 @@ const services: { num: string; title: string; desc: string; href: string; detail
       "Real-time monitoring dashboards",
       "Failover automation",
     ],
-    specs: { protocols: "20+", latency: "<1ms", uptime: "100%" },
+    specs: { protocols: "20+", scope: "Video / Audio / Light / Motion", uptime: "99.97%" },
   },
   {
     num: "08",
@@ -121,7 +119,7 @@ const services: { num: string; title: string; desc: string; href: string; detail
       "Clash detection analysis",
       "BIM integration",
     ],
-    specs: { accuracy: "±2mm", range: "300m", density: "1M pts/sec" },
+    specs: { deliverables: "Scan / CAD / BIM", coverage: "Venue-scale", output: "Survey-grade" },
   },
   {
     num: "09",
@@ -150,21 +148,6 @@ const services: { num: string; title: string; desc: string; href: string; detail
       "Load testing and certification",
     ],
     specs: { leadTime: "2-6 weeks", materials: "50+", tolerance: "±0.1mm" },
-  },
-  {
-    num: "11",
-    title: "Automation & AI Operations",
-    desc: "Business operations automation and AI-powered tools. The systems we built for ourselves, now available for yours.",
-    href: "/services/automation-ops",
-    details: [
-      "Automated order and shipping notifications",
-      "Inventory management and reorder triggers",
-      "Supplier tracking and follow-ups",
-      "AI-powered inbox triage and customer communication",
-      "Automated reporting across platforms",
-      "Cash flow monitoring and forecasting",
-    ],
-    specs: { setup: "One-time", platforms: "10+", uptime: "99.9%" },
   },
 ]
 
@@ -210,7 +193,6 @@ export default function CapabilitiesPage() {
         ]}
       />
 
-      <Navbar />
 
       {/* Hero */}
       <section className="pt-40 md:pt-48 pb-[14vh]">
@@ -335,7 +317,6 @@ export default function CapabilitiesPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   )
 }
