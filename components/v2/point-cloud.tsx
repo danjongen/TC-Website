@@ -53,12 +53,12 @@ const VERT = /* glsl */ `
 
     vec4 mv = modelViewMatrix * vec4(pos, 1.0);
     gl_Position = projectionMatrix * mv;
-    gl_PointSize = (0.9 + 1.0 * p) * uPixelRatio * (3.2 / -mv.z);
+    gl_PointSize = (0.6 + 0.85 * p) * uPixelRatio * (3.2 / -mv.z);
 
     float lum = dot(color, vec3(0.2126, 0.7152, 0.0722));
     vColor = color * 1.7;
     // dark pixels stay nearly invisible so the photo reads crisply
-    vAlpha = (0.2 + 0.8 * p) * (1.0 - d) * smoothstep(0.02, 0.26, lum);
+    vAlpha = (0.2 + 0.8 * p) * (1.0 - d) * (0.15 + 0.85 * smoothstep(0.01, 0.2, lum));
   }
 `
 
@@ -101,7 +101,7 @@ function sampleImage(img: HTMLImageElement, cols: number, rows: number): Sampled
     colors[i * 3] = r
     colors[i * 3 + 1] = g
     colors[i * 3 + 2] = b
-    depths[i] = (0.2126 * r + 0.7152 * g + 0.0722 * b - 0.5) * 1.1
+    depths[i] = (0.2126 * r + 0.7152 * g + 0.0722 * b - 0.5) * 0.5
   }
   return { colors, depths }
 }
@@ -173,7 +173,7 @@ export function PointCloud({
     let morphStart = -1
 
     const isMobile = window.innerWidth < 768
-    const COLS = isMobile ? 300 : 560
+    const COLS = isMobile ? 340 : 760
     let ROWS = 0
 
     const startCycle = () => {
@@ -291,8 +291,8 @@ export function PointCloud({
 
       // slow 3D presence: the whole cloud breathes and banks
       if (points) {
-        points.rotation.y = Math.sin(t * 0.1) * 0.05 + uniforms.uMouse.value.x * 0.06
-        points.rotation.x = Math.cos(t * 0.13) * 0.03 - uniforms.uMouse.value.y * 0.04
+        points.rotation.y = Math.sin(t * 0.1) * 0.025 + uniforms.uMouse.value.x * 0.05
+        points.rotation.x = Math.cos(t * 0.13) * 0.015 - uniforms.uMouse.value.y * 0.035
         camera.position.z = 3.2 + Math.sin(t * 0.15) * 0.08
       }
 

@@ -39,6 +39,21 @@ export function CloudHero() {
           <PointCloud images={IMAGES} onReady={onReady} onSlide={onSlide} handlesRef={cloudRef} />
         </div>
 
+        {/* filmic finish: grain + corner vignette */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.07] mix-blend-overlay"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E\")",
+          }}
+          aria-hidden="true"
+        />
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{ background: "radial-gradient(ellipse 120% 90% at 50% 45%, transparent 55%, rgba(0,0,0,0.55) 100%)" }}
+          aria-hidden="true"
+        />
+
         <motion.div style={{ opacity: overlayOpacity, y: titleY }} className="pointer-events-none absolute inset-0 flex flex-col justify-end px-6 pb-16 md:px-12 md:pb-24">
           <div className="mx-auto w-full max-w-[1600px]">
             <h1 className="select-none text-[11.5vw] font-black leading-[0.86] tracking-[-0.04em] text-white md:text-[8.5vw]">
