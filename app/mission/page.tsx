@@ -9,7 +9,7 @@ export const dynamic = "force-static"
 export const revalidate = 86400 // Revalidate every 24 hours
 
 export const metadata: Metadata = {
-  title: "Mission | TC Agency — Technically Creative",
+  title: "Mission",
   description:
     "Our mission at TC Agency (Technically Creative) — delivering engineering-grade production systems for high-stakes live events worldwide. Systems over heroes. Automation over manual.",
   keywords: [
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     "systematic production approach",
   ],
   openGraph: {
-    title: "Our Mission | TC Agency — Technically Creative",
+    title: "Our Mission",
     description: "Engineering calm into chaos. We bring systematic precision to high-stakes live production.",
     url: "https://tc.agency/mission",
     siteName: "TC Agency",

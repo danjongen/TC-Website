@@ -3,13 +3,12 @@ import { Footer } from "@/components/footer"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
 import { BreadcrumbSchema } from "@/components/structured-data"
 
 export const metadata: Metadata = {
-  title: "Portfolio | TC Agency — Technically Creative",
+  title: "Portfolio",
   description:
-    "Featured productions by TC Agency: stadium tours, immersive installations, and technical innovations for the world's most demanding productions.",
+    "Featured productions by TC Agency: stadium tours, immersive LED experiences, and technical innovations. Backstreet Boys, The Sphere, Samsung, Ford, and more.",
   keywords: [
     "live event portfolio",
     "concert production case studies",
@@ -20,9 +19,11 @@ export const metadata: Metadata = {
     "event technology projects",
     "Sphere Las Vegas production",
     "Backstreet Boys tour",
+    "Samsung event production",
+    "Ford product launch",
   ],
   openGraph: {
-    title: "Portfolio | TC Agency — Technically Creative",
+    title: "Portfolio",
     description:
       "Stadium tours, immersive installations, and technical innovations for the world's most demanding productions.",
     url: "https://tc.agency/portfolio",
@@ -55,7 +56,7 @@ const projects = [
     title: "Into The Millennium World Tour",
     role: "Automation, Power & Data Systems",
     tech: "Show control, 48 automation axes, 12,000+ data points",
-    image: "/images/66a0205.jpg",
+    image: "/images/bsb-live-01.jpg",
     hasDetail: true,
   },
   {
@@ -64,14 +65,32 @@ const projects = [
     title: "Sphere Residency",
     role: "Technical Direction",
     tech: "16K content, 1.2B pixels, 164,000 LED panels",
-    image: "/images/dsf3010.jpg",
+    image: "/images/bsb-live-03.jpg",
+    hasDetail: true,
+  },
+  {
+    slug: "immersive-experience",
+    client: "Samsung",
+    title: "Immersive LED Experience",
+    role: "System Integration",
+    tech: "360-degree display, spatial audio, interactive zones",
+    image: "/images/dscf9211.jpg",
+    hasDetail: true,
+  },
+  {
+    slug: "global-product-launch",
+    client: "Ford",
+    title: "Global Product Launch",
+    role: "Production Engineering",
+    tech: "4-continent broadcast, synchronized reveals, 2.3M viewers",
+    image: "/images/dsf3917.jpg",
     hasDetail: true,
   },
 ]
 
 export default function PortfolioPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen bg-black text-white">
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "https://tc.agency" },
@@ -82,81 +101,96 @@ export default function PortfolioPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 border-b border-border">
+      <section className="pt-40 md:pt-48 pb-[14vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl">
-            <p className="text-sm font-mono text-emerald-500 mb-6 uppercase tracking-widest">04 / Portfolio</p>
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">Selected work.</h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              Stadium tours, immersive installations, global broadcasts, and technical innovations for the world's most
-              demanding productions.
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 — PORTFOLIO ]</p>
+            <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">Selected work</h1>
+            <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">
+              Stadium tours, immersive installations, global broadcasts, and technical innovations for the world's
+              most demanding productions.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Project Grid */}
-      <section className="py-16">
+      {/* Project index */}
+      <section className="pb-[14vh]">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl">
-            {projects.map((project) => {
-              const content = (
-                <div className="group relative overflow-hidden border border-border bg-zinc-950 hover:border-emerald-900/50 transition-colors">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image
-                      src={project.image}
-                      alt={`${project.client}: ${project.title}`}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                    <div className="absolute top-4 left-4">
-                      <span className="text-xs font-mono text-emerald-500 uppercase tracking-widest">
-                        {project.client}
-                      </span>
-                    </div>
+          {projects.map((project, i) => {
+            const index = String(i + 1).padStart(2, "0")
+            const content = (
+              <div className="group">
+                <div className="relative aspect-[16/9] overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={`${project.client}: ${project.title}`}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    sizes="100vw"
+                    priority={i === 0}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                  <div className="absolute bottom-6 left-6">
+                    <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+                      {project.client.toUpperCase()}
+                    </p>
                   </div>
-                  <div className="p-6">
-                    <h2 className="text-lg font-bold mb-1">{project.title}</h2>
-                    <p className="text-sm text-muted-foreground mb-3">{project.role}</p>
-                    <p className="text-xs font-mono text-muted-foreground">{project.tech}</p>
+                </div>
+                <div className="pt-8 grid md:grid-cols-12 gap-4 items-baseline">
+                  <div className="md:col-span-1">
+                    <span className="font-mono text-xs tracking-[0.2em] text-zinc-500">{index}</span>
+                  </div>
+                  <div className="md:col-span-7">
+                    <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white group-hover:text-[#00D26A] transition-colors duration-300">
+                      {project.title}
+                    </h2>
+                    <p className="text-lg leading-relaxed text-zinc-400 mt-3">{project.role}</p>
+                  </div>
+                  <div className="md:col-span-4 md:text-right">
+                    <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-500 leading-relaxed">
+                      {project.tech.toUpperCase()}
+                    </p>
                     {project.hasDetail && (
-                      <div className="mt-4 flex items-center gap-2 text-sm font-mono text-emerald-500">
-                        View project <ArrowRight className="w-3 h-3" />
-                      </div>
+                      <p className="mt-4 font-mono text-xs tracking-[0.2em] text-zinc-500 group-hover:text-white transition-colors duration-300">
+                        VIEW PROJECT →
+                      </p>
                     )}
                   </div>
                 </div>
-              )
+              </div>
+            )
 
-              if (project.hasDetail) {
-                return (
-                  <Link key={project.slug} href={`/portfolio/${project.slug}`} className="block">
+            return (
+              <article key={project.slug} className="py-[7vh]">
+                {i > 0 && <div className="h-px bg-zinc-900 mb-[7vh]" aria-hidden="true" />}
+                {project.hasDetail ? (
+                  <Link href={`/portfolio/${project.slug}`} className="block">
                     {content}
                   </Link>
-                )
-              }
-
-              return <div key={project.slug}>{content}</div>
-            })}
-          </div>
+                ) : (
+                  content
+                )}
+              </article>
+            )
+          })}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-24 border-t border-border">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready for your project?</h2>
-          <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
+      <section className="py-[14vh]">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-6">
+            Ready for your project?
+          </h2>
+          <p className="text-lg leading-relaxed text-zinc-400 mb-10 max-w-xl">
             Every production is different. Tell us about yours and we will show you how we can help.
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-bold hover:bg-gray-200 transition-colors duration-150"
+            className="font-mono text-xs tracking-[0.2em] text-zinc-500 hover:text-[#00D26A] transition-colors duration-300"
           >
-            Start a Conversation
-            <ArrowRight className="w-4 h-4" />
+            START A CONVERSATION →
           </Link>
         </div>
       </section>

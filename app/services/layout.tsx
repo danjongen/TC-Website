@@ -1,8 +1,10 @@
 import type React from "react"
 import type { Metadata } from "next"
+import { Navbar } from "@/components/navbar"
+import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
-  title: "Services | TC Agency — Technically Creative",
+  title: "Services",
   description:
     "Full-spectrum production engineering services: technical direction, automation, system integration, 3D scanning, Unreal Engine, and custom fabrication.",
   keywords: [
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
     "show control systems",
   ],
   openGraph: {
-    title: "Services | TC Agency — Technically Creative",
+    title: "Services",
     description:
       "Full-spectrum production engineering. Every technical discipline under one roof, working as a unified system.",
     url: "https://tc.agency/services",
@@ -44,5 +46,11 @@ export const metadata: Metadata = {
 }
 
 export default function CapabilitiesLayout({ children }: { children: React.ReactNode }) {
-  return children
+  return (
+    <>
+      <Navbar />
+      {children}
+      <Footer />
+    </>
+  )
 }

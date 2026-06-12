@@ -169,3 +169,13 @@
     box-shadow: 0 0 30px rgba(0, 210, 106, 0.12);
   }
 }
+
+/* V2 immersive homepage */
+::selection {
+  background: #00d26a;
+  color: #000;
+}
+
+.ease-expo {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}

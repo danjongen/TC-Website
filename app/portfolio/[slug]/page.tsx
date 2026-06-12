@@ -104,6 +104,66 @@ const projects: Record<
       },
     ],
   },
+  "immersive-experience": {
+    title: "Immersive LED Experience",
+    client: "Samsung",
+    role: "System Integration",
+    year: "2023",
+    image: "/images/dscf9211.jpg",
+    description:
+      "A 360-degree LED environment with spatial audio and interactive zones, engineered as a single synchronized canvas for a flagship brand activation.",
+    challenge:
+      "Wrap-around LED, spatial audio, and real-time interactive content had to behave as one system, with frame-accurate sync across every surface and zero visible seams to visitors moving freely through the space.",
+    solution:
+      "We unified display processing, audio rendering, and sensor-driven interaction under one show-control layer with a single master clock. Every vendor system was brought onto a common network and timecode backbone, with redundant signal paths to each LED processor.",
+    results: [
+      "Frame-accurate sync across the full 360-degree canvas",
+      "Interactive zones ran the full activation without a system restart",
+      "Single-operator show control for a multi-vendor system",
+    ],
+    specs: [
+      { label: "Canvas", value: "360°" },
+      { label: "Audio", value: "Spatial" },
+      { label: "Zones", value: "Interactive" },
+    ],
+    services: [
+      {
+        title: "System Integration",
+        href: "/services/system-integration",
+        desc: "Display, audio, and interaction unified on one control backbone",
+      },
+    ],
+  },
+  "global-product-launch": {
+    title: "Global Product Launch",
+    client: "Ford",
+    role: "Production Engineering",
+    year: "2023",
+    image: "/images/dsf3917.jpg",
+    description:
+      "A four-continent simultaneous broadcast with synchronized on-site reveals, delivered to 2.3 million live viewers.",
+    challenge:
+      "Four venues, four time zones, one moment. Every reveal had to land simultaneously on-site and on-stream, with no venue able to see another's feed before air.",
+    solution:
+      "We engineered a distributed cueing architecture with a single authoritative master clock, per-venue redundant encode/transport chains, and a rehearsal pipeline that validated the full chain end-to-end before show day.",
+    results: [
+      "Synchronized reveals across 4 continents",
+      "2.3M live viewers served without a stream interruption",
+      "All venues cued from one authoritative master clock",
+    ],
+    specs: [
+      { label: "Venues", value: "4 continents" },
+      { label: "Live Audience", value: "2.3M" },
+      { label: "Master Clock", value: "1" },
+    ],
+    services: [
+      {
+        title: "Production Management",
+        href: "/services/production-management",
+        desc: "Multi-venue coordination, rehearsal pipeline, show-day cueing",
+      },
+    ],
+  },
 }
 
 export async function generateStaticParams() {
@@ -156,8 +216,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
       <section className="py-12 border-b border-border">
         <div className="container mx-auto px-6">
-          <div className="relative aspect-[21/9] bg-zinc-900 border border-border overflow-hidden">
-            <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
+          <div className="relative aspect-[21/9] overflow-hidden">
+            <Image src={project.image} alt={project.title} fill sizes="100vw" priority className="object-cover" />
           </div>
         </div>
       </section>

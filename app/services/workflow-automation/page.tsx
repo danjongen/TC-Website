@@ -333,19 +333,19 @@ export default function WorkflowAutomationPage() {
             <div className="grid md:grid-cols-3 gap-px bg-border border border-border">
               {[
                 {
-                  value: "60%",
-                  label: "Time Saved",
-                  desc: "Average reduction in manual workflow hours across automation deployments",
+                  value: "50+",
+                  label: "Shows Automated",
+                  desc: "Zero timing failures across 50+ shows on the Into The Millennium tour",
                 },
                 {
-                  value: "95%",
-                  label: "Error Reduction",
-                  desc: "Decrease in human-introduced errors through automated validation and execution",
+                  value: "48",
+                  label: "Automation Axes",
+                  desc: "Show control and motion axes run from a single integrated system",
                 },
                 {
-                  value: "100%",
-                  label: "Repeatability",
-                  desc: "Identical execution every run, every venue, every operator, every time",
+                  value: "12,000+",
+                  label: "Data Points",
+                  desc: "Live telemetry monitored per show across power, network, and rigging",
                 },
               ].map((stat, i) => (
                 <div key={i} className="bg-background p-8 text-center">

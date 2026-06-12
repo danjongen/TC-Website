@@ -34,6 +34,11 @@ export function ContactForm() {
 
   return (
     <form action={formAction} className="space-y-6">
+      {/* honeypot: hidden from humans; the server action drops submissions that fill it */}
+      <div className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+        <label htmlFor="company_website">Company website</label>
+        <input type="text" id="company_website" name="company_website" tabIndex={-1} autoComplete="off" />
+      </div>
       {state?.error && (
         <div className="p-4 bg-red-900/20 border border-red-800 text-red-400 text-sm rounded">{state.error}</div>
       )}
