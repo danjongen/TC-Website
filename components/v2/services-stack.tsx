@@ -10,27 +10,27 @@ const SERVICES = [
   {
     index: "01",
     title: "Technical Direction",
-    body: "End-to-end technical leadership for arena tours, residencies, and broadcast spectaculars. One throat to choke, zero surprises on show day.",
+    body: "Technical leadership for arena tours, residencies, and broadcast. One accountable lead. Zero surprises on show day.",
   },
   {
     index: "02",
     title: "Workflow Automation",
-    body: "Custom show-control pipelines, cueing systems, and data integration that remove human error from the critical path.",
+    body: "Show-control pipelines and cueing systems that take human error off the critical path.",
   },
   {
     index: "03",
     title: "Systems Integration",
-    body: "Video, audio, lighting, motion, power, and networking engineered as a single coherent machine — not a pile of vendors.",
+    body: "Video, lighting, motion, power, and networking engineered as one machine — not a pile of vendors.",
   },
   {
     index: "04",
     title: "Unreal Engine & Visualization",
-    body: "Real-time previsualization, virtual production, and pixel-accurate content pipelines for screens of any scale — including the biggest one on the planet.",
+    body: "Real-time previs and pixel-accurate content pipelines for screens of any scale — including the biggest one on the planet.",
   },
   {
     index: "05",
     title: "3D & Aerial Surveying",
-    body: "LiDAR scanning, photogrammetry, and drone survey for venues and structures. Millimeter truth before a single truck rolls.",
+    body: "LiDAR, photogrammetry, and drone survey. Millimeter truth before a single truck rolls.",
   },
 ]
 

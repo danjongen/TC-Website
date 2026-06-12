@@ -75,16 +75,6 @@
   ],
   "redirects": [
     {
-      "source": "/services",
-      "destination": "/capabilities",
-      "permanent": true
-    },
-    {
-      "source": "/mission",
-      "destination": "/about",
-      "permanent": true
-    },
-    {
       "source": "/engineering",
       "destination": "/services",
       "permanent": true
@@ -97,11 +87,6 @@
     {
       "source": "/projects",
       "destination": "/portfolio",
-      "permanent": true
-    },
-    {
-      "source": "/about",
-      "destination": "/mission",
       "permanent": true
     },
     {

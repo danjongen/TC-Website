@@ -12,14 +12,14 @@ const PROJECTS = [
     title: "Into The Millennium",
     client: "Backstreet Boys",
     role: "Automation, Power & Data Systems",
-    image: "/images/bsb-platform.jpg",
+    image: "/images/bsb-live-02.jpg",
     index: "001",
   },
   {
     title: "The Sphere Experience",
     client: "Las Vegas, NV",
     role: "Video Systems Integration",
-    image: "/images/sphere-mosaic.jpg",
+    image: "/images/bsb-live-04.jpg",
     index: "002",
   },
   {

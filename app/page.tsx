@@ -2,8 +2,8 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { SchemaOrgGraph } from "@/components/schema-org"
 import { SmoothScroll } from "@/components/v2/smooth-scroll"
-import { Preloader } from "@/components/v2/preloader"
-import { HeroV2 } from "@/components/v2/hero-v2"
+import { CustomCursor } from "@/components/v2/custom-cursor"
+import { PixelHero } from "@/components/v2/pixel-hero"
 import { StatsMarquee } from "@/components/v2/stats-marquee"
 import { Manifesto } from "@/components/v2/manifesto"
 import { ProjectsGallery } from "@/components/v2/projects-gallery"
@@ -20,10 +20,10 @@ export default function Home() {
       <SchemaOrgGraph />
       <SmoothScroll>
         <div className="min-h-screen bg-black text-white">
-          <Preloader />
+          <CustomCursor />
           <Navbar />
           <main>
-            <HeroV2 />
+            <PixelHero />
             <StatsMarquee />
             <Manifesto />
             <ProjectsGallery />

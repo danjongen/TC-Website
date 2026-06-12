@@ -4,7 +4,7 @@ import { useRef } from "react"
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion"
 
 const TEXT =
-  "When the lights go down and 60,000 people are watching, there is no second take. We engineer the systems that make impossible shows inevitable — automation, motion control, video, power, and data, fused into one machine that simply does not fail."
+  "Sixty thousand people. One cue. No second take. We engineer the systems that make impossible shows inevitable — automation, motion, video, power, and data fused into one machine that does not fail."
 
 function Word({ children, progress, range }: { children: string; progress: MotionValue<number>; range: [number, number] }) {
   const opacity = useTransform(progress, range, [0.12, 1])
