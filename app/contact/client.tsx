@@ -36,17 +36,17 @@ export function ContactPageClient() {
           <div className="grid lg:grid-cols-2 gap-20">
             {/* Contact Form */}
             <div>
-              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">SEND US A MESSAGE</p>
+              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">SEND US A MESSAGE</p>
               <ContactForm />
             </div>
 
             {/* Contact Info */}
             <div>
-              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">DIRECT CONTACT</p>
+              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">DIRECT CONTACT</p>
 
               <div className="space-y-10">
                 <div>
-                  <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-500 mb-2">EMAIL</p>
+                  <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400 mb-2">EMAIL</p>
                   <a
                     href="mailto:info@tc.agency"
                     className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white hover:text-[#00D26A] transition-colors duration-300"
@@ -56,7 +56,7 @@ export function ContactPageClient() {
                 </div>
                 <div className="h-px bg-zinc-900" aria-hidden="true" />
                 <div>
-                  <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-500 mb-2">PHONE</p>
+                  <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400 mb-2">PHONE</p>
                   <a
                     href="tel:+13132615200"
                     className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white hover:text-[#00D26A] transition-colors duration-300"
@@ -66,7 +66,7 @@ export function ContactPageClient() {
                 </div>
                 <div className="h-px bg-zinc-900" aria-hidden="true" />
                 <div>
-                  <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-500 mb-2">LOCATION</p>
+                  <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400 mb-2">LOCATION</p>
                   <p className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white">Detroit, MI</p>
                 </div>
               </div>

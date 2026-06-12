@@ -147,8 +147,8 @@ export default function ApproachPage() {
                 {index > 0 && <div className="h-px bg-zinc-900" aria-hidden="true" />}
                 <div className="py-12 grid lg:grid-cols-12 gap-6">
                   <div className="lg:col-span-2 flex items-baseline gap-6 lg:block">
-                    <span className="font-mono text-xs tracking-[0.2em] text-zinc-500">{phase.num}</span>
-                    <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-500 lg:mt-2">
+                    <span className="font-mono text-xs tracking-[0.2em] text-zinc-400">{phase.num}</span>
+                    <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400 lg:mt-2">
                       {phase.duration.toUpperCase()}
                     </p>
                   </div>
@@ -159,7 +159,7 @@ export default function ApproachPage() {
                     <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">{phase.desc}</p>
                   </div>
                   <div className="lg:col-span-4">
-                    <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-500 mb-3">OUTPUTS</p>
+                    <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400 mb-3">OUTPUTS</p>
                     <ul className="space-y-2">
                       {phase.outputs.map((output) => (
                         <li key={output} className="text-sm leading-relaxed text-zinc-400">
@@ -183,7 +183,7 @@ export default function ApproachPage() {
             {differentiators.map((item) => (
               <div key={item.label}>
                 <p className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white">{item.stat}</p>
-                <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-500 mt-3">
+                <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400 mt-3">
                   {item.label.toUpperCase()}
                 </p>
                 <p className="text-sm leading-relaxed text-zinc-400 mt-2">{item.desc}</p>
@@ -204,7 +204,7 @@ export default function ApproachPage() {
           </p>
           <a
             href="/portfolio"
-            className="font-mono text-xs tracking-[0.2em] text-zinc-500 hover:text-[#00D26A] transition-colors duration-300"
+            className="font-mono text-xs tracking-[0.2em] text-zinc-400 hover:text-[#00D26A] transition-colors duration-300"
           >
             VIEW PORTFOLIO →
           </a>

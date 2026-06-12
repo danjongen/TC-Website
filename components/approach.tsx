@@ -68,13 +68,13 @@ export function Approach() {
             {steps.map((step, index) => (
               <div key={index} className="relative flex flex-col items-center text-center group">
                 <div className="w-12 h-12 bg-zinc-900 border border-border rounded-full mb-4 z-10 flex items-center justify-center group-hover:border-emerald-700 group-hover:bg-accent/20 transition-colors duration-150">
-                  <span className="text-sm font-mono text-zinc-500 group-hover:text-emerald-500 transition-colors">
+                  <span className="text-sm font-mono text-zinc-400 group-hover:text-emerald-500 transition-colors">
                     {(index + 1).toString().padStart(2, "0")}
                   </span>
                 </div>
                 <div className="text-sm font-bold text-white mb-1">{step.name}</div>
                 <div className="text-xs text-muted-foreground mb-2">{step.desc}</div>
-                <div className="text-[10px] text-zinc-600 leading-relaxed max-w-[140px]">{step.detail}</div>
+                <div className="text-[10px] text-zinc-400 leading-relaxed max-w-[140px]">{step.detail}</div>
               </div>
             ))}
           </div>
@@ -89,7 +89,7 @@ export function Approach() {
               className="object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
             />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-            <div className="absolute bottom-2 left-2 text-[10px] font-mono text-zinc-500">LED SYSTEMS</div>
+            <div className="absolute bottom-2 left-2 text-[10px] font-mono text-zinc-400">LED SYSTEMS</div>
           </div>
           <div className="relative aspect-square overflow-hidden border border-border group">
             <Image
@@ -99,7 +99,7 @@ export function Approach() {
               className="object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
             />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-            <div className="absolute bottom-2 left-2 text-[10px] font-mono text-zinc-500">IMMERSIVE CONTENT</div>
+            <div className="absolute bottom-2 left-2 text-[10px] font-mono text-zinc-400">IMMERSIVE CONTENT</div>
           </div>
           <div className="relative aspect-square overflow-hidden border border-border group">
             <Image
@@ -109,7 +109,7 @@ export function Approach() {
               className="object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
             />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-            <div className="absolute bottom-2 left-2 text-[10px] font-mono text-zinc-500">AUTOMATION</div>
+            <div className="absolute bottom-2 left-2 text-[10px] font-mono text-zinc-400">AUTOMATION</div>
           </div>
           <div className="relative aspect-square overflow-hidden border border-border group">
             <Image
@@ -119,7 +119,7 @@ export function Approach() {
               className="object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
             />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-            <div className="absolute bottom-2 left-2 text-[10px] font-mono text-zinc-500">FABRICATION</div>
+            <div className="absolute bottom-2 left-2 text-[10px] font-mono text-zinc-400">FABRICATION</div>
           </div>
         </div>
       </div>

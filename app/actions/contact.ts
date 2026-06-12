@@ -36,6 +36,7 @@ export async function submitContactForm(
     timeline: (formData.get("timeline") as string)?.trim() || "",
     message: (formData.get("message") as string)?.trim() || "",
     honeypot: formData.get("company_website") as string, // Honeypot field
+    formStartedAt: Number(formData.get("form_started_at") || 0),
     turnstileToken: formData.get("cf-turnstile-response") as string,
   }
 
@@ -53,6 +54,14 @@ export async function submitContactForm(
     // Return generic success to not reveal detection
     // Redirect after a realistic delay
     await new Promise((resolve) => setTimeout(resolve, 1500))
+    redirect("/thank-you")
+  }
+
+  // =========================================================================
+  // LAYER 1b: Time trap — bots fill forms in well under 3 seconds
+  // =========================================================================
+  if (!data.formStartedAt || Date.now() - data.formStartedAt < 3000) {
+    console.warn("[Contact Form] Time-trap triggered, dropping submission")
     redirect("/thank-you")
   }
 

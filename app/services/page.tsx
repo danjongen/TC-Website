@@ -239,7 +239,7 @@ export default function CapabilitiesPage() {
                 {i > 0 && <div className="h-px bg-zinc-900" aria-hidden="true" />}
                 <div className="py-14 grid lg:grid-cols-12 gap-8">
                   <div className="lg:col-span-1">
-                    <span className="font-mono text-xs tracking-[0.2em] text-zinc-500">{service.num}</span>
+                    <span className="font-mono text-xs tracking-[0.2em] text-zinc-400">{service.num}</span>
                   </div>
                   <div className="lg:col-span-6">
                     <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-4">
@@ -250,7 +250,7 @@ export default function CapabilitiesPage() {
                     <p className="text-lg leading-relaxed text-zinc-400 max-w-xl mb-6">{service.desc}</p>
                     <Link
                       href={service.href}
-                      className="font-mono text-xs tracking-[0.2em] text-zinc-500 hover:text-white transition-colors duration-300"
+                      className="font-mono text-xs tracking-[0.2em] text-zinc-400 hover:text-white transition-colors duration-300"
                       aria-label={`Learn more about ${service.title}`}
                     >
                       VIEW SERVICE →
@@ -267,7 +267,7 @@ export default function CapabilitiesPage() {
                     <dl className="flex flex-wrap gap-x-10 gap-y-4">
                       {Object.entries(service.specs).map(([key, value]) => (
                         <div key={key}>
-                          <dt className="font-mono text-[11px] tracking-[0.2em] text-zinc-500">
+                          <dt className="font-mono text-[11px] tracking-[0.2em] text-zinc-400">
                             {formatSpecLabel(key)}
                           </dt>
                           <dd className="text-lg font-semibold text-white mt-1">{value}</dd>
@@ -290,7 +290,7 @@ export default function CapabilitiesPage() {
             {partners.map((partner) => (
               <span
                 key={partner}
-                className="font-mono text-xs tracking-[0.2em] text-zinc-500 hover:text-white transition-colors duration-300"
+                className="font-mono text-xs tracking-[0.2em] text-zinc-400 hover:text-white transition-colors duration-300"
               >
                 {partner}
               </span>
@@ -310,7 +310,7 @@ export default function CapabilitiesPage() {
           </p>
           <Link
             href="/contact"
-            className="font-mono text-xs tracking-[0.2em] text-zinc-500 hover:text-[#00D26A] transition-colors duration-300"
+            className="font-mono text-xs tracking-[0.2em] text-zinc-400 hover:text-[#00D26A] transition-colors duration-300"
           >
             DISCUSS YOUR PROJECT →
           </Link>

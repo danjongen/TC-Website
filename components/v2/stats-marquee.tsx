@@ -14,7 +14,7 @@ export function StatsLine() {
         {STATS.map(([value, label]) => (
           <div key={label} className="flex items-baseline gap-3 font-mono">
             <span className="text-xl text-white md:text-2xl">{value}</span>
-            <span className="text-[11px] tracking-[0.2em] text-zinc-600">{label}</span>
+            <span className="text-[11px] tracking-[0.2em] text-zinc-400">{label}</span>
           </div>
         ))}
       </div>

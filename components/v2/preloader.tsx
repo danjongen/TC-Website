@@ -48,7 +48,7 @@ export function Preloader() {
                 key={line}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className={i === BOOT_LINES.length - 1 ? "mt-2 font-bold text-[#00D26A]" : "text-zinc-500"}
+                className={i === BOOT_LINES.length - 1 ? "mt-2 font-bold text-[#00D26A]" : "text-zinc-400"}
               >
                 {line}
               </motion.p>

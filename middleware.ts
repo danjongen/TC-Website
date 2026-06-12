@@ -8,8 +8,8 @@ import { NextRequest, NextResponse } from "next/server"
  * Gated:     /led, /led/anything else
  *
  * Password lives in env `LED_TOOL_PASSWORD` (set in Vercel project
- * settings). Defaults to "tc-detroit" if unset so the tool works
- * out of the box in preview; override in production.
+ * settings). Fails closed if unset — the tool stays locked until the
+ * env var is configured.
  *
  * The session cookie is signed with a per-deployment secret derived
  * from the password so rotating the password invalidates old cookies.
@@ -38,7 +38,15 @@ export async function middleware(req: NextRequest) {
     return NextResponse.next()
   }
 
-  const password = process.env.LED_TOOL_PASSWORD || "tc-detroit"
+  const password = process.env.LED_TOOL_PASSWORD
+  if (!password) {
+    // fail closed: tool stays locked until LED_TOOL_PASSWORD is set in env
+    const url = req.nextUrl.clone()
+    url.pathname = "/led/unlock"
+    url.searchParams.set("error", "config")
+    url.searchParams.set("from", pathname)
+    return NextResponse.redirect(url)
+  }
   const expected = await tokenFor(password)
   const cookie = req.cookies.get(COOKIE_NAME)?.value
 

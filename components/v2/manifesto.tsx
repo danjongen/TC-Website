@@ -7,8 +7,8 @@ const TEXT =
   "Sixty thousand people. One cue. No second take. We engineer the systems that make impossible shows *inevitable* — automation, motion, video, power, and data fused into one machine that *does-not-fail*."
 
 function Word({ children, progress, range, green }: { children: string; progress: MotionValue<number>; range: [number, number]; green?: boolean }) {
-  const opacity = useTransform(progress, range, [0.3, 1])
-  const color = useTransform(progress, range, ["#52525b", green ? "#00D26A" : "#ffffff"])
+  const opacity = useTransform(progress, range, [0.6, 1])
+  const color = useTransform(progress, range, ["#a1a1aa", green ? "#00D26A" : "#ffffff"])
   return (
     <motion.span style={{ opacity, color }} className="inline-block">
       {children}&nbsp;

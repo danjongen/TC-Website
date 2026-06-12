@@ -151,7 +151,7 @@ export function CloudHero() {
               className="text-right font-mono text-[10px] tracking-[0.3em] text-zinc-400"
             >
               {SLIDES[slide].caption}
-              <span className="mt-2 block text-zinc-500">
+              <span className="mt-2 block text-zinc-400">
                 {String(slide + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
               </span>
             </motion.p>

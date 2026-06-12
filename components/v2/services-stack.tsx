@@ -58,14 +58,14 @@ export function ServicesStack() {
                   aria-expanded={isOpen}
                   className="group flex w-full items-baseline gap-6 py-7 text-left md:gap-12 md:py-9"
                 >
-                  <span className="font-mono text-[11px] tracking-[0.2em] text-zinc-600">{s.index}</span>
+                  <span className="font-mono text-[11px] tracking-[0.2em] text-zinc-400">{s.index}</span>
                   <span
-                    className="text-3xl font-semibold tracking-[-0.03em] text-zinc-500 transition-colors duration-300 group-hover:text-white md:text-6xl"
+                    className="text-3xl font-semibold tracking-[-0.03em] text-zinc-400 transition-colors duration-300 group-hover:text-white md:text-6xl"
                     style={isOpen ? { color: "#fff" } : undefined}
                   >
                     {s.title}
                   </span>
-                  <span className="ml-auto hidden font-mono text-xs text-zinc-600 transition-transform duration-300 group-hover:translate-x-1 md:block">
+                  <span className="ml-auto hidden font-mono text-xs text-zinc-400 transition-transform duration-300 group-hover:translate-x-1 md:block">
                     {isOpen ? "—" : "+"}
                   </span>
                 </button>
@@ -83,7 +83,7 @@ export function ServicesStack() {
                         <Link
                           href={s.href}
                           data-cursor="hover"
-                          className="mt-6 inline-block font-mono text-xs tracking-[0.2em] text-zinc-500 transition-colors duration-300 hover:text-[#00D26A]"
+                          className="mt-6 inline-block font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-[#00D26A]"
                         >
                           EXPLORE →
                         </Link>

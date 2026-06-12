@@ -16,24 +16,24 @@ export const metadata: Metadata = {
 
 export default function TermsOfService() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-black text-white">
       <Navbar />
 
-      <article className="pt-32 pb-24">
+      <article className="pt-40 md:pt-48 pb-[14vh]">
         <div className="container mx-auto px-6 max-w-3xl">
           {/* Back Link */}
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-white transition-colors mb-8"
+            className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white mb-12"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Home
           </Link>
 
           {/* Header */}
-          <header className="mb-12 border-b border-zinc-800 pb-8">
-            <p className="text-xs font-mono text-zinc-500 mb-2">Last updated: November 27, 2025</p>
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Terms of Service</h1>
+          <header className="mb-16">
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">Last updated: November 27, 2025</p>
+            <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-6">Terms of Service</h1>
             <div className="text-sm text-zinc-400">
               <p>
                 Technically Creative LLC, operating as TC Agency, TC, and Tech Creative ("we", "our", "us", "Technically
@@ -41,12 +41,12 @@ export default function TermsOfService() {
               </p>
               <p>Detroit, MI, USA</p>
               <p>
-                <a href="mailto:info@tc.agency" className="text-white hover:underline">
+                <a href="mailto:info@tc.agency" className="text-white underline-offset-4 transition-colors duration-300 hover:text-[#00D26A] hover:underline">
                   info@tc.agency
                 </a>
               </p>
               <p>
-                <a href="tel:+13132615200" className="text-white hover:underline">
+                <a href="tel:+13132615200" className="text-white underline-offset-4 transition-colors duration-300 hover:text-[#00D26A] hover:underline">
                   +1 313 261 5200
                 </a>
               </p>
@@ -54,9 +54,9 @@ export default function TermsOfService() {
           </header>
 
           {/* Content */}
-          <div className="prose prose-invert prose-zinc max-w-none space-y-8">
+          <div className="max-w-none space-y-10">
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">1. Acceptance of Terms</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">1. Acceptance of Terms</h2>
               <p className="text-zinc-400 leading-relaxed">
                 By accessing and using the TC Agency website (tc.agency), you accept and agree to be bound by these
                 Terms of Service. If you do not agree to these terms, please do not use our website.
@@ -64,7 +64,7 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">2. Description of Services</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">2. Description of Services</h2>
               <p className="text-zinc-400 leading-relaxed">
                 TC Agency provides production engineering, technical direction, and live event automation services. This
                 website serves as an informational platform about our services and a means to contact us regarding
@@ -73,7 +73,7 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">3. Use of Website</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">3. Use of Website</h2>
               <p className="text-zinc-400 leading-relaxed mb-4">
                 You agree to use this website only for lawful purposes. You shall not:
               </p>
@@ -88,7 +88,7 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">4. Intellectual Property</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">4. Intellectual Property</h2>
               <p className="text-zinc-400 leading-relaxed">
                 All content on this website, including but not limited to text, graphics, logos, images, videos, and
                 software, is the property of TC Agency or its content suppliers and is protected by copyright,
@@ -106,7 +106,7 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">5. Project Inquiries</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">5. Project Inquiries</h2>
               <p className="text-zinc-400 leading-relaxed">
                 Submitting a project inquiry through our contact form does not create a binding contract or guarantee of
                 services. All project engagements are subject to separate agreements and contracts that will be
@@ -115,7 +115,7 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">6. Confidentiality</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">6. Confidentiality</h2>
               <p className="text-zinc-400 leading-relaxed">
                 We treat all project inquiries and communications as confidential. However, we recommend not sharing
                 sensitive proprietary information through our contact form. Formal confidentiality agreements will be
@@ -124,7 +124,7 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">7. Payment Terms</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">7. Payment Terms</h2>
               <ul className="list-disc list-inside text-zinc-400 space-y-1">
                 <li>All fees are quoted in USD unless otherwise specified</li>
                 <li>Payment is due within 30 days of invoice date unless otherwise agreed in a separate Statement of Work</li>
@@ -135,7 +135,7 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">8. Disclaimer of Warranties</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">8. Disclaimer of Warranties</h2>
               <p className="text-zinc-400 leading-relaxed">
                 This website is provided "as is" without warranties of any kind, either express or implied. We do not
                 warrant that the website will be uninterrupted, error-free, or free of viruses or other harmful
@@ -144,7 +144,7 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">9. Limitation of Liability</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">9. Limitation of Liability</h2>
               <p className="text-zinc-400 leading-relaxed mb-4">
                 To the fullest extent permitted by law, TC Agency shall not be liable for any indirect, incidental,
                 special, consequential, or punitive damages arising out of your access to or use of this website, even
@@ -157,7 +157,7 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">10. Dispute Resolution</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">10. Dispute Resolution</h2>
               <ul className="list-disc list-inside text-zinc-400 space-y-1">
                 <li>Parties agree to first attempt resolution through good-faith negotiation for 30 days</li>
                 <li>If unresolved, disputes shall be submitted to binding arbitration administered by the American Arbitration Association under its Commercial Arbitration Rules</li>
@@ -170,7 +170,7 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">11. Third-Party Links</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">11. Third-Party Links</h2>
               <p className="text-zinc-400 leading-relaxed">
                 Our website may contain links to third-party websites. These links are provided for convenience only. We
                 do not endorse or assume responsibility for the content, privacy policies, or practices of any
@@ -179,7 +179,7 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">12. Indemnification</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">12. Indemnification</h2>
               <p className="text-zinc-400 leading-relaxed mb-4">
                 You agree to indemnify and hold harmless TC Agency and its officers, directors, employees, and agents
                 from any claims, damages, losses, liabilities, and expenses arising out of your use of this website or
@@ -193,7 +193,7 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">13. Governing Law</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">13. Governing Law</h2>
               <p className="text-zinc-400 leading-relaxed">
                 These Terms of Service shall be governed by and construed in accordance with the laws of the State of
                 Michigan, United States, without regard to its conflict of law provisions.
@@ -201,7 +201,7 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">14. Changes to Terms</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">14. Changes to Terms</h2>
               <p className="text-zinc-400 leading-relaxed">
                 We reserve the right to modify these Terms of Service at any time. Changes will be effective immediately
                 upon posting to this page. Your continued use of the website after changes are posted constitutes
@@ -210,7 +210,7 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">15. Severability</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">15. Severability</h2>
               <p className="text-zinc-400 leading-relaxed">
                 If any provision of these Terms of Service is found to be unenforceable, the remaining provisions will
                 continue in full force and effect.
@@ -218,11 +218,11 @@ export default function TermsOfService() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">16. Contact Information</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">16. Contact Information</h2>
               <p className="text-zinc-400 leading-relaxed">
                 For questions about these Terms of Service, please contact us:
               </p>
-              <div className="bg-zinc-900 border border-zinc-800 p-4 mt-4">
+              <div className="mt-4">
                 <p className="text-sm text-zinc-400">
                   <strong className="text-white">
                     Technically Creative LLC, operating as TC Agency, TC, and Tech Creative
@@ -231,12 +231,12 @@ export default function TermsOfService() {
                   Detroit, MI, USA
                   <br />
                   Email:{" "}
-                  <a href="mailto:info@tc.agency" className="text-white underline">
+                  <a href="mailto:info@tc.agency" className="text-white underline underline-offset-4 transition-colors duration-300 hover:text-[#00D26A]">
                     info@tc.agency
                   </a>
                   <br />
                   Phone:{" "}
-                  <a href="tel:+13132615200" className="text-white underline">
+                  <a href="tel:+13132615200" className="text-white underline underline-offset-4 transition-colors duration-300 hover:text-[#00D26A]">
                     +1 313 261 5200
                   </a>
                 </p>

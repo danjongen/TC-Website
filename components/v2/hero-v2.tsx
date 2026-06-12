@@ -48,7 +48,7 @@ export function HeroV2() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="mb-6 font-mono text-xs tracking-[0.35em] text-zinc-500 md:text-sm"
+          className="mb-6 font-mono text-xs tracking-[0.35em] text-zinc-400 md:text-sm"
         >
           <span className="mr-3 inline-block h-2 w-2 animate-pulse rounded-full align-middle" style={{ background: GREEN }} />
           SYSTEMS ONLINE — DETROIT / LOS ANGELES / LAS VEGAS
@@ -109,7 +109,7 @@ export function HeroV2() {
 
       <motion.div
         style={{ opacity: subOpacity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 font-mono text-[10px] tracking-[0.4em] text-zinc-600"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 font-mono text-[10px] tracking-[0.4em] text-zinc-400"
         aria-hidden="true"
       >
         SCROLL TO INITIALIZE

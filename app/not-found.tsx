@@ -6,54 +6,59 @@ export default function NotFound() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-background flex items-center justify-center">
-        <div className="max-w-2xl mx-auto px-6 py-24 text-center">
-          {/* System status indicator */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 border border-border bg-muted/50 mb-8">
-            <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-            <span className="font-mono text-xs text-muted-foreground tracking-wider">ERR_404_NOT_FOUND</span>
-          </div>
+      <main className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="max-w-2xl mx-auto px-6 pt-40 md:pt-48 pb-[14vh] text-center">
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ ERR_404_NOT_FOUND ]</p>
 
-          {/* Error code */}
-          <h1 className="font-mono text-8xl md:text-9xl font-bold tracking-tighter text-foreground/10 mb-4">404</h1>
+          <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-6">404</h1>
 
-          {/* Message */}
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-4">Page Not Found</h2>
-          <p className="text-muted-foreground mb-8 max-w-md mx-auto">
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-6">Page not found</h2>
+          <p className="text-lg leading-relaxed text-zinc-400 max-w-xl mx-auto mb-12">
             The page you're looking for doesn't exist or has been moved. Let's get you back on track.
           </p>
 
-          {/* Navigation options */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
             <Link
               href="/"
-              className="inline-flex items-center justify-center px-6 py-3 bg-foreground text-background font-medium hover:bg-foreground/90 transition-colors"
+              className="font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white"
             >
-              Return Home
+              RETURN HOME →
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-6 py-3 border border-border font-medium hover:bg-muted transition-colors"
+              className="font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white"
             >
-              Contact Us
+              CONTACT US →
             </Link>
           </div>
 
-          {/* Quick links */}
-          <div className="mt-16 pt-8 border-t border-border">
-            <p className="text-sm text-muted-foreground mb-4">Looking for something specific?</p>
-            <nav className="flex flex-wrap items-center justify-center gap-6 text-sm">
-              <Link href="/capabilities" className="hover:text-foreground transition-colors text-muted-foreground">
-                Services
+          <div className="mt-20">
+            <div className="h-px bg-zinc-900 mb-8" aria-hidden="true" />
+            <p className="text-base text-zinc-400 mb-6">Looking for something specific?</p>
+            <nav className="flex flex-wrap items-center justify-center gap-6">
+              <Link
+                href="/capabilities"
+                className="font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white"
+              >
+                SERVICES
               </Link>
-              <Link href="/approach" className="hover:text-foreground transition-colors text-muted-foreground">
-                Approach
+              <Link
+                href="/approach"
+                className="font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white"
+              >
+                APPROACH
               </Link>
-              <Link href="/mission" className="hover:text-foreground transition-colors text-muted-foreground">
-                Mission
+              <Link
+                href="/mission"
+                className="font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white"
+              >
+                MISSION
               </Link>
-              <Link href="/portfolio" className="hover:text-foreground transition-colors text-muted-foreground">
-                Portfolio
+              <Link
+                href="/portfolio"
+                className="font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white"
+              >
+                PORTFOLIO
               </Link>
             </nav>
           </div>

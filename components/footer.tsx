@@ -20,7 +20,7 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="font-mono text-xs uppercase tracking-wide text-zinc-500 mb-4">Services</h4>
+            <h4 className="font-mono text-xs uppercase tracking-wide text-zinc-400 mb-4">Services</h4>
             <div className="space-y-2">
               <Link
                 href="/services/consulting"
@@ -52,7 +52,7 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="font-mono text-xs uppercase tracking-wide text-zinc-500 mb-4">Company</h4>
+            <h4 className="font-mono text-xs uppercase tracking-wide text-zinc-400 mb-4">Company</h4>
             <div className="space-y-2">
               <Link
                 href="/about"
@@ -86,7 +86,7 @@ export function Footer() {
         <div className="py-8 border-t border-zinc-800 mb-8">
           <div className="grid md:grid-cols-3 gap-6 text-sm">
             <div>
-              <p className="text-zinc-500 mb-1">Email</p>
+              <p className="text-zinc-400 mb-1">Email</p>
               <a
                 href="mailto:info@tc.agency"
                 className="text-white transition-colors"
@@ -95,7 +95,7 @@ export function Footer() {
               </a>
             </div>
             <div>
-              <p className="text-zinc-500 mb-1">Phone</p>
+              <p className="text-zinc-400 mb-1">Phone</p>
               <a
                 href="tel:+13132615200"
                 className="text-white transition-colors"
@@ -104,17 +104,17 @@ export function Footer() {
               </a>
             </div>
             <div>
-              <p className="text-zinc-500 mb-1">Location</p>
+              <p className="text-zinc-400 mb-1">Location</p>
               <p className="text-white">Detroit, MI</p>
             </div>
           </div>
         </div>
 
         <div className="pt-8 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-zinc-500">
+          <p className="text-xs text-zinc-400">
             © {new Date().getFullYear()} Technically Creative LLC. All rights reserved.
           </p>
-          <div className="flex gap-6 text-xs text-zinc-500">
+          <div className="flex gap-6 text-xs text-zinc-400">
             <Link
               href="/privacy-policy"
               className="transition-colors"
