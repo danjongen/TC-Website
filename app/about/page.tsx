@@ -130,7 +130,7 @@ export default function AboutPage() {
               {/* Bio Content */}
               <div>
                 <p className="font-mono text-sm text-gray-400 mb-4 uppercase tracking-wider">Leadership</p>
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">Meet Daniel Jongen</h2>
+                <h2 id="daniel-jongen" className="text-3xl md:text-4xl font-bold tracking-tight mb-6">Meet Daniel Jongen</h2>
 
                 <div className="space-y-4 text-gray-300 text-lg leading-relaxed">
                   <p>

@@ -6,6 +6,7 @@ import "./globals.css"
 import { Analytics as NextAnalytics } from "@/components/analytics"
 import { CookieConsent } from "@/components/cookie-consent"
 import { ScrollToTop } from "@/components/scroll-to-top"
+import { SmoothScroll } from "@/components/v2/smooth-scroll"
 
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -161,7 +162,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <NextAnalytics />
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
         <CookieConsent />
         <VercelAnalytics />
         <SpeedInsights />

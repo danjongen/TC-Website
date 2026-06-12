@@ -171,43 +171,11 @@
 }
 
 /* V2 immersive homepage */
-@keyframes marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+::selection {
+  background: #00d26a;
+  color: #000;
 }
 
-.marquee-track {
-  animation: marquee-scroll 30s linear infinite;
-}
-
-@keyframes scanline-sweep {
-  0% {
-    top: -2%;
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    top: 102%;
-    opacity: 0;
-  }
-}
-
-.hero-scanline {
-  animation: scanline-sweep 7s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track,
-  .hero-scanline {
-    animation: none;
-  }
+.ease-expo {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }

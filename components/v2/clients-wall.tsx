@@ -15,24 +15,18 @@ const CLIENTS = [
 
 export function ClientsWall() {
   return (
-    <section className="border-t border-zinc-900 bg-black px-6 py-32" aria-label="Clients">
-      <div className="container mx-auto">
-        <p className="mb-4 font-mono text-xs tracking-[0.35em] text-[#00D26A]">[ 04 — TRUSTED BY ]</p>
-        <h2 className="mb-16 text-5xl font-black tracking-tighter text-white md:text-7xl">
-          NAMES YOU KNOW. SHOWS YOU REMEMBER.
-        </h2>
-        <div className="grid grid-cols-2 md:grid-cols-4">
+    <section className="bg-black px-6 py-[14vh] md:px-12" aria-label="Clients">
+      <div className="mx-auto w-full max-w-[1600px]">
+        <p className="mb-14 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 04 — TRUSTED BY ]</p>
+        <div className="grid grid-cols-2 items-center gap-x-10 gap-y-14 md:grid-cols-4">
           {CLIENTS.map((client) => (
-            <div
-              key={client.name}
-              className="group flex h-36 items-center justify-center border border-zinc-900 transition-colors hover:border-[#00D26A]/40 hover:bg-zinc-950"
-            >
+            <div key={client.name} className="flex items-center justify-center">
               <Image
                 src={client.src}
                 alt={client.name}
                 width={140}
                 height={56}
-                className="max-h-14 w-auto object-contain opacity-50 grayscale transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0"
+                className="max-h-12 w-auto object-contain opacity-40 grayscale transition-opacity duration-500 hover:opacity-90"
               />
             </div>
           ))}

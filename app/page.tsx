@@ -1,10 +1,9 @@
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { SchemaOrgGraph } from "@/components/schema-org"
-import { SmoothScroll } from "@/components/v2/smooth-scroll"
 import { CustomCursor } from "@/components/v2/custom-cursor"
-import { PixelHero } from "@/components/v2/pixel-hero"
-import { StatsMarquee } from "@/components/v2/stats-marquee"
+import { CloudHero } from "@/components/v2/cloud-hero"
+import { StatsLine } from "@/components/v2/stats-marquee"
 import { Manifesto } from "@/components/v2/manifesto"
 import { ProjectsGallery } from "@/components/v2/projects-gallery"
 import { ServicesStack } from "@/components/v2/services-stack"
@@ -18,22 +17,20 @@ export default function Home() {
   return (
     <>
       <SchemaOrgGraph />
-      <SmoothScroll>
-        <div className="min-h-screen bg-black text-white">
-          <CustomCursor />
-          <Navbar />
-          <main>
-            <PixelHero />
-            <StatsMarquee />
-            <Manifesto />
-            <ProjectsGallery />
-            <ServicesStack />
-            <ClientsWall />
-            <FooterCTA />
-          </main>
-          <Footer />
-        </div>
-      </SmoothScroll>
+      <div className="min-h-screen bg-black text-white">
+        <CustomCursor />
+        <Navbar />
+        <main>
+          <CloudHero />
+          <StatsLine />
+          <Manifesto />
+          <ProjectsGallery />
+          <ServicesStack />
+          <ClientsWall />
+          <FooterCTA />
+        </main>
+        <Footer />
+      </div>
     </>
   )
 }

@@ -13,6 +13,8 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       wheelMultiplier: 1,
       touchMultiplier: 1.5,
     })
+    // expose for route-change scroll resets (see scroll-to-top.tsx)
+    ;(window as unknown as { lenis?: Lenis }).lenis = lenis
 
     let rafId: number
     const raf = (time: number) => {
@@ -24,6 +26,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     return () => {
       cancelAnimationFrame(rafId)
       lenis.destroy()
+      delete (window as unknown as { lenis?: Lenis }).lenis
     }
   }, [])
 

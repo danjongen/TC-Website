@@ -24,34 +24,26 @@ export function Footer() {
             <div className="space-y-2">
               <Link
                 href="/services/consulting"
-                className="block text-sm text-zinc-400 transition-colors"
+                className="block text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
                 style={{ ["--hover-color" as string]: MATRIX_GREEN }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
               >
                 Executive Consulting
               </Link>
               <Link
                 href="/services/automation"
-                className="block text-sm text-zinc-400 transition-colors"
-                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+                className="block text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
               >
                 Workflow Automation
               </Link>
               <Link
                 href="/services/unreal-engine"
-                className="block text-sm text-zinc-400 transition-colors"
-                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+                className="block text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
               >
                 Unreal Engine
               </Link>
               <Link
                 href="/services/3d-scanning"
-                className="block text-sm text-zinc-400 transition-colors"
-                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+                className="block text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
               >
                 3D Scanning
               </Link>
@@ -64,33 +56,25 @@ export function Footer() {
             <div className="space-y-2">
               <Link
                 href="/about"
-                className="block text-sm text-zinc-400 transition-colors"
-                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+                className="block text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
               >
                 About TC Agency
               </Link>
               <Link
                 href="/about#daniel-jongen"
-                className="block text-sm text-zinc-400 transition-colors"
-                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+                className="block text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
               >
                 Meet Daniel Jongen
               </Link>
               <Link
                 href="/portfolio"
-                className="block text-sm text-zinc-400 transition-colors"
-                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+                className="block text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
               >
                 Portfolio
               </Link>
               <Link
                 href="/contact"
-                className="block text-sm text-zinc-400 transition-colors"
-                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+                className="block text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
               >
                 Contact
               </Link>
@@ -106,8 +90,6 @@ export function Footer() {
               <a
                 href="mailto:info@tc.agency"
                 className="text-white transition-colors"
-                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "white")}
               >
                 info@tc.agency
               </a>
@@ -117,8 +99,6 @@ export function Footer() {
               <a
                 href="tel:+13132615200"
                 className="text-white transition-colors"
-                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "white")}
               >
                 +1 313 261 5200
               </a>
@@ -138,16 +118,12 @@ export function Footer() {
             <Link
               href="/privacy-policy"
               className="transition-colors"
-              onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "")}
             >
               Privacy Policy
             </Link>
             <Link
               href="/terms-of-service"
               className="transition-colors"
-              onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "")}
             >
               Terms of Service
             </Link>

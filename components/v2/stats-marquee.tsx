@@ -1,23 +1,21 @@
 "use client"
 
 const STATS = [
-  "200+ PRODUCTIONS DELIVERED",
-  "99.97% SYSTEM UPTIME",
-  "30+ COUNTRIES",
-  "<2HR RESPONSE TIME",
-  "ZERO SHOW-STOPPING FAILURES",
+  ["200+", "PRODUCTIONS"],
+  ["99.97%", "UPTIME"],
+  ["30+", "COUNTRIES"],
+  ["<2HR", "RESPONSE"],
 ]
 
-export function StatsMarquee() {
-  const row = [...STATS, ...STATS]
+export function StatsLine() {
   return (
-    <section className="overflow-hidden border-y border-zinc-900 bg-black py-6" aria-label="Key statistics">
-      <div className="marquee-track flex w-max items-center gap-12 whitespace-nowrap">
-        {row.map((stat, i) => (
-          <span key={i} className="flex items-center gap-12 font-mono text-sm tracking-[0.25em] text-zinc-500">
-            {stat}
-            <span className="text-[#00D26A]">/</span>
-          </span>
+    <section aria-label="Key statistics" className="bg-black px-6 pt-[12vh] md:px-12">
+      <div className="mx-auto flex w-full max-w-[1600px] flex-wrap gap-x-16 gap-y-6">
+        {STATS.map(([value, label]) => (
+          <div key={label} className="flex items-baseline gap-3 font-mono">
+            <span className="text-xl text-white md:text-2xl">{value}</span>
+            <span className="text-[11px] tracking-[0.2em] text-zinc-600">{label}</span>
+          </div>
         ))}
       </div>
     </section>
