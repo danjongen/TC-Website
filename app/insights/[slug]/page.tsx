@@ -3,7 +3,7 @@ import { Footer } from "@/components/footer"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, Clock, Share2, Linkedin, Twitter } from "lucide-react"
+import { ArrowLeft, Share2, Linkedin, Twitter } from "lucide-react"
 import { BreadcrumbSchema, ArticleSchema } from "@/components/structured-data"
 import { notFound } from "next/navigation"
 
@@ -151,7 +151,7 @@ export default async function InsightPost({ params }: { params: Params }) {
   }
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen bg-black text-white">
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "https://tc.agency" },
@@ -170,45 +170,43 @@ export default async function InsightPost({ params }: { params: Params }) {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-8 border-b border-border">
+      <section className="pt-40 md:pt-48 pb-[10vh]">
         <div className="container mx-auto px-6">
-          <Link
-            href="/insights"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors mb-8"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Insights
-          </Link>
+          <div className="max-w-2xl mx-auto">
+            <Link
+              href="/insights"
+              className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white mb-12"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              BACK TO INSIGHTS
+            </Link>
 
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-4 mb-6">
-              <span className="text-xs font-mono text-emerald-500 uppercase">{post.category}</span>
-              <span className="text-xs text-muted-foreground flex items-center gap-1">
-                <Clock className="w-3 h-3" />
-                {post.readTime}
-              </span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">{post.title}</h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">{post.excerpt}</p>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+              {post.category.toUpperCase()} · {post.date.toUpperCase()} · {post.readTime.toUpperCase()}
+            </p>
+            <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">{post.title}</h1>
+            <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">{post.excerpt}</p>
 
-            <div className="flex items-center justify-between mt-8 pt-8 border-t border-border">
-              <div>
-                <p className="font-medium">{post.author}</p>
-                <p className="text-sm text-muted-foreground">{post.role}</p>
-              </div>
+            <div className="mt-12 flex items-center justify-between gap-6">
+              <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+                {post.author.toUpperCase()} — {post.role.toUpperCase()}
+              </p>
               <div className="flex items-center gap-4">
-                <span className="text-sm text-muted-foreground">{post.date}</span>
-                <div className="flex items-center gap-2">
-                  <button className="p-2 border border-border hover:border-zinc-600 transition-colors">
-                    <Twitter className="w-4 h-4" />
-                  </button>
-                  <button className="p-2 border border-border hover:border-zinc-600 transition-colors">
-                    <Linkedin className="w-4 h-4" />
-                  </button>
-                  <button className="p-2 border border-border hover:border-zinc-600 transition-colors">
-                    <Share2 className="w-4 h-4" />
-                  </button>
-                </div>
+                <button
+                  aria-label="Share on Twitter"
+                  className="text-zinc-400 transition-colors duration-300 hover:text-white"
+                >
+                  <Twitter className="w-4 h-4" />
+                </button>
+                <button
+                  aria-label="Share on LinkedIn"
+                  className="text-zinc-400 transition-colors duration-300 hover:text-white"
+                >
+                  <Linkedin className="w-4 h-4" />
+                </button>
+                <button aria-label="Share" className="text-zinc-400 transition-colors duration-300 hover:text-white">
+                  <Share2 className="w-4 h-4" />
+                </button>
               </div>
             </div>
           </div>
@@ -216,30 +214,33 @@ export default async function InsightPost({ params }: { params: Params }) {
       </section>
 
       {/* Featured Image */}
-      <section className="py-12">
+      <section className="pb-[10vh]">
         <div className="container mx-auto px-6">
-          <div className="relative aspect-[21/9] max-w-5xl mx-auto overflow-hidden border border-border">
+          <div className="relative aspect-[21/9] max-w-5xl mx-auto overflow-hidden">
             <Image src={post.image || "/placeholder.svg"} alt={post.title} fill className="object-cover" priority />
           </div>
         </div>
       </section>
 
       {/* Content */}
-      <section className="py-12 border-b border-border">
+      <section className="pb-[10vh]">
         <div className="container mx-auto px-6">
-          <article className="max-w-3xl mx-auto prose prose-invert prose-emerald">
+          <article className="max-w-2xl mx-auto">
             {post.content.map((paragraph, index) => {
               if (paragraph.startsWith("## ")) {
                 return (
-                  <h2 key={index} className="text-2xl font-bold mt-12 mb-4">
+                  <h2
+                    key={index}
+                    className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mt-16 mb-6"
+                  >
                     {paragraph.replace("## ", "")}
                   </h2>
                 )
               }
               if (paragraph.startsWith("**")) {
                 return (
-                  <p key={index} className="text-muted-foreground leading-relaxed mb-4">
-                    <strong className="text-white">{paragraph.split("**")[1]}</strong>
+                  <p key={index} className="text-lg leading-relaxed text-zinc-400 mb-6">
+                    <strong className="font-semibold text-white">{paragraph.split("**")[1]}</strong>
                     {paragraph.split("**")[2]}
                   </p>
                 )
@@ -247,9 +248,9 @@ export default async function InsightPost({ params }: { params: Params }) {
               if (paragraph.startsWith("- ")) {
                 const items = paragraph.split("\n")
                 return (
-                  <ul key={index} className="list-disc list-inside space-y-2 mb-6">
+                  <ul key={index} className="list-disc list-inside space-y-2 mb-8">
                     {items.map((item, i) => (
-                      <li key={i} className="text-muted-foreground">
+                      <li key={i} className="text-lg leading-relaxed text-zinc-400">
                         {item.replace("- ", "")}
                       </li>
                     ))}
@@ -257,7 +258,7 @@ export default async function InsightPost({ params }: { params: Params }) {
                 )
               }
               return (
-                <p key={index} className="text-muted-foreground leading-relaxed mb-6">
+                <p key={index} className="text-lg leading-relaxed text-zinc-400 mb-8">
                   {paragraph}
                 </p>
               )
@@ -267,18 +268,23 @@ export default async function InsightPost({ params }: { params: Params }) {
       </section>
 
       {/* CTA */}
-      <section className="py-24">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to apply these principles?</h2>
-          <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-            Let's discuss how engineering-grade approaches can transform your next production.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-bold hover:bg-gray-200 transition-colors"
-          >
-            Start a Project
-          </Link>
+      <section className="py-[14vh]">
+        <div className="container mx-auto px-6">
+          <div className="max-w-2xl mx-auto">
+            <div className="h-px bg-zinc-900 mb-16" aria-hidden="true" />
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-6">
+              Ready to apply these principles?
+            </h2>
+            <p className="text-lg leading-relaxed text-zinc-400 max-w-xl mb-10">
+              Let's discuss how engineering-grade approaches can transform your next production.
+            </p>
+            <Link
+              href="/contact"
+              className="font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white"
+            >
+              START A PROJECT →
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -23,14 +23,14 @@ export default function Security() {
         <div className="container mx-auto px-6 max-w-3xl">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-white transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors mb-8"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Home
           </Link>
 
           <header className="mb-12 border-b border-zinc-800 pb-8">
-            <p className="text-xs font-mono text-zinc-500 mb-2">Last updated: November 27, 2025</p>
+            <p className="text-xs font-mono text-zinc-400 mb-2">Last updated: November 27, 2025</p>
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Security & Data Protection Statement</h1>
             <div className="text-sm text-zinc-400">
               <p>

@@ -110,7 +110,7 @@ export default function AboutPage() {
                 <div key={principle.num}>
                   {i > 0 && <div className="h-px bg-zinc-900" aria-hidden="true" />}
                   <div className="py-10 md:flex md:items-baseline md:gap-12">
-                    <span className="font-mono text-xs tracking-[0.2em] text-zinc-500">{principle.num}</span>
+                    <span className="font-mono text-xs tracking-[0.2em] text-zinc-400">{principle.num}</span>
                     <div className="mt-3 md:mt-0">
                       <h3 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-3">
                         {principle.title}
@@ -185,7 +185,7 @@ export default function AboutPage() {
                   {credentials.map((item) => (
                     <div key={item.label}>
                       <p className="text-3xl font-semibold tracking-[-0.03em] text-white">{item.value}</p>
-                      <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-500 mt-2">
+                      <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400 mt-2">
                         {item.label.toUpperCase()}
                       </p>
                     </div>
@@ -194,13 +194,13 @@ export default function AboutPage() {
 
                 {/* Expertise */}
                 <div className="mt-14">
-                  <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">AREAS OF EXPERTISE</p>
+                  <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">AREAS OF EXPERTISE</p>
                   <ul className="max-w-xl">
                     {expertise.map((item, index) => (
                       <li key={item.name}>
                         {index > 0 && <div className="h-px bg-zinc-900" aria-hidden="true" />}
                         <Link href={item.href} className="group flex items-baseline gap-6 py-3">
-                          <span className="font-mono text-xs tracking-[0.2em] text-zinc-500">
+                          <span className="font-mono text-xs tracking-[0.2em] text-zinc-400">
                             {String(index + 1).padStart(2, "0")}
                           </span>
                           <span className="text-lg font-semibold text-white transition-colors duration-300 group-hover:text-[#00D26A]">
@@ -255,7 +255,7 @@ export default function AboutPage() {
             </p>
             <Link
               href="/contact"
-              className="font-mono text-xs tracking-[0.2em] text-zinc-500 hover:text-[#00D26A] transition-colors duration-300"
+              className="font-mono text-xs tracking-[0.2em] text-zinc-400 hover:text-[#00D26A] transition-colors duration-300"
             >
               START A CONVERSATION →
             </Link>

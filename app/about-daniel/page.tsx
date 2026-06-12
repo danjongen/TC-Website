@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Daniel Jongen | Executive Technical Producer — TC Agency",
@@ -90,41 +89,41 @@ export default function AboutDanielPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-black text-white">
       <Navbar />
 
-      <main id="main-content" className="pt-20">
-        {/* Hero Section */}
-        <section className="pt-32 pb-24 border-b border-border">
+      <main id="main-content">
+        {/* Hero */}
+        <section className="pt-40 md:pt-48 pb-[10vh]">
           <div className="container mx-auto px-6">
-            <div className="max-w-4xl">
-              <p className="text-sm font-mono text-emerald-500 mb-4 uppercase tracking-widest">01 / Bio</p>
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">Daniel Jongen</h1>
-              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-                Executive Technical Producer
-              </p>
+            <div className="max-w-3xl">
+              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 01 — BIO ]</p>
+              <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-6">Daniel Jongen</h1>
+              <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">Executive Technical Producer</p>
+            </div>
 
-              {/* Stats Row */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 pt-8 border-t border-border">
-                {stats.map((item) => (
-                  <div key={item.label}>
-                    <p className="text-3xl font-bold text-emerald-500">{item.value}</p>
-                    <p className="text-xs font-mono text-gray-400 uppercase tracking-wider mt-1">{item.label}</p>
-                  </div>
-                ))}
-              </div>
+            {/* Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20">
+              {stats.map((item) => (
+                <div key={item.label}>
+                  <p className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white">{item.value}</p>
+                  <p className="mt-2 font-mono text-[11px] tracking-[0.2em] text-zinc-400 uppercase">{item.label}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Professional Bio Section */}
-        <section className="py-24 border-b border-border">
+        {/* Bio */}
+        <section className="py-[12vh]">
           <div className="container mx-auto px-6">
-            <div className="max-w-3xl">
-              <p className="font-mono text-sm text-gray-400 mb-4 uppercase tracking-wider">Background</p>
-              <h2 className="text-3xl font-bold mb-8">Building Systems That Don't Fail</h2>
+            <div className="max-w-2xl">
+              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 — BACKGROUND ]</p>
+              <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8">
+                Building systems that don't fail
+              </h2>
 
-              <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
+              <div className="space-y-6 text-lg leading-relaxed text-zinc-400">
                 <p>
                   With over 15 years in live production and technical direction, Daniel Jongen has built a career at the
                   intersection of engineering and entertainment. He specializes in large-format touring, corporate events,
@@ -147,65 +146,79 @@ export default function AboutDanielPage() {
           </div>
         </section>
 
-        {/* Core Expertise Section */}
-        <section className="py-24 border-b border-border">
+        {/* Expertise — indexed rows */}
+        <section className="py-[12vh]">
           <div className="container mx-auto px-6">
-            <div className="max-w-5xl">
-              <p className="font-mono text-sm text-emerald-500 mb-4 uppercase tracking-widest">02 / Expertise</p>
-              <h2 className="text-3xl font-bold mb-12">Core Capabilities</h2>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 — EXPERTISE ]</p>
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-12">
+              Core capabilities
+            </h2>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {expertise.map((item, index) => (
-                  <div
-                    key={item.title}
-                    className="p-6 border border-border bg-zinc-950 hover:bg-zinc-900 transition-colors"
-                  >
-                    <span className="text-sm font-mono text-emerald-500">
+            <div>
+              {expertise.map((item, index) => (
+                <div key={item.title}>
+                  {index > 0 && <div className="h-px bg-zinc-900" aria-hidden="true" />}
+                  <div className="py-10 grid md:grid-cols-12 gap-4 md:gap-6 items-baseline">
+                    <span className="md:col-span-2 font-mono text-xs tracking-[0.2em] text-zinc-400">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <h3 className="text-xl font-bold mt-4 mb-3">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                    <h3 className="md:col-span-4 text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-white">
+                      {item.title}
+                    </h3>
+                    <p className="md:col-span-6 text-lg leading-relaxed text-zinc-400 max-w-xl">{item.desc}</p>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Notable Work Section */}
-        <section className="py-24 border-b border-border">
+        {/* Notable work — indexed rows */}
+        <section className="py-[12vh]">
           <div className="container mx-auto px-6">
-            <div className="max-w-5xl">
-              <p className="font-mono text-sm text-emerald-500 mb-4 uppercase tracking-widest">03 / Work</p>
-              <h2 className="text-3xl font-bold mb-12">Notable Productions</h2>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 — WORK ]</p>
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-12">
+              Notable productions
+            </h2>
 
-              <div className="grid md:grid-cols-2 gap-8">
-                {notableWork.map((item) => (
-                  <div key={item.title} className="border-l-2 border-emerald-500 pl-6">
-                    <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+            <div>
+              {notableWork.map((item, index) => (
+                <div key={item.title}>
+                  {index > 0 && <div className="h-px bg-zinc-900" aria-hidden="true" />}
+                  <div className="py-10 grid md:grid-cols-12 gap-4 md:gap-6 items-baseline">
+                    <span className="md:col-span-2 font-mono text-xs tracking-[0.2em] text-zinc-400">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="md:col-span-4 text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-white">
+                      {item.title}
+                    </h3>
+                    <p className="md:col-span-6 text-lg leading-relaxed text-zinc-400 max-w-xl">{item.desc}</p>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-24">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold mb-4">Work with Daniel</h2>
-            <p className="text-gray-400 mb-8 max-w-xl mx-auto">
-              Whether it's a stadium tour, a global product launch, or an immersive installation — let's talk about
-              how engineering-grade production can elevate your next project.
-            </p>
-            <Link
-              href="/contact"
-              className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-emerald-500 text-white font-bold hover:bg-emerald-400 transition-colors duration-150"
-            >
-              Start a Conversation
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-150" />
-            </Link>
+        {/* CTA */}
+        <section className="py-[14vh]">
+          <div className="container mx-auto px-6">
+            <div className="max-w-2xl">
+              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 05 — CONTACT ]</p>
+              <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8">
+                Work with Daniel
+              </h2>
+              <p className="text-lg leading-relaxed text-zinc-400 max-w-xl mb-10">
+                Whether it's a stadium tour, a global product launch, or an immersive installation — let's talk about
+                how engineering-grade production can elevate your next project.
+              </p>
+              <Link
+                href="/contact"
+                className="font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white"
+              >
+                START A CONVERSATION →
+              </Link>
+            </div>
           </div>
         </section>
       </main>

@@ -1,18 +1,34 @@
 "use client"
+import { useEffect, useState } from "react"
 import Script from "next/script"
+import { CONSENT_STORAGE_KEY, CONSENT_CHANGE_EVENT } from "@/components/cookie-consent"
 
 const GA_MEASUREMENT_ID = "G-J8BEX66DS9"
 const CLARITY_PROJECT_ID = "ucf0zh9oje"
 
-// Combined Analytics Provider - only loads if user has consented
+// Combined Analytics Provider - only renders the GA + Clarity script tags
+// once the user has accepted analytics cookies via the consent banner.
 export function Analytics() {
-  // Only load analytics scripts after user has consented
-  // This will be handled by cookie-consent component
-  if (typeof window === "undefined") {
-    return null
-  }
+  const [hasConsent, setHasConsent] = useState(false)
 
-  const hasConsent = localStorage.getItem("tc_cookie_consent") === "accepted"
+  useEffect(() => {
+    const readConsent = () => {
+      setHasConsent(localStorage.getItem(CONSENT_STORAGE_KEY) === "accepted")
+    }
+
+    // Initial check (returning visitors who accepted previously)
+    readConsent()
+
+    // Same-tab updates: dispatched by the cookie consent banner on Accept/Decline
+    window.addEventListener(CONSENT_CHANGE_EVENT, readConsent)
+    // Cross-tab updates via localStorage
+    window.addEventListener("storage", readConsent)
+
+    return () => {
+      window.removeEventListener(CONSENT_CHANGE_EVENT, readConsent)
+      window.removeEventListener("storage", readConsent)
+    }
+  }, [])
 
   if (!hasConsent) {
     return null

@@ -2,7 +2,6 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, CheckCircle } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Thank You",
@@ -15,55 +14,57 @@ export const metadata: Metadata = {
 
 export default function ThankYouPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen bg-black text-white">
       <Navbar />
 
-      <section className="pt-32 pb-24 min-h-[70vh] flex items-center">
+      <section className="pt-40 md:pt-48 pb-[14vh]">
         <div className="container mx-auto px-6">
-          <div className="max-w-2xl mx-auto text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 mb-8">
-              <CheckCircle className="w-8 h-8 text-emerald-500" />
-            </div>
+          <div className="max-w-2xl">
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 01 — CONFIRMED ]</p>
 
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Message received.</h1>
+            <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">
+              Message received.
+            </h1>
 
-            <p className="text-xl text-muted-foreground leading-relaxed mb-4">
+            <p className="text-lg leading-relaxed text-zinc-400 max-w-xl mb-16">
               Thank you for reaching out. Our team reviews every inquiry personally.
             </p>
 
-            <div className="bg-zinc-900/50 border border-border p-6 mb-8 text-left">
-              <p className="text-sm font-mono text-emerald-500 uppercase tracking-widest mb-3">Expected Response</p>
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div>
-                  <p className="text-muted-foreground">Initial Response</p>
-                  <p className="font-medium">Within 24 hours</p>
-                </div>
-                <div>
-                  <p className="text-muted-foreground">Discovery Call</p>
-                  <p className="font-medium">Within 48-72 hours</p>
-                </div>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 — EXPECTED RESPONSE ]</p>
+            <div>
+              <div className="py-6 grid grid-cols-2 gap-6 items-baseline">
+                <p className="font-mono text-xs tracking-[0.2em] text-zinc-400">INITIAL RESPONSE</p>
+                <p className="text-lg leading-relaxed text-white">Within 24 hours</p>
+              </div>
+              <div className="h-px bg-zinc-900" aria-hidden="true" />
+              <div className="py-6 grid grid-cols-2 gap-6 items-baseline">
+                <p className="font-mono text-xs tracking-[0.2em] text-zinc-400">DISCOVERY CALL</p>
+                <p className="text-lg leading-relaxed text-white">Within 48-72 hours</p>
               </div>
             </div>
 
-            <p className="text-sm text-muted-foreground mb-8">
+            <p className="text-lg leading-relaxed text-zinc-400 max-w-xl mt-16 mb-12">
               For urgent production inquiries, call directly:{" "}
-              <a href="tel:+13132615200" className="text-white hover:text-emerald-500 transition-colors">
+              <a
+                href="tel:+13132615200"
+                className="text-white underline underline-offset-4 transition-colors duration-300 hover:text-[#00D26A]"
+              >
                 +1 313 261 5200
               </a>
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-8">
               <Link
                 href="/"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-black font-bold hover:bg-gray-200 transition-colors"
+                className="font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white"
               >
-                Back to Home <ArrowRight className="w-4 h-4" />
+                BACK TO HOME →
               </Link>
               <Link
                 href="/portfolio"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border text-white font-bold hover:bg-white/5 transition-colors"
+                className="font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white"
               >
-                View Our Work
+                VIEW OUR WORK →
               </Link>
             </div>
           </div>

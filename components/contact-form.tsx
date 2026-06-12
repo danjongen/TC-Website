@@ -1,6 +1,7 @@
 "use client"
 
-import { useActionState } from "react"
+import { useActionState, useEffect, useRef, useState } from "react"
+import Script from "next/script"
 import { useFormStatus } from "react-dom"
 import { submitContactForm } from "@/app/actions/contact"
 import { Loader2 } from "lucide-react"
@@ -29,11 +30,21 @@ function SubmitButton() {
   )
 }
 
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
+
 export function ContactForm() {
   const [state, formAction] = useActionState(submitContactForm, null)
+  // time-trap: bots submit instantly; humans take seconds
+  const [mountedAt] = useState(() => Date.now())
+  const formStartRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    if (formStartRef.current) formStartRef.current.value = String(mountedAt)
+  }, [mountedAt])
 
   return (
     <form action={formAction} className="space-y-6">
+      <input ref={formStartRef} type="hidden" name="form_started_at" defaultValue="" />
       {/* honeypot: hidden from humans; the server action drops submissions that fill it */}
       <div className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
         <label htmlFor="company_website">Company website</label>
@@ -53,7 +64,7 @@ export function ContactForm() {
           id="name"
           name="name"
           required
-          className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-500 focus:outline-none focus:border-zinc-500 transition-colors rounded"
+          className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-400 focus:outline-none focus:border-zinc-500 transition-colors rounded"
           placeholder="Your name"
         />
       </div>
@@ -68,7 +79,7 @@ export function ContactForm() {
           id="email"
           name="email"
           required
-          className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-500 focus:outline-none focus:border-zinc-500 transition-colors rounded"
+          className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-400 focus:outline-none focus:border-zinc-500 transition-colors rounded"
           placeholder="email@company.com"
         />
       </div>
@@ -83,14 +94,21 @@ export function ContactForm() {
           name="message"
           rows={5}
           required
-          className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-500 focus:outline-none focus:border-zinc-500 transition-colors resize-none rounded"
+          className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-400 focus:outline-none focus:border-zinc-500 transition-colors resize-none rounded"
           placeholder="Tell us about your project..."
         />
       </div>
 
+      {TURNSTILE_SITE_KEY && (
+        <>
+          <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="lazyOnload" />
+          <div className="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="dark" />
+        </>
+      )}
+
       <SubmitButton />
 
-      <p className="text-xs text-zinc-500 text-center">We respond within 24 hours. Your information is never shared.</p>
+      <p className="text-xs text-zinc-400 text-center">We respond within 24 hours. Your information is never shared.</p>
     </form>
   )
 }

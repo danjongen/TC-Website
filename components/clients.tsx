@@ -84,7 +84,7 @@ export function Clients() {
                 />
               </div>
               {/* Client name label underneath */}
-              <span className="text-xs font-mono text-zinc-600 group-hover:text-zinc-400 transition-colors uppercase tracking-wider">
+              <span className="text-xs font-mono text-zinc-400 group-hover:text-zinc-400 transition-colors uppercase tracking-wider">
                 {client.name}
               </span>
             </motion.div>

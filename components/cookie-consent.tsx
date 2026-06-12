@@ -6,7 +6,14 @@ import Link from "next/link"
 
 type ConsentStatus = "pending" | "accepted" | "declined"
 
-const CONSENT_COOKIE_NAME = "tc_cookie_consent"
+export const CONSENT_STORAGE_KEY = "tc_cookie_consent"
+export const CONSENT_CHANGE_EVENT = "tc-consent-changed"
+
+const CONSENT_COOKIE_NAME = CONSENT_STORAGE_KEY
+
+function notifyConsentChange() {
+  window.dispatchEvent(new Event(CONSENT_CHANGE_EVENT))
+}
 
 export function CookieConsent() {
   const [consentStatus, setConsentStatus] = useState<ConsentStatus>("pending")
@@ -28,14 +35,15 @@ export function CookieConsent() {
     localStorage.setItem(CONSENT_COOKIE_NAME, "accepted")
     setConsentStatus("accepted")
     setIsVisible(false)
-    // Reload to activate analytics
-    window.location.reload()
+    // Notify the Analytics component so scripts load immediately (no reload)
+    notifyConsentChange()
   }
 
   const handleDecline = () => {
     localStorage.setItem(CONSENT_COOKIE_NAME, "declined")
     setConsentStatus("declined")
     setIsVisible(false)
+    notifyConsentChange()
   }
 
   const handleClose = () => {
@@ -82,7 +90,7 @@ export function CookieConsent() {
           </div>
           <button
             onClick={handleClose}
-            className="text-zinc-500 hover:text-white transition-colors p-1 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-zinc-900 rounded"
+            className="text-zinc-400 hover:text-white transition-colors p-1 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-zinc-900 rounded"
             aria-label="Close cookie banner"
           >
             <X className="w-4 h-4" />
@@ -98,8 +106,16 @@ export function useAnalyticsConsent(): boolean {
   const [hasConsent, setHasConsent] = useState(false)
 
   useEffect(() => {
-    const storedConsent = localStorage.getItem(CONSENT_COOKIE_NAME)
-    setHasConsent(storedConsent === "accepted")
+    const readConsent = () => {
+      setHasConsent(localStorage.getItem(CONSENT_COOKIE_NAME) === "accepted")
+    }
+    readConsent()
+    window.addEventListener(CONSENT_CHANGE_EVENT, readConsent)
+    window.addEventListener("storage", readConsent)
+    return () => {
+      window.removeEventListener(CONSENT_CHANGE_EVENT, readConsent)
+      window.removeEventListener("storage", readConsent)
+    }
   }, [])
 
   return hasConsent

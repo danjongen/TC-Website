@@ -139,7 +139,7 @@ export default function PortfolioPage() {
                 </div>
                 <div className="pt-8 grid md:grid-cols-12 gap-4 items-baseline">
                   <div className="md:col-span-1">
-                    <span className="font-mono text-xs tracking-[0.2em] text-zinc-500">{index}</span>
+                    <span className="font-mono text-xs tracking-[0.2em] text-zinc-400">{index}</span>
                   </div>
                   <div className="md:col-span-7">
                     <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white group-hover:text-[#00D26A] transition-colors duration-300">
@@ -148,11 +148,11 @@ export default function PortfolioPage() {
                     <p className="text-lg leading-relaxed text-zinc-400 mt-3">{project.role}</p>
                   </div>
                   <div className="md:col-span-4 md:text-right">
-                    <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-500 leading-relaxed">
+                    <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400 leading-relaxed">
                       {project.tech.toUpperCase()}
                     </p>
                     {project.hasDetail && (
-                      <p className="mt-4 font-mono text-xs tracking-[0.2em] text-zinc-500 group-hover:text-white transition-colors duration-300">
+                      <p className="mt-4 font-mono text-xs tracking-[0.2em] text-zinc-400 group-hover:text-white transition-colors duration-300">
                         VIEW PROJECT →
                       </p>
                     )}
@@ -188,7 +188,7 @@ export default function PortfolioPage() {
           </p>
           <Link
             href="/contact"
-            className="font-mono text-xs tracking-[0.2em] text-zinc-500 hover:text-[#00D26A] transition-colors duration-300"
+            className="font-mono text-xs tracking-[0.2em] text-zinc-400 hover:text-[#00D26A] transition-colors duration-300"
           >
             START A CONVERSATION →
           </Link>

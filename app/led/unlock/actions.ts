@@ -9,7 +9,10 @@ const COOKIE_MAX_AGE = 60 * 60 * 24 * 30 // 30 days
 export async function unlock(formData: FormData) {
   const password = String(formData.get("password") || "")
   const from = String(formData.get("from") || "/led")
-  const expected = process.env.LED_TOOL_PASSWORD || "tc-detroit"
+  const expected = process.env.LED_TOOL_PASSWORD
+  if (!expected) {
+    redirect(`/led/unlock?error=config&from=${encodeURIComponent(from)}`)
+  }
 
   if (password !== expected) {
     redirect(`/led/unlock?error=1&from=${encodeURIComponent(from)}`)

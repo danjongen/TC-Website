@@ -60,7 +60,7 @@ export function Navbar() {
                 key={item.name}
                 href={item.href}
                 className={`relative font-mono text-xs tracking-[0.15em] transition-colors duration-300 hover:text-white ${
-                  isActive(pathname, item.href) ? "text-white" : "text-zinc-500"
+                  isActive(pathname, item.href) ? "text-white" : "text-zinc-400"
                 }`}
               >
                 {item.name}
@@ -103,7 +103,7 @@ export function Navbar() {
                   isActive(pathname, item.href) ? "text-[#00D26A]" : "text-white"
                 }`}
               >
-                <span className="mr-4 font-mono text-xs text-zinc-600">0{i + 1}</span>
+                <span className="mr-4 font-mono text-xs text-zinc-400">0{i + 1}</span>
                 {item.name}
               </Link>
             ))}

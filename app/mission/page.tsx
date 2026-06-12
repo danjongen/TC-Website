@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 
 export default function MissionPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen bg-black text-white">
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "https://tc.agency" },
@@ -60,12 +60,15 @@ export default function MissionPage() {
 
       <Navbar />
 
-      <section className="pt-32 pb-24 border-b border-border">
+      {/* Hero */}
+      <section className="pt-40 md:pt-48 pb-[14vh]">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl">
-            <p className="text-sm font-mono text-emerald-500 mb-4 uppercase tracking-widest">01 / Mission</p>
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-8">Engineering calm into chaos.</h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+          <div className="max-w-3xl">
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 01 — MISSION ]</p>
+            <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">
+              Engineering calm into chaos.
+            </h1>
+            <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">
               We exist to bring systematic precision to high-stakes live production. Where others see complexity, we see
               solvable systems.
             </p>
@@ -73,78 +76,99 @@ export default function MissionPage() {
         </div>
       </section>
 
-      <section className="py-24 border-b border-border">
+      {/* The problem */}
+      <section className="py-[12vh]">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-3xl font-bold mb-6">The Problem We Solve</h2>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                Live production is inherently high-stakes. Millions of dollars, global audiences, and artistic vision
-                all converge on a single moment in time. The margin for error is zero.
-              </p>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                Yet most productions still rely on fragmented systems, manual processes, and tribal knowledge.
-                Information lives in spreadsheets, communication happens over radio, and critical decisions are made on
-                instinct rather than data.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                We believe there's a better way. By applying engineering discipline to production workflows, we
-                transform chaos into calm confidence.
-              </p>
+              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 — THE PROBLEM ]</p>
+              <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8">
+                The problem we solve
+              </h2>
+              <div className="space-y-6 max-w-xl">
+                <p className="text-lg leading-relaxed text-zinc-400">
+                  Live production is inherently high-stakes. Millions of dollars, global audiences, and artistic vision
+                  all converge on a single moment in time. The margin for error is zero.
+                </p>
+                <p className="text-lg leading-relaxed text-zinc-400">
+                  Yet most productions still rely on fragmented systems, manual processes, and tribal knowledge.
+                  Information lives in spreadsheets, communication happens over radio, and critical decisions are made on
+                  instinct rather than data.
+                </p>
+                <p className="text-lg leading-relaxed text-zinc-400">
+                  We believe there's a better way. By applying engineering discipline to production workflows, we
+                  transform chaos into calm confidence.
+                </p>
+              </div>
             </div>
-            <div className="relative aspect-[4/3] bg-zinc-900 border border-border overflow-hidden">
+            <div className="relative aspect-[4/3] overflow-hidden">
               <Image src="/images/dsf3815.jpg" alt="FOH control environment" fill className="object-cover" />
               <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                <p className="text-xs font-mono text-emerald-500">CONTROL ENVIRONMENT</p>
+                <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400">CONTROL ENVIRONMENT</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-24 border-b border-border">
+      {/* Principles — indexed rows */}
+      <section className="py-[12vh]">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-12">Our Principles</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 — PRINCIPLES ]</p>
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-12">Our principles</h2>
+          <div>
             {[
               {
                 num: "01",
-                title: "Systems Over Heroes",
+                title: "Systems over heroes",
                 desc: "We build processes that don't depend on any single person. Repeatable, documented, transferable.",
               },
               {
                 num: "02",
-                title: "Automation Over Manual",
+                title: "Automation over manual",
                 desc: "If a task can be automated, it should be. Humans should focus on creative decisions, not data entry.",
               },
               {
                 num: "03",
-                title: "Clarity Over Complexity",
+                title: "Clarity over complexity",
                 desc: "Complex problems deserve simple interfaces. We hide complexity behind clean, intuitive systems.",
               },
-            ].map((principle) => (
-              <div key={principle.num} className="p-6 border border-border bg-zinc-950">
-                <span className="text-sm font-mono text-emerald-500">{principle.num}</span>
-                <h3 className="text-xl font-bold mt-4 mb-3">{principle.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{principle.desc}</p>
+            ].map((principle, index) => (
+              <div key={principle.num}>
+                {index > 0 && <div className="h-px bg-zinc-900" aria-hidden="true" />}
+                <div className="py-10 grid md:grid-cols-12 gap-4 md:gap-6 items-baseline">
+                  <span className="md:col-span-2 font-mono text-xs tracking-[0.2em] text-zinc-400">
+                    {principle.num}
+                  </span>
+                  <h3 className="md:col-span-4 text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-white">
+                    {principle.title}
+                  </h3>
+                  <p className="md:col-span-6 text-lg leading-relaxed text-zinc-400 max-w-xl">{principle.desc}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-24">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to work with us?</h2>
-          <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-            Let's discuss how we can bring engineering-grade precision to your next production.
-          </p>
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-bold hover:bg-gray-200 transition-colors"
-          >
-            Start a Conversation
-          </a>
+      {/* CTA */}
+      <section className="py-[14vh]">
+        <div className="container mx-auto px-6">
+          <div className="max-w-2xl">
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 — CONTACT ]</p>
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8">
+              Ready to work with us?
+            </h2>
+            <p className="text-lg leading-relaxed text-zinc-400 max-w-xl mb-10">
+              Let's discuss how we can bring engineering-grade precision to your next production.
+            </p>
+            <a
+              href="/contact"
+              className="font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white"
+            >
+              START A CONVERSATION →
+            </a>
+          </div>
         </div>
       </section>
 

@@ -15,7 +15,7 @@ function Clock({ tz, label }: { tz: string; label: string }) {
   }, [tz])
   return (
     <span className="flex gap-3">
-      <span className="text-zinc-600">{label}</span>
+      <span className="text-zinc-400">{label}</span>
       <span className="tabular-nums text-zinc-400">{time}</span>
     </span>
   )
@@ -53,7 +53,7 @@ export function FooterCTA() {
             <Clock tz="America/Detroit" label="DET" />
             <Clock tz="America/Los_Angeles" label="LA" />
             <Clock tz="America/Los_Angeles" label="LV" />
-            <span className="flex items-center gap-2 text-zinc-600">
+            <span className="flex items-center gap-2 text-zinc-400">
               <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[#00D26A]" />
               SYSTEMS NOMINAL
             </span>

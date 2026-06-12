@@ -67,11 +67,11 @@ export function Showcase() {
           <div className="absolute bottom-6 right-6 flex gap-8">
             <div className="text-right">
               <div className="text-2xl font-bold text-white">{"<"}50ms</div>
-              <div className="text-xs font-mono text-zinc-500">Latency</div>
+              <div className="text-xs font-mono text-zinc-400">Latency</div>
             </div>
             <div className="text-right">
               <div className="text-2xl font-bold text-white">100%</div>
-              <div className="text-xs font-mono text-zinc-500">Show Completion</div>
+              <div className="text-xs font-mono text-zinc-400">Show Completion</div>
             </div>
           </div>
         </div>

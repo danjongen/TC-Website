@@ -1,9 +1,7 @@
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import type { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Clock, Bell } from "lucide-react"
 import { BreadcrumbSchema } from "@/components/structured-data"
 import { NewsletterForm } from "@/components/newsletter-form"
 
@@ -70,11 +68,8 @@ const articles = [
 ]
 
 export default function InsightsPage() {
-  const featured = articles[0]
-  const rest = articles.slice(1)
-
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen bg-black text-white">
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "https://tc.agency" },
@@ -85,12 +80,14 @@ export default function InsightsPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 border-b border-border">
+      <section className="pt-40 md:pt-48 pb-[10vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl">
-            <p className="text-sm font-mono text-emerald-500 mb-6 uppercase tracking-widest">06 / Insights</p>
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">Technical perspectives from the field.</h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 06 — INSIGHTS ]</p>
+            <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">
+              Technical perspectives from the field.
+            </h1>
+            <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">
               Case studies, technical breakdowns, and lessons learned from engineering the world's most demanding
               productions.
             </p>
@@ -98,97 +95,54 @@ export default function InsightsPage() {
         </div>
       </section>
 
-      {/* Featured Article */}
-      <section className="py-16 border-b border-border">
+      {/* Article index */}
+      <section className="py-[10vh]">
         <div className="container mx-auto px-6">
-          <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-8">Featured</p>
-          <Link href={`/insights/${featured.slug}`} className="group block">
-            <div className="grid lg:grid-cols-2 gap-8">
-              <div className="relative aspect-[16/10] overflow-hidden border border-border bg-zinc-950">
-                <Image
-                  src={featured.image}
-                  alt={featured.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  priority
-                />
-              </div>
-              <div className="flex flex-col justify-center">
-                <div className="flex items-center gap-4 mb-4">
-                  <span className="text-xs font-mono text-emerald-500 uppercase">{featured.category}</span>
-                  <span className="text-xs text-muted-foreground flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
-                    {featured.readTime}
-                  </span>
-                </div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-emerald-500 transition-colors">
-                  {featured.title}
-                </h2>
-                <p className="text-muted-foreground leading-relaxed mb-4">{featured.excerpt}</p>
-                <div className="flex items-center gap-2 text-sm font-mono text-emerald-500">
-                  Read article <ArrowRight className="w-3 h-3" />
-                </div>
-                <p className="text-xs text-muted-foreground mt-4">{featured.date}</p>
-              </div>
-            </div>
-          </Link>
-        </div>
-      </section>
-
-      {/* Article Grid */}
-      {rest.length > 0 && (
-        <section className="py-16 border-b border-border">
-          <div className="container mx-auto px-6">
-            <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-8">All Articles</p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {rest.map((article) => (
-                <Link key={article.slug} href={`/insights/${article.slug}`} className="group block">
-                  <div className="border border-border bg-zinc-950 hover:border-emerald-900/50 transition-colors overflow-hidden">
-                    <div className="relative aspect-[16/10] overflow-hidden">
-                      <Image
-                        src={article.image}
-                        alt={article.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 07 — ALL ARTICLES ]</p>
+          <div>
+            {articles.map((article, index) => (
+              <article key={article.slug}>
+                {index > 0 && <div className="h-px bg-zinc-900" aria-hidden="true" />}
+                <Link href={`/insights/${article.slug}`} className="group block py-12">
+                  <div className="grid lg:grid-cols-12 gap-4 lg:gap-6">
+                    <div className="lg:col-span-3 flex items-baseline gap-6 lg:block">
+                      <span className="font-mono text-xs tracking-[0.2em] text-zinc-400">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400 lg:mt-2">
+                        {article.date.toUpperCase()} · {article.category.toUpperCase()} ·{" "}
+                        {article.readTime.toUpperCase()}
+                      </p>
                     </div>
-                    <div className="p-6">
-                      <div className="flex items-center gap-4 mb-3">
-                        <span className="text-xs font-mono text-emerald-500 uppercase">{article.category}</span>
-                        <span className="text-xs text-muted-foreground flex items-center gap-1">
-                          <Clock className="w-3 h-3" />
-                          {article.readTime}
-                        </span>
-                      </div>
-                      <h3 className="text-lg font-bold mb-2 group-hover:text-emerald-500 transition-colors">
+                    <div className="lg:col-span-9">
+                      <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white transition-colors duration-300 group-hover:text-[#00D26A] mb-4">
                         {article.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground line-clamp-2">{article.excerpt}</p>
-                      <p className="text-xs text-muted-foreground mt-4">{article.date}</p>
+                      </h2>
+                      <p className="text-lg leading-relaxed text-zinc-400 max-w-2xl mb-6">{article.excerpt}</p>
+                      <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 group-hover:text-white">
+                        READ ARTICLE →
+                      </span>
                     </div>
                   </div>
                 </Link>
-              ))}
-            </div>
+              </article>
+            ))}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* Newsletter */}
-      <section className="py-24 border-b border-border">
+      <section className="py-[14vh]">
         <div className="container mx-auto px-6">
-          <div className="max-w-md mx-auto text-center">
-            <div className="flex items-center justify-center gap-2 mb-6">
-              <Bell className="w-5 h-5 text-emerald-500" />
-              <span className="text-sm font-mono text-muted-foreground">Stay in the loop</span>
-            </div>
-            <p className="text-muted-foreground mb-6">
+          <div className="max-w-xl">
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 08 — STAY IN THE LOOP ]</p>
+            <p className="text-lg leading-relaxed text-zinc-400 mb-8">
               Monthly insights on production engineering, technical trends, and industry best practices.
             </p>
             <NewsletterForm />
-            <p className="text-xs text-muted-foreground mt-4">No spam. Unsubscribe anytime.</p>
+            <p className="mt-4 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+              NO SPAM. UNSUBSCRIBE ANYTIME.
+            </p>
           </div>
         </div>
       </section>
