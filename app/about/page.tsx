@@ -3,7 +3,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { ArrowRight } from "lucide-react"
 import { BreadcrumbSchema } from "@/components/structured-data"
 
 export const metadata: Metadata = {
@@ -56,8 +55,26 @@ export default function AboutPage() {
     { label: "Fortune 500 Clients", value: "50+" },
   ]
 
+  const principles = [
+    {
+      num: "01",
+      title: "Systems over heroes",
+      desc: "Processes that don't depend on any single person. Repeatable, documented, transferable.",
+    },
+    {
+      num: "02",
+      title: "Automation over manual",
+      desc: "If a task can be automated, it should be. Humans focus on creative decisions, not data entry.",
+    },
+    {
+      num: "03",
+      title: "Clarity over complexity",
+      desc: "Complex problems deserve simple interfaces. We hide complexity behind clean systems.",
+    },
+  ]
+
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-black text-white">
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "https://tc.agency" },
@@ -67,51 +84,68 @@ export default function AboutPage() {
 
       <Navbar />
 
-      <main id="main-content" className="pt-20">
-        <section className="py-24 border-b border-border">
+      <main id="main-content" className="pt-40 md:pt-48">
+        {/* Hero */}
+        <section className="pb-[14vh]">
           <div className="container mx-auto px-6">
-            <div className="max-w-4xl">
-              <p className="text-sm font-mono text-emerald-500 mb-4 uppercase tracking-widest">About TC Agency</p>
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-8">Engineering calm into chaos.</h1>
-              <p className="text-xl text-gray-300 leading-relaxed mb-12">
-                We exist to bring systematic precision to high-stakes live production. Where others see complexity, we
-                see solvable systems.
+            <div className="max-w-3xl">
+              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 01 — ABOUT ]</p>
+              <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">
+                Engineering calm into chaos.
+              </h1>
+              <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">
+                We bring systematic precision to high-stakes live production. Where others see complexity, we see
+                solvable systems.
               </p>
-
-              <div className="grid md:grid-cols-3 gap-6 mt-12">
-                {[
-                  {
-                    num: "01",
-                    title: "Systems Over Heroes",
-                    desc: "We build processes that don't depend on any single person. Repeatable, documented, transferable.",
-                  },
-                  {
-                    num: "02",
-                    title: "Automation Over Manual",
-                    desc: "If a task can be automated, it should be. Humans should focus on creative decisions, not data entry.",
-                  },
-                  {
-                    num: "03",
-                    title: "Clarity Over Complexity",
-                    desc: "Complex problems deserve simple interfaces. We hide complexity behind clean, intuitive systems.",
-                  },
-                ].map((principle) => (
-                  <div key={principle.num} className="p-6 border border-border bg-zinc-950">
-                    <span className="text-sm font-mono text-emerald-500">{principle.num}</span>
-                    <h3 className="text-xl font-bold mt-4 mb-3">{principle.title}</h3>
-                    <p className="text-sm text-gray-400 leading-relaxed">{principle.desc}</p>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </section>
 
-        <section className="py-24 border-b border-border">
+        {/* Principles — indexed rows */}
+        <section className="py-[14vh]">
           <div className="container mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="relative aspect-[4/5] max-w-md mx-auto lg:mx-0 border border-border bg-zinc-900 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 via-zinc-950 to-black" />
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 02 — PRINCIPLES ]</p>
+            <div className="max-w-3xl">
+              {principles.map((principle, i) => (
+                <div key={principle.num}>
+                  {i > 0 && <div className="h-px bg-zinc-900" aria-hidden="true" />}
+                  <div className="py-10 md:flex md:items-baseline md:gap-12">
+                    <span className="font-mono text-xs tracking-[0.2em] text-zinc-500">{principle.num}</span>
+                    <div className="mt-3 md:mt-0">
+                      <h3 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-3">
+                        {principle.title}
+                      </h3>
+                      <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">{principle.desc}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Full-width image break */}
+        <section aria-label="Live production at scale" className="relative">
+          <div className="relative aspect-[21/9] w-full">
+            <Image
+              src="/images/bsb-live-02.jpg"
+              alt="Backstreet Boys live at the Sphere — large-format LED production engineered by TC Agency"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+            <div className="absolute bottom-6 left-6">
+              <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400">SPHERE — LAS VEGAS</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Daniel */}
+        <section className="py-[18vh]">
+          <div className="container mx-auto px-6">
+            <div className="grid lg:grid-cols-2 gap-16 items-start">
+              <div className="relative aspect-[4/5] max-w-md overflow-hidden">
                 <Image
                   src="/daniel-jongen-headshot.jpg"
                   alt="Executive Technical Producer Daniel Jongen — Technical Direction and Production Engineering leader at TC Agency"
@@ -119,20 +153,22 @@ export default function AboutPage() {
                   className="object-cover object-center"
                   priority
                 />
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent z-20">
-                  <p className="font-mono text-xs text-gray-400 uppercase tracking-wider">
-                    Executive Technical Producer
-                  </p>
-                  <p className="text-xl font-bold text-white">Daniel Jongen</p>
+                <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/80 to-transparent">
+                  <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400">EXECUTIVE TECHNICAL PRODUCER</p>
+                  <p className="text-xl font-semibold text-white">Daniel Jongen</p>
                 </div>
               </div>
 
-              {/* Bio Content */}
               <div>
-                <p className="font-mono text-sm text-gray-400 mb-4 uppercase tracking-wider">Leadership</p>
-                <h2 id="daniel-jongen" className="text-3xl md:text-4xl font-bold tracking-tight mb-6">Meet Daniel Jongen</h2>
+                <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 03 — LEADERSHIP ]</p>
+                <h2
+                  id="daniel-jongen"
+                  className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8"
+                >
+                  Meet Daniel Jongen
+                </h2>
 
-                <div className="space-y-4 text-gray-300 text-lg leading-relaxed">
+                <div className="space-y-5 text-lg leading-relaxed text-zinc-400 max-w-xl">
                   <p>
                     Executive Technical Producer Daniel Jongen leads Technically Creative (TC Agency), overseeing
                     technical direction, production engineering, and high-stakes show execution for global brands,
@@ -144,74 +180,82 @@ export default function AboutPage() {
                   </p>
                 </div>
 
-                {/* Credentials Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 pt-8 border-t border-border">
+                {/* Credentials */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-14">
                   {credentials.map((item) => (
-                    <div key={item.label} className="text-center">
-                      <p className="text-3xl font-bold text-emerald-500">{item.value}</p>
-                      <p className="text-xs font-mono text-gray-400 uppercase tracking-wider mt-1">{item.label}</p>
+                    <div key={item.label}>
+                      <p className="text-3xl font-semibold tracking-[-0.03em] text-white">{item.value}</p>
+                      <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-500 mt-2">
+                        {item.label.toUpperCase()}
+                      </p>
                     </div>
                   ))}
                 </div>
 
-                {/* Expertise List */}
-                <div className="mt-8">
-                  <p className="font-mono text-sm text-gray-400 mb-4 uppercase tracking-wider">Areas of Expertise</p>
-                  <div className="grid grid-cols-2 gap-3">
+                {/* Expertise */}
+                <div className="mt-14">
+                  <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">AREAS OF EXPERTISE</p>
+                  <ul className="max-w-xl">
                     {expertise.map((item, index) => (
-                      <div
-                        key={item}
-                        className="flex items-center gap-3 p-3 border border-border bg-zinc-950 hover:bg-zinc-900 transition-colors"
-                      >
-                        <span className="font-mono text-xs text-gray-500">{String(index + 1).padStart(2, "0")}</span>
-                        <span className="text-sm font-medium">{item}</span>
-                      </div>
+                      <li key={item}>
+                        {index > 0 && <div className="h-px bg-zinc-900" aria-hidden="true" />}
+                        <div className="flex items-baseline gap-6 py-3">
+                          <span className="font-mono text-xs tracking-[0.2em] text-zinc-500">
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
+                          <span className="text-lg font-semibold text-white">{item}</span>
+                        </div>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="py-24 border-b border-border">
+        {/* Philosophy */}
+        <section className="py-[14vh]">
           <div className="container mx-auto px-6">
-            <div className="max-w-3xl mx-auto">
-              <p className="font-mono text-sm text-gray-400 mb-4 uppercase tracking-wider">Philosophy</p>
-              <h2 className="text-3xl font-bold mb-8">Systems-First Approach</h2>
+            <div className="max-w-2xl">
+              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 04 — PHILOSOPHY ]</p>
+              <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-10">
+                Systems-first, always
+              </h2>
 
-              <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
+              <div className="space-y-6 text-lg leading-relaxed text-zinc-400">
                 <p>
-                  In high-stakes live production, there are no second chances. Every system must be engineered with
-                  redundancy, every workflow must be documented, and every team member must know their role.
+                  In high-stakes live production there are no second chances. Every system is engineered with
+                  redundancy. Every workflow is documented. Every team member knows their role.
                 </p>
                 <p>
-                  TC Agency approaches every project with the same rigor whether it is a stadium tour, a corporate
-                  keynote, or an immersive brand activation. We engineer systems that work the first time, every time.
+                  Stadium tour, corporate keynote, or immersive brand activation — the rigor is the same. We engineer
+                  systems that work the first time, every time.
                 </p>
                 <p>
-                  Our methodology combines decades of field experience with modern engineering practices: network
-                  redundancy, automated failovers, comprehensive documentation, and continuous risk assessment.
+                  Decades of field experience meet modern engineering practice: network redundancy, automated
+                  failovers, comprehensive documentation, continuous risk assessment.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-24">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold mb-4">Ready to Work Together?</h2>
-            <p className="text-gray-400 mb-8 max-w-xl mx-auto">
-              Let's discuss how TC Agency can bring technical direction and production engineering expertise to your
-              next project.
+        {/* CTA */}
+        <section className="py-[14vh]">
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-6">
+              Ready to work together?
+            </h2>
+            <p className="text-lg leading-relaxed text-zinc-400 mb-10 max-w-xl">
+              Let's discuss how TC Agency can bring technical direction and production engineering to your next
+              project.
             </p>
             <Link
               href="/contact"
-              className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-emerald-500 text-black font-bold hover:bg-emerald-400 transition-colors duration-150"
+              className="font-mono text-xs tracking-[0.2em] text-zinc-500 hover:text-[#00D26A] transition-colors duration-300"
             >
-              Start a Conversation
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-150" />
+              START A CONVERSATION →
             </Link>
           </div>
         </section>
