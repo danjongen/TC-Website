@@ -177,6 +177,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${project.title} | TC Agency Portfolio`,
     description: project.description,
+    openGraph: {
+      title: `${project.title} — ${project.client}`,
+      description: project.description,
+      url: `https://tc.agency/portfolio/${slug}`,
+      images: [{ url: project.image, width: 1200, height: 630, alt: `${project.title} — ${project.client}` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} — ${project.client}`,
+      description: project.description,
+      images: [project.image],
+    },
   }
 }
 
