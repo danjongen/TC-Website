@@ -24,21 +24,21 @@ function Clock({ tz, label }: { tz: string; label: string }) {
 export function FooterCTA() {
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] })
-  const y = useTransform(scrollYProgress, [0, 1], ["14%", "0%"])
-  const opacity = useTransform(scrollYProgress, [0, 0.6], [0, 1])
+  const y = useTransform(scrollYProgress, [0, 1], ["10%", "0%"])
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1])
 
   return (
     <section ref={ref} className="relative overflow-hidden bg-black px-6 py-[22vh] md:px-12" aria-label="Contact">
       <motion.div style={{ y, opacity }} className="mx-auto w-full max-w-[1600px]">
-        <p className="mb-8 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 05 — TRANSMISSION ]</p>
+        <p className="mb-8 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 05 — TRANSMISSION ]</p>
         <Link href="/contact" data-cursor="hover" className="group block">
           <h2 className="text-[13vw] font-bold leading-[0.88] tracking-[-0.04em] text-white md:text-[10vw]">
             LET&apos;S BUILD
             <br />
             <span className="transition-colors duration-500 group-hover:text-[#00D26A]">THE IMPOSSIBLE</span>
           </h2>
-          <span className="mt-10 inline-block font-mono text-xs tracking-[0.25em] text-zinc-500 transition-colors duration-300 group-hover:text-white">
-            → START A PROJECT
+          <span className="mt-10 inline-block bg-[#00D26A] px-8 py-4 font-mono text-sm tracking-[0.2em] text-black transition-all duration-300 group-hover:brightness-110 group-hover:shadow-[0_0_30px_rgba(0,210,106,0.35)]">
+            START A PROJECT →
           </span>
         </Link>
 

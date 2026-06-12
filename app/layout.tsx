@@ -41,7 +41,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: {
     default: "Technical Direction and Production Engineering | Technically Creative LLC (TC Agency)",
-    template: "%s | TC Agency",
+    template: "%s — Technically Creative (TC Agency)",
   },
   description:
     "Technically Creative delivers high-stakes technical direction, production engineering, and production management for global brands and artists, led by Executive Technical Producer Daniel Jongen.",

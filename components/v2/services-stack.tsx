@@ -45,7 +45,7 @@ export function ServicesStack() {
   return (
     <section className="bg-black px-6 py-[20vh] md:px-12" aria-label="Services">
       <div className="mx-auto w-full max-w-[1600px]">
-        <p className="mb-16 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 03 — CAPABILITIES ]</p>
+        <p className="mb-16 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 — CAPABILITIES ]</p>
 
         <ul>
           {SERVICES.map((s) => {

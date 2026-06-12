@@ -8,7 +8,7 @@ import { BreadcrumbSchema } from "@/components/structured-data"
 import { NewsletterForm } from "@/components/newsletter-form"
 
 export const metadata: Metadata = {
-  title: "Insights | TC Agency — Technically Creative",
+  title: "Insights",
   description:
     "Technical insights, case studies, and industry perspectives from TC Agency. Deep dives into production engineering, automation, and live event technology.",
   keywords: [
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "RF-resilient show control",
   ],
   openGraph: {
-    title: "Insights | TC Agency — Technically Creative",
+    title: "Insights",
     description: "Technical insights, case studies, and industry perspectives on production engineering.",
     url: "https://tc.agency/insights",
     siteName: "TC Agency",

@@ -17,7 +17,7 @@ export function ClientsWall() {
   return (
     <section className="bg-black px-6 py-[14vh] md:px-12" aria-label="Clients">
       <div className="mx-auto w-full max-w-[1600px]">
-        <p className="mb-14 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 04 — TRUSTED BY ]</p>
+        <p className="mb-14 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 — TRUSTED BY ]</p>
         <div className="grid grid-cols-2 items-center gap-x-10 gap-y-14 md:grid-cols-4">
           {CLIENTS.map((client) => (
             <div key={client.name} className="flex items-center justify-center">
@@ -26,7 +26,7 @@ export function ClientsWall() {
                 alt={client.name}
                 width={140}
                 height={56}
-                className="max-h-12 w-auto object-contain opacity-40 grayscale transition-opacity duration-500 hover:opacity-90"
+                className="max-h-12 w-auto object-contain opacity-70 grayscale transition-opacity duration-500 hover:opacity-100"
               />
             </div>
           ))}

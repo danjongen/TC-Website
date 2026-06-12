@@ -23,7 +23,7 @@ const services: { num: string; title: string; desc: string; href: string; detail
       "Systems, workflow, and automation strategy",
       "Executive representation with clients, partners, and stakeholders",
     ],
-    specs: { decisionVelocity: "+40%", riskReduction: "60%", alignment: "100%" },
+    specs: { experience: "15+ yrs", productions: "200+", markets: "30+ countries" },
   },
   {
     num: "02",
@@ -51,7 +51,7 @@ const services: { num: string; title: string; desc: string; href: string; detail
       "Logistics coordination",
       "Stakeholder reporting",
     ],
-    specs: { onTime: "98%", budgetVariance: "<3%", efficiency: "+40%" },
+    specs: { productions: "200+", venues: "Arenas to Sphere", crews: "500+ managed" },
   },
   {
     num: "04",
@@ -65,7 +65,7 @@ const services: { num: string; title: string; desc: string; href: string; detail
       "Structural engineering support",
       "Revision control systems",
     ],
-    specs: { accuracy: "99.5%", revisions: "Unlimited", formats: "15+" },
+    specs: { deliverables: "CAD / BIM / Previz", formats: "15+", scale: "Venue-accurate" },
   },
   {
     num: "05",
@@ -93,7 +93,7 @@ const services: { num: string; title: string; desc: string; href: string; detail
       "Error handling and recovery",
       "Documentation generation",
     ],
-    specs: { timeSaved: "60%", errorReduction: "95%", repeatability: "100%" },
+    specs: { pipelines: "Show-critical", cueing: "Automated", documentation: "Versioned" },
   },
   {
     num: "07",
@@ -216,7 +216,7 @@ export default function CapabilitiesPage() {
       <section className="pt-40 md:pt-48 pb-[14vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 02 — SERVICES ]</p>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 — SERVICES ]</p>
             <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">
               Full-spectrum production engineering
             </h1>
@@ -249,7 +249,7 @@ export default function CapabilitiesPage() {
       {/* Services index */}
       <section className="py-[14vh]">
         <div className="container mx-auto px-6">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 03 — CAPABILITIES ]</p>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 — CAPABILITIES ]</p>
 
           <div>
             {services.map((service, i) => (
@@ -303,7 +303,7 @@ export default function CapabilitiesPage() {
       {/* Technology Partners */}
       <section className="py-[14vh]">
         <div className="container mx-auto px-6">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 04 — TECHNOLOGY PARTNERS ]</p>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 — TECHNOLOGY PARTNERS ]</p>
           <div className="flex flex-wrap gap-x-10 gap-y-4 max-w-3xl">
             {partners.map((partner) => (
               <span

@@ -8,7 +8,7 @@ import { BreadcrumbSchema, ProjectSchema } from "@/components/structured-data"
 import { redirect } from "next/navigation"
 
 export const metadata: Metadata = {
-  title: "Portfolio Preview | TC Agency — Technically Creative",
+  title: "Portfolio Preview",
   description: "Preview of TC Agency portfolio - not for public distribution.",
   robots: {
     index: false,

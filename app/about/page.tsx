@@ -89,7 +89,7 @@ export default function AboutPage() {
         <section className="pb-[14vh]">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
-              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 01 — ABOUT ]</p>
+              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 01 — ABOUT ]</p>
               <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">
                 Engineering calm into chaos.
               </h1>
@@ -104,7 +104,7 @@ export default function AboutPage() {
         {/* Principles — indexed rows */}
         <section className="py-[14vh]">
           <div className="container mx-auto px-6">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 02 — PRINCIPLES ]</p>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 — PRINCIPLES ]</p>
             <div className="max-w-3xl">
               {principles.map((principle, i) => (
                 <div key={principle.num}>
@@ -160,7 +160,7 @@ export default function AboutPage() {
               </div>
 
               <div>
-                <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 03 — LEADERSHIP ]</p>
+                <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 — LEADERSHIP ]</p>
                 <h2
                   id="daniel-jongen"
                   className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8"
@@ -220,7 +220,7 @@ export default function AboutPage() {
         <section className="py-[14vh]">
           <div className="container mx-auto px-6">
             <div className="max-w-2xl">
-              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 04 — PHILOSOPHY ]</p>
+              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 — PHILOSOPHY ]</p>
               <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-10">
                 Systems-first, always
               </h2>

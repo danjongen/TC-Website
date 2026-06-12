@@ -80,19 +80,9 @@ export function Footer() {
               </Link>
               <Link
                 href="/led"
-                className="block text-sm text-zinc-400 transition-colors"
-                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+                className="block text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
               >
                 LED Spec Tool
-              </Link>
-              <Link
-                href="/led/admin"
-                className="block text-xs text-zinc-600 transition-colors"
-                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
-              >
-                LED Admin
               </Link>
             </div>
           </div>
@@ -145,11 +135,6 @@ export function Footer() {
             </Link>
           </div>
         </div>
-
-        {/* Hidden SEO link */}
-        <Link href="/about-daniel" className="sr-only">
-          About Daniel Jongen - Executive Technical Producer
-        </Link>
       </div>
     </footer>
   )

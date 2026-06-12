@@ -6,7 +6,7 @@ import Link from "next/link"
 import { BreadcrumbSchema } from "@/components/structured-data"
 
 export const metadata: Metadata = {
-  title: "Portfolio | TC Agency — Technically Creative",
+  title: "Portfolio",
   description:
     "Featured productions by TC Agency: stadium tours, immersive LED experiences, and technical innovations. Backstreet Boys, The Sphere, Samsung, Ford, and more.",
   keywords: [
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     "Ford product launch",
   ],
   openGraph: {
-    title: "Portfolio | TC Agency — Technically Creative",
+    title: "Portfolio",
     description:
       "Stadium tours, immersive installations, and technical innovations for the world's most demanding productions.",
     url: "https://tc.agency/portfolio",
@@ -104,7 +104,7 @@ export default function PortfolioPage() {
       <section className="pt-40 md:pt-48 pb-[14vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 04 — PORTFOLIO ]</p>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 — PORTFOLIO ]</p>
             <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">Selected work</h1>
             <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">
               Stadium tours, immersive installations, global broadcasts, and technical innovations for the world's

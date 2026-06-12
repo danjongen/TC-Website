@@ -1,9 +1,9 @@
 "use client"
 
-import { useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion"
 
 const GREEN = "#00D26A"
 
@@ -81,38 +81,83 @@ function ProjectCard({ project }: { project: (typeof PROJECTS)[number] }) {
   )
 }
 
+function GalleryHeader() {
+  return (
+    <div className="mx-auto w-full max-w-[1600px] px-6 pt-[20vh] md:px-12">
+      <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 — SELECTED WORK ]</p>
+      <h2 className="max-w-4xl text-5xl font-semibold tracking-[-0.03em] text-white md:text-7xl">
+        Built for the biggest stages on Earth
+      </h2>
+    </div>
+  )
+}
+
+function PortfolioCard() {
+  return (
+    <Link
+      href="/portfolio"
+      data-cursor="hover"
+      className="flex h-[70vh] w-[60vw] shrink-0 snap-start items-center justify-center transition-colors duration-300 md:h-[75vh] md:w-[35vw]"
+    >
+      <span className="font-mono text-base tracking-[0.25em] text-zinc-400 transition-colors duration-300 hover:text-white">
+        FULL PORTFOLIO →
+      </span>
+    </Link>
+  )
+}
+
 export function ProjectsGallery() {
   const trackRef = useRef<HTMLDivElement>(null)
+  const [coarse, setCoarse] = useState(false)
+  const [card, setCard] = useState(1)
+
+  useEffect(() => {
+    setCoarse(window.matchMedia("(pointer: coarse)").matches || window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+  }, [])
+
   const { scrollYProgress } = useScroll({ target: trackRef, offset: ["start start", "end end"] })
-  // pin the gallery and translate it horizontally as the user scrolls vertically
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-78%"])
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-72%"])
   const progressScale = useTransform(scrollYProgress, [0, 1], [0, 1])
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    setCard(Math.min(PROJECTS.length, Math.max(1, Math.ceil(v * PROJECTS.length))))
+  })
+
+  // touch / reduced-motion: native horizontally scrollable row, no scroll-jacking
+  if (coarse) {
+    return (
+      <section className="relative bg-black pb-[10vh]" aria-label="Featured projects">
+        <GalleryHeader />
+        <div className="mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-6 [-webkit-overflow-scrolling:touch]">
+          {PROJECTS.map((p) => (
+            <div key={p.index} className="snap-start">
+              <ProjectCard project={p} />
+            </div>
+          ))}
+          <PortfolioCard />
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section className="relative bg-black" aria-label="Featured projects">
-      <div className="mx-auto w-full max-w-[1600px] px-6 pt-[20vh] md:px-12">
-        <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 02 — SELECTED WORK ]</p>
-        <h2 className="max-w-4xl text-5xl font-semibold tracking-[-0.03em] text-white md:text-7xl">
-          Built for the biggest stages on Earth
-        </h2>
-      </div>
+      <GalleryHeader />
 
-      <div ref={trackRef} className="relative h-[300vh]">
+      <div ref={trackRef} className="relative h-[260vh]">
         <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
           <motion.div style={{ x }} className="flex gap-8 pl-6 md:pl-[8vw]">
             {PROJECTS.map((p) => (
               <ProjectCard key={p.index} project={p} />
             ))}
-            <Link
-              href="/portfolio"
-              data-cursor="hover"
-              className="flex h-[70vh] w-[60vw] shrink-0 items-center justify-center transition-colors duration-300 md:h-[75vh] md:w-[35vw]"
-            >
-              <span className="font-mono text-base tracking-[0.25em] text-zinc-500 transition-colors duration-300 hover:text-white">FULL PORTFOLIO →</span>
-            </Link>
+            <PortfolioCard />
           </motion.div>
-          <div className="absolute bottom-10 left-6 right-6 h-px bg-zinc-900 md:left-[8vw] md:right-[8vw]">
-            <motion.div className="h-full origin-left" style={{ scaleX: progressScale, background: GREEN }} />
+          <div className="absolute bottom-8 left-6 right-6 flex items-center gap-6 md:left-[8vw] md:right-[8vw]">
+            <span className="font-mono text-[11px] tracking-[0.2em] text-zinc-400 tabular-nums">
+              00{card} / 00{PROJECTS.length}
+            </span>
+            <div className="relative h-[3px] flex-1 bg-zinc-800">
+              <motion.div className="absolute inset-0 origin-left" style={{ scaleX: progressScale, background: GREEN }} />
+            </div>
           </div>
         </div>
       </div>

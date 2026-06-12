@@ -9,7 +9,7 @@ export const dynamic = "force-static"
 export const revalidate = 86400 // Revalidate every 24 hours
 
 export const metadata: Metadata = {
-  title: "Approach | TC Agency — Technically Creative",
+  title: "Approach",
   description:
     "How TC Agency delivers complex productions: our systematic methodology from discovery to execution. Systematic. Documented. Repeatable.",
   keywords: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "event production phases",
   ],
   openGraph: {
-    title: "Our Approach | TC Agency — Technically Creative",
+    title: "Our Approach",
     description:
       "Every project follows the same rigorous methodology. No surprises, no guesswork—just predictable, excellent results.",
     url: "https://tc.agency/approach",
@@ -107,7 +107,7 @@ export default function ApproachPage() {
       <section className="pt-40 md:pt-48 pb-[14vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 03 — APPROACH ]</p>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 — APPROACH ]</p>
             <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">
               Systematic. Documented. Repeatable.
             </h1>
@@ -140,7 +140,7 @@ export default function ApproachPage() {
       {/* Phases — indexed rows */}
       <section className="py-[18vh]">
         <div className="container mx-auto px-6">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 04 — THE PROCESS ]</p>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 — THE PROCESS ]</p>
           <div>
             {phases.map((phase, index) => (
               <article key={phase.num}>
@@ -178,7 +178,7 @@ export default function ApproachPage() {
       {/* Differentiators */}
       <section className="py-[14vh]">
         <div className="container mx-auto px-6">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">[ 05 — WHAT MAKES US DIFFERENT ]</p>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 05 — WHAT MAKES US DIFFERENT ]</p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
             {differentiators.map((item) => (
               <div key={item.label}>
