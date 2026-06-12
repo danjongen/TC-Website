@@ -14,6 +14,7 @@ export default async function UnlockPage({
   const sp = await searchParams
   const from = sp.from || "/led"
   const error = sp.error === "1"
+  const configured = Boolean(process.env.LED_TOOL_PASSWORD)
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
@@ -55,6 +56,19 @@ export default async function UnlockPage({
               }}
             >
               INCORRECT / TRY AGAIN
+            </div>
+          ) : null}
+          {!configured ? (
+            <div
+              className="mono text-[10px] uppercase border px-2 py-1.5"
+              style={{
+                borderColor: "rgba(255, 176, 0, 0.4)",
+                color: "#ffb000",
+                background: "rgba(255, 176, 0, 0.05)",
+              }}
+            >
+              NOT CONFIGURED / LED_TOOL_PASSWORD ENV VAR IS NOT SET ON THIS
+              DEPLOYMENT — NO PASSWORD WILL WORK UNTIL IT IS
             </div>
           ) : null}
           <button type="submit" className="cta cta-primary w-full">
