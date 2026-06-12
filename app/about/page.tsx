@@ -38,14 +38,14 @@ export const revalidate = 86400 // 24 hours
 
 export default function AboutPage() {
   const expertise = [
-    "Technical Direction",
-    "Production Engineering",
-    "Production Management",
-    "Automation Systems",
-    "LED Systems",
-    "Broadcast Infrastructure",
-    "Show Control",
-    "Risk Mitigation",
+    { name: "Technical Direction", href: "/services/technical-direction" },
+    { name: "Production Engineering", href: "/capabilities" },
+    { name: "Production Management", href: "/services/production-management" },
+    { name: "Automation Systems", href: "/services/workflow-automation" },
+    { name: "LED Systems", href: "/services/system-integration" },
+    { name: "Broadcast Infrastructure", href: "/services/system-integration" },
+    { name: "Show Control", href: "/services/system-integration" },
+    { name: "Risk Mitigation", href: "/services/executive-consulting" },
   ]
 
   const credentials = [
@@ -197,14 +197,16 @@ export default function AboutPage() {
                   <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-500">AREAS OF EXPERTISE</p>
                   <ul className="max-w-xl">
                     {expertise.map((item, index) => (
-                      <li key={item}>
+                      <li key={item.name}>
                         {index > 0 && <div className="h-px bg-zinc-900" aria-hidden="true" />}
-                        <div className="flex items-baseline gap-6 py-3">
+                        <Link href={item.href} className="group flex items-baseline gap-6 py-3">
                           <span className="font-mono text-xs tracking-[0.2em] text-zinc-500">
                             {String(index + 1).padStart(2, "0")}
                           </span>
-                          <span className="text-lg font-semibold text-white">{item}</span>
-                        </div>
+                          <span className="text-lg font-semibold text-white transition-colors duration-300 group-hover:text-[#00D26A]">
+                            {item.name}
+                          </span>
+                        </Link>
                       </li>
                     ))}
                   </ul>

@@ -60,10 +60,13 @@ export function Hero() {
     const video = videoRef.current
     if (!video) return
 
+    let finished = false
     const minLoadTime = 800
     const startTime = Date.now()
 
     const finishLoading = () => {
+      if (finished) return
+      finished = true
       const elapsed = Date.now() - startTime
       const remaining = Math.max(0, minLoadTime - elapsed)
       setTimeout(() => {
@@ -84,7 +87,9 @@ export function Hero() {
     }
 
     const handleLoadedMetadata = () => {
-      setVideoDuration(video.duration)
+      if (video.duration > 0) {
+        setVideoDuration(video.duration)
+      }
       video.pause()
       finishLoading()
     }
@@ -95,15 +100,29 @@ export function Hero() {
 
     video.addEventListener("progress", handleProgress)
     video.addEventListener("loadedmetadata", handleLoadedMetadata)
+    video.addEventListener("canplay", handleLoadedMetadata)
+    video.addEventListener("loadeddata", handleLoadedMetadata)
     video.addEventListener("error", handleError)
 
+    // Check if video already loaded before listeners were attached
     if (video.readyState >= 1) {
       handleLoadedMetadata()
     }
 
+    // Hard timeout: clear loading overlay after 5s no matter what
+    const timeout = setTimeout(() => {
+      if (video.duration > 0) {
+        setVideoDuration(video.duration)
+      }
+      finishLoading()
+    }, 5000)
+
     return () => {
+      clearTimeout(timeout)
       video.removeEventListener("progress", handleProgress)
       video.removeEventListener("loadedmetadata", handleLoadedMetadata)
+      video.removeEventListener("canplay", handleLoadedMetadata)
+      video.removeEventListener("loadeddata", handleLoadedMetadata)
       video.removeEventListener("error", handleError)
     }
   }, [isMobile])
@@ -226,7 +245,6 @@ export function Hero() {
                 muted
                 playsInline
                 preload="auto"
-                crossOrigin="anonymous"
                 aria-label="Time-lapse video of live event production setup, controlled by page scroll"
               />
             </motion.div>

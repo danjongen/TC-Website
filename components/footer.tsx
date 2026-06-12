@@ -78,6 +78,22 @@ export function Footer() {
               >
                 Contact
               </Link>
+              <Link
+                href="/led"
+                className="block text-sm text-zinc-400 transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+              >
+                LED Spec Tool
+              </Link>
+              <Link
+                href="/led/admin"
+                className="block text-xs text-zinc-600 transition-colors"
+                onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+              >
+                LED Admin
+              </Link>
             </div>
           </div>
         </div>

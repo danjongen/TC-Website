@@ -223,34 +223,39 @@ export function ArticleSchema({
   image,
   datePublished,
   dateModified,
-  author,
+  url,
 }: {
   headline: string
   description: string
   image: string
   datePublished: string
   dateModified?: string
-  author?: string
+  url: string
 }) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline,
     description,
-    image,
+    image: {
+      "@type": "ImageObject",
+      url: `https://tc.agency${image}`,
+      width: 1200,
+      height: 630,
+    },
     datePublished,
     dateModified: dateModified || datePublished,
     author: {
-      "@type": "Organization",
-      "@id": "https://tc.agency/#organization",
-      name: author || "TC Agency",
+      "@type": "Person",
+      name: "Daniel Jongen",
+      url: "https://tc.agency/about",
     },
     publisher: {
       "@id": "https://tc.agency/#organization",
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": "https://tc.agency/insights",
+      "@id": url,
     },
   }
 
