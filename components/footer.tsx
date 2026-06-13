@@ -73,6 +73,12 @@ export function Footer() {
                 Portfolio
               </Link>
               <Link
+                href="/insights"
+                className="block text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
+              >
+                Insights
+              </Link>
+              <Link
                 href="/contact"
                 className="block text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
               >
