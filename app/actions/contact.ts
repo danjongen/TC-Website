@@ -36,7 +36,7 @@ export async function submitContactForm(
     timeline: (formData.get("timeline") as string)?.trim() || "",
     message: (formData.get("message") as string)?.trim() || "",
     honeypot: formData.get("company_website") as string, // Honeypot field
-    formStartedAt: Number(formData.get("form_started_at") || 0),
+    formElapsedMs: Number(formData.get("form_elapsed_ms") || 0),
     turnstileToken: formData.get("cf-turnstile-response") as string,
   }
 
@@ -60,7 +60,9 @@ export async function submitContactForm(
   // =========================================================================
   // LAYER 1b: Time trap — bots fill forms in well under 3 seconds
   // =========================================================================
-  if (!data.formStartedAt || Date.now() - data.formStartedAt < 3000) {
+  // missing value means JS never ran (headless bot) or an old cached page;
+  // require at least 2.5s of fill time measured on the client's own clock
+  if (!data.formElapsedMs || data.formElapsedMs < 2500) {
     console.warn("[Contact Form] Time-trap triggered, dropping submission")
     redirect("/thank-you")
   }

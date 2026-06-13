@@ -1,6 +1,6 @@
 "use client"
 
-import { useActionState, useEffect, useRef, useState } from "react"
+import { useActionState, useRef, useState } from "react"
 import Script from "next/script"
 import { useFormStatus } from "react-dom"
 import { submitContactForm } from "@/app/actions/contact"
@@ -34,17 +34,21 @@ const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
 
 export function ContactForm() {
   const [state, formAction] = useActionState(submitContactForm, null)
-  // time-trap: bots submit instantly; humans take seconds
+  // time-trap: bots submit instantly; humans take seconds.
+  // Elapsed time is measured entirely on the client clock and written at
+  // submit time, so server/client clock skew can never block a human.
   const [mountedAt] = useState(() => Date.now())
-  const formStartRef = useRef<HTMLInputElement>(null)
-
-  useEffect(() => {
-    if (formStartRef.current) formStartRef.current.value = String(mountedAt)
-  }, [mountedAt])
+  const elapsedRef = useRef<HTMLInputElement>(null)
 
   return (
-    <form action={formAction} className="space-y-6">
-      <input ref={formStartRef} type="hidden" name="form_started_at" defaultValue="" />
+    <form
+      action={formAction}
+      onSubmit={() => {
+        if (elapsedRef.current) elapsedRef.current.value = String(Date.now() - mountedAt)
+      }}
+      className="space-y-6"
+    >
+      <input ref={elapsedRef} type="hidden" name="form_elapsed_ms" defaultValue="" />
       {/* honeypot: hidden from humans; the server action drops submissions that fill it */}
       <div className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
         <label htmlFor="company_website">Company website</label>
