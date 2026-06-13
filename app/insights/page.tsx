@@ -37,14 +37,22 @@ export const metadata: Metadata = {
 
 const articles = [
   {
-    slug: "ufo-pod-touring-control-infrastructure",
-    title: "UFO Pod: RF-Resilient Touring Control Infrastructure",
+    slug: "operating-standard",
+    title: "Technically Creative Formalizes Its Operating Standard",
     excerpt:
-      "How we built a self-contained, redundant control node for 18,000-person arenas where 2.4 GHz is unusable and 5 GHz collapses under crowd load.",
-    image: "/images/66a0205.jpg",
+      "I'm not launching a startup. I'm documenting what's been running in production for years. Why the new tc.agency is a boundary, not marketing.",
+    category: "Perspective",
+    readTime: "5 min read",
+    date: "June 2026",
+  },
+  {
+    slug: "ufo-pod-touring-control-infrastructure",
+    title: "Powering a Flying Stage Element in an RF Nightmare",
+    excerpt:
+      "A 13,000-pound flying stage element, fully wireless, in front of 18,000 people a night. How we built a system that never dropped. Not once.",
     category: "Case Study",
     readTime: "10 min read",
-    date: "March 2026",
+    date: "June 2026",
   },
   {
     slug: "sphere-las-vegas-technical-deep-dive",
