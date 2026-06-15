@@ -54,25 +54,6 @@ const articles = [
     readTime: "10 min read",
     date: "June 2026",
   },
-  {
-    slug: "sphere-las-vegas-technical-deep-dive",
-    title: "Inside the Sphere: A Technical Deep Dive",
-    excerpt: "How we approached the world's largest LED display and delivered seamless 16K content at 120fps.",
-    image: "/images/dsf3010.jpg",
-    category: "Case Study",
-    readTime: "12 min read",
-    date: "November 2024",
-  },
-  {
-    slug: "automation-touring-production",
-    title: "Automation in Touring Production: Beyond the Basics",
-    excerpt:
-      "Why most touring productions underutilize automation, and how systematic approaches can cut setup time by 40%.",
-    image: "/images/66a0205.jpg",
-    category: "Technical Guide",
-    readTime: "8 min read",
-    date: "October 2024",
-  },
 ]
 
 export default function InsightsPage() {

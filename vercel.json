@@ -75,6 +75,21 @@
   ],
   "redirects": [
     {
+      "source": "/insights/sphere-las-vegas-technical-deep-dive",
+      "destination": "/insights",
+      "permanent": true
+    },
+    {
+      "source": "/insights/automation-touring-production",
+      "destination": "/insights",
+      "permanent": true
+    },
+    {
+      "source": "/insights/preview",
+      "destination": "/insights",
+      "permanent": true
+    },
+    {
       "source": "/portfolio/backstreet-boys-into-the-millennium",
       "destination": "/insights/ufo-pod-touring-control-infrastructure",
       "permanent": true

@@ -48,18 +48,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/insights/sphere-las-vegas-technical-deep-dive`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/insights/automation-touring-production`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/insights/operating-standard`,
       lastModified: new Date(),
       changeFrequency: "monthly",
