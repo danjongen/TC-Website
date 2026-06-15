@@ -323,7 +323,7 @@ export default function SystemIntegrationPage() {
                   label: "Portfolio",
                   title: "Sphere Residency",
                   desc: "Large-scale system integration across lighting, video, audio, and show control for one of the most complex venues ever built.",
-                  href: "/portfolio/sphere-residency",
+                  href: "/portfolio",
                 },
               ].map((link, i) => (
                 <Link

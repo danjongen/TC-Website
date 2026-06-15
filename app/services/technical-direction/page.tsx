@@ -314,7 +314,7 @@ export default function TechnicalDirectionPage() {
                 label: "Case Study",
                 title: "Sphere Residency",
                 desc: "End-to-end technical direction for one of the most complex production environments ever built.",
-                href: "/portfolio/sphere-residency",
+                href: "/portfolio",
               },
               {
                 label: "Service",

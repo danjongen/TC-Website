@@ -26,15 +26,6 @@ const projects = [
     year: "2024",
     metric: "60 GHz backhaul",
   },
-  {
-    slug: "sphere-residency",
-    title: "Sphere Residency",
-    client: "The Sphere",
-    role: "Technical Direction",
-    image: "/images/dsf3010.jpg",
-    year: "2024",
-    metric: "16K resolution",
-  },
 ]
 
 const impactMetrics = [

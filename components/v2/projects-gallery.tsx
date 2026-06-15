@@ -7,37 +7,39 @@ import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-mot
 
 const GREEN = "#00D26A"
 
+const CASE_STUDY = "/insights/ufo-pod-touring-control-infrastructure"
+
 const PROJECTS = [
   {
     title: "Into The Millennium",
     client: "Backstreet Boys",
     role: "Automation, Power & Data Systems",
     image: "/images/bsb-live-02.jpg",
-    href: "/portfolio/backstreet-boys-into-the-millennium",
+    href: CASE_STUDY,
     index: "001",
   },
   {
-    title: "Sphere Residency",
-    client: "The Sphere — Las Vegas",
-    role: "Technical Direction",
+    title: "Sphere, Las Vegas",
+    client: "Backstreet Boys",
+    role: "Video Systems Integration",
     image: "/images/bsb-live-04.jpg",
-    href: "/portfolio/sphere-residency",
+    href: CASE_STUDY,
     index: "002",
   },
   {
-    title: "Immersive LED Experience",
-    client: "Samsung",
-    role: "System Integration",
-    image: "/images/dscf9211.jpg",
-    href: "/portfolio/immersive-experience",
+    title: "Flying Stage Element",
+    client: "Backstreet Boys",
+    role: "Wireless Power & Control",
+    image: "/images/bsb-live-01.jpg",
+    href: CASE_STUDY,
     index: "003",
   },
   {
-    title: "Global Product Launch",
-    client: "Ford",
-    role: "Production Engineering",
-    image: "/images/dsf3917.jpg",
-    href: "/portfolio/global-product-launch",
+    title: "Show Control",
+    client: "Backstreet Boys",
+    role: "Three-Layer Timecode Redundancy",
+    image: "/images/bsb-live-03.jpg",
+    href: CASE_STUDY,
     index: "004",
   },
 ]

@@ -38,11 +38,11 @@ export const metadata: Metadata = {
 const articles = [
   {
     slug: "operating-standard",
-    title: "Technically Creative Formalizes Its Operating Standard",
+    title: "What Technically Creative Does",
     excerpt:
-      "I'm not launching a startup. I'm documenting what's been running in production for years. Why the new tc.agency is a boundary, not marketing.",
+      "Production engineering and technical direction for live events where failure is not an option. How we work, what we deliver, and who we do it for.",
     category: "Perspective",
-    readTime: "5 min read",
+    readTime: "4 min read",
     date: "June 2026",
   },
   {
@@ -91,7 +91,7 @@ export default function InsightsPage() {
       <section className="pt-40 md:pt-48 pb-[10vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 06 — INSIGHTS ]</p>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 06, INSIGHTS ]</p>
             <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">
               Technical perspectives from the field.
             </h1>
@@ -106,7 +106,7 @@ export default function InsightsPage() {
       {/* Article index */}
       <section className="py-[10vh]">
         <div className="container mx-auto px-6">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 07 — ALL ARTICLES ]</p>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 07, ALL ARTICLES ]</p>
           <div>
             {articles.map((article, index) => (
               <article key={article.slug}>
@@ -143,7 +143,7 @@ export default function InsightsPage() {
       <section className="py-[14vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 08 — STAY IN THE LOOP ]</p>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 08, STAY IN THE LOOP ]</p>
             <p className="text-lg leading-relaxed text-zinc-400 mb-8">
               Monthly insights on production engineering, technical trends, and industry best practices.
             </p>
