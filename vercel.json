@@ -75,6 +75,26 @@
   ],
   "redirects": [
     {
+      "source": "/portfolio/backstreet-boys-into-the-millennium",
+      "destination": "/insights/ufo-pod-touring-control-infrastructure",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/sphere-residency",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/immersive-experience",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/global-product-launch",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
       "source": "/engineering",
       "destination": "/services",
       "permanent": true
