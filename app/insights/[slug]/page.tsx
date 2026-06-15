@@ -22,55 +22,6 @@ const posts: Record<
     role: string
   }
 > = {
-  "sphere-las-vegas-technical-deep-dive": {
-    title: "Inside the Sphere: A Technical Deep Dive",
-    excerpt: "How we approached the world's largest LED display and delivered seamless 16K content at 120fps.",
-    content: [
-      "The Sphere in Las Vegas represents the pinnacle of immersive entertainment technology. With 160,000 square feet of programmable LED covering the interior dome, it's the world's largest and highest-resolution LED screen. Our role: ensuring content plays flawlessly across 16K resolution at 120 frames per second.",
-      "## The Challenge",
-      "Traditional LED processing systems weren't designed for this scale. We needed to process and distribute content across thousands of LED panels while maintaining perfect synchronization and zero visible latency. The margin for error was zero, any frame drop or sync issue would be immediately visible to 18,000 audience members.",
-      "## Our Approach",
-      "We designed a distributed processing architecture that breaks the dome into manageable zones, each handled by dedicated processing nodes. A master synchronization layer ensures every pixel updates in perfect lockstep. Redundant pathways mean any single point of failure switches over in under 8 milliseconds, imperceptible to the human eye.",
-      "## Key Technical Decisions",
-      "**Custom Protocol Development**: Standard video protocols couldn't handle the bandwidth. We developed a proprietary distribution method that reduces latency while maintaining color accuracy across the entire 16K canvas.",
-      "**Thermal Management**: Processing 16K at 120fps generates significant heat. Our thermal modeling prevented any equipment failures during the 90+ show run.",
-      "**Content Pipeline Optimization**: We created tools that let artists preview content on accurate dome geometry before it ever touches the physical LEDs, saving weeks of on-site iteration.",
-      "## Results",
-      "- 99.997% uptime across all performances\n- Zero visible sync issues reported\n- 8ms failover time on redundant systems\n- 40% reduction in content iteration time",
-      "## Looking Forward",
-      "The Sphere project has informed our approach to all large-scale LED installations. The principles of distributed processing, aggressive redundancy, and thermal-aware design now apply to touring productions at a fraction of the scale, but with the same commitment to reliability.",
-    ],
-    image: "/images/dsf3010.jpg",
-    category: "Case Study",
-    readTime: "12 min read",
-    date: "November 15, 2024",
-    author: "TC Engineering Team",
-    role: "Technical Direction",
-  },
-  "automation-touring-production": {
-    title: "Automation in Touring Production: Beyond the Basics",
-    excerpt:
-      "Why most touring productions underutilize automation, and how systematic approaches can cut setup time by 40%.",
-    content: [
-      "Touring productions face a unique challenge: they must replicate perfection night after night, often in venues with vastly different infrastructure. Yet most tours still rely heavily on manual processes that introduce variability and risk.",
-      "## The Problem with Manual",
-      "When setup depends on tribal knowledge and individual expertise, you're one sick crew member away from a compromised show. Documentation exists in people's heads. Calibration happens by feel. Integration is achieved through heroic effort rather than systematic design.",
-      "## Automation Opportunities",
-      "**Fixture Positioning**: Modern automation can position lights, video elements, and scenic pieces to millimeter accuracy. What once took hours of manual focusing now happens in minutes.",
-      "**Network Configuration**: Automated network provisioning ensures every device gets the right address, the right permissions, and the right routing, every single time.",
-      "**Show File Distribution**: Centralized show file management means one source of truth. Changes propagate automatically. Version conflicts become impossible.",
-      "## Implementation Strategy",
-      "Start small. Automate the most error-prone process first. Measure the impact. Expand systematically. Don't try to automate everything at once, that's a recipe for creating new problems while solving old ones.",
-      "## Real Results",
-      "On a recent stadium tour, we implemented automated fixture calibration, network provisioning, and show file distribution. The results:\n\n- 40% reduction in setup time\n- 95% reduction in network-related issues\n- Zero show file version conflicts\n- Crew freed up for creative tasks instead of troubleshooting",
-    ],
-    image: "/images/66a0205.jpg",
-    category: "Technical Guide",
-    readTime: "8 min read",
-    date: "October 22, 2024",
-    author: "TC Engineering Team",
-    role: "Workflow Automation",
-  },
   "ufo-pod-touring-control-infrastructure": {
     title: "Powering a Flying Stage Element in an RF Nightmare",
     excerpt:
