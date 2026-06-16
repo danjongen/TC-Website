@@ -22,7 +22,6 @@ export function SchemaOrgGraph() {
         description:
           "Technically Creative delivers premium production engineering, technical direction, and production management for global brands and artists, led by Executive Technical Producer Daniel Jongen.",
         email: "info@tc.agency",
-        telephone: "+1-313-261-5200",
         address: {
           "@type": "PostalAddress",
           addressLocality: "Detroit",
@@ -230,7 +229,6 @@ export function ProfessionalServiceSchema() {
       "Touring Production Infrastructure",
     ],
     email: "info@tc.agency",
-    telephone: "+1-313-261-5200",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Detroit",

@@ -101,15 +101,6 @@ export function Footer() {
               </a>
             </div>
             <div>
-              <p className="text-zinc-400 mb-1">Phone</p>
-              <a
-                href="tel:+13132615200"
-                className="text-white transition-colors"
-              >
-                +1 313 261 5200
-              </a>
-            </div>
-            <div>
               <p className="text-zinc-400 mb-1">Location</p>
               <p className="text-white">Detroit, MI</p>
             </div>

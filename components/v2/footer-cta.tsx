@@ -46,9 +46,6 @@ export function FooterCTA() {
           <a href="mailto:info@tc.agency" data-cursor="hover" className="text-zinc-400 transition-colors duration-300 hover:text-white">
             INFO@TC.AGENCY
           </a>
-          <a href="tel:+13132615200" data-cursor="hover" className="text-zinc-400 transition-colors duration-300 hover:text-white">
-            +1 313 261 5200
-          </a>
           <div className="flex flex-wrap gap-8 md:ml-auto">
             <Clock tz="America/Detroit" label="DET" />
             <Clock tz="America/Los_Angeles" label="LA" />

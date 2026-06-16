@@ -44,12 +44,12 @@ export default function ThankYouPage() {
             </div>
 
             <p className="text-lg leading-relaxed text-zinc-400 max-w-xl mt-16 mb-12">
-              For urgent production inquiries, call directly:{" "}
+              For urgent production inquiries, email us directly:{" "}
               <a
-                href="tel:+13132615200"
+                href="mailto:info@tc.agency"
                 className="text-white underline underline-offset-4 transition-colors duration-300 hover:text-[#00D26A]"
               >
-                +1 313 261 5200
+                info@tc.agency
               </a>
             </p>
 
