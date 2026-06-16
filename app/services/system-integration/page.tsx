@@ -3,7 +3,6 @@ import Link from "next/link"
 import {
   ArrowLeft,
   ArrowRight,
-  CheckCircle,
   Network,
   Repeat,
   ShieldCheck,
@@ -12,6 +11,7 @@ import {
   SlidersHorizontal,
 } from "lucide-react"
 import { BreadcrumbSchema, ServicePageSchema } from "@/components/structured-data"
+import { ServiceAccordion } from "@/components/v2/service-accordion"
 
 export const metadata: Metadata = {
   title: "System Integration | Production Network Engineering | TC Agency",
@@ -176,10 +176,10 @@ export default function SystemIntegrationPage() {
 
           {/* Header */}
           <div className="mb-16 max-w-4xl">
-            <div className="text-sm font-mono text-emerald-500 mb-4 uppercase tracking-widest">
+            <div className="text-sm font-mono text-[#00D26A] mb-4 uppercase tracking-widest">
               Service / System Integration
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
               Production Network Engineering
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed">
@@ -193,7 +193,7 @@ export default function SystemIntegrationPage() {
           <section className="mb-24">
             <div className="grid lg:grid-cols-2 gap-12">
               <div>
-                <h2 className="text-2xl font-bold mb-6">Overview</h2>
+                <h2 className="text-2xl font-semibold mb-6">Overview</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Modern live productions run on dozens of interconnected systems from multiple vendors, each speaking
                   its own protocol. Lighting consoles output DMX and sACN. Audio networks run on Dante. Video systems
@@ -215,20 +215,20 @@ export default function SystemIntegrationPage() {
                 </p>
               </div>
               <div className="bg-accent/5 border border-border p-8">
-                <h3 className="font-mono text-sm text-emerald-500 uppercase tracking-widest mb-6">
+                <h3 className="font-mono text-sm text-[#00D26A] uppercase tracking-widest mb-6">
                   Performance Indicators
                 </h3>
                 <div className="grid grid-cols-1 gap-6">
                   <div className="border-b border-border pb-4">
-                    <p className="text-4xl font-bold text-emerald-500">20+</p>
+                    <p className="text-4xl font-semibold text-[#00D26A]">20+</p>
                     <p className="text-sm text-muted-foreground mt-1">Protocols supported and actively integrated</p>
                   </div>
                   <div className="border-b border-border pb-4">
-                    <p className="text-4xl font-bold text-emerald-500">&lt;1ms</p>
+                    <p className="text-4xl font-semibold text-[#00D26A]">&lt;1ms</p>
                     <p className="text-sm text-muted-foreground mt-1">Inter-system latency across bridged protocols</p>
                   </div>
                   <div>
-                    <p className="text-4xl font-bold text-emerald-500">100%</p>
+                    <p className="text-4xl font-semibold text-[#00D26A]">100%</p>
                     <p className="text-sm text-muted-foreground mt-1">Show completion rate with redundancy architecture</p>
                   </div>
                 </div>
@@ -238,36 +238,23 @@ export default function SystemIntegrationPage() {
 
           {/* Integration Domains Grid */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-12">Integration Domains</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {integrationDomains.map((domain, i) => (
-                <div key={i} className="border border-border p-6 hover:border-emerald-900/50 transition-colors">
-                  <domain.icon className="w-8 h-8 text-emerald-500 mb-4" />
-                  <h3 className="font-bold mb-2">{domain.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">{domain.desc}</p>
-                  <div className="pt-4 border-t border-border">
-                    <div className="text-xs font-mono text-muted-foreground mb-2">Capabilities:</div>
-                    <ul className="space-y-1">
-                      {domain.capabilities.map((cap, j) => (
-                        <li key={j} className="flex items-start gap-2 text-xs text-muted-foreground">
-                          <CheckCircle className="w-3 h-3 text-emerald-500 mt-0.5 flex-shrink-0" />
-                          {cap}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <h2 className="text-2xl font-semibold mb-12">Integration Domains</h2>
+            <ServiceAccordion
+              items={integrationDomains.map((domain) => ({
+                title: domain.title,
+                description: domain.desc,
+                points: domain.capabilities,
+              }))}
+            />
           </section>
 
           {/* Technology / Protocols */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-12">Supported Protocols & Platforms</h2>
+            <h2 className="text-2xl font-semibold mb-12">Supported Protocols & Platforms</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
               {protocols.map((group, i) => (
                 <div key={i} className="bg-background p-8">
-                  <h3 className="font-mono text-xs text-emerald-500 uppercase tracking-widest mb-4">
+                  <h3 className="font-mono text-xs text-[#00D26A] uppercase tracking-widest mb-4">
                     {group.category}
                   </h3>
                   <ul className="space-y-2">
@@ -284,16 +271,16 @@ export default function SystemIntegrationPage() {
 
           {/* Approach */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-12">Our Approach</h2>
+            <h2 className="text-2xl font-semibold mb-12">Our Approach</h2>
             <div className="max-w-3xl">
               <div className="space-y-8">
                 {approachSteps.map((step, i) => (
                   <div key={i} className="flex gap-6">
-                    <div className="font-mono text-emerald-500 text-sm w-8 flex-shrink-0">
+                    <div className="font-mono text-[#00D26A] text-sm w-8 flex-shrink-0">
                       {(i + 1).toString().padStart(2, "0")}
                     </div>
                     <div>
-                      <h3 className="font-bold mb-2">{step.phase}</h3>
+                      <h3 className="font-semibold mb-2">{step.phase}</h3>
                       <p className="text-sm text-muted-foreground">{step.desc}</p>
                     </div>
                   </div>
@@ -304,7 +291,7 @@ export default function SystemIntegrationPage() {
 
           {/* Cross-links */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-12">Related Services & Work</h2>
+            <h2 className="text-2xl font-semibold mb-12">Related Services & Work</h2>
             <div className="grid md:grid-cols-3 gap-px bg-border border border-border">
               {[
                 {
@@ -331,10 +318,10 @@ export default function SystemIntegrationPage() {
                   href={link.href}
                   className="bg-background p-8 group hover:bg-accent/5 transition-colors"
                 >
-                  <div className="font-mono text-xs text-emerald-500 uppercase tracking-widest mb-2">{link.label}</div>
-                  <h3 className="font-bold mb-2 group-hover:text-emerald-500 transition-colors">{link.title}</h3>
+                  <div className="font-mono text-xs text-[#00D26A] uppercase tracking-widest mb-2">{link.label}</div>
+                  <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors">{link.title}</h3>
                   <p className="text-sm text-muted-foreground">{link.desc}</p>
-                  <div className="mt-4 flex items-center gap-1 text-sm text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="mt-4 flex items-center gap-1 text-sm text-[#00D26A] opacity-0 group-hover:opacity-100 transition-opacity">
                     View details <ArrowRight className="w-3 h-3" />
                   </div>
                 </Link>
@@ -345,14 +332,14 @@ export default function SystemIntegrationPage() {
           {/* CTA */}
           <section className="border-t border-border pt-16">
             <div className="max-w-2xl">
-              <h2 className="text-2xl font-bold mb-4">Ready to unify your production systems?</h2>
+              <h2 className="text-2xl font-semibold mb-4">Ready to unify your production systems?</h2>
               <p className="text-muted-foreground mb-8">
                 Let's map your integration requirements and design a network architecture that connects every system
                 in your production environment.
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 text-white font-bold uppercase tracking-wide hover:bg-emerald-600 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors"
               >
                 Start a Conversation
                 <ArrowRight className="w-4 h-4" />

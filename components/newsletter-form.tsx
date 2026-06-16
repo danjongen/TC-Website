@@ -24,9 +24,9 @@ export function NewsletterForm() {
 
   if (status === "success") {
     return (
-      <div className="flex items-center justify-center gap-3 py-4 px-6 bg-emerald-500/10 border border-emerald-500/30">
-        <Check className="w-5 h-5 text-emerald-500" />
-        <span className="text-emerald-500 font-medium">{message}</span>
+      <div className="flex items-center justify-center gap-3 py-4 px-6 bg-[#00D26A]/10 border border-[#00D26A]/30">
+        <Check className="w-5 h-5 text-[#00D26A]" />
+        <span className="text-[#00D26A] font-medium">{message}</span>
       </div>
     )
   }
@@ -39,7 +39,7 @@ export function NewsletterForm() {
         placeholder="your@email.com"
         required
         disabled={status === "loading"}
-        className="flex-grow px-4 py-3 bg-zinc-900 border border-border text-white placeholder:text-muted-foreground focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors disabled:opacity-50"
+        className="flex-grow px-4 py-3 bg-zinc-900 border border-border text-white placeholder:text-muted-foreground focus:outline-none focus:border-[#00D26A] focus:ring-1 focus:ring-[#00D26A] transition-colors disabled:opacity-50"
         aria-label="Email address for notifications"
       />
       <button

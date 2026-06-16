@@ -9,8 +9,8 @@ import {
   Handshake,
   Settings,
   ArrowRight,
-  CheckCircle,
 } from "lucide-react"
+import { ServiceAccordion } from "@/components/v2/service-accordion"
 
 export const metadata: Metadata = {
   title: "Executive & Strategic Consulting | TC Agency — Production Engineering",
@@ -141,10 +141,10 @@ export default function ConsultingPage() {
 
         {/* Header */}
         <div className="mb-16 max-w-4xl">
-          <div className="text-sm font-mono text-emerald-500 mb-4 uppercase tracking-widest">
+          <div className="text-sm font-mono text-[#00D26A] mb-4 uppercase tracking-widest">
             Service / Executive Consulting
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-6">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
             Executive & Strategic Consulting
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
@@ -157,7 +157,7 @@ export default function ConsultingPage() {
         <section className="mb-24">
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-2xl font-bold mb-6">Overview</h2>
+              <h2 className="text-2xl font-semibold mb-6">Overview</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 This service delivers senior oversight across all technical, creative, and production domains. It
                 provides the thinking, modelling, risk control, and decision stewardship that complex productions
@@ -169,20 +169,20 @@ export default function ConsultingPage() {
               </p>
             </div>
             <div className="bg-accent/5 border border-border p-8">
-              <h3 className="font-mono text-sm text-emerald-500 uppercase tracking-widest mb-6">
+              <h3 className="font-mono text-sm text-[#00D26A] uppercase tracking-widest mb-6">
                 Performance Indicators
               </h3>
               <div className="grid grid-cols-1 gap-6">
                 <div className="border-b border-border pb-4">
-                  <p className="text-4xl font-bold text-emerald-500">+40%</p>
+                  <p className="text-4xl font-semibold text-[#00D26A]">+40%</p>
                   <p className="text-sm text-muted-foreground mt-1">Faster decision cycles</p>
                 </div>
                 <div className="border-b border-border pb-4">
-                  <p className="text-4xl font-bold text-emerald-500">60%</p>
+                  <p className="text-4xl font-semibold text-[#00D26A]">60%</p>
                   <p className="text-sm text-muted-foreground mt-1">Reduction in early-phase risk</p>
                 </div>
                 <div>
-                  <p className="text-4xl font-bold text-emerald-500">100%</p>
+                  <p className="text-4xl font-semibold text-[#00D26A]">100%</p>
                   <p className="text-sm text-muted-foreground mt-1">Clarity across teams</p>
                 </div>
               </div>
@@ -192,33 +192,23 @@ export default function ConsultingPage() {
 
         {/* Deliverables */}
         <section className="mb-24">
-          <h2 className="text-2xl font-bold mb-12">Deliverables</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {deliverables.map((category, i) => (
-              <div key={i} className="border border-border p-6 hover:border-emerald-900/50 transition-colors">
-                <category.icon className="w-8 h-8 text-emerald-500 mb-4" />
-                <h3 className="font-bold mb-4">{category.title}</h3>
-                <ul className="space-y-2">
-                  {category.items.map((item, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <CheckCircle className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          <h2 className="text-2xl font-semibold mb-12">Deliverables</h2>
+          <ServiceAccordion
+            items={deliverables.map((category) => ({
+              title: category.title,
+              points: category.items,
+            }))}
+          />
         </section>
 
         {/* Engagement Models */}
         <section className="mb-24">
-          <h2 className="text-2xl font-bold mb-12">Engagement Models</h2>
+          <h2 className="text-2xl font-semibold mb-12">Engagement Models</h2>
           <div className="grid md:grid-cols-3 gap-px bg-border border border-border">
             {engagementModels.map((model, i) => (
               <div key={i} className="bg-background p-8">
-                <div className="font-mono text-xs text-emerald-500 mb-2">{(i + 1).toString().padStart(2, "0")}</div>
-                <h3 className="font-bold mb-2">{model.title}</h3>
+                <div className="font-mono text-xs text-[#00D26A] mb-2">{(i + 1).toString().padStart(2, "0")}</div>
+                <h3 className="font-semibold mb-2">{model.title}</h3>
                 <p className="text-sm text-muted-foreground">{model.desc}</p>
               </div>
             ))}
@@ -227,13 +217,13 @@ export default function ConsultingPage() {
 
         {/* Use Cases */}
         <section className="mb-24">
-          <h2 className="text-2xl font-bold mb-12">Use Cases</h2>
+          <h2 className="text-2xl font-semibold mb-12">Use Cases</h2>
           <div className="max-w-3xl">
             <div className="flex flex-wrap gap-3">
               {useCases.map((useCase, i) => (
                 <span
                   key={i}
-                  className="px-4 py-2 border border-border text-sm text-muted-foreground hover:border-emerald-900/50 hover:text-white transition-colors"
+                  className="px-4 py-2 border border-border text-sm text-muted-foreground hover:border-[#00D26A]/30 hover:text-white transition-colors"
                 >
                   {useCase}
                 </span>
@@ -245,14 +235,14 @@ export default function ConsultingPage() {
         {/* CTA */}
         <section className="border-t border-border pt-16">
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-bold mb-4">Start a Project</h2>
+            <h2 className="text-2xl font-semibold mb-4">Start a Project</h2>
             <p className="text-muted-foreground mb-8">
               Let's discuss how executive-level oversight can de-risk your next production and accelerate your decision
               making.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 text-white font-bold uppercase tracking-wide hover:bg-emerald-600 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors"
             >
               Start a Conversation
               <ArrowRight className="w-4 h-4" />

@@ -3,7 +3,6 @@ import Link from "next/link"
 import {
   ArrowLeft,
   ArrowRight,
-  CheckCircle,
   Box,
   Image,
   PenTool,
@@ -16,6 +15,7 @@ import {
   MessageSquare,
 } from "lucide-react"
 import { BreadcrumbSchema, ServicePageSchema } from "@/components/structured-data"
+import { ServiceAccordion } from "@/components/v2/service-accordion"
 
 export const metadata: Metadata = {
   title: "Design & Visualization | Technical Drafting & 3D Rendering | TC Agency",
@@ -186,10 +186,10 @@ export default function DesignVisualizationPage() {
 
           {/* Header */}
           <div className="mb-16 max-w-4xl">
-            <div className="text-sm font-mono text-emerald-500 mb-4 uppercase tracking-widest">
+            <div className="text-sm font-mono text-[#00D26A] mb-4 uppercase tracking-widest">
               Service / Design & Visualization
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
               Design & Visualization
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed">
@@ -203,7 +203,7 @@ export default function DesignVisualizationPage() {
           <section className="mb-24">
             <div className="grid lg:grid-cols-2 gap-12">
               <div>
-                <h2 className="text-2xl font-bold mb-6">Overview</h2>
+                <h2 className="text-2xl font-semibold mb-6">Overview</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Production design is where creative intent meets engineering reality. We build detailed 3D
                   models, generate photorealistic renders, and produce complete technical drawing packages that
@@ -224,20 +224,20 @@ export default function DesignVisualizationPage() {
                 </p>
               </div>
               <div className="bg-accent/5 border border-border p-8">
-                <h3 className="font-mono text-sm text-emerald-500 uppercase tracking-widest mb-6">
+                <h3 className="font-mono text-sm text-[#00D26A] uppercase tracking-widest mb-6">
                   Performance Indicators
                 </h3>
                 <div className="grid grid-cols-1 gap-6">
                   <div className="border-b border-border pb-4">
-                    <p className="text-4xl font-bold text-emerald-500">99.5%</p>
+                    <p className="text-4xl font-semibold text-[#00D26A]">99.5%</p>
                     <p className="text-sm text-muted-foreground mt-1">Dimensional accuracy across deliverables</p>
                   </div>
                   <div className="border-b border-border pb-4">
-                    <p className="text-4xl font-bold text-emerald-500">Unlimited</p>
+                    <p className="text-4xl font-semibold text-[#00D26A]">Unlimited</p>
                     <p className="text-sm text-muted-foreground mt-1">Revision cycles within project scope</p>
                   </div>
                   <div>
-                    <p className="text-4xl font-bold text-emerald-500">15+</p>
+                    <p className="text-4xl font-semibold text-[#00D26A]">15+</p>
                     <p className="text-sm text-muted-foreground mt-1">Output formats for cross-discipline delivery</p>
                   </div>
                 </div>
@@ -247,28 +247,18 @@ export default function DesignVisualizationPage() {
 
           {/* Deliverables Grid */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-12">Deliverables</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {deliverables.map((category, i) => (
-                <div key={i} className="border border-border p-6 hover:border-emerald-900/50 transition-colors">
-                  <category.icon className="w-8 h-8 text-emerald-500 mb-4" />
-                  <h3 className="font-bold mb-4">{category.title}</h3>
-                  <ul className="space-y-2">
-                    {category.items.map((item, j) => (
-                      <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <CheckCircle className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
+            <h2 className="text-2xl font-semibold mb-12">Deliverables</h2>
+            <ServiceAccordion
+              items={deliverables.map((category) => ({
+                title: category.title,
+                points: category.items,
+              }))}
+            />
           </section>
 
           {/* Output Formats */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-12">Output Formats</h2>
+            <h2 className="text-2xl font-semibold mb-12">Output Formats</h2>
             <p className="text-muted-foreground mb-8 max-w-3xl">
               Every project ships in the formats your team actually uses. We maintain native files across all
               major platforms so nothing is lost in translation between design, engineering, and fabrication.
@@ -276,7 +266,7 @@ export default function DesignVisualizationPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border">
               {outputFormats.map((group, i) => (
                 <div key={i} className="bg-background p-8">
-                  <div className="font-mono text-sm text-emerald-500 uppercase tracking-widest mb-4">
+                  <div className="font-mono text-sm text-[#00D26A] uppercase tracking-widest mb-4">
                     {group.category}
                   </div>
                   <ul className="space-y-2">
@@ -293,13 +283,13 @@ export default function DesignVisualizationPage() {
 
           {/* Process */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-12">Process</h2>
+            <h2 className="text-2xl font-semibold mb-12">Process</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-px bg-border border border-border">
               {processSteps.map((step, i) => (
                 <div key={i} className="bg-background p-8">
-                  <step.icon className="w-8 h-8 text-emerald-500 mb-4" />
+                  <step.icon className="w-8 h-8 text-[#00D26A] mb-4" />
                   <div className="font-mono text-xs text-muted-foreground mb-2">{step.phase}</div>
-                  <h3 className="font-bold mb-2">{step.title}</h3>
+                  <h3 className="font-semibold mb-2">{step.title}</h3>
                   <p className="text-sm text-muted-foreground">{step.desc}</p>
                 </div>
               ))}
@@ -308,35 +298,35 @@ export default function DesignVisualizationPage() {
 
           {/* Cross-links */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-8">Related Services</h2>
+            <h2 className="text-2xl font-semibold mb-8">Related Services</h2>
             <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
               <Link
                 href="/services/unreal-engine"
-                className="group border border-border p-6 hover:border-emerald-900/50 transition-colors flex items-center justify-between"
+                className="group border border-border p-6 hover:border-[#00D26A]/30 transition-colors flex items-center justify-between"
               >
                 <div>
-                  <div className="font-mono text-xs text-emerald-500 uppercase tracking-widest mb-1">
+                  <div className="font-mono text-xs text-[#00D26A] uppercase tracking-widest mb-1">
                     Real-Time
                   </div>
-                  <div className="font-bold group-hover:text-emerald-500 transition-colors">
+                  <div className="font-semibold group-hover:text-[#00D26A] transition-colors">
                     Unreal Engine Integration
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-emerald-500 transition-colors" />
+                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-[#00D26A] transition-colors" />
               </Link>
               <Link
                 href="/services/3d-scanning"
-                className="group border border-border p-6 hover:border-emerald-900/50 transition-colors flex items-center justify-between"
+                className="group border border-border p-6 hover:border-[#00D26A]/30 transition-colors flex items-center justify-between"
               >
                 <div>
-                  <div className="font-mono text-xs text-emerald-500 uppercase tracking-widest mb-1">
+                  <div className="font-mono text-xs text-[#00D26A] uppercase tracking-widest mb-1">
                     Reality Capture
                   </div>
-                  <div className="font-bold group-hover:text-emerald-500 transition-colors">
+                  <div className="font-semibold group-hover:text-[#00D26A] transition-colors">
                     3D Scanning & Surveying
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-emerald-500 transition-colors" />
+                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-[#00D26A] transition-colors" />
               </Link>
             </div>
           </section>
@@ -344,14 +334,14 @@ export default function DesignVisualizationPage() {
           {/* CTA */}
           <section className="border-t border-border pt-16">
             <div className="max-w-2xl">
-              <h2 className="text-2xl font-bold mb-4">Ready to visualize your production?</h2>
+              <h2 className="text-2xl font-semibold mb-4">Ready to visualize your production?</h2>
               <p className="text-muted-foreground mb-8">
                 Let's turn your concept into a production-ready design package that every stakeholder can
                 trust. Accurate geometry, clear documentation, and zero ambiguity.
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 text-white font-bold uppercase tracking-wide hover:bg-emerald-600 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors"
               >
                 Start a Conversation
                 <ArrowRight className="w-4 h-4" />
