@@ -1,7 +1,6 @@
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { SchemaOrgGraph } from "@/components/schema-org"
-import { CustomCursor } from "@/components/v2/custom-cursor"
 import { CloudHero } from "@/components/v2/cloud-hero"
 import { StatsLine } from "@/components/v2/stats-marquee"
 import { Manifesto } from "@/components/v2/manifesto"
@@ -18,7 +17,6 @@ export default function Home() {
     <>
       <SchemaOrgGraph />
       <div className="min-h-screen bg-black text-white">
-        <CustomCursor />
         <Navbar />
         <main>
           <CloudHero />
