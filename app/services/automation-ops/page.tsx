@@ -179,9 +179,7 @@ export default function AutomationOpsPage() {
 
         {/* Header */}
         <div className="mb-16 max-w-4xl">
-          <div className="text-sm font-mono text-[#00D26A] mb-4 uppercase tracking-widest">
-            Service / Automation & AI Operations
-          </div>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — AUTOMATION & AI OPERATIONS ]</p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
             Your operations, automated.
           </h1>
@@ -194,7 +192,7 @@ export default function AutomationOpsPage() {
 
         {/* Problem Statement */}
         <section className="mb-24">
-          <div className="grid lg:grid-cols-2 gap-px bg-border border border-border">
+          <div className="grid lg:grid-cols-2 gap-px bg-zinc-900 border border-zinc-800">
             <div className="bg-background p-8 md:p-12">
               <h2 className="text-sm font-mono text-red-500 uppercase tracking-widest mb-6">The Problem</h2>
               <p className="text-muted-foreground mb-6">
@@ -212,26 +210,26 @@ export default function AutomationOpsPage() {
               </ul>
             </div>
             <div className="bg-background p-8 md:p-12">
-              <h2 className="text-sm font-mono text-[#00D26A] uppercase tracking-widest mb-6">The Solution</h2>
+              <h2 className="text-sm font-mono text-zinc-400 uppercase tracking-widest mb-6">The Solution</h2>
               <p className="text-muted-foreground mb-6">
                 Automate the repetitive. Keep the human for what matters. We build systems that handle your operational
                 overhead so your team can focus on growth, relationships, and the work that actually requires a brain.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                  <CheckCircle className="w-4 h-4 text-[#00D26A] mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-zinc-500 mt-0.5 flex-shrink-0" />
                   <span>Customers get instant, accurate updates without your team lifting a finger</span>
                 </li>
                 <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                  <CheckCircle className="w-4 h-4 text-[#00D26A] mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-zinc-500 mt-0.5 flex-shrink-0" />
                   <span>Inventory and supply chain run on autopilot with alerts when attention is needed</span>
                 </li>
                 <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                  <CheckCircle className="w-4 h-4 text-[#00D26A] mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-zinc-500 mt-0.5 flex-shrink-0" />
                   <span>Reports generate themselves from live data across all your tools</span>
                 </li>
                 <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                  <CheckCircle className="w-4 h-4 text-[#00D26A] mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-zinc-500 mt-0.5 flex-shrink-0" />
                   <span>AI handles routine communications and surfaces only what requires your judgment</span>
                 </li>
               </ul>
@@ -242,7 +240,7 @@ export default function AutomationOpsPage() {
         {/* Service Tiers */}
         <section className="mb-24">
           <div className="mb-12">
-            <h2 className="text-2xl font-semibold mb-2">Three levels of automation</h2>
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-2">Three levels of automation</h2>
             <p className="text-muted-foreground">
               Start where it makes sense. Scale when you are ready.
             </p>
@@ -250,27 +248,27 @@ export default function AutomationOpsPage() {
 
           <div className="space-y-6">
             {tiers.map((tier) => (
-              <div key={tier.num} className="border border-border bg-zinc-950 p-8 md:p-10">
+              <div key={tier.num} className="border border-zinc-800 bg-zinc-950 p-8 md:p-10">
                 <div className="grid lg:grid-cols-5 gap-8">
                   <div className="lg:col-span-2">
                     <div className="flex items-center gap-3 mb-4">
-                      <span className="text-xs font-mono text-[#00D26A]">{tier.num}</span>
-                      <tier.icon className="w-6 h-6 text-[#00D26A]" />
+                      <span className="text-xs font-mono text-zinc-500">{tier.num}</span>
+                      <tier.icon className="w-6 h-6 text-zinc-500" />
                     </div>
-                    <h3 className="text-2xl font-semibold mb-2">{tier.title}</h3>
-                    <p className="text-sm font-mono text-[#00D26A] mb-4">{tier.subtitle}</p>
+                    <h3 className="text-2xl font-semibold tracking-[-0.03em] mb-2">{tier.title}</h3>
+                    <p className="text-sm font-mono text-zinc-500 mb-4">{tier.subtitle}</p>
                     <p className="text-muted-foreground leading-relaxed">{tier.description}</p>
-                    <div className="mt-6 pt-4 border-t border-border">
+                    <div className="mt-6 pt-4 border-t border-zinc-800">
                       <p className="text-xs font-mono text-muted-foreground uppercase mb-1">Platforms</p>
                       <p className="text-sm text-muted-foreground">{tier.platforms}</p>
                     </div>
                   </div>
                   <div className="lg:col-span-3">
-                    <h4 className="text-xs font-mono text-[#00D26A] uppercase mb-4">What you get</h4>
+                    <h4 className="text-xs font-mono text-zinc-500 uppercase mb-4">What you get</h4>
                     <ul className="space-y-3">
                       {tier.features.map((feature, i) => (
                         <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
-                          <CheckCircle className="w-4 h-4 text-[#00D26A] mt-0.5 flex-shrink-0" />
+                          <CheckCircle className="w-4 h-4 text-zinc-500 mt-0.5 flex-shrink-0" />
                           {feature}
                         </li>
                       ))}
@@ -284,7 +282,7 @@ export default function AutomationOpsPage() {
 
         {/* Use Cases */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold mb-8">Common automations we build</h2>
+          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-8">Common automations we build</h2>
           <ServiceAccordion
             items={[
               {
@@ -326,12 +324,12 @@ export default function AutomationOpsPage() {
 
         {/* How It Works */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold mb-12">How it works</h2>
+          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">How it works</h2>
           <div className="max-w-3xl">
             <div className="space-y-8">
               {howItWorks.map((step, i) => (
                 <div key={i} className="flex items-baseline gap-6">
-                  <div className="font-mono text-[#00D26A] text-sm w-8 shrink-0">{(i + 1).toString().padStart(2, "0")}</div>
+                  <div className="font-mono text-zinc-500 text-sm w-8 shrink-0">{(i + 1).toString().padStart(2, "0")}</div>
                   <div>
                     <h3 className="font-semibold mb-2">{step.phase}</h3>
                     <p className="text-sm text-muted-foreground">{step.desc}</p>
@@ -344,8 +342,8 @@ export default function AutomationOpsPage() {
 
         {/* Differentiator */}
         <section className="mb-24">
-          <div className="border border-border bg-zinc-950 p-8 md:p-12">
-            <h2 className="text-2xl font-semibold mb-6">Why TC builds this differently</h2>
+          <div className="border border-zinc-800 bg-zinc-950 p-8 md:p-12">
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">Why TC builds this differently</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <p className="text-muted-foreground leading-relaxed mb-4">
@@ -375,9 +373,9 @@ export default function AutomationOpsPage() {
         </section>
 
         {/* CTA */}
-        <section className="border-t border-border pt-16">
+        <section className="border-t border-zinc-800 pt-16">
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-semibold mb-4">Let's talk about what makes sense for your business</h2>
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Let's talk about what makes sense for your business</h2>
             <p className="text-muted-foreground mb-8">
               Every business runs differently. Tell us what is eating your time and we will tell you what can be
               automated, what should stay manual, and where to start.

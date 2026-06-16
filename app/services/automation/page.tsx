@@ -32,9 +32,7 @@ export default function AutomationPage() {
 
         {/* Header */}
         <div className="mb-16 max-w-4xl">
-          <div className="text-sm font-mono text-[#00D26A] mb-4 uppercase tracking-widest">
-            Service / Workflow Automation
-          </div>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — PRODUCTION AUTOMATION ]</p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">Production Automation</h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
             Custom automation that eliminates manual tasks, reduces human error, and creates infinitely repeatable
@@ -44,7 +42,7 @@ export default function AutomationPage() {
 
         {/* Problem / Solution */}
         <section className="mb-24">
-          <div className="grid lg:grid-cols-2 gap-px bg-border border border-border">
+          <div className="grid lg:grid-cols-2 gap-px bg-zinc-900 border border-zinc-800">
             <div className="bg-background p-12">
               <h2 className="text-sm font-mono text-red-500 uppercase tracking-widest mb-6">The Problem</h2>
               <ul className="space-y-4 text-muted-foreground">
@@ -71,26 +69,26 @@ export default function AutomationPage() {
               </ul>
             </div>
             <div className="bg-background p-12">
-              <h2 className="text-sm font-mono text-[#00D26A] uppercase tracking-widest mb-6">Our Solution</h2>
+              <h2 className="text-sm font-mono text-zinc-400 uppercase tracking-widest mb-6">Our Solution</h2>
               <ul className="space-y-4 text-muted-foreground">
                 <li className="flex items-start gap-3">
-                  <span className="text-[#00D26A]">✓</span>
+                  <span className="text-zinc-500">✓</span>
                   <span>Centralized show data with automatic propagation</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#00D26A]">✓</span>
+                  <span className="text-zinc-500">✓</span>
                   <span>Deterministic cue execution every single time</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#00D26A]">✓</span>
+                  <span className="text-zinc-500">✓</span>
                   <span>One-click deployment and system configuration</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#00D26A]">✓</span>
+                  <span className="text-zinc-500">✓</span>
                   <span>Git-based versioning with full change history</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#00D26A]">✓</span>
+                  <span className="text-zinc-500">✓</span>
                   <span>Fail-safes and validation at every step</span>
                 </li>
               </ul>
@@ -100,7 +98,7 @@ export default function AutomationPage() {
 
         {/* Automation Types */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold mb-12">Automation Categories</h2>
+          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Automation Categories</h2>
           <ServiceAccordion
             items={[
               {
@@ -144,7 +142,7 @@ export default function AutomationPage() {
 
         {/* Methodology */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold mb-12">Methodology</h2>
+          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Methodology</h2>
           <div className="max-w-3xl">
             <div className="space-y-8">
               {[
@@ -174,7 +172,7 @@ export default function AutomationPage() {
                 },
               ].map((step, i) => (
                 <div key={i} className="flex gap-6">
-                  <div className="font-mono text-[#00D26A] text-sm w-8">{(i + 1).toString().padStart(2, "0")}</div>
+                  <div className="font-mono text-zinc-500 text-sm w-8">{(i + 1).toString().padStart(2, "0")}</div>
                   <div>
                     <h3 className="font-semibold mb-2">{step.phase}</h3>
                     <p className="text-sm text-muted-foreground">{step.desc}</p>
@@ -186,9 +184,9 @@ export default function AutomationPage() {
         </section>
 
         {/* CTA */}
-        <section className="border-t border-border pt-16">
+        <section className="border-t border-zinc-800 pt-16">
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-semibold mb-4">Ready to automate your production?</h2>
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Ready to automate your production?</h2>
             <p className="text-muted-foreground mb-8">
               Let's identify the manual processes slowing you down and build systems that scale.
             </p>

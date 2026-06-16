@@ -170,9 +170,7 @@ export default function TechnicalDirectionPage() {
 
         {/* Header */}
         <div className="mb-16 max-w-4xl">
-          <div className="text-sm font-mono text-[#00D26A] mb-4 uppercase tracking-widest">
-            Service / Technical Direction
-          </div>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — TECHNICAL DIRECTION ]</p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
             Technical Direction
           </h1>
@@ -184,52 +182,31 @@ export default function TechnicalDirectionPage() {
 
         {/* Overview */}
         <section className="mb-24">
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-2xl font-semibold mb-6">Overview</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                Technical direction is the single thread that connects every production department into a coherent,
-                reliable system. It is not a title. It is an operating model: one point of accountability that owns
-                the technical outcome of the entire show, from first concept meeting through final strike.
-              </p>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                TC approaches technical direction with the rigor of systems engineering. Every production receives
-                documented architecture, structured risk analysis, and clear communication protocols before a single
-                cable is run. During execution, the TD serves as the central nervous system of the production,
-                routing information, resolving conflicts between departments, and making real-time decisions that
-                protect both the creative vision and the technical integrity of the show.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                This service is built for productions where the technical complexity exceeds what any single
-                department can manage alone. Tours with dozens of trucks. Residencies with hundreds of cues.
-                Installations where uptime is measured in months, not hours.
-              </p>
-            </div>
-            <div className="bg-accent/5 border border-border p-8">
-              <h3 className="font-mono text-sm text-[#00D26A] uppercase tracking-widest mb-6">
-                Performance Indicators
-              </h3>
-              <div className="grid grid-cols-1 gap-6">
-                <div className="border-b border-border pb-4">
-                  <p className="text-4xl font-semibold text-[#00D26A]">200+</p>
-                  <p className="text-sm text-muted-foreground mt-1">Productions managed</p>
-                </div>
-                <div className="border-b border-border pb-4">
-                  <p className="text-4xl font-semibold text-[#00D26A]">99.97%</p>
-                  <p className="text-sm text-muted-foreground mt-1">System uptime across all managed productions</p>
-                </div>
-                <div>
-                  <p className="text-4xl font-semibold text-[#00D26A]">&lt;2hr</p>
-                  <p className="text-sm text-muted-foreground mt-1">Response time for critical production issues</p>
-                </div>
-              </div>
-            </div>
+          <div className="max-w-3xl">
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Technical direction is the single thread that connects every production department into a coherent,
+              reliable system. It is not a title. It is an operating model: one point of accountability that owns
+              the technical outcome of the entire show, from first concept meeting through final strike.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              TC approaches technical direction with the rigor of systems engineering. Every production receives
+              documented architecture, structured risk analysis, and clear communication protocols before a single
+              cable is run. During execution, the TD serves as the central nervous system of the production,
+              routing information, resolving conflicts between departments, and making real-time decisions that
+              protect both the creative vision and the technical integrity of the show.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              This service is built for productions where the technical complexity exceeds what any single
+              department can manage alone. Tours with dozens of trucks. Residencies with hundreds of cues.
+              Installations where uptime is measured in months, not hours.
+            </p>
           </div>
         </section>
 
         {/* Core Responsibilities */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold mb-12">Core Responsibilities</h2>
+          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Core Responsibilities</h2>
           <ServiceAccordion
             items={responsibilities.map((r) => ({
               title: r.title,
@@ -242,7 +219,7 @@ export default function TechnicalDirectionPage() {
         {/* How TC Does It Differently */}
         <section className="mb-24">
           <div className="max-w-3xl">
-            <h2 className="text-2xl font-semibold mb-6">How TC Does It Differently</h2>
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">How TC Does It Differently</h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
                 Traditional technical direction in live events is often reactive. The TD shows up on site, inherits
@@ -265,11 +242,11 @@ export default function TechnicalDirectionPage() {
               <p>
                 The result is productions that run cleaner, load in faster, and recover from the unexpected without
                 the audience ever noticing. Our{" "}
-                <Link href="/services/system-integration" className="text-[#00D26A] hover:underline">
+                <Link href="/services/system-integration" className="text-white underline underline-offset-4 transition-colors hover:text-[#00D26A]">
                   system integration
                 </Link>{" "}
                 methodology and{" "}
-                <Link href="/services/unreal-engine" className="text-[#00D26A] hover:underline">
+                <Link href="/services/unreal-engine" className="text-white underline underline-offset-4 transition-colors hover:text-[#00D26A]">
                   Unreal Engine pre-visualization
                 </Link>{" "}
                 capabilities extend this engineering mindset across every phase of the production lifecycle.
@@ -280,13 +257,13 @@ export default function TechnicalDirectionPage() {
 
         {/* Use Cases */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold mb-12">Use Cases</h2>
+          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Use Cases</h2>
           <div className="max-w-3xl">
             <div className="flex flex-wrap gap-3">
               {useCases.map((useCase, i) => (
                 <span
                   key={i}
-                  className="px-4 py-2 border border-border text-sm text-muted-foreground hover:border-[#00D26A]/30 hover:text-white transition-colors"
+                  className="px-4 py-2 border border-zinc-800 text-sm text-muted-foreground hover:border-[#00D26A]/30 hover:text-white transition-colors"
                 >
                   {useCase}
                 </span>
@@ -297,8 +274,8 @@ export default function TechnicalDirectionPage() {
 
         {/* Related Work */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold mb-12">Related Work</h2>
-          <div className="grid md:grid-cols-3 gap-px bg-border border border-border">
+          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Related Work</h2>
+          <div className="grid md:grid-cols-3 gap-px bg-zinc-900 border border-zinc-800">
             {[
               {
                 label: "Case Study",
@@ -322,9 +299,9 @@ export default function TechnicalDirectionPage() {
               <Link
                 key={i}
                 href={item.href}
-                className="bg-background p-8 group hover:bg-accent/5 transition-colors"
+                className="bg-background p-8 group hover:bg-zinc-900/40 transition-colors"
               >
-                <div className="font-mono text-xs text-[#00D26A] mb-2">{item.label}</div>
+                <div className="font-mono text-xs text-zinc-500 mb-2">{item.label}</div>
                 <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors">{item.title}</h3>
                 <p className="text-sm text-muted-foreground">{item.desc}</p>
               </Link>
@@ -333,9 +310,9 @@ export default function TechnicalDirectionPage() {
         </section>
 
         {/* CTA */}
-        <section className="border-t border-border pt-16">
+        <section className="border-t border-zinc-800 pt-16">
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-semibold mb-4">Bring TC on as your Technical Director</h2>
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Bring TC on as your Technical Director</h2>
             <p className="text-muted-foreground mb-8">
               Whether you need a TD for a single show or an entire touring cycle, let us show you what
               engineering-grade technical direction looks like in practice.

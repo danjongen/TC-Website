@@ -13,7 +13,6 @@ import {
   Compass,
   FileCheck,
   Briefcase,
-  Workflow,
   Lightbulb,
 } from "lucide-react"
 import { BreadcrumbSchema, ServicePageSchema } from "@/components/structured-data"
@@ -190,9 +189,7 @@ export default function ExecutiveConsultingPage() {
 
           {/* Header */}
           <div className="mb-16 max-w-4xl">
-            <div className="text-sm font-mono text-[#00D26A] mb-4 uppercase tracking-widest">
-              Service / Executive Consulting
-            </div>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — EXECUTIVE CONSULTING ]</p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
               Executive & Strategic Consulting
             </h1>
@@ -205,84 +202,42 @@ export default function ExecutiveConsultingPage() {
 
           {/* Overview */}
           <section className="mb-24">
-            <div className="grid lg:grid-cols-2 gap-12">
-              <div>
-                <h2 className="text-2xl font-semibold mb-6">Overview</h2>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  This service delivers senior oversight across all technical, creative, and production
-                  domains. It provides the thinking, modelling, risk control, and decision stewardship
-                  that complex productions require. When the stakes are high and the margin for error
-                  is narrow, strategic consulting brings structure to ambiguity and clarity to competing
-                  priorities.
-                </p>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  Ideal for programs operating at scale, managing concurrent workstreams, or navigating
-                  environments where clarity and certainty are non-negotiable. Our consulting practice
-                  draws on direct experience leading productions for global brands and landmark venues,
-                  including projects involving automotive launch programs for Ford and immersive
-                  entertainment at Sphere-class installations.
-                </p>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  We operate at the intersection of creative ambition and technical reality. That means
-                  we do not simply advise from the sideline. We embed within your leadership structure,
-                  participate in the hard conversations, and take ownership of the frameworks that drive
-                  decisions forward. Every engagement is built around one principle: reduce the distance
-                  between a question being raised and a confident answer being delivered.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  For teams that already have strong operational talent but need a strategic layer to
-                  connect departments, manage vendor ecosystems, or pressure-test plans before
-                  committing resources, this is the service that fills that gap. We complement your
-                  existing structure rather than replacing it.
-                </p>
-              </div>
-              <div className="bg-accent/5 border border-border p-8">
-                <h3 className="font-mono text-sm text-[#00D26A] uppercase tracking-widest mb-6">
-                  Performance Indicators
-                </h3>
-                <div className="grid grid-cols-1 gap-6">
-                  <div className="border-b border-border pb-4">
-                    <p className="text-4xl font-semibold text-[#00D26A]">+40%</p>
-                    <p className="text-sm text-muted-foreground mt-1">Faster decision cycles</p>
-                  </div>
-                  <div className="border-b border-border pb-4">
-                    <p className="text-4xl font-semibold text-[#00D26A]">60%</p>
-                    <p className="text-sm text-muted-foreground mt-1">Reduction in early-phase risk</p>
-                  </div>
-                  <div className="border-b border-border pb-4">
-                    <p className="text-4xl font-semibold text-[#00D26A]">100%</p>
-                    <p className="text-sm text-muted-foreground mt-1">Team alignment and clarity across departments</p>
-                  </div>
-                </div>
-                <div className="mt-6 pt-6 border-t border-border">
-                  <h3 className="font-mono text-sm text-[#00D26A] uppercase tracking-widest mb-4">
-                    Related Services
-                  </h3>
-                  <div className="space-y-3">
-                    <Link
-                      href="/services/technical-direction"
-                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors"
-                    >
-                      <Compass className="w-4 h-4 text-[#00D26A]" />
-                      Technical Direction
-                    </Link>
-                    <Link
-                      href="/services/production-management"
-                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors"
-                    >
-                      <Workflow className="w-4 h-4 text-[#00D26A]" />
-                      Production Management
-                    </Link>
-                  </div>
-                </div>
-              </div>
+            <div className="max-w-3xl">
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                This service delivers senior oversight across all technical, creative, and production
+                domains. It provides the thinking, modelling, risk control, and decision stewardship
+                that complex productions require. When the stakes are high and the margin for error
+                is narrow, strategic consulting brings structure to ambiguity and clarity to competing
+                priorities.
+              </p>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                Ideal for programs operating at scale, managing concurrent workstreams, or navigating
+                environments where clarity and certainty are non-negotiable. Our consulting practice
+                draws on direct experience leading productions for global brands and landmark venues,
+                including projects involving automotive launch programs for Ford and immersive
+                entertainment at Sphere-class installations.
+              </p>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                We operate at the intersection of creative ambition and technical reality. That means
+                we do not simply advise from the sideline. We embed within your leadership structure,
+                participate in the hard conversations, and take ownership of the frameworks that drive
+                decisions forward. Every engagement is built around one principle: reduce the distance
+                between a question being raised and a confident answer being delivered.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                For teams that already have strong operational talent but need a strategic layer to
+                connect departments, manage vendor ecosystems, or pressure-test plans before
+                committing resources, this is the service that fills that gap. We complement your
+                existing structure rather than replacing it.
+              </p>
             </div>
           </section>
 
           {/* What Sets This Apart */}
           <section className="mb-24">
-            <div className="bg-zinc-950 border border-border p-8 md:p-12">
-              <h2 className="text-2xl font-semibold mb-6">What Sets This Apart</h2>
+            <div className="bg-zinc-950 border border-zinc-800 p-8 md:p-12">
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">What Sets This Apart</h2>
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
                   <p className="text-muted-foreground leading-relaxed mb-4">
@@ -320,7 +275,7 @@ export default function ExecutiveConsultingPage() {
 
           {/* Deliverables */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold mb-12">Deliverables</h2>
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Deliverables</h2>
             <ServiceAccordion
               items={deliverables.map((category) => ({
                 title: category.title,
@@ -331,11 +286,11 @@ export default function ExecutiveConsultingPage() {
 
           {/* Engagement Models */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold mb-12">Engagement Models</h2>
-            <div className="grid md:grid-cols-3 gap-px bg-border border border-border">
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Engagement Models</h2>
+            <div className="grid md:grid-cols-3 gap-px bg-zinc-900 border border-zinc-800">
               {engagementModels.map((model, i) => (
                 <div key={i} className="bg-background p-8">
-                  <div className="font-mono text-xs text-[#00D26A] mb-2">{(i + 1).toString().padStart(2, "0")}</div>
+                  <div className="font-mono text-xs text-zinc-500 mb-2">{(i + 1).toString().padStart(2, "0")}</div>
                   <h3 className="font-semibold mb-2">{model.title}</h3>
                   <p className="text-sm text-muted-foreground">{model.desc}</p>
                 </div>
@@ -345,7 +300,7 @@ export default function ExecutiveConsultingPage() {
 
           {/* How We Work */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold mb-12">How We Work</h2>
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">How We Work</h2>
             <div className="max-w-3xl">
               <div className="space-y-8">
                 {[
@@ -372,12 +327,12 @@ export default function ExecutiveConsultingPage() {
                 ].map((step, i) => (
                   <div key={i} className="flex gap-6">
                     <div className="flex-shrink-0">
-                      <div className="w-10 h-10 border border-[#00D26A] flex items-center justify-center">
-                        <step.icon className="w-5 h-5 text-[#00D26A]" />
+                      <div className="w-10 h-10 border border-zinc-700 flex items-center justify-center">
+                        <step.icon className="w-5 h-5 text-zinc-500" />
                       </div>
                     </div>
                     <div>
-                      <div className="font-mono text-xs text-[#00D26A] mb-1">{(i + 1).toString().padStart(2, "0")}</div>
+                      <div className="font-mono text-xs text-zinc-500 mb-1">{(i + 1).toString().padStart(2, "0")}</div>
                       <h3 className="font-semibold mb-2">{step.phase}</h3>
                       <p className="text-sm text-muted-foreground">{step.desc}</p>
                     </div>
@@ -389,13 +344,13 @@ export default function ExecutiveConsultingPage() {
 
           {/* Use Cases */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold mb-12">Use Cases</h2>
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Use Cases</h2>
             <div className="max-w-3xl">
               <div className="flex flex-wrap gap-3">
                 {useCases.map((useCase, i) => (
                   <span
                     key={i}
-                    className="px-4 py-2 border border-border text-sm text-muted-foreground hover:border-[#00D26A]/30 hover:text-white transition-colors"
+                    className="px-4 py-2 border border-zinc-800 text-sm text-muted-foreground hover:border-[#00D26A]/30 hover:text-white transition-colors"
                   >
                     {useCase}
                   </span>
@@ -404,10 +359,31 @@ export default function ExecutiveConsultingPage() {
             </div>
           </section>
 
+          {/* Related Services */}
+          <section className="mb-24">
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-8">Related services</h2>
+            <div className="max-w-3xl border-t border-zinc-900">
+              <Link
+                href="/services/technical-direction"
+                className="group flex items-center justify-between border-b border-zinc-900 py-5 transition-colors"
+              >
+                <span className="text-lg text-zinc-300 transition-colors group-hover:text-[#00D26A]">Technical Direction</span>
+                <ArrowRight className="h-4 w-4 text-zinc-600 transition-colors group-hover:text-[#00D26A]" />
+              </Link>
+              <Link
+                href="/services/production-management"
+                className="group flex items-center justify-between border-b border-zinc-900 py-5 transition-colors"
+              >
+                <span className="text-lg text-zinc-300 transition-colors group-hover:text-[#00D26A]">Production Management</span>
+                <ArrowRight className="h-4 w-4 text-zinc-600 transition-colors group-hover:text-[#00D26A]" />
+              </Link>
+            </div>
+          </section>
+
           {/* CTA */}
-          <section className="border-t border-border pt-16">
+          <section className="border-t border-zinc-800 pt-16">
             <div className="max-w-2xl">
-              <h2 className="text-2xl font-semibold mb-4">Start a Conversation</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Start a Conversation</h2>
               <p className="text-muted-foreground mb-8">
                 Whether you need ongoing strategic partnership or targeted support for a specific
                 production challenge, we are ready to discuss how executive-level oversight can

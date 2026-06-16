@@ -152,9 +152,7 @@ export default function CustomFabricationPage() {
 
         {/* Header */}
         <div className="mb-16 max-w-4xl">
-          <div className="text-sm font-mono text-[#00D26A] mb-4 uppercase tracking-widest">
-            Service / Custom Fabrication
-          </div>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — CUSTOM FABRICATION ]</p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
             Production Hardware Engineering
           </h1>
@@ -165,54 +163,33 @@ export default function CustomFabricationPage() {
           </p>
         </div>
 
-        {/* Overview with Indicators */}
+        {/* Overview */}
         <section className="mb-24">
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-2xl font-semibold mb-6">Overview</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                Off-the-shelf hardware works for standard productions. But when the creative brief calls for something
-                that has never been built before, you need engineering partners who understand both the fabrication
-                process and the production environment where the part will live.
-              </p>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                We design and manufacture custom brackets, mounts, enclosures, rigging hardware, cable assemblies, and
-                structural components purpose-built for live events, touring, broadcast, and permanent installations.
-                Every part is engineered for the specific loads, tolerances, and environmental conditions of your
-                application.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Our fabrication capabilities span the full range from one-off prototypes to repeatable production runs.
-                Whether you need a single custom adapter plate by Friday or 200 certified rigging brackets for a world
-                tour, the process is the same: rigorous engineering, validated testing, and documented quality at every
-                step.
-              </p>
-            </div>
-            <div className="bg-accent/5 border border-border p-8">
-              <h3 className="font-mono text-sm text-[#00D26A] uppercase tracking-widest mb-6">
-                Performance Indicators
-              </h3>
-              <div className="grid grid-cols-1 gap-6">
-                <div className="border-b border-border pb-4">
-                  <p className="text-4xl font-semibold text-[#00D26A]">2-6 weeks</p>
-                  <p className="text-sm text-muted-foreground mt-1">Concept to delivery lead time</p>
-                </div>
-                <div className="border-b border-border pb-4">
-                  <p className="text-4xl font-semibold text-[#00D26A]">50+</p>
-                  <p className="text-sm text-muted-foreground mt-1">Materials available across metals, polymers, and composites</p>
-                </div>
-                <div>
-                  <p className="text-4xl font-semibold text-[#00D26A]">&plusmn;0.1mm</p>
-                  <p className="text-sm text-muted-foreground mt-1">Standard machining tolerance</p>
-                </div>
-              </div>
-            </div>
+          <div className="max-w-3xl">
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Off-the-shelf hardware works for standard productions. But when the creative brief calls for something
+              that has never been built before, you need engineering partners who understand both the fabrication
+              process and the production environment where the part will live.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              We design and manufacture custom brackets, mounts, enclosures, rigging hardware, cable assemblies, and
+              structural components purpose-built for live events, touring, broadcast, and permanent installations.
+              Every part is engineered for the specific loads, tolerances, and environmental conditions of your
+              application.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Our fabrication capabilities span the full range from one-off prototypes to repeatable production runs.
+              Whether you need a single custom adapter plate by Friday or 200 certified rigging brackets for a world
+              tour, the process is the same: rigorous engineering, validated testing, and documented quality at every
+              step.
+            </p>
           </div>
         </section>
 
         {/* Capabilities Grid */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold mb-12">Capabilities</h2>
+          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Capabilities</h2>
           <ServiceAccordion
             items={capabilities.map((item) => ({
               title: item.title,
@@ -224,20 +201,20 @@ export default function CustomFabricationPage() {
 
         {/* Materials & Processes */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold mb-12">Materials & Processes</h2>
+          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Materials & Processes</h2>
           <p className="text-muted-foreground max-w-3xl mb-8">
             Material selection is driven by your application requirements: weight constraints, structural loads,
             environmental exposure, and finish specifications. We source certified stock and maintain full material
             traceability from raw billet to finished part.
           </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-900 border border-zinc-800">
             {materials.map((group, i) => (
               <div key={i} className="bg-background p-6">
-                <h3 className="font-mono text-sm text-[#00D26A] uppercase tracking-widest mb-4">{group.category}</h3>
+                <h3 className="font-mono text-sm text-zinc-400 uppercase tracking-widest mb-4">{group.category}</h3>
                 <ul className="space-y-2">
                   {group.items.map((item, j) => (
                     <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <CheckCircle className="w-3.5 h-3.5 text-[#00D26A] mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="w-3.5 h-3.5 text-zinc-500 mt-0.5 flex-shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -246,7 +223,7 @@ export default function CustomFabricationPage() {
             ))}
           </div>
           <div className="mt-8 grid md:grid-cols-3 gap-6">
-            <div className="border border-border p-6">
+            <div className="border border-zinc-800 p-6">
               <h3 className="font-semibold mb-4">Surface Treatments</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>Anodizing (Type II & III)</li>
@@ -256,7 +233,7 @@ export default function CustomFabricationPage() {
                 <li>Passivation</li>
               </ul>
             </div>
-            <div className="border border-border p-6">
+            <div className="border border-zinc-800 p-6">
               <h3 className="font-semibold mb-4">Joining Methods</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>TIG welding (aluminum & steel)</li>
@@ -266,7 +243,7 @@ export default function CustomFabricationPage() {
                 <li>Riveting</li>
               </ul>
             </div>
-            <div className="border border-border p-6">
+            <div className="border border-zinc-800 p-6">
               <h3 className="font-semibold mb-4">Quality Assurance</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>CMM inspection</li>
@@ -281,15 +258,15 @@ export default function CustomFabricationPage() {
 
         {/* From Concept to Delivery */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold mb-12">From Concept to Delivery</h2>
+          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">From Concept to Delivery</h2>
           <div className="max-w-3xl">
             <div className="relative">
-              <div className="absolute left-4 top-0 bottom-0 w-px bg-border" />
+              <div className="absolute left-4 top-0 bottom-0 w-px bg-zinc-900" />
               <div className="space-y-12">
                 {processSteps.map((step, i) => (
                   <div key={i} className="relative pl-12">
-                    <div className="absolute left-0 w-8 h-8 rounded-full bg-background border-2 border-[#00D26A] flex items-center justify-center">
-                      <span className="text-xs font-mono text-[#00D26A]">{(i + 1).toString().padStart(2, "0")}</span>
+                    <div className="absolute left-0 w-8 h-8 rounded-full bg-background border-2 border-zinc-700 flex items-center justify-center">
+                      <span className="text-xs font-mono text-zinc-500">{(i + 1).toString().padStart(2, "0")}</span>
                     </div>
                     <h3 className="font-semibold mb-2">{step.phase}</h3>
                     <p className="text-sm text-muted-foreground">{step.desc}</p>
@@ -302,13 +279,13 @@ export default function CustomFabricationPage() {
 
         {/* Cross-links */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold mb-8">Related Services</h2>
-          <div className="grid md:grid-cols-2 gap-px bg-border border border-border">
+          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-8">Related Services</h2>
+          <div className="grid md:grid-cols-2 gap-px bg-zinc-900 border border-zinc-800">
             <Link
               href="/services/design-visualization"
-              className="bg-background p-8 group hover:bg-accent/5 transition-colors"
+              className="bg-background p-8 group hover:bg-zinc-900/40 transition-colors"
             >
-              <div className="font-mono text-xs text-[#00D26A] uppercase tracking-widest mb-2">
+              <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-2">
                 Design & Visualization
               </div>
               <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors">
@@ -321,9 +298,9 @@ export default function CustomFabricationPage() {
             </Link>
             <Link
               href="/services/system-integration"
-              className="bg-background p-8 group hover:bg-accent/5 transition-colors"
+              className="bg-background p-8 group hover:bg-zinc-900/40 transition-colors"
             >
-              <div className="font-mono text-xs text-[#00D26A] uppercase tracking-widest mb-2">
+              <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-2">
                 System Integration
               </div>
               <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors">
@@ -338,9 +315,9 @@ export default function CustomFabricationPage() {
         </section>
 
         {/* CTA */}
-        <section className="border-t border-border pt-16">
+        <section className="border-t border-zinc-800 pt-16">
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-semibold mb-4">Need something that doesn't exist yet?</h2>
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Need something that doesn't exist yet?</h2>
             <p className="text-muted-foreground mb-8">
               Tell us about the problem. We will engineer the solution, prototype it, test it, and deliver production-ready
               hardware on your timeline.

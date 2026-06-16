@@ -186,9 +186,7 @@ export default function DesignVisualizationPage() {
 
           {/* Header */}
           <div className="mb-16 max-w-4xl">
-            <div className="text-sm font-mono text-[#00D26A] mb-4 uppercase tracking-widest">
-              Service / Design & Visualization
-            </div>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — DESIGN & VISUALIZATION ]</p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
               Design & Visualization
             </h1>
@@ -199,55 +197,34 @@ export default function DesignVisualizationPage() {
             </p>
           </div>
 
-          {/* Overview with Performance Indicators */}
+          {/* Overview */}
           <section className="mb-24">
-            <div className="grid lg:grid-cols-2 gap-12">
-              <div>
-                <h2 className="text-2xl font-semibold mb-6">Overview</h2>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  Production design is where creative intent meets engineering reality. We build detailed 3D
-                  models, generate photorealistic renders, and produce complete technical drawing packages that
-                  serve as the single source of truth across your entire production team. Every dimension is
-                  verified. Every sightline is tested. Every detail is documented before fabrication begins.
-                </p>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  Our visualization pipeline spans the full range of industry-standard platforms, from AutoCAD
-                  and Vectorworks through Cinema 4D and Unreal Engine. This means your design data moves
-                  cleanly between disciplines without translation errors or manual re-entry. Structural
-                  engineers, scenic fabricators, lighting designers, and video programmers all work from the
-                  same geometry.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  For complex multi-stakeholder projects, we provide structured revision control with tracked
-                  changes, version histories, and approval workflows. No more guessing which drawing set is
-                  current. No more building from outdated information.
-                </p>
-              </div>
-              <div className="bg-accent/5 border border-border p-8">
-                <h3 className="font-mono text-sm text-[#00D26A] uppercase tracking-widest mb-6">
-                  Performance Indicators
-                </h3>
-                <div className="grid grid-cols-1 gap-6">
-                  <div className="border-b border-border pb-4">
-                    <p className="text-4xl font-semibold text-[#00D26A]">99.5%</p>
-                    <p className="text-sm text-muted-foreground mt-1">Dimensional accuracy across deliverables</p>
-                  </div>
-                  <div className="border-b border-border pb-4">
-                    <p className="text-4xl font-semibold text-[#00D26A]">Unlimited</p>
-                    <p className="text-sm text-muted-foreground mt-1">Revision cycles within project scope</p>
-                  </div>
-                  <div>
-                    <p className="text-4xl font-semibold text-[#00D26A]">15+</p>
-                    <p className="text-sm text-muted-foreground mt-1">Output formats for cross-discipline delivery</p>
-                  </div>
-                </div>
-              </div>
+            <div className="max-w-3xl">
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                Production design is where creative intent meets engineering reality. We build detailed 3D
+                models, generate photorealistic renders, and produce complete technical drawing packages that
+                serve as the single source of truth across your entire production team. Every dimension is
+                verified. Every sightline is tested. Every detail is documented before fabrication begins.
+              </p>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                Our visualization pipeline spans the full range of industry-standard platforms, from AutoCAD
+                and Vectorworks through Cinema 4D and Unreal Engine. This means your design data moves
+                cleanly between disciplines without translation errors or manual re-entry. Structural
+                engineers, scenic fabricators, lighting designers, and video programmers all work from the
+                same geometry.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                For complex multi-stakeholder projects, we provide structured revision control with tracked
+                changes, version histories, and approval workflows. No more guessing which drawing set is
+                current. No more building from outdated information.
+              </p>
             </div>
           </section>
 
           {/* Deliverables Grid */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold mb-12">Deliverables</h2>
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Deliverables</h2>
             <ServiceAccordion
               items={deliverables.map((category) => ({
                 title: category.title,
@@ -258,15 +235,15 @@ export default function DesignVisualizationPage() {
 
           {/* Output Formats */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold mb-12">Output Formats</h2>
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Output Formats</h2>
             <p className="text-muted-foreground mb-8 max-w-3xl">
               Every project ships in the formats your team actually uses. We maintain native files across all
               major platforms so nothing is lost in translation between design, engineering, and fabrication.
             </p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-900 border border-zinc-800">
               {outputFormats.map((group, i) => (
                 <div key={i} className="bg-background p-8">
-                  <div className="font-mono text-sm text-[#00D26A] uppercase tracking-widest mb-4">
+                  <div className="font-mono text-sm text-zinc-400 uppercase tracking-widest mb-4">
                     {group.category}
                   </div>
                   <ul className="space-y-2">
@@ -283,11 +260,11 @@ export default function DesignVisualizationPage() {
 
           {/* Process */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold mb-12">Process</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-px bg-border border border-border">
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Process</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-px bg-zinc-900 border border-zinc-800">
               {processSteps.map((step, i) => (
                 <div key={i} className="bg-background p-8">
-                  <step.icon className="w-8 h-8 text-[#00D26A] mb-4" />
+                  <step.icon className="w-8 h-8 text-zinc-500 mb-4" />
                   <div className="font-mono text-xs text-muted-foreground mb-2">{step.phase}</div>
                   <h3 className="font-semibold mb-2">{step.title}</h3>
                   <p className="text-sm text-muted-foreground">{step.desc}</p>
@@ -298,14 +275,14 @@ export default function DesignVisualizationPage() {
 
           {/* Cross-links */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold mb-8">Related Services</h2>
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-8">Related Services</h2>
             <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
               <Link
                 href="/services/unreal-engine"
-                className="group border border-border p-6 hover:border-[#00D26A]/30 transition-colors flex items-center justify-between"
+                className="group border border-zinc-800 p-6 hover:border-[#00D26A]/30 transition-colors flex items-center justify-between"
               >
                 <div>
-                  <div className="font-mono text-xs text-[#00D26A] uppercase tracking-widest mb-1">
+                  <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-1">
                     Real-Time
                   </div>
                   <div className="font-semibold group-hover:text-[#00D26A] transition-colors">
@@ -316,10 +293,10 @@ export default function DesignVisualizationPage() {
               </Link>
               <Link
                 href="/services/3d-scanning"
-                className="group border border-border p-6 hover:border-[#00D26A]/30 transition-colors flex items-center justify-between"
+                className="group border border-zinc-800 p-6 hover:border-[#00D26A]/30 transition-colors flex items-center justify-between"
               >
                 <div>
-                  <div className="font-mono text-xs text-[#00D26A] uppercase tracking-widest mb-1">
+                  <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-1">
                     Reality Capture
                   </div>
                   <div className="font-semibold group-hover:text-[#00D26A] transition-colors">
@@ -332,9 +309,9 @@ export default function DesignVisualizationPage() {
           </section>
 
           {/* CTA */}
-          <section className="border-t border-border pt-16">
+          <section className="border-t border-zinc-800 pt-16">
             <div className="max-w-2xl">
-              <h2 className="text-2xl font-semibold mb-4">Ready to visualize your production?</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Ready to visualize your production?</h2>
               <p className="text-muted-foreground mb-8">
                 Let's turn your concept into a production-ready design package that every stakeholder can
                 trust. Accurate geometry, clear documentation, and zero ambiguity.
