@@ -88,7 +88,7 @@ const posts: Record<
       "Our process is phased on purpose: discovery and alignment first, then design, then simulation, then execution, with clear ownership at every stage. We rehearse the full technical chain before show day so the failure modes surface in a shop, not in front of an audience.",
       "The principles underneath the work are simple. Systems over heroes, so delivery never depends on one person being in the room. Automation over manual effort, so the team spends its attention on judgment, not data entry. Redundancy over optimism, so a single fault never becomes a visible failure.",
       "## Who We Work With",
-      "Agency principals, senior producers, brand-side leaders, and touring artist teams who need certainty in high-stakes execution. The common thread is ambition that outpaces the available margin for error.",
+      "We work with world-touring artists and major global brands. Backstreet Boys. No Doubt. The production companies, agency principals, and brand-side leaders behind shows that play to tens of thousands a night, where a single failure is seen by everyone. The common thread is ambition that outpaces the ordinary margin for error, and the expectation that the execution holds regardless.",
       "## Track Record",
       "We have delivered the production engineering behind the Backstreet Boys Into The Millennium residency at Sphere in Las Vegas, including a self-contained touring control system and a fully wireless flying stage element that ran every show without a single timing failure. The full case study is in our Insights.",
       "If your production cannot afford to fail, that is exactly the environment we are built for. Tell us what you are planning and we will show you how we can help.",
