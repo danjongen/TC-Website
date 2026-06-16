@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowLeft, Scan, Map, Ruler, FileText, Plane, Target } from "lucide-react"
+import { ArrowLeft, Scan, Map, Ruler, Plane, Target } from "lucide-react"
+import { ServiceAccordion } from "@/components/v2/service-accordion"
 
 export const metadata: Metadata = {
   title: "3D Scanning & Aerial Surveying | Venue Documentation | TC Agency",
@@ -32,10 +33,10 @@ export default function ScanningPage() {
 
         {/* Header */}
         <div className="mb-16 max-w-4xl">
-          <div className="text-sm font-mono text-emerald-500 mb-4 uppercase tracking-widest">
+          <div className="text-sm font-mono text-[#00D26A] mb-4 uppercase tracking-widest">
             Service / 3D Scanning & Aerial Surveying
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-6">Reality Capture</h1>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">Reality Capture</h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
             High-precision 3D scanning and aerial surveying that captures every dimension of your venue. The foundation
             for accurate planning and visualization.
@@ -46,14 +47,14 @@ export default function ScanningPage() {
         <section className="mb-24">
           <div className="grid lg:grid-cols-2 gap-px bg-border border border-border">
             <div className="bg-background p-12">
-              <Scan className="w-10 h-10 text-emerald-500 mb-6" />
-              <h2 className="text-2xl font-bold mb-4">Terrestrial 3D Scanning</h2>
+              <Scan className="w-10 h-10 text-[#00D26A] mb-6" />
+              <h2 className="text-2xl font-semibold mb-4">Terrestrial 3D Scanning</h2>
               <p className="text-muted-foreground mb-6">
                 Ground-based LiDAR and photogrammetry capture for interior spaces, stages, and structures.
                 Sub-millimeter accuracy for production-critical measurements.
               </p>
               <div className="space-y-3">
-                <h3 className="text-sm font-mono text-emerald-500 uppercase tracking-widest">Applications</h3>
+                <h3 className="text-sm font-mono text-[#00D26A] uppercase tracking-widest">Applications</h3>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li>• Venue as-built documentation</li>
                   <li>• Stage and set piece capture</li>
@@ -64,14 +65,14 @@ export default function ScanningPage() {
               </div>
             </div>
             <div className="bg-background p-12">
-              <Plane className="w-10 h-10 text-emerald-500 mb-6" />
-              <h2 className="text-2xl font-bold mb-4">Aerial Surveying</h2>
+              <Plane className="w-10 h-10 text-[#00D26A] mb-6" />
+              <h2 className="text-2xl font-semibold mb-4">Aerial Surveying</h2>
               <p className="text-muted-foreground mb-6">
                 Drone-based capture for outdoor venues, festival sites, and large-scale installations. Orthomosaic
                 mapping and volumetric analysis.
               </p>
               <div className="space-y-3">
-                <h3 className="text-sm font-mono text-emerald-500 uppercase tracking-widest">Applications</h3>
+                <h3 className="text-sm font-mono text-[#00D26A] uppercase tracking-widest">Applications</h3>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li>• Festival site topology</li>
                   <li>• Stadium and arena exteriors</li>
@@ -86,7 +87,7 @@ export default function ScanningPage() {
 
         {/* Technical Specs */}
         <section className="mb-24">
-          <h2 className="text-2xl font-bold mb-12">Technical Specifications</h2>
+          <h2 className="text-2xl font-semibold mb-12">Technical Specifications</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
@@ -115,9 +116,9 @@ export default function ScanningPage() {
               },
             ].map((spec, i) => (
               <div key={i} className="border border-border p-6 text-center">
-                <spec.icon className="w-6 h-6 text-emerald-500 mx-auto mb-4" />
-                <div className="text-3xl font-bold mb-1">{spec.value}</div>
-                <div className="text-sm font-mono text-emerald-500 uppercase mb-2">{spec.label}</div>
+                <spec.icon className="w-6 h-6 text-[#00D26A] mx-auto mb-4" />
+                <div className="text-3xl font-semibold mb-1">{spec.value}</div>
+                <div className="text-sm font-mono text-[#00D26A] uppercase mb-2">{spec.label}</div>
                 <div className="text-xs text-muted-foreground">{spec.desc}</div>
               </div>
             ))}
@@ -126,10 +127,10 @@ export default function ScanningPage() {
 
         {/* Equipment */}
         <section className="mb-24">
-          <h2 className="text-2xl font-bold mb-12">Equipment & Technology</h2>
+          <h2 className="text-2xl font-semibold mb-12">Equipment & Technology</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="border border-border p-6">
-              <h3 className="font-bold mb-4">LiDAR Scanners</h3>
+              <h3 className="font-semibold mb-4">LiDAR Scanners</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>• Leica RTC360</li>
                 <li>• Leica BLK360</li>
@@ -138,7 +139,7 @@ export default function ScanningPage() {
               </ul>
             </div>
             <div className="border border-border p-6">
-              <h3 className="font-bold mb-4">Aerial Platforms</h3>
+              <h3 className="font-semibold mb-4">Aerial Platforms</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>• DJI Matrice 350 RTK</li>
                 <li>• DJI Mavic 3 Enterprise</li>
@@ -147,7 +148,7 @@ export default function ScanningPage() {
               </ul>
             </div>
             <div className="border border-border p-6">
-              <h3 className="font-bold mb-4">Processing Software</h3>
+              <h3 className="font-semibold mb-4">Processing Software</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>• Leica Cyclone REGISTER 360</li>
                 <li>• Autodesk ReCap Pro</li>
@@ -160,53 +161,39 @@ export default function ScanningPage() {
 
         {/* Deliverables */}
         <section className="mb-24">
-          <h2 className="text-2xl font-bold mb-12">Deliverables</h2>
-          <div className="grid md:grid-cols-2 gap-px bg-border border border-border">
-            {[
+          <h2 className="text-2xl font-semibold mb-12">Deliverables</h2>
+          <ServiceAccordion
+            items={[
               {
-                icon: FileText,
                 title: "Point Cloud Data",
-                formats: ["E57", "LAS/LAZ", "PTS", "RCP/RCS"],
-                desc: "Raw and registered point cloud data in industry-standard formats for downstream processing.",
+                description:
+                  "Raw and registered point cloud data in industry-standard formats for downstream processing.",
+                points: ["E57", "LAS/LAZ", "PTS", "RCP/RCS"],
               },
               {
-                icon: Map,
                 title: "3D Mesh Models",
-                formats: ["OBJ", "FBX", "glTF", "USD"],
-                desc: "Textured mesh models optimized for real-time visualization and VFX workflows.",
+                description: "Textured mesh models optimized for real-time visualization and VFX workflows.",
+                points: ["OBJ", "FBX", "glTF", "USD"],
               },
               {
-                icon: Ruler,
                 title: "CAD Drawings",
-                formats: ["DWG", "DXF", "PDF"],
-                desc: "2D floor plans, sections, and elevations extracted from scan data with annotated dimensions.",
+                description:
+                  "2D floor plans, sections, and elevations extracted from scan data with annotated dimensions.",
+                points: ["DWG", "DXF", "PDF"],
               },
               {
-                icon: Scan,
                 title: "Orthomosaic Maps",
-                formats: ["GeoTIFF", "KML", "Shapefile"],
-                desc: "Georeferenced aerial imagery and topographic data for site planning and analysis.",
+                description:
+                  "Georeferenced aerial imagery and topographic data for site planning and analysis.",
+                points: ["GeoTIFF", "KML", "Shapefile"],
               },
-            ].map((item, i) => (
-              <div key={i} className="bg-background p-8">
-                <item.icon className="w-8 h-8 text-emerald-500 mb-4" />
-                <h3 className="font-bold mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground mb-4">{item.desc}</p>
-                <div className="flex flex-wrap gap-2">
-                  {item.formats.map((format, j) => (
-                    <span key={j} className="text-xs font-mono bg-accent/10 border border-border px-2 py-1">
-                      {format}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+            ]}
+          />
         </section>
 
         {/* Process */}
         <section className="mb-24">
-          <h2 className="text-2xl font-bold mb-12">Capture Process</h2>
+          <h2 className="text-2xl font-semibold mb-12">Capture Process</h2>
           <div className="max-w-3xl">
             <div className="relative">
               <div className="absolute left-4 top-0 bottom-0 w-px bg-border" />
@@ -234,10 +221,10 @@ export default function ScanningPage() {
                   },
                 ].map((step, i) => (
                   <div key={i} className="relative pl-12">
-                    <div className="absolute left-0 w-8 h-8 rounded-full bg-background border-2 border-emerald-500 flex items-center justify-center">
-                      <span className="text-xs font-mono text-emerald-500">{(i + 1).toString().padStart(2, "0")}</span>
+                    <div className="absolute left-0 w-8 h-8 rounded-full bg-background border-2 border-[#00D26A] flex items-center justify-center">
+                      <span className="text-xs font-mono text-[#00D26A]">{(i + 1).toString().padStart(2, "0")}</span>
                     </div>
-                    <h3 className="font-bold mb-2">{step.title}</h3>
+                    <h3 className="font-semibold mb-2">{step.title}</h3>
                     <p className="text-sm text-muted-foreground">{step.desc}</p>
                   </div>
                 ))}
@@ -249,14 +236,14 @@ export default function ScanningPage() {
         {/* CTA */}
         <section className="border-t border-border pt-16">
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-bold mb-4">Ready to capture your venue?</h2>
+            <h2 className="text-2xl font-semibold mb-4">Ready to capture your venue?</h2>
             <p className="text-muted-foreground mb-8">
               Let's discuss your scanning requirements and how accurate reality capture can improve your production
               workflow.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-bold uppercase tracking-wide hover:bg-gray-200 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-semibold uppercase tracking-wide hover:bg-gray-200 transition-colors"
             >
               Start a Conversation
             </Link>

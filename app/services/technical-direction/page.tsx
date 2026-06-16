@@ -3,7 +3,6 @@ import Link from "next/link"
 import {
   ArrowLeft,
   ArrowRight,
-  CheckCircle,
   Network,
   Shield,
   Users,
@@ -12,6 +11,7 @@ import {
   ClipboardCheck,
 } from "lucide-react"
 import { BreadcrumbSchema, ServicePageSchema } from "@/components/structured-data"
+import { ServiceAccordion } from "@/components/v2/service-accordion"
 
 export const metadata: Metadata = {
   title: "Technical Direction | Live Event TD Services | TC Agency",
@@ -170,10 +170,10 @@ export default function TechnicalDirectionPage() {
 
         {/* Header */}
         <div className="mb-16 max-w-4xl">
-          <div className="text-sm font-mono text-emerald-500 mb-4 uppercase tracking-widest">
+          <div className="text-sm font-mono text-[#00D26A] mb-4 uppercase tracking-widest">
             Service / Technical Direction
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-6">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
             Technical Direction
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
@@ -186,7 +186,7 @@ export default function TechnicalDirectionPage() {
         <section className="mb-24">
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-2xl font-bold mb-6">Overview</h2>
+              <h2 className="text-2xl font-semibold mb-6">Overview</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 Technical direction is the single thread that connects every production department into a coherent,
                 reliable system. It is not a title. It is an operating model: one point of accountability that owns
@@ -206,20 +206,20 @@ export default function TechnicalDirectionPage() {
               </p>
             </div>
             <div className="bg-accent/5 border border-border p-8">
-              <h3 className="font-mono text-sm text-emerald-500 uppercase tracking-widest mb-6">
+              <h3 className="font-mono text-sm text-[#00D26A] uppercase tracking-widest mb-6">
                 Performance Indicators
               </h3>
               <div className="grid grid-cols-1 gap-6">
                 <div className="border-b border-border pb-4">
-                  <p className="text-4xl font-bold text-emerald-500">200+</p>
+                  <p className="text-4xl font-semibold text-[#00D26A]">200+</p>
                   <p className="text-sm text-muted-foreground mt-1">Productions managed</p>
                 </div>
                 <div className="border-b border-border pb-4">
-                  <p className="text-4xl font-bold text-emerald-500">99.97%</p>
+                  <p className="text-4xl font-semibold text-[#00D26A]">99.97%</p>
                   <p className="text-sm text-muted-foreground mt-1">System uptime across all managed productions</p>
                 </div>
                 <div>
-                  <p className="text-4xl font-bold text-emerald-500">&lt;2hr</p>
+                  <p className="text-4xl font-semibold text-[#00D26A]">&lt;2hr</p>
                   <p className="text-sm text-muted-foreground mt-1">Response time for critical production issues</p>
                 </div>
               </div>
@@ -229,30 +229,20 @@ export default function TechnicalDirectionPage() {
 
         {/* Core Responsibilities */}
         <section className="mb-24">
-          <h2 className="text-2xl font-bold mb-12">Core Responsibilities</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {responsibilities.map((responsibility, i) => (
-              <div key={i} className="border border-border p-6 hover:border-emerald-900/50 transition-colors">
-                <responsibility.icon className="w-8 h-8 text-emerald-500 mb-4" />
-                <h3 className="font-bold mb-2">{responsibility.title}</h3>
-                <p className="text-sm text-muted-foreground mb-4">{responsibility.description}</p>
-                <ul className="space-y-2">
-                  {responsibility.items.map((item, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <CheckCircle className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          <h2 className="text-2xl font-semibold mb-12">Core Responsibilities</h2>
+          <ServiceAccordion
+            items={responsibilities.map((r) => ({
+              title: r.title,
+              description: r.description,
+              points: r.items,
+            }))}
+          />
         </section>
 
         {/* How TC Does It Differently */}
         <section className="mb-24">
           <div className="max-w-3xl">
-            <h2 className="text-2xl font-bold mb-6">How TC Does It Differently</h2>
+            <h2 className="text-2xl font-semibold mb-6">How TC Does It Differently</h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
                 Traditional technical direction in live events is often reactive. The TD shows up on site, inherits
@@ -275,11 +265,11 @@ export default function TechnicalDirectionPage() {
               <p>
                 The result is productions that run cleaner, load in faster, and recover from the unexpected without
                 the audience ever noticing. Our{" "}
-                <Link href="/services/system-integration" className="text-emerald-500 hover:underline">
+                <Link href="/services/system-integration" className="text-[#00D26A] hover:underline">
                   system integration
                 </Link>{" "}
                 methodology and{" "}
-                <Link href="/services/unreal-engine" className="text-emerald-500 hover:underline">
+                <Link href="/services/unreal-engine" className="text-[#00D26A] hover:underline">
                   Unreal Engine pre-visualization
                 </Link>{" "}
                 capabilities extend this engineering mindset across every phase of the production lifecycle.
@@ -290,13 +280,13 @@ export default function TechnicalDirectionPage() {
 
         {/* Use Cases */}
         <section className="mb-24">
-          <h2 className="text-2xl font-bold mb-12">Use Cases</h2>
+          <h2 className="text-2xl font-semibold mb-12">Use Cases</h2>
           <div className="max-w-3xl">
             <div className="flex flex-wrap gap-3">
               {useCases.map((useCase, i) => (
                 <span
                   key={i}
-                  className="px-4 py-2 border border-border text-sm text-muted-foreground hover:border-emerald-900/50 hover:text-white transition-colors"
+                  className="px-4 py-2 border border-border text-sm text-muted-foreground hover:border-[#00D26A]/30 hover:text-white transition-colors"
                 >
                   {useCase}
                 </span>
@@ -307,7 +297,7 @@ export default function TechnicalDirectionPage() {
 
         {/* Related Work */}
         <section className="mb-24">
-          <h2 className="text-2xl font-bold mb-12">Related Work</h2>
+          <h2 className="text-2xl font-semibold mb-12">Related Work</h2>
           <div className="grid md:grid-cols-3 gap-px bg-border border border-border">
             {[
               {
@@ -334,8 +324,8 @@ export default function TechnicalDirectionPage() {
                 href={item.href}
                 className="bg-background p-8 group hover:bg-accent/5 transition-colors"
               >
-                <div className="font-mono text-xs text-emerald-500 mb-2">{item.label}</div>
-                <h3 className="font-bold mb-2 group-hover:text-emerald-500 transition-colors">{item.title}</h3>
+                <div className="font-mono text-xs text-[#00D26A] mb-2">{item.label}</div>
+                <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors">{item.title}</h3>
                 <p className="text-sm text-muted-foreground">{item.desc}</p>
               </Link>
             ))}
@@ -345,14 +335,14 @@ export default function TechnicalDirectionPage() {
         {/* CTA */}
         <section className="border-t border-border pt-16">
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-bold mb-4">Bring TC on as your Technical Director</h2>
+            <h2 className="text-2xl font-semibold mb-4">Bring TC on as your Technical Director</h2>
             <p className="text-muted-foreground mb-8">
               Whether you need a TD for a single show or an entire touring cycle, let us show you what
               engineering-grade technical direction looks like in practice.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 text-white font-bold uppercase tracking-wide hover:bg-emerald-600 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors"
             >
               Start a Conversation
               <ArrowRight className="w-4 h-4" />

@@ -12,6 +12,7 @@ import {
   Settings,
 } from "lucide-react"
 import { BreadcrumbSchema, ServicePageSchema } from "@/components/structured-data"
+import { ServiceAccordion } from "@/components/v2/service-accordion"
 
 export const metadata: Metadata = {
   title: "Workflow Automation | Production Systems Engineering | TC Agency",
@@ -183,10 +184,10 @@ export default function WorkflowAutomationPage() {
 
           {/* Header */}
           <div className="mb-16 max-w-4xl">
-            <div className="text-sm font-mono text-emerald-500 mb-4 uppercase tracking-widest">
+            <div className="text-sm font-mono text-[#00D26A] mb-4 uppercase tracking-widest">
               Service / Workflow Automation
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
               Production Workflow Automation
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl">
@@ -251,30 +252,30 @@ export default function WorkflowAutomationPage() {
                 </ul>
               </div>
               <div className="bg-background p-12">
-                <h2 className="text-sm font-mono text-emerald-500 uppercase tracking-widest mb-6">Our Solution</h2>
+                <h2 className="text-sm font-mono text-[#00D26A] uppercase tracking-widest mb-6">Our Solution</h2>
                 <ul className="space-y-4 text-muted-foreground">
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="w-4 h-4 text-emerald-500 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-[#00D26A] mt-1 flex-shrink-0" />
                     <span>Centralized show data with automatic propagation to all downstream systems</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="w-4 h-4 text-emerald-500 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-[#00D26A] mt-1 flex-shrink-0" />
                     <span>Deterministic cue execution with identical results every single time</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="w-4 h-4 text-emerald-500 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-[#00D26A] mt-1 flex-shrink-0" />
                     <span>One-click deployment and system configuration across any venue</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="w-4 h-4 text-emerald-500 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-[#00D26A] mt-1 flex-shrink-0" />
                     <span>Git-based versioning with full change history and instant rollback</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="w-4 h-4 text-emerald-500 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-[#00D26A] mt-1 flex-shrink-0" />
                     <span>Automated validation and fail-safes at every step of the workflow</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="w-4 h-4 text-emerald-500 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-[#00D26A] mt-1 flex-shrink-0" />
                     <span>Institutional knowledge encoded in repeatable, documented automation</span>
                   </li>
                 </ul>
@@ -284,41 +285,28 @@ export default function WorkflowAutomationPage() {
 
           {/* Automation Categories */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-12">Automation Categories</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {automationCategories.map((item, i) => (
-                <div key={i} className="border border-border p-6 hover:border-emerald-900/50 transition-colors">
-                  <item.icon className="w-8 h-8 text-emerald-500 mb-4" />
-                  <h3 className="font-bold mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">{item.desc}</p>
-                  <div className="pt-4 border-t border-border">
-                    <div className="text-xs font-mono text-muted-foreground mb-2">Examples:</div>
-                    <ul className="space-y-1">
-                      {item.examples.map((ex, j) => (
-                        <li key={j} className="text-xs text-muted-foreground flex items-start gap-2">
-                          <span className="text-emerald-500 mt-0.5">&#8250;</span>
-                          {ex}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <h2 className="text-2xl font-semibold mb-12">Automation Categories</h2>
+            <ServiceAccordion
+              items={automationCategories.map((item) => ({
+                title: item.title,
+                description: item.desc,
+                points: item.examples,
+              }))}
+            />
           </section>
 
           {/* Methodology */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-12">Methodology</h2>
+            <h2 className="text-2xl font-semibold mb-12">Methodology</h2>
             <div className="max-w-3xl">
               <div className="space-y-8">
                 {methodologySteps.map((step, i) => (
                   <div key={i} className="flex gap-6">
-                    <div className="font-mono text-emerald-500 text-sm w-8 flex-shrink-0">
+                    <div className="font-mono text-[#00D26A] text-sm w-8 flex-shrink-0">
                       {(i + 1).toString().padStart(2, "0")}
                     </div>
                     <div>
-                      <h3 className="font-bold mb-2">{step.phase}</h3>
+                      <h3 className="font-semibold mb-2">{step.phase}</h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
                     </div>
                   </div>
@@ -329,7 +317,7 @@ export default function WorkflowAutomationPage() {
 
           {/* Performance Indicators */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-12">Performance Indicators</h2>
+            <h2 className="text-2xl font-semibold mb-12">Performance Indicators</h2>
             <div className="grid md:grid-cols-3 gap-px bg-border border border-border">
               {[
                 {
@@ -349,7 +337,7 @@ export default function WorkflowAutomationPage() {
                 },
               ].map((stat, i) => (
                 <div key={i} className="bg-background p-8 text-center">
-                  <p className="text-5xl font-bold text-emerald-500 mb-2">{stat.value}</p>
+                  <p className="text-5xl font-semibold text-[#00D26A] mb-2">{stat.value}</p>
                   <p className="text-sm font-mono text-foreground uppercase tracking-widest mb-2">{stat.label}</p>
                   <p className="text-sm text-muted-foreground">{stat.desc}</p>
                 </div>
@@ -359,35 +347,35 @@ export default function WorkflowAutomationPage() {
 
           {/* Cross-links */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-8">Related Services</h2>
+            <h2 className="text-2xl font-semibold mb-8">Related Services</h2>
             <div className="grid md:grid-cols-2 gap-6">
               <Link
                 href="/services/system-integration"
-                className="group border border-border p-6 hover:border-emerald-900/50 transition-colors flex items-center justify-between"
+                className="group border border-border p-6 hover:border-[#00D26A]/30 transition-colors flex items-center justify-between"
               >
                 <div>
-                  <div className="text-xs font-mono text-emerald-500 uppercase tracking-widest mb-2">Service</div>
-                  <h3 className="font-bold group-hover:text-emerald-500 transition-colors">System Integration</h3>
+                  <div className="text-xs font-mono text-[#00D26A] uppercase tracking-widest mb-2">Service</div>
+                  <h3 className="font-semibold group-hover:text-[#00D26A] transition-colors">System Integration</h3>
                   <p className="text-sm text-muted-foreground mt-1">
                     Automation works best on well-integrated infrastructure. See how we connect production systems into
                     unified, controllable networks.
                   </p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-emerald-500 transition-colors flex-shrink-0 ml-4" />
+                <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-[#00D26A] transition-colors flex-shrink-0 ml-4" />
               </Link>
               <Link
                 href="/services/technical-direction"
-                className="group border border-border p-6 hover:border-emerald-900/50 transition-colors flex items-center justify-between"
+                className="group border border-border p-6 hover:border-[#00D26A]/30 transition-colors flex items-center justify-between"
               >
                 <div>
-                  <div className="text-xs font-mono text-emerald-500 uppercase tracking-widest mb-2">Service</div>
-                  <h3 className="font-bold group-hover:text-emerald-500 transition-colors">Technical Direction</h3>
+                  <div className="text-xs font-mono text-[#00D26A] uppercase tracking-widest mb-2">Service</div>
+                  <h3 className="font-semibold group-hover:text-[#00D26A] transition-colors">Technical Direction</h3>
                   <p className="text-sm text-muted-foreground mt-1">
                     Strategic oversight that determines where automation delivers the highest impact across your
                     production program.
                   </p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-emerald-500 transition-colors flex-shrink-0 ml-4" />
+                <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-[#00D26A] transition-colors flex-shrink-0 ml-4" />
               </Link>
             </div>
           </section>
@@ -395,14 +383,14 @@ export default function WorkflowAutomationPage() {
           {/* CTA */}
           <section className="border-t border-border pt-16">
             <div className="max-w-2xl">
-              <h2 className="text-2xl font-bold mb-4">Ready to automate your production workflows?</h2>
+              <h2 className="text-2xl font-semibold mb-4">Ready to automate your production workflows?</h2>
               <p className="text-muted-foreground mb-8">
                 Let us identify the manual processes slowing your team down and build automation systems that scale
                 across venues, tours, and seasons.
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 text-white font-bold uppercase tracking-wide hover:bg-emerald-600 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors"
               >
                 Start a Conversation
                 <ArrowRight className="w-4 h-4" />

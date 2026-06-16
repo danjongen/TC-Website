@@ -1,6 +1,5 @@
 "use server"
 
-import { redirect } from "next/navigation"
 import { Resend } from "resend"
 import { verifyTurnstileToken } from "@/lib/turnstile"
 import { rateLimitContactForm } from "@/lib/rate-limit"
@@ -16,7 +15,7 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 
 interface FormResponse {
   error?: string
-  success?: string
+  success?: boolean
 }
 
 export async function submitContactForm(
@@ -52,9 +51,9 @@ export async function submitContactForm(
     })
 
     // Return generic success to not reveal detection
-    // Redirect after a realistic delay
+    // Delay slightly so timing matches a real submission
     await new Promise((resolve) => setTimeout(resolve, 1500))
-    redirect("/thank-you")
+    return { success: true }
   }
 
   // =========================================================================
@@ -64,7 +63,7 @@ export async function submitContactForm(
   // require at least 2.5s of fill time measured on the client's own clock
   if (!data.formElapsedMs || data.formElapsedMs < 2500) {
     console.warn("[Contact Form] Time-trap triggered, dropping submission")
-    redirect("/thank-you")
+    return { success: true }
   }
 
   // =========================================================================
@@ -151,7 +150,7 @@ export async function submitContactForm(
 
     // Return generic success to not reveal detection
     await new Promise((resolve) => setTimeout(resolve, 1500))
-    redirect("/thank-you")
+    return { success: true }
   }
 
   // =========================================================================
@@ -224,5 +223,5 @@ Processing:   ${Date.now() - startTime}ms
     }
   }
 
-  redirect("/thank-you")
+  return { success: true }
 }

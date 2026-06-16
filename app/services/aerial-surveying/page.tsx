@@ -3,7 +3,6 @@ import Link from "next/link"
 import {
   ArrowLeft,
   ArrowRight,
-  CheckCircle,
   Camera,
   Thermometer,
   Map,
@@ -17,6 +16,7 @@ import {
   Box,
 } from "lucide-react"
 import { BreadcrumbSchema, ServicePageSchema } from "@/components/structured-data"
+import { ServiceAccordion } from "@/components/v2/service-accordion"
 
 export const metadata: Metadata = {
   title: "Aerial Surveying | Drone Mapping & Photogrammetry | TC Agency",
@@ -178,10 +178,10 @@ export default function AerialSurveyingPage() {
 
           {/* Header */}
           <div className="mb-16 max-w-4xl">
-            <div className="text-sm font-mono text-emerald-500 mb-4 uppercase tracking-widest">
+            <div className="text-sm font-mono text-[#00D26A] mb-4 uppercase tracking-widest">
               Service / Aerial Surveying
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
               Aerial Surveying
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed">
@@ -194,7 +194,7 @@ export default function AerialSurveyingPage() {
           <section className="mb-24">
             <div className="grid lg:grid-cols-2 gap-12">
               <div>
-                <h2 className="text-2xl font-bold mb-6">Overview</h2>
+                <h2 className="text-2xl font-semibold mb-6">Overview</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Our aerial surveying operations capture site conditions that ground-level observation cannot
                   reveal. Using commercial-grade drone platforms equipped with high-resolution cameras, thermal
@@ -208,33 +208,33 @@ export default function AerialSurveyingPage() {
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
                   Aerial datasets integrate directly with our{" "}
-                  <Link href="/services/3d-scanning" className="text-emerald-500 hover:underline">
+                  <Link href="/services/3d-scanning" className="text-[#00D26A] hover:underline">
                     3D scanning
                   </Link>{" "}
                   ground truth data, creating unified site models that combine interior and exterior capture
                   into a single coordinate system. The result is a complete digital twin of your site, ready
                   for{" "}
-                  <Link href="/services/design-visualization" className="text-emerald-500 hover:underline">
+                  <Link href="/services/design-visualization" className="text-[#00D26A] hover:underline">
                     design visualization
                   </Link>{" "}
                   and production planning workflows.
                 </p>
               </div>
               <div className="bg-accent/5 border border-border p-8">
-                <h3 className="font-mono text-sm text-emerald-500 uppercase tracking-widest mb-6">
+                <h3 className="font-mono text-sm text-[#00D26A] uppercase tracking-widest mb-6">
                   Performance Indicators
                 </h3>
                 <div className="grid grid-cols-1 gap-6">
                   <div className="border-b border-border pb-4">
-                    <p className="text-4xl font-bold text-emerald-500">100 ac/day</p>
+                    <p className="text-4xl font-semibold text-[#00D26A]">100 ac/day</p>
                     <p className="text-sm text-muted-foreground mt-1">Site coverage per operational day</p>
                   </div>
                   <div className="border-b border-border pb-4">
-                    <p className="text-4xl font-bold text-emerald-500">1cm/px</p>
+                    <p className="text-4xl font-semibold text-[#00D26A]">1cm/px</p>
                     <p className="text-sm text-muted-foreground mt-1">Ground sampling distance</p>
                   </div>
                   <div>
-                    <p className="text-4xl font-bold text-emerald-500">400ft AGL</p>
+                    <p className="text-4xl font-semibold text-[#00D26A]">400ft AGL</p>
                     <p className="text-sm text-muted-foreground mt-1">Maximum operational altitude</p>
                   </div>
                 </div>
@@ -244,36 +244,23 @@ export default function AerialSurveyingPage() {
 
           {/* Capabilities Grid */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-12">Capabilities</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {capabilities.map((capability, i) => (
-                <div key={i} className="border border-border p-6 hover:border-emerald-900/50 transition-colors">
-                  <capability.icon className="w-8 h-8 text-emerald-500 mb-4" />
-                  <h3 className="font-bold mb-2">{capability.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">{capability.desc}</p>
-                  <div className="pt-4 border-t border-border">
-                    <div className="text-xs font-mono text-muted-foreground mb-2">Applications:</div>
-                    <ul className="space-y-1">
-                      {capability.applications.map((app, j) => (
-                        <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <CheckCircle className="w-3.5 h-3.5 text-emerald-500 mt-0.5 flex-shrink-0" />
-                          {app}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <h2 className="text-2xl font-semibold mb-12">Capabilities</h2>
+            <ServiceAccordion
+              items={capabilities.map((capability) => ({
+                title: capability.title,
+                description: capability.desc,
+                points: capability.applications,
+              }))}
+            />
           </section>
 
           {/* Equipment & Technology */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-12">Equipment & Technology</h2>
+            <h2 className="text-2xl font-semibold mb-12">Equipment & Technology</h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="border border-border p-6">
-                <Plane className="w-6 h-6 text-emerald-500 mb-4" />
-                <h3 className="font-bold mb-4">Aerial Platforms</h3>
+                <Plane className="w-6 h-6 text-[#00D26A] mb-4" />
+                <h3 className="font-semibold mb-4">Aerial Platforms</h3>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li>DJI Matrice 350 RTK</li>
                   <li>DJI Mavic 3 Enterprise</li>
@@ -282,8 +269,8 @@ export default function AerialSurveyingPage() {
                 </ul>
               </div>
               <div className="border border-border p-6">
-                <Camera className="w-6 h-6 text-emerald-500 mb-4" />
-                <h3 className="font-bold mb-4">Sensors & Payloads</h3>
+                <Camera className="w-6 h-6 text-[#00D26A] mb-4" />
+                <h3 className="font-semibold mb-4">Sensors & Payloads</h3>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li>Zenmuse P1 (45MP full-frame)</li>
                   <li>Zenmuse L2 LiDAR</li>
@@ -292,8 +279,8 @@ export default function AerialSurveyingPage() {
                 </ul>
               </div>
               <div className="border border-border p-6">
-                <Cpu className="w-6 h-6 text-emerald-500 mb-4" />
-                <h3 className="font-bold mb-4">Processing Software</h3>
+                <Cpu className="w-6 h-6 text-[#00D26A] mb-4" />
+                <h3 className="font-semibold mb-4">Processing Software</h3>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li>Pix4Dmapper / Pix4Dmatic</li>
                   <li>DJI Terra</li>
@@ -306,12 +293,12 @@ export default function AerialSurveyingPage() {
 
           {/* Deliverables */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-12">Deliverables</h2>
+            <h2 className="text-2xl font-semibold mb-12">Deliverables</h2>
             <div className="grid md:grid-cols-2 gap-px bg-border border border-border">
               {deliverables.map((item, i) => (
                 <div key={i} className="bg-background p-8">
-                  <item.icon className="w-8 h-8 text-emerald-500 mb-4" />
-                  <h3 className="font-bold mb-2">{item.title}</h3>
+                  <item.icon className="w-8 h-8 text-[#00D26A] mb-4" />
+                  <h3 className="font-semibold mb-2">{item.title}</h3>
                   <p className="text-sm text-muted-foreground mb-4">{item.desc}</p>
                   <div className="flex flex-wrap gap-2">
                     {item.formats.map((format, j) => (
@@ -327,17 +314,17 @@ export default function AerialSurveyingPage() {
 
           {/* Process */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-12">Process</h2>
+            <h2 className="text-2xl font-semibold mb-12">Process</h2>
             <div className="max-w-3xl">
               <div className="relative">
                 <div className="absolute left-4 top-0 bottom-0 w-px bg-border" />
                 <div className="space-y-12">
                   {processSteps.map((step, i) => (
                     <div key={i} className="relative pl-12">
-                      <div className="absolute left-0 w-8 h-8 rounded-full bg-background border-2 border-emerald-500 flex items-center justify-center">
-                        <span className="text-xs font-mono text-emerald-500">{(i + 1).toString().padStart(2, "0")}</span>
+                      <div className="absolute left-0 w-8 h-8 rounded-full bg-background border-2 border-[#00D26A] flex items-center justify-center">
+                        <span className="text-xs font-mono text-[#00D26A]">{(i + 1).toString().padStart(2, "0")}</span>
                       </div>
-                      <h3 className="font-bold mb-2">{step.title}</h3>
+                      <h3 className="font-semibold mb-2">{step.title}</h3>
                       <p className="text-sm text-muted-foreground">{step.desc}</p>
                     </div>
                   ))}
@@ -348,16 +335,16 @@ export default function AerialSurveyingPage() {
 
           {/* Cross-links */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-8">Related Services</h2>
+            <h2 className="text-2xl font-semibold mb-8">Related Services</h2>
             <div className="grid md:grid-cols-2 gap-px bg-border border border-border">
               <Link
                 href="/services/3d-scanning"
                 className="bg-background p-8 group hover:bg-accent/5 transition-colors"
               >
-                <div className="font-mono text-xs text-emerald-500 uppercase tracking-widest mb-2">
+                <div className="font-mono text-xs text-[#00D26A] uppercase tracking-widest mb-2">
                   Ground Truth
                 </div>
-                <h3 className="font-bold mb-2 group-hover:text-emerald-500 transition-colors">
+                <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors">
                   3D Scanning
                 </h3>
                 <p className="text-sm text-muted-foreground">
@@ -369,10 +356,10 @@ export default function AerialSurveyingPage() {
                 href="/services/design-visualization"
                 className="bg-background p-8 group hover:bg-accent/5 transition-colors"
               >
-                <div className="font-mono text-xs text-emerald-500 uppercase tracking-widest mb-2">
+                <div className="font-mono text-xs text-[#00D26A] uppercase tracking-widest mb-2">
                   Downstream
                 </div>
-                <h3 className="font-bold mb-2 group-hover:text-emerald-500 transition-colors">
+                <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors">
                   Design Visualization
                 </h3>
                 <p className="text-sm text-muted-foreground">
@@ -386,14 +373,14 @@ export default function AerialSurveyingPage() {
           {/* CTA */}
           <section className="border-t border-border pt-16">
             <div className="max-w-2xl">
-              <h2 className="text-2xl font-bold mb-4">Ready to survey your site?</h2>
+              <h2 className="text-2xl font-semibold mb-4">Ready to survey your site?</h2>
               <p className="text-muted-foreground mb-8">
                 Let's discuss your aerial surveying requirements and how drone-captured spatial data can
                 strengthen your production planning.
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 text-white font-bold uppercase tracking-wide hover:bg-emerald-600 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors"
               >
                 Start a Conversation
                 <ArrowRight className="w-4 h-4" />

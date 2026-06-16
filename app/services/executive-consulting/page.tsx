@@ -9,7 +9,6 @@ import {
   Users,
   Handshake,
   Settings,
-  CheckCircle,
   BarChart3,
   Compass,
   FileCheck,
@@ -18,6 +17,7 @@ import {
   Lightbulb,
 } from "lucide-react"
 import { BreadcrumbSchema, ServicePageSchema } from "@/components/structured-data"
+import { ServiceAccordion } from "@/components/v2/service-accordion"
 
 export const metadata: Metadata = {
   title: "Executive & Strategic Consulting | TC Agency — Production Engineering",
@@ -190,10 +190,10 @@ export default function ExecutiveConsultingPage() {
 
           {/* Header */}
           <div className="mb-16 max-w-4xl">
-            <div className="text-sm font-mono text-emerald-500 mb-4 uppercase tracking-widest">
+            <div className="text-sm font-mono text-[#00D26A] mb-4 uppercase tracking-widest">
               Service / Executive Consulting
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
               Executive & Strategic Consulting
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed">
@@ -207,7 +207,7 @@ export default function ExecutiveConsultingPage() {
           <section className="mb-24">
             <div className="grid lg:grid-cols-2 gap-12">
               <div>
-                <h2 className="text-2xl font-bold mb-6">Overview</h2>
+                <h2 className="text-2xl font-semibold mb-6">Overview</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   This service delivers senior oversight across all technical, creative, and production
                   domains. It provides the thinking, modelling, risk control, and decision stewardship
@@ -237,25 +237,25 @@ export default function ExecutiveConsultingPage() {
                 </p>
               </div>
               <div className="bg-accent/5 border border-border p-8">
-                <h3 className="font-mono text-sm text-emerald-500 uppercase tracking-widest mb-6">
+                <h3 className="font-mono text-sm text-[#00D26A] uppercase tracking-widest mb-6">
                   Performance Indicators
                 </h3>
                 <div className="grid grid-cols-1 gap-6">
                   <div className="border-b border-border pb-4">
-                    <p className="text-4xl font-bold text-emerald-500">+40%</p>
+                    <p className="text-4xl font-semibold text-[#00D26A]">+40%</p>
                     <p className="text-sm text-muted-foreground mt-1">Faster decision cycles</p>
                   </div>
                   <div className="border-b border-border pb-4">
-                    <p className="text-4xl font-bold text-emerald-500">60%</p>
+                    <p className="text-4xl font-semibold text-[#00D26A]">60%</p>
                     <p className="text-sm text-muted-foreground mt-1">Reduction in early-phase risk</p>
                   </div>
                   <div className="border-b border-border pb-4">
-                    <p className="text-4xl font-bold text-emerald-500">100%</p>
+                    <p className="text-4xl font-semibold text-[#00D26A]">100%</p>
                     <p className="text-sm text-muted-foreground mt-1">Team alignment and clarity across departments</p>
                   </div>
                 </div>
                 <div className="mt-6 pt-6 border-t border-border">
-                  <h3 className="font-mono text-sm text-emerald-500 uppercase tracking-widest mb-4">
+                  <h3 className="font-mono text-sm text-[#00D26A] uppercase tracking-widest mb-4">
                     Related Services
                   </h3>
                   <div className="space-y-3">
@@ -263,14 +263,14 @@ export default function ExecutiveConsultingPage() {
                       href="/services/technical-direction"
                       className="flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors"
                     >
-                      <Compass className="w-4 h-4 text-emerald-500" />
+                      <Compass className="w-4 h-4 text-[#00D26A]" />
                       Technical Direction
                     </Link>
                     <Link
                       href="/services/production-management"
                       className="flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors"
                     >
-                      <Workflow className="w-4 h-4 text-emerald-500" />
+                      <Workflow className="w-4 h-4 text-[#00D26A]" />
                       Production Management
                     </Link>
                   </div>
@@ -282,7 +282,7 @@ export default function ExecutiveConsultingPage() {
           {/* What Sets This Apart */}
           <section className="mb-24">
             <div className="bg-zinc-950 border border-border p-8 md:p-12">
-              <h2 className="text-2xl font-bold mb-6">What Sets This Apart</h2>
+              <h2 className="text-2xl font-semibold mb-6">What Sets This Apart</h2>
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
                   <p className="text-muted-foreground leading-relaxed mb-4">
@@ -320,33 +320,23 @@ export default function ExecutiveConsultingPage() {
 
           {/* Deliverables */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-12">Deliverables</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {deliverables.map((category, i) => (
-                <div key={i} className="border border-border p-6 hover:border-emerald-900/50 transition-colors">
-                  <category.icon className="w-8 h-8 text-emerald-500 mb-4" />
-                  <h3 className="font-bold mb-4">{category.title}</h3>
-                  <ul className="space-y-2">
-                    {category.items.map((item, j) => (
-                      <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <CheckCircle className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
+            <h2 className="text-2xl font-semibold mb-12">Deliverables</h2>
+            <ServiceAccordion
+              items={deliverables.map((category) => ({
+                title: category.title,
+                points: category.items,
+              }))}
+            />
           </section>
 
           {/* Engagement Models */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-12">Engagement Models</h2>
+            <h2 className="text-2xl font-semibold mb-12">Engagement Models</h2>
             <div className="grid md:grid-cols-3 gap-px bg-border border border-border">
               {engagementModels.map((model, i) => (
                 <div key={i} className="bg-background p-8">
-                  <div className="font-mono text-xs text-emerald-500 mb-2">{(i + 1).toString().padStart(2, "0")}</div>
-                  <h3 className="font-bold mb-2">{model.title}</h3>
+                  <div className="font-mono text-xs text-[#00D26A] mb-2">{(i + 1).toString().padStart(2, "0")}</div>
+                  <h3 className="font-semibold mb-2">{model.title}</h3>
                   <p className="text-sm text-muted-foreground">{model.desc}</p>
                 </div>
               ))}
@@ -355,7 +345,7 @@ export default function ExecutiveConsultingPage() {
 
           {/* How We Work */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-12">How We Work</h2>
+            <h2 className="text-2xl font-semibold mb-12">How We Work</h2>
             <div className="max-w-3xl">
               <div className="space-y-8">
                 {[
@@ -382,13 +372,13 @@ export default function ExecutiveConsultingPage() {
                 ].map((step, i) => (
                   <div key={i} className="flex gap-6">
                     <div className="flex-shrink-0">
-                      <div className="w-10 h-10 border border-emerald-500 flex items-center justify-center">
-                        <step.icon className="w-5 h-5 text-emerald-500" />
+                      <div className="w-10 h-10 border border-[#00D26A] flex items-center justify-center">
+                        <step.icon className="w-5 h-5 text-[#00D26A]" />
                       </div>
                     </div>
                     <div>
-                      <div className="font-mono text-xs text-emerald-500 mb-1">{(i + 1).toString().padStart(2, "0")}</div>
-                      <h3 className="font-bold mb-2">{step.phase}</h3>
+                      <div className="font-mono text-xs text-[#00D26A] mb-1">{(i + 1).toString().padStart(2, "0")}</div>
+                      <h3 className="font-semibold mb-2">{step.phase}</h3>
                       <p className="text-sm text-muted-foreground">{step.desc}</p>
                     </div>
                   </div>
@@ -399,13 +389,13 @@ export default function ExecutiveConsultingPage() {
 
           {/* Use Cases */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-12">Use Cases</h2>
+            <h2 className="text-2xl font-semibold mb-12">Use Cases</h2>
             <div className="max-w-3xl">
               <div className="flex flex-wrap gap-3">
                 {useCases.map((useCase, i) => (
                   <span
                     key={i}
-                    className="px-4 py-2 border border-border text-sm text-muted-foreground hover:border-emerald-900/50 hover:text-white transition-colors"
+                    className="px-4 py-2 border border-border text-sm text-muted-foreground hover:border-[#00D26A]/30 hover:text-white transition-colors"
                   >
                     {useCase}
                   </span>
@@ -417,7 +407,7 @@ export default function ExecutiveConsultingPage() {
           {/* CTA */}
           <section className="border-t border-border pt-16">
             <div className="max-w-2xl">
-              <h2 className="text-2xl font-bold mb-4">Start a Conversation</h2>
+              <h2 className="text-2xl font-semibold mb-4">Start a Conversation</h2>
               <p className="text-muted-foreground mb-8">
                 Whether you need ongoing strategic partnership or targeted support for a specific
                 production challenge, we are ready to discuss how executive-level oversight can
@@ -425,7 +415,7 @@ export default function ExecutiveConsultingPage() {
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 text-white font-bold uppercase tracking-wide hover:bg-emerald-600 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors"
               >
                 Start a Conversation
                 <ArrowRight className="w-4 h-4" />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowLeft, Settings, Repeat, Clock, Shield, Terminal, GitBranch } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
+import { ServiceAccordion } from "@/components/v2/service-accordion"
 
 export const metadata: Metadata = {
   title: "Workflow Automation | Production Systems | TC Agency",
@@ -31,10 +32,10 @@ export default function AutomationPage() {
 
         {/* Header */}
         <div className="mb-16 max-w-4xl">
-          <div className="text-sm font-mono text-emerald-500 mb-4 uppercase tracking-widest">
+          <div className="text-sm font-mono text-[#00D26A] mb-4 uppercase tracking-widest">
             Service / Workflow Automation
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-6">Production Automation</h1>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">Production Automation</h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
             Custom automation that eliminates manual tasks, reduces human error, and creates infinitely repeatable
             production workflows.
@@ -70,26 +71,26 @@ export default function AutomationPage() {
               </ul>
             </div>
             <div className="bg-background p-12">
-              <h2 className="text-sm font-mono text-emerald-500 uppercase tracking-widest mb-6">Our Solution</h2>
+              <h2 className="text-sm font-mono text-[#00D26A] uppercase tracking-widest mb-6">Our Solution</h2>
               <ul className="space-y-4 text-muted-foreground">
                 <li className="flex items-start gap-3">
-                  <span className="text-emerald-500">✓</span>
+                  <span className="text-[#00D26A]">✓</span>
                   <span>Centralized show data with automatic propagation</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-emerald-500">✓</span>
+                  <span className="text-[#00D26A]">✓</span>
                   <span>Deterministic cue execution every single time</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-emerald-500">✓</span>
+                  <span className="text-[#00D26A]">✓</span>
                   <span>One-click deployment and system configuration</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-emerald-500">✓</span>
+                  <span className="text-[#00D26A]">✓</span>
                   <span>Git-based versioning with full change history</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-emerald-500">✓</span>
+                  <span className="text-[#00D26A]">✓</span>
                   <span>Fail-safes and validation at every step</span>
                 </li>
               </ul>
@@ -99,68 +100,51 @@ export default function AutomationPage() {
 
         {/* Automation Types */}
         <section className="mb-24">
-          <h2 className="text-2xl font-bold mb-12">Automation Categories</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
+          <h2 className="text-2xl font-semibold mb-12">Automation Categories</h2>
+          <ServiceAccordion
+            items={[
               {
-                icon: Terminal,
                 title: "Show Control Systems",
-                desc: "Unified control interfaces that coordinate lighting, video, audio, automation, and pyro from a single trigger source.",
-                examples: ["QLab integration", "Medialon builds", "Custom Python/Node controllers"],
+                description:
+                  "Unified control interfaces that coordinate lighting, video, audio, automation, and pyro from a single trigger source.",
+                points: ["QLab integration", "Medialon builds", "Custom Python/Node controllers"],
               },
               {
-                icon: Repeat,
                 title: "Data Pipeline Automation",
-                desc: "Automated workflows that transform, validate, and distribute show data across all production systems.",
-                examples: ["Cue sheet to console sync", "Patch list generation", "Asset distribution"],
+                description:
+                  "Automated workflows that transform, validate, and distribute show data across all production systems.",
+                points: ["Cue sheet to console sync", "Patch list generation", "Asset distribution"],
               },
               {
-                icon: GitBranch,
                 title: "Version Control Systems",
-                desc: "Git-based show file management with branching, merging, and rollback capabilities for production environments.",
-                examples: ["Show file versioning", "Multi-venue variants", "Collaborative editing"],
+                description:
+                  "Git-based show file management with branching, merging, and rollback capabilities for production environments.",
+                points: ["Show file versioning", "Multi-venue variants", "Collaborative editing"],
               },
               {
-                icon: Clock,
                 title: "Timecode Automation",
-                desc: "Frame-accurate synchronization and automated show execution driven by LTC, MTC, or network timecode.",
-                examples: ["Multi-system sync", "Backup failover", "Show logging"],
+                description:
+                  "Frame-accurate synchronization and automated show execution driven by LTC, MTC, or network timecode.",
+                points: ["Multi-system sync", "Backup failover", "Show logging"],
               },
               {
-                icon: Shield,
                 title: "Validation & Testing",
-                desc: "Automated pre-show checks that verify system health, data integrity, and communication pathways.",
-                examples: ["Network diagnostics", "Cue validation", "System health monitoring"],
+                description:
+                  "Automated pre-show checks that verify system health, data integrity, and communication pathways.",
+                points: ["Network diagnostics", "Cue validation", "System health monitoring"],
               },
               {
-                icon: Settings,
                 title: "Configuration Management",
-                desc: "Infrastructure-as-code approaches to production system deployment and configuration.",
-                examples: ["Network configs", "Console templates", "Server provisioning"],
+                description: "Infrastructure-as-code approaches to production system deployment and configuration.",
+                points: ["Network configs", "Console templates", "Server provisioning"],
               },
-            ].map((item, i) => (
-              <div key={i} className="border border-border p-6 hover:border-emerald-900/50 transition-colors">
-                <item.icon className="w-8 h-8 text-emerald-500 mb-4" />
-                <h3 className="font-bold mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground mb-4">{item.desc}</p>
-                <div className="pt-4 border-t border-border">
-                  <div className="text-xs font-mono text-muted-foreground mb-2">Examples:</div>
-                  <ul className="space-y-1">
-                    {item.examples.map((ex, j) => (
-                      <li key={j} className="text-xs text-muted-foreground">
-                        • {ex}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
+            ]}
+          />
         </section>
 
         {/* Methodology */}
         <section className="mb-24">
-          <h2 className="text-2xl font-bold mb-12">Methodology</h2>
+          <h2 className="text-2xl font-semibold mb-12">Methodology</h2>
           <div className="max-w-3xl">
             <div className="space-y-8">
               {[
@@ -190,9 +174,9 @@ export default function AutomationPage() {
                 },
               ].map((step, i) => (
                 <div key={i} className="flex gap-6">
-                  <div className="font-mono text-emerald-500 text-sm w-8">{(i + 1).toString().padStart(2, "0")}</div>
+                  <div className="font-mono text-[#00D26A] text-sm w-8">{(i + 1).toString().padStart(2, "0")}</div>
                   <div>
-                    <h3 className="font-bold mb-2">{step.phase}</h3>
+                    <h3 className="font-semibold mb-2">{step.phase}</h3>
                     <p className="text-sm text-muted-foreground">{step.desc}</p>
                   </div>
                 </div>
@@ -204,13 +188,13 @@ export default function AutomationPage() {
         {/* CTA */}
         <section className="border-t border-border pt-16">
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-bold mb-4">Ready to automate your production?</h2>
+            <h2 className="text-2xl font-semibold mb-4">Ready to automate your production?</h2>
             <p className="text-muted-foreground mb-8">
               Let's identify the manual processes slowing you down and build systems that scale.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-bold uppercase tracking-wide hover:bg-gray-200 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-semibold uppercase tracking-wide hover:bg-gray-200 transition-colors"
             >
               Start a Conversation
             </Link>
