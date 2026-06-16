@@ -1,7 +1,8 @@
 "use client"
 
-import { useActionState, useRef, useState } from "react"
+import { useActionState, useEffect, useRef, useState } from "react"
 import Script from "next/script"
+import { useRouter } from "next/navigation"
 import { useFormStatus } from "react-dom"
 import { submitContactForm } from "@/app/actions/contact"
 import { Loader2 } from "lucide-react"
@@ -34,11 +35,35 @@ const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
 
 export function ContactForm() {
   const [state, formAction] = useActionState(submitContactForm, null)
+  const router = useRouter()
   // time-trap: bots submit instantly; humans take seconds.
   // Elapsed time is measured entirely on the client clock and written at
   // submit time, so server/client clock skew can never block a human.
   const [mountedAt] = useState(() => Date.now())
   const elapsedRef = useRef<HTMLInputElement>(null)
+
+  // On a successful submission, take the visitor to the dedicated confirmation
+  // page. The inline panel below renders immediately and remains as a fallback
+  // if client navigation is slow or blocked, so the user always sees a result.
+  useEffect(() => {
+    if (state?.success) router.push("/thank-you")
+  }, [state, router])
+
+  if (state?.success) {
+    return (
+      <div
+        role="status"
+        aria-live="polite"
+        className="border border-zinc-800 bg-zinc-900/40 p-8 rounded"
+      >
+        <p className="mb-4 font-mono text-[11px] tracking-[0.2em] text-[#00D26A]">[ CONFIRMED ]</p>
+        <h3 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-3">Message received.</h3>
+        <p className="text-zinc-400 leading-relaxed">
+          Thank you for reaching out. Our team reviews every inquiry personally and responds within 24 hours.
+        </p>
+      </div>
+    )
+  }
 
   return (
     <form
