@@ -45,11 +45,6 @@ export default function DoNotSell() {
                   info@tc.agency
                 </a>
               </p>
-              <p>
-                <a href="tel:+13132615200" className="text-white hover:underline">
-                  +1 313 261 5200
-                </a>
-              </p>
             </div>
           </header>
 
@@ -103,11 +98,6 @@ export default function DoNotSell() {
                   Email:{" "}
                   <a href="mailto:info@tc.agency" className="text-white underline">
                     info@tc.agency
-                  </a>
-                  <br />
-                  Phone:{" "}
-                  <a href="tel:+13132615200" className="text-white underline">
-                    +1 313 261 5200
                   </a>
                 </p>
               </div>

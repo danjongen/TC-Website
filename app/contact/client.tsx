@@ -56,16 +56,6 @@ export function ContactPageClient() {
                 </div>
                 <div className="h-px bg-zinc-900" aria-hidden="true" />
                 <div>
-                  <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400 mb-2">PHONE</p>
-                  <a
-                    href="tel:+13132615200"
-                    className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white hover:text-[#00D26A] transition-colors duration-300"
-                  >
-                    +1 313 261 5200
-                  </a>
-                </div>
-                <div className="h-px bg-zinc-900" aria-hidden="true" />
-                <div>
                   <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400 mb-2">LOCATION</p>
                   <p className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white">Detroit, MI</p>
                 </div>

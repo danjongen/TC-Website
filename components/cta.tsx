@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { ArrowRight, Check, Loader2, Mail, Phone, MapPin } from "lucide-react"
+import { ArrowRight, Check, Loader2, Mail, MapPin } from "lucide-react"
 
 const MATRIX_GREEN = "#00D26A"
 
@@ -72,24 +72,6 @@ export function CTA() {
                     onMouseLeave={(e) => (e.currentTarget.style.color = "#ffffff")}
                   >
                     info@tc.agency
-                  </a>
-                </div>
-              </div>
-
-              {/* Phone */}
-              <div className="flex items-start gap-3 sm:gap-4">
-                <div className="w-9 h-9 sm:w-10 sm:h-10 border border-gray-500 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-4 h-4 text-gray-400" />
-                </div>
-                <div>
-                  <p className="text-xs font-mono text-gray-400 uppercase tracking-wide mb-1">Phone</p>
-                  <a
-                    href="tel:+13132615200"
-                    className="text-white transition-colors font-medium text-sm sm:text-base"
-                    onMouseEnter={(e) => (e.currentTarget.style.color = MATRIX_GREEN)}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = "#ffffff")}
-                  >
-                    +1 313 261 5200
                   </a>
                 </div>
               </div>

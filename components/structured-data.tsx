@@ -20,7 +20,6 @@ export function OrganizationSchema() {
     description:
       "TC Agency (tc.agency) is Technically Creative — production engineering, technical direction, and live event automation for high-stakes shows worldwide.",
     email: "info@tc.agency",
-    telephone: "+1-313-261-5200",
     foundingDate: "2020",
     numberOfEmployees: {
       "@type": "QuantitativeValue",
@@ -60,7 +59,6 @@ export function LocalBusinessSchema() {
     name: "TC Agency — Technically Creative",
     image: "https://tc.agency/og-image.png",
     url: "https://tc.agency",
-    telephone: "+1-313-261-5200",
     email: "info@tc.agency",
     address: {
       "@type": "PostalAddress",

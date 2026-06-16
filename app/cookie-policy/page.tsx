@@ -43,11 +43,6 @@ export default function CookiePolicy() {
                   info@tc.agency
                 </a>
               </p>
-              <p>
-                <a href="tel:+13132615200" className="text-white underline-offset-4 transition-colors duration-300 hover:text-[#00D26A] hover:underline">
-                  +1 313 261 5200
-                </a>
-              </p>
             </div>
           </header>
 
@@ -157,11 +152,6 @@ export default function CookiePolicy() {
                   Email:{" "}
                   <a href="mailto:info@tc.agency" className="text-white underline underline-offset-4 transition-colors duration-300 hover:text-[#00D26A]">
                     info@tc.agency
-                  </a>
-                  <br />
-                  Phone:{" "}
-                  <a href="tel:+13132615200" className="text-white underline underline-offset-4 transition-colors duration-300 hover:text-[#00D26A]">
-                    +1 313 261 5200
                   </a>
                 </p>
               </div>
