@@ -176,9 +176,7 @@ export default function SystemIntegrationPage() {
 
           {/* Header */}
           <div className="mb-16 max-w-4xl">
-            <div className="text-sm font-mono text-[#00D26A] mb-4 uppercase tracking-widest">
-              Service / System Integration
-            </div>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — SYSTEM INTEGRATION ]</p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
               Production Network Engineering
             </h1>
@@ -189,56 +187,35 @@ export default function SystemIntegrationPage() {
             </p>
           </div>
 
-          {/* Overview with Performance Indicators */}
+          {/* Overview */}
           <section className="mb-24">
-            <div className="grid lg:grid-cols-2 gap-12">
-              <div>
-                <h2 className="text-2xl font-semibold mb-6">Overview</h2>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  Modern live productions run on dozens of interconnected systems from multiple vendors, each speaking
-                  its own protocol. Lighting consoles output DMX and sACN. Audio networks run on Dante. Video systems
-                  use NDI. Show control speaks OSC and MIDI. Without a deliberate integration strategy, these systems
-                  operate as isolated islands, requiring manual coordination and creating fragile dependencies that fail
-                  under pressure.
-                </p>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  We design and build the connective tissue that turns a collection of standalone systems into a single,
-                  cohesive production platform. Our integration work spans protocol translation, network architecture,
-                  redundancy engineering, and real-time monitoring. The result is a production environment where every
-                  signal path is deterministic, every failover is automated, and every operator has visibility into the
-                  full system state.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  Whether you are building a permanent installation, a touring production, or a one-off broadcast, we
-                  engineer integration solutions that scale with your requirements and survive the unpredictable
-                  conditions of live performance.
-                </p>
-              </div>
-              <div className="bg-accent/5 border border-border p-8">
-                <h3 className="font-mono text-sm text-[#00D26A] uppercase tracking-widest mb-6">
-                  Performance Indicators
-                </h3>
-                <div className="grid grid-cols-1 gap-6">
-                  <div className="border-b border-border pb-4">
-                    <p className="text-4xl font-semibold text-[#00D26A]">20+</p>
-                    <p className="text-sm text-muted-foreground mt-1">Protocols supported and actively integrated</p>
-                  </div>
-                  <div className="border-b border-border pb-4">
-                    <p className="text-4xl font-semibold text-[#00D26A]">&lt;1ms</p>
-                    <p className="text-sm text-muted-foreground mt-1">Inter-system latency across bridged protocols</p>
-                  </div>
-                  <div>
-                    <p className="text-4xl font-semibold text-[#00D26A]">100%</p>
-                    <p className="text-sm text-muted-foreground mt-1">Show completion rate with redundancy architecture</p>
-                  </div>
-                </div>
-              </div>
+            <div className="max-w-3xl">
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                Modern live productions run on dozens of interconnected systems from multiple vendors, each speaking
+                its own protocol. Lighting consoles output DMX and sACN. Audio networks run on Dante. Video systems
+                use NDI. Show control speaks OSC and MIDI. Without a deliberate integration strategy, these systems
+                operate as isolated islands, requiring manual coordination and creating fragile dependencies that fail
+                under pressure.
+              </p>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                We design and build the connective tissue that turns a collection of standalone systems into a single,
+                cohesive production platform. Our integration work spans protocol translation, network architecture,
+                redundancy engineering, and real-time monitoring. The result is a production environment where every
+                signal path is deterministic, every failover is automated, and every operator has visibility into the
+                full system state.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Whether you are building a permanent installation, a touring production, or a one-off broadcast, we
+                engineer integration solutions that scale with your requirements and survive the unpredictable
+                conditions of live performance.
+              </p>
             </div>
           </section>
 
           {/* Integration Domains Grid */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold mb-12">Integration Domains</h2>
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Integration Domains</h2>
             <ServiceAccordion
               items={integrationDomains.map((domain) => ({
                 title: domain.title,
@@ -250,11 +227,11 @@ export default function SystemIntegrationPage() {
 
           {/* Technology / Protocols */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold mb-12">Supported Protocols & Platforms</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Supported Protocols & Platforms</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-900 border border-zinc-800">
               {protocols.map((group, i) => (
                 <div key={i} className="bg-background p-8">
-                  <h3 className="font-mono text-xs text-[#00D26A] uppercase tracking-widest mb-4">
+                  <h3 className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-4">
                     {group.category}
                   </h3>
                   <ul className="space-y-2">
@@ -271,12 +248,12 @@ export default function SystemIntegrationPage() {
 
           {/* Approach */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold mb-12">Our Approach</h2>
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Our Approach</h2>
             <div className="max-w-3xl">
               <div className="space-y-8">
                 {approachSteps.map((step, i) => (
                   <div key={i} className="flex gap-6">
-                    <div className="font-mono text-[#00D26A] text-sm w-8 flex-shrink-0">
+                    <div className="font-mono text-zinc-500 text-sm w-8 flex-shrink-0">
                       {(i + 1).toString().padStart(2, "0")}
                     </div>
                     <div>
@@ -291,8 +268,8 @@ export default function SystemIntegrationPage() {
 
           {/* Cross-links */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold mb-12">Related Services & Work</h2>
-            <div className="grid md:grid-cols-3 gap-px bg-border border border-border">
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Related Services & Work</h2>
+            <div className="grid md:grid-cols-3 gap-px bg-zinc-900 border border-zinc-800">
               {[
                 {
                   label: "Service",
@@ -316,12 +293,12 @@ export default function SystemIntegrationPage() {
                 <Link
                   key={i}
                   href={link.href}
-                  className="bg-background p-8 group hover:bg-accent/5 transition-colors"
+                  className="bg-background p-8 group hover:bg-zinc-900/40 transition-colors"
                 >
-                  <div className="font-mono text-xs text-[#00D26A] uppercase tracking-widest mb-2">{link.label}</div>
+                  <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-2">{link.label}</div>
                   <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors">{link.title}</h3>
                   <p className="text-sm text-muted-foreground">{link.desc}</p>
-                  <div className="mt-4 flex items-center gap-1 text-sm text-[#00D26A] opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="mt-4 flex items-center gap-1 text-sm text-zinc-500 opacity-0 group-hover:opacity-100 transition-opacity">
                     View details <ArrowRight className="w-3 h-3" />
                   </div>
                 </Link>
@@ -330,9 +307,9 @@ export default function SystemIntegrationPage() {
           </section>
 
           {/* CTA */}
-          <section className="border-t border-border pt-16">
+          <section className="border-t border-zinc-800 pt-16">
             <div className="max-w-2xl">
-              <h2 className="text-2xl font-semibold mb-4">Ready to unify your production systems?</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Ready to unify your production systems?</h2>
               <p className="text-muted-foreground mb-8">
                 Let's map your integration requirements and design a network architecture that connects every system
                 in your production environment.

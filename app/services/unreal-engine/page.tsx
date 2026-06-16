@@ -33,9 +33,7 @@ export default function UnrealEnginePage() {
 
         {/* Header */}
         <div className="mb-16 max-w-4xl">
-          <div className="text-sm font-mono text-[#00D26A] mb-4 uppercase tracking-widest">
-            Service / 3D Scanning & Unreal
-          </div>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — UNREAL ENGINE ]</p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
             Unreal Engine Integration
           </h1>
@@ -49,7 +47,7 @@ export default function UnrealEnginePage() {
         <section className="mb-24">
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-2xl font-semibold mb-6">Overview</h2>
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 We leverage Unreal Engine as the backbone of our visualization pipeline, enabling clients to experience
                 their productions in photorealistic detail months before load-in. Our integration spans from initial
@@ -61,8 +59,8 @@ export default function UnrealEnginePage() {
                 decisions.
               </p>
             </div>
-            <div className="bg-accent/5 border border-border p-8">
-              <h3 className="font-mono text-sm text-[#00D26A] uppercase tracking-widest mb-6">Key Capabilities</h3>
+            <div className="bg-zinc-900/40 border border-zinc-800 p-8">
+              <h3 className="font-mono text-sm text-zinc-400 uppercase tracking-widest mb-6">Key Capabilities</h3>
               <ul className="space-y-4">
                 {[
                   "Photorealistic venue pre-visualization",
@@ -75,7 +73,7 @@ export default function UnrealEnginePage() {
                   "Multi-user collaborative sessions",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3 text-sm">
-                    <span className="text-[#00D26A] font-mono">{(i + 1).toString().padStart(2, "0")}</span>
+                    <span className="text-zinc-500 font-mono">{(i + 1).toString().padStart(2, "0")}</span>
                     <span className="text-muted-foreground">{item}</span>
                   </li>
                 ))}
@@ -86,8 +84,8 @@ export default function UnrealEnginePage() {
 
         {/* Process */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold mb-12">Our Process</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border">
+          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Our Process</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-900 border border-zinc-800">
             {[
               {
                 icon: Box,
@@ -115,7 +113,7 @@ export default function UnrealEnginePage() {
               },
             ].map((step, i) => (
               <div key={i} className="bg-background p-8">
-                <step.icon className="w-8 h-8 text-[#00D26A] mb-4" />
+                <step.icon className="w-8 h-8 text-zinc-500 mb-4" />
                 <div className="font-mono text-xs text-muted-foreground mb-2">{step.phase}</div>
                 <h3 className="font-semibold mb-2">{step.title}</h3>
                 <p className="text-sm text-muted-foreground">{step.desc}</p>
@@ -126,7 +124,7 @@ export default function UnrealEnginePage() {
 
         {/* Technical Specifications */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold mb-12">Technical Specifications</h2>
+          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Technical Specifications</h2>
           <ServiceAccordion
             items={[
               {
@@ -164,9 +162,9 @@ export default function UnrealEnginePage() {
         </section>
 
         {/* CTA */}
-        <section className="border-t border-border pt-16">
+        <section className="border-t border-zinc-800 pt-16">
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-semibold mb-4">Ready to visualize your production?</h2>
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Ready to visualize your production?</h2>
             <p className="text-muted-foreground mb-8">
               Let's discuss how Unreal Engine integration can de-risk your next project and unlock creative
               possibilities.
