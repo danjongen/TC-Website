@@ -23,7 +23,7 @@ const description =
   'A shelf that clips onto the SSL Live top rail in seconds. Holds your timecode, phone, coffee and notes at FOH. No tools, no drilling, no gaffer tape. $89.'
 
 const heroAlt =
-  'The TC SSL Shelf clipped onto the top rail of an SSL Live console at front of house during a show, with a timecode display sitting on it.'
+  'The TC SSL Shelf clipped onto the top rail of an SSL Live console at front of house, holding a timecode unit.'
 
 // OG image is derived from the hero at build time, so it updates
 // automatically when the real show photo lands.
@@ -146,52 +146,9 @@ const productJsonLd = JSON.stringify({
         </p>
       </section>
 
-      <!-- 3D VIEW: display-only, secondary to the photo, never blocks the
-           page. The script below only loads the model-viewer library after
-           confirming /sslshelf/models/sslshelf.glb actually exists; until
-           then (or on any failure) this section is just the poster still.
-           PLACEHOLDER: drop the real files into sslshelf/public/models/ as
-           sslshelf.glb and sslshelf-poster.webp. -->
-      <section
-        class="border-y border-paper/10 bg-[#0d0d0d]"
-        aria-labelledby="view-heading"
-      >
-        <div class="mx-auto w-full max-w-6xl px-6 py-16 md:py-24">
-          <h2
-            id="view-heading"
-            class="font-mono text-sm font-bold tracking-[0.35em] text-paper/60"
-          >
-            HAVE A LOOK AROUND
-          </h2>
-          <div
-            id="viewer-mount"
-            data-glb={`${base}/models/sslshelf.glb`}
-            data-poster={`${base}/models/sslshelf-poster.webp`}
-            class="mx-auto mt-10 aspect-square w-full max-w-xl overflow-hidden rounded-sm bg-[#111]"
-          >
-            <img
-              src={`${base}/models/sslshelf-poster.webp`}
-              width="1080"
-              height="1080"
-              loading="lazy"
-              decoding="async"
-              alt="The SSL Shelf on its own, dark matte finish."
-              class="h-full w-full object-cover"
-            />
-          </div>
-          <p
-            id="viewer-hint"
-            hidden
-            class="mt-6 text-center font-mono text-sm text-paper/50"
-          >
-            Drag to spin
-          </p>
-        </div>
-      </section>
-
       <!-- BUY: one clear action. -->
       <section
-        class="mx-auto flex w-full max-w-6xl flex-col items-center px-6 py-20 text-center md:py-28"
+        class="mx-auto flex w-full max-w-6xl flex-col items-center border-t border-paper/10 px-6 py-20 text-center md:py-28"
         aria-labelledby="buy-heading"
       >
         <h2 id="buy-heading" class="sr-only">Buy the TC SSL Shelf</h2>
@@ -223,77 +180,5 @@ const productJsonLd = JSON.stringify({
         </a>
       </div>
     </footer>
-
-    <!-- 3D viewer progressive enhancement. Inline module: deferred by
-         nature, bundler-free so the CDN import stays a plain runtime
-         import. Display-only viewer: no AR, no download, zoom and pan
-         disabled, auto-rotate off under prefers-reduced-motion. -->
-    <script is:inline type="module">
-      const CDN =
-        'https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js'
-      const mount = document.getElementById('viewer-mount')
-      const hint = document.getElementById('viewer-hint')
-
-      async function upgradeToViewer() {
-        const glb = mount.dataset.glb
-        try {
-          // Only pay for the library if the model file is actually there.
-          const head = await fetch(glb, { method: 'HEAD' })
-          if (!head.ok) return
-          await import(CDN)
-
-          const mv = document.createElement('model-viewer')
-          mv.src = glb
-          mv.setAttribute('poster', mount.dataset.poster)
-          mv.setAttribute('alt', 'Interactive 3D view of the SSL Shelf.')
-          mv.setAttribute('camera-controls', '')
-          mv.setAttribute('disable-zoom', '')
-          mv.setAttribute('disable-pan', '')
-          mv.setAttribute('disable-tap', '')
-          mv.setAttribute('interaction-prompt', 'none')
-          mv.setAttribute('shadow-intensity', '0.6')
-          mv.setAttribute('exposure', '0.9')
-          mv.setAttribute('loading', 'lazy')
-          mv.style.width = '100%'
-          mv.style.height = '100%'
-          mv.style.backgroundColor = '#111111'
-
-          const reduceMotion = matchMedia(
-            '(prefers-reduced-motion: reduce)'
-          ).matches
-          if (!reduceMotion) {
-            mv.setAttribute('auto-rotate', '')
-            mv.setAttribute('auto-rotate-delay', '1500')
-            mv.setAttribute('rotation-per-second', '12deg')
-          }
-
-          const poster = mount.querySelector('img')
-          mv.addEventListener('load', () => {
-            hint.hidden = false
-          })
-          mv.addEventListener('error', () => {
-            mv.replaceWith(poster)
-            hint.hidden = true
-          })
-          mount.replaceChildren(mv)
-        } catch {
-          // Any failure leaves the poster still in place. The page never
-          // depends on the viewer.
-        }
-      }
-
-      if (mount && 'IntersectionObserver' in window) {
-        const io = new IntersectionObserver(
-          (entries) => {
-            if (entries.some((e) => e.isIntersecting)) {
-              io.disconnect()
-              upgradeToViewer()
-            }
-          },
-          { rootMargin: '400px' }
-        )
-        io.observe(mount)
-      }
-    </script>
   </body>
 </html>
