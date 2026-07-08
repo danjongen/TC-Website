@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "npm run build:sslshelf && next build",
+    "build:sslshelf": "cd sslshelf && npm ci && npm run build",
     "dev": "next dev",
     "lint": "eslint .",
     "start": "next start"

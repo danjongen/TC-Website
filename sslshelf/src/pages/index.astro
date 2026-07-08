@@ -1,0 +1,299 @@
+---
+import { Picture, getImage } from 'astro:assets'
+import '../styles/global.css'
+
+// PLACEHOLDER: swap this file for the real show photo (same filename, or
+// update the import). Astro regenerates the AVIF/WebP variants on build.
+import heroShow from '../assets/hero-show.jpg'
+
+// PLACEHOLDER: replace with the real Shopify product URL before launch.
+const SHOPIFY_BUY_URL = 'SHOPIFY_BUY_URL'
+
+const PRICE = '$89'
+
+const base = import.meta.env.BASE_URL // '/sslshelf'
+
+// Headline options, all short and confident. Swap by editing the <h1> below.
+//   A (live): Somewhere to put it. Finally.
+//   B:        Your console was missing a shelf.
+//   C:        The shelf your console shipped without.
+const headline = 'Somewhere to put it. Finally.'
+
+const description =
+  'A shelf that clips onto the SSL Live top rail in seconds. Holds your timecode, phone, coffee and notes at FOH. No tools, no drilling, no gaffer tape. $89.'
+
+const heroAlt =
+  'The TC SSL Shelf clipped onto the top rail of an SSL Live console at front of house during a show, with a timecode display sitting on it.'
+
+// OG image is derived from the hero at build time, so it updates
+// automatically when the real show photo lands.
+const ogImage = await getImage({
+  src: heroShow,
+  width: 1200,
+  height: 630,
+  fit: 'cover',
+  format: 'jpeg',
+})
+const canonical = new URL(base, Astro.site).href
+const ogImageUrl = new URL(ogImage.src, Astro.site).href
+
+const productJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'TC SSL Shelf',
+  description,
+  image: [ogImageUrl],
+  brand: { '@type': 'Brand', name: 'TC' },
+  offers: {
+    '@type': 'Offer',
+    price: '89',
+    // Assumption: AUD. Change here if the Shopify listing is in another currency.
+    priceCurrency: 'AUD',
+    availability: 'https://schema.org/InStock',
+    url: canonical,
+  },
+})
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TC SSL Shelf | Somewhere to put it</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#0a0a0a" />
+    <!-- Icon comes from the main tc.agency site at the domain root. -->
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content="product" />
+    <meta property="og:site_name" content="TC" />
+    <meta property="og:title" content="TC SSL Shelf" />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link
+      rel="preload"
+      href={`${base}/fonts/space-mono-latin-700-normal.woff2`}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={`${base}/fonts/space-mono-latin-400-normal.woff2`}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={`${base}/fonts/inter-latin-wght-normal.woff2`}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <script type="application/ld+json" set:html={productJsonLd} />
+  </head>
+
+  <body class="bg-ink font-sans text-paper antialiased">
+    <main>
+      <!-- HERO: the show photo is the centerpiece and the proof. It is the
+           LCP element, so it loads eagerly with high priority; everything
+           below the fold is lazy instead. -->
+      <section class="relative" aria-label="TC SSL Shelf">
+        <div class="relative min-h-[92svh]">
+          <Picture
+            src={heroShow}
+            widths={[768, 1280, 1920, 2400]}
+            sizes="100vw"
+            formats={['avif', 'webp']}
+            fallbackFormat="jpg"
+            loading="eager"
+            fetchpriority="high"
+            alt={heroAlt}
+            class="absolute inset-0 h-full w-full object-cover"
+          />
+          <!-- Scrim keeps the overlaid text at AA contrast on any photo. -->
+          <div
+            class="absolute inset-0 bg-linear-to-t from-ink via-ink/40 to-ink/10"
+            aria-hidden="true"
+          >
+          </div>
+          <div
+            class="relative mx-auto flex min-h-[92svh] w-full max-w-6xl flex-col justify-end px-6 pb-16 md:pb-24"
+          >
+            <p class="font-mono text-sm tracking-[0.35em] text-accent">
+              TC SSL SHELF
+            </p>
+            <h1
+              class="mt-4 max-w-[16ch] font-mono text-[clamp(2.2rem,6.5vw,4.75rem)] leading-[1.08] font-bold text-balance"
+            >
+              {headline}
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- THE ONE BENEFIT LINE -->
+      <section class="mx-auto w-full max-w-6xl px-6 py-16 md:py-24">
+        <p class="max-w-[46ch] text-xl leading-relaxed text-paper/90 md:text-2xl">
+          Clips onto the SSL Live top rail in seconds. Holds your timecode,
+          phone, coffee and notes. No tools, no drilling, no gaffer tape.
+        </p>
+      </section>
+
+      <!-- 3D VIEW: display-only, secondary to the photo, never blocks the
+           page. The script below only loads the model-viewer library after
+           confirming /sslshelf/models/sslshelf.glb actually exists; until
+           then (or on any failure) this section is just the poster still.
+           PLACEHOLDER: drop the real files into sslshelf/public/models/ as
+           sslshelf.glb and sslshelf-poster.webp. -->
+      <section
+        class="border-y border-paper/10 bg-[#0d0d0d]"
+        aria-labelledby="view-heading"
+      >
+        <div class="mx-auto w-full max-w-6xl px-6 py-16 md:py-24">
+          <h2
+            id="view-heading"
+            class="font-mono text-sm font-bold tracking-[0.35em] text-paper/60"
+          >
+            HAVE A LOOK AROUND
+          </h2>
+          <div
+            id="viewer-mount"
+            data-glb={`${base}/models/sslshelf.glb`}
+            data-poster={`${base}/models/sslshelf-poster.webp`}
+            class="mx-auto mt-10 aspect-square w-full max-w-xl overflow-hidden rounded-sm bg-[#111]"
+          >
+            <img
+              src={`${base}/models/sslshelf-poster.webp`}
+              width="1080"
+              height="1080"
+              loading="lazy"
+              decoding="async"
+              alt="The SSL Shelf on its own, dark matte finish."
+              class="h-full w-full object-cover"
+            />
+          </div>
+          <p
+            id="viewer-hint"
+            hidden
+            class="mt-6 text-center font-mono text-sm text-paper/50"
+          >
+            Drag to spin
+          </p>
+        </div>
+      </section>
+
+      <!-- BUY: one clear action. -->
+      <section
+        class="mx-auto flex w-full max-w-6xl flex-col items-center px-6 py-20 text-center md:py-28"
+        aria-labelledby="buy-heading"
+      >
+        <h2 id="buy-heading" class="sr-only">Buy the TC SSL Shelf</h2>
+        <p class="font-mono text-5xl font-bold md:text-6xl">
+          <span class="sr-only">Price:</span>{PRICE}
+        </p>
+        <a
+          href={SHOPIFY_BUY_URL}
+          class="buy-button mt-8 inline-block bg-accent px-12 py-5 font-mono text-lg font-bold tracking-[0.2em] text-ink uppercase transition-transform hover:scale-[1.02] motion-reduce:transition-none motion-reduce:hover:scale-100"
+        >
+          Buy the shelf
+        </a>
+        <p class="mt-6 font-sans text-sm text-paper/60">
+          Ships ready to clip straight on.
+        </p>
+      </section>
+    </main>
+
+    <footer class="border-t border-paper/10">
+      <div
+        class="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-10"
+      >
+        <span class="font-mono text-xl font-bold tracking-[0.3em]">TC</span>
+        <a
+          href="https://tc.agency"
+          class="font-mono text-sm text-paper/60 hover:text-paper"
+        >
+          tc.agency
+        </a>
+      </div>
+    </footer>
+
+    <!-- 3D viewer progressive enhancement. Inline module: deferred by
+         nature, bundler-free so the CDN import stays a plain runtime
+         import. Display-only viewer: no AR, no download, zoom and pan
+         disabled, auto-rotate off under prefers-reduced-motion. -->
+    <script is:inline type="module">
+      const CDN =
+        'https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js'
+      const mount = document.getElementById('viewer-mount')
+      const hint = document.getElementById('viewer-hint')
+
+      async function upgradeToViewer() {
+        const glb = mount.dataset.glb
+        try {
+          // Only pay for the library if the model file is actually there.
+          const head = await fetch(glb, { method: 'HEAD' })
+          if (!head.ok) return
+          await import(CDN)
+
+          const mv = document.createElement('model-viewer')
+          mv.src = glb
+          mv.setAttribute('poster', mount.dataset.poster)
+          mv.setAttribute('alt', 'Interactive 3D view of the SSL Shelf.')
+          mv.setAttribute('camera-controls', '')
+          mv.setAttribute('disable-zoom', '')
+          mv.setAttribute('disable-pan', '')
+          mv.setAttribute('disable-tap', '')
+          mv.setAttribute('interaction-prompt', 'none')
+          mv.setAttribute('shadow-intensity', '0.6')
+          mv.setAttribute('exposure', '0.9')
+          mv.setAttribute('loading', 'lazy')
+          mv.style.width = '100%'
+          mv.style.height = '100%'
+          mv.style.backgroundColor = '#111111'
+
+          const reduceMotion = matchMedia(
+            '(prefers-reduced-motion: reduce)'
+          ).matches
+          if (!reduceMotion) {
+            mv.setAttribute('auto-rotate', '')
+            mv.setAttribute('auto-rotate-delay', '1500')
+            mv.setAttribute('rotation-per-second', '12deg')
+          }
+
+          const poster = mount.querySelector('img')
+          mv.addEventListener('load', () => {
+            hint.hidden = false
+          })
+          mv.addEventListener('error', () => {
+            mv.replaceWith(poster)
+            hint.hidden = true
+          })
+          mount.replaceChildren(mv)
+        } catch {
+          // Any failure leaves the poster still in place. The page never
+          // depends on the viewer.
+        }
+      }
+
+      if (mount && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            if (entries.some((e) => e.isIntersecting)) {
+              io.disconnect()
+              upgradeToViewer()
+            }
+          },
+          { rootMargin: '400px' }
+        )
+        io.observe(mount)
+      }
+    </script>
+  </body>
+</html>

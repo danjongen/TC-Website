@@ -1,0 +1,20 @@
+{
+  "name": "tc-sslshelf",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Marketing page for the TC SSL Live console shelf, served at tc.agency/sslshelf",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && rm -f ../public/sslshelf/content-assets.mjs ../public/sslshelf/content-modules.mjs",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.12.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.9",
+    "tailwindcss": "^4.1.9",
+    "sharp": "^0.33.5"
+  }
+}
