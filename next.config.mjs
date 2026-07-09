@@ -58,6 +58,17 @@ const nextConfig = {
       },
     ]
   },
+
+  async rewrites() {
+    return [
+      // The SSL Shelf marketing page is a static Astro build emitted into
+      // public/sslshelf by `npm run build:sslshelf` (see /sslshelf).
+      {
+        source: '/sslshelf',
+        destination: '/sslshelf/index.html',
+      },
+    ]
+  },
 }
 
 export default nextConfig
