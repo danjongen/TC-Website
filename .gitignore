@@ -5,11 +5,6 @@
 /.next/
 /out/
 
-# sslshelf (Astro subproject: build output lands in public/sslshelf)
-/public/sslshelf/
-/sslshelf/node_modules/
-/sslshelf/.astro/
-
 # production
 /build
 

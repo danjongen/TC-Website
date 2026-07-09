@@ -65,7 +65,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
-    // Product pages (static Astro pages served from public/)
+    // Product page
     {
       url: `${baseUrl}/sslshelf`,
       lastModified: new Date(),
