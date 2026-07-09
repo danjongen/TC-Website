@@ -2,9 +2,9 @@
 import { Picture, getImage } from 'astro:assets'
 import '../styles/global.css'
 
-// PLACEHOLDER: swap this file for the real show photo (same filename, or
-// update the import). Astro regenerates the AVIF/WebP variants on build.
-import heroShow from '../assets/hero-show.jpg'
+// The real show photo. Lossless PNG source; Astro regenerates the delivered
+// AVIF/WebP/JPEG variants on build.
+import heroShow from '../assets/hero-show.png'
 
 // NOTE: the store was still password-protected when this was wired up, so
 // the link dead-ends at the password page until the store is launched
@@ -127,7 +127,7 @@ const productJsonLd = JSON.stringify({
           >
           </div>
           <div
-            class="relative mx-auto flex min-h-[92svh] w-full max-w-6xl flex-col justify-end px-6 pb-16 md:pb-24"
+            class="relative mx-auto flex min-h-[92svh] w-full max-w-6xl flex-col justify-end px-6 pb-16 [text-shadow:0_2px_20px_rgba(0,0,0,0.6)] md:pb-24"
           >
             <p class="font-mono text-sm tracking-[0.35em] text-accent">
               TC SSL SHELF
