@@ -23,14 +23,15 @@ npm run dev
 
 ## Swap in the real inputs
 
-Two clearly-marked placeholders:
+One remaining placeholder:
 
 1. **Show photo (hero):** replace `src/assets/hero-show.jpg` with the real
    show photo (keep the filename, or update the import in
    `src/pages/index.astro`). AVIF/WebP variants and the OG image are
    regenerated on build.
-2. **Buy link:** replace the `SHOPIFY_BUY_URL` constant at the top of
-   `src/pages/index.astro` with the real Shopify product URL.
+
+The buy button links to the live Shopify product. Note the store must not
+be password-protected or the link dead-ends at the password page.
 
 Headline options are listed in a comment next to the `<h1>` in
 `src/pages/index.astro`.
