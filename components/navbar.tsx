@@ -12,11 +12,15 @@ const navItems = [
   { name: "APPROACH", href: "/approach" },
   { name: "PORTFOLIO", href: "/portfolio" },
   { name: "INSIGHTS", href: "/insights" },
-  { name: "STORE", href: "/sslshelf" },
+  { name: "STORE", href: "/store" },
   { name: "CONTACT", href: "/contact" },
 ]
 
 function isActive(pathname: string, href: string) {
+  if (href === "/store" && pathname === "/sslshelf") {
+    return true
+  }
+
   return pathname === href || (href !== "/" && pathname.startsWith(href))
 }
 

@@ -65,7 +65,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
-    // Product page
+    // Store and product pages
+    {
+      url: `${baseUrl}/store`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
     {
       url: `${baseUrl}/sslshelf`,
       lastModified: new Date(),
