@@ -79,6 +79,12 @@ export function Footer() {
                 Insights
               </Link>
               <Link
+                href="/sslshelf"
+                className="block text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
+              >
+                Store
+              </Link>
+              <Link
                 href="/contact"
                 className="block text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
               >

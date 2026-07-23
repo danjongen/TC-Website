@@ -12,6 +12,7 @@ const navItems = [
   { name: "APPROACH", href: "/approach" },
   { name: "PORTFOLIO", href: "/portfolio" },
   { name: "INSIGHTS", href: "/insights" },
+  { name: "STORE", href: "/sslshelf" },
   { name: "CONTACT", href: "/contact" },
 ]
 
@@ -55,7 +56,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden items-center gap-8 md:flex">
+          <nav className="hidden items-center gap-6 lg:flex xl:gap-8">
             {navItems.map((item) => (
               <Link
                 key={item.name}
@@ -73,7 +74,7 @@ export function Navbar() {
           </nav>
 
           <button
-            className="-mr-2 p-2 text-white md:hidden"
+            className="-mr-2 p-2 text-white lg:hidden"
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
@@ -84,7 +85,7 @@ export function Navbar() {
       </header>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 bg-black md:hidden">
+        <div className="fixed inset-0 z-50 bg-black lg:hidden">
           <div className="flex h-16 items-center justify-between px-6">
             <Link href="/" className="font-mono text-sm font-bold text-white">
               TECHNICALLY_CREATIVE
