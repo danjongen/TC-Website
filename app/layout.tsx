@@ -71,15 +71,15 @@ export const metadata: Metadata = {
   authors: [{ name: "Daniel Jongen" }, { name: "TC Agency" }, { name: "Technically Creative" }],
   creator: "Daniel Jongen — Technically Creative LLC",
   publisher: "TC Agency",
-  metadataBase: new URL("https://tc.agency"),
+  metadataBase: new URL("https://www.tc.agency"),
   applicationName: "TC Agency — Technical Direction & Production Engineering",
   alternates: {
-    canonical: "https://tc.agency",
+    canonical: "https://www.tc.agency",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://tc.agency",
+    url: "https://www.tc.agency",
     siteName: "TC Agency — Technically Creative",
     title: "Technical Direction and Production Engineering | TC Agency",
     description:

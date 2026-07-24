@@ -11,7 +11,7 @@ import shelfOrange from "./shelf-orange.jpg"
 import shelfRed from "./shelf-red.jpg"
 import shelfTitanGrey from "./shelf-titan-grey.jpg"
 
-const canonicalUrl = "https://tc.agency/sslshelf"
+const canonicalUrl = "https://www.tc.agency/sslshelf"
 const heroAlt =
   "The TC SSL Shelf clipped onto the top rail of an SSL Live L550 console at front of house, holding a timecode unit."
 const description =
@@ -83,7 +83,7 @@ const productJsonLd = {
   manufacturer: {
     "@type": "Organization",
     name: "Technically Creative LLC",
-    url: "https://tc.agency",
+    url: "https://www.tc.agency",
   },
   material: "3D-printed PLA-CF",
   color: ["Matcha Green", "Black", "Titan Grey", "Orange", "Red"],
@@ -122,7 +122,7 @@ const breadcrumbJsonLd = {
       "@type": "ListItem",
       position: 1,
       name: "Store",
-      item: "https://tc.agency/store",
+      item: "https://www.tc.agency/store",
     },
     {
       "@type": "ListItem",

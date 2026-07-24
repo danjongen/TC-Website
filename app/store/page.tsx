@@ -13,10 +13,10 @@ const description =
 export const metadata: Metadata = {
   title: "Store — Live Production Field Tools",
   description,
-  alternates: { canonical: "https://tc.agency/store" },
+  alternates: { canonical: "https://www.tc.agency/store" },
   openGraph: {
     type: "website",
-    url: "https://tc.agency/store",
+    url: "https://www.tc.agency/store",
     title: "Live Production Field Tools | Technically Creative",
     description,
     images: [
@@ -44,7 +44,7 @@ const catalogJsonLd = {
     "@type": "ListItem",
     position: index + 1,
     name: product.name,
-    url: `https://tc.agency${product.href}`,
+    url: `https://www.tc.agency${product.href}`,
   })),
 }
 
