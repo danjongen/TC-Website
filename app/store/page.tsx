@@ -180,7 +180,7 @@ export default function StorePage() {
                   Vectorworks 2023–2026 · macOS · Version 0.1.0
                 </p>
                 <Link
-                  href="/contact?source=power-symbols-beta"
+                  href="/contact?source=power-symbols-beta#contact-form"
                   className="mt-6 flex items-center justify-between bg-[#00D26A] px-6 py-5 font-mono text-xs font-bold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   Request beta access

@@ -1,5 +1,7 @@
 "use client"
 
+import { Suspense } from "react"
+
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { ContactForm } from "@/components/contact-form"
@@ -35,9 +37,15 @@ export function ContactPageClient() {
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-20">
             {/* Contact Form */}
-            <div>
+            <div id="contact-form">
               <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">SEND US A MESSAGE</p>
-              <ContactForm />
+              <Suspense
+                fallback={
+                  <div className="h-96 animate-pulse border border-zinc-800 bg-zinc-900/40" />
+                }
+              >
+                <ContactForm />
+              </Suspense>
             </div>
 
             {/* Contact Info */}

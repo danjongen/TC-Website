@@ -34,6 +34,10 @@ export async function submitContactForm(
     budget: (formData.get("budget") as string)?.trim() || "",
     timeline: (formData.get("timeline") as string)?.trim() || "",
     message: (formData.get("message") as string)?.trim() || "",
+    source:
+      (formData.get("source") as string)?.trim() === "power-symbols-beta"
+        ? "power-symbols-beta"
+        : "",
     honeypot: formData.get("company_website") as string, // Honeypot field
     formElapsedMs: Number(formData.get("form_elapsed_ms") || 0),
     turnstileToken: formData.get("cf-turnstile-response") as string,
@@ -163,9 +167,13 @@ export async function submitContactForm(
   // =========================================================================
   const isLowSpamScore = spamCheck.score < 30
   const subjectPrefix = isLowSpamScore ? "" : "[Low Priority] "
+  const inquiryLabel =
+    data.source === "power-symbols-beta"
+      ? "Power Symbols Beta Request"
+      : "New Contact Form Submission"
 
   const emailText = `
-New Contact Form Submission - TC Agency
+${inquiryLabel} - TC Agency
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 CONTACT INFORMATION
@@ -183,6 +191,7 @@ PROJECT DETAILS
 Project Type: ${data.projectType || "Not specified"}
 Budget Range: ${data.budget || "Not specified"}
 Timeline:     ${data.timeline || "Not specified"}
+Source:       ${data.source || "General contact form"}
 
 Message:
 ${data.message}
@@ -205,7 +214,10 @@ Processing:   ${Date.now() - startTime}ms
       from: "TC Agency <noreply@tc.agency>",
       to: ["info@tc.agency"],
       replyTo: data.email,
-      subject: `${subjectPrefix}New Inquiry: ${data.name}${data.company ? ` from ${data.company}` : ""}`,
+      subject:
+        data.source === "power-symbols-beta"
+          ? `${subjectPrefix}Power Symbols beta request: ${data.name}`
+          : `${subjectPrefix}New Inquiry: ${data.name}${data.company ? ` from ${data.company}` : ""}`,
       text: emailText,
     })
 

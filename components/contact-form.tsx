@@ -2,7 +2,7 @@
 
 import { useActionState, useEffect, useRef, useState } from "react"
 import Script from "next/script"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { useFormStatus } from "react-dom"
 import { submitContactForm } from "@/app/actions/contact"
 import { Loader2 } from "lucide-react"
@@ -36,6 +36,12 @@ const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
 export function ContactForm() {
   const [state, formAction] = useActionState(submitContactForm, null)
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const source =
+    searchParams.get("source") === "power-symbols-beta"
+      ? "power-symbols-beta"
+      : ""
+  const isPowerSymbolsBeta = source === "power-symbols-beta"
   // time-trap: bots submit instantly; humans take seconds.
   // Elapsed time is measured entirely on the client clock and written at
   // submit time, so server/client clock skew can never block a human.
@@ -74,6 +80,7 @@ export function ContactForm() {
       className="space-y-6"
     >
       <input ref={elapsedRef} type="hidden" name="form_elapsed_ms" defaultValue="" />
+      <input type="hidden" name="source" value={source} />
       {/* honeypot: hidden from humans; the server action drops submissions that fill it */}
       <div className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
         <label htmlFor="company_website">Company website</label>
@@ -81,6 +88,18 @@ export function ContactForm() {
       </div>
       {state?.error && (
         <div className="p-4 bg-red-900/20 border border-red-800 text-red-400 text-sm rounded">{state.error}</div>
+      )}
+
+      {isPowerSymbolsBeta && (
+        <div className="border border-zinc-800 bg-zinc-900/40 p-5">
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#00D26A]">
+            Power Symbols / beta access
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+            This message will be clearly marked as a request for the 30-day
+            Power Symbols beta.
+          </p>
+        </div>
       )}
 
       {/* Name */}
@@ -124,7 +143,11 @@ export function ContactForm() {
           rows={5}
           required
           className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-400 focus:outline-none focus:border-zinc-500 transition-colors resize-none rounded"
-          placeholder="Tell us about your project..."
+          placeholder={
+            isPowerSymbolsBeta
+              ? "Tell us how you use Vectorworks and what you would like to test..."
+              : "Tell us about your project..."
+          }
         />
       </div>
 
