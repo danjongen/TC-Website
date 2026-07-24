@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/thank-you", "/portfolio/preview", "/insights/preview", "/unsubscribe"],
       },
     ],
-    sitemap: "https://tc.agency/sitemap.xml",
-    host: "https://tc.agency",
+    sitemap: "https://www.tc.agency/sitemap.xml",
+    host: "https://www.tc.agency",
   }
 }
