@@ -23,7 +23,7 @@ export const storeProducts: readonly StoreProduct[] = [
     category: "Console hardware",
     description:
       "A purpose-built SSL console shelf that clips onto the SSL Live top rail in seconds. No tools, drilling or gaffer tape.",
-    price: "$89",
+    price: "$69",
     availability: "Available now",
     href: "/sslshelf",
     image: sslShelfImage,

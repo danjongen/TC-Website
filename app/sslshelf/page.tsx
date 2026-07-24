@@ -15,7 +15,7 @@ const canonicalUrl = "https://www.tc.agency/sslshelf"
 const heroAlt =
   "The TC SSL Shelf clipped onto the top rail of an SSL Live L550 console at front of house, holding a timecode unit."
 const description =
-  "Buy the TC SSL Shelf, a 3D-printed PLA-CF console shelf made for the top rail of SSL Live consoles. Five colours, $89, with customer-selected shipping."
+  "Buy the TC SSL Shelf, a 3D-printed PLA-CF console shelf made for the top rail of SSL Live consoles. Five colours, $69, with customer-selected shipping."
 
 export const metadata: Metadata = {
   title: { absolute: "SSL Console Shelf for SSL Live | TC SSL Shelf" },
@@ -104,7 +104,7 @@ const productJsonLd = {
     "@type": "Offer",
     url: canonicalUrl,
     priceCurrency: "USD",
-    price: "89.00",
+    price: "69.00",
     availability: "https://schema.org/InStock",
     itemCondition: "https://schema.org/NewCondition",
     seller: {

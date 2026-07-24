@@ -141,7 +141,7 @@ export function BuyBox() {
                 Unit price
               </p>
               <p className="mt-2 text-3xl font-semibold tracking-[-0.04em] text-white">
-                <span className="sr-only">Price: </span>$89
+                <span className="sr-only">Price: </span>$69
               </p>
             </div>
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-white">
