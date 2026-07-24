@@ -8,16 +8,16 @@ import { Navbar } from "@/components/navbar"
 import { storeProducts } from "./products"
 
 const description =
-  "Purpose-built tools for live production, created from problems encountered in the field."
+  "Purpose-built hardware and software for live production, including the TC SSL Shelf for SSL Live consoles and Power Symbols for Vectorworks."
 
 export const metadata: Metadata = {
-  title: "Store",
+  title: "Store — Live Production Field Tools",
   description,
   alternates: { canonical: "https://tc.agency/store" },
   openGraph: {
     type: "website",
     url: "https://tc.agency/store",
-    title: "Store | Technically Creative",
+    title: "Live Production Field Tools | Technically Creative",
     description,
     images: [
       {
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Store | Technically Creative",
+    title: "Live Production Field Tools | Technically Creative",
     description,
     images: [storeProducts[0].image.src],
   },
@@ -49,7 +49,7 @@ const catalogJsonLd = {
 }
 
 export default function StorePage() {
-  const productCount = storeProducts.length.toString().padStart(2, "0")
+  const product = storeProducts[0]
 
   return (
     <>
@@ -59,89 +59,135 @@ export default function StorePage() {
       />
       <Navbar />
       <main id="main-content" className="min-h-screen bg-black text-white">
-        <section className="mx-auto w-full max-w-[1600px] px-6 pb-20 pt-40 md:px-12 md:pb-28 md:pt-48">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-400">
-            [ STORE — FIELD TOOLS ]
+        <section className="mx-auto w-full max-w-[1600px] px-6 pb-16 pt-36 md:px-12 md:pb-24 md:pt-44">
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#00D26A]">
+            [ Store — Field Tools ]
           </p>
-          <h1 className="mt-8 max-w-[13ch] text-5xl font-semibold leading-[0.98] tracking-[-0.045em] text-balance sm:text-6xl md:text-7xl lg:text-8xl">
-            Small tools. Real problems solved.
+          <h1 className="mt-7 max-w-[14ch] text-5xl font-semibold leading-[0.95] tracking-[-0.05em] text-balance sm:text-6xl md:text-7xl lg:text-8xl">
+            Built for the field.
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-zinc-400 md:text-xl">
-            Purpose-built hardware for live production. Each product starts
-            with a problem encountered in the field and ends as a tool simple
-            enough to disappear into the job.
+            Purpose-built hardware and software for live production. Small
+            tools, real problems solved.
           </p>
         </section>
 
         <section
-          className="mx-auto w-full max-w-[1600px] border-t border-zinc-800 px-6 py-20 md:px-12 md:py-28"
-          aria-labelledby="products-heading"
+          className="mx-auto w-full max-w-[1600px] border-t border-zinc-800 px-6 py-16 md:px-12 md:py-24"
+          aria-labelledby="hardware-heading"
         >
-          <div className="mb-12 flex items-end justify-between gap-6">
-            <div>
-              <p className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-400">
-                [ 01 — PRODUCTS ]
-              </p>
-              <h2
-                id="products-heading"
-                className="mt-4 text-3xl font-semibold tracking-[-0.03em] md:text-4xl"
-              >
-                Built for the field
-              </h2>
-            </div>
-            <p className="shrink-0 font-mono text-xs uppercase tracking-[0.2em] text-zinc-400">
-              {productCount} {storeProducts.length === 1 ? "product" : "products"}
+          <div className="mb-8 flex items-center justify-between gap-6">
+            <p className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-400">
+              [ 01 — Physical tool ]
+            </p>
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#00D26A]">
+              Available now
             </p>
           </div>
 
-          <div className="grid gap-px border border-zinc-800 bg-zinc-800 md:grid-cols-2">
-            {storeProducts.map((product) => (
-              <Link
-                key={product.slug}
-                href={product.href}
-                className="group flex flex-col bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D26A] focus-visible:ring-inset"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden bg-zinc-950">
-                  <Image
-                    src={product.image}
-                    alt={product.imageAlt}
-                    fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    placeholder="blur"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-                  />
-                  <div
-                    className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"
-                    aria-hidden="true"
-                  />
-                  <p className="absolute bottom-5 left-5 font-mono text-xs uppercase tracking-[0.2em] text-[#00D26A]">
-                    {product.availability}
-                  </p>
-                </div>
+          <Link
+            href={product.href}
+            className="group grid overflow-hidden border border-zinc-800 bg-zinc-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D26A] focus-visible:ring-inset md:grid-cols-[1.15fr_0.85fr]"
+          >
+            <div className="relative min-h-[25rem] overflow-hidden bg-zinc-950 md:min-h-[38rem]">
+              <Image
+                src={product.image}
+                alt={product.imageAlt}
+                fill
+                sizes="(min-width: 768px) 58vw, 100vw"
+                placeholder="blur"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"
+                aria-hidden="true"
+              />
+            </div>
 
-                <div className="flex flex-1 flex-col p-6 md:p-8">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-400">
-                        {product.category}
-                      </p>
-                      <h3 className="mt-3 text-2xl font-semibold tracking-[-0.025em] md:text-3xl">
-                        {product.name}
-                      </h3>
-                    </div>
-                    <p className="font-mono text-xl font-bold text-white">
-                      {product.price}
-                    </p>
-                  </div>
-                  <p className="mt-5 max-w-xl leading-relaxed text-zinc-400">
-                    {product.description}
+            <div className="flex flex-col justify-between p-7 md:p-10 lg:p-12">
+              <div>
+                <div className="flex items-start justify-between gap-5">
+                  <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-400">
+                    {product.category}
                   </p>
-                  <span className="mt-8 font-mono text-xs font-bold uppercase tracking-[0.2em] text-white transition-colors group-hover:text-[#00D26A]">
-                    View product →
-                  </span>
+                  <p className="text-2xl font-semibold tracking-[-0.04em] text-white">
+                    {product.price}
+                  </p>
                 </div>
-              </Link>
-            ))}
+                <h2
+                  id="hardware-heading"
+                  className="mt-16 text-4xl font-semibold tracking-[-0.045em] md:text-5xl"
+                >
+                  {product.name}
+                </h2>
+                <p className="mt-5 font-mono text-xs uppercase tracking-[0.15em] text-[#00D26A]">
+                  Somewhere to put it. Finally.
+                </p>
+                <p className="mt-7 max-w-xl leading-relaxed text-zinc-300">
+                  {product.description}
+                </p>
+              </div>
+              <span className="mt-12 flex items-center justify-between border-t border-zinc-800 pt-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-white transition-colors group-hover:text-[#00D26A]">
+                View and buy
+                <span aria-hidden="true">→</span>
+              </span>
+            </div>
+          </Link>
+        </section>
+
+        <section
+          id="power-symbols"
+          className="border-t border-zinc-800"
+          aria-labelledby="power-symbols-heading"
+        >
+          <div className="mx-auto w-full max-w-[1600px] px-6 py-16 md:px-12 md:py-24">
+            <div className="mb-8 flex items-center justify-between gap-6">
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-400">
+                [ 02 — Software tool ]
+              </p>
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-amber-300">
+                Conditional beta
+              </p>
+            </div>
+
+            <article className="grid border border-zinc-800 bg-zinc-900/40 md:grid-cols-[1.1fr_0.9fr]">
+              <div className="border-b border-zinc-800 p-7 md:border-b-0 md:border-r md:p-10 lg:p-12">
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-400">
+                  Plug-in for Vectorworks
+                </p>
+                <h2
+                  id="power-symbols-heading"
+                  className="mt-16 text-5xl font-semibold leading-[0.88] tracking-[-0.055em] sm:text-6xl lg:text-7xl"
+                >
+                  Power
+                  <br />
+                  Symbols
+                </h2>
+                <p className="mt-7 max-w-xl leading-relaxed text-zinc-300">
+                  Editable power-distribution symbols and a coordinated power
+                  schedule for production drawings—without maintaining the same
+                  information twice.
+                </p>
+              </div>
+
+              <div className="flex flex-col justify-end p-7 md:p-10 lg:p-12">
+                <ul className="divide-y divide-zinc-800 border-y border-zinc-800 text-sm text-zinc-300">
+                  <li className="py-4">Seven production-ready symbol types</li>
+                  <li className="py-4">Editable ratings, references and departments</li>
+                  <li className="py-4">One-click Power Distribution Schedule</li>
+                </ul>
+                <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.14em] text-zinc-500">
+                  Vectorworks 2023–2026 · macOS · Version 0.1.0
+                </p>
+                <Link
+                  href="/contact?source=power-symbols-beta"
+                  className="mt-6 flex items-center justify-between bg-[#00D26A] px-6 py-5 font-mono text-xs font-bold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                >
+                  Request beta access
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </article>
           </div>
         </section>
 
@@ -149,22 +195,17 @@ export default function StorePage() {
           <div className="mx-auto grid w-full max-w-[1600px] gap-10 px-6 py-20 md:grid-cols-[1fr_auto] md:items-end md:px-12 md:py-28">
             <div>
               <p className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-400">
-                [ 02 — WHAT SHOULD EXIST? ]
+                [ 03 — What should exist? ]
               </p>
               <h2 className="mt-5 max-w-[17ch] text-3xl font-semibold tracking-[-0.03em] md:text-5xl">
                 If your crew keeps improvising the same fix, tell us.
               </h2>
-              <p className="mt-6 max-w-2xl leading-relaxed text-zinc-400">
-                The next useful product usually starts as a recurring field
-                problem. Show us the awkward workflow, missing part or thing
-                that should already exist.
-              </p>
             </div>
             <Link
               href="/contact"
-              className="inline-flex w-fit items-center justify-center bg-[#00D26A] px-7 py-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-black transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black motion-reduce:transition-none motion-reduce:hover:scale-100"
+              className="inline-flex w-fit items-center justify-center border-b border-white py-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-white transition-colors hover:border-[#00D26A] hover:text-[#00D26A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D26A]"
             >
-              Tell us what is missing →
+              Send the field note →
             </Link>
           </div>
         </section>

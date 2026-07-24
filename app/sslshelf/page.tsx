@@ -1,95 +1,178 @@
 import type { Metadata } from "next"
-import Image from "next/image"
+import Link from "next/link"
 
-import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { Navbar } from "@/components/navbar"
 
 import { BuyBox } from "./buy-box"
 import heroShow from "./hero-show.png"
+import shelfBlack from "./shelf-black.jpg"
+import shelfOrange from "./shelf-orange.jpg"
+import shelfRed from "./shelf-red.jpg"
+import shelfTitanGrey from "./shelf-titan-grey.jpg"
 
+const canonicalUrl = "https://tc.agency/sslshelf"
 const heroAlt =
-  "The TC SSL Shelf clipped onto the top rail of an SSL Live L550 console at front of house, holding a timecode unit reading 04.04.24.29."
-
+  "The TC SSL Shelf clipped onto the top rail of an SSL Live L550 console at front of house, holding a timecode unit."
 const description =
-  "A shelf for your SSL Live. Clips onto the top rail in seconds and holds your timecode, phone and notes at front of house. No tools, no drilling, no gaffer tape. $89."
+  "Buy the TC SSL Shelf, a 3D-printed PLA-CF console shelf made for the top rail of SSL Live consoles. Five colours, $89, with customer-selected shipping."
 
 export const metadata: Metadata = {
-  title: "TC SSL Shelf",
+  title: { absolute: "SSL Console Shelf for SSL Live | TC SSL Shelf" },
   description,
-  alternates: { canonical: "https://tc.agency/sslshelf" },
+  keywords: [
+    "SSL console shelf",
+    "SSL Live shelf",
+    "SSL Live console accessories",
+    "audio console shelf",
+    "front of house console shelf",
+    "TC SSL Shelf",
+  ],
+  alternates: { canonical: canonicalUrl },
   openGraph: {
     type: "website",
-    url: "https://tc.agency/sslshelf",
-    title: "TC SSL Shelf — Somewhere to put it. Finally.",
+    url: canonicalUrl,
+    title: "TC SSL Shelf — Console Shelf for SSL Live",
     description,
     images: [
-      { url: heroShow.src, width: heroShow.width, height: heroShow.height, alt: heroAlt },
+      {
+        url: heroShow.src,
+        width: heroShow.width,
+        height: heroShow.height,
+        alt: heroAlt,
+      },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "TC SSL Shelf",
+    title: "TC SSL Shelf — Console Shelf for SSL Live",
     description,
     images: [heroShow.src],
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 }
 
-// Headline options (kept for quick swaps):
-//   A (live): Somewhere to put it. Finally.
-//   B:        Your console was missing a shelf.
-//   C:        The shelf your console shipped without.
-const headline = "Somewhere to put it. Finally."
+const productJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "TC SSL Shelf",
+  alternateName: "SSL Console Shelf for SSL Live",
+  description,
+  sku: "TC-SSL-SHELF",
+  url: canonicalUrl,
+  image: [
+    heroShow,
+    shelfBlack,
+    shelfTitanGrey,
+    shelfOrange,
+    shelfRed,
+  ].map((image) => new URL(image.src, canonicalUrl).toString()),
+  brand: {
+    "@type": "Brand",
+    name: "Technically Creative",
+  },
+  manufacturer: {
+    "@type": "Organization",
+    name: "Technically Creative LLC",
+    url: "https://tc.agency",
+  },
+  material: "3D-printed PLA-CF",
+  color: ["Matcha Green", "Black", "Titan Grey", "Orange", "Red"],
+  itemCondition: "https://schema.org/NewCondition",
+  additionalProperty: [
+    {
+      "@type": "PropertyValue",
+      name: "Compatibility",
+      value: "SSL Live console top rail",
+    },
+    {
+      "@type": "PropertyValue",
+      name: "Production lead time",
+      value: "Up to two weeks before dispatch when made to order",
+    },
+  ],
+  offers: {
+    "@type": "Offer",
+    url: canonicalUrl,
+    priceCurrency: "USD",
+    price: "89.00",
+    availability: "https://schema.org/InStock",
+    itemCondition: "https://schema.org/NewCondition",
+    seller: {
+      "@type": "Organization",
+      name: "Technically Creative LLC",
+    },
+  },
+}
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Store",
+      item: "https://tc.agency/store",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "TC SSL Shelf",
+      item: canonicalUrl,
+    },
+  ],
+}
 
 export default function SslShelfPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Navbar />
-      <main className="bg-background text-foreground">
-        {/* HERO: the real show photo is the centerpiece and the proof. It is
-            the LCP element, so it loads with priority. The fixed navbar sits
-            transparent over the top of it, matching the home page. */}
-        <section className="relative min-h-[92svh] w-full" aria-label="TC SSL Shelf">
-          <Image
-            src={heroShow}
-            alt={heroAlt}
-            fill
-            priority
-            sizes="100vw"
-            placeholder="blur"
-            className="object-cover"
-          />
-          {/* Scrim keeps the overlaid text at AA contrast. */}
-          <div
-            className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/10"
-            aria-hidden="true"
-          />
-          <div className="relative mx-auto flex min-h-[92svh] w-full max-w-[1600px] flex-col justify-end px-6 pb-16 md:px-12 md:pb-24 [text-shadow:0_2px_20px_rgba(0,0,0,0.6)]">
-            <p className="font-mono text-sm tracking-[0.35em] text-[#00D26A]">
-              TC SSL SHELF
-            </p>
-            <h1 className="mt-4 max-w-[16ch] font-mono text-[clamp(2.2rem,6.5vw,4.75rem)] font-bold leading-[1.08] text-balance text-white">
-              {headline}
-            </h1>
-          </div>
-        </section>
-
-        {/* THE ONE BENEFIT LINE */}
-        <section className="mx-auto w-full max-w-[1600px] px-6 py-16 md:px-12 md:py-24">
-          <p className="max-w-[46ch] text-xl leading-relaxed text-zinc-300 md:text-2xl">
-            Clips onto the SSL Live top rail in seconds. Holds your timecode,
-            phone and notes. No tools, no drilling, no gaffer tape.
-          </p>
-        </section>
-
-        {/* BUY: one clear action, with colour choice. */}
-        <section
-          className="mx-auto flex w-full max-w-[1600px] flex-col items-center border-t border-zinc-800 px-6 py-20 text-center md:px-12 md:py-28"
-          aria-labelledby="buy-heading"
-        >
-          <h2 id="buy-heading" className="sr-only">
-            Buy the TC SSL Shelf
-          </h2>
+      <main id="main-content" className="min-h-screen bg-black text-white">
+        <section className="mx-auto w-full max-w-[1600px] px-6 pb-20 pt-32 md:px-12 md:pb-28 md:pt-40">
+          <nav
+            aria-label="Breadcrumb"
+            className="mb-8 font-mono text-[11px] uppercase tracking-[0.22em] text-zinc-500"
+          >
+            <Link href="/store" className="transition-colors hover:text-white">
+              Store
+            </Link>
+            <span className="mx-3" aria-hidden="true">
+              /
+            </span>
+            <span className="text-zinc-300">TC SSL Shelf</span>
+          </nav>
           <BuyBox />
+        </section>
+
+        <section className="border-t border-zinc-800">
+          <div className="mx-auto grid w-full max-w-[1600px] gap-8 px-6 py-16 md:grid-cols-[0.7fr_1.3fr] md:px-12 md:py-24">
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#00D26A]">
+              [ Designed for the field ]
+            </p>
+            <p className="max-w-[48rem] text-xl leading-relaxed text-zinc-300 md:text-2xl">
+              Built around the real top rail of an SSL Live console, with a
+              low-profile clip-on fit that keeps useful FOH essentials close
+              without permanently modifying the desk.
+            </p>
+          </div>
         </section>
       </main>
       <Footer />
