@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="23.15mm" height="14.7mm" viewBox="0 0 23.15 14.7" version="1.1" data-asset-class="power-symbol-production" data-marker-dimension-mm="13.2" data-overall-artwork-width-mm="21.65" data-overall-artwork-height-mm="13.2" data-artboard-width-mm="23.15" data-artboard-height-mm="14.7" data-print-scale="100%">
+<title>Generator</title>
+<desc>Production symbol. Marker dimension 13.2 mm at 100%. Overall artwork 21.65 x 13.20 mm. Operational plate is integral and mechanically overlaps the east axis.</desc>
+<g id="power-symbol-generator" data-symbol-name="Generator" data-role="source" data-marker-dimension-mm="13.2" data-overall-artwork-width-mm="21.65" data-overall-artwork-height-mm="13.2" data-scale-percent="100">
+<g id="power-symbol-generator-registration-ticks" data-tick-geometry="source-30-58-142-170">
+<line x1="7.35" y1="2.73" x2="7.35" y2="4.578" fill="none" stroke="#0A0A0A" stroke-width="0.3" stroke-linecap="square"/>
+<line x1="7.35" y1="10.122" x2="7.35" y2="11.97" fill="none" stroke="#0A0A0A" stroke-width="0.3" stroke-linecap="square"/>
+<line x1="2.73" y1="7.35" x2="4.578" y2="7.35" fill="none" stroke="#0A0A0A" stroke-width="0.3" stroke-linecap="square"/>
+<line x1="10.122" y1="7.35" x2="11.97" y2="7.35" fill="none" stroke="#0A0A0A" stroke-width="0.3" stroke-linecap="square"/>
+</g>
+<rect id="power-symbol-generator-generator-black-outer-frame" x="3.522" y="3.522" width="7.656" height="7.656" fill="#0A0A0A" stroke="none" stroke-width="0"/>
+<rect id="power-symbol-generator-generator-white-inner-field" x="4.776" y="4.776" width="5.148" height="5.148" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="0.195"/>
+<g id="power-symbol-generator-generator-knockout-g" data-operational-text="G" data-rendering="outlined-vector-stencil">
+<rect x="7.1096" y="3.6804" width="0.1411" height="0.1411" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="7.2699" y="3.6804" width="0.1411" height="0.1411" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="7.4301" y="3.6804" width="0.1411" height="0.1411" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="6.9493" y="3.8407" width="0.1411" height="0.1411" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="7.5904" y="3.8407" width="0.1411" height="0.1411" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="6.9493" y="4.001" width="0.1411" height="0.1411" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="6.9493" y="4.1613" width="0.1411" height="0.1411" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="7.2699" y="4.1613" width="0.1411" height="0.1411" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="7.4301" y="4.1613" width="0.1411" height="0.1411" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="7.5904" y="4.1613" width="0.1411" height="0.1411" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="6.9493" y="4.3215" width="0.1411" height="0.1411" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="7.5904" y="4.3215" width="0.1411" height="0.1411" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="6.9493" y="4.4818" width="0.1411" height="0.1411" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="7.5904" y="4.4818" width="0.1411" height="0.1411" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="7.1096" y="4.6421" width="0.1411" height="0.1411" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="7.2699" y="4.6421" width="0.1411" height="0.1411" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="7.4301" y="4.6421" width="0.1411" height="0.1411" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+</g>
+<polygon id="power-symbol-generator-accent-bolt" points="7.6272,5.5284 6.3204,7.4292 7.1124,7.4292 6.756,9.1716 8.3796,7.1124 7.3896,7.1124" fill="#00D26A" stroke="none" stroke-width="0"/>
+<rect id="power-symbol-generator-plate-lock-bridge" x="11.058" y="6.87" width="2.492" height="0.96" fill="#0A0A0A" stroke="none" stroke-width="0"/>
+<rect id="power-symbol-generator-integral-operational-plate" x="13.4" y="5.35" width="9" height="4" fill="#0A0A0A" stroke="none" stroke-width="0"/>
+<g id="power-symbol-generator-operational-id" data-operational-text="GEN" data-rendering="outlined-vector-stencil">
+<rect x="14.9429" y="5.97" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="15.3371" y="5.97" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="15.7314" y="5.97" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="14.5486" y="6.3643" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="16.1257" y="6.3643" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="14.5486" y="6.7586" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="14.5486" y="7.1529" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="15.3371" y="7.1529" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="15.7314" y="7.1529" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="16.1257" y="7.1529" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="14.5486" y="7.5471" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="16.1257" y="7.5471" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="14.5486" y="7.9414" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="16.1257" y="7.9414" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="14.9429" y="8.3357" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="15.3371" y="8.3357" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="15.7314" y="8.3357" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="16.9143" y="5.97" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="17.3086" y="5.97" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="17.7029" y="5.97" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="18.0971" y="5.97" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="18.4914" y="5.97" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="16.9143" y="6.3643" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="16.9143" y="6.7586" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="16.9143" y="7.1529" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="17.3086" y="7.1529" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="17.7029" y="7.1529" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="18.0971" y="7.1529" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="16.9143" y="7.5471" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="16.9143" y="7.9414" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="16.9143" y="8.3357" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="17.3086" y="8.3357" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="17.7029" y="8.3357" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="18.0971" y="8.3357" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="18.4914" y="8.3357" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="19.28" y="5.97" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="20.8571" y="5.97" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="19.28" y="6.3643" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="19.6743" y="6.3643" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="20.8571" y="6.3643" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="19.28" y="6.7586" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="19.6743" y="6.7586" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="20.8571" y="6.7586" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="19.28" y="7.1529" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="20.0686" y="7.1529" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="20.8571" y="7.1529" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="19.28" y="7.5471" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="20.4629" y="7.5471" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="20.8571" y="7.5471" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="19.28" y="7.9414" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="20.4629" y="7.9414" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="20.8571" y="7.9414" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="19.28" y="8.3357" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="20.8571" y="8.3357" width="0.347" height="0.347" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+</g>
+</g>
+</svg>

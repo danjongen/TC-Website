@@ -146,7 +146,7 @@ export default function StorePage() {
                 [ 02 — Software tool ]
               </p>
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-amber-300">
-                Conditional beta
+                Open beta
               </p>
             </div>
 
@@ -177,13 +177,13 @@ export default function StorePage() {
                   <li className="py-4">One-click Power Distribution Schedule</li>
                 </ul>
                 <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.14em] text-zinc-500">
-                  Vectorworks 2023–2026 · macOS · Version 0.1.0
+                  Vectorworks 2026 · macOS · Beta 0.2.2
                 </p>
                 <Link
-                  href="/contact?source=power-symbols-beta#contact-form"
+                  href="/store/power-symbols"
                   className="mt-6 flex items-center justify-between bg-[#00D26A] px-6 py-5 font-mono text-xs font-bold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
-                  Request beta access
+                  Get the beta
                   <span aria-hidden="true">→</span>
                 </Link>
               </div>
