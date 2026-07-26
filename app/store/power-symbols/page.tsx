@@ -3,6 +3,7 @@ import Link from "next/link"
 
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
+import { FreeBetaForm } from "./free-beta-form"
 import { PowerSymbolsDemo } from "./power-symbols-demo"
 
 const supportOptions = [
@@ -11,7 +12,7 @@ const supportOptions = [
     title: "Freeload responsibly",
     description:
       "Keep your cash. Pay with useful bug reports and accept the faint judgement of the green lightning bolt.",
-    href: "mailto:info@tc.agency?subject=Power%20Symbols%20%E2%80%94%20%240%20beta%20request&body=Hello%20TC%2C%0A%0AI%20would%20like%20the%20%240%20Power%20Symbols%20beta.%20I%20promise%20to%20test%20it%20properly%20and%20send%20useful%20bug%20reports%20with%20screenshots.%0A%0AMy%20name%3A%0AVectorworks%20version%3A%0AmacOS%20version%3A%0A",
+    href: "#free-beta",
     action: "Request a sympathy serial",
   },
   {
@@ -179,7 +180,10 @@ export default function PowerSymbolsPage() {
           </div>
         </section>
 
-        <section className="border-t border-zinc-800 bg-zinc-950">
+        <section
+          id="cable-roadmap"
+          className="scroll-mt-24 border-t border-zinc-800 bg-zinc-950"
+        >
           <div className="mx-auto grid w-full max-w-[1600px] gap-10 px-6 py-16 md:px-12 md:py-24 lg:grid-cols-[0.78fr_1.22fr]">
             <div>
               <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#00D26A]">
@@ -194,14 +198,15 @@ export default function PowerSymbolsPage() {
                 cable takeoffs.
               </p>
             </div>
-            <div className="relative min-h-80 overflow-hidden border border-zinc-800 bg-black p-7 md:p-10">
+            <div className="relative overflow-hidden border border-zinc-800 bg-black p-7 md:p-10">
               <div className="absolute left-0 right-0 top-1/2 h-px bg-zinc-800" />
               <div className="absolute bottom-0 top-0 left-1/2 w-px bg-zinc-800" />
               <svg
                 viewBox="0 0 800 320"
+                preserveAspectRatio="xMidYMid meet"
                 role="img"
                 aria-label="Roadmap concept showing a connector-aware three-dimensional cable route"
-                className="relative h-full min-h-64 w-full"
+                className="relative block h-64 w-full md:h-auto"
               >
                 <path
                   d="M70 230 C170 230 170 90 300 90 S430 260 560 210 S650 80 740 85"
@@ -236,7 +241,7 @@ export default function PowerSymbolsPage() {
                   <text x="350" y="292">RUN 46.8 m + SLACK</text>
                 </g>
               </svg>
-              <div className="relative mt-5 grid gap-px bg-zinc-800 sm:grid-cols-3">
+              <div className="relative mt-6 grid gap-px border border-zinc-800 bg-zinc-800 sm:grid-cols-3">
                 {[
                   ["3D", "Cable path"],
                   ["m", "Measured length"],
@@ -329,15 +334,21 @@ export default function PowerSymbolsPage() {
                   </div>
                   <span className="mt-8 flex items-center justify-between font-mono text-xs font-bold uppercase tracking-[0.18em] text-white group-hover:text-[#00D26A]">
                     {option.action}
-                    <span aria-hidden="true">↗</span>
+                    <span aria-hidden="true">
+                      {option.href.startsWith("#") ? "↓" : "↗"}
+                    </span>
                   </span>
                 </a>
               ))}
             </div>
             <p className="mt-7 font-mono text-[10px] uppercase tracking-[0.12em] text-zinc-600">
               Same build at every tier · Paid serials after checkout · $0
-              requests are approved by a human with a very small clipboard
+              serials delivered automatically by a reluctantly compassionate
+              robot
             </p>
+            <div className="mt-10">
+              <FreeBetaForm />
+            </div>
           </div>
         </section>
 

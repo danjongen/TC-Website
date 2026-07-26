@@ -55,6 +55,28 @@ export function createPowerSymbolsSerial(
   return `PSB1-${cleanOrder}-${buyerHash}-${mac.match(/.{4}/g)!.join("-")}`
 }
 
+export function createPowerSymbolsComplimentarySerial(email: string): string {
+  const normalizedEmail = email.trim().toLowerCase()
+  if (!normalizedEmail) {
+    throw new Error("Complimentary beta email is invalid")
+  }
+  const identityHex = createHmac(
+    "sha256",
+    requireEnvironment("POWER_SYMBOLS_SERIAL_SECRET"),
+  )
+    .update(`PSB1|COMPLIMENTARY|${normalizedEmail}`)
+    .digest("hex")
+    .slice(0, 15)
+  const numericIdentity = BigInt(`0x${identityHex}`)
+    .toString(10)
+    .padStart(18, "0")
+    .slice(0, 18)
+
+  // The leading 9 reserves a deterministic, non-Shopify identity namespace.
+  // A repeat request from the same email therefore receives the same serial.
+  return createPowerSymbolsSerial(`9${numericIdentity}`, normalizedEmail)
+}
+
 export function verifyPowerSymbolsSerial(
   serial: string,
   email?: string,
