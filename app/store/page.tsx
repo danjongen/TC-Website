@@ -146,7 +146,7 @@ export default function StorePage() {
                 [ 02 — Software tool ]
               </p>
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-amber-300">
-                Open beta
+                Paid beta
               </p>
             </div>
 
@@ -175,9 +175,10 @@ export default function StorePage() {
                   <li className="py-4">Seven production-ready symbol types</li>
                   <li className="py-4">Editable ratings, references and departments</li>
                   <li className="py-4">One-click Power Distribution Schedule</li>
+                  <li className="py-4">3D cable routing + length takeoff roadmap</li>
                 </ul>
                 <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.14em] text-zinc-500">
-                  Vectorworks 2026 · macOS · Beta 0.2.2
+                  Vectorworks 2026 · macOS · Beta 0.2.3
                 </p>
                 <Link
                   href="/store/power-symbols"
