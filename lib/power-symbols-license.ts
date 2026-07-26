@@ -5,7 +5,7 @@ import {
   timingSafeEqual,
 } from "node:crypto"
 
-export const POWER_SYMBOLS_VERSION = "0.2.3"
+export const POWER_SYMBOLS_VERSION = "0.2.4"
 export const POWER_SYMBOLS_PRODUCT = "power-symbols"
 export const POWER_SYMBOLS_BETA_VARIANTS = new Set([
   "53609848635755",

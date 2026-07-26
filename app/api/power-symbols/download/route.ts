@@ -5,7 +5,7 @@ import { verifyPowerSymbolsSerial } from "@/lib/power-symbols-license"
 
 export const runtime = "nodejs"
 
-const filename = "Power-Symbols-0.2.3-VW2023-2026-Paid-Beta.zip"
+const filename = "Power-Symbols-0.2.4-VW2023-2026-Paid-Beta.zip"
 
 export async function GET(request: Request) {
   const serial = new URL(request.url).searchParams.get("serial") || ""

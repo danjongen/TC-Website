@@ -731,7 +731,7 @@ export function PowerSymbolsDemo() {
           color: META_DARK,
         }}
       >
-        Symbol, rating, route and schedule row stay coordinated · Beta 0.2.3
+        Symbol, rating, route and schedule row stay coordinated · Beta 0.2.4
       </p>
     </section>
   )
