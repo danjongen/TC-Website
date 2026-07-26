@@ -7,27 +7,38 @@ import { PowerSymbolsDemo } from "./power-symbols-demo"
 
 const supportOptions = [
   {
+    amount: "$0",
+    title: "Freeload responsibly",
+    description:
+      "Keep your cash. Pay with useful bug reports and accept the faint judgement of the green lightning bolt.",
+    href: "mailto:info@tc.agency?subject=Power%20Symbols%20%E2%80%94%20%240%20beta%20request&body=Hello%20TC%2C%0A%0AI%20would%20like%20the%20%240%20Power%20Symbols%20beta.%20I%20promise%20to%20test%20it%20properly%20and%20send%20useful%20bug%20reports%20with%20screenshots.%0A%0AMy%20name%3A%0AVectorworks%20version%3A%0AmacOS%20version%3A%0A",
+    action: "Request a sympathy serial",
+  },
+  {
     amount: "$10",
     title: "Beta access",
     description: "Get the current private build, serial activation and beta updates.",
     href: "https://tc-agency-store.myshopify.com/cart/53609848635755:1",
+    action: "Get beta access",
   },
   {
     amount: "$25",
     title: "Beta + development support",
     description: "The same access, with extra support for testing and documentation.",
     href: "https://tc-agency-store.myshopify.com/cart/53609848668523:1",
+    action: "Get beta access",
   },
   {
     amount: "$50",
     title: "Beta + release support",
     description: "The same access, with a larger contribution toward QA and signing.",
     href: "https://tc-agency-store.myshopify.com/cart/53609848701291:1",
+    action: "Get beta access",
   },
 ] as const
 
 const description =
-  "Get the paid Power Symbols beta for Vectorworks 2026 on macOS. Place editable production power symbols and create a coordinated Power Distribution Schedule."
+  "Get the Power Symbols beta for Vectorworks 2026 on macOS. Place editable production power symbols and create a coordinated Power Distribution Schedule."
 
 export const metadata: Metadata = {
   title: "Power Symbols Beta for Vectorworks",
@@ -52,13 +63,13 @@ const softwareJsonLd = {
   name: "Power Symbols",
   applicationCategory: "DesignApplication",
   operatingSystem: "macOS",
-  softwareVersion: "0.2.3 paid beta",
+  softwareVersion: "0.2.3 beta",
   description,
   offers: {
     "@type": "AggregateOffer",
-    lowPrice: "10",
+    lowPrice: "0",
     highPrice: "50",
-    offerCount: "3",
+    offerCount: "4",
     priceCurrency: "USD",
   },
 }
@@ -90,7 +101,7 @@ export default function PowerSymbolsPage() {
           <div className="mt-12 grid items-end gap-10 lg:grid-cols-[1.05fr_0.95fr]">
             <div>
               <div className="flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-[0.17em]">
-                <span className="bg-[#00D26A] px-3 py-2 text-black">Paid beta</span>
+                <span className="bg-[#00D26A] px-3 py-2 text-black">Private beta</span>
                 <span className="border border-zinc-700 px-3 py-2 text-zinc-300">
                   Vectorworks 2026
                 </span>
@@ -117,8 +128,8 @@ export default function PowerSymbolsPage() {
                 Choose your support level. Get the build.
               </p>
               <p className="mt-4 leading-relaxed text-zinc-400">
-                Every tier unlocks the same private beta. After checkout,
-                you’ll receive the download and your activation serial by email.
+                Every tier unlocks the same private beta. Paid tiers deliver by
+                checkout; the $0 tier trades cash for genuinely useful testing.
               </p>
               <a
                 href="#beta-access"
@@ -269,6 +280,13 @@ export default function PowerSymbolsPage() {
               included installer verifies the plug-in and keeps a rollback
               backup.
             </p>
+            <p className="mt-4 max-w-4xl border-l-2 border-[#00D26A] pl-4 text-sm leading-relaxed text-zinc-300">
+              <strong className="text-white">Where the serial goes:</strong>{" "}
+              the activation window opens automatically the first time you
+              place or duplicate a Power Symbol. You can also open it at any
+              time from <strong className="text-white">Licence / Activation…</strong>{" "}
+              in the selected symbol’s Object Info palette.
+            </p>
           </div>
         </section>
 
@@ -277,20 +295,21 @@ export default function PowerSymbolsPage() {
             <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
               <div>
                 <p className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-500">
-                  [ Get the paid beta ]
+                  [ Get the beta ]
                 </p>
                 <h2 className="mt-6 max-w-[12ch] text-4xl font-semibold tracking-[-0.045em] md:text-6xl">
                   Pick the contribution that works for you.
                 </h2>
               </div>
               <p className="max-w-2xl leading-relaxed text-zinc-400">
-                Every option includes the same current beta, a private download
-                link and signed Mac activation. Higher tiers simply put more
-                toward testing, documentation and Apple signing.
+                Every option includes the same current beta and signed Mac
+                activation. Pay money, or choose $0 and pay in competent bug
+                reports. Higher tiers simply put more toward testing,
+                documentation and Apple signing.
               </p>
             </div>
 
-            <div className="mt-12 grid gap-4 md:grid-cols-3">
+            <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {supportOptions.map((option) => (
                 <a
                   key={option.amount}
@@ -309,15 +328,15 @@ export default function PowerSymbolsPage() {
                     </p>
                   </div>
                   <span className="mt-8 flex items-center justify-between font-mono text-xs font-bold uppercase tracking-[0.18em] text-white group-hover:text-[#00D26A]">
-                    Get beta access
+                    {option.action}
                     <span aria-hidden="true">↗</span>
                   </span>
                 </a>
               ))}
             </div>
             <p className="mt-7 font-mono text-[10px] uppercase tracking-[0.12em] text-zinc-600">
-              One-off paid beta access · Same build at every tier · Serial sent
-              after payment
+              Same build at every tier · Paid serials after checkout · $0
+              requests are approved by a human with a very small clipboard
             </p>
           </div>
         </section>
