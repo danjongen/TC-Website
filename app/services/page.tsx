@@ -198,7 +198,7 @@ export default function CapabilitiesPage() {
       <section className="pt-40 md:pt-48 pb-[14vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 — SERVICES ]</p>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 / SERVICES ]</p>
             <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">
               Full-spectrum production engineering
             </h1>
@@ -231,7 +231,7 @@ export default function CapabilitiesPage() {
       {/* Services index */}
       <section className="py-[14vh]">
         <div className="container mx-auto px-6">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 — CAPABILITIES ]</p>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 / CAPABILITIES ]</p>
 
           <div>
             {services.map((service, i) => (
@@ -285,7 +285,7 @@ export default function CapabilitiesPage() {
       {/* Technology Partners */}
       <section className="py-[14vh]">
         <div className="container mx-auto px-6">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 — TECHNOLOGY PARTNERS ]</p>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 / TECHNOLOGY PARTNERS ]</p>
           <div className="flex flex-wrap gap-x-10 gap-y-4 max-w-3xl">
             {partners.map((partner) => (
               <span

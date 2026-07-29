@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
 
   const id = await mintShortLink(token)
   if (!id) {
-    // Redis unavailable — signal the client to fall back to the long URL.
+    // Redis unavailable - signal the client to fall back to the long URL.
     return NextResponse.json({ id: null })
   }
   return NextResponse.json({ id })

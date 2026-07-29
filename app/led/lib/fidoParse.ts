@@ -27,7 +27,7 @@ export async function parseFidoPdf(file: File): Promise<FidoParseResult> {
   }
   try {
     const pdfjs = await import("pdfjs-dist")
-    // Worker URL — Next bundles assets under chunk paths; the legacy
+    // Worker URL - Next bundles assets under chunk paths; the legacy
     // CDN-less path below uses Vite-style ?url import, which Webpack
     // also honors via static `new URL(...)`.
     if (!pdfjs.GlobalWorkerOptions.workerSrc) {
@@ -51,7 +51,7 @@ export async function parseFidoPdf(file: File): Promise<FidoParseResult> {
     if (!m) {
       return {
         ok: false,
-        error: "Not a recognizable FidoLED export — missing 'Results for' header.",
+        error: "Not a recognizable FidoLED export - missing 'Results for' header.",
         rawText,
       }
     }
@@ -128,12 +128,12 @@ function guessPowerService(raw: string): PowerService {
  *
  * Strategy:
  *   1. Exact normalized match on `${mfr} ${model}` or `${model}`.
- *   2. Substring containment either direction — FidoLED often
+ *   2. Substring containment either direction - FidoLED often
  *      omits the disambiguating part of the manufacturer name
  *      (e.g. "ROE Vanish V8T GOB" vs library "ROE Visual Vanish
  *      V8T GOB"). The library's normalized model alone should
  *      land inside the target string.
- *   3. Longest shared suffix of model — covers the case where
+ *   3. Longest shared suffix of model - covers the case where
  *      FidoLED labels a panel by its model line only.
  */
 export function fuzzyMatchCabinet(
@@ -150,7 +150,7 @@ export function fuzzyMatchCabinet(
     if (norm(c.model) === target) return c.id
   }
 
-  // 2. Substring containment — pick the longest-model match so a
+  // 2. Substring containment - pick the longest-model match so a
   // longer model name beats a shorter one that's also a substring.
   let bestContains: { id: string; score: number } | null = null
   for (const c of library) {
@@ -165,7 +165,7 @@ export function fuzzyMatchCabinet(
   if (bestContains) return bestContains.id
 
   // 3. Token-overlap fallback (e.g. "Black Pearl 2" vs "Black Pearl
-  // BP2 V2") — count distinct alpha-numeric tokens shared.
+  // BP2 V2") - count distinct alpha-numeric tokens shared.
   const tokens = (s: string) =>
     s.toLowerCase().split(/[^a-z0-9]+/).filter((t) => t.length >= 2)
   const tTok = new Set(tokens(name))

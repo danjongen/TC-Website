@@ -2,7 +2,7 @@
 import type { Units } from "../lib/types"
 
 /**
- * METRIC / IMPERIAL segmented toggle. Display-only — switches how measured
+ * METRIC / IMPERIAL segmented toggle. Display-only - switches how measured
  * values are shown across the spec, exports, and share link.
  */
 export function UnitsToggle({

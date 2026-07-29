@@ -19,7 +19,7 @@ import { BreadcrumbSchema, ServicePageSchema } from "@/components/structured-dat
 import { ServiceAccordion } from "@/components/v2/service-accordion"
 
 export const metadata: Metadata = {
-  title: "Executive & Strategic Consulting | TC Agency — Production Engineering",
+  title: "Executive & Strategic Consulting | TC Agency - Production Engineering",
   description:
     "Senior production leadership and strategic consulting for high-stakes environments. TC Agency delivers decision frameworks, risk mitigation, vendor strategy, budget intelligence, and cross-department alignment for complex global productions.",
   keywords: [
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     "Technically Creative",
   ],
   openGraph: {
-    title: "Executive & Strategic Consulting — TC Agency",
+    title: "Executive & Strategic Consulting - TC Agency",
     description:
       "High-level production and technical strategy for shows and programs that demand clarity, reliability, and senior leadership. Decision frameworks, risk control, and operational alignment.",
     url: "https://tc.agency/services/executive-consulting",
@@ -46,13 +46,13 @@ export const metadata: Metadata = {
         url: "/og/consulting.jpg",
         width: 1200,
         height: 630,
-        alt: "Executive & Strategic Consulting — TC Production Engineering",
+        alt: "Executive & Strategic Consulting - TC Production Engineering",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Executive & Strategic Consulting — TC Agency",
+    title: "Executive & Strategic Consulting - TC Agency",
     description:
       "High-level production and technical strategy for shows and programs that demand clarity, reliability, and senior leadership.",
     images: ["/og/consulting.jpg"],
@@ -189,7 +189,7 @@ export default function ExecutiveConsultingPage() {
 
           {/* Header */}
           <div className="mb-16 max-w-4xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — EXECUTIVE CONSULTING ]</p>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE / EXECUTIVE CONSULTING ]</p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
               Executive & Strategic Consulting
             </h1>

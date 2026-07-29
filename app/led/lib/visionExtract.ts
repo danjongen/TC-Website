@@ -1,5 +1,5 @@
 /**
- * Datasheet vision extraction — gates 1 and 2 of "triple validation".
+ * Datasheet vision extraction - gates 1 and 2 of "triple validation".
  *
  *  Gate 1 (extract):    Gemini reads the datasheet → structured cabinet fields.
  *  Gate 2 (cross-check): Claude reads the same datasheet independently →
@@ -7,19 +7,19 @@
  *                        are surfaced, never silently averaged.
  *  Gate 3 (physics):     validateCabinet() runs downstream (see route).
  *
- * Two different model families is the point — agreement between them is a far
+ * Two different model families is the point - agreement between them is a far
  * stronger signal than one model run twice. Server-only.
  *
  * Env:
- *   GOOGLE_API_KEY     — Gemini (gate 1)
- *   ANTHROPIC_API_KEY  — Claude (gate 2)
- *   GEMINI_MODEL       — default "gemini-2.5-pro"
- *   ANTHROPIC_MODEL    — default "claude-opus-4-7"
+ *   GOOGLE_API_KEY     - Gemini (gate 1)
+ *   ANTHROPIC_API_KEY  - Claude (gate 2)
+ *   GEMINI_MODEL       - default "gemini-2.5-pro"
+ *   ANTHROPIC_MODEL    - default "claude-opus-4-7"
  */
 
 import Anthropic from "@anthropic-ai/sdk"
 
-// Fields a datasheet realistically provides. Everything is nullable —
+// Fields a datasheet realistically provides. Everything is nullable -
 // a model must return null rather than guess.
 export type ExtractedCabinet = {
   manufacturer: string | null
@@ -77,7 +77,7 @@ const STRING_FIELDS: (keyof ExtractedCabinet)[] = [
 ]
 
 const PROMPT = `You are reading a manufacturer datasheet for a single LED video wall cabinet (panel/tile).
-Extract ONLY values explicitly stated in the document. If a value is not present or you are unsure, return null for that field — never guess or infer.
+Extract ONLY values explicitly stated in the document. If a value is not present or you are unsure, return null for that field - never guess or infer.
 
 Field notes:
 - pixel_pitch_mm: the pixel pitch in millimetres (the nominal/marketed value is fine).

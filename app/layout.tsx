@@ -42,7 +42,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: {
     default: "Technical Direction and Production Engineering | Technically Creative LLC (TC Agency)",
-    template: "%s — Technically Creative (TC Agency)",
+    template: "%s - Technically Creative (TC Agency)",
   },
   description:
     "Technically Creative delivers high-stakes technical direction, production engineering, and production management for global brands and artists, led by Executive Technical Producer Daniel Jongen.",
@@ -69,10 +69,10 @@ export const metadata: Metadata = {
     "Best Production Manager",
   ],
   authors: [{ name: "Daniel Jongen" }, { name: "TC Agency" }, { name: "Technically Creative" }],
-  creator: "Daniel Jongen — Technically Creative LLC",
+  creator: "Daniel Jongen - Technically Creative LLC",
   publisher: "TC Agency",
   metadataBase: new URL("https://www.tc.agency"),
-  applicationName: "TC Agency — Technical Direction & Production Engineering",
+  applicationName: "TC Agency - Technical Direction & Production Engineering",
   alternates: {
     canonical: "https://www.tc.agency",
   },
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://www.tc.agency",
-    siteName: "TC Agency — Technically Creative",
+    siteName: "TC Agency - Technically Creative",
     title: "Technical Direction and Production Engineering | TC Agency",
     description:
       "Technically Creative delivers high-stakes technical direction, production engineering, and production management for global brands and artists, led by Executive Technical Producer Daniel Jongen.",
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Technically Creative — We Make Impossible Shows Run",
+        alt: "Technically Creative - We Make Impossible Shows Run",
       },
     ],
   },
@@ -100,7 +100,7 @@ export const metadata: Metadata = {
     title: "Technical Direction and Production Engineering | TC Agency",
     description:
       "Technically Creative delivers high-stakes technical direction, production engineering, and production management for global brands and artists, led by Executive Technical Producer Daniel Jongen.",
-    images: [{ url: "/og-image.png", alt: "Technically Creative — We Make Impossible Shows Run" }],
+    images: [{ url: "/og-image.png", alt: "Technically Creative - We Make Impossible Shows Run" }],
   },
   robots: {
     index: true,

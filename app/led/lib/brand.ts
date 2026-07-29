@@ -22,7 +22,7 @@ export const COPYRIGHT = "TECHNICALLY CREATIVE / DETROIT"
 /**
  * Liability disclaimer. Shown on every screen and baked into every
  * export. These numbers are derived from a cabinet library that may
- * be incomplete or out of date — they are not a substitute for the
+ * be incomplete or out of date - they are not a substitute for the
  * manufacturer's own documentation.
  */
 export const DISCLAIMER =
@@ -48,7 +48,7 @@ export const PROJECT_CODE_REGEX = /^\d{2}-[A-Z]{3}-\d{2}-[A-Z]+$/
 
 /**
  * Installed weight allowance presets (percent of base wall weight).
- * Wind bracing is never on by default — outdoor/engineered only.
+ * Wind bracing is never on by default - outdoor/engineered only.
  */
 export const ALLOWANCE_PRESETS = {
   standard: { cabling_pct: 3, rigging_pct: 12, top_rigging_pct: 5 },

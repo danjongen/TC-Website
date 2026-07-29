@@ -11,7 +11,7 @@ const description =
   "Purpose-built hardware and software for live production, including the TC SSL Shelf for SSL Live consoles and Power Symbols for Vectorworks."
 
 export const metadata: Metadata = {
-  title: "Store — Live Production Field Tools",
+  title: "Store - Live Production Field Tools",
   description,
   alternates: { canonical: "https://www.tc.agency/store" },
   openGraph: {
@@ -61,7 +61,7 @@ export default function StorePage() {
       <main id="main-content" className="min-h-screen bg-black text-white">
         <section className="mx-auto w-full max-w-[1600px] px-6 pb-16 pt-36 md:px-12 md:pb-24 md:pt-44">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#00D26A]">
-            [ Store — Field Tools ]
+            [ Store / Field Tools ]
           </p>
           <h1 className="mt-7 max-w-[14ch] text-5xl font-semibold leading-[0.95] tracking-[-0.05em] text-balance sm:text-6xl md:text-7xl lg:text-8xl">
             Built for the field.
@@ -78,7 +78,7 @@ export default function StorePage() {
         >
           <div className="mb-8 flex items-center justify-between gap-6">
             <p className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-400">
-              [ 01 — Physical tool ]
+              [ 01 / Physical tool ]
             </p>
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#00D26A]">
               Available now
@@ -143,7 +143,7 @@ export default function StorePage() {
           <div className="mx-auto w-full max-w-[1600px] px-6 py-16 md:px-12 md:py-24">
             <div className="mb-8 flex items-center justify-between gap-6">
               <p className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-400">
-                [ 02 — Software tool ]
+                [ 02 / Software tool ]
               </p>
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-amber-300">
                 Paid beta
@@ -165,7 +165,7 @@ export default function StorePage() {
                 </h2>
                 <p className="mt-7 max-w-xl leading-relaxed text-zinc-300">
                   Editable power-distribution symbols and a coordinated power
-                  schedule for production drawings—without maintaining the same
+                  schedule for production drawings without maintaining the same
                   information twice.
                 </p>
               </div>
@@ -196,7 +196,7 @@ export default function StorePage() {
           <div className="mx-auto grid w-full max-w-[1600px] gap-10 px-6 py-20 md:grid-cols-[1fr_auto] md:items-end md:px-12 md:py-28">
             <div>
               <p className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-400">
-                [ 03 — What should exist? ]
+                [ 03 / What should exist? ]
               </p>
               <h2 className="mt-5 max-w-[17ch] text-3xl font-semibold tracking-[-0.03em] md:text-5xl">
                 If your crew keeps improvising the same fix, tell us.

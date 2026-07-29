@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * Power Symbols — animated demonstration frame
+ * Power Symbols - animated demonstration frame
  * app/store/power-symbols/power-symbols-demo.tsx
  *
  * Redesign notes
@@ -12,7 +12,7 @@
  *   (correct inside any page container, not just at viewport breakpoints).
  * - Frame height is stable across all three examples: every symbol has 8 data fields,
  *   cells have a fixed min-height that already fits a 2-line value, and nothing that
- *   animates changes layout — only transform, opacity, pathLength and clip-path.
+ *   animates changes layout - only transform, opacity, pathLength and clip-path.
  * - Base styles ARE the final state. Animation only adds the entrance. That means the
  *   reduced-motion state, the no-JS state and the SSR state are all the finished frame.
  *
@@ -221,7 +221,7 @@ export function PowerSymbolsDemo() {
         </p>
       </div>
 
-      {/* the frame — 1px gaps over a black backing draw every rule */}
+      {/* the frame - 1px gaps over a black backing draw every rule */}
       <article
         style={{
           marginTop: 'clamp(18px,2.6cqw,32px)',
@@ -295,7 +295,7 @@ export function PowerSymbolsDemo() {
                     <path d="M28 372 L8 372 L8 352" />
                   </g>
 
-                  {/* 1 — registration lines shoot in from four directions */}
+                  {/* 1 - registration lines shoot in from four directions */}
                   <g stroke={INK} strokeWidth={1.2} strokeLinecap="square">
                     {([
                       ['M20 150 H122', -74, 0],
@@ -331,7 +331,7 @@ export function PowerSymbolsDemo() {
                     ))}
                   </g>
 
-                  {/* 2 + 3 — target draws itself, then the inner ring / generator frame */}
+                  {/* 2 + 3 - target draws itself, then the inner ring / generator frame */}
                   {sym.variant === 'square' ? (
                     <>
                       <motion.rect
@@ -374,7 +374,7 @@ export function PowerSymbolsDemo() {
                     {...R({ opacity: 0, scale: 0 }, { opacity: 1, scale: 1 }, { duration: 0.24, delay: 0.56, ease: [0.34, 1.4, 0.44, 1] as const })}
                   />
 
-                  {/* 4 — the bolt lands, overshoots, snaps */}
+                  {/* 4 - the bolt lands, overshoots, snaps */}
                   <motion.path
                     d="M208 118 L178 158 L196 158 L192 186 L222 146 L204 146 Z"
                     fill={GREEN} stroke={INK} strokeWidth={1.4} strokeLinejoin="miter"
@@ -390,14 +390,14 @@ export function PowerSymbolsDemo() {
                     )}
                   />
 
-                  {/* 5 — connector grows out of the symbol */}
+                  {/* 5 - connector grows out of the symbol */}
                   <motion.line
                     x1={200} y1={212} x2={200} y2={294} stroke={INK} strokeWidth={3.4}
                     style={{ transformBox: 'view-box', transformOrigin: '200px 212px' }}
                     {...R({ scaleY: 0 }, { scaleY: 1 }, { duration: 0.32, delay: 1.5, ease: OUT as never })}
                   />
 
-                  {/* 6 — the integral plate unfolds off the connector */}
+                  {/* 6 - the integral plate unfolds off the connector */}
                   <motion.g
                     style={{ transformBox: 'view-box', transformOrigin: '200px 292px' }}
                     {...R({ scaleY: 0, opacity: 0.4 }, { scaleY: 1, opacity: 1 }, { duration: 0.36, delay: 1.79, ease: [0.3, 1.28, 0.42, 1] as const })}
@@ -408,7 +408,7 @@ export function PowerSymbolsDemo() {
                   </motion.g>
                 </svg>
 
-                {/* 7 — plate characters, masked, alternating */}
+                {/* 7 - plate characters, masked, alternating */}
                 <div
                   aria-hidden="true"
                   style={{
@@ -498,7 +498,7 @@ export function PowerSymbolsDemo() {
               }}
             >
               <span style={{ color: META }}>Selected object</span>
-              {/* 8 — object ID wipes on */}
+              {/* 8 - object ID wipes on */}
               <motion.span
                 style={{
                   display: 'flex',
@@ -547,7 +547,7 @@ export function PowerSymbolsDemo() {
 
             <div style={{ height: 1, background: RULE, margin: '18px 0' }} />
 
-            {/* 9 — data rows reveal in an orderly stagger */}
+            {/* 9 - data rows reveal in an orderly stagger */}
             <dl
               style={{
                 margin: 0,
@@ -614,7 +614,7 @@ export function PowerSymbolsDemo() {
 
             <div style={{ flex: '1 1 auto', minHeight: 16 }} />
 
-            {/* 10 — the closing message */}
+            {/* 10 - the closing message */}
             <motion.p
               style={{
                 margin: '20px 0 0',

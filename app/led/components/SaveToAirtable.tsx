@@ -166,7 +166,7 @@ export function SaveToAirtable({
               </div>
             ) : filtered.length === 0 ? (
               <div className="mono text-[10px] uppercase p-3 text-[var(--led-ink-faint)]">
-                NO MATCH — TYPED CODE WILL BE USED AS-IS
+                NO MATCH - TYPED CODE WILL BE USED AS-IS
               </div>
             ) : (
               filtered.map((p) => (
@@ -187,7 +187,7 @@ export function SaveToAirtable({
                   onMouseLeave={(e) => (e.currentTarget.style.background = "")}
                 >
                   <div className="flex items-baseline justify-between gap-3">
-                    <span className="mono text-[11px] font-bold">{p.code || "—"}</span>
+                    <span className="mono text-[11px] font-bold">{p.code || "-"}</span>
                     {p.status ? (
                       <span className="mono text-[10px] uppercase text-[var(--led-ink-faint)]">
                         {p.status}

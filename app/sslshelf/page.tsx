@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: canonicalUrl,
-    title: "TC SSL Shelf — Console Shelf for SSL Live",
+    title: "TC SSL Shelf - Console Shelf for SSL Live",
     description,
     images: [
       {
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "TC SSL Shelf — Console Shelf for SSL Live",
+    title: "TC SSL Shelf - Console Shelf for SSL Live",
     description,
     images: [heroShow.src],
   },
@@ -159,11 +159,7 @@ export default function SslShelfPage() {
             </span>
             <span className="text-zinc-300">TC SSL Shelf</span>
           </nav>
-          <BuyBox />
-        </section>
-
-        <section className="border-t border-zinc-800">
-          <div className="mx-auto grid w-full max-w-[1600px] gap-8 px-6 py-16 md:grid-cols-[0.7fr_1.3fr] md:px-12 md:py-24">
+          <div className="mb-12 grid gap-5 border-y border-zinc-800 py-8 md:grid-cols-[0.7fr_1.3fr] md:items-start md:py-10">
             <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#00D26A]">
               [ Designed for the field ]
             </p>
@@ -173,6 +169,7 @@ export default function SslShelfPage() {
               without permanently modifying the desk.
             </p>
           </div>
+          <BuyBox />
         </section>
       </main>
       <Footer />

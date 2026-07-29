@@ -2,11 +2,11 @@ import type { Derived, Units, WallConfig } from "./types"
 import { fmt } from "./derive"
 
 /**
- * Display unit helpers. Conversions are display-only — every stored/derived
+ * Display unit helpers. Conversions are display-only - every stored/derived
  * value stays metric (SI), so toggling never changes the underlying numbers.
  *
  * Hardware specs that the LED industry quotes in mm worldwide (pixel pitch,
- * tile size, service depth) are intentionally NOT switched — they read mm in
+ * tile size, service depth) are intentionally NOT switched - they read mm in
  * both modes.
  */
 
@@ -41,7 +41,7 @@ export function fmtWallWH(d: Derived, u: Units, sep = "×"): string {
     : `${d.wall_width_m.toFixed(2)} ${sep} ${d.wall_height_m.toFixed(2)} m`
 }
 
-/** Wall W×H in the OTHER system — the hero sub-caption that shows the conversion. */
+/** Wall W×H in the OTHER system - the hero sub-caption that shows the conversion. */
 export function fmtWallWHAlt(d: Derived, u: Units, sep = "×"): string {
   return u === "imperial"
     ? `${d.wall_width_m.toFixed(2)} ${sep} ${d.wall_height_m.toFixed(2)} m`

@@ -21,15 +21,15 @@ export function Header({
         <div className="flex items-center gap-3 sm:gap-6 shrink-0">
           <div className="hidden sm:flex items-center gap-2">
             <span className="label">DOC</span>
-            <span className="mono text-[12px]">{projectCode || "—"}</span>
+            <span className="mono text-[12px]">{projectCode || "-"}</span>
           </div>
           <div className="hidden sm:flex items-center gap-2">
             <span className="label">REV</span>
-            <span className="mono text-[12px]">{rev || "—"}</span>
+            <span className="mono text-[12px]">{rev || "-"}</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="label">ISSUED</span>
-            <span className="mono text-[12px]">{issuedDate || "—"}</span>
+            <span className="mono text-[12px]">{issuedDate || "-"}</span>
           </div>
         </div>
       </div>

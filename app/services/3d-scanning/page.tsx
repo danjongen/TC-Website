@@ -33,7 +33,7 @@ export default function ScanningPage() {
 
         {/* Header */}
         <div className="mb-16 max-w-4xl">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — 3D SCANNING & AERIAL SURVEYING ]</p>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE / 3D SCANNING & AERIAL SURVEYING ]</p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">Reality Capture</h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
             High-precision 3D scanning and aerial surveying that captures every dimension of your venue. The foundation

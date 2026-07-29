@@ -13,9 +13,9 @@ const GREEN = "#00D26A"
 const PointCloud = dynamic(() => import("./point-cloud").then((m) => m.PointCloud), { ssr: false })
 
 const SLIDES = [
-  { src: "/images/bsb-live-06-cloud.jpg", caption: "BACKSTREET BOYS — SPHERE, LAS VEGAS" },
-  { src: "/images/bsb-live-02-cloud.jpg", caption: "INTO THE MILLENNIUM — AUTOMATION & POWER" },
-  { src: "/images/bsb-live-04-cloud.jpg", caption: "SPHERE RESIDENCY — VIDEO SYSTEMS" },
+  { src: "/images/bsb-live-06-cloud.jpg", caption: "BACKSTREET BOYS - SPHERE, LAS VEGAS" },
+  { src: "/images/bsb-live-02-cloud.jpg", caption: "INTO THE MILLENNIUM - AUTOMATION & POWER" },
+  { src: "/images/bsb-live-04-cloud.jpg", caption: "SPHERE RESIDENCY - VIDEO SYSTEMS" },
 ]
 
 const IMAGES = SLIDES.map((s) => s.src)
@@ -56,7 +56,7 @@ export function CloudHero() {
         {/* poster renders immediately; the point cloud fades in over it when ready */}
         <Image
           src="/images/bsb-live-06.jpg"
-          alt="Backstreet Boys at Sphere, Las Vegas — production by Technically Creative"
+          alt="Backstreet Boys at Sphere, Las Vegas - production by Technically Creative"
           fill
           priority
           sizes="100vw"

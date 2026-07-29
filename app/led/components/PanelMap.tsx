@@ -5,7 +5,7 @@ import { COLORS } from "../lib/brand"
 
 /**
  * SVG panel map. Cabinets numbered L→R, T→B starting at 01
- * (context-aware pad — grows to 001 once total > 99).
+ * (context-aware pad - grows to 001 once total > 99).
  * Corner cabinets in accent. Axis labels every N cols/rows.
  * Signal entry corner shown with accent arrow.
  * Audience direction marked at appropriate edge.
@@ -55,7 +55,7 @@ export function PanelMap({
           role="img"
           aria-label={`Panel map ${cols} by ${rows}`}
         >
-          {/* Axis labels — columns */}
+          {/* Axis labels - columns */}
           {Array.from({ length: cols }).map((_, c) => {
             const show = c === 0 || c === cols - 1 || (c + 1) % showEveryNCol === 0
             if (!show) return null
@@ -73,7 +73,7 @@ export function PanelMap({
               </text>
             )
           })}
-          {/* Axis labels — rows */}
+          {/* Axis labels - rows */}
           {Array.from({ length: rows }).map((_, r) => {
             const show = r === 0 || r === rows - 1 || (r + 1) % showEveryNRow === 0
             if (!show) return null

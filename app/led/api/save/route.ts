@@ -22,7 +22,7 @@ async function tokenFor(password: string): Promise<string> {
 }
 
 export const dynamic = "force-dynamic"
-// Allow larger payloads — spec PDF + map PNG can each be a few hundred KB.
+// Allow larger payloads - spec PDF + map PNG can each be a few hundred KB.
 export const maxDuration = 60
 
 export async function POST(req: NextRequest) {

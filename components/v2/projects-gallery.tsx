@@ -61,7 +61,7 @@ function ProjectCard({ project, onCardFocus }: { project: (typeof PROJECTS)[numb
       <motion.div style={{ y: imageY }} className="absolute inset-[-14%]">
         <Image
           src={project.image}
-          alt={`${project.title} — ${project.client}`}
+          alt={`${project.title} - ${project.client}`}
           fill
           sizes="(max-width: 768px) 85vw, 60vw"
           className="object-cover transition-[transform,filter] duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04] group-hover:brightness-110"
@@ -70,7 +70,7 @@ function ProjectCard({ project, onCardFocus }: { project: (typeof PROJECTS)[numb
       <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-black/80 to-transparent" />
       <div className="absolute bottom-0 left-0 p-8 md:p-12">
         <p className="mb-3 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
-          {project.index} / 004 — {project.role.toUpperCase()}
+          {project.index} / 004 - {project.role.toUpperCase()}
         </p>
         <h3 className="text-3xl font-bold tracking-[-0.03em] text-white md:text-5xl">{project.title}</h3>
         <p className="mt-2 text-zinc-400">{project.client}</p>
@@ -83,7 +83,7 @@ function ProjectCard({ project, onCardFocus }: { project: (typeof PROJECTS)[numb
 function GalleryHeader() {
   return (
     <div className="mx-auto w-full max-w-[1600px] px-6 pt-[20vh] md:px-12">
-      <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 — SELECTED WORK ]</p>
+      <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 / SELECTED WORK ]</p>
       <h2 className="max-w-4xl text-5xl font-semibold tracking-[-0.03em] text-white md:text-7xl">
         Built for the biggest stages on Earth
       </h2>
@@ -96,7 +96,7 @@ function PortfolioCard() {
     <Link
       href="/portfolio"
       data-cursor="hover"
-      className="flex h-[70vh] w-[60vw] shrink-0 snap-start items-center justify-center transition-colors duration-300 md:h-[75vh] md:w-[35vw]"
+      className="flex h-[70vh] w-[60vw] shrink-0 snap-start items-center justify-center transition-colors duration-300 md:h-[75vh] md:w-[25vw]"
     >
       <span className="font-mono text-base tracking-[0.25em] text-zinc-400 transition-colors duration-300 hover:text-white">
         FULL PORTFOLIO →
@@ -107,15 +107,36 @@ function PortfolioCard() {
 
 export function ProjectsGallery() {
   const trackRef = useRef<HTMLDivElement>(null)
+  const rowRef = useRef<HTMLDivElement>(null)
   const [coarse, setCoarse] = useState(false)
   const [card, setCard] = useState(1)
+  const [travel, setTravel] = useState(0)
 
   useEffect(() => {
     setCoarse(window.matchMedia("(pointer: coarse)").matches || window.matchMedia("(prefers-reduced-motion: reduce)").matches)
   }, [])
 
+  useEffect(() => {
+    const row = rowRef.current
+    if (!row || coarse) return
+
+    const measure = () => {
+      setTravel(Math.max(0, row.scrollWidth - window.innerWidth))
+    }
+
+    measure()
+    const observer = new ResizeObserver(measure)
+    observer.observe(row)
+    window.addEventListener("resize", measure)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener("resize", measure)
+    }
+  }, [coarse])
+
   const { scrollYProgress } = useScroll({ target: trackRef, offset: ["start start", "end end"] })
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-72%"])
+  const x = useTransform(scrollYProgress, [0, 1], [0, -travel])
   const progressScale = useTransform(scrollYProgress, [0, 1], [0, 1])
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     setCard(Math.min(PROJECTS.length, Math.max(1, Math.ceil(v * PROJECTS.length))))
@@ -142,9 +163,13 @@ export function ProjectsGallery() {
     <section className="relative bg-black" aria-label="Featured projects">
       <GalleryHeader />
 
-      <div ref={trackRef} className="relative h-[260vh]">
+      <div ref={trackRef} className="relative h-[300vh]">
         <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
-          <motion.div style={{ x }} className="flex gap-8 pl-6 md:pl-[8vw]">
+          <motion.div
+            ref={rowRef}
+            style={{ x }}
+            className="flex w-max gap-8 pl-6 pr-6 md:pl-[8vw] md:pr-[4vw]"
+          >
             {PROJECTS.map((p, i) => (
               <ProjectCard
                 key={p.index}

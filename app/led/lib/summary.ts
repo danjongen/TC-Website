@@ -10,7 +10,7 @@ export function buildSummary(
 ): string {
   const u = unitsOf(cfg)
   const lines: string[] = []
-  lines.push(`${cfg.project_code || "—"} / ${cfg.project_name || "—"}`)
+  lines.push(`${cfg.project_code || "-"} / ${cfg.project_name || "-"}`)
   lines.push("")
   const pad = (k: string) => k.padEnd(11, " ")
   lines.push(`${pad("CABINET")} ${cab.manufacturer} ${cab.model} / ${cab.pixel_pitch_mm.toFixed(2)}mm`)

@@ -259,7 +259,7 @@ function IngestPanel({ onSaved }: { onSaved: () => void }) {
           className="mono text-[10px] uppercase mt-3 px-3 py-2 border flex items-center justify-between gap-3"
           style={{ borderColor: "var(--led-ink)", color: "var(--led-ink)" }}
         >
-          <span>DRAFT SAVED / UNPUBLISHED — VERIFY IN AIRTABLE</span>
+          <span>DRAFT SAVED / UNPUBLISHED - VERIFY IN AIRTABLE</span>
           {saved ? (
             <a href={saved} target="_blank" rel="noreferrer" className="underline">
               OPEN →
@@ -297,7 +297,7 @@ function DraftReview({
   return (
     <div className="mt-4 border-t hairline pt-4 space-y-3">
       <div className="flex flex-wrap items-center gap-3">
-        <span className="mono text-[13px] font-bold">{draft.id || "—"}</span>
+        <span className="mono text-[13px] font-bold">{draft.id || "-"}</span>
         <span
           className="mono text-[10px] uppercase"
           style={{
@@ -343,7 +343,7 @@ function DraftReview({
                 <td className="px-2 py-1">{fmtVal(c.gemini)}</td>
                 <td className="px-2 py-1">{fmtVal(c.claude)}</td>
                 <td className="px-2 py-1" style={{ color: c.agree ? "var(--led-accent)" : "var(--led-error)" }}>
-                  {c.gemini === null && c.claude === null ? "—" : c.agree ? "OK" : "≠"}
+                  {c.gemini === null && c.claude === null ? "-" : c.agree ? "OK" : "≠"}
                 </td>
               </tr>
             ))}
@@ -406,7 +406,7 @@ function RowCard({ row }: { row: Row }) {
               PHYSICS / {statusText}
             </span>
             <span className="mono text-[10px] uppercase text-[var(--led-ink-faint)]">
-              {row.confidence ? row.confidence.toUpperCase() : "—"}
+              {row.confidence ? row.confidence.toUpperCase() : "-"}
             </span>
             <span
               className="mono text-[10px] uppercase"
@@ -440,7 +440,7 @@ function RowCard({ row }: { row: Row }) {
 }
 
 function fmtVal(v: string | number | null): string {
-  if (v === null || v === undefined) return "—"
+  if (v === null || v === undefined) return "-"
   return String(v)
 }
 

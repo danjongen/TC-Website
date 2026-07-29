@@ -6,11 +6,11 @@
  * Slack / email / advance docs without a wall of base64.
  *
  * Store priority (server-only):
- *   1. Upstash Redis (REST)  — if UPSTASH_REDIS_REST_URL/TOKEN are set.
- *   2. Airtable              — falls back to the LED Cabinet DB base using
+ *   1. Upstash Redis (REST)  - if UPSTASH_REDIS_REST_URL/TOKEN are set.
+ *   2. Airtable              - falls back to the LED Cabinet DB base using
  *                              the same PAT the cabinet library uses, so
  *                              short links work with no extra infra.
- *   3. none                  — minting returns null; callers use the long URL.
+ *   3. none                  - minting returns null; callers use the long URL.
  *
  * IDs are deterministic (hash of the token) so re-minting the same config is
  * idempotent. Resolve checks Upstash first, then Airtable, so links minted

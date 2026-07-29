@@ -1,13 +1,13 @@
 /**
  * Reads the cabinet library from the "LED Cabinet DB" Airtable base.
  * Server-only. The deployed app needs a PAT with read access to that
- * base — AIRTABLE_CABINETS_PAT if set, else falls back to AIRTABLE_PAT.
+ * base - AIRTABLE_CABINETS_PAT if set, else falls back to AIRTABLE_PAT.
  *
  * Env:
- *   AIRTABLE_CABINETS_PAT      — optional, PAT scoped to the cabinet base
- *   AIRTABLE_PAT               — fallback PAT
- *   AIRTABLE_CABINETS_BASE_ID  — default: appDjrhujOaKBBULu
- *   AIRTABLE_CABINETS_TABLE_ID — default: tblUCaJotJ8i6NvFJ
+ *   AIRTABLE_CABINETS_PAT      - optional, PAT scoped to the cabinet base
+ *   AIRTABLE_PAT               - fallback PAT
+ *   AIRTABLE_CABINETS_BASE_ID  - default: appDjrhujOaKBBULu
+ *   AIRTABLE_CABINETS_TABLE_ID - default: tblUCaJotJ8i6NvFJ
  */
 
 import type { Cabinet } from "./types"
@@ -150,7 +150,7 @@ const NAME_TO_FIELD: Record<string, string> = {
 
 /**
  * Create a draft cabinet record in LED Cabinet DB. Always unpublished
- * unless explicitly told otherwise — ingest drafts await human review.
+ * unless explicitly told otherwise - ingest drafts await human review.
  */
 export async function createCabinet(
   input: NewCabinetInput
@@ -219,7 +219,7 @@ export async function getPublishedCabinetsCached(): Promise<Cabinet[]> {
   }
 }
 
-// Resolve a single published cabinet by id. Never throws — share pages are
+// Resolve a single published cabinet by id. Never throws - share pages are
 // public and must render even if Airtable is unreachable (caller falls back
 // to the built-in library).
 export async function resolvePublishedCabinet(id: string): Promise<Cabinet | null> {

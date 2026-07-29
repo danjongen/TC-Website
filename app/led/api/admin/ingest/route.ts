@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Run both extractions independently. A failure in one is reported but
-  // doesn't kill the other — partial cross-check is still useful.
+  // doesn't kill the other - partial cross-check is still useful.
   const [gRes, cRes] = await Promise.allSettled([
     extractWithGemini(fileBase64, mimeType),
     extractWithClaude(fileBase64, mimeType),

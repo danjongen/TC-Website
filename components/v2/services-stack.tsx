@@ -22,13 +22,13 @@ const SERVICES = [
   {
     index: "03",
     title: "Systems Integration",
-    body: "Video, lighting, motion, power, and networking engineered as one machine — not a pile of vendors.",
+    body: "Video, lighting, motion, power, and networking engineered as one machine. Not a pile of vendors.",
     href: "/services/system-integration",
   },
   {
     index: "04",
     title: "Unreal Engine & Visualization",
-    body: "Real-time previs and pixel-accurate content pipelines for screens of any scale — including the biggest one on the planet.",
+    body: "Real-time previs and pixel-accurate content pipelines for screens of any scale, including the biggest one on the planet.",
     href: "/services/unreal-engine",
   },
   {
@@ -45,7 +45,7 @@ export function ServicesStack() {
   return (
     <section className="bg-black px-6 py-[20vh] md:px-12" aria-label="Services">
       <div className="mx-auto w-full max-w-[1600px]">
-        <p className="mb-16 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 — CAPABILITIES ]</p>
+        <p className="mb-16 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 / CAPABILITIES ]</p>
 
         <ul>
           {SERVICES.map((s) => {
@@ -66,7 +66,7 @@ export function ServicesStack() {
                     {s.title}
                   </span>
                   <span className="ml-auto hidden font-mono text-xs text-zinc-400 transition-transform duration-300 group-hover:translate-x-1 md:block">
-                    {isOpen ? "—" : "+"}
+                    {isOpen ? "-" : "+"}
                   </span>
                 </button>
                 <AnimatePresence initial={false}>

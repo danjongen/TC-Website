@@ -23,7 +23,7 @@ export function ContactPageClient() {
       <section className="pt-40 md:pt-48 pb-[14vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 05 — CONTACT ]</p>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 05 / CONTACT ]</p>
             <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">Let's talk</h1>
             <p className="text-lg leading-relaxed text-zinc-400">
               Ready to discuss your next project? We bring precision engineering and technical expertise to make your
@@ -72,7 +72,7 @@ export function ContactPageClient() {
               <div className="mt-16 max-w-xl">
                 <h3 className="text-xl font-semibold text-white mb-3">We're ready to talk</h3>
                 <p className="text-lg leading-relaxed text-zinc-400">
-                  Large-scale production, technical consulting, or automation — we're here to make it happen.
+                  Large-scale production, technical consulting, or automation. We're here to make it happen.
                 </p>
               </div>
             </div>

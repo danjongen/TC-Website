@@ -3,12 +3,12 @@ import { NextRequest, NextResponse } from "next/server"
 /**
  * Password gate for the LED tool builder at `/led`.
  *
- * Public:    /led/share/[token]  — client/crew-facing share pages stay open
- *            /led/unlock         — the unlock form itself
+ * Public:    /led/share/[token]  - client/crew-facing share pages stay open
+ *            /led/unlock         - the unlock form itself
  * Gated:     /led, /led/anything else
  *
  * Password lives in env `LED_TOOL_PASSWORD` (set in Vercel project
- * settings). Fails closed if unset — the tool stays locked until the
+ * settings). Fails closed if unset - the tool stays locked until the
  * env var is configured.
  *
  * The session cookie is signed with a per-deployment secret derived

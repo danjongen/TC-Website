@@ -102,9 +102,8 @@ export function BuyBox() {
           Somewhere to put it. Finally.
         </p>
         <p className="mt-7 max-w-[40rem] leading-relaxed text-zinc-300">
-          A purpose-built SSL console shelf that clips onto the top rail of an
-          SSL Live console in seconds. Keeps timecode, a phone and notes where
-          they belong—without tools, drilling or gaffer tape.
+          A purpose-built shelf designed from a 3D scan of the SSL Live top
+          rail. It clips on in seconds. No tools, drilling or gaffer tape.
         </p>
 
         <dl className="mt-9 grid grid-cols-2 gap-x-6 gap-y-5 border-y border-zinc-800 py-7 text-sm">

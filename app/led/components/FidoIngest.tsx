@@ -58,7 +58,7 @@ export function FidoIngest({
     } else {
       setStatus({
         kind: "warn",
-        msg: `CABINET "${r.cabinetName.toUpperCase()}" NOT IN LIBRARY — PICK CLOSEST BELOW`,
+        msg: `CABINET "${r.cabinetName.toUpperCase()}" NOT IN LIBRARY - PICK CLOSEST BELOW`,
       })
     }
   }

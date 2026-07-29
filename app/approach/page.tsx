@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Our Approach",
     description:
-      "Every project follows the same rigorous methodology. No surprises, no guesswork—just predictable, excellent results.",
+      "Every project follows the same rigorous methodology. No surprises. No guesswork. Just predictable, excellent results.",
     url: "https://tc.agency/approach",
     siteName: "TC Agency",
     images: [
@@ -51,7 +51,7 @@ const phases = [
     num: "01",
     title: "Discovery",
     duration: "",
-    desc: "We audit your systems, identify friction points, and map your production requirements. No assumptions — just data.",
+    desc: "We audit your systems, identify friction points, and map your production requirements. No assumptions. Just data.",
     outputs: ["Technical Requirements Doc", "System Architecture Map", "Risk Assessment"],
   },
   {
@@ -107,12 +107,12 @@ export default function ApproachPage() {
       <section className="pt-40 md:pt-48 pb-[14vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 — APPROACH ]</p>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 / APPROACH ]</p>
             <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">
               Systematic. Documented. Repeatable.
             </h1>
             <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">
-              Every project follows the same rigorous methodology. No surprises, no guesswork — just predictable,
+              Every project follows the same rigorous methodology. No surprises, no guesswork - just predictable,
               excellent results.
             </p>
           </div>
@@ -124,11 +124,12 @@ export default function ApproachPage() {
         <div className="relative aspect-[21/9] w-full">
           <Image
             src="/images/bsb-live-03.jpg"
-            alt="Large-scale live production at the Sphere — the methodology in action"
+            alt="Large-scale live production at the Sphere. The methodology in action."
             fill
             className="object-cover"
             priority
             sizes="100vw"
+            unoptimized
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
           <div className="absolute bottom-6 left-6">
@@ -137,10 +138,10 @@ export default function ApproachPage() {
         </div>
       </section>
 
-      {/* Phases — indexed rows */}
+      {/* Phases - indexed rows */}
       <section className="py-[18vh]">
         <div className="container mx-auto px-6">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 — THE PROCESS ]</p>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 / THE PROCESS ]</p>
           <div>
             {phases.map((phase, index) => (
               <article key={phase.num}>
@@ -178,7 +179,7 @@ export default function ApproachPage() {
       {/* Differentiators */}
       <section className="py-[14vh]">
         <div className="container mx-auto px-6">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 05 — WHAT MAKES US DIFFERENT ]</p>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 05 / WHAT MAKES US DIFFERENT ]</p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
             {differentiators.map((item) => (
               <div key={item.label}>

@@ -27,7 +27,7 @@ export function Footer({
           </span>
         </div>
         <div className="mono text-[10px] tracking-[0.08em] uppercase text-[var(--led-ink-faint)] md:text-center">
-          SYSTEM / {cabinetLabel || "—"} / {processorLabel || "—"}
+          SYSTEM / {cabinetLabel || "-"} / {processorLabel || "-"}
         </div>
         <div className="mono text-[10px] tracking-[0.08em] uppercase text-[var(--led-ink-faint)] md:text-right">
           CALC / 26-TCX-01-LEDTOOL / REV A

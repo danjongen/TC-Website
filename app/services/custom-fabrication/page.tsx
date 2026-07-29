@@ -39,7 +39,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Custom Fabrication — TC Production Engineering",
+        alt: "Custom Fabrication - TC Production Engineering",
       },
     ],
   },
@@ -152,7 +152,7 @@ export default function CustomFabricationPage() {
 
         {/* Header */}
         <div className="mb-16 max-w-4xl">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — CUSTOM FABRICATION ]</p>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE / CUSTOM FABRICATION ]</p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
             Production Hardware Engineering
           </h1>

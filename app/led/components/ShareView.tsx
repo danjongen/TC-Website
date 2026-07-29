@@ -103,13 +103,13 @@ export function ShareView({
       <main className="flex-1 px-4 md:px-6 py-6">
         <div className="max-w-[1100px] mx-auto space-y-5">
           <div className="border-b hairline pb-4">
-            <div className="label mb-1">{cfg.project_code || "—"}</div>
+            <div className="label mb-1">{cfg.project_code || "-"}</div>
             <h1 className="mono text-[18px] md:text-[22px] font-bold tracking-tight uppercase">
               {cfg.project_name || "Untitled Wall"}
             </h1>
             <div className="mono text-[10px] uppercase text-[var(--led-ink-faint)] mt-2">
               {cab.manufacturer} {cab.model} / {cfg.tiles_wide}×{cfg.tiles_high} /
-              REV {cfg.rev || "—"} / ISSUED {cfg.issued_date || "—"}
+              REV {cfg.rev || "-"} / ISSUED {cfg.issued_date || "-"}
             </div>
           </div>
 
@@ -119,7 +119,7 @@ export function ShareView({
               className="cta cta-primary"
               onClick={downloadPixelMap}
               disabled={busy !== null}
-              title="1:1 content map — canvas is the wall's exact pixel resolution"
+              title="1:1 content map - canvas is the wall's exact pixel resolution"
             >
               {busy === "pixel" ? "BUILDING /" : "PIXEL MAP / PNG / 1:1"}
             </button>
@@ -128,7 +128,7 @@ export function ShareView({
               className="cta cta-primary"
               onClick={downloadSpec}
               disabled={busy !== null}
-              title="2-page PDF — spec sheet + cabinet layout map"
+              title="2-page PDF - spec sheet + cabinet layout map"
             >
               {busy === "spec" ? "BUILDING /" : "DOWNLOAD SPEC / PDF"}
             </button>

@@ -103,7 +103,7 @@ export function AllowancesForm({
         />
       </div>
 
-      {/* Wind bracing — optional, off by default */}
+      {/* Wind bracing - optional, off by default */}
       <div className="mt-4 border-t hairline pt-4">
         <label className="flex items-center gap-2 cursor-pointer">
           <input

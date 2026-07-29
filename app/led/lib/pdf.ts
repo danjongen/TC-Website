@@ -1,8 +1,8 @@
 /**
  * Branded output generation for the LED tool.
  *
- *  - Spec Sheet PDF — Letter landscape, jsPDF, embedded Space Mono.
- *  - Panel Map PNG — high-contrast functional artifact for content
+ *  - Spec Sheet PDF - Letter landscape, jsPDF, embedded Space Mono.
+ *  - Panel Map PNG - high-contrast functional artifact for content
  *    mapping in AE/PS. Bright, one-cabinet-per-cell, TC watermark.
  *
  * Everything runs client-side.
@@ -146,18 +146,18 @@ export async function renderSpecPdf(
   setText(doc, COLORS.inkDim)
   doc.setFont("SpaceMono", "normal")
   doc.setFontSize(8)
-  const headerRight = `SPEC SHEET   ${cfg.project_code || "—"}   REV ${cfg.rev || "—"}   ${cfg.issued_date || "—"}`
+  const headerRight = `SPEC SHEET   ${cfg.project_code || "-"}   REV ${cfg.rev || "-"}   ${cfg.issued_date || "-"}`
   doc.text(headerRight, W - M, M + 14, { align: "right" })
 
   // Project block
   const projY = M + 38
-  drawKV(doc, M, projY, "PROJECT", cfg.project_name || "—", 280)
-  drawKV(doc, M + 300, projY, "CLIENT", cfg.client || "—", 180)
-  drawKV(doc, M + 500, projY, "TOUR", cfg.tour || "—", 130)
-  drawKV(doc, M + 650, projY, "SHOW DATE", cfg.show_date || "—", 100)
+  drawKV(doc, M, projY, "PROJECT", cfg.project_name || "-", 280)
+  drawKV(doc, M + 300, projY, "CLIENT", cfg.client || "-", 180)
+  drawKV(doc, M + 500, projY, "TOUR", cfg.tour || "-", 130)
+  drawKV(doc, M + 650, projY, "SHOW DATE", cfg.show_date || "-", 100)
 
   const projY2 = projY + 28
-  drawKV(doc, M, projY2, "LEAD", cfg.lead || "—", 180)
+  drawKV(doc, M, projY2, "LEAD", cfg.lead || "-", 180)
   drawKV(doc, M + 200, projY2, "CABINET", `${cab.manufacturer} ${cab.model}`, 300)
   drawKV(doc, M + 520, projY2, "PITCH", `${cab.pixel_pitch_mm.toFixed(2)} mm`, 90)
   drawKV(doc, M + 630, projY2, "TOURING", cab.touring_rated ? "YES" : "NO", 60)
@@ -255,7 +255,7 @@ export async function renderSpecPdf(
     drawKV(doc, M, y, "NOTES", cfg.notes, W - 2 * M)
   }
 
-  // Disclaimer (dim, above footer divider — clinical, no highlight)
+  // Disclaimer (dim, above footer divider - clinical, no highlight)
   setText(doc, COLORS.inkDim)
   doc.setFont("SpaceMono", "normal")
   doc.setFontSize(6.5)
@@ -280,7 +280,7 @@ export async function renderSpecPdf(
     { align: "right" }
   )
 
-  // Page 2 — cabinet layout map, so the spec + layout ship as one document.
+  // Page 2 - cabinet layout map, so the spec + layout ship as one document.
   await addLayoutPage(doc, cab, cfg, W, H, M)
 
   return doc.output("blob") as Blob
@@ -317,7 +317,7 @@ async function addLayoutPage(
   doc.setFont("SpaceMono", "normal")
   doc.setFontSize(8)
   doc.text(
-    `LAYOUT MAP   ${cfg.project_code || "—"}   ${cab.manufacturer} ${cab.model}`,
+    `LAYOUT MAP   ${cfg.project_code || "-"}   ${cab.manufacturer} ${cab.model}`,
     W - M,
     M + 14,
     { align: "right" }
@@ -390,7 +390,7 @@ function drawHero(
   doc.setFont("SpaceMono", "normal")
   doc.setFontSize(7)
   doc.text(label, x + 6, y + 12)
-  // Hero data values are white — accent is reserved for state, not data.
+  // Hero data values are white - accent is reserved for state, not data.
   setText(doc, COLORS.ink)
   doc.setFont("SpaceMono", "bold")
   doc.setFontSize(20)
@@ -511,7 +511,7 @@ async function renderPanelMapCanvas(
   ctx.fillStyle = DIM
   ctx.textAlign = "right"
   ctx.fillText(
-    `PANEL MAP   ${cfg.project_code || "—"}   ${cab.manufacturer} ${cab.model}   ${cols}W × ${rows}H / ${cols * rows} CABS`,
+    `PANEL MAP   ${cfg.project_code || "-"}   ${cab.manufacturer} ${cab.model}   ${cols}W × ${rows}H / ${cols * rows} CABS`,
     W - padS,
     headerBaseline
   )
@@ -552,7 +552,7 @@ async function renderPanelMapCanvas(
   // Signal entry arrow (small accent triangle at the corner)
   drawSignalIn(ctx, cfg.signal_entry, gridX, gridY, gridW, gridH, ACCENT, cellW, cellH)
 
-  // Watermark — TC glyph + wordmark in bottom-right corner of grid
+  // Watermark - TC glyph + wordmark in bottom-right corner of grid
   const wmSize = Math.min(120, Math.floor(gridH * 0.18))
   if (wmSize >= 28) {
     ctx.save()
@@ -571,7 +571,7 @@ async function renderPanelMapCanvas(
     ctx.restore()
   }
 
-  // Footer — info row (upper) + disclaimer row (lower).
+  // Footer - info row (upper) + disclaimer row (lower).
   ctx.textBaseline = "alphabetic"
   ctx.textAlign = "left"
   ctx.fillStyle = DIM
@@ -590,7 +590,7 @@ async function renderPanelMapCanvas(
     infoY
   )
 
-  // Disclaimer band along the bottom edge — dim, clinical, no highlight.
+  // Disclaimer band along the bottom edge - dim, clinical, no highlight.
   ctx.textAlign = "center"
   ctx.fillStyle = DIM
   ctx.font = `700 ${Math.max(10, Math.floor(padF * 0.16))}px "Space Mono", ui-monospace, monospace`
@@ -643,7 +643,7 @@ export async function renderPixelMapPng(
   const MAX_DIM = 16384
   if (W > MAX_DIM || H > MAX_DIM) {
     throw new Error(
-      `pixel map ${W}×${H}px exceeds the ${MAX_DIM}px canvas limit — render on desktop or split the wall`
+      `pixel map ${W}×${H}px exceeds the ${MAX_DIM}px canvas limit - render on desktop or split the wall`
     )
   }
 
@@ -653,7 +653,7 @@ export async function renderPixelMapPng(
   const ctx = canvas.getContext("2d")!
 
   const DARK = "#0c0c0c"
-  // Softened, lower-luma green — not the raw brand accent (#00e58a) — so the
+  // Softened, lower-luma green - not the raw brand accent (#00e58a) - so the
   // full-screen map doesn't bloom on camera or fatigue the eye during
   // commissioning. The site-wide brand accent is unchanged.
   const GREEN = "#16a86a"

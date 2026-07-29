@@ -22,7 +22,7 @@ export function buildShareMetadata(
   cfg: WallConfig | null,
   cab: Cabinet | null
 ): Metadata {
-  const title = `${projectTitle(cfg)} — LED Wall Spec`
+  const title = `${projectTitle(cfg)} - LED Wall Spec`
 
   let description = "Technically Creative / LED wall spec sheet."
   if (cfg && cab) {
@@ -42,7 +42,7 @@ export function buildShareMetadata(
     description,
     openGraph: {
       type: "website",
-      siteName: "TC Agency — Technically Creative",
+      siteName: "TC Agency - Technically Creative",
       title,
       description,
     },
@@ -89,7 +89,7 @@ function Stat({
 
 /**
  * The OG card element passed to next/og's ImageResponse. Dark spec-sheet
- * aesthetic with the TC glyph + wordmark — matching the spec PDF.
+ * aesthetic with the TC glyph + wordmark - matching the spec PDF.
  */
 export function ogCard(cfg: WallConfig | null, cab: Cabinet | null) {
   const d = cfg && cab ? derive(cab, cfg) : null
@@ -107,7 +107,7 @@ export function ogCard(cfg: WallConfig | null, cab: Cabinet | null) {
         ]
       : null
   // One uniform value size that keeps the widest stat on a single line in its
-  // column (~247px) — punchy for normal walls, auto-shrinks for extreme ones.
+  // column (~247px) - punchy for normal walls, auto-shrinks for extreme ones.
   const statSize = stats
     ? Math.max(20, Math.min(34, Math.floor(247 / (0.62 * Math.max(...stats.map((s) => s.value.length))))))
     : 34

@@ -32,24 +32,24 @@ export function SpecSheet({
         </div>
         <div className="mono text-[10px] tracking-[0.08em] uppercase text-[var(--led-ink-dim)] flex flex-wrap gap-x-4 gap-y-1 min-w-0">
           <span className="hidden sm:inline">SPEC SHEET</span>
-          <span className="truncate">{cfg.project_code || "—"}</span>
-          <span>REV {cfg.rev || "—"}</span>
-          <span>{cfg.issued_date || "—"}</span>
+          <span className="truncate">{cfg.project_code || "-"}</span>
+          <span>REV {cfg.rev || "-"}</span>
+          <span>{cfg.issued_date || "-"}</span>
         </div>
       </div>
 
       {/* IDENTITY BLOCK */}
       <div className="px-5 py-4 border-b hairline grid grid-cols-2 md:grid-cols-4 gap-4">
-        <KV label="PROJECT" value={cfg.project_name || "—"} wide />
-        <KV label="CLIENT" value={cfg.client || "—"} />
-        <KV label="TOUR" value={cfg.tour || "—"} />
-        <KV label="SHOW DATE" value={cfg.show_date || "—"} />
-        <KV label="LEAD" value={cfg.lead || "—"} />
+        <KV label="PROJECT" value={cfg.project_name || "-"} wide />
+        <KV label="CLIENT" value={cfg.client || "-"} />
+        <KV label="TOUR" value={cfg.tour || "-"} />
+        <KV label="SHOW DATE" value={cfg.show_date || "-"} />
+        <KV label="LEAD" value={cfg.lead || "-"} />
         <KV label="CABINET" value={`${cab.manufacturer} ${cab.model}`} wide />
         <KV label="PITCH" value={`${cab.pixel_pitch_mm.toFixed(2)} mm`} />
       </div>
 
-      {/* HERO SUMMARY STRIP — values white, not accent */}
+      {/* HERO SUMMARY STRIP - values white, not accent */}
       <div className="grid grid-cols-2 md:grid-cols-4 border-b hairline">
         <Hero label="TILES" big={`${cfg.tiles_wide}×${cfg.tiles_high}`} sub={`${fmt.int(d.tiles_total)} TOTAL`} />
         <Hero label="PIXELS" big={`${fmt.int(d.pixels_wide)}×${fmt.int(d.pixels_high)}`} sub={`${fmt.int(d.pixels_total)} TOTAL`} />
@@ -109,7 +109,7 @@ export function SpecSheet({
         </div>
       ) : null}
 
-      {/* INTERNAL DISCLAIMER — clinical, no highlight */}
+      {/* INTERNAL DISCLAIMER - clinical, no highlight */}
       <div className="px-5 py-3 border-t hairline">
         <span className="mono text-[10px] tracking-[0.06em] uppercase text-[var(--led-ink-faint)]">
           {DISCLAIMER}

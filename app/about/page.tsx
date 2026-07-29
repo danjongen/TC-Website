@@ -19,7 +19,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "About TC Agency — Production Engineering",
+        alt: "About TC Agency - Production Engineering",
       },
     ],
   },
@@ -89,7 +89,7 @@ export default function AboutPage() {
         <section className="pb-[14vh]">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
-              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 01 — ABOUT ]</p>
+              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 01 / ABOUT ]</p>
               <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">
                 Engineering calm into chaos.
               </h1>
@@ -101,10 +101,10 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Principles — indexed rows */}
+        {/* Principles - indexed rows */}
         <section className="py-[14vh]">
           <div className="container mx-auto px-6">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 — PRINCIPLES ]</p>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 / PRINCIPLES ]</p>
             <div className="max-w-3xl">
               {principles.map((principle, i) => (
                 <div key={principle.num}>
@@ -129,14 +129,14 @@ export default function AboutPage() {
           <div className="relative aspect-[21/9] w-full">
             <Image
               src="/images/bsb-live-05.jpg"
-              alt="Backstreet Boys live at the Sphere — large-format LED production engineered by TC Agency"
+              alt="Backstreet Boys live at the Sphere - large-format LED production engineered by TC Agency"
               fill
               className="object-cover"
               sizes="100vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
             <div className="absolute bottom-6 left-6">
-              <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400">SPHERE — LAS VEGAS</p>
+              <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400">SPHERE - LAS VEGAS</p>
             </div>
           </div>
         </section>
@@ -148,7 +148,7 @@ export default function AboutPage() {
               <div className="relative aspect-[4/5] max-w-md overflow-hidden">
                 <Image
                   src="/daniel-jongen-headshot.jpg"
-                  alt="Executive Technical Producer Daniel Jongen — Technical Direction and Production Engineering leader at TC Agency"
+                  alt="Executive Technical Producer Daniel Jongen - Technical Direction and Production Engineering leader at TC Agency"
                   fill
                   className="object-cover object-center grayscale contrast-110"
                   priority
@@ -160,23 +160,24 @@ export default function AboutPage() {
               </div>
 
               <div>
-                <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 — LEADERSHIP ]</p>
+                <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 / LEADERSHIP ]</p>
                 <h2
                   id="daniel-jongen"
                   className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8"
                 >
-                  Meet Daniel Jongen
+                  Senior leadership. One accountable company.
                 </h2>
 
                 <div className="space-y-5 text-lg leading-relaxed text-zinc-400 max-w-xl">
                   <p>
-                    Executive Technical Producer Daniel Jongen leads Technically Creative (TC Agency), overseeing
-                    technical direction, production engineering, and high-stakes show execution for global brands,
-                    artists, tours, and large-format productions.
+                    Technically Creative is a production engineering company built for complex live work. The company
+                    leads technical direction, production engineering, and high-stakes show execution for global
+                    brands, artists, tours, and large-format productions.
                   </p>
                   <p>
-                    His work spans automation, LED systems, broadcast infrastructure, show control, and risk mitigation
-                    for environments where failure is not an option.
+                    Executive Technical Producer Daniel Jongen leads the work across automation, LED systems,
+                    broadcast infrastructure, show control, and risk mitigation, keeping every discipline aligned
+                    through one accountable technical structure.
                   </p>
                 </div>
 
@@ -220,7 +221,7 @@ export default function AboutPage() {
         <section className="py-[14vh]">
           <div className="container mx-auto px-6">
             <div className="max-w-2xl">
-              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 — PHILOSOPHY ]</p>
+              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 / PHILOSOPHY ]</p>
               <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-10">
                 Systems-first, always
               </h2>
@@ -231,7 +232,7 @@ export default function AboutPage() {
                   redundancy. Every workflow is documented. Every team member knows their role.
                 </p>
                 <p>
-                  Stadium tour, corporate keynote, or immersive brand activation — the rigor is the same. We engineer
+                  Stadium tour, corporate keynote, or immersive brand activation. The rigor is the same. We engineer
                   systems that work the first time, every time.
                 </p>
                 <p>

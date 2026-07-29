@@ -111,7 +111,7 @@ export function PixelHero() {
               className="mb-5 font-mono text-[11px] tracking-[0.35em] text-zinc-400 md:text-xs"
             >
               <span className="mr-3 inline-block h-2 w-2 animate-pulse rounded-full align-middle" style={{ background: GREEN }} />
-              <ScrambleText text="BACKSTREET BOYS @ SPHERE — INTO THE MILLENNIUM" delay={2200} />
+              <ScrambleText text="BACKSTREET BOYS @ SPHERE - INTO THE MILLENNIUM" delay={2200} />
             </motion.p>
 
             <h1 className="select-none text-[12.5vw] font-black leading-[0.84] tracking-tighter text-white md:text-[9.5vw]">

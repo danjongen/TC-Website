@@ -4,11 +4,11 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
-  title: "Daniel Jongen | Executive Technical Producer — TC Agency",
+  title: "Daniel Jongen | Executive Technical Producer - TC Agency",
   description:
     "Daniel Jongen is an Executive Technical Producer with 15+ years in live production and technical direction. Specializing in large-format touring, corporate events, broadcast infrastructure, and immersive installations across 30+ countries.",
   openGraph: {
-    title: "Daniel Jongen | Executive Technical Producer — TC Agency",
+    title: "Daniel Jongen | Executive Technical Producer - TC Agency",
     description:
       "15+ years in live production and technical direction. 200+ productions across 30+ countries for Fortune 500 brands and global touring artists.",
     url: "https://tc.agency/about-daniel",
@@ -18,14 +18,14 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Daniel Jongen — Executive Technical Producer at TC Agency",
+        alt: "Daniel Jongen - Executive Technical Producer at TC Agency",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Daniel Jongen | Executive Technical Producer — TC Agency",
+    title: "Daniel Jongen | Executive Technical Producer - TC Agency",
     description:
       "15+ years in live production and technical direction. 200+ productions across 30+ countries.",
   },
@@ -38,7 +38,7 @@ export default function AboutDanielPage() {
   const expertise = [
     {
       title: "Technical Direction",
-      desc: "End-to-end technical oversight for large-format touring, arena shows, and global broadcasts — ensuring every system performs flawlessly under pressure.",
+      desc: "End-to-end technical oversight for large-format touring, arena shows, and global broadcasts, ensuring every system performs flawlessly under pressure.",
     },
     {
       title: "Production Engineering",
@@ -50,7 +50,7 @@ export default function AboutDanielPage() {
     },
     {
       title: "System Integration",
-      desc: "Architecting and deploying networked production ecosystems — signal distribution, media servers, intercom, and monitoring across multi-venue deployments.",
+      desc: "Architecting and deploying networked production ecosystems: signal distribution, media servers, intercom, and monitoring across multi-venue deployments.",
     },
     {
       title: "Broadcast Infrastructure",
@@ -72,11 +72,11 @@ export default function AboutDanielPage() {
   const notableWork = [
     {
       title: "Stadium & Arena Tours",
-      desc: "Technical direction for multi-leg global touring productions — managing complex rigging, video, lighting, and audio systems across dozens of venues per run.",
+      desc: "Technical direction for multi-leg global touring productions, managing complex rigging, video, lighting, and audio systems across dozens of venues per run.",
     },
     {
       title: "The Sphere, Las Vegas",
-      desc: "Production engineering for one of the most technically ambitious venues ever built — pushing the boundaries of immersive LED, spatial audio, and real-time rendering.",
+      desc: "Production engineering for one of the most technically ambitious venues ever built, pushing the boundaries of immersive LED, spatial audio, and real-time rendering.",
     },
     {
       title: "Global Product Launches",
@@ -84,7 +84,7 @@ export default function AboutDanielPage() {
     },
     {
       title: "Immersive LED Installations",
-      desc: "Designing and deploying large-scale LED environments for brand activations, museum exhibits, and experiential marketing — blending content, architecture, and technology.",
+      desc: "Designing and deploying large-scale LED environments for brand activations, museum exhibits, and experiential marketing, blending content, architecture, and technology.",
     },
   ]
 
@@ -97,7 +97,7 @@ export default function AboutDanielPage() {
         <section className="pt-40 md:pt-48 pb-[10vh]">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
-              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 01 — BIO ]</p>
+              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 01 / BIO ]</p>
               <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-6">Daniel Jongen</h1>
               <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">Executive Technical Producer</p>
             </div>
@@ -118,7 +118,7 @@ export default function AboutDanielPage() {
         <section className="py-[12vh]">
           <div className="container mx-auto px-6">
             <div className="max-w-2xl">
-              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 — BACKGROUND ]</p>
+              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 / BACKGROUND ]</p>
               <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8">
                 Building systems that don't fail
               </h2>
@@ -127,7 +127,7 @@ export default function AboutDanielPage() {
                 <p>
                   With over 15 years in live production and technical direction, Daniel Jongen has built a career at the
                   intersection of engineering and entertainment. He specializes in large-format touring, corporate events,
-                  broadcast infrastructure, and immersive installations — environments where the margin for error is zero
+                  broadcast infrastructure, and immersive installations - environments where the margin for error is zero
                   and the stakes are measured in millions.
                 </p>
                 <p>
@@ -138,7 +138,7 @@ export default function AboutDanielPage() {
                 <p>
                   Based in Detroit, MI with operations in Los Angeles and Las Vegas, Daniel founded Technically Creative LLC
                   to bring engineering discipline to an industry that has traditionally relied on tribal knowledge and
-                  heroics. TC Agency exists because productions deserve better systems — and the people running them
+                  heroics. TC Agency exists because productions deserve better systems - and the people running them
                   deserve better tools.
                 </p>
               </div>
@@ -146,10 +146,10 @@ export default function AboutDanielPage() {
           </div>
         </section>
 
-        {/* Expertise — indexed rows */}
+        {/* Expertise - indexed rows */}
         <section className="py-[12vh]">
           <div className="container mx-auto px-6">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 — EXPERTISE ]</p>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 / EXPERTISE ]</p>
             <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-12">
               Core capabilities
             </h2>
@@ -173,10 +173,10 @@ export default function AboutDanielPage() {
           </div>
         </section>
 
-        {/* Notable work — indexed rows */}
+        {/* Notable work - indexed rows */}
         <section className="py-[12vh]">
           <div className="container mx-auto px-6">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 — WORK ]</p>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 / WORK ]</p>
             <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-12">
               Notable productions
             </h2>
@@ -204,12 +204,12 @@ export default function AboutDanielPage() {
         <section className="py-[14vh]">
           <div className="container mx-auto px-6">
             <div className="max-w-2xl">
-              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 05 — CONTACT ]</p>
+              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 05 / CONTACT ]</p>
               <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8">
                 Work with Daniel
               </h2>
               <p className="text-lg leading-relaxed text-zinc-400 max-w-xl mb-10">
-                Whether it's a stadium tour, a global product launch, or an immersive installation — let's talk about
+                Whether it's a stadium tour, a global product launch, or an immersive installation - let's talk about
                 how engineering-grade production can elevate your next project.
               </p>
               <Link

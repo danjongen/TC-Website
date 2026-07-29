@@ -25,7 +25,7 @@ export function mergeCabinets(base: Cabinet[], extra: Cabinet[]): Cabinet[] {
 
 /**
  * Client hook: renders instantly with the built-in library, then swaps in
- * the published DB library once it loads. Never blocks and never throws —
+ * the published DB library once it loads. Never blocks and never throws -
  * if the endpoint is unreachable the built-in list stands.
  */
 const LS_KEY = "led:cabinets:v1"
@@ -69,7 +69,7 @@ export function useCabinetLibrary() {
     }
 
     void (async () => {
-      // Retry transient failures before giving up — the endpoint can 500 on
+      // Retry transient failures before giving up - the endpoint can 500 on
       // an Airtable blip, and we don't want one blip to lose the library.
       for (let attempt = 0; attempt < 3 && !cancelled; attempt++) {
         try {

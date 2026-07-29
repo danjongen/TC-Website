@@ -38,7 +38,7 @@ export function Approach() {
           <div>
             <h2 className="text-sm font-mono text-emerald-700 mb-4 uppercase tracking-widest">03 / How We Work</h2>
             <h3 className="text-3xl md:text-4xl font-bold leading-tight mb-6">
-              We've systematized the repeatable—so we can focus on what's unique.
+              We've systematized the repeatable so we can focus on what's unique.
             </h3>
             <p className="text-lg text-muted-foreground">
               Every production follows our proven methodology, ensuring consistent quality while allowing creative

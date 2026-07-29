@@ -11,7 +11,7 @@ export const revalidate = 86400 // Revalidate every 24 hours
 export const metadata: Metadata = {
   title: "Mission",
   description:
-    "Our mission at TC Agency (Technically Creative) — delivering engineering-grade production systems for high-stakes live events worldwide. Systems over heroes. Automation over manual.",
+    "Our mission at TC Agency (Technically Creative): delivering engineering-grade production systems for high-stakes live events worldwide. Systems over heroes. Automation over manual.",
   keywords: [
     "production engineering mission",
     "technical direction philosophy",
@@ -64,7 +64,7 @@ export default function MissionPage() {
       <section className="pt-40 md:pt-48 pb-[14vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 01 — MISSION ]</p>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 01 / MISSION ]</p>
             <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">
               Engineering calm into chaos.
             </h1>
@@ -81,7 +81,7 @@ export default function MissionPage() {
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 — THE PROBLEM ]</p>
+              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 / THE PROBLEM ]</p>
               <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8">
                 The problem we solve
               </h2>
@@ -111,10 +111,10 @@ export default function MissionPage() {
         </div>
       </section>
 
-      {/* Principles — indexed rows */}
+      {/* Principles - indexed rows */}
       <section className="py-[12vh]">
         <div className="container mx-auto px-6">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 — PRINCIPLES ]</p>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 / PRINCIPLES ]</p>
           <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-12">Our principles</h2>
           <div>
             {[
@@ -155,7 +155,7 @@ export default function MissionPage() {
       <section className="py-[14vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 — CONTACT ]</p>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 / CONTACT ]</p>
             <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8">
               Ready to work with us?
             </h2>

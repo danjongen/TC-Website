@@ -2,15 +2,15 @@
  * Server-side Airtable client for the LED tool.
  *
  * Uses the official REST API directly so we don't pull in the
- * Airtable SDK. Server-only — never import into a "use client" file.
+ * Airtable SDK. Server-only - never import into a "use client" file.
  *
  * Env vars:
- *   AIRTABLE_PAT                 — Personal Access Token, scopes:
+ *   AIRTABLE_PAT                 - Personal Access Token, scopes:
  *                                  data.records:read, data.records:write
  *                                  on the CRM Base.
- *   AIRTABLE_CRM_BASE_ID         — default: app5wcWdD13yBPnSd
- *   AIRTABLE_PROJECTS_TABLE_ID   — default: tblfGISaSElAHTPoc
- *   AIRTABLE_DOCUMENTS_TABLE_ID  — default: tblBKgLMIrOijCo2Y
+ *   AIRTABLE_CRM_BASE_ID         - default: app5wcWdD13yBPnSd
+ *   AIRTABLE_PROJECTS_TABLE_ID   - default: tblfGISaSElAHTPoc
+ *   AIRTABLE_DOCUMENTS_TABLE_ID  - default: tblBKgLMIrOijCo2Y
  */
 
 const API_BASE = "https://api.airtable.com/v0"
@@ -88,7 +88,7 @@ const DOC_FIELDS = {
 /**
  * List projects, returning the lightweight shape the UI typeahead uses.
  * Sorted with most-recent first (by Created desc isn't directly available
- * via field — Airtable's view sort handles it).
+ * via field - Airtable's view sort handles it).
  */
 export async function listProjects(): Promise<AirtableProject[]> {
   const url = new URL(`${API_BASE}/${AIRTABLE.baseId}/${AIRTABLE.projectsTable}`)
@@ -242,7 +242,7 @@ export async function saveDocument(
   const recordId = created.records[0]?.id
   if (!recordId) throw new Error("Airtable create returned no record id")
 
-  // 4) Upload attachments to the Upload field. Sequential — Airtable's
+  // 4) Upload attachments to the Upload field. Sequential - Airtable's
   // attachment endpoint replaces the field contents per call by default,
   // but with `append=true` (added via the upload payload's body shape)
   // we'd append. Their docs only support single-file upload per call,

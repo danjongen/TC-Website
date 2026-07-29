@@ -262,7 +262,7 @@ export default function PowerSymbolsPage() {
         <section id="install" className="border-t border-zinc-800">
           <div className="mx-auto w-full max-w-[1600px] px-6 py-16 md:px-12 md:py-24">
             <p className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-500">
-              [ Install — about five minutes ]
+              [ Install / about five minutes ]
             </p>
             <div className="mt-10 grid gap-px border border-zinc-800 bg-zinc-800 md:grid-cols-4">
               {[

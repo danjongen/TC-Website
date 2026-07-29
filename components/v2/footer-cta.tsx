@@ -30,7 +30,7 @@ export function FooterCTA() {
   return (
     <section ref={ref} className="relative overflow-hidden bg-black px-6 py-[22vh] md:px-12" aria-label="Contact">
       <motion.div style={{ y, opacity }} className="mx-auto w-full max-w-[1600px]">
-        <p className="mb-8 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 05 — TRANSMISSION ]</p>
+        <p className="mb-8 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 05 / TRANSMISSION ]</p>
         <Link href="/contact" data-cursor="hover" className="group block">
           <h2 className="text-[13vw] font-bold leading-[0.88] tracking-[-0.04em] text-white md:text-[10vw]">
             LET&apos;S BUILD

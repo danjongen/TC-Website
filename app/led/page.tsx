@@ -78,7 +78,7 @@ function Builder() {
   const [shareUrl, setShareUrl] = useState("")
 
   // Decode initial state from URL ?c=<token> once on mount. Keep the decoded
-  // cabinet_id as-is — it may reference a DB cabinet not yet loaded; display
+  // cabinet_id as-is - it may reference a DB cabinet not yet loaded; display
   // resolution below falls back gracefully.
   useEffect(() => {
     const token = params.get("c")
@@ -126,7 +126,7 @@ function Builder() {
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-6">
-            {/* LEFT / FORMS — hidden in print */}
+            {/* LEFT / FORMS - hidden in print */}
             <div className="space-y-5 led-print-hide">
               <FidoIngest
                 cabinets={cabinets}
@@ -156,7 +156,7 @@ function Builder() {
               />
             </div>
 
-            {/* RIGHT / PREVIEW — only the spec sheet prints */}
+            {/* RIGHT / PREVIEW - only the spec sheet prints */}
             <div className="space-y-5 xl:sticky xl:top-4 xl:self-start">
               <div className="led-print-hide flex justify-end">
                 <UnitsToggle

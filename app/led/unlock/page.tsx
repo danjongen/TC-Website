@@ -68,7 +68,7 @@ export default async function UnlockPage({
               }}
             >
               NOT CONFIGURED / LED_TOOL_PASSWORD ENV VAR IS NOT SET ON THIS
-              DEPLOYMENT — NO PASSWORD WILL WORK UNTIL IT IS
+              DEPLOYMENT - NO PASSWORD WILL WORK UNTIL IT IS
             </div>
           ) : null}
           <button type="submit" className="cta cta-primary w-full">

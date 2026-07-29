@@ -20,7 +20,7 @@ export default function ThankYouPage() {
       <section className="pt-40 md:pt-48 pb-[14vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 01 — CONFIRMED ]</p>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 01 / CONFIRMED ]</p>
 
             <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">
               Message received.
@@ -30,7 +30,7 @@ export default function ThankYouPage() {
               Thank you for reaching out. Our team reviews every inquiry personally.
             </p>
 
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 — EXPECTED RESPONSE ]</p>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 / EXPECTED RESPONSE ]</p>
             <div>
               <div className="py-6 grid grid-cols-2 gap-6 items-baseline">
                 <p className="font-mono text-xs tracking-[0.2em] text-zinc-400">INITIAL RESPONSE</p>

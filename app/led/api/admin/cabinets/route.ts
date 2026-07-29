@@ -47,7 +47,7 @@ export async function GET() {
   }
 }
 
-// Create a draft cabinet (from a reviewed ingest). Always unpublished —
+// Create a draft cabinet (from a reviewed ingest). Always unpublished -
 // confidence is capped at "datasheet"; only a human flips to verified +
 // published in Airtable.
 export async function POST(req: NextRequest) {

@@ -57,7 +57,7 @@ export type WallConfig = {
   signal_entry: SignalEntry
   audience_position: AudiencePosition
 
-  // Installed weight allowances (all optional — old share links default).
+  // Installed weight allowances (all optional - old share links default).
   // Percentages of base wall weight.
   allowance_preset?: AllowancePreset
   cabling_pct?: number
@@ -69,7 +69,7 @@ export type WallConfig = {
   processor_override?: string
   notes?: string
 
-  // Display unit system (optional — old share links default to metric).
+  // Display unit system (optional - old share links default to metric).
   units?: Units
 }
 

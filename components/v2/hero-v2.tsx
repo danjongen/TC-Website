@@ -51,7 +51,7 @@ export function HeroV2() {
           className="mb-6 font-mono text-xs tracking-[0.35em] text-zinc-400 md:text-sm"
         >
           <span className="mr-3 inline-block h-2 w-2 animate-pulse rounded-full align-middle" style={{ background: GREEN }} />
-          SYSTEMS ONLINE — DETROIT / LOS ANGELES / LAS VEGAS
+          SYSTEMS ONLINE - DETROIT / LOS ANGELES / LAS VEGAS
         </motion.p>
 
         <motion.h1

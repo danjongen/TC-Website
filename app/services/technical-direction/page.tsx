@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     "Technically Creative",
   ],
   openGraph: {
-    title: "Technical Direction — TC Agency",
+    title: "Technical Direction - TC Agency",
     description:
       "Single point of technical accountability for complex live events, tours, and installations. Engineering rigor applied to every production system.",
     url: "https://tc.agency/services/technical-direction",
@@ -40,13 +40,13 @@ export const metadata: Metadata = {
         url: "/og/technical-direction.jpg",
         width: 1200,
         height: 630,
-        alt: "Technical Direction — TC Production Engineering",
+        alt: "Technical Direction - TC Production Engineering",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Technical Direction — TC Agency",
+    title: "Technical Direction - TC Agency",
     description:
       "Single point of technical accountability for complex live events, tours, and installations. Engineering rigor applied to every production system.",
     images: ["/og/technical-direction.jpg"],
@@ -170,7 +170,7 @@ export default function TechnicalDirectionPage() {
 
         {/* Header */}
         <div className="mb-16 max-w-4xl">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — TECHNICAL DIRECTION ]</p>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE / TECHNICAL DIRECTION ]</p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
             Technical Direction
           </h1>

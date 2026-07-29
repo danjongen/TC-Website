@@ -51,7 +51,7 @@ export default async function PortfolioPreviewPage({
     <main className="min-h-screen bg-background text-foreground">
       {/* Preview Mode Banner */}
       <div className="fixed top-0 left-0 right-0 z-[60] bg-amber-500 text-black text-center py-2 text-xs font-mono uppercase tracking-widest">
-        Preview Mode — Not Public
+        Preview Mode - Not Public
       </div>
 
       <BreadcrumbSchema

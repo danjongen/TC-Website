@@ -133,7 +133,7 @@ export function OutputsPanel({
             className="cta cta-primary w-full"
             onClick={downloadPixelMap}
             disabled={busy !== null}
-            title="1:1 content map — canvas is the wall's exact pixel resolution"
+            title="1:1 content map - canvas is the wall's exact pixel resolution"
           >
             {busy === "pixel" ? "BUILDING /" : "DOWNLOAD PIXEL MAP / PNG / 1:1"}
           </button>
@@ -153,7 +153,7 @@ export function OutputsPanel({
             className="cta cta-primary w-full"
             onClick={downloadSpec}
             disabled={busy !== null}
-            title="2-page PDF — spec sheet + cabinet layout map"
+            title="2-page PDF - spec sheet + cabinet layout map"
           >
             {busy === "spec" ? "BUILDING /" : "DOWNLOAD SPEC / PDF"}
           </button>

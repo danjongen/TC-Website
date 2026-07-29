@@ -6,7 +6,7 @@
   --led-bg-2: #161616;
   --led-line: #2a2a2a;
   --led-ink: #ffffff;
-  /* Dim/faint greys kept bright for legibility on the near-black bg —
+  /* Dim/faint greys kept bright for legibility on the near-black bg -
      readable on phones and in sunlight. dim ~13:1, faint ~9:1 on #0a0a0a,
      both well past WCAG AAA, while still reading as subordinate to white. */
   --led-ink-dim: #d0d0d0;
@@ -18,7 +18,7 @@
   --led-tile-b: #242424;
 
   background-color: var(--led-bg);
-  /* Faint structural document grid — should read as grid, not decoration. */
+  /* Faint structural document grid - should read as grid, not decoration. */
   background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
@@ -75,7 +75,7 @@
   }
 }
 
-/* Focus is white, not accent — accent is reserved for selection + signal. */
+/* Focus is white, not accent - accent is reserved for selection + signal. */
 .led-app input:focus,
 .led-app select:focus,
 .led-app textarea:focus {
@@ -151,7 +151,7 @@
   color: var(--led-ink);
 }
 
-/* Value-change flash — readout briefly inverts to white, then settles. */
+/* Value-change flash - readout briefly inverts to white, then settles. */
 .led-app .value-flash {
   animation: led-flash 180ms linear;
 }
@@ -177,7 +177,7 @@
   background: transparent;
 }
 
-/* Print — strip inputs/chrome, leave a black-on-white spec sheet. */
+/* Print - strip inputs/chrome, leave a black-on-white spec sheet. */
 @media print {
   .led-app {
     background: #ffffff !important;

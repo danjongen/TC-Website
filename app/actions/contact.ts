@@ -61,7 +61,7 @@ export async function submitContactForm(
   }
 
   // =========================================================================
-  // LAYER 1b: Time trap — bots fill forms in well under 3 seconds
+  // LAYER 1b: Time trap - bots fill forms in well under 3 seconds
   // =========================================================================
   // missing value means JS never ran (headless bot) or an old cached page;
   // require at least 2.5s of fill time measured on the client's own clock

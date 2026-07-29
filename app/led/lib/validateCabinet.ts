@@ -1,7 +1,7 @@
 import type { Cabinet } from "./types"
 
 /**
- * Deterministic physics / consistency validation — the third gate of
+ * Deterministic physics / consistency validation - the third gate of
  * "triple validation". No model involved: a cabinet's stated numbers
  * must satisfy these or it cannot be trusted (let alone published).
  *
@@ -67,7 +67,7 @@ export function validateCabinet(c: Partial<Cabinet>): ValidationResult {
   if (pf !== null && (pf <= 0 || pf > 1)) {
     err("power_factor", "Power factor must be between 0 and 1.")
   }
-  // Power density (W/m²) — touring LED runs roughly 150–1200 W/m² max.
+  // Power density (W/m²) - touring LED runs roughly 150–1200 W/m² max.
   if (maxW && tw && th) {
     const areaM2 = (tw / 1000) * (th / 1000)
     if (areaM2 > 0) {
@@ -78,7 +78,7 @@ export function validateCabinet(c: Partial<Cabinet>): ValidationResult {
     }
   }
 
-  // --- weight density (kg/m²) — touring panels ~15–60 kg/m² ---
+  // --- weight density (kg/m²) - touring panels ~15–60 kg/m² ---
   if (weight && tw && th) {
     const areaM2 = (tw / 1000) * (th / 1000)
     if (areaM2 > 0) {

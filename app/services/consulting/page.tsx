@@ -13,7 +13,7 @@ import {
 import { ServiceAccordion } from "@/components/v2/service-accordion"
 
 export const metadata: Metadata = {
-  title: "Executive & Strategic Consulting | TC Agency — Production Engineering",
+  title: "Executive & Strategic Consulting | TC Agency - Production Engineering",
   description:
     "Senior technical and production leadership for high-stakes environments. TC Agency provides strategic oversight, risk mitigation, feasibility modelling, vendor strategy, and decision support for complex global productions.",
   keywords: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     "Technically Creative",
   ],
   openGraph: {
-    title: "Executive & Strategic Consulting — TC Agency",
+    title: "Executive & Strategic Consulting - TC Agency",
     description:
       "High-level production and technical strategy for shows and programs that demand clarity, reliability, and senior leadership.",
     url: "https://www.tc.agency/services/consulting",
@@ -37,13 +37,13 @@ export const metadata: Metadata = {
         url: "/og/consulting.jpg",
         width: 1200,
         height: 630,
-        alt: "Executive & Strategic Consulting — TC Production Engineering",
+        alt: "Executive & Strategic Consulting - TC Production Engineering",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Executive & Strategic Consulting — TC Agency",
+    title: "Executive & Strategic Consulting - TC Agency",
     description:
       "High-level production and technical strategy for shows and programs that demand clarity, reliability, and senior leadership.",
     images: ["/og/consulting.jpg"],
@@ -141,7 +141,7 @@ export default function ConsultingPage() {
 
         {/* Header */}
         <div className="mb-16 max-w-4xl">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — EXECUTIVE CONSULTING ]</p>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE / EXECUTIVE CONSULTING ]</p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
             Executive & Strategic Consulting
           </h1>

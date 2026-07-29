@@ -18,7 +18,7 @@ export function OrganizationSchema() {
     },
     image: "https://tc.agency/og-image.png",
     description:
-      "TC Agency (tc.agency) is Technically Creative — production engineering, technical direction, and live event automation for high-stakes shows worldwide.",
+      "TC Agency (tc.agency) is Technically Creative - production engineering, technical direction, and live event automation for high-stakes shows worldwide.",
     email: "info@tc.agency",
     foundingDate: "2020",
     numberOfEmployees: {
@@ -56,7 +56,7 @@ export function LocalBusinessSchema() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "@id": "https://tc.agency/#localbusiness",
-    name: "TC Agency — Technically Creative",
+    name: "TC Agency - Technically Creative",
     image: "https://tc.agency/og-image.png",
     url: "https://tc.agency",
     email: "info@tc.agency",
@@ -116,7 +116,7 @@ export function WebsiteSchema() {
     "@type": "WebSite",
     "@id": "https://tc.agency/#website",
     url: "https://tc.agency",
-    name: "TC Agency — Technically Creative",
+    name: "TC Agency - Technically Creative",
     description: "Production engineering, technical direction, and live event automation for high-stakes events.",
     publisher: {
       "@id": "https://tc.agency/#organization",
