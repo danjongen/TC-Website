@@ -11,7 +11,7 @@ type Client = {
 
 const CLIENTS: Client[] = [
   { name: "Ford", src: "/images/ford-logo-flat.png" },
-  { name: "The Sphere", src: "/images/msg-sphere-logo.png" },
+  { name: "The Sphere", src: "/images/sphere-logo.jpg" },
   { name: "Samsung", src: "/images/samsung-orig-wordmark-blue-rgb.png" },
   { name: "Visa", src: "/images/visa-logo.webp" },
   { name: "Backstreet Boys", src: "/images/backstreet-20boys.png" },
@@ -31,21 +31,27 @@ export function ClientsWall() {
           {CLIENTS.map((client) => (
             <div
               key={client.name}
-              className="group flex min-h-24 items-center justify-center"
+              className="group relative flex min-h-24 items-center justify-center"
             >
-              <Image
-                src={client.src}
-                alt={client.name}
-                width={client.featured ? 190 : 150}
-                height={client.featured ? 88 : 64}
+              <div
                 className={[
-                  "w-auto object-contain opacity-65 grayscale transition-[filter,opacity,transform] duration-500 group-hover:opacity-100 group-hover:grayscale-0 motion-reduce:transition-none",
+                  "relative w-full transition-transform duration-500 motion-reduce:transition-none",
                   client.featured
-                    ? "max-h-20 scale-[1.6] group-hover:scale-[1.68] md:max-h-24"
-                    : "max-h-12 group-hover:scale-[1.04] md:max-h-14",
-                  client.monochrome ? "invert" : "",
+                    ? "h-20 max-w-[190px] scale-[1.35] group-hover:scale-[1.42] md:h-24"
+                    : "h-12 max-w-[150px] group-hover:scale-[1.04] md:h-14",
                 ].join(" ")}
-              />
+              >
+                <Image
+                  src={client.src}
+                  alt={client.name}
+                  fill
+                  sizes="(min-width: 768px) 20vw, 50vw"
+                  className={[
+                    "object-contain object-center opacity-65 grayscale transition-[filter,opacity] duration-500 group-hover:opacity-100 group-hover:grayscale-0 motion-reduce:transition-none",
+                    client.monochrome ? "invert" : "",
+                  ].join(" ")}
+                />
+              </div>
             </div>
           ))}
         </div>

@@ -6,14 +6,14 @@ import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 
 const navItems = [
-  { name: "HOME", href: "/" },
-  { name: "ABOUT", href: "/about" },
-  { name: "SERVICES", href: "/services" },
-  { name: "APPROACH", href: "/approach" },
-  { name: "PORTFOLIO", href: "/portfolio" },
-  { name: "INSIGHTS", href: "/insights" },
-  { name: "STORE", href: "/store" },
-  { name: "CONTACT", href: "/contact" },
+  { number: "00", name: "HOME", href: "/" },
+  { number: "01", name: "ABOUT", href: "/about" },
+  { number: "02", name: "SERVICES", href: "/services" },
+  { number: "03", name: "APPROACH", href: "/approach" },
+  { number: "04", name: "PORTFOLIO", href: "/portfolio" },
+  { number: "05", name: "INSIGHTS", href: "/insights" },
+  { number: "06", name: "STORE", href: "/store" },
+  { number: "07", name: "CONTACT", href: "/contact" },
 ]
 
 function isActive(pathname: string, href: string) {
@@ -100,7 +100,7 @@ export function Navbar() {
           </div>
 
           <nav className="flex flex-col gap-2 p-6 pt-12">
-            {navItems.map((item, i) => (
+            {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
@@ -109,7 +109,7 @@ export function Navbar() {
                   isActive(pathname, item.href) ? "text-[#00D26A]" : "text-white"
                 }`}
               >
-                <span className="mr-4 font-mono text-xs text-zinc-400">0{i + 1}</span>
+                <span className="mr-4 font-mono text-xs text-zinc-400">{item.number}</span>
                 {item.name}
               </Link>
             ))}

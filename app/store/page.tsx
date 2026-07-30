@@ -60,9 +60,7 @@ export default function StorePage() {
       <Navbar />
       <main id="main-content" className="min-h-screen bg-black text-white">
         <section className="mx-auto w-full max-w-[1600px] px-6 pb-16 pt-36 md:px-12 md:pb-24 md:pt-44">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#00D26A]">
-            [ Store / Field Tools ]
-          </p>
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#00D26A]">[ 06 / STORE ]</p>
           <h1 className="mt-7 max-w-[14ch] text-5xl font-semibold leading-[0.95] tracking-[-0.05em] text-balance sm:text-6xl md:text-7xl lg:text-8xl">
             Built for the field.
           </h1>

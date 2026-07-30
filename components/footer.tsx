@@ -61,10 +61,10 @@ export function Footer() {
                 About TC Agency
               </Link>
               <Link
-                href="/about#daniel-jongen"
+                href="/about#leadership"
                 className="block text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
               >
-                Meet Daniel Jongen
+                Leadership
               </Link>
               <Link
                 href="/portfolio"

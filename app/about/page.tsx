@@ -101,6 +101,24 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* Full-width image header */}
+        <section aria-label="Live production at scale" className="relative">
+          <div className="relative aspect-[21/9] w-full">
+            <Image
+              src="/images/bsb-live-05.jpg"
+              alt="Backstreet Boys live at the Sphere - large-format LED production engineered by TC Agency"
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+            <div className="absolute bottom-6 left-6">
+              <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400">SPHERE - LAS VEGAS</p>
+            </div>
+          </div>
+        </section>
+
         {/* Principles - indexed rows */}
         <section className="py-[14vh]">
           <div className="container mx-auto px-6">
@@ -121,28 +139,33 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
-          </div>
-        </section>
 
-        {/* Full-width image break */}
-        <section aria-label="Live production at scale" className="relative">
-          <div className="relative aspect-[21/9] w-full">
-            <Image
-              src="/images/bsb-live-05.jpg"
-              alt="Backstreet Boys live at the Sphere - large-format LED production engineered by TC Agency"
-              fill
-              className="object-cover"
-              sizes="100vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-            <div className="absolute bottom-6 left-6">
-              <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400">SPHERE - LAS VEGAS</p>
+            <div className="mt-20 max-w-2xl border-t border-zinc-900 pt-14 md:mt-28">
+              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">PHILOSOPHY</p>
+              <h2 className="mb-10 text-3xl font-semibold tracking-[-0.03em] text-white md:text-5xl">
+                Systems-first, always
+              </h2>
+
+              <div className="space-y-6 text-lg leading-relaxed text-zinc-400">
+                <p>
+                  In high-stakes live production there are no second chances. Every system is engineered with
+                  redundancy. Every workflow is documented. Every team member knows their role.
+                </p>
+                <p>
+                  Stadium tour, corporate keynote, or immersive brand activation. The rigor is the same. We engineer
+                  systems that work the first time, every time.
+                </p>
+                <p>
+                  Decades of field experience meet modern engineering practice: network redundancy, automated
+                  failovers, comprehensive documentation, continuous risk assessment.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Daniel */}
-        <section className="py-[18vh]">
+        <section id="leadership" className="scroll-mt-24 py-[18vh]">
           <div className="container mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-16 items-start">
               <div className="relative aspect-[4/5] max-w-md overflow-hidden">
@@ -212,33 +235,6 @@ export default function AboutPage() {
                     ))}
                   </ul>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Philosophy */}
-        <section className="py-[14vh]">
-          <div className="container mx-auto px-6">
-            <div className="max-w-2xl">
-              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 / PHILOSOPHY ]</p>
-              <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-10">
-                Systems-first, always
-              </h2>
-
-              <div className="space-y-6 text-lg leading-relaxed text-zinc-400">
-                <p>
-                  In high-stakes live production there are no second chances. Every system is engineered with
-                  redundancy. Every workflow is documented. Every team member knows their role.
-                </p>
-                <p>
-                  Stadium tour, corporate keynote, or immersive brand activation. The rigor is the same. We engineer
-                  systems that work the first time, every time.
-                </p>
-                <p>
-                  Decades of field experience meet modern engineering practice: network redundancy, automated
-                  failovers, comprehensive documentation, continuous risk assessment.
-                </p>
               </div>
             </div>
           </div>

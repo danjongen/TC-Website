@@ -151,7 +151,7 @@ const services: { num: string; title: string; desc: string; href: string; detail
   },
 ]
 
-const partners = [
+const technologies = [
   "disguise",
   "Holoplot",
   "ROE Visual",
@@ -228,6 +228,32 @@ export default function CapabilitiesPage() {
         </div>
       </section>
 
+      {/* Technology ecosystem */}
+      <section className="border-b border-zinc-900 py-[10vh]">
+        <div className="container mx-auto px-6">
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">TECHNOLOGY ECOSYSTEM</p>
+          <div className="mb-12 max-w-3xl">
+            <h2 className="mb-6 text-3xl font-semibold tracking-[-0.03em] text-white md:text-5xl">
+              Built across the tools that run modern production.
+            </h2>
+            <p className="max-w-2xl text-lg leading-relaxed text-zinc-400">
+              Platform experience spans the control, video, audio, lighting, tracking, and survey systems used across
+              complex live environments.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-x-8 md:grid-cols-3 lg:grid-cols-5">
+            {technologies.map((technology) => (
+              <span
+                key={technology}
+                className="border-t border-zinc-800 py-5 font-mono text-xs tracking-[0.14em] text-zinc-300 transition-colors duration-300 hover:text-white"
+              >
+                {technology}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Services index */}
       <section className="py-[14vh]">
         <div className="container mx-auto px-6">
@@ -277,23 +303,6 @@ export default function CapabilitiesPage() {
                   </div>
                 </div>
               </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Technology Partners */}
-      <section className="py-[14vh]">
-        <div className="container mx-auto px-6">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 / TECHNOLOGY PARTNERS ]</p>
-          <div className="flex flex-wrap gap-x-10 gap-y-4 max-w-3xl">
-            {partners.map((partner) => (
-              <span
-                key={partner}
-                className="font-mono text-xs tracking-[0.2em] text-zinc-400 hover:text-white transition-colors duration-300"
-              >
-                {partner}
-              </span>
             ))}
           </div>
         </div>
