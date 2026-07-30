@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { HashScroll } from "@/components/hash-scroll"
 import { BreadcrumbSchema } from "@/components/structured-data"
 
 export const metadata: Metadata = {
@@ -83,6 +84,7 @@ export default function AboutPage() {
       />
 
       <Navbar />
+      <HashScroll id="leadership" />
 
       <main id="main-content" className="pt-40 md:pt-48">
         {/* Hero */}
