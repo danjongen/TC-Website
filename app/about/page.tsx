@@ -6,6 +6,21 @@ import { Footer } from "@/components/footer"
 import { HashScroll } from "@/components/hash-scroll"
 import { BreadcrumbSchema } from "@/components/structured-data"
 
+const operatingRulesPreview = [
+  {
+    number: "01",
+    title: "Common sense beats the rulebook.",
+  },
+  {
+    number: "02",
+    title: "Take the shortest path.",
+  },
+  {
+    number: "06",
+    title: "Flag it early.",
+  },
+]
+
 export const metadata: Metadata = {
   title: "About TC Agency | Production Engineering for High-Stakes Events",
   description:
@@ -124,7 +139,9 @@ export default function AboutPage() {
         {/* Principles - indexed rows */}
         <section className="py-[14vh]">
           <div className="container mx-auto px-6">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 / PRINCIPLES ]</p>
+            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+              [ 02 / ENGINEERING PRINCIPLES ]
+            </p>
             <div className="max-w-3xl">
               {principles.map((principle, i) => (
                 <div key={principle.num}>
@@ -166,6 +183,43 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* How we work preview */}
+        <section className="pb-[14vh]">
+          <div className="container mx-auto px-6">
+            <div className="border-t border-zinc-800 pt-14">
+              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 / HOW WE WORK ]</p>
+              <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+                <div className="lg:col-span-5">
+                  <h2 className="mb-6 text-3xl font-semibold tracking-[-0.03em] text-white md:text-5xl">
+                    Seven rules. One standard.
+                  </h2>
+                  <p className="max-w-xl text-lg leading-relaxed text-zinc-400">
+                    Direct communication, practical judgment, and problems raised while they are still cheap to solve.
+                    The rules apply to everyone.
+                  </p>
+                </div>
+
+                <div className="lg:col-span-7">
+                  <div className="border-t border-zinc-800">
+                    {operatingRulesPreview.map((rule) => (
+                      <div key={rule.number} className="grid grid-cols-[3rem_1fr] gap-4 border-b border-zinc-800 py-6">
+                        <span className="font-mono text-xs tracking-[0.2em] text-zinc-500">{rule.number}</span>
+                        <p className="text-xl font-semibold tracking-[-0.02em] text-white md:text-2xl">{rule.title}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <Link
+                    href="/how-we-work"
+                    className="mt-8 inline-block font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-[#00D26A]"
+                  >
+                    READ ALL SEVEN RULES →
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Daniel */}
         <section id="leadership" className="scroll-mt-24 py-[18vh]">
           <div className="container mx-auto px-6">
@@ -185,7 +239,7 @@ export default function AboutPage() {
               </div>
 
               <div>
-                <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 / LEADERSHIP ]</p>
+                <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 / LEADERSHIP ]</p>
                 <h2
                   id="daniel-jongen"
                   className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8"

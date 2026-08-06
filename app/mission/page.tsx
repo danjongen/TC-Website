@@ -114,8 +114,12 @@ export default function MissionPage() {
       {/* Principles - indexed rows */}
       <section className="py-[12vh]">
         <div className="container mx-auto px-6">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 / PRINCIPLES ]</p>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-12">Our principles</h2>
+          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+            [ 03 / ENGINEERING PRINCIPLES ]
+          </p>
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-12">
+            Engineering principles
+          </h2>
           <div>
             {[
               {

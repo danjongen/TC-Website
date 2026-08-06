@@ -84,7 +84,7 @@ const posts: Record<
       "**Systems integration.** Video, lighting, motion, power, and networking engineered as one machine, with redundancy built into every critical path.",
       "**Workflow automation.** Show-control pipelines and cueing systems that take human error off the critical path.",
       "**Power and data infrastructure.** Conditioned power, deterministic networking, and live telemetry for environments where the radio spectrum is saturated and the margin for error is zero.",
-      "## How We Work",
+      "## How We Deliver",
       "Our process is phased on purpose: discovery and alignment first, then design, then simulation, then execution, with clear ownership at every stage. We rehearse the full technical chain before show day so the failure modes surface in a shop, not in front of an audience.",
       "The principles underneath the work are simple. Systems over heroes, so delivery never depends on one person being in the room. Automation over manual effort, so the team spends its attention on judgment, not data entry. Redundancy over optimism, so a single fault never becomes a visible failure.",
       "## Who We Work With",

@@ -61,6 +61,12 @@ export function Footer() {
                 About TC Agency
               </Link>
               <Link
+                href="/how-we-work"
+                className="block text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
+              >
+                How We Work
+              </Link>
+              <Link
                 href="/about#leadership"
                 className="block text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
               >
