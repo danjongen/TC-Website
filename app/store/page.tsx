@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { POWER_SYMBOLS_VERSION } from "@/lib/power-symbols-version"
 
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
@@ -178,7 +179,7 @@ export default function StorePage() {
                   <li className="py-4">3D cable routing + length takeoff roadmap</li>
                 </ul>
                 <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.14em] text-zinc-500">
-                  Vectorworks 2026 · macOS · Beta 0.2.4
+                  Vectorworks 2026 · macOS · Beta {POWER_SYMBOLS_VERSION}
                 </p>
                 <Link
                   href="/store/power-symbols"

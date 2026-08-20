@@ -1,5 +1,7 @@
 'use client'
 
+import { POWER_SYMBOLS_VERSION } from '@/lib/power-symbols-version'
+
 /**
  * Power Symbols — animated demonstration frame
  * app/store/power-symbols/power-symbols-demo.tsx
@@ -731,7 +733,7 @@ export function PowerSymbolsDemo() {
           color: META_DARK,
         }}
       >
-        Symbol, rating, route and schedule row stay coordinated · Beta 0.2.4
+        Symbol, rating, route and schedule row stay coordinated · Beta {POWER_SYMBOLS_VERSION}
       </p>
     </section>
   )

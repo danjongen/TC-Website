@@ -4,8 +4,9 @@ import {
   createSign,
   timingSafeEqual,
 } from "node:crypto"
+import { POWER_SYMBOLS_VERSION } from "@/lib/power-symbols-version"
 
-export const POWER_SYMBOLS_VERSION = "0.2.5"
+export { POWER_SYMBOLS_VERSION }
 export const POWER_SYMBOLS_PRODUCT = "power-symbols"
 export const POWER_SYMBOLS_BETA_VARIANTS = new Set([
   "53609848635755",

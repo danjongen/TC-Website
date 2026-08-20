@@ -2,10 +2,11 @@ import { readFile } from "node:fs/promises"
 import path from "node:path"
 import { NextResponse } from "next/server"
 import { verifyPowerSymbolsSerial } from "@/lib/power-symbols-license"
+import { POWER_SYMBOLS_VERSION } from "@/lib/power-symbols-version"
 
 export const runtime = "nodejs"
 
-const filename = "Power-Symbols-0.2.5-VW2023-2026-Paid-Beta.zip"
+const filename = `Power-Symbols-${POWER_SYMBOLS_VERSION}-VW2023-2026-Paid-Beta.zip`
 
 export async function GET(request: Request) {
   const serial = new URL(request.url).searchParams.get("serial") || ""

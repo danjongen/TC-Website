@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { POWER_SYMBOLS_VERSION } from "@/lib/power-symbols-version"
 
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
@@ -64,7 +65,7 @@ const softwareJsonLd = {
   name: "Power Symbols",
   applicationCategory: "DesignApplication",
   operatingSystem: "macOS",
-  softwareVersion: "0.2.4 beta",
+  softwareVersion: `${POWER_SYMBOLS_VERSION} beta`,
   description,
   offers: {
     "@type": "AggregateOffer",
@@ -123,7 +124,7 @@ export default function PowerSymbolsPage() {
 
             <div className="border border-zinc-800 bg-zinc-900/40 p-6 md:p-8">
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#00D26A]">
-                Beta 0.2.4
+                Beta {POWER_SYMBOLS_VERSION}
               </p>
               <p className="mt-5 text-2xl font-semibold tracking-[-0.03em]">
                 Choose your support level. Get the build.
