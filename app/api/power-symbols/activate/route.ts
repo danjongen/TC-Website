@@ -3,8 +3,18 @@ import {
   createActivationCertificate,
   verifyPowerSymbolsSerial,
 } from "@/lib/power-symbols-license"
+import { POWER_SYMBOLS_VERSION } from "@/lib/power-symbols-version"
 
 export const runtime = "nodejs"
+
+function compareVersions(left: string, right: string) {
+  const a = left.split(".").map(Number)
+  const b = right.split(".").map(Number)
+  for (let index = 0; index < 3; index += 1) {
+    if (a[index] !== b[index]) return a[index] - b[index]
+  }
+  return 0
+}
 
 export async function POST(request: Request) {
   try {
@@ -39,6 +49,21 @@ export async function POST(request: Request) {
       return NextResponse.json(
         { error: "Vectorworks supplied an invalid plug-in version." },
         { status: 400 },
+      )
+    }
+    if (compareVersions(version, POWER_SYMBOLS_VERSION) > 0) {
+      return NextResponse.json(
+        {
+          code: "CLIENT_VERSION_AHEAD",
+          error: `Power Symbols ${version} is newer than the active licence service (${POWER_SYMBOLS_VERSION}). Please update the beta service and try again.`,
+          release_max: POWER_SYMBOLS_VERSION,
+        },
+        {
+          status: 409,
+          headers: {
+            "Cache-Control": "no-store, no-cache, must-revalidate",
+          },
+        },
       )
     }
     const certificate = createActivationCertificate({ serial, machine })
