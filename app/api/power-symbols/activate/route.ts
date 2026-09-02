@@ -3,7 +3,7 @@ import {
   createActivationCertificate,
   verifyPowerSymbolsSerial,
 } from "@/lib/power-symbols-license"
-import { POWER_SYMBOLS_VERSION } from "@/lib/power-symbols-version"
+import { POWER_SYMBOLS_ACTIVATION_MAX_VERSION } from "@/lib/power-symbols-version"
 
 export const runtime = "nodejs"
 
@@ -51,12 +51,12 @@ export async function POST(request: Request) {
         { status: 400 },
       )
     }
-    if (compareVersions(version, POWER_SYMBOLS_VERSION) > 0) {
+    if (compareVersions(version, POWER_SYMBOLS_ACTIVATION_MAX_VERSION) > 0) {
       return NextResponse.json(
         {
           code: "CLIENT_VERSION_AHEAD",
-          error: `Power Symbols ${version} is newer than the active licence service (${POWER_SYMBOLS_VERSION}). Please update the beta service and try again.`,
-          release_max: POWER_SYMBOLS_VERSION,
+          error: `Power Symbols ${version} is newer than the active licence service (${POWER_SYMBOLS_ACTIVATION_MAX_VERSION}). Please update the beta service and try again.`,
+          release_max: POWER_SYMBOLS_ACTIVATION_MAX_VERSION,
         },
         {
           status: 409,

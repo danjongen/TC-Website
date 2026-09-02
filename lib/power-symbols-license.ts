@@ -4,7 +4,10 @@ import {
   createSign,
   timingSafeEqual,
 } from "node:crypto"
-import { POWER_SYMBOLS_VERSION } from "@/lib/power-symbols-version"
+import {
+  POWER_SYMBOLS_ACTIVATION_MAX_VERSION,
+  POWER_SYMBOLS_VERSION,
+} from "@/lib/power-symbols-version"
 
 export { POWER_SYMBOLS_VERSION }
 export const POWER_SYMBOLS_PRODUCT = "power-symbols"
@@ -122,7 +125,7 @@ export function createActivationCertificate(input: {
     license_id: verified.serial,
     buyer: verified.buyerHash,
     machine: input.machine,
-    release_max: POWER_SYMBOLS_VERSION,
+    release_max: POWER_SYMBOLS_ACTIVATION_MAX_VERSION,
     issued_at: new Date().toISOString(),
   }
   const encodedClaims = base64Url(
