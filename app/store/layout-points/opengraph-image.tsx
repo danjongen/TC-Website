@@ -45,20 +45,20 @@ export default async function Image() {
           style={{ position: "absolute", left: 0, right: 0, top: i * 64, height: 1, background: "#1c1c1f" }}
         />
       ))}
-      <div style={{ position: "absolute", left: 72, top: 64, display: "flex", flexDirection: "column", width: 640 }}>
-        <div style={{ color: GREEN, fontSize: 22, letterSpacing: 5, textTransform: "uppercase", display: "flex" }}>
+      <div style={{ position: "absolute", left: 72, top: 140, display: "flex", flexDirection: "column", width: 640 }}>
+        <div style={{ color: GREEN, fontSize: 18, letterSpacing: 3, textTransform: "uppercase", display: "flex" }}>
           [ TC Agency / Store / Field tools ]
         </div>
-        <div style={{ color: "#fff", fontSize: 34, marginTop: 40, fontWeight: 700, letterSpacing: 1, display: "flex" }}>
+        <div style={{ color: "#fff", fontSize: 26, marginTop: 40, fontWeight: 700, letterSpacing: 1, display: "flex" }}>
           LAYOUT POINTS + DATUM LABEL STUDIO
         </div>
         <div
           style={{
             color: "#fff",
-            fontSize: 62,
+            fontSize: 52,
             lineHeight: 1,
             marginTop: 28,
-            
+
             fontWeight: 700,
             letterSpacing: -2,
             display: "flex",
@@ -66,7 +66,7 @@ export default async function Image() {
         >
           From Vectorworks datum to physical datum.
         </div>
-        <div style={{ color: "#a1a1aa", fontSize: 22, marginTop: 36, letterSpacing: 2, display: "flex" }}>
+        <div style={{ color: "#a1a1aa", fontSize: 18, marginTop: 36, letterSpacing: 1, display: "flex" }}>
           VECTORWORKS &gt; FIELD PACKAGE &gt; LABEL &gt; FIELD
         </div>
       </div>
@@ -74,7 +74,7 @@ export default async function Image() {
         style={{
           position: "absolute",
           right: 84,
-          top: 150,
+          top: 170,
           width: 330,
           height: 220,
           background: "#fafafa",
@@ -140,7 +140,7 @@ export default async function Image() {
         style={{
           position: "absolute",
           right: 84,
-          top: 400,
+          top: 410,
           color: "#a1a1aa",
           fontSize: 18,
           letterSpacing: 2,
