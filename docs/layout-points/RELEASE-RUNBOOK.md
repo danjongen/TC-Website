@@ -10,7 +10,7 @@ How a build becomes a public download on tc.agency. Every step leaves evidence. 
 
 ## 2. Build Datum Label Studio
 
-Prerequisites (owner): Apple Developer Program membership, a **Developer ID Application** certificate, a publisher-owned bundle identifier (for example `agency.tc.datumlabelstudio`), and an App Store Connect API key or app-specific password for `notarytool`.
+Prerequisites (owner): Apple Developer Program membership, a **Developer ID Application** certificate, the publisher-owned bundle identifier `agency.tc.datumlabelstudio` (decided), and an App Store Connect API key or app-specific password for `notarytool`.
 
 ```sh
 # Hardened runtime + Developer ID signature (replace TEAMID and paths)
@@ -28,12 +28,14 @@ xcrun notarytool submit "Datum-Label-Studio-0.2.0.dmg" --keychain-profile "tc-no
 xcrun stapler staple "Datum-Label-Studio-0.2.0.dmg"
 ```
 
-Architecture: either build and test a Universal binary (`lipo -info` shows `x86_64 arm64`) on both an Intel and an Apple silicon Mac, or record `"architecture": "arm64"` and the site will say Apple silicon only.
+Architecture: Apple silicon only (owner decision, 2026-09-29). Build arm64 and record `"architecture": "arm64"`.
 
 ## 3. Build Layout Points
 
 - Rebuild from the tag. The build record must show `source_dirty: false`.
 - Verify every internal manifest and adjacent checksum file.
+- Sign from the inside out: the plug-in and every helper tool (status, rollback, uninstall) with **Developer ID Application**, hardened runtime on executables and a secure timestamp.
+- Vectorworks 2026 and later disable locked (encrypted) or SDK plug-ins that lack a Vectorworks-issued credentials file. Request it from Vectorworks developer support in the name of Technically Creative LLC, once per supported Vectorworks version, and ship it with the plug-in. It identifies the developer; it is not an endorsement.
 - Package the guided installer as a flat `.pkg`, signed with **Developer ID Installer**, notarised and stapled:
 
 ```sh

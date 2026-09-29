@@ -32,11 +32,11 @@ Status as of 2026-09-29: **website approved for publication in release-list mode
 | Mac support | **Apple silicon only** |
 | Website merge and publish | **Approved.** The site goes live in release-list mode. No files or checkout are exposed |
 | Apple Developer credentials | Owner to enrol; see the Apple checklist in the paperwork set |
-| Legal text | Drafts produced for the paid beta; owner reads before they go live and before the first sale |
+| Legal text | Drafts produced for the paid beta and held privately by the owner (this repository is public). A fixed-fee lawyer review, insurance and a postal address for the LLC come before the first sale |
 
 Release approval (`publication.approved` in the manifest) stays **false**. It is a per-release sign-off given once a signed, notarised, tested build exists, not a blanket approval now.
 
-## Gate status (3 of 21 passed)
+## Gate status (3 of 22 passed)
 
 Passed: commercial model, architecture labelling, support ownership. Still blocked, and who owns them:
 
@@ -46,6 +46,7 @@ Passed: commercial model, architecture labelling, support ownership. Still block
 | Bundle identifier built into Datum Label Studio | Release engineering |
 | Clean tags, new public version, hardened runtime, signing, notarisation, Gatekeeper verification | Release engineering |
 | Layout Points rebuilt clean, internal checksums verified, guided installer | Release engineering |
+| Vectorworks-issued credentials file per supported Vectorworks version (2026+ disables locked or SDK plug-ins without it) | Release engineering |
 | Vectorworks host matrix, end-to-end physical print, evidence | QA |
 | EULA, terms of sale, notices, asset rights | Owner (read and approve drafts) |
 | Paid entitlement in both apps, protected delivery, and payment-state tests | Engineering |

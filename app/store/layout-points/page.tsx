@@ -527,7 +527,7 @@ export default function LayoutPointsPage() {
           <p className="max-w-5xl text-sm leading-relaxed text-zinc-400">
             Layout Points and Datum Label Studio prepare layout data and labels from your drawing. They do not replace
             survey control, a qualified surveyor or checking a known distance on site. Vectorworks is a trademark of
-            Vectorworks, Inc. Leica and iCON are trademarks of Leica Geosystems AG. Technically Creative is not
+            Vectorworks, Inc. Leica and iCON are trademarks of Leica Geosystems AG. Technically Creative LLC is not
             affiliated with, endorsed or certified by either company.
           </p>
         </div>
