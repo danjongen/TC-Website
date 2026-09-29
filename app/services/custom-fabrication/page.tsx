@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { CueLabel } from "@/components/motion/cue-label"
 import {
   ArrowLeft,
   ArrowRight,
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Custom Fabrication — TC Production Engineering",
+        alt: "Custom Fabrication | TC Production Engineering",
       },
     ],
   },
@@ -126,7 +127,7 @@ const processSteps = [
 
 export default function CustomFabricationPage() {
   return (
-    <main className="min-h-screen bg-background pt-24 pb-16">
+    <main className="min-h-screen bg-black pt-24 pb-16">
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "https://tc.agency" },
@@ -144,7 +145,7 @@ export default function CustomFabricationPage() {
         {/* Breadcrumb */}
         <Link
           href="/capabilities"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors mb-8"
+          className="-mt-1 mb-7 inline-flex items-center gap-2 py-1 text-sm text-muted-foreground transition-colors duration-300 ease-expo hover:text-white"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Services
@@ -152,11 +153,11 @@ export default function CustomFabricationPage() {
 
         {/* Header */}
         <div className="mb-16 max-w-4xl">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — CUSTOM FABRICATION ]</p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
+          <CueLabel className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">SERVICE / CUSTOM FABRICATION</CueLabel>
+          <h1 data-vt="title" data-reveal="rise" className="w-fit text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
             Production Hardware Engineering
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
+          <p data-reveal="fade" className="text-xl text-muted-foreground leading-relaxed">
             Custom-engineered hardware for productions that require solutions that don't exist yet. From mechanical
             design and rapid prototyping through certified production runs, we build the parts that make the impossible
             possible.
@@ -166,19 +167,19 @@ export default function CustomFabricationPage() {
         {/* Overview */}
         <section className="mb-24">
           <div className="max-w-3xl">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
-            <p className="text-muted-foreground leading-relaxed mb-4">
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
+            <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
               Off-the-shelf hardware works for standard productions. But when the creative brief calls for something
               that has never been built before, you need engineering partners who understand both the fabrication
               process and the production environment where the part will live.
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-4">
+            <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
               We design and manufacture custom brackets, mounts, enclosures, rigging hardware, cable assemblies, and
               structural components purpose-built for live events, touring, broadcast, and permanent installations.
               Every part is engineered for the specific loads, tolerances, and environmental conditions of your
               application.
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p data-reveal="fade" className="text-muted-foreground leading-relaxed">
               Our fabrication capabilities span the full range from one-off prototypes to repeatable production runs.
               Whether you need a single custom adapter plate by Friday or 200 certified rigging brackets for a world
               tour, the process is the same: rigorous engineering, validated testing, and documented quality at every
@@ -189,7 +190,7 @@ export default function CustomFabricationPage() {
 
         {/* Capabilities Grid */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Capabilities</h2>
+          <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Capabilities</h2>
           <ServiceAccordion
             items={capabilities.map((item) => ({
               title: item.title,
@@ -201,29 +202,31 @@ export default function CustomFabricationPage() {
 
         {/* Materials & Processes */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Materials & Processes</h2>
-          <p className="text-muted-foreground max-w-3xl mb-8">
+          <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Materials & Processes</h2>
+          <p data-reveal="fade" className="text-muted-foreground max-w-3xl mb-8">
             Material selection is driven by your application requirements: weight constraints, structural loads,
             environmental exposure, and finish specifications. We source certified stock and maintain full material
             traceability from raw billet to finished part.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-900 border border-zinc-800">
             {materials.map((group, i) => (
-              <div key={i} className="bg-background p-6">
-                <h3 className="font-mono text-sm text-zinc-400 uppercase tracking-widest mb-4">{group.category}</h3>
-                <ul className="space-y-2">
-                  {group.items.map((item, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <CheckCircle className="w-3.5 h-3.5 text-zinc-500 mt-0.5 flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+              <div key={i} className="bg-black p-6">
+                <div data-reveal="fade">
+                  <h3 className="font-mono text-sm text-zinc-400 uppercase tracking-widest mb-4">{group.category}</h3>
+                  <ul className="space-y-2">
+                    {group.items.map((item, j) => (
+                      <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <CheckCircle className="w-3.5 h-3.5 text-zinc-500 mt-0.5 flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ))}
           </div>
           <div className="mt-8 grid md:grid-cols-3 gap-6">
-            <div className="border border-zinc-800 p-6">
+            <div data-reveal="fade" className="border border-zinc-800 p-6">
               <h3 className="font-semibold mb-4">Surface Treatments</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>Anodizing (Type II & III)</li>
@@ -233,7 +236,7 @@ export default function CustomFabricationPage() {
                 <li>Passivation</li>
               </ul>
             </div>
-            <div className="border border-zinc-800 p-6">
+            <div data-reveal="fade" className="border border-zinc-800 p-6">
               <h3 className="font-semibold mb-4">Joining Methods</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>TIG welding (aluminum & steel)</li>
@@ -243,7 +246,7 @@ export default function CustomFabricationPage() {
                 <li>Riveting</li>
               </ul>
             </div>
-            <div className="border border-zinc-800 p-6">
+            <div data-reveal="fade" className="border border-zinc-800 p-6">
               <h3 className="font-semibold mb-4">Quality Assurance</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>CMM inspection</li>
@@ -258,18 +261,20 @@ export default function CustomFabricationPage() {
 
         {/* From Concept to Delivery */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">From Concept to Delivery</h2>
+          <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">From Concept to Delivery</h2>
           <div className="max-w-3xl">
             <div className="relative">
               <div className="absolute left-4 top-0 bottom-0 w-px bg-zinc-900" />
               <div className="space-y-12">
                 {processSteps.map((step, i) => (
                   <div key={i} className="relative pl-12">
-                    <div className="absolute left-0 w-8 h-8 rounded-full bg-background border-2 border-zinc-700 flex items-center justify-center">
+                    <div className="absolute left-0 w-8 h-8 rounded-full bg-black border-2 border-zinc-700 flex items-center justify-center">
                       <span className="text-xs font-mono text-zinc-500">{(i + 1).toString().padStart(2, "0")}</span>
                     </div>
-                    <h3 className="font-semibold mb-2">{step.phase}</h3>
-                    <p className="text-sm text-muted-foreground">{step.desc}</p>
+                    <div data-reveal="fade">
+                      <h3 className="font-semibold mb-2">{step.phase}</h3>
+                      <p className="text-sm text-muted-foreground">{step.desc}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -279,52 +284,58 @@ export default function CustomFabricationPage() {
 
         {/* Cross-links */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-8">Related Services</h2>
+          <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-8">Related Services</h2>
           <div className="grid md:grid-cols-2 gap-px bg-zinc-900 border border-zinc-800">
             <Link
               href="/services/design-visualization"
-              className="bg-background p-8 group hover:bg-zinc-900/40 transition-colors"
+              className="bg-black p-8 group hover:bg-zinc-900/40 transition-colors duration-300 ease-expo"
             >
-              <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-2">
-                Design & Visualization
+              <div data-reveal="fade">
+                <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-2">
+                  Design & Visualization
+                </div>
+                <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors duration-300 ease-expo">
+                  See it before you build it
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  3D visualization and rendering to validate custom hardware designs in context before committing to
+                  fabrication.
+                </p>
               </div>
-              <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors">
-                See it before you build it
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                3D visualization and rendering to validate custom hardware designs in context before committing to
-                fabrication.
-              </p>
             </Link>
             <Link
               href="/services/system-integration"
-              className="bg-background p-8 group hover:bg-zinc-900/40 transition-colors"
+              className="bg-black p-8 group hover:bg-zinc-900/40 transition-colors duration-300 ease-expo"
             >
-              <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-2">
-                System Integration
+              <div data-reveal="fade">
+                <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-2">
+                  System Integration
+                </div>
+                <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors duration-300 ease-expo">
+                  Hardware meets infrastructure
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Custom fabrication paired with full system integration to deliver turnkey hardware solutions ready for
+                  deployment.
+                </p>
               </div>
-              <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors">
-                Hardware meets infrastructure
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                Custom fabrication paired with full system integration to deliver turnkey hardware solutions ready for
-                deployment.
-              </p>
             </Link>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="border-t border-zinc-800 pt-16">
+        <section>
+          <div data-reveal="line" aria-hidden="true" className="mb-16 h-px origin-left bg-zinc-800" />
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Need something that doesn't exist yet?</h2>
-            <p className="text-muted-foreground mb-8">
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-4">Need something that doesn't exist yet?</h2>
+            <p data-reveal="fade" className="text-muted-foreground mb-8">
               Tell us about the problem. We will engineer the solution, prototype it, test it, and deliver production-ready
               hardware on your timeline.
             </p>
             <Link
+              data-reveal="fade"
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors duration-300 ease-expo"
             >
               Start a Conversation
               <ArrowRight className="w-4 h-4" />

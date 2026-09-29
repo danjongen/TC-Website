@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { CueLabel } from "@/components/motion/cue-label"
 import {
   ArrowLeft,
   ArrowRight,
@@ -165,12 +166,12 @@ export default function AerialSurveyingPage() {
         url="https://tc.agency/services/aerial-surveying"
       />
 
-      <main className="min-h-screen bg-background pt-24 pb-16">
+      <main className="min-h-screen bg-black pt-24 pb-16">
         <div className="container mx-auto px-6">
           {/* Breadcrumb */}
           <Link
             href="/capabilities"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors mb-8"
+            className="-mt-1 mb-7 inline-flex items-center gap-2 py-1 text-sm text-muted-foreground transition-colors duration-300 ease-expo hover:text-white"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Services
@@ -178,11 +179,11 @@ export default function AerialSurveyingPage() {
 
           {/* Header */}
           <div className="mb-16 max-w-4xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — AERIAL SURVEYING ]</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
+            <CueLabel className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">SERVICE / AERIAL SURVEYING</CueLabel>
+            <h1 data-vt="title" data-reveal="rise" className="w-fit text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
               Aerial Surveying
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p data-reveal="fade" className="text-xl text-muted-foreground leading-relaxed">
               Drone-based aerial data capture for venue and site analysis. Comprehensive spatial intelligence
               from above, delivered with the precision your production demands.
             </p>
@@ -191,27 +192,27 @@ export default function AerialSurveyingPage() {
           {/* Overview */}
           <section className="mb-24">
             <div className="max-w-3xl">
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
+              <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
                 Our aerial surveying operations capture site conditions that ground-level observation cannot
                 reveal. Using commercial-grade drone platforms equipped with high-resolution cameras, thermal
                 sensors, and LiDAR payloads, we document topology, layouts, and site conditions from above
                 with centimeter-level accuracy.
               </p>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
                 Every flight is conducted under FAA Part 107 certification with full regulatory compliance.
                 We operate across festival grounds, stadium complexes, construction sites, and venue
                 exteriors, delivering the spatial data that production teams need to plan with confidence.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
+              <p data-reveal="fade" className="text-muted-foreground leading-relaxed">
                 Aerial datasets integrate directly with our{" "}
-                <Link href="/services/3d-scanning" className="text-white underline underline-offset-4 transition-colors hover:text-[#00D26A]">
+                <Link href="/services/3d-scanning" className="text-white underline underline-offset-4 transition-colors duration-300 ease-expo hover:text-[#00D26A]">
                   3D scanning
                 </Link>{" "}
                 ground truth data, creating unified site models that combine interior and exterior capture
                 into a single coordinate system. The result is a complete digital twin of your site, ready
                 for{" "}
-                <Link href="/services/design-visualization" className="text-white underline underline-offset-4 transition-colors hover:text-[#00D26A]">
+                <Link href="/services/design-visualization" className="text-white underline underline-offset-4 transition-colors duration-300 ease-expo hover:text-[#00D26A]">
                   design visualization
                 </Link>{" "}
                 and production planning workflows.
@@ -221,7 +222,7 @@ export default function AerialSurveyingPage() {
 
           {/* Capabilities Grid */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Capabilities</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Capabilities</h2>
             <ServiceAccordion
               items={capabilities.map((capability) => ({
                 title: capability.title,
@@ -233,9 +234,9 @@ export default function AerialSurveyingPage() {
 
           {/* Equipment & Technology */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Equipment & Technology</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Equipment & Technology</h2>
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="border border-zinc-800 p-6">
+              <div data-reveal="fade" className="border border-zinc-800 p-6">
                 <Plane className="w-6 h-6 text-zinc-500 mb-4" />
                 <h3 className="font-semibold mb-4">Aerial Platforms</h3>
                 <ul className="space-y-2 text-sm text-muted-foreground">
@@ -245,7 +246,7 @@ export default function AerialSurveyingPage() {
                   <li>Autel EVO II Pro RTK</li>
                 </ul>
               </div>
-              <div className="border border-zinc-800 p-6">
+              <div data-reveal="fade" className="border border-zinc-800 p-6">
                 <Camera className="w-6 h-6 text-zinc-500 mb-4" />
                 <h3 className="font-semibold mb-4">Sensors & Payloads</h3>
                 <ul className="space-y-2 text-sm text-muted-foreground">
@@ -255,7 +256,7 @@ export default function AerialSurveyingPage() {
                   <li>RTK/PPK GNSS receivers</li>
                 </ul>
               </div>
-              <div className="border border-zinc-800 p-6">
+              <div data-reveal="fade" className="border border-zinc-800 p-6">
                 <Cpu className="w-6 h-6 text-zinc-500 mb-4" />
                 <h3 className="font-semibold mb-4">Processing Software</h3>
                 <ul className="space-y-2 text-sm text-muted-foreground">
@@ -270,19 +271,21 @@ export default function AerialSurveyingPage() {
 
           {/* Deliverables */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Deliverables</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Deliverables</h2>
             <div className="grid md:grid-cols-2 gap-px bg-zinc-900 border border-zinc-800">
               {deliverables.map((item, i) => (
-                <div key={i} className="bg-background p-8">
-                  <item.icon className="w-8 h-8 text-zinc-500 mb-4" />
-                  <h3 className="font-semibold mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">{item.desc}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {item.formats.map((format, j) => (
-                      <span key={j} className="text-xs font-mono bg-zinc-900/40 border border-zinc-800 px-2 py-1">
-                        {format}
-                      </span>
-                    ))}
+                <div key={i} className="bg-black p-8">
+                  <div data-reveal="fade">
+                    <item.icon className="w-8 h-8 text-zinc-500 mb-4" />
+                    <h3 className="font-semibold mb-2">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground mb-4">{item.desc}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {item.formats.map((format, j) => (
+                        <span key={j} className="text-xs font-mono bg-zinc-900/40 border border-zinc-800 px-2 py-1">
+                          {format}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -291,18 +294,20 @@ export default function AerialSurveyingPage() {
 
           {/* Process */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Process</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Process</h2>
             <div className="max-w-3xl">
               <div className="relative">
                 <div className="absolute left-4 top-0 bottom-0 w-px bg-zinc-900" />
                 <div className="space-y-12">
                   {processSteps.map((step, i) => (
                     <div key={i} className="relative pl-12">
-                      <div className="absolute left-0 w-8 h-8 rounded-full bg-background border-2 border-zinc-700 flex items-center justify-center">
+                      <div className="absolute left-0 w-8 h-8 rounded-full bg-black border-2 border-zinc-700 flex items-center justify-center">
                         <span className="text-xs font-mono text-zinc-500">{(i + 1).toString().padStart(2, "0")}</span>
                       </div>
-                      <h3 className="font-semibold mb-2">{step.title}</h3>
-                      <p className="text-sm text-muted-foreground">{step.desc}</p>
+                      <div data-reveal="fade">
+                        <h3 className="font-semibold mb-2">{step.title}</h3>
+                        <p className="text-sm text-muted-foreground">{step.desc}</p>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -312,52 +317,58 @@ export default function AerialSurveyingPage() {
 
           {/* Cross-links */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-8">Related Services</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-8">Related Services</h2>
             <div className="grid md:grid-cols-2 gap-px bg-zinc-900 border border-zinc-800">
               <Link
                 href="/services/3d-scanning"
-                className="bg-background p-8 group hover:bg-zinc-900/40 transition-colors"
+                className="bg-black p-8 group hover:bg-zinc-900/40 transition-colors duration-300 ease-expo"
               >
-                <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-2">
-                  Ground Truth
+                <div data-reveal="fade">
+                  <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-2">
+                    Ground Truth
+                  </div>
+                  <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors duration-300 ease-expo">
+                    3D Scanning
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Terrestrial LiDAR and photogrammetry capture for interior spaces. Combine with aerial data
+                    for complete site coverage.
+                  </p>
                 </div>
-                <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors">
-                  3D Scanning
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Terrestrial LiDAR and photogrammetry capture for interior spaces. Combine with aerial data
-                  for complete site coverage.
-                </p>
               </Link>
               <Link
                 href="/services/design-visualization"
-                className="bg-background p-8 group hover:bg-zinc-900/40 transition-colors"
+                className="bg-black p-8 group hover:bg-zinc-900/40 transition-colors duration-300 ease-expo"
               >
-                <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-2">
-                  Downstream
+                <div data-reveal="fade">
+                  <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-2">
+                    Downstream
+                  </div>
+                  <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors duration-300 ease-expo">
+                    Design Visualization
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Transform aerial survey data into production-ready visualizations for stakeholder review and
+                    design iteration.
+                  </p>
                 </div>
-                <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors">
-                  Design Visualization
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Transform aerial survey data into production-ready visualizations for stakeholder review and
-                  design iteration.
-                </p>
               </Link>
             </div>
           </section>
 
           {/* CTA */}
-          <section className="border-t border-zinc-800 pt-16">
+          <section>
+            <div data-reveal="line" aria-hidden="true" className="mb-16 h-px origin-left bg-zinc-800" />
             <div className="max-w-2xl">
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Ready to survey your site?</h2>
-              <p className="text-muted-foreground mb-8">
+              <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-4">Ready to survey your site?</h2>
+              <p data-reveal="fade" className="text-muted-foreground mb-8">
                 Let's discuss your aerial surveying requirements and how drone-captured spatial data can
                 strengthen your production planning.
               </p>
               <Link
+                data-reveal="fade"
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors duration-300 ease-expo"
               >
                 Start a Conversation
                 <ArrowRight className="w-4 h-4" />

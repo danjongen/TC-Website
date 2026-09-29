@@ -3,45 +3,78 @@
 import { useState, useEffect } from "react"
 import { X } from "lucide-react"
 import Link from "next/link"
-
-type ConsentStatus = "pending" | "accepted" | "declined"
+import { AnimatePresence, m, useReducedMotion } from "framer-motion"
+import { DUR, EASE_EXPO } from "@/lib/motion"
 
 export const CONSENT_STORAGE_KEY = "tc_cookie_consent"
 export const CONSENT_CHANGE_EVENT = "tc-consent-changed"
 
 const CONSENT_COOKIE_NAME = CONSENT_STORAGE_KEY
 
+/**
+ * The banner waits for the visitor's first gesture (they have read the hero
+ * and are moving on), with an 8s fallback for anyone who just sits on the
+ * first screen. Shown any earlier, the card lands on the hero's intro copy.
+ * Nothing is tracked before consent (components/analytics.tsx), so waiting
+ * costs nothing on compliance. "Scroll" is read from the gestures that cause
+ * it (wheel, touch, keys, scrollbar drag) rather than the scroll event, so a
+ * programmatic scroll (scroll restoration, hash jump, route reset) cannot
+ * bring it in early.
+ */
+const SHOW_DELAY_MS = 8000
+const INTERACTION_EVENTS = ["wheel", "touchmove", "pointerdown", "keydown"] as const
+
 function notifyConsentChange() {
   window.dispatchEvent(new Event(CONSENT_CHANGE_EVENT))
 }
 
+function readStoredConsent() {
+  try {
+    return localStorage.getItem(CONSENT_COOKIE_NAME)
+  } catch {
+    return null
+  }
+}
+
+function storeConsent(value: "accepted" | "declined") {
+  try {
+    localStorage.setItem(CONSENT_COOKIE_NAME, value)
+  } catch {
+    // Storage blocked: the choice still applies for this page view.
+  }
+}
+
 export function CookieConsent() {
-  const [consentStatus, setConsentStatus] = useState<ConsentStatus>("pending")
   const [isVisible, setIsVisible] = useState(false)
+  const reduce = useReducedMotion()
 
   useEffect(() => {
-    // Check for existing consent
-    const storedConsent = localStorage.getItem(CONSENT_COOKIE_NAME)
-    if (storedConsent === "accepted" || storedConsent === "declined") {
-      setConsentStatus(storedConsent as ConsentStatus)
-    } else {
-      // Show banner after a short delay for better UX
-      const timer = setTimeout(() => setIsVisible(true), 1000)
-      return () => clearTimeout(timer)
+    const stored = readStoredConsent()
+    if (stored === "accepted" || stored === "declined") return
+
+    const listenerOptions = { capture: true, passive: true } as const
+    const stop = () => {
+      window.clearTimeout(timer)
+      INTERACTION_EVENTS.forEach((type) => window.removeEventListener(type, show, listenerOptions))
     }
+    const show = () => {
+      stop()
+      setIsVisible(true)
+    }
+    const timer = window.setTimeout(show, SHOW_DELAY_MS)
+    INTERACTION_EVENTS.forEach((type) => window.addEventListener(type, show, listenerOptions))
+    return stop
   }, [])
 
   const handleAccept = () => {
-    localStorage.setItem(CONSENT_COOKIE_NAME, "accepted")
-    setConsentStatus("accepted")
+    storeConsent("accepted")
     setIsVisible(false)
     // Notify the Analytics component so scripts load immediately (no reload)
     notifyConsentChange()
   }
 
   const handleDecline = () => {
-    localStorage.setItem(CONSENT_COOKIE_NAME, "declined")
-    setConsentStatus("declined")
+    storeConsent("declined")
     setIsVisible(false)
     notifyConsentChange()
   }
@@ -50,54 +83,61 @@ export function CookieConsent() {
     setIsVisible(false)
   }
 
-  if (!isVisible || consentStatus !== "pending") {
-    return null
-  }
+  const choiceClass =
+    "h-9 border font-mono text-[11px] uppercase tracking-[0.15em] transition-colors duration-150 ease-expo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6">
-      <div className="max-w-4xl mx-auto bg-zinc-900 border border-zinc-800 p-4 md:p-6 shadow-2xl">
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex-1">
-            <h3 className="text-sm font-semibold text-white mb-2">Cookie Preferences</h3>
-            <p className="text-xs text-zinc-400 leading-relaxed mb-4">
-              We use cookies and similar technologies to analyze site traffic and optimize your experience. By clicking
-              "Accept", you consent to the use of analytics cookies. You can change your preferences at any time.{" "}
-              <Link href="/cookie-policy" className="text-white underline underline-offset-2 hover:text-zinc-300">
-                Learn more
-              </Link>
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <button
-                onClick={handleAccept}
-                className="px-4 py-2 bg-white text-black text-xs font-semibold hover:bg-zinc-200 transition-colors"
-              >
-                Accept All
-              </button>
-              <button
-                onClick={handleDecline}
-                className="px-4 py-2 bg-transparent border border-zinc-600 text-white text-xs font-semibold hover:bg-zinc-800 transition-colors"
-              >
-                Decline
-              </button>
-              <Link
-                href="/cookie-policy"
-                className="px-4 py-2 text-zinc-400 text-xs font-semibold hover:text-white transition-colors"
-              >
-                Cookie Policy
-              </Link>
-            </div>
+    <AnimatePresence>
+      {isVisible && (
+        <m.div
+          key="cookie-consent"
+          role="region"
+          aria-label="Cookie consent"
+          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0, transition: { duration: DUR.ui, ease: EASE_EXPO } }}
+          exit={{ opacity: 0, transition: { duration: DUR.micro, ease: EASE_EXPO } }}
+          className="fixed bottom-3 left-3 right-3 z-50 border border-zinc-800 bg-zinc-950 p-4 md:bottom-6 md:left-6 md:right-auto md:w-full md:max-w-sm md:p-5"
+        >
+          <div className="flex items-center justify-between gap-4">
+            <h2 className="font-mono text-[11px] uppercase tracking-[0.2em] text-white">Cookies</h2>
+            <button
+              type="button"
+              onClick={handleClose}
+              className="-mr-1 rounded p-1 text-zinc-400 transition-colors duration-150 ease-expo hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-zinc-950"
+              aria-label="Close cookie banner"
+            >
+              <X className="h-4 w-4" />
+            </button>
           </div>
-          <button
-            onClick={handleClose}
-            className="text-zinc-400 hover:text-white transition-colors p-1 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-zinc-900 rounded"
-            aria-label="Close cookie banner"
-          >
-            <X className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
-    </div>
+          <p className="mt-2 text-xs leading-relaxed text-zinc-400">
+            We use analytics cookies to see how the site is used. Nothing loads until you accept.{" "}
+            <Link
+              href="/cookie-policy"
+              className="text-white underline underline-offset-2 transition-colors duration-150 ease-expo hover:text-zinc-300"
+            >
+              Cookie policy
+            </Link>
+          </p>
+          {/* Equal weight: same grid cell, height and border. One filled, one outlined. */}
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={handleAccept}
+              className={`${choiceClass} border-white bg-white text-black hover:border-zinc-300 hover:bg-zinc-300`}
+            >
+              Accept
+            </button>
+            <button
+              type="button"
+              onClick={handleDecline}
+              className={`${choiceClass} border-zinc-500 bg-transparent text-white hover:border-white hover:bg-zinc-900`}
+            >
+              Decline
+            </button>
+          </div>
+        </m.div>
+      )}
+    </AnimatePresence>
   )
 }
 

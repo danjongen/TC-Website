@@ -37,7 +37,10 @@ declare global {
 }
 
 const KINDS = ["title", "media"] as const
-const FAILSAFE_MS = 3000
+// The old page is frozen on screen until the new route commits. Static routes
+// commit in well under 100ms once prefetched; if one is slow, stop waiting
+// after this long and let the route land without the wipe.
+const FAILSAFE_MS = 1500
 
 function isLed(path: string) {
   return path === "/led" || path.startsWith("/led/")

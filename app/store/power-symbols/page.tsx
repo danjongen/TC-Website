@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { Footer } from "@/components/footer"
+import { CueLabel } from "@/components/motion/cue-label"
 import { Navbar } from "@/components/navbar"
 
 const downloadHref = "/downloads/Power-Symbols-0.2.2-VW2026-Beta.zip"
@@ -76,11 +77,12 @@ export default function PowerSymbolsPage() {
         <section className="mx-auto w-full max-w-[1600px] px-6 pb-14 pt-36 md:px-12 md:pb-20 md:pt-44">
           <nav
             aria-label="Breadcrumb"
+            data-reveal="fade"
             className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500"
           >
             <Link
               href="/store"
-              className="transition-colors hover:text-[#00D26A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D26A]"
+              className="-my-1 inline-block py-1 transition-colors duration-300 ease-expo hover:text-[#00D26A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D26A]"
             >
               Store
             </Link>
@@ -90,7 +92,7 @@ export default function PowerSymbolsPage() {
 
           <div className="mt-12 grid items-end gap-10 lg:grid-cols-[1.05fr_0.95fr]">
             <div>
-              <div className="flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-[0.17em]">
+              <div data-reveal="fade" className="flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-[0.17em]">
                 <span className="bg-[#00D26A] px-3 py-2 text-black">Open beta</span>
                 <span className="border border-zinc-700 px-3 py-2 text-zinc-300">
                   Vectorworks 2026
@@ -99,18 +101,22 @@ export default function PowerSymbolsPage() {
                   macOS
                 </span>
               </div>
-              <h1 className="mt-8 max-w-[10ch] text-6xl font-semibold leading-[0.86] tracking-[-0.06em] text-balance sm:text-7xl md:text-8xl lg:text-9xl">
+              <h1
+                data-vt="title"
+                data-reveal="rise"
+                className="mt-8 w-fit max-w-[10ch] text-6xl font-semibold leading-[0.86] tracking-[-0.06em] text-balance sm:text-7xl md:text-8xl lg:text-9xl"
+              >
                 Power
                 <br />
                 Symbols
               </h1>
-              <p className="mt-8 max-w-2xl text-lg leading-relaxed text-zinc-300 md:text-xl">
+              <p data-reveal="fade" className="mt-8 max-w-2xl text-lg leading-relaxed text-zinc-300 md:text-xl">
                 Drop editable production-power symbols into Vectorworks and
                 keep the drawing and Power Distribution Schedule coordinated.
               </p>
             </div>
 
-            <div className="border border-zinc-800 bg-zinc-900/40 p-6 md:p-8">
+            <div data-reveal="fade" className="border border-zinc-800 bg-zinc-900/40 p-6 md:p-8">
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#00D26A]">
                 Beta 0.2.2
               </p>
@@ -124,7 +130,7 @@ export default function PowerSymbolsPage() {
               <a
                 href={downloadHref}
                 download
-                className="mt-8 flex items-center justify-between bg-[#00D26A] px-6 py-5 font-mono text-xs font-bold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                className="mt-8 flex items-center justify-between bg-[#00D26A] px-6 py-5 font-mono text-xs font-bold uppercase tracking-[0.18em] text-black transition-colors duration-300 ease-expo hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 Download the beta
                 <span aria-hidden="true">↓</span>
@@ -162,7 +168,7 @@ export default function PowerSymbolsPage() {
                     key={symbol.src}
                     className="flex min-h-72 flex-col items-center justify-between bg-[#F3F0E8] p-6 md:min-h-96"
                   >
-                    <div className="relative my-auto aspect-square w-full max-w-72">
+                    <div data-reveal="resolve" className="relative my-auto aspect-square w-full max-w-72 overflow-hidden">
                       <Image
                         src={symbol.src}
                         alt={symbol.label}
@@ -171,7 +177,10 @@ export default function PowerSymbolsPage() {
                         className="object-contain"
                       />
                     </div>
-                    <p className="mt-5 w-full border-t border-black pt-4 font-mono text-[10px] font-bold uppercase tracking-[0.16em]">
+                    <p
+                      data-reveal="fade"
+                      className="mt-5 w-full border-t border-black pt-4 font-mono text-[10px] font-bold uppercase tracking-[0.16em]"
+                    >
                       {symbol.label}
                     </p>
                   </div>
@@ -187,10 +196,10 @@ export default function PowerSymbolsPage() {
 
         <section className="mx-auto grid w-full max-w-[1600px] gap-12 px-6 py-16 md:px-12 md:py-24 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-500">
-              [ What it does ]
-            </p>
-            <h2 className="mt-6 max-w-[12ch] text-4xl font-semibold tracking-[-0.045em] md:text-6xl">
+            <CueLabel className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-500">
+              WHAT IT DOES
+            </CueLabel>
+            <h2 data-reveal="rise" className="mt-6 max-w-[12ch] text-4xl font-semibold tracking-[-0.045em] md:text-6xl">
               Less redrawing. Better power plans.
             </h2>
           </div>
@@ -201,7 +210,7 @@ export default function PowerSymbolsPage() {
               ["∞", "Editable ratings, routes and departments"],
               ["B/W", "Legible colour and grayscale output"],
             ].map(([value, label]) => (
-              <div key={label} className="bg-black p-7 md:p-9">
+              <div key={label} data-reveal="fade" className="bg-black p-7 md:p-9">
                 <p className="font-mono text-3xl font-bold text-[#00D26A]">
                   {value}
                 </p>
@@ -215,9 +224,9 @@ export default function PowerSymbolsPage() {
 
         <section id="install" className="border-t border-zinc-800">
           <div className="mx-auto w-full max-w-[1600px] px-6 py-16 md:px-12 md:py-24">
-            <p className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-500">
-              [ Install — about five minutes ]
-            </p>
+            <CueLabel className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-500">
+              INSTALL / ABOUT FIVE MINUTES
+            </CueLabel>
             <div className="mt-10 grid gap-px border border-zinc-800 bg-zinc-800 md:grid-cols-4">
               {[
                 ["01", "Quit Vectorworks 2026."],
@@ -225,7 +234,7 @@ export default function PowerSymbolsPage() {
                 ["03", "Follow 01 INSTALL INSTRUCTIONS.txt."],
                 ["04", "Add Power Symbol to a tool palette and place a test symbol."],
               ].map(([step, copy]) => (
-                <div key={step} className="bg-zinc-950 p-7">
+                <div key={step} data-reveal="fade" className="bg-zinc-950 p-7">
                   <p className="font-mono text-xs font-bold tracking-[0.2em] text-[#00D26A]">
                     {step}
                   </p>
@@ -233,7 +242,7 @@ export default function PowerSymbolsPage() {
                 </div>
               ))}
             </div>
-            <p className="mt-6 max-w-4xl text-sm leading-relaxed text-zinc-500">
+            <p data-reveal="fade" className="mt-6 max-w-4xl text-sm leading-relaxed text-zinc-500">
               The test kit uses one Terminal command because the customer-grade
               double-click installer is not yet Apple-signed or notarised. The
               included installer verifies the plug-in and keeps a rollback
@@ -246,14 +255,14 @@ export default function PowerSymbolsPage() {
           <div className="mx-auto w-full max-w-[1600px] px-6 py-16 md:px-12 md:py-24">
             <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-500">
-                  [ Optional support ]
-                </p>
-                <h2 className="mt-6 max-w-[12ch] text-4xl font-semibold tracking-[-0.045em] md:text-6xl">
+                <CueLabel className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-500">
+                  OPTIONAL SUPPORT
+                </CueLabel>
+                <h2 data-reveal="rise" className="mt-6 max-w-[12ch] text-4xl font-semibold tracking-[-0.045em] md:text-6xl">
                   Useful? Help make it shippable.
                 </h2>
               </div>
-              <p className="max-w-2xl leading-relaxed text-zinc-400">
+              <p data-reveal="fade" className="max-w-2xl leading-relaxed text-zinc-400">
                 The beta is free. Support is optional and never changes what
                 you can download. Contributions fund testing, documentation,
                 Apple signing and release packaging.
@@ -264,8 +273,9 @@ export default function PowerSymbolsPage() {
               {supportOptions.map((option) => (
                 <a
                   key={option.amount}
+                  data-reveal="fade"
                   href={option.href}
-                  className="group flex min-h-64 flex-col justify-between border border-zinc-800 bg-black p-7 transition-colors hover:border-[#00D26A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D26A]"
+                  className="group flex min-h-64 flex-col justify-between border border-zinc-800 bg-black p-7 transition-colors duration-300 ease-expo hover:border-[#00D26A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D26A]"
                 >
                   <div>
                     <p className="font-mono text-4xl font-bold text-[#00D26A]">
@@ -278,14 +288,14 @@ export default function PowerSymbolsPage() {
                       {option.description}
                     </p>
                   </div>
-                  <span className="mt-8 flex items-center justify-between font-mono text-xs font-bold uppercase tracking-[0.18em] text-white group-hover:text-[#00D26A]">
+                  <span className="mt-8 flex items-center justify-between font-mono text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors duration-300 ease-expo group-hover:text-[#00D26A]">
                     Support the build
                     <span aria-hidden="true">↗</span>
                   </span>
                 </a>
               ))}
             </div>
-            <p className="mt-7 font-mono text-[10px] uppercase tracking-[0.12em] text-zinc-600">
+            <p data-reveal="fade" className="mt-7 font-mono text-[10px] uppercase tracking-[0.12em] text-zinc-600">
               One-off contributions · Not tax-deductible · No licence purchase
               required
             </p>
@@ -294,7 +304,7 @@ export default function PowerSymbolsPage() {
 
         <section className="border-t border-zinc-800">
           <div className="mx-auto w-full max-w-[1600px] px-6 py-14 md:px-12 md:py-20">
-            <p className="max-w-5xl text-sm leading-relaxed text-zinc-500">
+            <p data-reveal="fade" className="max-w-5xl text-sm leading-relaxed text-zinc-500">
               Beta software may change and should be tested on copies or
               backups. Power Symbols records and displays power information; it
               does not calculate electrical loads, size conductors or replace

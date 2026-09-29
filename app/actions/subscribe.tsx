@@ -59,13 +59,13 @@ export async function subscribeToNewsletter(formData: FormData) {
                           Welcome to the Inner Circle.
                         </h2>
                         <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #a0a0a0;">
-                          You've just secured early access to TC Insights — where we share the stories, strategies, and technical deep-dives behind the world's most ambitious live productions.
+                          You've just secured early access to TC Insights, where we share the stories, strategies, and technical deep-dives behind the world's most ambitious live productions.
                         </p>
                         <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #a0a0a0;">
                           From LED video walls the size of buildings to AI-driven broadcast workflows, we're pulling back the curtain on how impossible becomes inevitable.
                         </p>
                         <p style="margin: 0 0 30px 0; font-size: 16px; line-height: 1.6; color: #ffffff; font-weight: 500;">
-                          We'll be in touch when we go live. Until then — stay creative.
+                          We'll be in touch when we go live. Until then, stay creative.
                         </p>
                       </td>
                     </tr>

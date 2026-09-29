@@ -3,67 +3,116 @@
 import { useEffect, useRef, useState, useCallback } from "react"
 import dynamic from "next/dynamic"
 import Image from "next/image"
-import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from "framer-motion"
+import { m, AnimatePresence, useScroll, useTransform, useMotionValueEvent, useReducedMotion } from "framer-motion"
 import Link from "next/link"
+import { DUR, EASE_EXPO } from "@/lib/motion"
 import type { PointCloudHandles } from "./point-cloud"
 
 const GREEN = "#00D26A"
 
-// Three.js (~650KB) loads after first paint, never on the server
-const PointCloud = dynamic(() => import("./point-cloud").then((m) => m.PointCloud), { ssr: false })
+// The WebGL cloud loads after first paint, never on the server
+const PointCloud = dynamic(() => import("./point-cloud").then((mod) => mod.PointCloud), { ssr: false })
 
 const SLIDES = [
-  { src: "/images/bsb-live-06-cloud.jpg", caption: "BACKSTREET BOYS — SPHERE, LAS VEGAS" },
-  { src: "/images/bsb-live-02-cloud.jpg", caption: "INTO THE MILLENNIUM — AUTOMATION & POWER" },
-  { src: "/images/bsb-live-04-cloud.jpg", caption: "SPHERE RESIDENCY — VIDEO SYSTEMS" },
+  { src: "/images/bsb-live-06-cloud.jpg", caption: "BACKSTREET BOYS / SPHERE, LAS VEGAS" },
+  { src: "/images/bsb-live-02-cloud.jpg", caption: "INTO THE MILLENNIUM / AUTOMATION & POWER" },
+  { src: "/images/bsb-live-04-cloud.jpg", caption: "SPHERE RESIDENCY / VIDEO SYSTEMS" },
 ]
 
 const IMAGES = SLIDES.map((s) => s.src)
 
+const pad2 = (n: number) => String(n).padStart(2, "0")
+
+/** Scroll progress at which the cloud is fully dispersed: 128svh of 200svh, when the curtain's 28vh gradient edge (app/page.tsx) has passed. */
+const DISPERSE_END = 0.64
+const disperse = (v: number) => Math.min(1, v / DISPERSE_END)
+
+type NavigatorHints = Navigator & {
+  deviceMemory?: number
+  connection?: { saveData?: boolean }
+}
+
+/** The cloud runs on any device that can afford it, phones included. */
+function canRunCloud() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false
+  const nav = navigator as NavigatorHints
+  if (nav.connection?.saveData) return false
+  if ((nav.hardwareConcurrency ?? 8) < 4) return false
+  if ((nav.deviceMemory ?? 8) < 4) return false
+  return true
+}
+
+/**
+ * Homepage hero. The section is two viewports tall with a pinned stage; the
+ * page content after it (app/page.tsx) is pulled up by one viewport and
+ * rises over the stage like a curtain while the cloud disperses underneath.
+ * The cloud is fully dispersed (and stops rendering) exactly when the
+ * curtain covers the viewport.
+ */
 export function CloudHero() {
   const sectionRef = useRef<HTMLElement>(null)
   const cloudRef = useRef<PointCloudHandles | null>(null)
   const [slide, setSlide] = useState(0)
   const [cloudOn, setCloudOn] = useState(false)
   const [cloudReady, setCloudReady] = useState(false)
+  // once the overlay has faded and the curtain covers the CTAs, take them out of the tab order
+  const [covered, setCovered] = useState(false)
+  const reduceMotion = useReducedMotion()
 
   // enable the WebGL cloud only on capable, motion-friendly clients, after idle
   useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    const small = window.innerWidth < 768
-    if (reduced || small) return
-    const idle = (window as unknown as { requestIdleCallback?: (cb: () => void) => number }).requestIdleCallback
-    const id = idle ? idle(() => setCloudOn(true)) : window.setTimeout(() => setCloudOn(true), 200)
-    return () => {
-      if (!idle) clearTimeout(id as number)
+    if (!canRunCloud()) return
+    const w = window as unknown as {
+      requestIdleCallback?: (cb: () => void) => number
+      cancelIdleCallback?: (id: number) => void
     }
+    if (w.requestIdleCallback) {
+      const id = w.requestIdleCallback(() => setCloudOn(true))
+      return () => w.cancelIdleCallback?.(id)
+    }
+    const id = window.setTimeout(() => setCloudOn(true), 200)
+    return () => clearTimeout(id)
   }, [])
 
+  // 0 when the section top meets the viewport top, 1 when its end does (200svh of scroll)
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] })
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.55], [1, 0])
-  const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"])
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0])
+  const titleY = useTransform(scrollYProgress, [0, 0.3], ["0%", "-8%"])
+  const chromeOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0])
 
+  // The curtain covers the viewport at progress 0.5 (100svh of scroll), but its
+  // gradient edge still shows the stage until about 0.64, so the particles keep
+  // streaming toward the camera through that edge and finish dispersing (and
+  // stop rendering) just as it passes.
   useMotionValueEvent(scrollYProgress, "change", (v) => {
-    cloudRef.current?.setScroll(Math.min(1, v * 1.3))
+    cloudRef.current?.setScroll(disperse(v))
+    const isCovered = v >= 0.3
+    setCovered((prev) => (prev === isCovered ? prev : isCovered))
   })
 
-  const onReady = useCallback(() => setCloudReady(true), [])
+  const onReady = useCallback(() => {
+    setCloudReady(true)
+    // sync with the current scroll position (e.g. a reload mid-page)
+    cloudRef.current?.setScroll(disperse(scrollYProgress.get()))
+  }, [scrollYProgress])
   const onSlide = useCallback((i: number) => setSlide(i), [])
 
   return (
-    <section ref={sectionRef} className="relative h-[150svh] bg-black">
+    <section ref={sectionRef} className="relative h-[200svh] bg-black">
       <div className="sticky top-0 h-svh overflow-hidden">
         {/* poster renders immediately; the point cloud fades in over it when ready */}
         <Image
           src="/images/bsb-live-06.jpg"
-          alt="Backstreet Boys at Sphere, Las Vegas — production by Technically Creative"
+          alt="Backstreet Boys at Sphere, Las Vegas. Production by Technically Creative."
           fill
           priority
           sizes="100vw"
-          className={`object-cover transition-opacity duration-1000 ${cloudReady ? "opacity-0" : "opacity-40"}`}
+          className={`object-cover transition-opacity duration-600 ease-expo ${cloudReady ? "opacity-0" : "opacity-40"}`}
         />
         {cloudOn && (
-          <div className={`absolute inset-0 transition-opacity duration-1000 ${cloudReady ? "opacity-100" : "opacity-0"}`}>
+          <div
+            className={`absolute inset-0 transition-opacity duration-600 ease-expo ${cloudReady ? "opacity-100" : "opacity-0"}`}
+          >
             <PointCloud images={IMAGES} onReady={onReady} onSlide={onSlide} handlesRef={cloudRef} />
           </div>
         )}
@@ -83,36 +132,31 @@ export function CloudHero() {
           aria-hidden="true"
         />
 
-        <motion.div style={{ opacity: overlayOpacity, y: titleY }} className="pointer-events-none absolute inset-0 flex flex-col justify-end px-6 pb-16 md:px-12 md:pb-24">
+        <m.div
+          style={{ opacity: overlayOpacity, y: reduceMotion ? 0 : titleY }}
+          className="pointer-events-none absolute inset-0 flex flex-col justify-end px-6 pb-16 md:px-12 md:pb-24"
+        >
           <div className="mx-auto w-full max-w-[1600px]">
-            <h1 className="select-none text-[11.5vw] font-black leading-[0.86] tracking-[-0.04em] text-white md:text-[8.5vw]">
+            <h1
+              data-vt="title"
+              className="select-none text-[11.5vw] font-black leading-[0.86] tracking-[-0.04em] text-white md:text-[8.5vw]"
+            >
               <span className="block overflow-hidden">
-                <motion.span
-                  className="block"
-                  initial={{ y: "110%" }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-                >
+                <span className="tc-load-rise block" style={{ animationDelay: "150ms" }}>
                   WE MAKE IMPOSSIBLE
-                </motion.span>
+                </span>
               </span>
               <span className="block overflow-hidden">
-                <motion.span
-                  className="block"
-                  initial={{ y: "110%" }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-                >
+                <span className="tc-load-rise block" style={{ animationDelay: "300ms" }}>
                   SHOWS <span style={{ color: GREEN }}>RUN</span>
-                </motion.span>
+                </span>
               </span>
             </h1>
 
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="pointer-events-auto mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between"
+            <div
+              inert={covered}
+              className="tc-load-fade-up pointer-events-auto mt-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between"
+              style={{ animationDelay: "700ms" }}
             >
               <p className="max-w-md text-base leading-relaxed text-zinc-400 md:text-lg">
                 Production engineering for live events where failure is not an option.
@@ -122,7 +166,7 @@ export function CloudHero() {
                 <Link
                   href="/contact"
                   data-cursor="hover"
-                  className="inline-block px-8 py-4 font-mono text-sm tracking-[0.2em] text-black transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_30px_rgba(0,210,106,0.35)]"
+                  className="inline-block whitespace-nowrap px-6 py-4 font-mono text-xs tracking-[0.2em] text-black transition-[filter,box-shadow] duration-300 ease-expo hover:brightness-110 hover:shadow-[0_0_30px_rgba(0,210,106,0.35)] sm:px-8 sm:text-sm"
                   style={{ background: GREEN }}
                 >
                   START A PROJECT
@@ -130,41 +174,55 @@ export function CloudHero() {
                 <Link
                   href="/portfolio"
                   data-cursor="hover"
-                  className="px-2 py-4 font-mono text-sm tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white"
+                  className="whitespace-nowrap px-2 py-4 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo hover:text-white sm:text-sm"
                 >
                   THE WORK
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* slide caption */}
-        <motion.div style={{ opacity: overlayOpacity }} className="absolute right-6 top-24 hidden md:right-12 md:block" aria-hidden="true">
-          <AnimatePresence mode="wait">
-            <motion.p
-              key={slide}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="text-right font-mono text-[10px] tracking-[0.3em] text-zinc-400"
-            >
-              {SLIDES[slide].caption}
-              <span className="mt-2 block text-zinc-400">
-                {String(slide + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
-              </span>
-            </motion.p>
-          </AnimatePresence>
-        </motion.div>
-
-        <motion.div
-          style={{ opacity: overlayOpacity }}
-          className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 font-mono text-[10px] tracking-[0.4em] text-zinc-400 md:block"
+        <m.div
+          style={{ opacity: chromeOpacity }}
+          className="absolute right-6 top-24 hidden md:right-12 md:block"
           aria-hidden="true"
         >
-          SCROLL
-        </motion.div>
+          <div className="tc-load-fade" style={{ animationDelay: "1200ms" }}>
+            <AnimatePresence mode="wait" initial={false}>
+              <m.p
+                key={slide}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: DUR.reveal, ease: EASE_EXPO }}
+                className="text-right font-mono text-[10px] tracking-[0.3em] text-zinc-400"
+              >
+                {SLIDES[slide].caption}
+                <span className="mt-2 block text-zinc-400">
+                  {pad2(slide + 1)} / {pad2(SLIDES.length)}
+                </span>
+              </m.p>
+            </AnimatePresence>
+          </div>
+        </m.div>
+
+        {/* scroll hint */}
+        <m.div
+          style={{ opacity: chromeOpacity }}
+          className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 md:block"
+          aria-hidden="true"
+        >
+          <div
+            className="tc-load-fade flex flex-col items-center gap-3 font-mono text-[10px] tracking-[0.4em] text-zinc-400"
+            style={{ animationDelay: "1200ms" }}
+          >
+            {/* tracking adds trailing space; nudge so the label centres over the track */}
+            <span className="pl-[0.4em]">SCROLL</span>
+            <span className="tc-hint h-8 w-px" />
+          </div>
+        </m.div>
       </div>
     </section>
   )

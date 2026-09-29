@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { CueLabel } from "@/components/motion/cue-label"
 import { ArrowLeft, Scan, Map, Ruler, Plane, Target } from "lucide-react"
 import { ServiceAccordion } from "@/components/v2/service-accordion"
 
@@ -20,12 +21,12 @@ export const metadata: Metadata = {
 
 export default function ScanningPage() {
   return (
-    <main className="min-h-screen bg-background pt-24 pb-16">
+    <main className="min-h-screen bg-black pt-24 pb-16">
       <div className="container mx-auto px-6">
         {/* Breadcrumb */}
         <Link
           href="/capabilities"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors mb-8"
+          className="-mt-1 mb-7 inline-flex items-center gap-2 py-1 text-sm text-muted-foreground transition-colors duration-300 ease-expo hover:text-white"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Services
@@ -33,9 +34,9 @@ export default function ScanningPage() {
 
         {/* Header */}
         <div className="mb-16 max-w-4xl">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — 3D SCANNING & AERIAL SURVEYING ]</p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">Reality Capture</h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
+          <CueLabel className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">SERVICE / 3D SCANNING & AERIAL SURVEYING</CueLabel>
+          <h1 data-vt="title" data-reveal="rise" className="w-fit text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">Reality Capture</h1>
+          <p data-reveal="fade" className="text-xl text-muted-foreground leading-relaxed">
             High-precision 3D scanning and aerial surveying that captures every dimension of your venue. The foundation
             for accurate planning and visualization.
           </p>
@@ -44,40 +45,44 @@ export default function ScanningPage() {
         {/* Services Grid */}
         <section className="mb-24">
           <div className="grid lg:grid-cols-2 gap-px bg-zinc-900 border border-zinc-800">
-            <div className="bg-background p-12">
-              <Scan className="w-10 h-10 text-zinc-500 mb-6" />
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Terrestrial 3D Scanning</h2>
-              <p className="text-muted-foreground mb-6">
-                Ground-based LiDAR and photogrammetry capture for interior spaces, stages, and structures.
-                Sub-millimeter accuracy for production-critical measurements.
-              </p>
-              <div className="space-y-3">
-                <h3 className="text-sm font-mono text-zinc-400 uppercase tracking-widest">Applications</h3>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Venue as-built documentation</li>
-                  <li>• Stage and set piece capture</li>
-                  <li>• Obstruction and sightline analysis</li>
-                  <li>• Rigging point verification</li>
-                  <li>• Heritage and historical preservation</li>
-                </ul>
+            <div className="bg-black p-12">
+              <div data-reveal="fade">
+                <Scan className="w-10 h-10 text-zinc-500 mb-6" />
+                <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Terrestrial 3D Scanning</h2>
+                <p className="text-muted-foreground mb-6">
+                  Ground-based LiDAR and photogrammetry capture for interior spaces, stages, and structures.
+                  Sub-millimeter accuracy for production-critical measurements.
+                </p>
+                <div className="space-y-3">
+                  <h3 className="text-sm font-mono text-zinc-400 uppercase tracking-widest">Applications</h3>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li>• Venue as-built documentation</li>
+                    <li>• Stage and set piece capture</li>
+                    <li>• Obstruction and sightline analysis</li>
+                    <li>• Rigging point verification</li>
+                    <li>• Heritage and historical preservation</li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <div className="bg-background p-12">
-              <Plane className="w-10 h-10 text-zinc-500 mb-6" />
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Aerial Surveying</h2>
-              <p className="text-muted-foreground mb-6">
-                Drone-based capture for outdoor venues, festival sites, and large-scale installations. Orthomosaic
-                mapping and volumetric analysis.
-              </p>
-              <div className="space-y-3">
-                <h3 className="text-sm font-mono text-zinc-400 uppercase tracking-widest">Applications</h3>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Festival site topology</li>
-                  <li>• Stadium and arena exteriors</li>
-                  <li>• Construction progress monitoring</li>
-                  <li>• Large-scale art installations</li>
-                  <li>• Environmental impact assessment</li>
-                </ul>
+            <div className="bg-black p-12">
+              <div data-reveal="fade">
+                <Plane className="w-10 h-10 text-zinc-500 mb-6" />
+                <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Aerial Surveying</h2>
+                <p className="text-muted-foreground mb-6">
+                  Drone-based capture for outdoor venues, festival sites, and large-scale installations. Orthomosaic
+                  mapping and volumetric analysis.
+                </p>
+                <div className="space-y-3">
+                  <h3 className="text-sm font-mono text-zinc-400 uppercase tracking-widest">Applications</h3>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li>• Festival site topology</li>
+                    <li>• Stadium and arena exteriors</li>
+                    <li>• Construction progress monitoring</li>
+                    <li>• Large-scale art installations</li>
+                    <li>• Environmental impact assessment</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -85,7 +90,7 @@ export default function ScanningPage() {
 
         {/* Technical Specs */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Technical Specifications</h2>
+          <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Technical Specifications</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
@@ -113,7 +118,7 @@ export default function ScanningPage() {
                 desc: "Point spacing at range",
               },
             ].map((spec, i) => (
-              <div key={i} className="border border-zinc-800 p-6 text-center">
+              <div key={i} data-reveal="fade" className="border border-zinc-800 p-6 text-center">
                 <spec.icon className="w-6 h-6 text-zinc-500 mx-auto mb-4" />
                 <div className="text-3xl font-semibold mb-1">{spec.value}</div>
                 <div className="text-sm font-mono text-zinc-500 uppercase mb-2">{spec.label}</div>
@@ -125,9 +130,9 @@ export default function ScanningPage() {
 
         {/* Equipment */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Equipment & Technology</h2>
+          <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Equipment & Technology</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="border border-zinc-800 p-6">
+            <div data-reveal="fade" className="border border-zinc-800 p-6">
               <h3 className="font-semibold mb-4">LiDAR Scanners</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>• Leica RTC360</li>
@@ -136,7 +141,7 @@ export default function ScanningPage() {
                 <li>• Trimble X7</li>
               </ul>
             </div>
-            <div className="border border-zinc-800 p-6">
+            <div data-reveal="fade" className="border border-zinc-800 p-6">
               <h3 className="font-semibold mb-4">Aerial Platforms</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>• DJI Matrice 350 RTK</li>
@@ -145,7 +150,7 @@ export default function ScanningPage() {
                 <li>• Zenmuse P1 Photogrammetry</li>
               </ul>
             </div>
-            <div className="border border-zinc-800 p-6">
+            <div data-reveal="fade" className="border border-zinc-800 p-6">
               <h3 className="font-semibold mb-4">Processing Software</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>• Leica Cyclone REGISTER 360</li>
@@ -159,7 +164,7 @@ export default function ScanningPage() {
 
         {/* Deliverables */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Deliverables</h2>
+          <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Deliverables</h2>
           <ServiceAccordion
             items={[
               {
@@ -191,7 +196,7 @@ export default function ScanningPage() {
 
         {/* Process */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Capture Process</h2>
+          <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Capture Process</h2>
           <div className="max-w-3xl">
             <div className="relative">
               <div className="absolute left-4 top-0 bottom-0 w-px bg-zinc-900" />
@@ -219,11 +224,13 @@ export default function ScanningPage() {
                   },
                 ].map((step, i) => (
                   <div key={i} className="relative pl-12">
-                    <div className="absolute left-0 w-8 h-8 rounded-full bg-background border-2 border-zinc-700 flex items-center justify-center">
+                    <div className="absolute left-0 w-8 h-8 rounded-full bg-black border-2 border-zinc-700 flex items-center justify-center">
                       <span className="text-xs font-mono text-zinc-500">{(i + 1).toString().padStart(2, "0")}</span>
                     </div>
-                    <h3 className="font-semibold mb-2">{step.title}</h3>
-                    <p className="text-sm text-muted-foreground">{step.desc}</p>
+                    <div data-reveal="fade">
+                      <h3 className="font-semibold mb-2">{step.title}</h3>
+                      <p className="text-sm text-muted-foreground">{step.desc}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -232,16 +239,18 @@ export default function ScanningPage() {
         </section>
 
         {/* CTA */}
-        <section className="border-t border-zinc-800 pt-16">
+        <section>
+          <div data-reveal="line" aria-hidden="true" className="mb-16 h-px origin-left bg-zinc-800" />
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Ready to capture your venue?</h2>
-            <p className="text-muted-foreground mb-8">
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-4">Ready to capture your venue?</h2>
+            <p data-reveal="fade" className="text-muted-foreground mb-8">
               Let's discuss your scanning requirements and how accurate reality capture can improve your production
               workflow.
             </p>
             <Link
+              data-reveal="fade"
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-semibold uppercase tracking-wide hover:bg-gray-200 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-semibold uppercase tracking-wide hover:bg-gray-200 transition-colors duration-300 ease-expo"
             >
               Start a Conversation
             </Link>

@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { ArrowLeft } from "lucide-react"
+import { CueLabel } from "@/components/motion/cue-label"
 
 export const metadata: Metadata = {
   title: "Accessibility Statement | TC Agency",
@@ -23,23 +24,23 @@ export default function Accessibility() {
         <div className="container mx-auto px-6 max-w-3xl">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white mb-12"
+            className="-mt-1 mb-11 inline-flex items-center gap-2 py-1 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo hover:text-white"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Home
           </Link>
 
           <header className="mb-16">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">Last updated: November 27, 2025</p>
-            <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-6">Accessibility Statement</h1>
-            <div className="text-sm text-zinc-400">
+            <CueLabel className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">LAST UPDATED / NOVEMBER 27, 2025</CueLabel>
+            <h1 data-vt="title" data-reveal="rise" className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-6">Accessibility Statement</h1>
+            <div data-reveal="fade" className="text-sm text-zinc-400">
               <p>
                 Technically Creative LLC, operating as TC Agency, TC, and Tech Creative ("we", "our", "us", "Technically
                 Creative")
               </p>
               <p>Detroit, MI, USA</p>
               <p>
-                <a href="mailto:info@tc.agency" className="text-white underline-offset-4 transition-colors duration-300 hover:text-[#00D26A] hover:underline">
+                <a href="mailto:info@tc.agency" className="text-white underline-offset-4 transition-colors duration-300 ease-expo hover:text-[#00D26A] hover:underline">
                   info@tc.agency
                 </a>
               </p>
@@ -48,7 +49,7 @@ export default function Accessibility() {
 
           <div className="max-w-none space-y-10">
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">Our Commitment</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">Our Commitment</h2>
               <p className="text-zinc-400 leading-relaxed">
                 Technically Creative LLC (TC Agency) is committed to ensuring digital accessibility for people with
                 disabilities. We continually improve the user experience for everyone and apply relevant accessibility
@@ -57,7 +58,7 @@ export default function Accessibility() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">Standards We Follow</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">Standards We Follow</h2>
               <p className="text-zinc-400 leading-relaxed mb-2">
                 We aim to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 at Level AA. These guidelines
                 help make web content more accessible to people with disabilities, including:
@@ -71,7 +72,7 @@ export default function Accessibility() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">Accessibility Features</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">Accessibility Features</h2>
               <p className="text-zinc-400 leading-relaxed mb-2">Our website includes:</p>
               <ul className="list-disc list-inside text-zinc-400 space-y-1">
                 <li>Semantic HTML structure for screen readers</li>
@@ -85,7 +86,7 @@ export default function Accessibility() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">Known Limitations</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">Known Limitations</h2>
               <p className="text-zinc-400 leading-relaxed">
                 While we strive for full accessibility, some content may not yet be fully accessible. We are actively
                 working to identify and fix any issues. If you encounter barriers, please let us know.
@@ -93,7 +94,7 @@ export default function Accessibility() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">Feedback</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">Feedback</h2>
               <p className="text-zinc-400 leading-relaxed mb-4">
                 We welcome your feedback on the accessibility of tc.agency. If you experience any difficulty accessing
                 content or have suggestions for improvement, please contact us:
@@ -107,7 +108,7 @@ export default function Accessibility() {
                   Detroit, MI, USA
                   <br />
                   Email:{" "}
-                  <a href="mailto:info@tc.agency" className="text-white underline underline-offset-4 transition-colors duration-300 hover:text-[#00D26A]">
+                  <a href="mailto:info@tc.agency" className="text-white underline underline-offset-4 transition-colors duration-300 ease-expo hover:text-[#00D26A]">
                     info@tc.agency
                   </a>
                 </p>
@@ -118,7 +119,7 @@ export default function Accessibility() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">Enforcement</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">Enforcement</h2>
               <p className="text-zinc-400 leading-relaxed">
                 If you are not satisfied with our response, you may escalate the matter to relevant regulatory bodies in
                 your jurisdiction.

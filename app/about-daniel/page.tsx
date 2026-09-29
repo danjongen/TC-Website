@@ -2,13 +2,14 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { CueLabel } from "@/components/motion/cue-label"
 
 export const metadata: Metadata = {
-  title: "Daniel Jongen | Executive Technical Producer — TC Agency",
+  title: "Daniel Jongen | Executive Technical Producer | TC Agency",
   description:
     "Daniel Jongen is an Executive Technical Producer with 15+ years in live production and technical direction. Specializing in large-format touring, corporate events, broadcast infrastructure, and immersive installations across 30+ countries.",
   openGraph: {
-    title: "Daniel Jongen | Executive Technical Producer — TC Agency",
+    title: "Daniel Jongen | Executive Technical Producer | TC Agency",
     description:
       "15+ years in live production and technical direction. 200+ productions across 30+ countries for Fortune 500 brands and global touring artists.",
     url: "https://tc.agency/about-daniel",
@@ -18,14 +19,14 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Daniel Jongen — Executive Technical Producer at TC Agency",
+        alt: "Daniel Jongen, Executive Technical Producer at TC Agency",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Daniel Jongen | Executive Technical Producer — TC Agency",
+    title: "Daniel Jongen | Executive Technical Producer | TC Agency",
     description:
       "15+ years in live production and technical direction. 200+ productions across 30+ countries.",
   },
@@ -38,7 +39,7 @@ export default function AboutDanielPage() {
   const expertise = [
     {
       title: "Technical Direction",
-      desc: "End-to-end technical oversight for large-format touring, arena shows, and global broadcasts — ensuring every system performs flawlessly under pressure.",
+      desc: "End-to-end technical oversight for large-format touring, arena shows, and global broadcasts, ensuring every system performs flawlessly under pressure.",
     },
     {
       title: "Production Engineering",
@@ -50,7 +51,7 @@ export default function AboutDanielPage() {
     },
     {
       title: "System Integration",
-      desc: "Architecting and deploying networked production ecosystems — signal distribution, media servers, intercom, and monitoring across multi-venue deployments.",
+      desc: "Architecting and deploying networked production ecosystems: signal distribution, media servers, intercom, and monitoring across multi-venue deployments.",
     },
     {
       title: "Broadcast Infrastructure",
@@ -72,11 +73,11 @@ export default function AboutDanielPage() {
   const notableWork = [
     {
       title: "Stadium & Arena Tours",
-      desc: "Technical direction for multi-leg global touring productions — managing complex rigging, video, lighting, and audio systems across dozens of venues per run.",
+      desc: "Technical direction for multi-leg global touring productions, managing complex rigging, video, lighting, and audio systems across dozens of venues per run.",
     },
     {
       title: "The Sphere, Las Vegas",
-      desc: "Production engineering for one of the most technically ambitious venues ever built — pushing the boundaries of immersive LED, spatial audio, and real-time rendering.",
+      desc: "Production engineering for one of the most technically ambitious venues ever built, pushing the boundaries of immersive LED, spatial audio, and real-time rendering.",
     },
     {
       title: "Global Product Launches",
@@ -84,7 +85,7 @@ export default function AboutDanielPage() {
     },
     {
       title: "Immersive LED Installations",
-      desc: "Designing and deploying large-scale LED environments for brand activations, museum exhibits, and experiential marketing — blending content, architecture, and technology.",
+      desc: "Designing and deploying large-scale LED environments for brand activations, museum exhibits, and experiential marketing. Each one blends content, architecture, and technology.",
     },
   ]
 
@@ -97,15 +98,25 @@ export default function AboutDanielPage() {
         <section className="pt-40 md:pt-48 pb-[10vh]">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
-              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 01 — BIO ]</p>
-              <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-6">Daniel Jongen</h1>
-              <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">Executive Technical Producer</p>
+              <CueLabel index="01" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+                BIO
+              </CueLabel>
+              <h1
+                data-vt="title"
+                data-reveal="rise"
+                className="w-fit text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-6"
+              >
+                Daniel Jongen
+              </h1>
+              <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 max-w-xl">
+                Executive Technical Producer
+              </p>
             </div>
 
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20">
               {stats.map((item) => (
-                <div key={item.label}>
+                <div key={item.label} data-reveal="fade">
                   <p className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white">{item.value}</p>
                   <p className="mt-2 font-mono text-[11px] tracking-[0.2em] text-zinc-400 uppercase">{item.label}</p>
                 </div>
@@ -118,27 +129,29 @@ export default function AboutDanielPage() {
         <section className="py-[12vh]">
           <div className="container mx-auto px-6">
             <div className="max-w-2xl">
-              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 — BACKGROUND ]</p>
-              <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8">
+              <CueLabel index="02" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+                BACKGROUND
+              </CueLabel>
+              <h2 data-reveal="rise" className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8">
                 Building systems that don't fail
               </h2>
 
               <div className="space-y-6 text-lg leading-relaxed text-zinc-400">
-                <p>
+                <p data-reveal="fade">
                   With over 15 years in live production and technical direction, Daniel Jongen has built a career at the
                   intersection of engineering and entertainment. He specializes in large-format touring, corporate events,
-                  broadcast infrastructure, and immersive installations — environments where the margin for error is zero
+                  broadcast infrastructure, and immersive installations: environments where the margin for error is zero
                   and the stakes are measured in millions.
                 </p>
-                <p>
+                <p data-reveal="fade">
                   Daniel has overseen more than 200 productions across 30+ countries, working with Fortune 500 brands and
                   global touring artists who demand flawless execution at scale. His approach treats every production as an
                   engineering problem: systematic, redundant, documented, and repeatable.
                 </p>
-                <p>
+                <p data-reveal="fade">
                   Based in Detroit, MI with operations in Los Angeles and Las Vegas, Daniel founded Technically Creative LLC
                   to bring engineering discipline to an industry that has traditionally relied on tribal knowledge and
-                  heroics. TC Agency exists because productions deserve better systems — and the people running them
+                  heroics. TC Agency exists because productions deserve better systems, and the people running them
                   deserve better tools.
                 </p>
               </div>
@@ -146,26 +159,36 @@ export default function AboutDanielPage() {
           </div>
         </section>
 
-        {/* Expertise — indexed rows */}
+        {/* Expertise: indexed rows */}
         <section className="py-[12vh]">
           <div className="container mx-auto px-6">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 — EXPERTISE ]</p>
-            <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-12">
+            <CueLabel index="03" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+              EXPERTISE
+            </CueLabel>
+            <h2 data-reveal="rise" className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-12">
               Core capabilities
             </h2>
 
             <div>
               {expertise.map((item, index) => (
                 <div key={item.title}>
-                  {index > 0 && <div className="h-px bg-zinc-900" aria-hidden="true" />}
+                  {index > 0 && <div data-reveal="line" className="h-px origin-left bg-zinc-900" aria-hidden="true" />}
                   <div className="py-10 grid md:grid-cols-12 gap-4 md:gap-6 items-baseline">
-                    <span className="md:col-span-2 font-mono text-xs tracking-[0.2em] text-zinc-400">
+                    <span
+                      data-reveal="fade"
+                      className="md:col-span-2 font-mono text-xs tracking-[0.2em] text-zinc-400"
+                    >
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <h3 className="md:col-span-4 text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-white">
+                    <h3
+                      data-reveal="rise"
+                      className="md:col-span-4 text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-white"
+                    >
                       {item.title}
                     </h3>
-                    <p className="md:col-span-6 text-lg leading-relaxed text-zinc-400 max-w-xl">{item.desc}</p>
+                    <p data-reveal="fade" className="md:col-span-6 text-lg leading-relaxed text-zinc-400 max-w-xl">
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -173,26 +196,36 @@ export default function AboutDanielPage() {
           </div>
         </section>
 
-        {/* Notable work — indexed rows */}
+        {/* Notable work: indexed rows */}
         <section className="py-[12vh]">
           <div className="container mx-auto px-6">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 — WORK ]</p>
-            <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-12">
+            <CueLabel index="04" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+              WORK
+            </CueLabel>
+            <h2 data-reveal="rise" className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-12">
               Notable productions
             </h2>
 
             <div>
               {notableWork.map((item, index) => (
                 <div key={item.title}>
-                  {index > 0 && <div className="h-px bg-zinc-900" aria-hidden="true" />}
+                  {index > 0 && <div data-reveal="line" className="h-px origin-left bg-zinc-900" aria-hidden="true" />}
                   <div className="py-10 grid md:grid-cols-12 gap-4 md:gap-6 items-baseline">
-                    <span className="md:col-span-2 font-mono text-xs tracking-[0.2em] text-zinc-400">
+                    <span
+                      data-reveal="fade"
+                      className="md:col-span-2 font-mono text-xs tracking-[0.2em] text-zinc-400"
+                    >
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <h3 className="md:col-span-4 text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-white">
+                    <h3
+                      data-reveal="rise"
+                      className="md:col-span-4 text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-white"
+                    >
                       {item.title}
                     </h3>
-                    <p className="md:col-span-6 text-lg leading-relaxed text-zinc-400 max-w-xl">{item.desc}</p>
+                    <p data-reveal="fade" className="md:col-span-6 text-lg leading-relaxed text-zinc-400 max-w-xl">
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -204,17 +237,20 @@ export default function AboutDanielPage() {
         <section className="py-[14vh]">
           <div className="container mx-auto px-6">
             <div className="max-w-2xl">
-              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 05 — CONTACT ]</p>
-              <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8">
+              <CueLabel index="05" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+                CONTACT
+              </CueLabel>
+              <h2 data-reveal="rise" className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8">
                 Work with Daniel
               </h2>
-              <p className="text-lg leading-relaxed text-zinc-400 max-w-xl mb-10">
-                Whether it's a stadium tour, a global product launch, or an immersive installation — let's talk about
+              <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 max-w-xl mb-10">
+                Whether it's a stadium tour, a global product launch, or an immersive installation, let's talk about
                 how engineering-grade production can elevate your next project.
               </p>
               <Link
+                data-reveal="fade"
                 href="/contact"
-                className="font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white"
+                className="-my-1 inline-block py-1 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo hover:text-white"
               >
                 START A CONVERSATION →
               </Link>

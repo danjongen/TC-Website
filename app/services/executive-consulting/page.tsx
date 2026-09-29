@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { CueLabel } from "@/components/motion/cue-label"
 import {
   ArrowLeft,
   ArrowRight,
@@ -19,7 +20,7 @@ import { BreadcrumbSchema, ServicePageSchema } from "@/components/structured-dat
 import { ServiceAccordion } from "@/components/v2/service-accordion"
 
 export const metadata: Metadata = {
-  title: "Executive & Strategic Consulting | TC Agency — Production Engineering",
+  title: "Executive & Strategic Consulting | Production Engineering | TC Agency",
   description:
     "Senior production leadership and strategic consulting for high-stakes environments. TC Agency delivers decision frameworks, risk mitigation, vendor strategy, budget intelligence, and cross-department alignment for complex global productions.",
   keywords: [
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
     "Technically Creative",
   ],
   openGraph: {
-    title: "Executive & Strategic Consulting — TC Agency",
+    title: "Executive & Strategic Consulting | TC Agency",
     description:
       "High-level production and technical strategy for shows and programs that demand clarity, reliability, and senior leadership. Decision frameworks, risk control, and operational alignment.",
     url: "https://tc.agency/services/executive-consulting",
@@ -46,13 +47,13 @@ export const metadata: Metadata = {
         url: "/og/consulting.jpg",
         width: 1200,
         height: 630,
-        alt: "Executive & Strategic Consulting — TC Production Engineering",
+        alt: "Executive & Strategic Consulting | TC Production Engineering",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Executive & Strategic Consulting — TC Agency",
+    title: "Executive & Strategic Consulting | TC Agency",
     description:
       "High-level production and technical strategy for shows and programs that demand clarity, reliability, and senior leadership.",
     images: ["/og/consulting.jpg"],
@@ -176,12 +177,12 @@ export default function ExecutiveConsultingPage() {
         description="Senior production leadership and strategic consulting for high-stakes environments. Decision frameworks, risk mitigation, vendor strategy, budget intelligence, and cross-department alignment for complex global productions."
         url="https://tc.agency/services/executive-consulting"
       />
-      <main className="min-h-screen bg-background pt-24 pb-16">
+      <main className="min-h-screen bg-black pt-24 pb-16">
         <div className="container mx-auto px-6">
           {/* Breadcrumb */}
           <Link
             href="/capabilities"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors mb-8"
+            className="-mt-1 mb-7 inline-flex items-center gap-2 py-1 text-sm text-muted-foreground transition-colors duration-300 ease-expo hover:text-white"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Services
@@ -189,11 +190,11 @@ export default function ExecutiveConsultingPage() {
 
           {/* Header */}
           <div className="mb-16 max-w-4xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — EXECUTIVE CONSULTING ]</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
+            <CueLabel className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">SERVICE / EXECUTIVE CONSULTING</CueLabel>
+            <h1 data-vt="title" data-reveal="rise" className="w-fit text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
               Executive & Strategic Consulting
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p data-reveal="fade" className="text-xl text-muted-foreground leading-relaxed">
               High-level guidance for projects where decisions carry weight, timelines are compressed,
               and the cost of uncertainty is measured in days lost and budgets overrun. We provide the
               senior leadership layer that complex productions demand.
@@ -203,29 +204,29 @@ export default function ExecutiveConsultingPage() {
           {/* Overview */}
           <section className="mb-24">
             <div className="max-w-3xl">
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
+              <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
                 This service delivers senior oversight across all technical, creative, and production
                 domains. It provides the thinking, modelling, risk control, and decision stewardship
                 that complex productions require. When the stakes are high and the margin for error
                 is narrow, strategic consulting brings structure to ambiguity and clarity to competing
                 priorities.
               </p>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
                 Ideal for programs operating at scale, managing concurrent workstreams, or navigating
                 environments where clarity and certainty are non-negotiable. Our consulting practice
                 draws on direct experience leading productions for global brands and landmark venues,
                 including projects involving automotive launch programs for Ford and immersive
                 entertainment at Sphere-class installations.
               </p>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
                 We operate at the intersection of creative ambition and technical reality. That means
                 we do not simply advise from the sideline. We embed within your leadership structure,
                 participate in the hard conversations, and take ownership of the frameworks that drive
                 decisions forward. Every engagement is built around one principle: reduce the distance
                 between a question being raised and a confident answer being delivered.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
+              <p data-reveal="fade" className="text-muted-foreground leading-relaxed">
                 For teams that already have strong operational talent but need a strategic layer to
                 connect departments, manage vendor ecosystems, or pressure-test plans before
                 committing resources, this is the service that fills that gap. We complement your
@@ -237,16 +238,16 @@ export default function ExecutiveConsultingPage() {
           {/* What Sets This Apart */}
           <section className="mb-24">
             <div className="bg-zinc-950 border border-zinc-800 p-8 md:p-12">
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">What Sets This Apart</h2>
+              <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-6">What Sets This Apart</h2>
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <p className="text-muted-foreground leading-relaxed mb-4">
+                  <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
                     Most consulting in the production space focuses on logistics or creative direction
                     in isolation. Our approach bridges those domains. We bring financial intelligence,
                     vendor strategy, systems thinking, and operational rigour into a single advisory
                     layer. The result is a leadership function that sees the full picture and acts on it.
                   </p>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p data-reveal="fade" className="text-muted-foreground leading-relaxed">
                     We have led consulting engagements where the primary value was not a deliverable
                     or a document, but a decision that was made three weeks earlier than it otherwise
                     would have been. In production, time is the most valuable resource. Our job is to
@@ -255,14 +256,14 @@ export default function ExecutiveConsultingPage() {
                   </p>
                 </div>
                 <div>
-                  <p className="text-muted-foreground leading-relaxed mb-4">
+                  <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
                     Every engagement begins with listening. We map the existing decision landscape,
                     identify bottlenecks, and build frameworks that are specific to your production's
                     context. There are no generic templates. The governance model for a global
                     automotive reveal is fundamentally different from the one needed for an immersive
                     entertainment residency, and our approach reflects that.
                   </p>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p data-reveal="fade" className="text-muted-foreground leading-relaxed">
                     We also maintain strong working relationships with vendors, fabricators, and
                     technology partners across the industry. This network allows us to provide informed
                     recommendations on capability, capacity, and commercial positioning that go beyond
@@ -275,7 +276,7 @@ export default function ExecutiveConsultingPage() {
 
           {/* Deliverables */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Deliverables</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Deliverables</h2>
             <ServiceAccordion
               items={deliverables.map((category) => ({
                 title: category.title,
@@ -286,13 +287,15 @@ export default function ExecutiveConsultingPage() {
 
           {/* Engagement Models */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Engagement Models</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Engagement Models</h2>
             <div className="grid md:grid-cols-3 gap-px bg-zinc-900 border border-zinc-800">
               {engagementModels.map((model, i) => (
-                <div key={i} className="bg-background p-8">
-                  <div className="font-mono text-xs text-zinc-500 mb-2">{(i + 1).toString().padStart(2, "0")}</div>
-                  <h3 className="font-semibold mb-2">{model.title}</h3>
-                  <p className="text-sm text-muted-foreground">{model.desc}</p>
+                <div key={i} className="bg-black p-8">
+                  <div data-reveal="fade">
+                    <div className="font-mono text-xs text-zinc-500 mb-2">{(i + 1).toString().padStart(2, "0")}</div>
+                    <h3 className="font-semibold mb-2">{model.title}</h3>
+                    <p className="text-sm text-muted-foreground">{model.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -300,7 +303,7 @@ export default function ExecutiveConsultingPage() {
 
           {/* How We Work */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">How We Work</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">How We Work</h2>
             <div className="max-w-3xl">
               <div className="space-y-8">
                 {[
@@ -325,7 +328,7 @@ export default function ExecutiveConsultingPage() {
                     desc: "At defined intervals and after major milestones, we conduct structured reviews to assess what is working, what needs adjustment, and where new risks have emerged. Frameworks are living documents. We update them as the production evolves and new information becomes available.",
                   },
                 ].map((step, i) => (
-                  <div key={i} className="flex gap-6">
+                  <div key={i} data-reveal="fade" className="flex gap-6">
                     <div className="flex-shrink-0">
                       <div className="w-10 h-10 border border-zinc-700 flex items-center justify-center">
                         <step.icon className="w-5 h-5 text-zinc-500" />
@@ -344,13 +347,14 @@ export default function ExecutiveConsultingPage() {
 
           {/* Use Cases */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Use Cases</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Use Cases</h2>
             <div className="max-w-3xl">
               <div className="flex flex-wrap gap-3">
                 {useCases.map((useCase, i) => (
                   <span
                     key={i}
-                    className="px-4 py-2 border border-zinc-800 text-sm text-muted-foreground hover:border-[#00D26A]/30 hover:text-white transition-colors"
+                    data-reveal="fade"
+                    className="inline-block px-4 py-2 border border-zinc-800 text-sm text-muted-foreground hover:border-[#00D26A]/30 hover:text-white transition-colors duration-300 ease-expo"
                   >
                     {useCase}
                   </span>
@@ -361,37 +365,41 @@ export default function ExecutiveConsultingPage() {
 
           {/* Related Services */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-8">Related services</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-8">Related services</h2>
             <div className="max-w-3xl border-t border-zinc-900">
               <Link
+                data-reveal="fade"
                 href="/services/technical-direction"
-                className="group flex items-center justify-between border-b border-zinc-900 py-5 transition-colors"
+                className="group flex items-center justify-between border-b border-zinc-900 py-5 transition-colors duration-300 ease-expo"
               >
-                <span className="text-lg text-zinc-300 transition-colors group-hover:text-[#00D26A]">Technical Direction</span>
-                <ArrowRight className="h-4 w-4 text-zinc-600 transition-colors group-hover:text-[#00D26A]" />
+                <span className="text-lg text-zinc-300 transition-colors duration-300 ease-expo group-hover:text-[#00D26A]">Technical Direction</span>
+                <ArrowRight className="h-4 w-4 text-zinc-600 transition-colors duration-300 ease-expo group-hover:text-[#00D26A]" />
               </Link>
               <Link
+                data-reveal="fade"
                 href="/services/production-management"
-                className="group flex items-center justify-between border-b border-zinc-900 py-5 transition-colors"
+                className="group flex items-center justify-between border-b border-zinc-900 py-5 transition-colors duration-300 ease-expo"
               >
-                <span className="text-lg text-zinc-300 transition-colors group-hover:text-[#00D26A]">Production Management</span>
-                <ArrowRight className="h-4 w-4 text-zinc-600 transition-colors group-hover:text-[#00D26A]" />
+                <span className="text-lg text-zinc-300 transition-colors duration-300 ease-expo group-hover:text-[#00D26A]">Production Management</span>
+                <ArrowRight className="h-4 w-4 text-zinc-600 transition-colors duration-300 ease-expo group-hover:text-[#00D26A]" />
               </Link>
             </div>
           </section>
 
           {/* CTA */}
-          <section className="border-t border-zinc-800 pt-16">
+          <section>
+            <div data-reveal="line" aria-hidden="true" className="mb-16 h-px origin-left bg-zinc-800" />
             <div className="max-w-2xl">
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Start a Conversation</h2>
-              <p className="text-muted-foreground mb-8">
+              <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-4">Start a Conversation</h2>
+              <p data-reveal="fade" className="text-muted-foreground mb-8">
                 Whether you need ongoing strategic partnership or targeted support for a specific
                 production challenge, we are ready to discuss how executive-level oversight can
                 de-risk your next program and accelerate your decision-making.
               </p>
               <Link
+                data-reveal="fade"
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors duration-300 ease-expo"
               >
                 Start a Conversation
                 <ArrowRight className="w-4 h-4" />

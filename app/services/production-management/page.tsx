@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { CueLabel } from "@/components/motion/cue-label"
 import {
   ArrowLeft,
   ArrowRight,
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Production Management — TC Agency",
+        alt: "Production Management | TC Agency",
       },
     ],
   },
@@ -168,12 +169,12 @@ export default function ProductionManagementPage() {
         url="https://tc.agency/services/production-management"
       />
 
-      <main className="min-h-screen bg-background pt-24 pb-16">
+      <main className="min-h-screen bg-black pt-24 pb-16">
         <div className="container mx-auto px-6">
           {/* Breadcrumb */}
           <Link
             href="/capabilities"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors mb-8"
+            className="-mt-1 mb-7 inline-flex items-center gap-2 py-1 text-sm text-muted-foreground transition-colors duration-300 ease-expo hover:text-white"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Services
@@ -181,11 +182,11 @@ export default function ProductionManagementPage() {
 
           {/* Header */}
           <div className="mb-16 max-w-4xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — PRODUCTION MANAGEMENT ]</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
+            <CueLabel className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">SERVICE / PRODUCTION MANAGEMENT</CueLabel>
+            <h1 data-vt="title" data-reveal="rise" className="w-fit text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
               Production Management
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p data-reveal="fade" className="text-xl text-muted-foreground leading-relaxed">
               Complete production oversight from first concept to final wrap. We manage timelines, budgets, logistics,
               and communication so that every element of your production lands exactly where it should, exactly when it
               should.
@@ -195,20 +196,20 @@ export default function ProductionManagementPage() {
           {/* Overview */}
           <section className="mb-24">
             <div className="max-w-3xl">
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
+              <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
                 Production management is the operational backbone of any live event. It is the discipline of
                 coordinating people, equipment, time, and money into a single coherent plan and then executing that
                 plan under pressure. TC Agency brings structured methodology and senior-level oversight to productions
                 that cannot afford ambiguity or misalignment.
               </p>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
                 We operate across the full production lifecycle. From initial budgeting and vendor selection through
                 load-in sequencing, show operations, strike, and post-production closeout, every phase receives the
                 same level of attention and accountability. Our production managers function as the central point of
                 coordination between creative, technical, and business stakeholders.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
+              <p data-reveal="fade" className="text-muted-foreground leading-relaxed">
                 The result is a production that runs on schedule, stays within budget, and delivers the creative
                 intent without compromise. No surprises. No gaps. No excuses.
               </p>
@@ -217,7 +218,7 @@ export default function ProductionManagementPage() {
 
           {/* Core Deliverables */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Core Deliverables</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Core Deliverables</h2>
             <ServiceAccordion
               items={deliverables.map((category) => ({
                 title: category.title,
@@ -228,11 +229,11 @@ export default function ProductionManagementPage() {
 
           {/* Methodology */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Methodology</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Methodology</h2>
             <div className="max-w-3xl">
               <div className="space-y-8">
                 {methodology.map((step, i) => (
-                  <div key={i} className="flex gap-6">
+                  <div key={i} data-reveal="fade" className="flex gap-6">
                     <div className="font-mono text-zinc-500 text-sm w-8 flex-shrink-0">
                       {(i + 1).toString().padStart(2, "0")}
                     </div>
@@ -248,13 +249,14 @@ export default function ProductionManagementPage() {
 
           {/* Use Cases */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Use Cases</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Use Cases</h2>
             <div className="max-w-3xl">
               <div className="flex flex-wrap gap-3">
                 {useCases.map((useCase, i) => (
                   <span
                     key={i}
-                    className="px-4 py-2 border border-zinc-800 text-sm text-muted-foreground hover:border-[#00D26A]/30 hover:text-white transition-colors"
+                    data-reveal="fade"
+                    className="inline-block px-4 py-2 border border-zinc-800 text-sm text-muted-foreground hover:border-[#00D26A]/30 hover:text-white transition-colors duration-300 ease-expo"
                   >
                     {useCase}
                   </span>
@@ -265,46 +267,52 @@ export default function ProductionManagementPage() {
 
           {/* Related Services */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Related Services</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Related Services</h2>
             <div className="grid md:grid-cols-2 gap-px bg-zinc-900 border border-zinc-800 max-w-2xl">
               <Link
                 href="/services/executive-consulting"
-                className="bg-background p-8 group hover:bg-zinc-900/40 transition-colors"
+                className="bg-black p-8 group hover:bg-zinc-900/40 transition-colors duration-300 ease-expo"
               >
-                <div className="font-mono text-xs text-zinc-500 mb-2">Strategic Leadership</div>
-                <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors">
-                  Executive Consulting
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Senior oversight, risk mitigation, and decision frameworks for complex productions.
-                </p>
+                <div data-reveal="fade">
+                  <div className="font-mono text-xs text-zinc-500 mb-2">Strategic Leadership</div>
+                  <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors duration-300 ease-expo">
+                    Executive Consulting
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Senior oversight, risk mitigation, and decision frameworks for complex productions.
+                  </p>
+                </div>
               </Link>
               <Link
                 href="/services/technical-direction"
-                className="bg-background p-8 group hover:bg-zinc-900/40 transition-colors"
+                className="bg-black p-8 group hover:bg-zinc-900/40 transition-colors duration-300 ease-expo"
               >
-                <div className="font-mono text-xs text-zinc-500 mb-2">Technical Systems</div>
-                <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors">
-                  Technical Direction
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  System architecture, technical specifications, and engineering leadership for live events.
-                </p>
+                <div data-reveal="fade">
+                  <div className="font-mono text-xs text-zinc-500 mb-2">Technical Systems</div>
+                  <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors duration-300 ease-expo">
+                    Technical Direction
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    System architecture, technical specifications, and engineering leadership for live events.
+                  </p>
+                </div>
               </Link>
             </div>
           </section>
 
           {/* CTA */}
-          <section className="border-t border-zinc-800 pt-16">
+          <section>
+            <div data-reveal="line" aria-hidden="true" className="mb-16 h-px origin-left bg-zinc-800" />
             <div className="max-w-2xl">
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Start a Project</h2>
-              <p className="text-muted-foreground mb-8">
+              <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-4">Start a Project</h2>
+              <p data-reveal="fade" className="text-muted-foreground mb-8">
                 Let's talk about your next production. Whether it's a single show or a global tour, we bring the
                 structure, accountability, and operational discipline to deliver it on time and on budget.
               </p>
               <Link
+                data-reveal="fade"
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors duration-300 ease-expo"
               >
                 Start a Conversation
                 <ArrowRight className="w-4 h-4" />

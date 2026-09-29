@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { ArrowLeft } from "lucide-react"
+import { CueLabel } from "@/components/motion/cue-label"
 
 export const metadata: Metadata = {
   title: "Cookie Policy | TC Agency",
@@ -23,23 +24,23 @@ export default function CookiePolicy() {
         <div className="container mx-auto px-6 max-w-3xl">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white mb-12"
+            className="-mt-1 mb-11 inline-flex items-center gap-2 py-1 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo hover:text-white"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Home
           </Link>
 
           <header className="mb-16">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">Last updated: November 27, 2025</p>
-            <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-6">Cookie Policy</h1>
-            <div className="text-sm text-zinc-400">
+            <CueLabel className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">LAST UPDATED / NOVEMBER 27, 2025</CueLabel>
+            <h1 data-vt="title" data-reveal="rise" className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-6">Cookie Policy</h1>
+            <div data-reveal="fade" className="text-sm text-zinc-400">
               <p>
                 Technically Creative LLC, operating as TC Agency, TC, and Tech Creative ("we", "our", "us", "Technically
                 Creative")
               </p>
               <p>Detroit, MI, USA</p>
               <p>
-                <a href="mailto:info@tc.agency" className="text-white underline-offset-4 transition-colors duration-300 hover:text-[#00D26A] hover:underline">
+                <a href="mailto:info@tc.agency" className="text-white underline-offset-4 transition-colors duration-300 ease-expo hover:text-[#00D26A] hover:underline">
                   info@tc.agency
                 </a>
               </p>
@@ -48,11 +49,11 @@ export default function CookiePolicy() {
 
           <div className="max-w-none space-y-10">
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">1. Introduction</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">1. Introduction</h2>
               <p className="text-zinc-400 leading-relaxed">
                 This Cookie Policy explains how Technically Creative LLC, operating as TC Agency ("we", "our", "us"),
                 uses cookies and similar technologies on tc.agency. It should be read alongside our{" "}
-                <Link href="/privacy-policy" className="text-white underline underline-offset-4 transition-colors duration-300 hover:text-[#00D26A]">
+                <Link href="/privacy-policy" className="text-white underline underline-offset-4 transition-colors duration-300 ease-expo hover:text-[#00D26A]">
                   Privacy Policy
                 </Link>
                 .
@@ -60,7 +61,7 @@ export default function CookiePolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">2. What Are Cookies?</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">2. What Are Cookies?</h2>
               <p className="text-zinc-400 leading-relaxed">
                 Cookies are small text files stored on your device when you visit a website. They help websites function
                 properly, remember preferences, and collect analytics.
@@ -68,7 +69,7 @@ export default function CookiePolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">3. How We Use Cookies</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">3. How We Use Cookies</h2>
               <p className="text-zinc-400 leading-relaxed mb-4">
                 We only load cookies after you provide consent via our cookie banner.
               </p>
@@ -111,7 +112,7 @@ export default function CookiePolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">4. Managing Cookies</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">4. Managing Cookies</h2>
               <p className="text-zinc-400 leading-relaxed mb-2">You can manage cookies in several ways:</p>
               <ul className="list-disc list-inside text-zinc-400 space-y-1">
                 <li>Use our cookie banner to accept or decline analytics cookies</li>
@@ -124,7 +125,7 @@ export default function CookiePolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">5. Third-Party Cookies</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">5. Third-Party Cookies</h2>
               <p className="text-zinc-400 leading-relaxed">
                 Our analytics providers (Google, Microsoft) may set their own cookies. Their use is governed by their
                 respective privacy policies.
@@ -132,7 +133,7 @@ export default function CookiePolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">6. Updates to This Policy</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">6. Updates to This Policy</h2>
               <p className="text-zinc-400 leading-relaxed">
                 We may update this Cookie Policy periodically. Changes will be reflected on this page with a new "Last
                 updated" date.
@@ -140,7 +141,7 @@ export default function CookiePolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">7. Contact Us</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">7. Contact Us</h2>
               <div className="my-4">
                 <p className="text-sm text-zinc-400">
                   <strong className="text-white">
@@ -150,7 +151,7 @@ export default function CookiePolicy() {
                   Detroit, MI, USA
                   <br />
                   Email:{" "}
-                  <a href="mailto:info@tc.agency" className="text-white underline underline-offset-4 transition-colors duration-300 hover:text-[#00D26A]">
+                  <a href="mailto:info@tc.agency" className="text-white underline underline-offset-4 transition-colors duration-300 ease-expo hover:text-[#00D26A]">
                     info@tc.agency
                   </a>
                 </p>

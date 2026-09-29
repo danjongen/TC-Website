@@ -109,8 +109,20 @@ Use it only for scroll-linked values (`useScroll`, `useTransform`) and orchestra
 
 ## Homepage specifics
 
-- **Hero**: WebGL point cloud (raw WebGL, no three.js). It assembles, morphs between three shots, and disperses as the next section rises over it like a curtain. It stops rendering whenever it is covered, off screen, or the tab is hidden.
+- **Hero**: WebGL point cloud (raw WebGL, no three.js). It assembles, morphs between three shots, and disperses as the next section rises over it like a curtain. The grid takes the viewport's shape, so phones get every point on screen, with a 60k-point budget (230k on desktop) and dot size scaled to keep the original density. It stops rendering whenever it is covered, off screen, or the tab is hidden. It is skipped for reduced motion, Save-Data, and devices with fewer than 4 cores or 4GB of memory (they keep the poster photo).
 - **HUD** (`components/motion/show-hud.tsx`): scroll-scrubbed timecode on the right edge, one pixel of scroll equals one frame at 30fps, with the active cue. Sections opt in with `data-cue="02" data-cue-label="SELECTED WORK"`.
+
+## Cursor
+
+`components/v2/custom-cursor.tsx` draws a green reticle only over interactive elements (`a[href]`, enabled buttons, `[data-cursor='hover']`). The native cursor always stays. `data-cursor-label="VIEW"` grows the reticle and shows the label. Fine pointers only, off under reduced motion.
+
+## Reserved names
+
+`view-transition-name` values `tc-nav-active` (navbar underline), `tc-scan`, `tc-title` and `tc-media` are owned by the transition system. Never set them anywhere else: a duplicate name aborts the page transition.
+
+## Cookie banner
+
+It waits for the visitor's first gesture (wheel, touch, key, pointer), with an 8s fallback, so it never lands on the hero while it is being read. Analytics load only after consent (`components/analytics.tsx`).
 
 ## Checklist before shipping motion
 

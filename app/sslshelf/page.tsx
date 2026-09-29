@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 
 import { Footer } from "@/components/footer"
+import { CueLabel } from "@/components/motion/cue-label"
 import { Navbar } from "@/components/navbar"
 
 import { BuyBox } from "./buy-box"
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: canonicalUrl,
-    title: "TC SSL Shelf — Console Shelf for SSL Live",
+    title: "TC SSL Shelf | Console Shelf for SSL Live",
     description,
     images: [
       {
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "TC SSL Shelf — Console Shelf for SSL Live",
+    title: "TC SSL Shelf | Console Shelf for SSL Live",
     description,
     images: [heroShow.src],
   },
@@ -149,9 +150,13 @@ export default function SslShelfPage() {
         <section className="mx-auto w-full max-w-[1600px] px-6 pb-20 pt-32 md:px-12 md:pb-28 md:pt-40">
           <nav
             aria-label="Breadcrumb"
+            data-reveal="fade"
             className="mb-8 font-mono text-[11px] uppercase tracking-[0.22em] text-zinc-500"
           >
-            <Link href="/store" className="transition-colors hover:text-white">
+            <Link
+              href="/store"
+              className="-my-1 inline-block py-1 transition-colors duration-300 ease-expo hover:text-white"
+            >
               Store
             </Link>
             <span className="mx-3" aria-hidden="true">
@@ -164,10 +169,10 @@ export default function SslShelfPage() {
 
         <section className="border-t border-zinc-800">
           <div className="mx-auto grid w-full max-w-[1600px] gap-8 px-6 py-16 md:grid-cols-[0.7fr_1.3fr] md:px-12 md:py-24">
-            <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#00D26A]">
-              [ Designed for the field ]
-            </p>
-            <p className="max-w-[48rem] text-xl leading-relaxed text-zinc-300 md:text-2xl">
+            <CueLabel className="font-mono text-xs uppercase tracking-[0.22em] text-[#00D26A]">
+              DESIGNED FOR THE FIELD
+            </CueLabel>
+            <p data-reveal="fade" className="max-w-[48rem] text-xl leading-relaxed text-zinc-300 md:text-2xl">
               Built around the real top rail of an SSL Live console, with a
               low-profile clip-on fit that keeps useful FOH essentials close
               without permanently modifying the desk.

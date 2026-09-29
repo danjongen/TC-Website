@@ -9,7 +9,8 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     if (prefersReduced) return
 
     const lenis = new Lenis({
-      lerp: 0.09,
+      // 0.14 settles quickly and reads as precise; lower values feel floaty
+      lerp: 0.14,
       wheelMultiplier: 1,
       touchMultiplier: 1.5,
     })

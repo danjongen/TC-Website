@@ -43,6 +43,7 @@ export const REVEAL_SCRIPT = `(function () {
       line: { t: 900, k: [{ scale: "0 1", offset: 0 }] }
     };
     var armed = new WeakMap();
+    var done = new WeakSet();
     waiting = new Set();
     var io = new IntersectionObserver(function (entries) {
       try { play(entries); } catch (err) { release(); }
@@ -59,37 +60,50 @@ export const REVEAL_SCRIPT = `(function () {
       var morphing = document.documentElement.getAttribute("data-vt-static") || "";
       for (var j = 0; j < hits.length; j++) {
         var el = hits[j];
-        var a = armed.get(el);
+        var hold = armed.get(el);
         io.unobserve(el);
-        if (!a) continue;
-        waiting.delete(a);
+        armed.delete(el);
+        done.add(el);
+        if (!hold) continue;
+        waiting.delete(hold);
+        var fx = FX[el.getAttribute("data-reveal")];
         // This element is the landing point of a shared-element morph: the
         // morph is its entrance, so show it in place instead of revealing.
         var host = el.closest("[data-vt]");
-        if (host && (" " + morphing + " ").indexOf(" " + host.getAttribute("data-vt") + " ") >= 0) {
-          a.cancel();
+        if (!fx || (host && (" " + morphing + " ").indexOf(" " + host.getAttribute("data-vt") + " ") >= 0)) {
+          hold.cancel();
           continue;
         }
         var extra = parseInt(el.getAttribute("data-reveal-delay") || "0", 10) || 0;
-        a.effect.updateTiming({ delay: Math.min(j, 8) * 80 + extra });
-        a.play();
+        // Swap the hold for the real reveal in the same frame. Every variant's
+        // first frame is invisible (clipped, transparent, dot-less or zero
+        // width), so the swap never flashes.
+        var a = el.animate(fx.k, { duration: fx.t, easing: EXPO, fill: "both", delay: Math.min(j, 8) * 80 + extra });
+        a.onfinish = cancelSelf;
+        hold.cancel();
       }
     }
+    function cancelSelf() { this.cancel(); }
+    // Waiting elements are held at opacity 0 rather than at their reveal's
+    // first frame: a clip-path or zero scale would hide them from the
+    // IntersectionObserver itself, and they would never be seen entering.
+    var HOLD = [{ opacity: 0 }, { opacity: 0 }];
     function arm(el) {
-      if (armed.has(el)) return;
-      var fx = FX[el.getAttribute("data-reveal")];
-      if (!fx) return;
-      var a = el.animate(fx.k, { duration: fx.t, easing: EXPO, fill: "both" });
-      a.pause();
-      a.onfinish = function () { a.cancel(); };
-      armed.set(el, a);
-      waiting.add(a);
+      if (armed.has(el) || done.has(el) || !FX[el.getAttribute("data-reveal")]) return;
+      var hold = el.animate(HOLD, { duration: 1, fill: "both" });
+      hold.pause();
+      armed.set(el, hold);
+      waiting.add(hold);
       io.observe(el);
     }
     function disarm(el) {
-      var a = armed.get(el);
-      if (!a) return;
-      waiting.delete(a);
+      var hold = armed.get(el);
+      if (!hold) return;
+      // Cancel, do not just forget: React sometimes moves a node (remove then
+      // re-insert the same element), and a forgotten hold would keep it at
+      // opacity 0 forever. Re-insertion arms it again from scratch.
+      hold.cancel();
+      waiting.delete(hold);
       io.unobserve(el);
       armed.delete(el);
     }

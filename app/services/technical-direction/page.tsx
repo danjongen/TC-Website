@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { CueLabel } from "@/components/motion/cue-label"
 import {
   ArrowLeft,
   ArrowRight,
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     "Technically Creative",
   ],
   openGraph: {
-    title: "Technical Direction — TC Agency",
+    title: "Technical Direction | TC Agency",
     description:
       "Single point of technical accountability for complex live events, tours, and installations. Engineering rigor applied to every production system.",
     url: "https://tc.agency/services/technical-direction",
@@ -40,13 +41,13 @@ export const metadata: Metadata = {
         url: "/og/technical-direction.jpg",
         width: 1200,
         height: 630,
-        alt: "Technical Direction — TC Production Engineering",
+        alt: "Technical Direction | TC Production Engineering",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Technical Direction — TC Agency",
+    title: "Technical Direction | TC Agency",
     description:
       "Single point of technical accountability for complex live events, tours, and installations. Engineering rigor applied to every production system.",
     images: ["/og/technical-direction.jpg"],
@@ -144,7 +145,7 @@ const useCases = [
 
 export default function TechnicalDirectionPage() {
   return (
-    <main className="min-h-screen bg-background pt-24 pb-16">
+    <main className="min-h-screen bg-black pt-24 pb-16">
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "https://tc.agency" },
@@ -162,7 +163,7 @@ export default function TechnicalDirectionPage() {
         {/* Breadcrumb */}
         <Link
           href="/capabilities"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors mb-8"
+          className="-mt-1 mb-7 inline-flex items-center gap-2 py-1 text-sm text-muted-foreground transition-colors duration-300 ease-expo hover:text-white"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Services
@@ -170,11 +171,11 @@ export default function TechnicalDirectionPage() {
 
         {/* Header */}
         <div className="mb-16 max-w-4xl">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — TECHNICAL DIRECTION ]</p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
+          <CueLabel className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">SERVICE / TECHNICAL DIRECTION</CueLabel>
+          <h1 data-vt="title" data-reveal="rise" className="w-fit text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
             Technical Direction
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
+          <p data-reveal="fade" className="text-xl text-muted-foreground leading-relaxed">
             One person accountable for every technical system on your production. From architecture through
             execution, TC provides the leadership that keeps complex shows running with precision.
           </p>
@@ -183,20 +184,20 @@ export default function TechnicalDirectionPage() {
         {/* Overview */}
         <section className="mb-24">
           <div className="max-w-3xl">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
-            <p className="text-muted-foreground leading-relaxed mb-4">
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
+            <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
               Technical direction is the single thread that connects every production department into a coherent,
               reliable system. It is not a title. It is an operating model: one point of accountability that owns
               the technical outcome of the entire show, from first concept meeting through final strike.
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-4">
+            <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
               TC approaches technical direction with the rigor of systems engineering. Every production receives
               documented architecture, structured risk analysis, and clear communication protocols before a single
               cable is run. During execution, the TD serves as the central nervous system of the production,
               routing information, resolving conflicts between departments, and making real-time decisions that
               protect both the creative vision and the technical integrity of the show.
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p data-reveal="fade" className="text-muted-foreground leading-relaxed">
               This service is built for productions where the technical complexity exceeds what any single
               department can manage alone. Tours with dozens of trucks. Residencies with hundreds of cues.
               Installations where uptime is measured in months, not hours.
@@ -206,7 +207,7 @@ export default function TechnicalDirectionPage() {
 
         {/* Core Responsibilities */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Core Responsibilities</h2>
+          <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Core Responsibilities</h2>
           <ServiceAccordion
             items={responsibilities.map((r) => ({
               title: r.title,
@@ -219,34 +220,34 @@ export default function TechnicalDirectionPage() {
         {/* How TC Does It Differently */}
         <section className="mb-24">
           <div className="max-w-3xl">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">How TC Does It Differently</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-6">How TC Does It Differently</h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
+              <p data-reveal="fade">
                 Traditional technical direction in live events is often reactive. The TD shows up on site, inherits
                 a set of problems created during pre-production, and spends the entire load-in putting out fires.
                 Departments operate in silos. Vendors deliver equipment that was never tested together. Risk is
                 managed through experience and instinct rather than process.
               </p>
-              <p>
+              <p data-reveal="fade">
                 TC takes a fundamentally different approach. We treat every production as an engineered system. That
                 means formal architecture documentation before procurement begins. It means structured risk
                 assessments that identify failure modes weeks before load-in, not hours. It means communication
                 protocols that ensure information flows between departments in a predictable, auditable way.
               </p>
-              <p>
+              <p data-reveal="fade">
                 This is not bureaucracy for its own sake. It is precision applied where it matters most. When a
                 lighting console needs to talk to a media server that triggers automation cues synced to timecode
                 while feeding confidence monitors and recording ISO feeds, there is no room for ambiguity. Every
                 signal path is documented. Every protocol handoff is tested. Every fallback is defined.
               </p>
-              <p>
+              <p data-reveal="fade">
                 The result is productions that run cleaner, load in faster, and recover from the unexpected without
                 the audience ever noticing. Our{" "}
-                <Link href="/services/system-integration" className="text-white underline underline-offset-4 transition-colors hover:text-[#00D26A]">
+                <Link href="/services/system-integration" className="text-white underline underline-offset-4 transition-colors duration-300 ease-expo hover:text-[#00D26A]">
                   system integration
                 </Link>{" "}
                 methodology and{" "}
-                <Link href="/services/unreal-engine" className="text-white underline underline-offset-4 transition-colors hover:text-[#00D26A]">
+                <Link href="/services/unreal-engine" className="text-white underline underline-offset-4 transition-colors duration-300 ease-expo hover:text-[#00D26A]">
                   Unreal Engine pre-visualization
                 </Link>{" "}
                 capabilities extend this engineering mindset across every phase of the production lifecycle.
@@ -257,13 +258,14 @@ export default function TechnicalDirectionPage() {
 
         {/* Use Cases */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Use Cases</h2>
+          <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Use Cases</h2>
           <div className="max-w-3xl">
             <div className="flex flex-wrap gap-3">
               {useCases.map((useCase, i) => (
                 <span
                   key={i}
-                  className="px-4 py-2 border border-zinc-800 text-sm text-muted-foreground hover:border-[#00D26A]/30 hover:text-white transition-colors"
+                  data-reveal="fade"
+                  className="inline-block px-4 py-2 border border-zinc-800 text-sm text-muted-foreground hover:border-[#00D26A]/30 hover:text-white transition-colors duration-300 ease-expo"
                 >
                   {useCase}
                 </span>
@@ -274,7 +276,7 @@ export default function TechnicalDirectionPage() {
 
         {/* Related Work */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Related Work</h2>
+          <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Related Work</h2>
           <div className="grid md:grid-cols-3 gap-px bg-zinc-900 border border-zinc-800">
             {[
               {
@@ -299,27 +301,31 @@ export default function TechnicalDirectionPage() {
               <Link
                 key={i}
                 href={item.href}
-                className="bg-background p-8 group hover:bg-zinc-900/40 transition-colors"
+                className="bg-black p-8 group hover:bg-zinc-900/40 transition-colors duration-300 ease-expo"
               >
-                <div className="font-mono text-xs text-zinc-500 mb-2">{item.label}</div>
-                <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">{item.desc}</p>
+                <div data-reveal="fade">
+                  <div className="font-mono text-xs text-zinc-500 mb-2">{item.label}</div>
+                  <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors duration-300 ease-expo">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
               </Link>
             ))}
           </div>
         </section>
 
         {/* CTA */}
-        <section className="border-t border-zinc-800 pt-16">
+        <section>
+          <div data-reveal="line" aria-hidden="true" className="mb-16 h-px origin-left bg-zinc-800" />
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Bring TC on as your Technical Director</h2>
-            <p className="text-muted-foreground mb-8">
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-4">Bring TC on as your Technical Director</h2>
+            <p data-reveal="fade" className="text-muted-foreground mb-8">
               Whether you need a TD for a single show or an entire touring cycle, let us show you what
               engineering-grade technical direction looks like in practice.
             </p>
             <Link
+              data-reveal="fade"
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors duration-300 ease-expo"
             >
               Start a Conversation
               <ArrowRight className="w-4 h-4" />
