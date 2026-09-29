@@ -40,7 +40,7 @@ const WORDS = TOKENS.map((token, i) => {
 
 export function Manifesto() {
   return (
-    <section data-cue="01" data-cue-label="THE MANDATE" className="relative bg-black px-6 py-[28vh] md:px-12">
+    <section data-cue="01" data-cue-label="THE MANDATE" className="relative px-6 py-[28vh] md:px-12">
       <div className="mx-auto w-full max-w-4xl">
         <CueLabel index="01" cue className="mb-12 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
           THE MANDATE
