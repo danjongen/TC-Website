@@ -1,35 +1,47 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
+import { POWER_SYMBOLS_VERSION } from "@/lib/power-symbols-version"
 
 import { Footer } from "@/components/footer"
+import { CueLabel } from "@/components/motion/cue-label"
 import { Navbar } from "@/components/navbar"
-
-const downloadHref = "/downloads/Power-Symbols-0.2.2-VW2026-Beta.zip"
+import { FreeBetaForm } from "./free-beta-form"
+import { PowerSymbolsDemo } from "./power-symbols-demo"
 
 const supportOptions = [
   {
+    amount: "$0",
+    title: "Freeload responsibly",
+    description:
+      "Keep your cash. Pay with useful bug reports and accept the faint judgement of the green lightning bolt.",
+    href: "#free-beta",
+    action: "Request a sympathy serial",
+  },
+  {
     amount: "$10",
-    title: "Buy the developer a coffee",
-    description: "A quick thank-you for a tool that saved you some drawing time.",
+    title: "Beta access",
+    description: "Get the current private build, serial activation and beta updates.",
     href: "https://tc-agency-store.myshopify.com/cart/53609848635755:1",
+    action: "Get beta access",
   },
   {
     amount: "$25",
-    title: "Back a test build",
-    description: "Help cover packaging, documentation and real-world testing.",
+    title: "Beta + development support",
+    description: "The same access, with extra support for testing and documentation.",
     href: "https://tc-agency-store.myshopify.com/cart/53609848668523:1",
+    action: "Get beta access",
   },
   {
     amount: "$50",
-    title: "Help fund release QA",
-    description: "Support compatibility checks and the eventual signed installer.",
+    title: "Beta + release support",
+    description: "The same access, with a larger contribution toward QA and signing.",
     href: "https://tc-agency-store.myshopify.com/cart/53609848701291:1",
+    action: "Get beta access",
   },
 ] as const
 
 const description =
-  "Download the Power Symbols beta for Vectorworks 2026 on macOS. Place editable production power symbols and create a coordinated Power Distribution Schedule."
+  "Get the Power Symbols beta for Vectorworks 2026 on macOS. Place editable production power symbols and create a coordinated Power Distribution Schedule."
 
 export const metadata: Metadata = {
   title: "Power Symbols Beta for Vectorworks",
@@ -54,12 +66,13 @@ const softwareJsonLd = {
   name: "Power Symbols",
   applicationCategory: "DesignApplication",
   operatingSystem: "macOS",
-  softwareVersion: "0.2.2 beta",
-  downloadUrl: `https://www.tc.agency${downloadHref}`,
+  softwareVersion: `${POWER_SYMBOLS_VERSION} beta`,
   description,
   offers: {
-    "@type": "Offer",
-    price: "0",
+    "@type": "AggregateOffer",
+    lowPrice: "0",
+    highPrice: "50",
+    offerCount: "4",
     priceCurrency: "USD",
   },
 }
@@ -76,11 +89,12 @@ export default function PowerSymbolsPage() {
         <section className="mx-auto w-full max-w-[1600px] px-6 pb-14 pt-36 md:px-12 md:pb-20 md:pt-44">
           <nav
             aria-label="Breadcrumb"
+            data-reveal="fade"
             className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500"
           >
             <Link
               href="/store"
-              className="transition-colors hover:text-[#00D26A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D26A]"
+              className="-my-1 inline-block py-1 transition-colors duration-300 ease-expo hover:text-[#00D26A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D26A]"
             >
               Store
             </Link>
@@ -90,8 +104,8 @@ export default function PowerSymbolsPage() {
 
           <div className="mt-12 grid items-end gap-10 lg:grid-cols-[1.05fr_0.95fr]">
             <div>
-              <div className="flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-[0.17em]">
-                <span className="bg-[#00D26A] px-3 py-2 text-black">Open beta</span>
+              <div data-reveal="fade" className="flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-[0.17em]">
+                <span className="bg-[#00D26A] px-3 py-2 text-black">Private beta</span>
                 <span className="border border-zinc-700 px-3 py-2 text-zinc-300">
                   Vectorworks 2026
                 </span>
@@ -99,38 +113,41 @@ export default function PowerSymbolsPage() {
                   macOS
                 </span>
               </div>
-              <h1 className="mt-8 max-w-[10ch] text-6xl font-semibold leading-[0.86] tracking-[-0.06em] text-balance sm:text-7xl md:text-8xl lg:text-9xl">
+              <h1
+                data-vt="title"
+                data-reveal="rise"
+                className="mt-8 w-fit max-w-[10ch] text-6xl font-semibold leading-[0.86] tracking-[-0.06em] text-balance sm:text-7xl md:text-8xl lg:text-9xl"
+              >
                 Power
                 <br />
                 Symbols
               </h1>
-              <p className="mt-8 max-w-2xl text-lg leading-relaxed text-zinc-300 md:text-xl">
+              <p data-reveal="fade" className="mt-8 max-w-2xl text-lg leading-relaxed text-zinc-300 md:text-xl">
                 Drop editable production-power symbols into Vectorworks and
                 keep the drawing and Power Distribution Schedule coordinated.
               </p>
             </div>
 
-            <div className="border border-zinc-800 bg-zinc-900/40 p-6 md:p-8">
+            <div data-reveal="fade" className="border border-zinc-800 bg-zinc-900/40 p-6 md:p-8">
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#00D26A]">
-                Beta 0.2.2
+                Beta {POWER_SYMBOLS_VERSION}
               </p>
               <p className="mt-5 text-2xl font-semibold tracking-[-0.03em]">
-                No application. No serial. Get the build.
+                Choose your support level. Get the build.
               </p>
               <p className="mt-4 leading-relaxed text-zinc-400">
-                This unlocked beta is for Vectorworks Design Suite 2026 on
-                macOS. Use a backed-up or disposable drawing while testing.
+                Every tier unlocks the same private beta. Paid tiers deliver by
+                checkout; the $0 tier trades cash for genuinely useful testing.
               </p>
               <a
-                href={downloadHref}
-                download
-                className="mt-8 flex items-center justify-between bg-[#00D26A] px-6 py-5 font-mono text-xs font-bold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                href="#beta-access"
+                className="mt-8 flex items-center justify-between bg-[#00D26A] px-6 py-5 font-mono text-xs font-bold uppercase tracking-[0.18em] text-black transition-colors duration-300 ease-expo hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
-                Download the beta
-                <span aria-hidden="true">↓</span>
+                Choose beta access
+                <span aria-hidden="true">→</span>
               </a>
               <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.12em] text-zinc-500">
-                240 KB ZIP · SHA-256 d103774475fcb605… · Free beta
+                Secure checkout · Private delivery · One-time Mac activation
               </p>
             </div>
           </div>
@@ -138,59 +155,16 @@ export default function PowerSymbolsPage() {
 
         <section className="border-y border-zinc-800 bg-zinc-950">
           <div className="mx-auto w-full max-w-[1600px] px-6 py-10 md:px-12 md:py-16">
-            <div className="border border-zinc-800 bg-[#F3F0E8] p-6 text-black md:p-10">
-              <div className="flex items-center justify-between border-b border-black pb-5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] sm:text-xs">
-                <span>Power Symbols</span>
-                <span className="text-zinc-500">Vectorworks / editable data</span>
-              </div>
-              <div className="grid gap-px bg-zinc-300 py-px md:grid-cols-3">
-                {[
-                  {
-                    src: "/images/store/power-symbols/power-drop-400a.svg",
-                    label: "Power drop / 400A",
-                  },
-                  {
-                    src: "/images/store/power-symbols/step-down-16a.svg",
-                    label: "Step-down / 16A",
-                  },
-                  {
-                    src: "/images/store/power-symbols/generator.svg",
-                    label: "Generator source",
-                  },
-                ].map((symbol) => (
-                  <div
-                    key={symbol.src}
-                    className="flex min-h-72 flex-col items-center justify-between bg-[#F3F0E8] p-6 md:min-h-96"
-                  >
-                    <div className="relative my-auto aspect-square w-full max-w-72">
-                      <Image
-                        src={symbol.src}
-                        alt={symbol.label}
-                        fill
-                        sizes="(min-width: 768px) 30vw, 80vw"
-                        className="object-contain"
-                      />
-                    </div>
-                    <p className="mt-5 w-full border-t border-black pt-4 font-mono text-[10px] font-bold uppercase tracking-[0.16em]">
-                      {symbol.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <div className="flex items-center justify-between border-t border-black pt-5 font-mono text-[10px] font-bold uppercase tracking-[0.16em]">
-                <span>Production drawing grammar</span>
-                <span>Beta 0.2.2</span>
-              </div>
-            </div>
+            <PowerSymbolsDemo />
           </div>
         </section>
 
         <section className="mx-auto grid w-full max-w-[1600px] gap-12 px-6 py-16 md:px-12 md:py-24 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-500">
-              [ What it does ]
-            </p>
-            <h2 className="mt-6 max-w-[12ch] text-4xl font-semibold tracking-[-0.045em] md:text-6xl">
+            <CueLabel className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-500">
+              WHAT IT DOES
+            </CueLabel>
+            <h2 data-reveal="rise" className="mt-6 max-w-[12ch] text-4xl font-semibold tracking-[-0.045em] md:text-6xl">
               Less redrawing. Better power plans.
             </h2>
           </div>
@@ -201,7 +175,7 @@ export default function PowerSymbolsPage() {
               ["∞", "Editable ratings, routes and departments"],
               ["B/W", "Legible colour and grayscale output"],
             ].map(([value, label]) => (
-              <div key={label} className="bg-black p-7 md:p-9">
+              <div key={label} data-reveal="fade" className="bg-black p-7 md:p-9">
                 <p className="font-mono text-3xl font-bold text-[#00D26A]">
                   {value}
                 </p>
@@ -213,19 +187,98 @@ export default function PowerSymbolsPage() {
           </div>
         </section>
 
+        <section
+          id="cable-roadmap"
+          className="scroll-mt-24 border-t border-zinc-800 bg-zinc-950"
+        >
+          <div className="mx-auto grid w-full max-w-[1600px] gap-10 px-6 py-16 md:px-12 md:py-24 lg:grid-cols-[0.78fr_1.22fr]">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#00D26A]">
+                [ In development ]
+              </p>
+              <h2 className="mt-6 max-w-[11ch] text-4xl font-semibold tracking-[-0.045em] md:text-6xl">
+                Route cable in 3D. Know the run.
+              </h2>
+              <p className="mt-6 max-w-xl leading-relaxed text-zinc-400">
+                The next major workflow under investigation links power symbols
+                with connector-aware 3D cable paths, measured run lengths and
+                cable takeoffs.
+              </p>
+            </div>
+            <div className="relative overflow-hidden border border-zinc-800 bg-black p-7 md:p-10">
+              <div className="absolute left-0 right-0 top-1/2 h-px bg-zinc-800" />
+              <div className="absolute bottom-0 top-0 left-1/2 w-px bg-zinc-800" />
+              <svg
+                viewBox="0 0 800 320"
+                preserveAspectRatio="xMidYMid meet"
+                role="img"
+                aria-label="Roadmap concept showing a connector-aware three-dimensional cable route"
+                className="relative block h-64 w-full md:h-auto"
+              >
+                <path
+                  d="M70 230 C170 230 170 90 300 90 S430 260 560 210 S650 80 740 85"
+                  fill="none"
+                  stroke="#27272a"
+                  strokeWidth="22"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M70 230 C170 230 170 90 300 90 S430 260 560 210 S650 80 740 85"
+                  fill="none"
+                  stroke="#00D26A"
+                  strokeWidth="4"
+                  strokeDasharray="10 12"
+                  strokeLinecap="round"
+                >
+                  <animate
+                    attributeName="stroke-dashoffset"
+                    from="0"
+                    to="-44"
+                    dur="2s"
+                    repeatCount="indefinite"
+                  />
+                </path>
+                <g fill="#000" stroke="#fff" strokeWidth="4">
+                  <circle cx="70" cy="230" r="24" />
+                  <circle cx="740" cy="85" r="24" />
+                </g>
+                <g fill="#00D26A" fontFamily="monospace" fontSize="18" fontWeight="700">
+                  <text x="42" y="280">P042 · POWERLOCK</text>
+                  <text x="596" y="45">DISTRO · P043</text>
+                  <text x="350" y="292">RUN 46.8 m + SLACK</text>
+                </g>
+              </svg>
+              <div className="relative mt-6 grid gap-px border border-zinc-800 bg-zinc-800 sm:grid-cols-3">
+                {[
+                  ["3D", "Cable path"],
+                  ["m", "Measured length"],
+                  ["↔", "Connector mapping"],
+                ].map(([value, label]) => (
+                  <div key={label} className="bg-zinc-950 p-4">
+                    <span className="font-mono text-lg font-bold text-[#00D26A]">
+                      {value}
+                    </span>
+                    <span className="ml-3 text-sm text-zinc-400">{label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="install" className="border-t border-zinc-800">
           <div className="mx-auto w-full max-w-[1600px] px-6 py-16 md:px-12 md:py-24">
-            <p className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-500">
-              [ Install — about five minutes ]
-            </p>
+            <CueLabel className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-500">
+              INSTALL / ABOUT FIVE MINUTES
+            </CueLabel>
             <div className="mt-10 grid gap-px border border-zinc-800 bg-zinc-800 md:grid-cols-4">
               {[
                 ["01", "Quit Vectorworks 2026."],
-                ["02", "Download and unzip the beta kit."],
+                ["02", "Open the private email and unzip the beta kit."],
                 ["03", "Follow 01 INSTALL INSTRUCTIONS.txt."],
-                ["04", "Add Power Symbol to a tool palette and place a test symbol."],
+                ["04", "Enter your email + serial once, then place a test symbol."],
               ].map(([step, copy]) => (
-                <div key={step} className="bg-zinc-950 p-7">
+                <div key={step} data-reveal="fade" className="bg-zinc-950 p-7">
                   <p className="font-mono text-xs font-bold tracking-[0.2em] text-[#00D26A]">
                     {step}
                   </p>
@@ -233,39 +286,48 @@ export default function PowerSymbolsPage() {
                 </div>
               ))}
             </div>
-            <p className="mt-6 max-w-4xl text-sm leading-relaxed text-zinc-500">
+            <p data-reveal="fade" className="mt-6 max-w-4xl text-sm leading-relaxed text-zinc-500">
               The test kit uses one Terminal command because the customer-grade
               double-click installer is not yet Apple-signed or notarised. The
               included installer verifies the plug-in and keeps a rollback
               backup.
             </p>
+            <p className="mt-4 max-w-4xl border-l-2 border-[#00D26A] pl-4 text-sm leading-relaxed text-zinc-300">
+              <strong className="text-white">Where the serial goes:</strong>{" "}
+              the activation window opens automatically the first time you
+              place or duplicate a Power Symbol. You can also open it at any
+              time from <strong className="text-white">Licence / Activation…</strong>{" "}
+              in the selected symbol’s Object Info palette.
+            </p>
           </div>
         </section>
 
-        <section className="border-t border-zinc-800 bg-zinc-950">
+        <section id="beta-access" className="scroll-mt-24 border-t border-zinc-800 bg-zinc-950">
           <div className="mx-auto w-full max-w-[1600px] px-6 py-16 md:px-12 md:py-24">
             <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-500">
-                  [ Optional support ]
-                </p>
-                <h2 className="mt-6 max-w-[12ch] text-4xl font-semibold tracking-[-0.045em] md:text-6xl">
-                  Useful? Help make it shippable.
+                <CueLabel className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-500">
+                  GET THE BETA
+                </CueLabel>
+                <h2 data-reveal="rise" className="mt-6 max-w-[12ch] text-4xl font-semibold tracking-[-0.045em] md:text-6xl">
+                  Pick the contribution that works for you.
                 </h2>
               </div>
-              <p className="max-w-2xl leading-relaxed text-zinc-400">
-                The beta is free. Support is optional and never changes what
-                you can download. Contributions fund testing, documentation,
-                Apple signing and release packaging.
+              <p data-reveal="fade" className="max-w-2xl leading-relaxed text-zinc-400">
+                Every option includes the same current beta and signed Mac
+                activation. Pay money, or choose $0 and pay in competent bug
+                reports. Higher tiers simply put more toward testing,
+                documentation and Apple signing.
               </p>
             </div>
 
-            <div className="mt-12 grid gap-4 md:grid-cols-3">
+            <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {supportOptions.map((option) => (
                 <a
                   key={option.amount}
+                  data-reveal="fade"
                   href={option.href}
-                  className="group flex min-h-64 flex-col justify-between border border-zinc-800 bg-black p-7 transition-colors hover:border-[#00D26A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D26A]"
+                  className="group flex min-h-64 flex-col justify-between border border-zinc-800 bg-black p-7 transition-colors duration-300 ease-expo hover:border-[#00D26A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D26A]"
                 >
                   <div>
                     <p className="font-mono text-4xl font-bold text-[#00D26A]">
@@ -278,23 +340,29 @@ export default function PowerSymbolsPage() {
                       {option.description}
                     </p>
                   </div>
-                  <span className="mt-8 flex items-center justify-between font-mono text-xs font-bold uppercase tracking-[0.18em] text-white group-hover:text-[#00D26A]">
-                    Support the build
-                    <span aria-hidden="true">↗</span>
+                  <span className="mt-8 flex items-center justify-between font-mono text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors duration-300 ease-expo group-hover:text-[#00D26A]">
+                    {option.action}
+                    <span aria-hidden="true">
+                      {option.href.startsWith("#") ? "↓" : "↗"}
+                    </span>
                   </span>
                 </a>
               ))}
             </div>
-            <p className="mt-7 font-mono text-[10px] uppercase tracking-[0.12em] text-zinc-600">
-              One-off contributions · Not tax-deductible · No licence purchase
-              required
+            <p data-reveal="fade" className="mt-7 font-mono text-[10px] uppercase tracking-[0.12em] text-zinc-600">
+              Same build at every tier · Paid serials after checkout · $0
+              serials delivered automatically by a reluctantly compassionate
+              robot
             </p>
+            <div className="mt-10">
+              <FreeBetaForm />
+            </div>
           </div>
         </section>
 
         <section className="border-t border-zinc-800">
           <div className="mx-auto w-full max-w-[1600px] px-6 py-14 md:px-12 md:py-20">
-            <p className="max-w-5xl text-sm leading-relaxed text-zinc-500">
+            <p data-reveal="fade" className="max-w-5xl text-sm leading-relaxed text-zinc-500">
               Beta software may change and should be tested on copies or
               backups. Power Symbols records and displays power information; it
               does not calculate electrical loads, size conductors or replace

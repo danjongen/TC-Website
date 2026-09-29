@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { ServiceSchema, BreadcrumbSchema } from "@/components/structured-data"
+import { CueLabel } from "@/components/motion/cue-label"
 
 export const dynamic = "force-static"
 export const revalidate = 3600 // Revalidate every hour
@@ -198,11 +199,11 @@ export default function CapabilitiesPage() {
       <section className="pt-40 md:pt-48 pb-[14vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 — SERVICES ]</p>
-            <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">
+            <CueLabel index="02" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">SERVICES</CueLabel>
+            <h1 data-vt="title" data-reveal="rise" className="w-fit text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">
               Full-spectrum production engineering
             </h1>
-            <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">
+            <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 max-w-xl">
               From concept visualization to show execution. Every technical discipline under one roof, working as a
               unified system.
             </p>
@@ -212,7 +213,7 @@ export default function CapabilitiesPage() {
 
       {/* Full-width image */}
       <section aria-label="Live production environment" className="relative">
-        <div className="relative aspect-[21/9] w-full">
+        <div data-reveal="resolve" data-vt="media" className="relative aspect-[21/9] w-full overflow-hidden">
           <Image
             src="/images/dsf3815.jpg"
             alt="TC Agency production control environment"
@@ -231,40 +232,43 @@ export default function CapabilitiesPage() {
       {/* Services index */}
       <section className="py-[14vh]">
         <div className="container mx-auto px-6">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 — CAPABILITIES ]</p>
+          <CueLabel index="03" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">CAPABILITIES</CueLabel>
 
           <div>
             {services.map((service, i) => (
               <article key={service.num}>
-                {i > 0 && <div className="h-px bg-zinc-900" aria-hidden="true" />}
+                {i > 0 && <div data-reveal="line" className="h-px origin-left bg-zinc-900" aria-hidden="true" />}
                 <div className="py-14 grid lg:grid-cols-12 gap-8">
-                  <div className="lg:col-span-1">
+                  <div data-reveal="fade" className="lg:col-span-1">
                     <span className="font-mono text-xs tracking-[0.2em] text-zinc-400">{service.num}</span>
                   </div>
                   <div className="lg:col-span-6">
-                    <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-4">
-                      <Link href={service.href} className="hover:text-[#00D26A] transition-colors duration-300">
-                        {service.title}
+                    <h2 data-reveal="rise" className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-4">
+                      <Link href={service.href} className="transition-colors duration-300 ease-expo hover:text-[#00D26A]">
+                        <span data-vt-source="title" className="inline-block">
+                          {service.title}
+                        </span>
                       </Link>
                     </h2>
-                    <p className="text-lg leading-relaxed text-zinc-400 max-w-xl mb-6">{service.desc}</p>
+                    <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 max-w-xl mb-6">{service.desc}</p>
                     <Link
+                      data-reveal="fade"
                       href={service.href}
-                      className="font-mono text-xs tracking-[0.2em] text-zinc-400 hover:text-white transition-colors duration-300"
+                      className="-my-1 inline-block py-1 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo hover:text-white"
                       aria-label={`Learn more about ${service.title}`}
                     >
                       VIEW SERVICE →
                     </Link>
                   </div>
                   <div className="lg:col-span-5">
-                    <ul className="space-y-2 mb-8">
+                    <ul data-reveal="fade" className="space-y-2 mb-8">
                       {service.details.map((detail) => (
                         <li key={detail} className="text-sm leading-relaxed text-zinc-400">
                           {detail}
                         </li>
                       ))}
                     </ul>
-                    <dl className="flex flex-wrap gap-x-10 gap-y-4">
+                    <dl data-reveal="fade" className="flex flex-wrap gap-x-10 gap-y-4">
                       {Object.entries(service.specs).map(([key, value]) => (
                         <div key={key}>
                           <dt className="font-mono text-[11px] tracking-[0.2em] text-zinc-400">
@@ -285,12 +289,13 @@ export default function CapabilitiesPage() {
       {/* Technology Partners */}
       <section className="py-[14vh]">
         <div className="container mx-auto px-6">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 — TECHNOLOGY PARTNERS ]</p>
+          <CueLabel index="04" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">TECHNOLOGY PARTNERS</CueLabel>
           <div className="flex flex-wrap gap-x-10 gap-y-4 max-w-3xl">
             {partners.map((partner) => (
               <span
                 key={partner}
-                className="font-mono text-xs tracking-[0.2em] text-zinc-400 hover:text-white transition-colors duration-300"
+                data-reveal="fade"
+                className="inline-block font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo hover:text-white"
               >
                 {partner}
               </span>
@@ -302,15 +307,16 @@ export default function CapabilitiesPage() {
       {/* CTA */}
       <section className="py-[14vh]">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-6">
+          <h2 data-reveal="rise" className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-6">
             Need a specific capability?
           </h2>
-          <p className="text-lg leading-relaxed text-zinc-400 mb-10 max-w-xl">
+          <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 mb-10 max-w-xl">
             If you don't see what you need, let's talk. We build custom solutions for unique challenges.
           </p>
           <Link
+            data-reveal="fade"
             href="/contact"
-            className="font-mono text-xs tracking-[0.2em] text-zinc-400 hover:text-[#00D26A] transition-colors duration-300"
+            className="-my-1 inline-block py-1 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo hover:text-[#00D26A]"
           >
             DISCUSS YOUR PROJECT →
           </Link>

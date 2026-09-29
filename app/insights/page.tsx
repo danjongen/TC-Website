@@ -4,6 +4,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { BreadcrumbSchema } from "@/components/structured-data"
 import { NewsletterForm } from "@/components/newsletter-form"
+import { CueLabel } from "@/components/motion/cue-label"
 
 export const metadata: Metadata = {
   title: "Insights",
@@ -72,11 +73,17 @@ export default function InsightsPage() {
       <section className="pt-40 md:pt-48 pb-[10vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 06, INSIGHTS ]</p>
-            <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">
+            <CueLabel index="06" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+              INSIGHTS
+            </CueLabel>
+            <h1
+              data-vt="title"
+              data-reveal="rise"
+              className="w-fit text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8"
+            >
               Technical perspectives from the field.
             </h1>
-            <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">
+            <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 max-w-xl">
               Case studies, technical breakdowns, and lessons learned from engineering the world's most demanding
               productions.
             </p>
@@ -87,14 +94,16 @@ export default function InsightsPage() {
       {/* Article index */}
       <section className="py-[10vh]">
         <div className="container mx-auto px-6">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 07, ALL ARTICLES ]</p>
+          <CueLabel index="07" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+            ALL ARTICLES
+          </CueLabel>
           <div>
             {articles.map((article, index) => (
               <article key={article.slug}>
-                {index > 0 && <div className="h-px bg-zinc-900" aria-hidden="true" />}
+                {index > 0 && <div data-reveal="line" className="h-px origin-left bg-zinc-900" aria-hidden="true" />}
                 <Link href={`/insights/${article.slug}`} className="group block py-12">
                   <div className="grid lg:grid-cols-12 gap-4 lg:gap-6">
-                    <div className="lg:col-span-3 flex items-baseline gap-6 lg:block">
+                    <div data-reveal="fade" className="lg:col-span-3 flex items-baseline gap-6 lg:block">
                       <span className="font-mono text-xs tracking-[0.2em] text-zinc-400">
                         {String(index + 1).padStart(2, "0")}
                       </span>
@@ -104,11 +113,22 @@ export default function InsightsPage() {
                       </p>
                     </div>
                     <div className="lg:col-span-9">
-                      <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white transition-colors duration-300 group-hover:text-[#00D26A] mb-4">
-                        {article.title}
+                      <h2
+                        data-reveal="rise"
+                        className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white transition-colors duration-300 ease-expo group-hover:text-[#00D26A] mb-4"
+                      >
+                        {/* morph source: flies into the article page h1 */}
+                        <span data-vt-source="title" className="inline-block">
+                          {article.title}
+                        </span>
                       </h2>
-                      <p className="text-lg leading-relaxed text-zinc-400 max-w-2xl mb-6">{article.excerpt}</p>
-                      <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 group-hover:text-white">
+                      <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 max-w-2xl mb-6">
+                        {article.excerpt}
+                      </p>
+                      <span
+                        data-reveal="fade"
+                        className="inline-block font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo group-hover:text-white"
+                      >
                         READ ARTICLE →
                       </span>
                     </div>
@@ -124,12 +144,16 @@ export default function InsightsPage() {
       <section className="py-[14vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 08, STAY IN THE LOOP ]</p>
-            <p className="text-lg leading-relaxed text-zinc-400 mb-8">
+            <CueLabel index="08" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+              STAY IN THE LOOP
+            </CueLabel>
+            <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 mb-8">
               Monthly insights on production engineering, technical trends, and industry best practices.
             </p>
-            <NewsletterForm />
-            <p className="mt-4 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+            <div data-reveal="fade">
+              <NewsletterForm />
+            </div>
+            <p data-reveal="fade" className="mt-4 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
               NO SPAM. UNSUBSCRIBE ANYTIME.
             </p>
           </div>

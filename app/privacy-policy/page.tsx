@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { ArrowLeft } from "lucide-react"
+import { CueLabel } from "@/components/motion/cue-label"
 
 export const metadata: Metadata = {
   title: "Global Privacy Policy | TC Agency",
@@ -24,7 +25,7 @@ export default function PrivacyPolicy() {
           {/* Back Link */}
           <Link
             href="/"
-            className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white mb-12"
+            className="-mt-1 mb-11 inline-flex items-center gap-2 py-1 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo hover:text-white"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Home
@@ -32,16 +33,16 @@ export default function PrivacyPolicy() {
 
           {/* Header */}
           <header className="mb-16">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">Last updated: November 27, 2025</p>
-            <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-6">Global Privacy Policy</h1>
-            <div className="text-sm text-zinc-400">
+            <CueLabel className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">LAST UPDATED / NOVEMBER 27, 2025</CueLabel>
+            <h1 data-vt="title" data-reveal="rise" className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-6">Global Privacy Policy</h1>
+            <div data-reveal="fade" className="text-sm text-zinc-400">
               <p>
                 Technically Creative LLC, operating as TC Agency, TC, and Tech Creative ("we", "our", "us", "Technically
                 Creative")
               </p>
               <p>Detroit, MI, USA</p>
               <p>
-                <a href="mailto:info@tc.agency" className="text-white underline-offset-4 transition-colors duration-300 hover:text-[#00D26A] hover:underline">
+                <a href="mailto:info@tc.agency" className="text-white underline-offset-4 transition-colors duration-300 ease-expo hover:text-[#00D26A] hover:underline">
                   info@tc.agency
                 </a>
               </p>
@@ -51,7 +52,7 @@ export default function PrivacyPolicy() {
           {/* Content */}
           <div className="max-w-none space-y-10">
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">1. Introduction</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">1. Introduction</h2>
               <p className="text-zinc-400 leading-relaxed">
                 Technically Creative LLC, operating as TC Agency, TC, and Tech Creative ("we", "our", "us", "Technically
                 Creative"), is committed to protecting your privacy. This Privacy Policy explains how we collect, use,
@@ -62,7 +63,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">2. Who We Are (Data Controller)</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">2. Who We Are (Data Controller)</h2>
               <div className="my-4">
                 <p className="text-sm text-zinc-400">
                   <strong className="text-white">
@@ -72,7 +73,7 @@ export default function PrivacyPolicy() {
                   Detroit, Michigan, USA
                   <br />
                   Email:{" "}
-                  <a href="mailto:info@tc.agency" className="text-white underline underline-offset-4 transition-colors duration-300 hover:text-[#00D26A]">
+                  <a href="mailto:info@tc.agency" className="text-white underline underline-offset-4 transition-colors duration-300 ease-expo hover:text-[#00D26A]">
                     info@tc.agency
                   </a>
                 </p>
@@ -83,7 +84,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">3. Information We Collect</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">3. Information We Collect</h2>
               <h3 className="text-lg font-medium text-white mb-2">Information You Provide</h3>
               <ul className="list-disc list-inside text-zinc-400 space-y-1 mb-4">
                 <li>Name</li>
@@ -108,7 +109,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">4. Cookies and Tracking Technologies</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">4. Cookies and Tracking Technologies</h2>
               <p className="text-zinc-400 leading-relaxed mb-4">
                 Cookies are only activated after consent via our cookie banner.
               </p>
@@ -127,7 +128,7 @@ export default function PrivacyPolicy() {
                   Policy:{" "}
                   <a
                     href="https://policies.google.com/privacy"
-                    className="text-white underline underline-offset-4 transition-colors duration-300 hover:text-[#00D26A]"
+                    className="text-white underline underline-offset-4 transition-colors duration-300 ease-expo hover:text-[#00D26A]"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -149,7 +150,7 @@ export default function PrivacyPolicy() {
                   Policy:{" "}
                   <a
                     href="https://privacy.microsoft.com/en-us/privacystatement"
-                    className="text-white underline underline-offset-4 transition-colors duration-300 hover:text-[#00D26A]"
+                    className="text-white underline underline-offset-4 transition-colors duration-300 ease-expo hover:text-[#00D26A]"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -181,7 +182,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">5. How We Use Your Information</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">5. How We Use Your Information</h2>
               <p className="text-zinc-400 leading-relaxed mb-2">We use your information to:</p>
               <ul className="list-disc list-inside text-zinc-400 space-y-1">
                 <li>Respond to inquiries and project requests</li>
@@ -196,7 +197,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">6. Legal Basis for Processing (GDPR/UK-GDPR)</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">6. Legal Basis for Processing (GDPR/UK-GDPR)</h2>
               <ul className="list-disc list-inside text-zinc-400 space-y-1">
                 <li>
                   <strong className="text-white">Consent</strong> (analytics and optional information)
@@ -214,7 +215,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">7. Your Rights</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">7. Your Rights</h2>
               <p className="text-zinc-400 leading-relaxed mb-2">
                 Depending on your jurisdiction, you may have the right to:
               </p>
@@ -237,7 +238,7 @@ export default function PrivacyPolicy() {
                   <strong className="text-white">UK:</strong> Information Commissioner&apos;s Office (ICO) at{" "}
                   <a
                     href="https://ico.org.uk"
-                    className="text-white underline underline-offset-4 transition-colors duration-300 hover:text-[#00D26A]"
+                    className="text-white underline underline-offset-4 transition-colors duration-300 ease-expo hover:text-[#00D26A]"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -249,7 +250,7 @@ export default function PrivacyPolicy() {
                   at{" "}
                   <a
                     href="https://edpb.europa.eu"
-                    className="text-white underline underline-offset-4 transition-colors duration-300 hover:text-[#00D26A]"
+                    className="text-white underline underline-offset-4 transition-colors duration-300 ease-expo hover:text-[#00D26A]"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -261,7 +262,7 @@ export default function PrivacyPolicy() {
                   (OAIC) at{" "}
                   <a
                     href="https://oaic.gov.au"
-                    className="text-white underline underline-offset-4 transition-colors duration-300 hover:text-[#00D26A]"
+                    className="text-white underline underline-offset-4 transition-colors duration-300 ease-expo hover:text-[#00D26A]"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -294,7 +295,7 @@ export default function PrivacyPolicy() {
               </ul>
               <p className="text-zinc-400 leading-relaxed">
                 To exercise these rights, contact us at{" "}
-                <a href="mailto:info@tc.agency" className="text-white underline underline-offset-4 transition-colors duration-300 hover:text-[#00D26A]">
+                <a href="mailto:info@tc.agency" className="text-white underline underline-offset-4 transition-colors duration-300 ease-expo hover:text-[#00D26A]">
                   info@tc.agency
                 </a>
                 . We will respond within 45 days.
@@ -302,7 +303,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">8. Data Retention</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">8. Data Retention</h2>
               <p className="text-zinc-400 leading-relaxed">
                 We retain personal data only as long as needed to fulfill its purpose or meet legal obligations.
                 Analytics data follows each tool's retention settings.
@@ -310,7 +311,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">9. Data Security</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">9. Data Security</h2>
               <p className="text-zinc-400 leading-relaxed">
                 We use technical and organizational measures to protect personal information. No method of transmission
                 or storage is perfectly secure, so absolute security cannot be guaranteed.
@@ -318,7 +319,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">10. Data Breach Notification</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">10. Data Breach Notification</h2>
               <p className="text-zinc-400 leading-relaxed mb-4">
                 In the event of a data breach affecting your personal information, we will notify affected individuals
                 within 72 hours of becoming aware of the breach, as required by GDPR Article 33.
@@ -337,7 +338,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">11. International Transfers</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">11. International Transfers</h2>
               <p className="text-zinc-400 leading-relaxed">
                 Your data may be processed outside your country of residence. Where required, we use mechanisms such as
                 Standard Contractual Clauses.
@@ -345,28 +346,28 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">12. Third-Party Services</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">12. Third-Party Services</h2>
               <p className="text-zinc-400 leading-relaxed">
                 Our website may link to third-party sites. Their privacy practices are not governed by this policy.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">13. Children's Privacy</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">13. Children's Privacy</h2>
               <p className="text-zinc-400 leading-relaxed">
                 Our site is not intended for children under 16. We do not knowingly collect data from minors.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">14. Changes to This Policy</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">14. Changes to This Policy</h2>
               <p className="text-zinc-400 leading-relaxed">
                 We may update this Privacy Policy periodically. Material changes will be highlighted on this page.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">15. Contact Us</h2>
+              <h2 data-reveal="fade" className="text-2xl font-semibold tracking-[-0.03em] text-white mb-4">15. Contact Us</h2>
               <div className="my-4">
                 <p className="text-sm text-zinc-400">
                   <strong className="text-white">
@@ -376,7 +377,7 @@ export default function PrivacyPolicy() {
                   Detroit, MI, USA
                   <br />
                   Email:{" "}
-                  <a href="mailto:info@tc.agency" className="text-white underline underline-offset-4 transition-colors duration-300 hover:text-[#00D26A]">
+                  <a href="mailto:info@tc.agency" className="text-white underline underline-offset-4 transition-colors duration-300 ease-expo hover:text-[#00D26A]">
                     info@tc.agency
                   </a>
                 </p>

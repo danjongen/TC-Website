@@ -69,7 +69,11 @@ export function BuyBox() {
 
   return (
     <article className="grid w-full overflow-hidden border border-zinc-800 bg-zinc-900/40 lg:grid-cols-[1.18fr_0.82fr]">
-      <div className="relative min-h-[24rem] overflow-hidden bg-[#05080c] sm:min-h-[34rem] lg:min-h-[48rem]">
+      <div
+        data-reveal="resolve"
+        data-vt="media"
+        className="relative min-h-[24rem] overflow-hidden bg-[#05080c] sm:min-h-[34rem] lg:min-h-[48rem]"
+      >
         <Image
           key={selected.name}
           src={selected.image}
@@ -78,7 +82,7 @@ export function BuyBox() {
           priority
           sizes="(min-width: 1024px) 59vw, 100vw"
           placeholder="blur"
-          className="object-cover animate-in fade-in duration-300"
+          className="object-cover animate-in fade-in duration-300 ease-expo motion-reduce:animate-none"
         />
         <div
           className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
@@ -90,24 +94,31 @@ export function BuyBox() {
       </div>
 
       <div className="flex flex-col p-7 text-left sm:p-10 lg:p-12">
-        <div className="flex items-center justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-400">
+        <div
+          data-reveal="fade"
+          className="flex items-center justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-400"
+        >
           <span>Console hardware</span>
           <span className="text-[#00D26A]">Available now</span>
         </div>
 
-        <h1 className="mt-14 text-4xl font-semibold leading-[0.95] tracking-[-0.05em] text-white sm:text-5xl lg:text-6xl">
+        <h1
+          data-vt="title"
+          data-reveal="rise"
+          className="mt-14 w-fit text-4xl font-semibold leading-[0.95] tracking-[-0.05em] text-white sm:text-5xl lg:text-6xl"
+        >
           TC SSL Shelf
         </h1>
-        <p className="mt-5 font-mono text-xs uppercase tracking-[0.16em] text-[#00D26A]">
+        <p data-reveal="fade" className="mt-5 font-mono text-xs uppercase tracking-[0.16em] text-[#00D26A]">
           Somewhere to put it. Finally.
         </p>
-        <p className="mt-7 max-w-[40rem] leading-relaxed text-zinc-300">
+        <p data-reveal="fade" className="mt-7 max-w-[40rem] leading-relaxed text-zinc-300">
           A purpose-built SSL console shelf that clips onto the top rail of an
           SSL Live console in seconds. Keeps timecode, a phone and notes where
-          they belong—without tools, drilling or gaffer tape.
+          they belong. No tools, drilling or gaffer tape.
         </p>
 
-        <dl className="mt-9 grid grid-cols-2 gap-x-6 gap-y-5 border-y border-zinc-800 py-7 text-sm">
+        <dl data-reveal="fade" className="mt-9 grid grid-cols-2 gap-x-6 gap-y-5 border-y border-zinc-800 py-7 text-sm">
           <div>
             <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-500">
               Construction
@@ -135,7 +146,7 @@ export function BuyBox() {
         </dl>
 
         <div className="mt-auto pt-10">
-          <div className="flex items-end justify-between gap-4">
+          <div data-reveal="fade" className="flex items-end justify-between gap-4">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500">
                 Unit price
@@ -149,7 +160,7 @@ export function BuyBox() {
             </p>
           </div>
 
-          <fieldset className="mt-6">
+          <fieldset data-reveal="fade" className="mt-6">
             <legend className="sr-only">Shelf colour</legend>
             <div className="grid grid-cols-5 gap-2">
               {COLOURS.map((colour) => {
@@ -158,7 +169,7 @@ export function BuyBox() {
                 return (
                   <label
                     key={colour.variantId}
-                    className={`relative flex min-w-0 cursor-pointer flex-col gap-2 border p-1.5 transition-colors ${
+                    className={`relative flex min-w-0 cursor-pointer flex-col gap-2 border p-1.5 transition-colors duration-150 ease-expo ${
                       isSelected
                         ? "border-zinc-500"
                         : "border-transparent hover:border-zinc-700"
@@ -199,13 +210,14 @@ export function BuyBox() {
           </fieldset>
 
           <a
+            data-reveal="fade"
             href={checkoutUrl(selected.variantId)}
-            className="mt-8 flex w-full items-center justify-between bg-[#00D26A] px-6 py-5 font-mono text-sm font-bold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            className="mt-8 flex w-full items-center justify-between bg-[#00D26A] px-6 py-5 font-mono text-sm font-bold uppercase tracking-[0.18em] text-black transition-colors duration-300 ease-expo hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
             Buy the shelf
             <span aria-hidden="true">↗</span>
           </a>
-          <p className="mt-4 text-sm leading-relaxed text-zinc-500">
+          <p data-reveal="fade" className="mt-4 text-sm leading-relaxed text-zinc-500">
             Made to order when stock is low. Allow up to two weeks before
             dispatch. Shipping speed and cost are selected and paid at checkout.
           </p>

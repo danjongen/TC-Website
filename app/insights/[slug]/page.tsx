@@ -169,37 +169,50 @@ export default async function InsightPost({ params }: { params: Params }) {
         <div className="container mx-auto px-6">
           <div className="max-w-2xl mx-auto">
             <Link
+              data-reveal="fade"
               href="/insights"
-              className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white mb-12"
+              className="-mt-1 mb-11 inline-flex items-center gap-2 py-1 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo hover:text-white"
             >
               <ArrowLeft className="w-4 h-4" />
               BACK TO INSIGHTS
             </Link>
 
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+            <p data-reveal="fade" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
               {post.category.toUpperCase()} · {post.date.toUpperCase()} · {post.readTime.toUpperCase()}
             </p>
-            <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">{post.title}</h1>
-            <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">{post.excerpt}</p>
+            {/* morph destination: the homepage gallery and /insights titles land here */}
+            <h1
+              data-vt="title"
+              data-reveal="rise"
+              className="w-fit text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8"
+            >
+              {post.title}
+            </h1>
+            <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 max-w-xl">
+              {post.excerpt}
+            </p>
 
-            <div className="mt-12 flex items-center justify-between gap-6">
+            <div data-reveal="fade" className="mt-12 flex items-center justify-between gap-6">
               <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400">
                 {post.author.toUpperCase()} / {post.role.toUpperCase()}
               </p>
               <div className="flex items-center gap-4">
                 <button
                   aria-label="Share on Twitter"
-                  className="text-zinc-400 transition-colors duration-300 hover:text-white"
+                  className="-m-1 p-1 text-zinc-400 transition-colors duration-300 ease-expo hover:text-white"
                 >
                   <Twitter className="w-4 h-4" />
                 </button>
                 <button
                   aria-label="Share on LinkedIn"
-                  className="text-zinc-400 transition-colors duration-300 hover:text-white"
+                  className="-m-1 p-1 text-zinc-400 transition-colors duration-300 ease-expo hover:text-white"
                 >
                   <Linkedin className="w-4 h-4" />
                 </button>
-                <button aria-label="Share" className="text-zinc-400 transition-colors duration-300 hover:text-white">
+                <button
+                  aria-label="Share"
+                  className="-m-1 p-1 text-zinc-400 transition-colors duration-300 ease-expo hover:text-white"
+                >
                   <Share2 className="w-4 h-4" />
                 </button>
               </div>
@@ -211,7 +224,8 @@ export default async function InsightPost({ params }: { params: Params }) {
       {/* Featured Image */}
       <section className="pb-[10vh]">
         <div className="container mx-auto px-6">
-          <div className="relative aspect-[21/9] max-w-5xl mx-auto overflow-hidden">
+          {/* morph destination: the homepage gallery card image lands here */}
+          <div data-reveal="resolve" data-vt="media" className="relative aspect-[21/9] max-w-5xl mx-auto overflow-hidden">
             <Image src={post.image || "/placeholder.svg"} alt={post.title} fill className="object-cover" priority />
           </div>
         </div>
@@ -226,6 +240,7 @@ export default async function InsightPost({ params }: { params: Params }) {
                 return (
                   <h2
                     key={index}
+                    data-reveal="rise"
                     className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mt-16 mb-6"
                   >
                     {paragraph.replace("## ", "")}
@@ -234,7 +249,7 @@ export default async function InsightPost({ params }: { params: Params }) {
               }
               if (paragraph.startsWith("**")) {
                 return (
-                  <p key={index} className="text-lg leading-relaxed text-zinc-400 mb-6">
+                  <p key={index} data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 mb-6">
                     <strong className="font-semibold text-white">{paragraph.split("**")[1]}</strong>
                     {paragraph.split("**")[2]}
                   </p>
@@ -245,7 +260,7 @@ export default async function InsightPost({ params }: { params: Params }) {
                 return (
                   <ul key={index} className="list-disc list-inside space-y-2 mb-8">
                     {items.map((item, i) => (
-                      <li key={i} className="text-lg leading-relaxed text-zinc-400">
+                      <li key={i} data-reveal="fade" className="text-lg leading-relaxed text-zinc-400">
                         {item.replace("- ", "")}
                       </li>
                     ))}
@@ -253,7 +268,7 @@ export default async function InsightPost({ params }: { params: Params }) {
                 )
               }
               return (
-                <p key={index} className="text-lg leading-relaxed text-zinc-400 mb-8">
+                <p key={index} data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 mb-8">
                   {paragraph}
                 </p>
               )
@@ -266,16 +281,17 @@ export default async function InsightPost({ params }: { params: Params }) {
       <section className="py-[14vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl mx-auto">
-            <div className="h-px bg-zinc-900 mb-16" aria-hidden="true" />
-            <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-6">
+            <div data-reveal="line" className="h-px origin-left bg-zinc-900 mb-16" aria-hidden="true" />
+            <h2 data-reveal="rise" className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-6">
               Ready to apply these principles?
             </h2>
-            <p className="text-lg leading-relaxed text-zinc-400 max-w-xl mb-10">
+            <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 max-w-xl mb-10">
               Let's discuss how engineering-grade approaches can transform your next production.
             </p>
             <Link
+              data-reveal="fade"
               href="/contact"
-              className="font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white"
+              className="-my-1 inline-block py-1 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo hover:text-white"
             >
               START A PROJECT →
             </Link>

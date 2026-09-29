@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer"
 import type { Metadata } from "next"
 import Image from "next/image"
 import { BreadcrumbSchema } from "@/components/structured-data"
+import { CueLabel } from "@/components/motion/cue-label"
 
 // Marketing pages should be static to enable CDN edge caching
 export const dynamic = "force-static"
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Our Approach",
     description:
-      "Every project follows the same rigorous methodology. No surprises, no guesswork—just predictable, excellent results.",
+      "Every project follows the same rigorous methodology. No surprises, no guesswork. Just predictable, excellent results.",
     url: "https://tc.agency/approach",
     siteName: "TC Agency",
     images: [
@@ -51,7 +52,7 @@ const phases = [
     num: "01",
     title: "Discovery",
     duration: "",
-    desc: "We audit your systems, identify friction points, and map your production requirements. No assumptions — just data.",
+    desc: "We audit your systems, identify friction points, and map your production requirements. No assumptions. Just data.",
     outputs: ["Technical Requirements Doc", "System Architecture Map", "Risk Assessment"],
   },
   {
@@ -107,12 +108,18 @@ export default function ApproachPage() {
       <section className="pt-40 md:pt-48 pb-[14vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 — APPROACH ]</p>
-            <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">
+            <CueLabel index="03" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+              APPROACH
+            </CueLabel>
+            <h1
+              data-vt="title"
+              data-reveal="rise"
+              className="w-fit text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8"
+            >
               Systematic. Documented. Repeatable.
             </h1>
-            <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">
-              Every project follows the same rigorous methodology. No surprises, no guesswork — just predictable,
+            <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 max-w-xl">
+              Every project follows the same rigorous methodology. No surprises, no guesswork. Just predictable,
               excellent results.
             </p>
           </div>
@@ -121,10 +128,10 @@ export default function ApproachPage() {
 
       {/* Full-width image break */}
       <section aria-label="Large-scale production" className="relative">
-        <div className="relative aspect-[21/9] w-full">
+        <div data-reveal="resolve" data-vt="media" className="relative aspect-[21/9] w-full overflow-hidden">
           <Image
             src="/images/bsb-live-03.jpg"
-            alt="Large-scale live production at the Sphere — the methodology in action"
+            alt="Large-scale live production at the Sphere: the methodology in action"
             fill
             className="object-cover"
             priority
@@ -137,28 +144,32 @@ export default function ApproachPage() {
         </div>
       </section>
 
-      {/* Phases — indexed rows */}
+      {/* Phases: indexed rows */}
       <section className="py-[18vh]">
         <div className="container mx-auto px-6">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 — THE PROCESS ]</p>
+          <CueLabel index="04" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+            THE PROCESS
+          </CueLabel>
           <div>
             {phases.map((phase, index) => (
               <article key={phase.num}>
-                {index > 0 && <div className="h-px bg-zinc-900" aria-hidden="true" />}
+                {index > 0 && <div data-reveal="line" className="h-px origin-left bg-zinc-900" aria-hidden="true" />}
                 <div className="py-12 grid lg:grid-cols-12 gap-6">
-                  <div className="lg:col-span-2 flex items-baseline gap-6 lg:block">
+                  <div data-reveal="fade" className="lg:col-span-2 flex items-baseline gap-6 lg:block">
                     <span className="font-mono text-xs tracking-[0.2em] text-zinc-400">{phase.num}</span>
                     <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400 lg:mt-2">
                       {phase.duration.toUpperCase()}
                     </p>
                   </div>
                   <div className="lg:col-span-6">
-                    <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-4">
+                    <h2 data-reveal="rise" className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-4">
                       {phase.title}
                     </h2>
-                    <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">{phase.desc}</p>
+                    <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 max-w-xl">
+                      {phase.desc}
+                    </p>
                   </div>
-                  <div className="lg:col-span-4">
+                  <div data-reveal="fade" className="lg:col-span-4">
                     <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400 mb-3">OUTPUTS</p>
                     <ul className="space-y-2">
                       {phase.outputs.map((output) => (
@@ -178,10 +189,12 @@ export default function ApproachPage() {
       {/* Differentiators */}
       <section className="py-[14vh]">
         <div className="container mx-auto px-6">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 05 — WHAT MAKES US DIFFERENT ]</p>
+          <CueLabel index="05" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+            WHAT MAKES US DIFFERENT
+          </CueLabel>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
             {differentiators.map((item) => (
-              <div key={item.label}>
+              <div key={item.label} data-reveal="fade">
                 <p className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white">{item.stat}</p>
                 <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400 mt-3">
                   {item.label.toUpperCase()}
@@ -196,15 +209,16 @@ export default function ApproachPage() {
       {/* CTA */}
       <section className="py-[14vh]">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-6">
+          <h2 data-reveal="rise" className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-6">
             See the approach in action
           </h2>
-          <p className="text-lg leading-relaxed text-zinc-400 mb-10 max-w-xl">
+          <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 mb-10 max-w-xl">
             Review our portfolio to see how this methodology delivers on real productions.
           </p>
           <a
+            data-reveal="fade"
             href="/portfolio"
-            className="font-mono text-xs tracking-[0.2em] text-zinc-400 hover:text-[#00D26A] transition-colors duration-300"
+            className="-my-1 inline-block py-1 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo hover:text-[#00D26A]"
           >
             VIEW PORTFOLIO →
           </a>

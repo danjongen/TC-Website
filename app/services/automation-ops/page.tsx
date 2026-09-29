@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { CueLabel } from "@/components/motion/cue-label"
 import {
   ArrowLeft,
   ArrowRight,
@@ -153,7 +154,7 @@ const howItWorks = [
 
 export default function AutomationOpsPage() {
   return (
-    <main className="min-h-screen bg-background pt-24 pb-16">
+    <main className="min-h-screen bg-black pt-24 pb-16">
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "https://tc.agency" },
@@ -171,7 +172,7 @@ export default function AutomationOpsPage() {
         {/* Breadcrumb */}
         <Link
           href="/capabilities"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors mb-8"
+          className="-mt-1 mb-7 inline-flex items-center gap-2 py-1 text-sm text-muted-foreground transition-colors duration-300 ease-expo hover:text-white"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Services
@@ -179,11 +180,11 @@ export default function AutomationOpsPage() {
 
         {/* Header */}
         <div className="mb-16 max-w-4xl">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — AUTOMATION & AI OPERATIONS ]</p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
+          <CueLabel className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">SERVICE / AUTOMATION & AI OPERATIONS</CueLabel>
+          <h1 data-vt="title" data-reveal="rise" className="w-fit text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
             Your operations, automated.
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
+          <p data-reveal="fade" className="text-xl text-muted-foreground leading-relaxed">
             The same operational systems we built to run our own business, now available for yours. From simple
             notification workflows to full AI-powered operations, we build systems that handle the work your team
             shouldn't be doing manually.
@@ -193,46 +194,50 @@ export default function AutomationOpsPage() {
         {/* Problem Statement */}
         <section className="mb-24">
           <div className="grid lg:grid-cols-2 gap-px bg-zinc-900 border border-zinc-800">
-            <div className="bg-background p-8 md:p-12">
-              <h2 className="text-sm font-mono text-red-500 uppercase tracking-widest mb-6">The Problem</h2>
-              <p className="text-muted-foreground mb-6">
-                You are spending hours on manual follow-ups, customer updates, and data entry. Every order confirmation
-                sent by hand, every inventory check done from memory, every report assembled from three different
-                spreadsheets: that is time your business loses every single day.
-              </p>
-              <ul className="space-y-3">
-                {problems.map((problem, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
-                    <span className="text-red-500 mt-0.5">x</span>
-                    <span>{problem}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="bg-black p-8 md:p-12">
+              <div data-reveal="fade">
+                <h2 className="text-sm font-mono text-red-500 uppercase tracking-widest mb-6">The Problem</h2>
+                <p className="text-muted-foreground mb-6">
+                  You are spending hours on manual follow-ups, customer updates, and data entry. Every order confirmation
+                  sent by hand, every inventory check done from memory, every report assembled from three different
+                  spreadsheets: that is time your business loses every single day.
+                </p>
+                <ul className="space-y-3">
+                  {problems.map((problem, i) => (
+                    <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
+                      <span className="text-red-500 mt-0.5">x</span>
+                      <span>{problem}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <div className="bg-background p-8 md:p-12">
-              <h2 className="text-sm font-mono text-zinc-400 uppercase tracking-widest mb-6">The Solution</h2>
-              <p className="text-muted-foreground mb-6">
-                Automate the repetitive. Keep the human for what matters. We build systems that handle your operational
-                overhead so your team can focus on growth, relationships, and the work that actually requires a brain.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                  <CheckCircle className="w-4 h-4 text-zinc-500 mt-0.5 flex-shrink-0" />
-                  <span>Customers get instant, accurate updates without your team lifting a finger</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                  <CheckCircle className="w-4 h-4 text-zinc-500 mt-0.5 flex-shrink-0" />
-                  <span>Inventory and supply chain run on autopilot with alerts when attention is needed</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                  <CheckCircle className="w-4 h-4 text-zinc-500 mt-0.5 flex-shrink-0" />
-                  <span>Reports generate themselves from live data across all your tools</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                  <CheckCircle className="w-4 h-4 text-zinc-500 mt-0.5 flex-shrink-0" />
-                  <span>AI handles routine communications and surfaces only what requires your judgment</span>
-                </li>
-              </ul>
+            <div className="bg-black p-8 md:p-12">
+              <div data-reveal="fade">
+                <h2 className="text-sm font-mono text-zinc-400 uppercase tracking-widest mb-6">The Solution</h2>
+                <p className="text-muted-foreground mb-6">
+                  Automate the repetitive. Keep the human for what matters. We build systems that handle your operational
+                  overhead so your team can focus on growth, relationships, and the work that actually requires a brain.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle className="w-4 h-4 text-zinc-500 mt-0.5 flex-shrink-0" />
+                    <span>Customers get instant, accurate updates without your team lifting a finger</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle className="w-4 h-4 text-zinc-500 mt-0.5 flex-shrink-0" />
+                    <span>Inventory and supply chain run on autopilot with alerts when attention is needed</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle className="w-4 h-4 text-zinc-500 mt-0.5 flex-shrink-0" />
+                    <span>Reports generate themselves from live data across all your tools</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle className="w-4 h-4 text-zinc-500 mt-0.5 flex-shrink-0" />
+                    <span>AI handles routine communications and surfaces only what requires your judgment</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
@@ -240,8 +245,8 @@ export default function AutomationOpsPage() {
         {/* Service Tiers */}
         <section className="mb-24">
           <div className="mb-12">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-2">Three levels of automation</h2>
-            <p className="text-muted-foreground">
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-2">Three levels of automation</h2>
+            <p data-reveal="fade" className="text-muted-foreground">
               Start where it makes sense. Scale when you are ready.
             </p>
           </div>
@@ -250,7 +255,7 @@ export default function AutomationOpsPage() {
             {tiers.map((tier) => (
               <div key={tier.num} className="border border-zinc-800 bg-zinc-950 p-8 md:p-10">
                 <div className="grid lg:grid-cols-5 gap-8">
-                  <div className="lg:col-span-2">
+                  <div data-reveal="fade" className="lg:col-span-2">
                     <div className="flex items-center gap-3 mb-4">
                       <span className="text-xs font-mono text-zinc-500">{tier.num}</span>
                       <tier.icon className="w-6 h-6 text-zinc-500" />
@@ -263,7 +268,7 @@ export default function AutomationOpsPage() {
                       <p className="text-sm text-muted-foreground">{tier.platforms}</p>
                     </div>
                   </div>
-                  <div className="lg:col-span-3">
+                  <div data-reveal="fade" className="lg:col-span-3">
                     <h4 className="text-xs font-mono text-zinc-500 uppercase mb-4">What you get</h4>
                     <ul className="space-y-3">
                       {tier.features.map((feature, i) => (
@@ -282,7 +287,7 @@ export default function AutomationOpsPage() {
 
         {/* Use Cases */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-8">Common automations we build</h2>
+          <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-8">Common automations we build</h2>
           <ServiceAccordion
             items={[
               {
@@ -324,11 +329,11 @@ export default function AutomationOpsPage() {
 
         {/* How It Works */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">How it works</h2>
+          <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">How it works</h2>
           <div className="max-w-3xl">
             <div className="space-y-8">
               {howItWorks.map((step, i) => (
-                <div key={i} className="flex items-baseline gap-6">
+                <div key={i} data-reveal="fade" className="flex items-baseline gap-6">
                   <div className="font-mono text-zinc-500 text-sm w-8 shrink-0">{(i + 1).toString().padStart(2, "0")}</div>
                   <div>
                     <h3 className="font-semibold mb-2">{step.phase}</h3>
@@ -343,26 +348,26 @@ export default function AutomationOpsPage() {
         {/* Differentiator */}
         <section className="mb-24">
           <div className="border border-zinc-800 bg-zinc-950 p-8 md:p-12">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">Why TC builds this differently</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-6">Why TC builds this differently</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <p className="text-muted-foreground leading-relaxed mb-4">
+                <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
                   We are not an agency selling retainers. We are engineers who built these systems for our own operations
                   first. Every automation we deploy has been tested in a real business before it ever reaches yours.
                 </p>
-                <p className="text-muted-foreground leading-relaxed">
+                <p data-reveal="fade" className="text-muted-foreground leading-relaxed">
                   Our background is in production engineering for live events: environments where systems must work the
                   first time, every time, with no margin for error. We bring that same rigor to business operations
                   automation.
                 </p>
               </div>
               <div>
-                <p className="text-muted-foreground leading-relaxed mb-4">
+                <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
                   We build on your existing platforms. No proprietary lock-in, no monthly tool subscriptions that only we
                   can manage. When we hand off an Automated Workflows system, it is yours. It runs on your infrastructure
                   and you own every piece of it.
                 </p>
-                <p className="text-muted-foreground leading-relaxed">
+                <p data-reveal="fade" className="text-muted-foreground leading-relaxed">
                   For Operations Automation and AI Operations Engine clients, we provide ongoing optimization because
                   those systems improve with data. But even then, you are never locked in. Everything we build is
                   documented and transferable.
@@ -373,16 +378,18 @@ export default function AutomationOpsPage() {
         </section>
 
         {/* CTA */}
-        <section className="border-t border-zinc-800 pt-16">
+        <section>
+          <div data-reveal="line" aria-hidden="true" className="mb-16 h-px origin-left bg-zinc-800" />
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Let's talk about what makes sense for your business</h2>
-            <p className="text-muted-foreground mb-8">
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-4">Let's talk about what makes sense for your business</h2>
+            <p data-reveal="fade" className="text-muted-foreground mb-8">
               Every business runs differently. Tell us what is eating your time and we will tell you what can be
               automated, what should stay manual, and where to start.
             </p>
             <Link
+              data-reveal="fade"
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors duration-300 ease-expo"
             >
               Start a Conversation
               <ArrowRight className="w-4 h-4" />

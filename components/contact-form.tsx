@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { useFormStatus } from "react-dom"
 import { submitContactForm } from "@/app/actions/contact"
 import { Loader2 } from "lucide-react"
+import { CueLabel } from "@/components/motion/cue-label"
 
 const MATRIX_GREEN = "#00D26A"
 
@@ -16,7 +17,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="w-full py-4 text-black font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 hover:scale-[1.02]"
+      className="w-full py-4 text-black font-medium transition-[scale,opacity] duration-150 ease-expo disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 hover:scale-[1.02]"
       style={{ backgroundColor: MATRIX_GREEN }}
     >
       {pending ? (
@@ -62,7 +63,7 @@ export function ContactForm() {
         aria-live="polite"
         className="border border-zinc-800 bg-zinc-900/40 p-8 rounded"
       >
-        <p className="mb-4 font-mono text-[11px] tracking-[0.2em] text-[#00D26A]">[ CONFIRMED ]</p>
+        <CueLabel className="mb-4 font-mono text-[11px] tracking-[0.2em] text-[#00D26A]">CONFIRMED</CueLabel>
         <h3 className="text-2xl font-semibold tracking-[-0.03em] text-white mb-3">Message received.</h3>
         <p className="text-zinc-400 leading-relaxed">
           Thank you for reaching out. Our team reviews every inquiry personally and responds within 24 hours.
@@ -91,7 +92,7 @@ export function ContactForm() {
       )}
 
       {isPowerSymbolsBeta && (
-        <div className="border border-zinc-800 bg-zinc-900/40 p-5">
+        <div data-reveal="fade" className="border border-zinc-800 bg-zinc-900/40 p-5">
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#00D26A]">
             Power Symbols / beta access
           </p>
@@ -103,7 +104,7 @@ export function ContactForm() {
       )}
 
       {/* Name */}
-      <div>
+      <div data-reveal="fade">
         <label htmlFor="name" className="block text-sm font-medium text-zinc-300 mb-2">
           Name *
         </label>
@@ -112,13 +113,13 @@ export function ContactForm() {
           id="name"
           name="name"
           required
-          className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-400 focus:outline-none focus:border-zinc-500 transition-colors rounded"
+          className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-400 transition-colors duration-150 ease-expo focus:outline-none focus:border-zinc-500 rounded"
           placeholder="Your name"
         />
       </div>
 
       {/* Email */}
-      <div>
+      <div data-reveal="fade">
         <label htmlFor="email" className="block text-sm font-medium text-zinc-300 mb-2">
           Email *
         </label>
@@ -127,13 +128,13 @@ export function ContactForm() {
           id="email"
           name="email"
           required
-          className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-400 focus:outline-none focus:border-zinc-500 transition-colors rounded"
+          className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-400 transition-colors duration-150 ease-expo focus:outline-none focus:border-zinc-500 rounded"
           placeholder="email@company.com"
         />
       </div>
 
       {/* Message */}
-      <div>
+      <div data-reveal="fade">
         <label htmlFor="message" className="block text-sm font-medium text-zinc-300 mb-2">
           Message *
         </label>
@@ -142,7 +143,7 @@ export function ContactForm() {
           name="message"
           rows={5}
           required
-          className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-400 focus:outline-none focus:border-zinc-500 transition-colors resize-none rounded"
+          className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-400 transition-colors duration-150 ease-expo focus:outline-none focus:border-zinc-500 resize-none rounded"
           placeholder={
             isPowerSymbolsBeta
               ? "Tell us how you use Vectorworks and what you would like to test..."
@@ -158,9 +159,11 @@ export function ContactForm() {
         </>
       )}
 
-      <SubmitButton />
+      <div data-reveal="fade">
+        <SubmitButton />
+      </div>
 
-      <p className="text-xs text-zinc-400 text-center">We respond within 24 hours. Your information is never shared.</p>
+      <p data-reveal="fade" className="text-xs text-zinc-400 text-center">We respond within 24 hours. Your information is never shared.</p>
     </form>
   )
 }

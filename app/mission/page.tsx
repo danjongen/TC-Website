@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer"
 import type { Metadata } from "next"
 import Image from "next/image"
 import { BreadcrumbSchema } from "@/components/structured-data"
+import { CueLabel } from "@/components/motion/cue-label"
 
 // Marketing pages should be static to enable CDN edge caching
 export const dynamic = "force-static"
@@ -11,7 +12,7 @@ export const revalidate = 86400 // Revalidate every 24 hours
 export const metadata: Metadata = {
   title: "Mission",
   description:
-    "Our mission at TC Agency (Technically Creative) — delivering engineering-grade production systems for high-stakes live events worldwide. Systems over heroes. Automation over manual.",
+    "Our mission at TC Agency (Technically Creative): delivering engineering-grade production systems for high-stakes live events worldwide. Systems over heroes. Automation over manual.",
   keywords: [
     "production engineering mission",
     "technical direction philosophy",
@@ -64,11 +65,17 @@ export default function MissionPage() {
       <section className="pt-40 md:pt-48 pb-[14vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 01 — MISSION ]</p>
-            <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">
+            <CueLabel index="01" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+              MISSION
+            </CueLabel>
+            <h1
+              data-vt="title"
+              data-reveal="rise"
+              className="w-fit text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8"
+            >
               Engineering calm into chaos.
             </h1>
-            <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">
+            <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 max-w-xl">
               We exist to bring systematic precision to high-stakes live production. Where others see complexity, we see
               solvable systems.
             </p>
@@ -81,27 +88,29 @@ export default function MissionPage() {
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 — THE PROBLEM ]</p>
-              <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8">
+              <CueLabel index="02" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+                THE PROBLEM
+              </CueLabel>
+              <h2 data-reveal="rise" className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8">
                 The problem we solve
               </h2>
               <div className="space-y-6 max-w-xl">
-                <p className="text-lg leading-relaxed text-zinc-400">
+                <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400">
                   Live production is inherently high-stakes. Millions of dollars, global audiences, and artistic vision
                   all converge on a single moment in time. The margin for error is zero.
                 </p>
-                <p className="text-lg leading-relaxed text-zinc-400">
+                <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400">
                   Yet most productions still rely on fragmented systems, manual processes, and tribal knowledge.
                   Information lives in spreadsheets, communication happens over radio, and critical decisions are made on
                   instinct rather than data.
                 </p>
-                <p className="text-lg leading-relaxed text-zinc-400">
+                <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400">
                   We believe there's a better way. By applying engineering discipline to production workflows, we
                   transform chaos into calm confidence.
                 </p>
               </div>
             </div>
-            <div className="relative aspect-[4/3] overflow-hidden">
+            <div data-reveal="resolve" data-vt="media" className="relative aspect-[4/3] overflow-hidden">
               <Image src="/images/dsf3815.jpg" alt="FOH control environment" fill className="object-cover" />
               <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
                 <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400">CONTROL ENVIRONMENT</p>
@@ -111,11 +120,15 @@ export default function MissionPage() {
         </div>
       </section>
 
-      {/* Principles — indexed rows */}
+      {/* Principles: indexed rows */}
       <section className="py-[12vh]">
         <div className="container mx-auto px-6">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 — PRINCIPLES ]</p>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-12">Our principles</h2>
+          <CueLabel index="03" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+            PRINCIPLES
+          </CueLabel>
+          <h2 data-reveal="rise" className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-12">
+            Our principles
+          </h2>
           <div>
             {[
               {
@@ -135,15 +148,20 @@ export default function MissionPage() {
               },
             ].map((principle, index) => (
               <div key={principle.num}>
-                {index > 0 && <div className="h-px bg-zinc-900" aria-hidden="true" />}
+                {index > 0 && <div data-reveal="line" className="h-px origin-left bg-zinc-900" aria-hidden="true" />}
                 <div className="py-10 grid md:grid-cols-12 gap-4 md:gap-6 items-baseline">
-                  <span className="md:col-span-2 font-mono text-xs tracking-[0.2em] text-zinc-400">
+                  <span data-reveal="fade" className="md:col-span-2 font-mono text-xs tracking-[0.2em] text-zinc-400">
                     {principle.num}
                   </span>
-                  <h3 className="md:col-span-4 text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-white">
+                  <h3
+                    data-reveal="rise"
+                    className="md:col-span-4 text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-white"
+                  >
                     {principle.title}
                   </h3>
-                  <p className="md:col-span-6 text-lg leading-relaxed text-zinc-400 max-w-xl">{principle.desc}</p>
+                  <p data-reveal="fade" className="md:col-span-6 text-lg leading-relaxed text-zinc-400 max-w-xl">
+                    {principle.desc}
+                  </p>
                 </div>
               </div>
             ))}
@@ -155,16 +173,19 @@ export default function MissionPage() {
       <section className="py-[14vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 — CONTACT ]</p>
-            <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8">
+            <CueLabel index="04" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+              CONTACT
+            </CueLabel>
+            <h2 data-reveal="rise" className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8">
               Ready to work with us?
             </h2>
-            <p className="text-lg leading-relaxed text-zinc-400 max-w-xl mb-10">
+            <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 max-w-xl mb-10">
               Let's discuss how we can bring engineering-grade precision to your next production.
             </p>
             <a
+              data-reveal="fade"
               href="/contact"
-              className="font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 hover:text-white"
+              className="-my-1 inline-block py-1 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo hover:text-white"
             >
               START A CONVERSATION →
             </a>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { CueLabel } from "@/components/motion/cue-label"
 import {
   ArrowLeft,
   ArrowRight,
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Design & Visualization - TC Agency Production Engineering",
+        alt: "Design & Visualization | TC Agency Production Engineering",
       },
     ],
   },
@@ -173,12 +174,12 @@ export default function DesignVisualizationPage() {
         url="https://tc.agency/services/design-visualization"
       />
 
-      <main className="min-h-screen bg-background pt-24 pb-16">
+      <main className="min-h-screen bg-black pt-24 pb-16">
         <div className="container mx-auto px-6">
           {/* Breadcrumb */}
           <Link
             href="/capabilities"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors mb-8"
+            className="-mt-1 mb-7 inline-flex items-center gap-2 py-1 text-sm text-muted-foreground transition-colors duration-300 ease-expo hover:text-white"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Services
@@ -186,11 +187,11 @@ export default function DesignVisualizationPage() {
 
           {/* Header */}
           <div className="mb-16 max-w-4xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — DESIGN & VISUALIZATION ]</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
+            <CueLabel className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">SERVICE / DESIGN & VISUALIZATION</CueLabel>
+            <h1 data-vt="title" data-reveal="rise" className="w-fit text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
               Design & Visualization
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p data-reveal="fade" className="text-xl text-muted-foreground leading-relaxed">
               From concept to production-ready blueprint before a single piece of steel is cut. Accurate
               visualization that eliminates guesswork, reduces change orders, and gives every stakeholder
               a clear picture of what gets built.
@@ -200,21 +201,21 @@ export default function DesignVisualizationPage() {
           {/* Overview */}
           <section className="mb-24">
             <div className="max-w-3xl">
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
+              <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
                 Production design is where creative intent meets engineering reality. We build detailed 3D
                 models, generate photorealistic renders, and produce complete technical drawing packages that
                 serve as the single source of truth across your entire production team. Every dimension is
                 verified. Every sightline is tested. Every detail is documented before fabrication begins.
               </p>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
                 Our visualization pipeline spans the full range of industry-standard platforms, from AutoCAD
                 and Vectorworks through Cinema 4D and Unreal Engine. This means your design data moves
                 cleanly between disciplines without translation errors or manual re-entry. Structural
                 engineers, scenic fabricators, lighting designers, and video programmers all work from the
                 same geometry.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
+              <p data-reveal="fade" className="text-muted-foreground leading-relaxed">
                 For complex multi-stakeholder projects, we provide structured revision control with tracked
                 changes, version histories, and approval workflows. No more guessing which drawing set is
                 current. No more building from outdated information.
@@ -224,7 +225,7 @@ export default function DesignVisualizationPage() {
 
           {/* Deliverables Grid */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Deliverables</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Deliverables</h2>
             <ServiceAccordion
               items={deliverables.map((category) => ({
                 title: category.title,
@@ -235,24 +236,26 @@ export default function DesignVisualizationPage() {
 
           {/* Output Formats */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Output Formats</h2>
-            <p className="text-muted-foreground mb-8 max-w-3xl">
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Output Formats</h2>
+            <p data-reveal="fade" className="text-muted-foreground mb-8 max-w-3xl">
               Every project ships in the formats your team actually uses. We maintain native files across all
               major platforms so nothing is lost in translation between design, engineering, and fabrication.
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-900 border border-zinc-800">
               {outputFormats.map((group, i) => (
-                <div key={i} className="bg-background p-8">
-                  <div className="font-mono text-sm text-zinc-400 uppercase tracking-widest mb-4">
-                    {group.category}
+                <div key={i} className="bg-black p-8">
+                  <div data-reveal="fade">
+                    <div className="font-mono text-sm text-zinc-400 uppercase tracking-widest mb-4">
+                      {group.category}
+                    </div>
+                    <ul className="space-y-2">
+                      {group.formats.map((format, j) => (
+                        <li key={j} className="text-sm text-muted-foreground">
+                          {format}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <ul className="space-y-2">
-                    {group.formats.map((format, j) => (
-                      <li key={j} className="text-sm text-muted-foreground">
-                        {format}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               ))}
             </div>
@@ -260,14 +263,16 @@ export default function DesignVisualizationPage() {
 
           {/* Process */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Process</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Process</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-px bg-zinc-900 border border-zinc-800">
               {processSteps.map((step, i) => (
-                <div key={i} className="bg-background p-8">
-                  <step.icon className="w-8 h-8 text-zinc-500 mb-4" />
-                  <div className="font-mono text-xs text-muted-foreground mb-2">{step.phase}</div>
-                  <h3 className="font-semibold mb-2">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground">{step.desc}</p>
+                <div key={i} className="bg-black p-8">
+                  <div data-reveal="fade">
+                    <step.icon className="w-8 h-8 text-zinc-500 mb-4" />
+                    <div className="font-mono text-xs text-muted-foreground mb-2">{step.phase}</div>
+                    <h3 className="font-semibold mb-2">{step.title}</h3>
+                    <p className="text-sm text-muted-foreground">{step.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -275,50 +280,54 @@ export default function DesignVisualizationPage() {
 
           {/* Cross-links */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-8">Related Services</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-8">Related Services</h2>
             <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
               <Link
+                data-reveal="fade"
                 href="/services/unreal-engine"
-                className="group border border-zinc-800 p-6 hover:border-[#00D26A]/30 transition-colors flex items-center justify-between"
+                className="group border border-zinc-800 p-6 hover:border-[#00D26A]/30 transition-colors duration-300 ease-expo flex items-center justify-between"
               >
                 <div>
                   <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-1">
                     Real-Time
                   </div>
-                  <div className="font-semibold group-hover:text-[#00D26A] transition-colors">
+                  <div className="font-semibold group-hover:text-[#00D26A] transition-colors duration-300 ease-expo">
                     Unreal Engine Integration
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-[#00D26A] transition-colors" />
+                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-[#00D26A] transition-colors duration-300 ease-expo" />
               </Link>
               <Link
+                data-reveal="fade"
                 href="/services/3d-scanning"
-                className="group border border-zinc-800 p-6 hover:border-[#00D26A]/30 transition-colors flex items-center justify-between"
+                className="group border border-zinc-800 p-6 hover:border-[#00D26A]/30 transition-colors duration-300 ease-expo flex items-center justify-between"
               >
                 <div>
                   <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-1">
                     Reality Capture
                   </div>
-                  <div className="font-semibold group-hover:text-[#00D26A] transition-colors">
+                  <div className="font-semibold group-hover:text-[#00D26A] transition-colors duration-300 ease-expo">
                     3D Scanning & Surveying
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-[#00D26A] transition-colors" />
+                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-[#00D26A] transition-colors duration-300 ease-expo" />
               </Link>
             </div>
           </section>
 
           {/* CTA */}
-          <section className="border-t border-zinc-800 pt-16">
+          <section>
+            <div data-reveal="line" aria-hidden="true" className="mb-16 h-px origin-left bg-zinc-800" />
             <div className="max-w-2xl">
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Ready to visualize your production?</h2>
-              <p className="text-muted-foreground mb-8">
+              <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-4">Ready to visualize your production?</h2>
+              <p data-reveal="fade" className="text-muted-foreground mb-8">
                 Let's turn your concept into a production-ready design package that every stakeholder can
                 trust. Accurate geometry, clear documentation, and zero ambiguity.
               </p>
               <Link
+                data-reveal="fade"
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors duration-300 ease-expo"
               >
                 Start a Conversation
                 <ArrowRight className="w-4 h-4" />

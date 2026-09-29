@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { CueLabel } from "@/components/motion/cue-label"
 import {
   ArrowLeft,
   ArrowRight,
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Workflow Automation — TC Agency Production Systems Engineering",
+        alt: "Workflow Automation | TC Agency Production Systems Engineering",
       },
     ],
   },
@@ -171,12 +172,12 @@ export default function WorkflowAutomationPage() {
         url="https://tc.agency/services/workflow-automation"
       />
 
-      <main className="min-h-screen bg-background pt-24 pb-16">
+      <main className="min-h-screen bg-black pt-24 pb-16">
         <div className="container mx-auto px-6">
           {/* Breadcrumb */}
           <Link
             href="/capabilities"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors mb-8"
+            className="-mt-1 mb-7 inline-flex items-center gap-2 py-1 text-sm text-muted-foreground transition-colors duration-300 ease-expo hover:text-white"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Services
@@ -184,11 +185,11 @@ export default function WorkflowAutomationPage() {
 
           {/* Header */}
           <div className="mb-16 max-w-4xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — WORKFLOW AUTOMATION ]</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
+            <CueLabel className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">SERVICE / WORKFLOW AUTOMATION</CueLabel>
+            <h1 data-vt="title" data-reveal="rise" className="w-fit text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
               Production Workflow Automation
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl">
+            <p data-reveal="fade" className="text-xl text-muted-foreground leading-relaxed max-w-3xl">
               Custom automation that eliminates manual tasks, reduces human error, and creates infinitely repeatable
               production workflows. We build the systems that let your team focus on creative decisions instead of
               repetitive operations.
@@ -198,18 +199,18 @@ export default function WorkflowAutomationPage() {
           {/* Introduction */}
           <section className="mb-24 max-w-4xl">
             <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
+              <p data-reveal="fade">
                 Every production has workflows that consume hours of skilled labor on tasks that should take seconds.
                 Manual show file updates propagated across a dozen systems. Configuration changes repeated at every tour
                 stop. Data entry that introduces errors precisely when accuracy matters most.
               </p>
-              <p>
+              <p data-reveal="fade">
                 TC Agency engineers automation systems purpose-built for live event and broadcast production. We apply
                 software engineering discipline to production operations: version control for show files, automated
                 testing for system configurations, continuous deployment for production environments. The result is
                 workflows that run faster, fail less, and scale without adding headcount.
               </p>
-              <p>
+              <p data-reveal="fade">
                 Our automation work spans show control programming, data pipeline development, timecode-driven execution,
                 and infrastructure-as-code deployment. Every system we build integrates with the tools your team already
                 uses and the protocols your equipment already speaks.
@@ -220,70 +221,74 @@ export default function WorkflowAutomationPage() {
           {/* Problem / Solution */}
           <section className="mb-24">
             <div className="grid lg:grid-cols-2 gap-px bg-zinc-900 border border-zinc-800">
-              <div className="bg-background p-12">
-                <h2 className="text-sm font-mono text-red-500 uppercase tracking-widest mb-6">The Problem</h2>
-                <ul className="space-y-4 text-muted-foreground">
-                  <li className="flex items-start gap-3">
-                    <span className="text-red-500 flex-shrink-0">×</span>
-                    <span>Manual show file updates across multiple systems, repeated at every venue</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-red-500 flex-shrink-0">×</span>
-                    <span>Inconsistent execution between shows, operators, and tour stops</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-red-500 flex-shrink-0">×</span>
-                    <span>Hours lost to repetitive configuration and data entry tasks</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-red-500 flex-shrink-0">×</span>
-                    <span>No version control, audit trail, or rollback capability for show data</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-red-500 flex-shrink-0">×</span>
-                    <span>Human error in high-pressure live environments with no safety net</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-red-500 flex-shrink-0">×</span>
-                    <span>Tribal knowledge locked in individual operators rather than codified in systems</span>
-                  </li>
-                </ul>
+              <div className="bg-black p-12">
+                <div data-reveal="fade">
+                  <h2 className="text-sm font-mono text-red-500 uppercase tracking-widest mb-6">The Problem</h2>
+                  <ul className="space-y-4 text-muted-foreground">
+                    <li className="flex items-start gap-3">
+                      <span className="text-red-500 flex-shrink-0">×</span>
+                      <span>Manual show file updates across multiple systems, repeated at every venue</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-red-500 flex-shrink-0">×</span>
+                      <span>Inconsistent execution between shows, operators, and tour stops</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-red-500 flex-shrink-0">×</span>
+                      <span>Hours lost to repetitive configuration and data entry tasks</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-red-500 flex-shrink-0">×</span>
+                      <span>No version control, audit trail, or rollback capability for show data</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-red-500 flex-shrink-0">×</span>
+                      <span>Human error in high-pressure live environments with no safety net</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-red-500 flex-shrink-0">×</span>
+                      <span>Tribal knowledge locked in individual operators rather than codified in systems</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <div className="bg-background p-12">
-                <h2 className="text-sm font-mono text-zinc-400 uppercase tracking-widest mb-6">Our Solution</h2>
-                <ul className="space-y-4 text-muted-foreground">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-4 h-4 text-zinc-500 mt-1 flex-shrink-0" />
-                    <span>Centralized show data with automatic propagation to all downstream systems</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-4 h-4 text-zinc-500 mt-1 flex-shrink-0" />
-                    <span>Deterministic cue execution with identical results every single time</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-4 h-4 text-zinc-500 mt-1 flex-shrink-0" />
-                    <span>One-click deployment and system configuration across any venue</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-4 h-4 text-zinc-500 mt-1 flex-shrink-0" />
-                    <span>Git-based versioning with full change history and instant rollback</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-4 h-4 text-zinc-500 mt-1 flex-shrink-0" />
-                    <span>Automated validation and fail-safes at every step of the workflow</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-4 h-4 text-zinc-500 mt-1 flex-shrink-0" />
-                    <span>Institutional knowledge encoded in repeatable, documented automation</span>
-                  </li>
-                </ul>
+              <div className="bg-black p-12">
+                <div data-reveal="fade">
+                  <h2 className="text-sm font-mono text-zinc-400 uppercase tracking-widest mb-6">Our Solution</h2>
+                  <ul className="space-y-4 text-muted-foreground">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-4 h-4 text-zinc-500 mt-1 flex-shrink-0" />
+                      <span>Centralized show data with automatic propagation to all downstream systems</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-4 h-4 text-zinc-500 mt-1 flex-shrink-0" />
+                      <span>Deterministic cue execution with identical results every single time</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-4 h-4 text-zinc-500 mt-1 flex-shrink-0" />
+                      <span>One-click deployment and system configuration across any venue</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-4 h-4 text-zinc-500 mt-1 flex-shrink-0" />
+                      <span>Git-based versioning with full change history and instant rollback</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-4 h-4 text-zinc-500 mt-1 flex-shrink-0" />
+                      <span>Automated validation and fail-safes at every step of the workflow</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-4 h-4 text-zinc-500 mt-1 flex-shrink-0" />
+                      <span>Institutional knowledge encoded in repeatable, documented automation</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </section>
 
           {/* Automation Categories */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Automation Categories</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Automation Categories</h2>
             <ServiceAccordion
               items={automationCategories.map((item) => ({
                 title: item.title,
@@ -295,11 +300,11 @@ export default function WorkflowAutomationPage() {
 
           {/* Methodology */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Methodology</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Methodology</h2>
             <div className="max-w-3xl">
               <div className="space-y-8">
                 {methodologySteps.map((step, i) => (
-                  <div key={i} className="flex gap-6">
+                  <div key={i} data-reveal="fade" className="flex gap-6">
                     <div className="font-mono text-zinc-500 text-sm w-8 flex-shrink-0">
                       {(i + 1).toString().padStart(2, "0")}
                     </div>
@@ -315,50 +320,54 @@ export default function WorkflowAutomationPage() {
 
           {/* Cross-links */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-8">Related Services</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-8">Related Services</h2>
             <div className="grid md:grid-cols-2 gap-6">
               <Link
+                data-reveal="fade"
                 href="/services/system-integration"
-                className="group border border-zinc-800 p-6 hover:border-[#00D26A]/30 transition-colors flex items-center justify-between"
+                className="group border border-zinc-800 p-6 hover:border-[#00D26A]/30 transition-colors duration-300 ease-expo flex items-center justify-between"
               >
                 <div>
                   <div className="text-xs font-mono text-zinc-400 uppercase tracking-widest mb-2">Service</div>
-                  <h3 className="font-semibold group-hover:text-[#00D26A] transition-colors">System Integration</h3>
+                  <h3 className="font-semibold group-hover:text-[#00D26A] transition-colors duration-300 ease-expo">System Integration</h3>
                   <p className="text-sm text-muted-foreground mt-1">
                     Automation works best on well-integrated infrastructure. See how we connect production systems into
                     unified, controllable networks.
                   </p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-[#00D26A] transition-colors flex-shrink-0 ml-4" />
+                <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-[#00D26A] transition-colors duration-300 ease-expo flex-shrink-0 ml-4" />
               </Link>
               <Link
+                data-reveal="fade"
                 href="/services/technical-direction"
-                className="group border border-zinc-800 p-6 hover:border-[#00D26A]/30 transition-colors flex items-center justify-between"
+                className="group border border-zinc-800 p-6 hover:border-[#00D26A]/30 transition-colors duration-300 ease-expo flex items-center justify-between"
               >
                 <div>
                   <div className="text-xs font-mono text-zinc-400 uppercase tracking-widest mb-2">Service</div>
-                  <h3 className="font-semibold group-hover:text-[#00D26A] transition-colors">Technical Direction</h3>
+                  <h3 className="font-semibold group-hover:text-[#00D26A] transition-colors duration-300 ease-expo">Technical Direction</h3>
                   <p className="text-sm text-muted-foreground mt-1">
                     Strategic oversight that determines where automation delivers the highest impact across your
                     production program.
                   </p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-[#00D26A] transition-colors flex-shrink-0 ml-4" />
+                <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-[#00D26A] transition-colors duration-300 ease-expo flex-shrink-0 ml-4" />
               </Link>
             </div>
           </section>
 
           {/* CTA */}
-          <section className="border-t border-zinc-800 pt-16">
+          <section>
+            <div data-reveal="line" aria-hidden="true" className="mb-16 h-px origin-left bg-zinc-800" />
             <div className="max-w-2xl">
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Ready to automate your production workflows?</h2>
-              <p className="text-muted-foreground mb-8">
+              <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-4">Ready to automate your production workflows?</h2>
+              <p data-reveal="fade" className="text-muted-foreground mb-8">
                 Let us identify the manual processes slowing your team down and build automation systems that scale
                 across venues, tours, and seasons.
               </p>
               <Link
+                data-reveal="fade"
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors duration-300 ease-expo"
               >
                 Start a Conversation
                 <ArrowRight className="w-4 h-4" />

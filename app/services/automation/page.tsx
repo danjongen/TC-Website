@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { CueLabel } from "@/components/motion/cue-label"
 import { ArrowLeft } from "lucide-react"
 import { ServiceAccordion } from "@/components/v2/service-accordion"
 
@@ -19,12 +20,12 @@ export const metadata: Metadata = {
 
 export default function AutomationPage() {
   return (
-    <main className="min-h-screen bg-background pt-24 pb-16">
+    <main className="min-h-screen bg-black pt-24 pb-16">
       <div className="container mx-auto px-6">
         {/* Breadcrumb */}
         <Link
           href="/capabilities"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors mb-8"
+          className="-mt-1 mb-7 inline-flex items-center gap-2 py-1 text-sm text-muted-foreground transition-colors duration-300 ease-expo hover:text-white"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Services
@@ -32,9 +33,9 @@ export default function AutomationPage() {
 
         {/* Header */}
         <div className="mb-16 max-w-4xl">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — PRODUCTION AUTOMATION ]</p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">Production Automation</h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
+          <CueLabel className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">SERVICE / PRODUCTION AUTOMATION</CueLabel>
+          <h1 data-vt="title" data-reveal="rise" className="w-fit text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">Production Automation</h1>
+          <p data-reveal="fade" className="text-xl text-muted-foreground leading-relaxed">
             Custom automation that eliminates manual tasks, reduces human error, and creates infinitely repeatable
             production workflows.
           </p>
@@ -43,62 +44,66 @@ export default function AutomationPage() {
         {/* Problem / Solution */}
         <section className="mb-24">
           <div className="grid lg:grid-cols-2 gap-px bg-zinc-900 border border-zinc-800">
-            <div className="bg-background p-12">
-              <h2 className="text-sm font-mono text-red-500 uppercase tracking-widest mb-6">The Problem</h2>
-              <ul className="space-y-4 text-muted-foreground">
-                <li className="flex items-start gap-3">
-                  <span className="text-red-500">×</span>
-                  <span>Manual show file updates across multiple systems</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-red-500">×</span>
-                  <span>Inconsistent execution between shows and operators</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-red-500">×</span>
-                  <span>Hours lost to repetitive configuration tasks</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-red-500">×</span>
-                  <span>No version control or audit trail</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-red-500">×</span>
-                  <span>Human error in high-pressure live environments</span>
-                </li>
-              </ul>
+            <div className="bg-black p-12">
+              <div data-reveal="fade">
+                <h2 className="text-sm font-mono text-red-500 uppercase tracking-widest mb-6">The Problem</h2>
+                <ul className="space-y-4 text-muted-foreground">
+                  <li className="flex items-start gap-3">
+                    <span className="text-red-500">×</span>
+                    <span>Manual show file updates across multiple systems</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-red-500">×</span>
+                    <span>Inconsistent execution between shows and operators</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-red-500">×</span>
+                    <span>Hours lost to repetitive configuration tasks</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-red-500">×</span>
+                    <span>No version control or audit trail</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-red-500">×</span>
+                    <span>Human error in high-pressure live environments</span>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div className="bg-background p-12">
-              <h2 className="text-sm font-mono text-zinc-400 uppercase tracking-widest mb-6">Our Solution</h2>
-              <ul className="space-y-4 text-muted-foreground">
-                <li className="flex items-start gap-3">
-                  <span className="text-zinc-500">✓</span>
-                  <span>Centralized show data with automatic propagation</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-zinc-500">✓</span>
-                  <span>Deterministic cue execution every single time</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-zinc-500">✓</span>
-                  <span>One-click deployment and system configuration</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-zinc-500">✓</span>
-                  <span>Git-based versioning with full change history</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-zinc-500">✓</span>
-                  <span>Fail-safes and validation at every step</span>
-                </li>
-              </ul>
+            <div className="bg-black p-12">
+              <div data-reveal="fade">
+                <h2 className="text-sm font-mono text-zinc-400 uppercase tracking-widest mb-6">Our Solution</h2>
+                <ul className="space-y-4 text-muted-foreground">
+                  <li className="flex items-start gap-3">
+                    <span className="text-zinc-500">✓</span>
+                    <span>Centralized show data with automatic propagation</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-zinc-500">✓</span>
+                    <span>Deterministic cue execution every single time</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-zinc-500">✓</span>
+                    <span>One-click deployment and system configuration</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-zinc-500">✓</span>
+                    <span>Git-based versioning with full change history</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-zinc-500">✓</span>
+                    <span>Fail-safes and validation at every step</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Automation Types */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Automation Categories</h2>
+          <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Automation Categories</h2>
           <ServiceAccordion
             items={[
               {
@@ -142,7 +147,7 @@ export default function AutomationPage() {
 
         {/* Methodology */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Methodology</h2>
+          <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Methodology</h2>
           <div className="max-w-3xl">
             <div className="space-y-8">
               {[
@@ -171,7 +176,7 @@ export default function AutomationPage() {
                   desc: "Ongoing maintenance, updates, and 24/7 support for critical show periods. Your automation is never abandoned.",
                 },
               ].map((step, i) => (
-                <div key={i} className="flex gap-6">
+                <div key={i} data-reveal="fade" className="flex gap-6">
                   <div className="font-mono text-zinc-500 text-sm w-8">{(i + 1).toString().padStart(2, "0")}</div>
                   <div>
                     <h3 className="font-semibold mb-2">{step.phase}</h3>
@@ -184,15 +189,17 @@ export default function AutomationPage() {
         </section>
 
         {/* CTA */}
-        <section className="border-t border-zinc-800 pt-16">
+        <section>
+          <div data-reveal="line" aria-hidden="true" className="mb-16 h-px origin-left bg-zinc-800" />
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Ready to automate your production?</h2>
-            <p className="text-muted-foreground mb-8">
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-4">Ready to automate your production?</h2>
+            <p data-reveal="fade" className="text-muted-foreground mb-8">
               Let's identify the manual processes slowing you down and build systems that scale.
             </p>
             <Link
+              data-reveal="fade"
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-semibold uppercase tracking-wide hover:bg-gray-200 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-semibold uppercase tracking-wide hover:bg-gray-200 transition-colors duration-300 ease-expo"
             >
               Start a Conversation
             </Link>

@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { BreadcrumbSchema } from "@/components/structured-data"
+import { CueLabel } from "@/components/motion/cue-label"
 
 export const metadata: Metadata = {
   title: "About TC Agency | Production Engineering for High-Stakes Events",
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "About TC Agency — Production Engineering",
+        alt: "About TC Agency | Production Engineering",
       },
     ],
   },
@@ -89,11 +90,17 @@ export default function AboutPage() {
         <section className="pb-[14vh]">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
-              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 01 — ABOUT ]</p>
-              <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">
+              <CueLabel index="01" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+                ABOUT
+              </CueLabel>
+              <h1
+                data-vt="title"
+                data-reveal="rise"
+                className="w-fit text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8"
+              >
                 Engineering calm into chaos.
               </h1>
-              <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">
+              <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 max-w-xl">
                 We bring systematic precision to high-stakes live production. Where others see complexity, we see
                 solvable systems.
               </p>
@@ -101,21 +108,30 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Principles — indexed rows */}
+        {/* Principles: indexed rows */}
         <section className="py-[14vh]">
           <div className="container mx-auto px-6">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 02 — PRINCIPLES ]</p>
+            <CueLabel index="02" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+              PRINCIPLES
+            </CueLabel>
             <div className="max-w-3xl">
               {principles.map((principle, i) => (
                 <div key={principle.num}>
-                  {i > 0 && <div className="h-px bg-zinc-900" aria-hidden="true" />}
+                  {i > 0 && <div data-reveal="line" className="h-px origin-left bg-zinc-900" aria-hidden="true" />}
                   <div className="py-10 md:flex md:items-baseline md:gap-12">
-                    <span className="font-mono text-xs tracking-[0.2em] text-zinc-400">{principle.num}</span>
+                    <span data-reveal="fade" className="inline-block font-mono text-xs tracking-[0.2em] text-zinc-400">
+                      {principle.num}
+                    </span>
                     <div className="mt-3 md:mt-0">
-                      <h3 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-3">
+                      <h3
+                        data-reveal="rise"
+                        className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-3"
+                      >
                         {principle.title}
                       </h3>
-                      <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">{principle.desc}</p>
+                      <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 max-w-xl">
+                        {principle.desc}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -126,17 +142,17 @@ export default function AboutPage() {
 
         {/* Full-width image break */}
         <section aria-label="Live production at scale" className="relative">
-          <div className="relative aspect-[21/9] w-full">
+          <div data-reveal="resolve" data-vt="media" className="relative aspect-[21/9] w-full overflow-hidden">
             <Image
               src="/images/bsb-live-05.jpg"
-              alt="Backstreet Boys live at the Sphere — large-format LED production engineered by TC Agency"
+              alt="Backstreet Boys live at the Sphere, a large-format LED production engineered by TC Agency"
               fill
               className="object-cover"
               sizes="100vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
             <div className="absolute bottom-6 left-6">
-              <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400">SPHERE — LAS VEGAS</p>
+              <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400">SPHERE / LAS VEGAS</p>
             </div>
           </div>
         </section>
@@ -145,10 +161,10 @@ export default function AboutPage() {
         <section className="py-[18vh]">
           <div className="container mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-16 items-start">
-              <div className="relative aspect-[4/5] max-w-md overflow-hidden">
+              <div data-reveal="resolve" className="relative aspect-[4/5] max-w-md overflow-hidden">
                 <Image
                   src="/daniel-jongen-headshot.jpg"
-                  alt="Executive Technical Producer Daniel Jongen — Technical Direction and Production Engineering leader at TC Agency"
+                  alt="Executive Technical Producer Daniel Jongen, Technical Direction and Production Engineering leader at TC Agency"
                   fill
                   className="object-cover object-center grayscale contrast-110"
                   priority
@@ -160,21 +176,24 @@ export default function AboutPage() {
               </div>
 
               <div>
-                <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 03 — LEADERSHIP ]</p>
+                <CueLabel index="03" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+                  LEADERSHIP
+                </CueLabel>
                 <h2
                   id="daniel-jongen"
+                  data-reveal="rise"
                   className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8"
                 >
                   Meet Daniel Jongen
                 </h2>
 
                 <div className="space-y-5 text-lg leading-relaxed text-zinc-400 max-w-xl">
-                  <p>
+                  <p data-reveal="fade">
                     Executive Technical Producer Daniel Jongen leads Technically Creative (TC Agency), overseeing
                     technical direction, production engineering, and high-stakes show execution for global brands,
                     artists, tours, and large-format productions.
                   </p>
-                  <p>
+                  <p data-reveal="fade">
                     His work spans automation, LED systems, broadcast infrastructure, show control, and risk mitigation
                     for environments where failure is not an option.
                   </p>
@@ -183,7 +202,7 @@ export default function AboutPage() {
                 {/* Credentials */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-14">
                   {credentials.map((item) => (
-                    <div key={item.label}>
+                    <div key={item.label} data-reveal="fade">
                       <p className="text-3xl font-semibold tracking-[-0.03em] text-white">{item.value}</p>
                       <p className="font-mono text-[11px] tracking-[0.2em] text-zinc-400 mt-2">
                         {item.label.toUpperCase()}
@@ -194,16 +213,20 @@ export default function AboutPage() {
 
                 {/* Expertise */}
                 <div className="mt-14">
-                  <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">AREAS OF EXPERTISE</p>
+                  <p data-reveal="fade" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+                    AREAS OF EXPERTISE
+                  </p>
                   <ul className="max-w-xl">
                     {expertise.map((item, index) => (
                       <li key={item.name}>
-                        {index > 0 && <div className="h-px bg-zinc-900" aria-hidden="true" />}
-                        <Link href={item.href} className="group flex items-baseline gap-6 py-3">
+                        {index > 0 && (
+                          <div data-reveal="line" className="h-px origin-left bg-zinc-900" aria-hidden="true" />
+                        )}
+                        <Link data-reveal="fade" href={item.href} className="group flex items-baseline gap-6 py-3">
                           <span className="font-mono text-xs tracking-[0.2em] text-zinc-400">
                             {String(index + 1).padStart(2, "0")}
                           </span>
-                          <span className="text-lg font-semibold text-white transition-colors duration-300 group-hover:text-[#00D26A]">
+                          <span className="text-lg font-semibold text-white transition-colors duration-300 ease-expo group-hover:text-[#00D26A]">
                             {item.name}
                           </span>
                         </Link>
@@ -220,21 +243,23 @@ export default function AboutPage() {
         <section className="py-[14vh]">
           <div className="container mx-auto px-6">
             <div className="max-w-2xl">
-              <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 — PHILOSOPHY ]</p>
-              <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-10">
+              <CueLabel index="04" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+                PHILOSOPHY
+              </CueLabel>
+              <h2 data-reveal="rise" className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-10">
                 Systems-first, always
               </h2>
 
               <div className="space-y-6 text-lg leading-relaxed text-zinc-400">
-                <p>
+                <p data-reveal="fade">
                   In high-stakes live production there are no second chances. Every system is engineered with
                   redundancy. Every workflow is documented. Every team member knows their role.
                 </p>
-                <p>
-                  Stadium tour, corporate keynote, or immersive brand activation — the rigor is the same. We engineer
+                <p data-reveal="fade">
+                  Stadium tour, corporate keynote, or immersive brand activation: the rigor is the same. We engineer
                   systems that work the first time, every time.
                 </p>
-                <p>
+                <p data-reveal="fade">
                   Decades of field experience meet modern engineering practice: network redundancy, automated
                   failovers, comprehensive documentation, continuous risk assessment.
                 </p>
@@ -246,16 +271,17 @@ export default function AboutPage() {
         {/* CTA */}
         <section className="py-[14vh]">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-6">
+            <h2 data-reveal="rise" className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-6">
               Ready to work together?
             </h2>
-            <p className="text-lg leading-relaxed text-zinc-400 mb-10 max-w-xl">
+            <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 mb-10 max-w-xl">
               Let's discuss how TC Agency can bring technical direction and production engineering to your next
               project.
             </p>
             <Link
+              data-reveal="fade"
               href="/contact"
-              className="font-mono text-xs tracking-[0.2em] text-zinc-400 hover:text-[#00D26A] transition-colors duration-300"
+              className="-my-1 inline-block py-1 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo hover:text-[#00D26A]"
             >
               START A CONVERSATION →
             </Link>

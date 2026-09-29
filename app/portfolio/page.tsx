@@ -4,6 +4,7 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { BreadcrumbSchema } from "@/components/structured-data"
+import { CueLabel } from "@/components/motion/cue-label"
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -66,15 +67,24 @@ export default function PortfolioPage() {
       <section className="pt-40 md:pt-48 pb-[10vh]">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ 04 — PORTFOLIO ]</p>
-            <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8">Selected work</h1>
-            <p className="text-lg leading-relaxed text-zinc-400 max-w-xl">
+            <CueLabel index="04" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+              PORTFOLIO
+            </CueLabel>
+            <h1
+              data-vt="title"
+              data-reveal="rise"
+              className="w-fit text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-white mb-8"
+            >
+              Selected work
+            </h1>
+            <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 max-w-xl">
               Production engineering and technical direction for the Backstreet Boys Into The Millennium residency at
               Sphere, Las Vegas. Read the full story in our Insights.
             </p>
             <Link
+              data-reveal="fade"
               href="/insights/ufo-pod-touring-control-infrastructure"
-              className="mt-8 inline-block font-mono text-xs tracking-[0.2em] text-zinc-400 hover:text-[#00D26A] transition-colors duration-300"
+              className="mt-7 -mb-1 inline-block py-1 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo hover:text-[#00D26A]"
             >
               READ THE CASE STUDY →
             </Link>
@@ -89,13 +99,15 @@ export default function PortfolioPage() {
             {gallery.map((item, i) => (
               <div
                 key={item.image}
+                data-reveal="resolve"
+                data-vt={i === 0 ? "media" : undefined}
                 className={`group relative aspect-[16/9] overflow-hidden ${item.span ?? ""}`}
               >
                 <Image
                   src={item.image}
                   alt={`Technically Creative production work: ${item.caption}`}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                  className="object-cover transition-transform duration-600 ease-expo group-hover:scale-[1.03]"
                   sizes="(max-width: 768px) 100vw, 50vw"
                   priority={i === 0}
                 />
@@ -112,15 +124,16 @@ export default function PortfolioPage() {
       {/* CTA */}
       <section className="py-[14vh]">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-6">
+          <h2 data-reveal="rise" className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-6">
             Ready for your project?
           </h2>
-          <p className="text-lg leading-relaxed text-zinc-400 mb-10 max-w-xl">
+          <p data-reveal="fade" className="text-lg leading-relaxed text-zinc-400 mb-10 max-w-xl">
             Every production is different. Tell us about yours and we will show you how we can help.
           </p>
           <Link
+            data-reveal="fade"
             href="/contact"
-            className="font-mono text-xs tracking-[0.2em] text-zinc-400 hover:text-[#00D26A] transition-colors duration-300"
+            className="-my-1 inline-block py-1 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo hover:text-[#00D26A]"
           >
             START A CONVERSATION →
           </Link>

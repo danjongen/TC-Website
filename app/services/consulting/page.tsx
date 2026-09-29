@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { CueLabel } from "@/components/motion/cue-label"
 import {
   ArrowLeft,
   Target,
@@ -13,7 +14,7 @@ import {
 import { ServiceAccordion } from "@/components/v2/service-accordion"
 
 export const metadata: Metadata = {
-  title: "Executive & Strategic Consulting | TC Agency — Production Engineering",
+  title: "Executive & Strategic Consulting | Production Engineering | TC Agency",
   description:
     "Senior technical and production leadership for high-stakes environments. TC Agency provides strategic oversight, risk mitigation, feasibility modelling, vendor strategy, and decision support for complex global productions.",
   keywords: [
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     "Technically Creative",
   ],
   openGraph: {
-    title: "Executive & Strategic Consulting — TC Agency",
+    title: "Executive & Strategic Consulting | TC Agency",
     description:
       "High-level production and technical strategy for shows and programs that demand clarity, reliability, and senior leadership.",
     url: "https://www.tc.agency/services/consulting",
@@ -37,13 +38,13 @@ export const metadata: Metadata = {
         url: "/og/consulting.jpg",
         width: 1200,
         height: 630,
-        alt: "Executive & Strategic Consulting — TC Production Engineering",
+        alt: "Executive & Strategic Consulting | TC Production Engineering",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Executive & Strategic Consulting — TC Agency",
+    title: "Executive & Strategic Consulting | TC Agency",
     description:
       "High-level production and technical strategy for shows and programs that demand clarity, reliability, and senior leadership.",
     images: ["/og/consulting.jpg"],
@@ -128,12 +129,12 @@ const engagementModels = [
 
 export default function ConsultingPage() {
   return (
-    <main className="min-h-screen bg-background pt-24 pb-16">
+    <main className="min-h-screen bg-black pt-24 pb-16">
       <div className="container mx-auto px-6">
         {/* Breadcrumb */}
         <Link
           href="/capabilities"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors mb-8"
+          className="-mt-1 mb-7 inline-flex items-center gap-2 py-1 text-sm text-muted-foreground transition-colors duration-300 ease-expo hover:text-white"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Services
@@ -141,11 +142,11 @@ export default function ConsultingPage() {
 
         {/* Header */}
         <div className="mb-16 max-w-4xl">
-          <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — EXECUTIVE CONSULTING ]</p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
+          <CueLabel className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">SERVICE / EXECUTIVE CONSULTING</CueLabel>
+          <h1 data-vt="title" data-reveal="rise" className="w-fit text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
             Executive & Strategic Consulting
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
+          <p data-reveal="fade" className="text-xl text-muted-foreground leading-relaxed">
             High-level guidance for projects where decisions carry weight, timelines are tight, and the cost of
             uncertainty is high.
           </p>
@@ -154,13 +155,13 @@ export default function ConsultingPage() {
         {/* Overview */}
         <section className="mb-24">
           <div className="max-w-3xl">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
-            <p className="text-muted-foreground leading-relaxed mb-4">
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
+            <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
               This service delivers senior oversight across all technical, creative, and production domains. It
               provides the thinking, modelling, risk control, and decision stewardship that complex productions
               require.
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p data-reveal="fade" className="text-muted-foreground leading-relaxed">
               Ideal for programs operating at scale, managing concurrent workstreams, or navigating ambiguous
               environments where clarity and certainty are non-negotiable.
             </p>
@@ -169,7 +170,7 @@ export default function ConsultingPage() {
 
         {/* Deliverables */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Deliverables</h2>
+          <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Deliverables</h2>
           <ServiceAccordion
             items={deliverables.map((category) => ({
               title: category.title,
@@ -180,13 +181,15 @@ export default function ConsultingPage() {
 
         {/* Engagement Models */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Engagement Models</h2>
+          <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Engagement Models</h2>
           <div className="grid md:grid-cols-3 gap-px bg-zinc-900 border border-zinc-800">
             {engagementModels.map((model, i) => (
-              <div key={i} className="bg-background p-8">
-                <div className="font-mono text-xs text-zinc-500 mb-2">{(i + 1).toString().padStart(2, "0")}</div>
-                <h3 className="font-semibold mb-2">{model.title}</h3>
-                <p className="text-sm text-muted-foreground">{model.desc}</p>
+              <div key={i} className="bg-black p-8">
+                <div data-reveal="fade">
+                  <div className="font-mono text-xs text-zinc-500 mb-2">{(i + 1).toString().padStart(2, "0")}</div>
+                  <h3 className="font-semibold mb-2">{model.title}</h3>
+                  <p className="text-sm text-muted-foreground">{model.desc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -194,13 +197,14 @@ export default function ConsultingPage() {
 
         {/* Use Cases */}
         <section className="mb-24">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Use Cases</h2>
+          <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Use Cases</h2>
           <div className="max-w-3xl">
             <div className="flex flex-wrap gap-3">
               {useCases.map((useCase, i) => (
                 <span
                   key={i}
-                  className="px-4 py-2 border border-zinc-800 text-sm text-muted-foreground hover:border-[#00D26A]/30 hover:text-white transition-colors"
+                  data-reveal="fade"
+                  className="inline-block px-4 py-2 border border-zinc-800 text-sm text-muted-foreground hover:border-[#00D26A]/30 hover:text-white transition-colors duration-300 ease-expo"
                 >
                   {useCase}
                 </span>
@@ -210,16 +214,18 @@ export default function ConsultingPage() {
         </section>
 
         {/* CTA */}
-        <section className="border-t border-zinc-800 pt-16">
+        <section>
+          <div data-reveal="line" aria-hidden="true" className="mb-16 h-px origin-left bg-zinc-800" />
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Start a Project</h2>
-            <p className="text-muted-foreground mb-8">
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-4">Start a Project</h2>
+            <p data-reveal="fade" className="text-muted-foreground mb-8">
               Let's discuss how executive-level oversight can de-risk your next production and accelerate your decision
               making.
             </p>
             <Link
+              data-reveal="fade"
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors duration-300 ease-expo"
             >
               Start a Conversation
               <ArrowRight className="w-4 h-4" />

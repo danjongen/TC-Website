@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { CueLabel } from "@/components/motion/cue-label"
 import {
   ArrowLeft,
   ArrowRight,
@@ -163,12 +164,12 @@ export default function SystemIntegrationPage() {
         url="https://tc.agency/services/system-integration"
       />
 
-      <main className="min-h-screen bg-background pt-24 pb-16">
+      <main className="min-h-screen bg-black pt-24 pb-16">
         <div className="container mx-auto px-6">
           {/* Breadcrumb */}
           <Link
             href="/capabilities"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors mb-8"
+            className="-mt-1 mb-7 inline-flex items-center gap-2 py-1 text-sm text-muted-foreground transition-colors duration-300 ease-expo hover:text-white"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Services
@@ -176,11 +177,11 @@ export default function SystemIntegrationPage() {
 
           {/* Header */}
           <div className="mb-16 max-w-4xl">
-            <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">[ SERVICE — SYSTEM INTEGRATION ]</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
+            <CueLabel className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">SERVICE / SYSTEM INTEGRATION</CueLabel>
+            <h1 data-vt="title" data-reveal="rise" className="w-fit text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] mb-6">
               Production Network Engineering
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p data-reveal="fade" className="text-xl text-muted-foreground leading-relaxed">
               Making all your production technology talk to each other. One system, one interface, zero gaps. We engineer
               the integration layer that connects every protocol, every vendor, and every subsystem into a unified,
               monitored, and resilient production network.
@@ -190,22 +191,22 @@ export default function SystemIntegrationPage() {
           {/* Overview */}
           <section className="mb-24">
             <div className="max-w-3xl">
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-6">Overview</h2>
+              <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
                 Modern live productions run on dozens of interconnected systems from multiple vendors, each speaking
                 its own protocol. Lighting consoles output DMX and sACN. Audio networks run on Dante. Video systems
                 use NDI. Show control speaks OSC and MIDI. Without a deliberate integration strategy, these systems
                 operate as isolated islands, requiring manual coordination and creating fragile dependencies that fail
                 under pressure.
               </p>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <p data-reveal="fade" className="text-muted-foreground leading-relaxed mb-4">
                 We design and build the connective tissue that turns a collection of standalone systems into a single,
                 cohesive production platform. Our integration work spans protocol translation, network architecture,
                 redundancy engineering, and real-time monitoring. The result is a production environment where every
                 signal path is deterministic, every failover is automated, and every operator has visibility into the
                 full system state.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
+              <p data-reveal="fade" className="text-muted-foreground leading-relaxed">
                 Whether you are building a permanent installation, a touring production, or a one-off broadcast, we
                 engineer integration solutions that scale with your requirements and survive the unpredictable
                 conditions of live performance.
@@ -215,7 +216,7 @@ export default function SystemIntegrationPage() {
 
           {/* Integration Domains Grid */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Integration Domains</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Integration Domains</h2>
             <ServiceAccordion
               items={integrationDomains.map((domain) => ({
                 title: domain.title,
@@ -227,20 +228,22 @@ export default function SystemIntegrationPage() {
 
           {/* Technology / Protocols */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Supported Protocols & Platforms</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Supported Protocols & Platforms</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-900 border border-zinc-800">
               {protocols.map((group, i) => (
-                <div key={i} className="bg-background p-8">
-                  <h3 className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-4">
-                    {group.category}
-                  </h3>
-                  <ul className="space-y-2">
-                    {group.items.map((item, j) => (
-                      <li key={j} className="text-sm text-muted-foreground">
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                <div key={i} className="bg-black p-8">
+                  <div data-reveal="fade">
+                    <h3 className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-4">
+                      {group.category}
+                    </h3>
+                    <ul className="space-y-2">
+                      {group.items.map((item, j) => (
+                        <li key={j} className="text-sm text-muted-foreground">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               ))}
             </div>
@@ -248,11 +251,11 @@ export default function SystemIntegrationPage() {
 
           {/* Approach */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Our Approach</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Our Approach</h2>
             <div className="max-w-3xl">
               <div className="space-y-8">
                 {approachSteps.map((step, i) => (
-                  <div key={i} className="flex gap-6">
+                  <div key={i} data-reveal="fade" className="flex gap-6">
                     <div className="font-mono text-zinc-500 text-sm w-8 flex-shrink-0">
                       {(i + 1).toString().padStart(2, "0")}
                     </div>
@@ -268,7 +271,7 @@ export default function SystemIntegrationPage() {
 
           {/* Cross-links */}
           <section className="mb-24">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-12">Related Services & Work</h2>
+            <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-12">Related Services & Work</h2>
             <div className="grid md:grid-cols-3 gap-px bg-zinc-900 border border-zinc-800">
               {[
                 {
@@ -293,13 +296,15 @@ export default function SystemIntegrationPage() {
                 <Link
                   key={i}
                   href={link.href}
-                  className="bg-background p-8 group hover:bg-zinc-900/40 transition-colors"
+                  className="bg-black p-8 group hover:bg-zinc-900/40 transition-colors duration-300 ease-expo"
                 >
-                  <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-2">{link.label}</div>
-                  <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors">{link.title}</h3>
-                  <p className="text-sm text-muted-foreground">{link.desc}</p>
-                  <div className="mt-4 flex items-center gap-1 text-sm text-zinc-500 opacity-0 group-hover:opacity-100 transition-opacity">
-                    View details <ArrowRight className="w-3 h-3" />
+                  <div data-reveal="fade">
+                    <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-2">{link.label}</div>
+                    <h3 className="font-semibold mb-2 group-hover:text-[#00D26A] transition-colors duration-300 ease-expo">{link.title}</h3>
+                    <p className="text-sm text-muted-foreground">{link.desc}</p>
+                    <div className="mt-4 flex items-center gap-1 text-sm text-zinc-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-expo">
+                      View details <ArrowRight className="w-3 h-3" />
+                    </div>
                   </div>
                 </Link>
               ))}
@@ -307,16 +312,18 @@ export default function SystemIntegrationPage() {
           </section>
 
           {/* CTA */}
-          <section className="border-t border-zinc-800 pt-16">
+          <section>
+            <div data-reveal="line" aria-hidden="true" className="mb-16 h-px origin-left bg-zinc-800" />
             <div className="max-w-2xl">
-              <h2 className="text-2xl font-semibold tracking-[-0.03em] mb-4">Ready to unify your production systems?</h2>
-              <p className="text-muted-foreground mb-8">
+              <h2 data-reveal="rise" className="text-2xl font-semibold tracking-[-0.03em] mb-4">Ready to unify your production systems?</h2>
+              <p data-reveal="fade" className="text-muted-foreground mb-8">
                 Let's map your integration requirements and design a network architecture that connects every system
                 in your production environment.
               </p>
               <Link
+                data-reveal="fade"
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D26A] text-black font-medium hover:bg-[#00b85c] transition-colors duration-300 ease-expo"
               >
                 Start a Conversation
                 <ArrowRight className="w-4 h-4" />
