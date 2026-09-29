@@ -48,6 +48,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/insights/michigan-central-station-scan-to-event-plan`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/insights/operating-standard`,
       lastModified: new Date(),
       changeFrequency: "monthly",

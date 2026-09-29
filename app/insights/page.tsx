@@ -18,6 +18,8 @@ export const metadata: Metadata = {
     "production automation guides",
     "touring network infrastructure",
     "RF-resilient show control",
+    "3D venue scanning case study",
+    "Michigan Central Station event plan",
   ],
   openGraph: {
     title: "Insights",
@@ -37,6 +39,15 @@ export const metadata: Metadata = {
 }
 
 const articles = [
+  {
+    slug: "michigan-central-station-scan-to-event-plan",
+    title: "Michigan Central Station: From station scan to event plan.",
+    excerpt:
+      "We used a 3D scan of Michigan Central Station to build a detailed venue model, create renders for an upcoming event and produce accurate CAD plans.",
+    category: "Case Study",
+    readTime: "3 min read",
+    date: "September 2026",
+  },
   {
     slug: "operating-standard",
     title: "What Technically Creative Does",
