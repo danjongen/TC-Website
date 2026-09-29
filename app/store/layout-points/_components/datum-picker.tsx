@@ -2,19 +2,7 @@
 
 import { useId, useState } from "react"
 
-const POSITIONS = [
-  { id: "tl", label: "Top left corner", x: 0, y: 0 },
-  { id: "tc", label: "Top edge", x: 0.5, y: 0 },
-  { id: "tr", label: "Top right corner", x: 1, y: 0 },
-  { id: "ml", label: "Left edge", x: 0, y: 0.5 },
-  { id: "c", label: "Centre", x: 0.5, y: 0.5 },
-  { id: "mr", label: "Right edge", x: 1, y: 0.5 },
-  { id: "bl", label: "Bottom left corner", x: 0, y: 1 },
-  { id: "bc", label: "Bottom edge", x: 0.5, y: 1 },
-  { id: "br", label: "Bottom right corner", x: 1, y: 1 },
-] as const
-
-type PositionId = (typeof POSITIONS)[number]["id"]
+import { DATUM_POSITIONS, type DatumPosition } from "./label/datum"
 
 const LABEL = { x: 50, y: 30, w: 220, h: 140 }
 
@@ -24,9 +12,9 @@ const LABEL = { x: 50, y: 30, w: 220, h: 140 }
  * pointer. This demonstrates the choice; it is not the application UI.
  */
 export function DatumPicker() {
-  const [selected, setSelected] = useState<PositionId>("c")
+  const [selected, setSelected] = useState<DatumPosition>("c")
   const name = useId()
-  const current = POSITIONS.find((p) => p.id === selected) ?? POSITIONS[4]
+  const current = DATUM_POSITIONS.find((p) => p.id === selected) ?? DATUM_POSITIONS[4]
   const cx = LABEL.x + current.x * LABEL.w
   const cy = LABEL.y + current.y * LABEL.h
 
@@ -44,7 +32,7 @@ export function DatumPicker() {
           <text x={LABEL.x + 14} y={LABEL.y + 36} fontSize="16" fontWeight="700" fill="#000" className="font-mono">
             STG-003
           </text>
-          {POSITIONS.map((p) => (
+          {DATUM_POSITIONS.map((p) => (
             <circle
               key={p.id}
               cx={LABEL.x + p.x * LABEL.w}
@@ -83,7 +71,7 @@ export function DatumPicker() {
           Exact datum
         </p>
         <div className="mt-4 grid grid-cols-3 gap-px border border-zinc-800 bg-zinc-800">
-          {POSITIONS.map((p) => (
+          {DATUM_POSITIONS.map((p) => (
             <label
               key={p.id}
               className={`relative flex min-h-12 cursor-pointer items-center justify-center p-2 text-center font-mono text-[10px] uppercase leading-tight tracking-[0.08em] transition-colors duration-300 ease-expo has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-inset has-[:focus-visible]:ring-[#00D26A] ${
