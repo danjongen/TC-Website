@@ -46,8 +46,18 @@
   --matrix-green-secondary: #008f11;
   --matrix-green-dark: #000d00;
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* next/font variables are set on <html> (app/layout.tsx), the same element as :root */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-space-mono), ui-monospace, Menlo, Consolas, monospace;
+
+  /* Motion tokens. Mirrored in lib/motion.ts; see docs/MOTION.md */
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 150ms;
+  --dur-ui: 300ms;
+  --dur-page: 400ms;
+  --dur-reveal: 600ms;
+  --dur-hero: 1000ms;
 }
 
 .dark {
@@ -123,8 +133,12 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-space-mono), ui-monospace, Menlo, Consolas, monospace;
+
+  /* generates the ease-expo / ease-in-out utilities */
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 
   @keyframes accordion-down {
     from {
@@ -176,6 +190,222 @@
   color: #000;
 }
 
-.ease-expo {
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+/* ------------------------------------------------------------------
+   Motion system. Rules and usage: docs/MOTION.md
+   ------------------------------------------------------------------ */
+
+/* Load-in keyframes that run from first paint, no JS needed (hero). */
+@keyframes tc-rise {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes tc-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes tc-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Load-in utilities: add a class, set animation-delay inline if needed. */
+.tc-load-rise {
+  animation: tc-rise var(--dur-hero) var(--ease-expo) both;
+}
+.tc-load-fade-up {
+  animation: tc-fade-up 800ms var(--ease-expo) both;
+}
+.tc-load-fade {
+  animation: tc-fade var(--dur-reveal) var(--ease-expo) both;
+}
+
+/* Scroll hint: a green segment travels down a 1px track. Give the element a size. */
+.tc-hint {
+  position: relative;
+  overflow: hidden;
+  background: rgb(63 63 70 / 0.6);
+}
+.tc-hint::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #00d26a;
+  animation: tc-hint 1.8s var(--ease-in-out) infinite;
+}
+@keyframes tc-hint {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+/* Scroll-scrubbed text (homepage manifesto). Words light up as the block
+   crosses the viewport. Opacity only, so it stays on the compositor.
+   Unsupported browsers and reduced motion get fully lit, static text.
+   Usage: container .tc-scrub, each word .tc-scrub-word with inline
+   --tc-r0 / --tc-r1 (animation-range start / end). */
+@keyframes tc-word {
+  from {
+    opacity: 0.18;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .tc-scrub {
+      view-timeline-name: --tc-scrub;
+    }
+    .tc-scrub-word {
+      animation: tc-word linear both;
+      animation-timeline: --tc-scrub;
+      animation-range: var(--tc-r0) var(--tc-r1);
+    }
+  }
+}
+
+/* data-reveal="resolve": photos assemble from a dot grid. The reveal script
+   animates --tc-dot from -1px; at rest it is 7px, which covers every cell. */
+@property --tc-dot {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 7px;
+}
+[data-reveal="resolve"] {
+  -webkit-mask-image: radial-gradient(circle, #000 var(--tc-dot), transparent calc(var(--tc-dot) + 0.6px));
+  mask-image: radial-gradient(circle, #000 var(--tc-dot), transparent calc(var(--tc-dot) + 0.6px));
+  -webkit-mask-size: 7px 7px;
+  mask-size: 7px 7px;
+}
+
+/* Homepage HUD fades in once the hero headline has landed. */
+.tc-hud {
+  animation: tc-fade var(--dur-reveal) var(--ease-expo) 1.8s both;
+}
+
+/* ---------------- Page transitions (components/motion/page-transitions.tsx)
+   The new page wipes in top to bottom behind a green scan line while the old
+   page dims. Named elements (nav underline, title, media) morph on top. */
+::view-transition-group(*) {
+  animation-duration: var(--dur-page);
+  animation-timing-function: var(--ease-in-out);
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  animation: tc-vt-dim var(--dur-page) var(--ease-in-out) both;
+}
+::view-transition-new(root) {
+  animation: tc-vt-wipe var(--dur-page) var(--ease-in-out) both;
+}
+@keyframes tc-vt-dim {
+  to {
+    opacity: 0.35;
+  }
+}
+@keyframes tc-vt-wipe {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* The scan line exists only in the new state of a transition. It sits just
+   below the viewport so it is never visible outside the transition itself. */
+#tc-scanline {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 1px;
+  background: #00d26a;
+  box-shadow: 0 0 14px 1px rgba(0, 210, 106, 0.55);
+  pointer-events: none;
+  z-index: 2147483647;
+  view-transition-name: tc-scan;
+}
+html[data-vt-active] #tc-scanline {
+  display: block;
+}
+::view-transition-group(tc-scan) {
+  animation: none;
+}
+::view-transition-new(tc-scan) {
+  animation: tc-vt-scan var(--dur-page) var(--ease-in-out) both;
+}
+@keyframes tc-vt-scan {
+  from {
+    transform: translateY(-100vh);
+  }
+  88% {
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+
+/* Shared-element morphs. Destination pages mark one element of each kind;
+   the clicked link names its source (data-vt-source) at click time. */
+[data-vt="title"] {
+  view-transition-name: tc-title;
+}
+[data-vt="media"] {
+  view-transition-name: tc-media;
+}
+html[data-vt-static]:not([data-vt-static~="title"]) [data-vt="title"],
+html[data-vt-static]:not([data-vt-static~="media"]) [data-vt="media"] {
+  view-transition-name: none;
+}
+::view-transition-group(tc-title),
+::view-transition-group(tc-media) {
+  animation-duration: var(--dur-reveal);
+  animation-timing-function: var(--ease-expo);
+}
+::view-transition-old(tc-media),
+::view-transition-new(tc-media) {
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+  .tc-hud,
+  .tc-load-rise,
+  .tc-load-fade-up,
+  .tc-load-fade {
+    animation: none;
+  }
+  .tc-hint::after {
+    animation: none;
+    transform: none;
+    opacity: 0.6;
+  }
 }

@@ -8,41 +8,41 @@ import { CookieConsent } from "@/components/cookie-consent"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { SmoothScroll } from "@/components/v2/smooth-scroll"
 import { CustomCursor } from "@/components/v2/custom-cursor"
+import { MotionProvider } from "@/components/motion/motion-provider"
+import { PageTransitions } from "@/components/motion/page-transitions"
+import { REVEAL_SCRIPT } from "@/components/motion/reveal-script"
 
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
-import { Inter, JetBrains_Mono, Geist_Mono as V0_Font_Geist_Mono } from 'next/font/google'
+import { Inter, Space_Mono } from "next/font/google"
 
-// Initialize fonts
-const _geistMono = V0_Font_Geist_Mono({ subsets: ['latin'], weight: ["100","200","300","400","500","600","700","800","900"] })
-
-// PERFORMANCE GUARDRAIL: Keep font weights to 3 max per family to reduce bundle size (~80KB savings)
-// Only load weights: 400 (regular), 600 (semibold), 700 (bold)
-// DO NOT add additional weights without checking PERFORMANCE.md
-
+// Brand type: Inter (variable, one file covers 100 to 900) + Space Mono.
+// The variable classes MUST sit on <html>: --font-sans / --font-mono are
+// defined on :root in globals.css and can only see variables set on the
+// same element or above. On <body> they resolve to nothing and the whole
+// site silently falls back to system-ui.
 const inter = Inter({
-  variable: "--font-geist-sans",
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
   display: "swap",
   preload: true,
   fallback: ["system-ui", "arial"],
 })
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-geist-mono",
+const spaceMono = Space_Mono({
+  variable: "--font-space-mono",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "700"],
   display: "swap",
   preload: true,
-  fallback: ["Consolas", "Monaco", "monospace"],
+  fallback: ["ui-monospace", "Menlo", "Consolas", "monospace"],
 })
 
 export const metadata: Metadata = {
   title: {
     default: "Technical Direction and Production Engineering | Technically Creative LLC (TC Agency)",
-    template: "%s — Technically Creative (TC Agency)",
+    template: "%s | Technically Creative (TC Agency)",
   },
   description:
     "Technically Creative delivers high-stakes technical direction, production engineering, and production management for global brands and artists, led by Executive Technical Producer Daniel Jongen.",
@@ -69,10 +69,10 @@ export const metadata: Metadata = {
     "Best Production Manager",
   ],
   authors: [{ name: "Daniel Jongen" }, { name: "TC Agency" }, { name: "Technically Creative" }],
-  creator: "Daniel Jongen — Technically Creative LLC",
+  creator: "Daniel Jongen, Technically Creative LLC",
   publisher: "TC Agency",
   metadataBase: new URL("https://www.tc.agency"),
-  applicationName: "TC Agency — Technical Direction & Production Engineering",
+  applicationName: "TC Agency: Technical Direction & Production Engineering",
   alternates: {
     canonical: "https://www.tc.agency",
   },
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://www.tc.agency",
-    siteName: "TC Agency — Technically Creative",
+    siteName: "TC Agency | Technically Creative",
     title: "Technical Direction and Production Engineering | TC Agency",
     description:
       "Technically Creative delivers high-stakes technical direction, production engineering, and production management for global brands and artists, led by Executive Technical Producer Daniel Jongen.",
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Technically Creative — We Make Impossible Shows Run",
+        alt: "Technically Creative: We Make Impossible Shows Run",
       },
     ],
   },
@@ -100,7 +100,7 @@ export const metadata: Metadata = {
     title: "Technical Direction and Production Engineering | TC Agency",
     description:
       "Technically Creative delivers high-stakes technical direction, production engineering, and production management for global brands and artists, led by Executive Technical Producer Daniel Jongen.",
-    images: [{ url: "/og-image.png", alt: "Technically Creative — We Make Impossible Shows Run" }],
+    images: [{ url: "/og-image.png", alt: "Technically Creative: We Make Impossible Shows Run" }],
   },
   robots: {
     index: true,
@@ -146,16 +146,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" className={`dark ${inter.variable} ${spaceMono.variable}`} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.clarity.ms" />
         <link rel="dns-prefetch" href="https://vercel.live" />
+        {/* Reveal engine: must run before <body> parses so armed elements never flash. */}
+        <script dangerouslySetInnerHTML={{ __html: REVEAL_SCRIPT }} />
       </head>
-      <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground selection:bg-accent selection:text-white`}
-      >
+      <body className="antialiased bg-background text-foreground selection:bg-accent selection:text-white">
         <ScrollToTop />
         <a
           href="#main-content"
@@ -164,11 +164,14 @@ export default function RootLayout({
           Skip to main content
         </a>
         <NextAnalytics />
-        <CustomCursor />
-        <SmoothScroll>{children}</SmoothScroll>
-        <CookieConsent />
+        <MotionProvider>
+          <CustomCursor />
+          <SmoothScroll>{children}</SmoothScroll>
+          <CookieConsent />
+        </MotionProvider>
         <VercelAnalytics />
         <SpeedInsights />
+        <PageTransitions />
       </body>
     </html>
   )
