@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "product": "Layout Points + Datum Label Studio",
+  "publisher": "Technically Creative LLC",
+  "updatedAt": "2026-09-29",
+  "publication": {
+    "approved": false,
+    "approvedBy": null,
+    "approvedAt": null,
+    "commercialModel": "undecided",
+    "releaseLabel": null
+  },
+  "platform": {
+    "minimumMacos": "13",
+    "architectures": ["arm64"],
+    "offline": true
+  },
+  "gates": [
+    { "id": "clean-tags", "label": "Both products built from clean, committed, immutable release tags", "status": "blocked", "owner": "release engineering" },
+    { "id": "public-version", "label": "New clean public version chosen (internal 0.1.21 is not reused)", "status": "blocked", "owner": "release engineering" },
+    { "id": "bundle-id", "label": "Datum Label Studio has a publisher-owned bundle identifier", "status": "blocked", "owner": "owner decision" },
+    { "id": "hardened-runtime", "label": "Hardened runtime enabled", "status": "blocked", "owner": "release engineering" },
+    { "id": "developer-id", "label": "Signed with Apple Developer ID Application credentials", "status": "blocked", "owner": "owner credentials" },
+    { "id": "notarised", "label": "Distributed artifact notarised and stapled", "status": "blocked", "owner": "release engineering" },
+    { "id": "gatekeeper-verified", "label": "Downloaded artifact verified with codesign, spctl and stapler", "status": "blocked", "owner": "release engineering" },
+    { "id": "architecture", "label": "Universal build tested, or labelled Apple silicon only", "status": "blocked", "owner": "owner decision" },
+    { "id": "layout-points-clean", "label": "Layout Points rebuilt with source_dirty: false", "status": "blocked", "owner": "release engineering" },
+    { "id": "internal-checksums", "label": "Every internal manifest and adjacent checksum verified", "status": "blocked", "owner": "release engineering" },
+    { "id": "guided-installer", "label": "Guided Layout Points installer (no Terminal for first-time customers)", "status": "blocked", "owner": "release engineering" },
+    { "id": "host-matrix", "label": "Vectorworks host acceptance matrix complete for every claimed version", "status": "blocked", "owner": "QA" },
+    { "id": "end-to-end", "label": "Point placement through corrected physical print completed", "status": "blocked", "owner": "QA" },
+    { "id": "evidence", "label": "Evidence separates software success, print submission and physical verification", "status": "blocked", "owner": "QA" },
+    { "id": "eula", "label": "Licence terms or EULA approved", "status": "blocked", "owner": "owner and counsel" },
+    { "id": "third-party-notices", "label": "Third-party notices complete", "status": "blocked", "owner": "release engineering" },
+    { "id": "asset-rights", "label": "Rights confirmed for sample wrapper, jsPDF, fonts, icon, screenshots and brand assets", "status": "blocked", "owner": "owner" },
+    { "id": "support-ownership", "label": "Support ownership and security reporting defined", "status": "blocked", "owner": "owner decision" },
+    { "id": "commercial-model", "label": "Free public beta or paid product decided", "status": "blocked", "owner": "owner decision" },
+    { "id": "entitlement", "label": "Real entitlement implemented and tested (paid only)", "status": "blocked", "owner": "engineering" },
+    { "id": "website-bytes", "label": "Files downloaded from the website match the approved release checksums", "status": "blocked", "owner": "release engineering" }
+  ],
+  "components": {
+    "layout-points": {
+      "name": "Layout Points for Vectorworks",
+      "shortName": "Layout Points",
+      "kind": "Vectorworks plug-in",
+      "current": null,
+      "previous": []
+    },
+    "datum-label-studio": {
+      "name": "Datum Label Studio",
+      "shortName": "Datum Label Studio",
+      "kind": "macOS application",
+      "current": null,
+      "previous": []
+    }
+  },
+  "knownIssues": [
+    {
+      "id": "apple-silicon-only",
+      "component": "datum-label-studio",
+      "summary": "Datum Label Studio currently runs on Apple silicon Macs only. Intel Macs are not supported.",
+      "status": "open"
+    },
+    {
+      "id": "manual-updates",
+      "component": "both",
+      "summary": "There is no automatic updater. Updates are downloaded and installed manually.",
+      "status": "by design"
+    },
+    {
+      "id": "physical-print",
+      "component": "datum-label-studio",
+      "summary": "Physical output varies by printer, driver, stock, feed direction and imageable area. Calibrate every printer and stock combination before production printing.",
+      "status": "by design"
+    }
+  ]
+}

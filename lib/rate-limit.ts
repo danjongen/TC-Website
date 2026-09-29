@@ -264,3 +264,48 @@ export async function rateLimitPowerSymbolsFreeBeta(email: string): Promise<{
     }
   }
 }
+
+/**
+ * Rate limit Layout Points release-list and support submissions by IP and,
+ * when supplied, by a hash of the email (never the raw address).
+ */
+export async function rateLimitLayoutPoints(
+  kind: "release-list" | "support",
+  email?: string,
+): Promise<{
+  allowed: boolean
+  result: RateLimitResult
+  ip: string
+}> {
+  const ip = await getClientIp()
+  const checks: Array<[string, RateLimitConfig]> = [
+    [`layout-points-${kind}:burst:${ip}`, { limit: 3, window: 10 * 60 }],
+    [`layout-points-${kind}:hourly:${ip}`, { limit: 8, window: 60 * 60 }],
+  ]
+  if (email) {
+    const emailKey = createHash("sha256").update(email.trim().toLowerCase()).digest("hex").slice(0, 24)
+    checks.push([`layout-points-${kind}:email:${emailKey}`, { limit: kind === "support" ? 6 : 2, window: 24 * 60 * 60 }])
+  }
+  const hasRedis = process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
+
+  try {
+    const results = hasRedis
+      ? await Promise.all(checks.map(([key, config]) => rateLimitRedis(key, config)))
+      : checks.map(([key, config]) => rateLimitMemory(key, config))
+    const failed = results.find((result) => !result.success)
+    return { allowed: !failed, result: failed || results[results.length - 1], ip }
+  } catch (error) {
+    console.error("[Layout Points Rate Limit] Error:", error)
+    return {
+      allowed: true,
+      result: {
+        success: true,
+        limit: 8,
+        remaining: 8,
+        reset: Math.floor(Date.now() / 1000) + 60 * 60,
+        error: "Rate limit check failed",
+      },
+      ip,
+    }
+  }
+}

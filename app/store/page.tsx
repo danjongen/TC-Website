@@ -2,15 +2,17 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { POWER_SYMBOLS_VERSION } from "@/lib/power-symbols-version"
+import { compatibilityLine, isPublicDownloadEnabled } from "@/lib/layout-points/release"
 
 import { Footer } from "@/components/footer"
 import { CueLabel } from "@/components/motion/cue-label"
 import { Navbar } from "@/components/navbar"
 
 import { storeProducts } from "./products"
+import "./layout-points/layout-points.css"
 
 const description =
-  "Purpose-built hardware and software for live production, including the TC SSL Shelf for SSL Live consoles and Power Symbols for Vectorworks."
+  "Purpose-built hardware and software for live production, including the TC SSL Shelf for SSL Live consoles, Power Symbols for Vectorworks and Layout Points + Datum Label Studio."
 
 export const metadata: Metadata = {
   title: "Store | Live Production Field Tools",
@@ -42,7 +44,11 @@ const catalogJsonLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Technically Creative Store",
-  itemListElement: storeProducts.map((product, index) => ({
+  itemListElement: [
+    ...storeProducts.map((product) => ({ name: product.name, href: product.href })),
+    { name: "Power Symbols", href: "/store/power-symbols" },
+    { name: "Layout Points + Datum Label Studio", href: "/store/layout-points" },
+  ].map((product, index) => ({
     "@type": "ListItem",
     position: index + 1,
     name: product.name,
@@ -52,6 +58,7 @@ const catalogJsonLd = {
 
 export default function StorePage() {
   const product = storeProducts[0]
+  const layoutPointsReleased = isPublicDownloadEnabled()
 
   return (
     <>
@@ -218,10 +225,91 @@ export default function StorePage() {
           </div>
         </section>
 
+        <section
+          id="layout-points"
+          className="border-t border-zinc-800"
+          aria-labelledby="layout-points-heading"
+        >
+          <div className="mx-auto w-full max-w-[1600px] px-6 py-16 md:px-12 md:py-24">
+            <div className="mb-8 flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
+              <CueLabel index="03" className="whitespace-nowrap font-mono text-xs uppercase tracking-[0.25em] text-zinc-400">
+                SOFTWARE TOOL
+              </CueLabel>
+              <p
+                data-reveal="fade"
+                className={`whitespace-nowrap font-mono text-xs uppercase tracking-[0.2em] ${layoutPointsReleased ? "text-[#00D26A]" : "text-amber-300"}`}
+              >
+                {layoutPointsReleased ? "Available now" : "In preparation"}
+              </p>
+            </div>
+
+            <Link
+              href="/store/layout-points"
+              className="group grid border border-zinc-800 bg-zinc-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D26A] focus-visible:ring-inset md:grid-cols-[1.1fr_0.9fr]"
+            >
+              <div className="border-b border-zinc-800 p-7 md:border-b-0 md:border-r md:p-10 lg:p-12">
+                <p data-reveal="fade" className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-400">
+                  Vectorworks plug-in + Mac app
+                </p>
+                <h2
+                  id="layout-points-heading"
+                  data-reveal="rise"
+                  data-vt-source="title"
+                  className="mt-16 text-5xl font-semibold leading-[0.88] tracking-[-0.055em] sm:text-6xl lg:text-7xl"
+                >
+                  Layout
+                  <br />
+                  Points
+                </h2>
+                <p data-reveal="fade" className="mt-5 font-mono text-xs uppercase tracking-[0.15em] text-[#00D26A]">
+                  + Datum Label Studio
+                </p>
+                <p data-reveal="fade" className="mt-7 max-w-xl leading-relaxed text-zinc-300">
+                  From Vectorworks datum to physical datum. Place and number layout points, export one verified field
+                  package, then calibrate and print exact datum labels locally on your Mac.
+                </p>
+              </div>
+
+              <div className="flex flex-col justify-between gap-10 p-7 md:p-10 lg:p-12">
+                <svg
+                  viewBox="0 0 320 170"
+                  aria-hidden="true"
+                  className="block h-auto w-full max-w-md"
+                >
+                  <rect x="40" y="20" width="240" height="130" fill="#fafafa" />
+                  <rect x="40" y="20" width="240" height="8" fill="#00D26A" />
+                  <text x="56" y="56" fontSize="18" fontWeight="700" fill="#000" className="font-mono">
+                    STG-003
+                  </text>
+                  <g stroke="#000" strokeWidth="2" fill="none">
+                    <circle cx="160" cy="95" r="10" />
+                    <line x1="142" y1="95" x2="178" y2="95" />
+                    <line x1="160" y1="77" x2="160" y2="113" />
+                  </g>
+                  <circle cx="160" cy="95" r="3" fill="#00D26A" />
+                  <circle className="lp-hover-ping" cx="160" cy="95" r="12" fill="none" stroke="#00D26A" strokeWidth="2" opacity="0" />
+                </svg>
+                <div>
+                  <p data-reveal="fade" className="font-mono text-[11px] uppercase leading-relaxed tracking-[0.14em] text-zinc-400">
+                    {compatibilityLine().join(" · ")}
+                  </p>
+                  <span
+                    data-reveal="fade"
+                    className="mt-6 flex items-center justify-between border-t border-zinc-800 pt-6 font-mono text-xs font-bold uppercase tracking-[0.2em] text-white transition-colors duration-300 ease-expo group-hover:text-[#00D26A]"
+                  >
+                    {layoutPointsReleased ? "Get the Mac workflow" : "See the workflow"}
+                    <span aria-hidden="true">→</span>
+                  </span>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </section>
+
         <section className="border-t border-zinc-800">
           <div className="mx-auto grid w-full max-w-[1600px] gap-10 px-6 py-20 md:grid-cols-[1fr_auto] md:items-end md:px-12 md:py-28">
             <div>
-              <CueLabel index="03" className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-400">
+              <CueLabel index="04" className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-400">
                 WHAT SHOULD EXIST?
               </CueLabel>
               <h2 data-reveal="rise" className="mt-5 max-w-[17ch] text-3xl font-semibold tracking-[-0.03em] md:text-5xl">
