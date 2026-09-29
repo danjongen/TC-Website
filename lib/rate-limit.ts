@@ -2,6 +2,7 @@
 // Uses Upstash Redis when available, falls back to in-memory for development
 
 import { headers } from "next/headers"
+import { createHash } from "node:crypto"
 
 // In-memory store for development (not suitable for production multi-instance)
 const inMemoryStore = new Map<string, { count: number; resetAt: number }>()
@@ -206,6 +207,57 @@ export async function rateLimitContactForm(): Promise<{
         limit: hourlyConfig.limit,
         remaining: hourlyConfig.limit,
         reset: Math.floor(Date.now() / 1000) + hourlyConfig.window,
+        error: "Rate limit check failed",
+      },
+      ip,
+    }
+  }
+}
+
+/**
+ * Rate limit complimentary Power Symbols beta delivery by IP and email.
+ * The email is hashed before it becomes a storage key.
+ */
+export async function rateLimitPowerSymbolsFreeBeta(email: string): Promise<{
+  allowed: boolean
+  result: RateLimitResult
+  ip: string
+}> {
+  const ip = await getClientIp()
+  const emailKey = createHash("sha256")
+    .update(email.trim().toLowerCase())
+    .digest("hex")
+    .slice(0, 24)
+  const checks: Array<[string, RateLimitConfig]> = [
+    [`power-symbols-free:burst:${ip}`, { limit: 3, window: 10 * 60 }],
+    [`power-symbols-free:hourly:${ip}`, { limit: 8, window: 60 * 60 }],
+    [`power-symbols-free:email:${emailKey}`, { limit: 2, window: 24 * 60 * 60 }],
+  ]
+  const hasRedis =
+    process.env.UPSTASH_REDIS_REST_URL &&
+    process.env.UPSTASH_REDIS_REST_TOKEN
+
+  try {
+    const results = hasRedis
+      ? await Promise.all(
+          checks.map(([key, config]) => rateLimitRedis(key, config)),
+        )
+      : checks.map(([key, config]) => rateLimitMemory(key, config))
+    const failed = results.find((result) => !result.success)
+    return {
+      allowed: !failed,
+      result: failed || results[results.length - 1],
+      ip,
+    }
+  } catch (error) {
+    console.error("[Power Symbols Free Beta Rate Limit] Error:", error)
+    return {
+      allowed: true,
+      result: {
+        success: true,
+        limit: 8,
+        remaining: 8,
+        reset: Math.floor(Date.now() / 1000) + 60 * 60,
         error: "Rate limit check failed",
       },
       ip,

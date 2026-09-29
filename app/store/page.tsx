@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { POWER_SYMBOLS_VERSION } from "@/lib/power-symbols-version"
 
 import { Footer } from "@/components/footer"
 import { CueLabel } from "@/components/motion/cue-label"
@@ -161,7 +162,7 @@ export default function StorePage() {
                 SOFTWARE TOOL
               </CueLabel>
               <p data-reveal="fade" className="whitespace-nowrap font-mono text-xs uppercase tracking-[0.2em] text-amber-300">
-                Open beta
+                Paid beta
               </p>
             </div>
 
@@ -197,9 +198,12 @@ export default function StorePage() {
                   <li data-reveal="fade" className="py-4">
                     One-click Power Distribution Schedule
                   </li>
+                  <li data-reveal="fade" className="py-4">
+                    3D cable routing + length takeoff roadmap
+                  </li>
                 </ul>
                 <p data-reveal="fade" className="mt-8 font-mono text-[11px] uppercase tracking-[0.14em] text-zinc-500">
-                  Vectorworks 2026 · macOS · Beta 0.2.2
+                  Vectorworks 2026 · macOS · Beta {POWER_SYMBOLS_VERSION}
                 </p>
                 <Link
                   data-reveal="fade"

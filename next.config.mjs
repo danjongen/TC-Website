@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  outputFileTracingIncludes: {
+    '/api/power-symbols/download': ['./private/power-symbols/**'],
+  },
+
   // Enable React strict mode for better error detection
   reactStrictMode: true,
 
