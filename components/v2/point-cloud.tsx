@@ -154,27 +154,28 @@ function perspective(out: Float32Array, aspect: number) {
 
 /**
  * View * model for a camera at (0, 0, camZ) looking down -Z and a model
- * rotated by Euler (rx, ry, 0) in three's default XYZ order (R = Rx * Ry).
+ * rotated by Euler (rx, ry, 0) in three's default XYZ order (R = Rx * Ry),
+ * then uniformly scaled by s (cover-fit after a resize, see resize()).
  */
-function modelView(out: Float32Array, rx: number, ry: number, camZ: number) {
+function modelView(out: Float32Array, rx: number, ry: number, camZ: number, s = 1) {
   const a = Math.cos(rx)
   const b = Math.sin(rx)
   const c = Math.cos(ry)
   const d = Math.sin(ry)
   // column 0
-  out[0] = c
-  out[1] = b * d
-  out[2] = -a * d
+  out[0] = c * s
+  out[1] = b * d * s
+  out[2] = -a * d * s
   out[3] = 0
   // column 1
   out[4] = 0
-  out[5] = a
-  out[6] = b
+  out[5] = a * s
+  out[6] = b * s
   out[7] = 0
   // column 2
-  out[8] = d
-  out[9] = -b * c
-  out[10] = a * c
+  out[8] = d * s
+  out[9] = -b * c * s
+  out[10] = a * c * s
   out[11] = 0
   // column 3: camera translation
   out[12] = 0
@@ -212,6 +213,9 @@ export function PointCloud({
 }) {
   const mountRef = useRef<HTMLDivElement>(null)
   const [failed, setFailed] = useState(false)
+  // Bumped when the viewport changes shape a lot (e.g. a phone rotating): the
+  // effect re-runs and rebuilds a grid in the new shape.
+  const [epoch, setEpoch] = useState(0)
 
   useEffect(() => {
     const mount = mountRef.current
@@ -345,7 +349,8 @@ export function PointCloud({
     // original 4.6-unit grid did on a 16:10 screen.
     const viewW = mount.clientWidth || window.innerWidth
     const viewH = mount.clientHeight || window.innerHeight
-    const gridAspect = Math.min(2.4, Math.max(0.4, viewW / viewH))
+    const mountAspect = viewW / viewH
+    const gridAspect = Math.min(2.4, Math.max(0.4, mountAspect))
     const OVERSCAN = 1.08
     const frustumH = 2 * 3.2 * Math.tan(FOV_Y / 2)
     const GRID_H = frustumH * OVERSCAN
@@ -412,7 +417,7 @@ export function PointCloud({
       // slow 3D presence: the whole cloud breathes and banks
       const ry = Math.sin(t * 0.1) * 0.025 + mouse.x * 0.05
       const rx = Math.cos(t * 0.13) * 0.015 - mouse.y * 0.035
-      modelView(mvMat, rx, ry, 3.2 + Math.sin(t * 0.15) * 0.08)
+      modelView(mvMat, rx, ry, 3.2 + Math.sin(t * 0.15) * 0.08, coverScale)
       gl.uniformMatrix4fv(loc.modelView, false, mvMat)
       gl.uniformMatrix4fv(loc.projection, false, proj)
       gl.uniform1f(loc.progress, progress)
@@ -509,6 +514,12 @@ export function PointCloud({
 
     let cw = 0
     let ch = 0
+    // The grid is shaped for the viewport at mount. If the viewport changes
+    // shape later (rotation, window resize), scale the whole cloud so it
+    // still covers the frustum, like object-cover on a fixed-ratio image,
+    // instead of leaving black bands at the sides or top.
+    let coverScale = 1
+    let reshapeTimer: ReturnType<typeof setTimeout> | null = null
     const resize = () => {
       if (!gl || lost) return
       const w = mount.clientWidth
@@ -522,6 +533,12 @@ export function PointCloud({
         gl.viewport(0, 0, bw, bh)
       }
       perspective(proj, w / h)
+      coverScale = Math.max(1, (frustumH * (w / h) * OVERSCAN) / GRID_W, (frustumH * OVERSCAN) / GRID_H)
+      // A big change of shape: rebuild rather than stretch the grid thin.
+      if (reshapeTimer) clearTimeout(reshapeTimer)
+      if (Math.abs(Math.log(w / h / mountAspect)) > Math.log(1.5)) {
+        reshapeTimer = setTimeout(() => setEpoch((e) => e + 1), 300)
+      }
       requestFrame()
     }
     resize()
@@ -579,6 +596,7 @@ export function PointCloud({
     return () => {
       cancelled = true
       running = false
+      if (reshapeTimer) clearTimeout(reshapeTimer)
       cancelAnimationFrame(raf)
       raf = 0
       if (handlesRef && handlesRef.current === handles) handlesRef.current = null
@@ -604,7 +622,7 @@ export function PointCloud({
       }
       if (canvas.parentElement === mount) mount.removeChild(canvas)
     }
-  }, [images, interval, onReady, onSlide, handlesRef])
+  }, [images, interval, onReady, onSlide, handlesRef, epoch])
 
   if (failed) {
     // eslint-disable-next-line @next/next/no-img-element

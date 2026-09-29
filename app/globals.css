@@ -281,19 +281,9 @@
   }
 }
 
-/* data-reveal="resolve": photos assemble from a dot grid. The reveal script
-   animates --tc-dot from -1px; at rest it is 7px, which covers every cell. */
-@property --tc-dot {
-  syntax: "<length>";
-  inherits: false;
-  initial-value: 7px;
-}
-[data-reveal="resolve"] {
-  -webkit-mask-image: radial-gradient(circle, #000 var(--tc-dot), transparent calc(var(--tc-dot) + 0.6px));
-  mask-image: radial-gradient(circle, #000 var(--tc-dot), transparent calc(var(--tc-dot) + 0.6px));
-  -webkit-mask-size: 7px 7px;
-  mask-size: 7px 7px;
-}
+/* data-reveal="resolve": photos assemble from a 7px dot grid. The mask lives
+   entirely in the reveal script's keyframes, so a resolved photo has no mask
+   at rest and costs nothing extra to repaint on hover. No CSS needed here. */
 
 /* Homepage HUD fades in once the hero headline has landed. */
 .tc-hud {

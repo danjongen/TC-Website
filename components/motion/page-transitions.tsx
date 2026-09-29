@@ -24,7 +24,7 @@ import { usePathname, useRouter } from "next/navigation"
  * API, and any link with data-transition="off". Those behave exactly as before.
  */
 
-type ViewTransitionLike = { finished: Promise<void> }
+type ViewTransitionLike = { finished: Promise<void>; skipTransition: () => void }
 type VTDocument = Document & {
   startViewTransition?: (update: () => Promise<void>) => ViewTransitionLike
 }
@@ -88,18 +88,27 @@ export function PageTransitions() {
         () =>
           new Promise<void>((resolve) => {
             let settled = false
-            const finish = () => {
+            const finish = (committed: boolean) => {
               if (settled) return
               settled = true
               clearTimeout(timer)
               pending.current = null
+              if (!committed) {
+                // The route is still loading and the old page is still mounted:
+                // re-enabling names now could duplicate one (the old page's own
+                // h1 plus the clicked source), and a wipe would only reveal the
+                // same page. Skip the animation; the route lands when it lands.
+                resolve()
+                transition.skipTransition()
+                return
+              }
               // Re-enable only the destination names that have a source to morph from.
               root.dataset.vtStatic = kinds.size ? [...kinds].join(" ") : "off"
               root.dataset.vtActive = "1"
               resolve()
             }
-            const timer = setTimeout(finish, FAILSAFE_MS)
-            pending.current = finish
+            const timer = setTimeout(() => finish(false), FAILSAFE_MS)
+            pending.current = () => finish(true)
             routerRef.current.push(href)
           }),
       )

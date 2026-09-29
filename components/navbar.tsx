@@ -2,8 +2,8 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useEffect, useRef, useState } from "react"
-import { AnimatePresence, m, useReducedMotion } from "framer-motion"
+import { useEffect, useRef, useState, type ComponentProps } from "react"
+import { AnimatePresence, m, useIsPresent, useReducedMotion } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { DUR, EASE_EXPO, STAGGER } from "@/lib/motion"
 
@@ -42,6 +42,17 @@ function activeHref(pathname: string) {
 
 const FOCUSABLE = "a[href], button:not(:disabled)"
 const DESKTOP = "(min-width: 1024px)"
+
+/**
+ * An m.div that stops taking pointer events the moment its exit animation
+ * starts. AnimatePresence keeps the closing overlay mounted (with its last
+ * props) for the exit, and without this it would swallow clicks meant for
+ * the page underneath.
+ */
+function ExitSafeDiv({ style, ...props }: ComponentProps<typeof m.div>) {
+  const isPresent = useIsPresent()
+  return <m.div {...props} style={{ ...style, pointerEvents: isPresent ? undefined : "none" }} />
+}
 
 type LenisLike = { stop: () => void; start: () => void }
 
@@ -185,7 +196,7 @@ export function Navbar() {
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
-            aria-controls="mobile-menu"
+            aria-controls={isOpen ? "mobile-menu" : undefined}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -195,7 +206,7 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           // Scrolls on its own on short viewports; data-lenis-prevent lets native scroll through while Lenis is stopped.
-          <m.div
+          <ExitSafeDiv
             key="mobile-menu"
             id="mobile-menu"
             ref={menuRef}
@@ -257,7 +268,7 @@ export function Navbar() {
                 </Link>
               ))}
             </nav>
-          </m.div>
+          </ExitSafeDiv>
         )}
       </AnimatePresence>
     </>

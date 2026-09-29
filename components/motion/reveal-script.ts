@@ -33,13 +33,23 @@ export const REVEAL_SCRIPT = `(function () {
     if (!window.IntersectionObserver || !window.MutationObserver || !Element.prototype.animate) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     var EXPO = "cubic-bezier(0.16, 1, 0.3, 1)";
+    // The dot mask is spelled out as stepped keyframes rather than a var():
+    // engines resolve var() in animated keyframes once, not per frame. Mask
+    // images animate discretely, so 16 steps on the expo curve read as a
+    // smooth assembly, and the mask exists only while the photo resolves.
+    var DOT_STEPS = [];
+    for (var s = 0; s <= 16; s++) {
+      var r = (-1 + (s / 16) * 8).toFixed(2) + "px";
+      var g = "radial-gradient(circle, #000 " + r + ", transparent calc(" + r + " + 0.6px))";
+      DOT_STEPS.push({ offset: s / 16, maskImage: g, webkitMaskImage: g, maskSize: "7px 7px", webkitMaskSize: "7px 7px" });
+    }
     var FX = {
       rise: { t: 900, k: [
         { translate: "0 100%", clipPath: "inset(-0.25em -0.25em 100% -0.25em)" },
         { translate: "0 0", clipPath: "inset(-0.25em -0.25em -0.35em -0.25em)" }
       ] },
       fade: { t: 600, k: [{ opacity: 0, translate: "0 16px", offset: 0 }] },
-      resolve: { t: 1100, k: [{ "--tc-dot": "-1px", offset: 0 }] },
+      resolve: { t: 1100, k: DOT_STEPS },
       line: { t: 900, k: [{ scale: "0 1", offset: 0 }] }
     };
     var armed = new WeakMap();

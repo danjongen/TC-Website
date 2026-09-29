@@ -19,12 +19,17 @@ const SPRING = { stiffness: 500, damping: 40 }
 const RING = 40
 const RING_LABEL = 72
 
+// One MediaQueryList for the page: getSnapshot runs on every render and
+// consistency check, so do not allocate a new one each time.
+let mql: MediaQueryList | null = null
+const getMql = () => (mql ??= window.matchMedia(QUERY))
+
 function subscribe(onChange: () => void) {
-  const mq = window.matchMedia(QUERY)
+  const mq = getMql()
   mq.addEventListener("change", onChange)
   return () => mq.removeEventListener("change", onChange)
 }
-const getSnapshot = () => window.matchMedia(QUERY).matches
+const getSnapshot = () => getMql().matches
 const getServerSnapshot = () => false
 
 export function CustomCursor() {
@@ -45,7 +50,6 @@ function Reticle() {
   const sy = useSpring(y, SPRING)
 
   useEffect(() => {
-    let lastTarget: Element | null = null
     let inside = false
     let px = 0
     let py = 0
@@ -59,9 +63,10 @@ function Reticle() {
       setState(next)
     }
 
+    // Re-evaluated on every move rather than only when the target changes, so a
+    // target that changes under a still pointer (a button disabling itself on
+    // submit, a label swap) is picked up. commit() keeps React quiet otherwise.
     const resolve = (target: Element | null) => {
-      if (target === lastTarget) return
-      lastTarget = target
       const hit = target ? target.closest(INTERACTIVE) : null
       const label = hit ? (target!.closest("[data-cursor-label]")?.getAttribute("data-cursor-label") ?? "").trim() : ""
       commit({ on: !!hit, labelled: !!label, text: label || stateRef.current.text })
@@ -69,7 +74,6 @@ function Reticle() {
 
     const hide = () => {
       inside = false
-      lastTarget = null
       commit({ ...stateRef.current, on: false, labelled: false })
     }
 
