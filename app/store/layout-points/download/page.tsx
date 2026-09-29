@@ -7,6 +7,7 @@ import { productFacts } from "@/lib/layout-points/product-facts"
 import {
   architectureLabel,
   currentRelease,
+  downloadAccess,
   formatBytes,
   isPublicDownloadEnabled,
   manifest,
@@ -64,6 +65,7 @@ function DocLink({ href, children, event }: { href: string; children: ReactNode;
 function Panel({ id }: { id: ComponentId }) {
   const component = manifest.components[id]
   const release: Release | null = currentRelease(id)
+  const access = downloadAccess()
   const isStudio = id === "datum-label-studio"
 
   return (
@@ -109,7 +111,7 @@ function Panel({ id }: { id: ComponentId }) {
       </dl>
 
       <div className="mt-8">
-        {release ? (
+        {release && access === "public" ? (
           <DownloadButton
             href={release.url}
             filename={release.filename}
@@ -118,12 +120,16 @@ function Panel({ id }: { id: ComponentId }) {
             label={isStudio ? "Download for Mac" : "Download installer"}
             className={primaryButton}
           />
+        ) : release && access === "purchase" ? (
+          <p className="border border-zinc-700 px-6 py-5 text-sm leading-relaxed text-zinc-300">
+            Included with the paid beta. Your private download link and licence arrive by email after purchase.
+          </p>
         ) : (
           <p className="border border-dashed border-zinc-700 px-6 py-5 font-mono text-xs font-bold uppercase tracking-[0.18em] text-zinc-400">
             Not yet available
           </p>
         )}
-        {release?.advancedZip && (
+        {release?.advancedZip && access === "public" && (
           <p className="mt-4 text-sm text-zinc-400">
             Advanced:{" "}
             <DownloadButton
@@ -231,12 +237,12 @@ export default function DownloadPage() {
             <p
               className={`font-mono text-xs uppercase tracking-[0.2em] ${released ? "text-[#00D26A]" : "text-amber-300"}`}
             >
-              {released ? "Public release" : "Public release in preparation"}
+              {released ? (manifest.publication.releaseLabel ?? "Public release") : "Paid beta in preparation"}
             </p>
             <p className="mt-4 leading-relaxed text-zinc-300">
               {released
                 ? "Every file below is versioned and never replaced. Check the SHA-256 after downloading."
-                : "No public files are published yet. Values fill in from the release manifest when signed, notarised builds pass release testing."}
+                : "Nothing is on sale or published yet. Values fill in from the release manifest when signed, notarised builds pass release testing and the paid beta opens."}
             </p>
             {!released && (
               <a href="#release-list" className={`${primaryButton} mt-6`}>
@@ -261,7 +267,9 @@ export default function DownloadPage() {
       </section>
 
       <section id="verify" className="scroll-mt-24 border-b border-zinc-800">
-        <div className={`${container} grid grid-cols-1 gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]`}>
+        <div
+          className={`${container} grid grid-cols-1 gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]`}
+        >
           <div>
             <CueLabel index="01" className={eyebrow}>
               VERIFY
@@ -336,7 +344,9 @@ export default function DownloadPage() {
       </section>
 
       <section id="setup-complete" className="scroll-mt-24 border-b border-zinc-800">
-        <div className={`${container} grid grid-cols-1 gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]`}>
+        <div
+          className={`${container} grid grid-cols-1 gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]`}
+        >
           <div>
             <CueLabel index="03" className={eyebrow}>
               SETUP COMPLETE
@@ -425,7 +435,9 @@ export default function DownloadPage() {
 
       {!released && (
         <section id="release-list" className="scroll-mt-24">
-          <div className={`${container} grid grid-cols-1 gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]`}>
+          <div
+            className={`${container} grid grid-cols-1 gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]`}
+          >
             <div>
               <CueLabel index="05" className={eyebrow}>
                 RELEASE LIST

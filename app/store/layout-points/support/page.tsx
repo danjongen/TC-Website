@@ -106,7 +106,9 @@ export default function SupportPage() {
         aria-labelledby="contact-heading"
         className="scroll-mt-24 border-t border-zinc-800 bg-zinc-950"
       >
-        <div className={`${container} grid grid-cols-1 gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)]`}>
+        <div
+          className={`${container} grid grid-cols-1 gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)]`}
+        >
           <div>
             <CueLabel index="01" className={eyebrow}>
               CONTACT SUPPORT
@@ -142,7 +144,9 @@ export default function SupportPage() {
       </section>
 
       <section id="faq" aria-labelledby="support-faq-heading" className="scroll-mt-24 border-t border-zinc-800">
-        <div className={`${container} grid grid-cols-1 gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,0.6fr)_minmax(0,1.4fr)]`}>
+        <div
+          className={`${container} grid grid-cols-1 gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,0.6fr)_minmax(0,1.4fr)]`}
+        >
           <div>
             <CueLabel index="02" className={eyebrow}>
               FAQ

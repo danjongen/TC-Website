@@ -239,7 +239,7 @@ export default function StorePage() {
                 data-reveal="fade"
                 className={`whitespace-nowrap font-mono text-xs uppercase tracking-[0.2em] ${layoutPointsReleased ? "text-[#00D26A]" : "text-amber-300"}`}
               >
-                {layoutPointsReleased ? "Available now" : "In preparation"}
+                {layoutPointsReleased ? "Paid beta" : "Paid beta in preparation"}
               </p>
             </div>
 

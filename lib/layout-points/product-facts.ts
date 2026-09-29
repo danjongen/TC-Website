@@ -40,9 +40,9 @@ export const productFacts = {
     note: "Where Datum Label Studio keeps label edits, departments and printer corrections. Confirm against the release bundle identifier.",
   },
   studioPreferencesDomain: {
-    value: "the Datum Label Studio preferences file in ~/Library/Preferences",
+    value: "~/Library/Preferences/agency.tc.datumlabelstudio.plist",
     confirmed: false,
-    note: "Depends on the final publisher bundle identifier.",
+    note: "Bundle identifier decided 2026-09-29 (agency.tc.datumlabelstudio). Confirm the app stores preferences under it once built.",
   },
   calibrationInputs: {
     value: "four measured frame gaps and two ruler lengths",

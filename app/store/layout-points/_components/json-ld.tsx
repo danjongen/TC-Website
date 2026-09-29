@@ -1,4 +1,4 @@
-import { manifest, currentRelease, isPublicDownloadEnabled, type ComponentId } from "@/lib/layout-points/release"
+import { currentRelease, downloadAccess, manifest, type ComponentId } from "@/lib/layout-points/release"
 
 export const SITE = "https://www.tc.agency"
 export const PRODUCT_URL = `${SITE}/store/layout-points`
@@ -54,23 +54,49 @@ export function softwareJsonLd(id: ComponentId) {
   if (release) {
     data.softwareVersion = release.version
     data.datePublished = release.releaseDate
-    data.downloadUrl = release.url
     data.fileSize = `${release.sizeBytes}`
     data.releaseNotes = release.releaseNotesUrl
-    if (manifest.publication.commercialModel === "free-beta") {
-      data.offers = { "@type": "Offer", price: "0", priceCurrency: "USD", availability: "https://schema.org/InStock" }
-    }
+    // A paid beta never publishes its file URL; buyers get it through their purchase.
+    if (downloadAccess() === "public") data.downloadUrl = release.url
+    const offer = productOffer()
+    if (offer) data.offers = offer
   }
   return data
 }
 
+/** The one real offer, or null while there is nothing to buy or download. */
+function productOffer() {
+  const access = downloadAccess()
+  const { price, currency, checkoutUrl } = manifest.publication
+  if (access === "public") {
+    return {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: `${PRODUCT_URL}/download`,
+    }
+  }
+  if (access === "purchase" && price && checkoutUrl) {
+    return {
+      "@type": "Offer",
+      price,
+      priceCurrency: currency ?? "USD",
+      availability: "https://schema.org/InStock",
+      url: `${PRODUCT_URL}/download`,
+    }
+  }
+  return null
+}
+
 /**
- * Product data needs a real offer. Until the owner has chosen free beta or
- * paid and the release is public, there is no offer to describe, so this
- * returns null rather than emitting an incomplete or invented one.
+ * Product data needs a real offer. Until there is something to download or
+ * a priced, live checkout, there is no offer to describe, so this returns
+ * null rather than emitting an incomplete or invented one.
  */
 export function productJsonLd() {
-  if (!isPublicDownloadEnabled() || manifest.publication.commercialModel !== "free-beta") return null
+  const offers = productOffer()
+  if (!offers) return null
   return {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -80,13 +106,7 @@ export function productJsonLd() {
     url: PRODUCT_URL,
     brand: { "@type": "Brand", name: "Technically Creative" },
     category: "Software",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-      availability: "https://schema.org/InStock",
-      url: `${PRODUCT_URL}/download`,
-    },
+    offers,
   }
 }
 

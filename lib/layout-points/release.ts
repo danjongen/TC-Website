@@ -21,6 +21,7 @@ export type ReleaseGate = {
   label: string
   status: GateStatus
   owner: string
+  note?: string
 }
 
 export type SignatureStatus = "developer-id" | "ad-hoc" | "unsigned" | "not-applicable"
@@ -81,6 +82,10 @@ export type ReleaseManifest = {
     approvedAt: string | null
     commercialModel: "undecided" | "free-beta" | "paid"
     releaseLabel: string | null
+    /** Paid only: the owner-set price and the live checkout. Null until decided. */
+    price?: string | null
+    currency?: string
+    checkoutUrl?: string | null
   }
   platform: {
     minimumMacos: string
@@ -154,13 +159,13 @@ function isImmutableUrl(url: string, version: string) {
 }
 
 /** Every reason the public download is not yet available. */
-export function publicationBlockers(m: ReleaseManifest = manifest): string[] {
+export function publicationBlockers(m: ReleaseManifest = manifest, facts: string[] = unconfirmedFacts()): string[] {
   const blockers: string[] = []
   if (!m.publication.approved) blockers.push("Owner approval to publish has not been recorded")
   for (const gate of m.gates) {
     if (gate.status !== "passed") blockers.push(gate.label)
   }
-  for (const fact of unconfirmedFacts()) blockers.push(`Unconfirmed product fact: ${fact}`)
+  for (const fact of facts) blockers.push(`Unconfirmed product fact: ${fact}`)
   for (const id of COMPONENT_IDS) {
     const current = m.components[id].current
     if (!current) {
@@ -172,8 +177,22 @@ export function publicationBlockers(m: ReleaseManifest = manifest): string[] {
   return blockers
 }
 
-export function isPublicDownloadEnabled(m: ReleaseManifest = manifest): boolean {
-  return publicationBlockers(m).length === 0
+export function isPublicDownloadEnabled(m: ReleaseManifest = manifest, facts?: string[]): boolean {
+  return publicationBlockers(m, facts).length === 0
+}
+
+/**
+ * How a released build reaches people. A free beta links the immutable file
+ * directly. A paid beta never shows the file URL publicly: buyers get it
+ * through their purchase, and checkout needs a price and a live checkout.
+ */
+export type DownloadAccess = "closed" | "public" | "purchase" | "purchase-pending"
+
+export function downloadAccess(m: ReleaseManifest = manifest, facts?: string[]): DownloadAccess {
+  if (!isPublicDownloadEnabled(m, facts)) return "closed"
+  if (m.publication.commercialModel === "free-beta") return "public"
+  if (m.publication.commercialModel === "paid" && m.publication.price && m.publication.checkoutUrl) return "purchase"
+  return "purchase-pending"
 }
 
 export function currentRelease(id: ComponentId, m: ReleaseManifest = manifest): Release | null {

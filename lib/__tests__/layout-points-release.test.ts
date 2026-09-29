@@ -7,6 +7,7 @@ import test from "node:test"
 import { productFacts } from "../layout-points/product-facts"
 import {
   compatibilityLine,
+  downloadAccess,
   isPublicDownloadEnabled,
   manifest,
   publicationBlockers,
@@ -108,4 +109,22 @@ test("any blocked gate keeps downloads closed", () => {
   const m = readyManifest()
   m.gates[0] = { ...m.gates[0], status: "blocked" }
   assert.equal(isPublicDownloadEnabled(m), false)
+})
+
+test("a paid beta never exposes a public file, and needs a price and checkout to sell", () => {
+  const confirmed: string[] = [] // every product fact confirmed
+  const paid = readyManifest()
+  paid.publication = { ...paid.publication, commercialModel: "paid", price: null, checkoutUrl: null }
+  assert.equal(downloadAccess(paid, confirmed), "purchase-pending")
+  paid.publication = { ...paid.publication, price: "49.00", checkoutUrl: "https://example.com/checkout" }
+  assert.equal(downloadAccess(paid, confirmed), "purchase")
+  assert.equal(downloadAccess(readyManifest(), confirmed), "public")
+  assert.equal(downloadAccess(readyManifest(), ["installerName: unconfirmed"]), "closed")
+})
+
+test("the committed manifest records the owner decisions", () => {
+  assert.equal(manifest.publication.commercialModel, "paid")
+  assert.equal(manifest.publication.approved, false)
+  assert.deepEqual(manifest.platform.architectures, ["arm64"])
+  assert.equal(downloadAccess(), "closed")
 })

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 
-import { COMPONENT_IDS, currentRelease, type ComponentId } from "@/lib/layout-points/release"
+import { COMPONENT_IDS, currentRelease, downloadAccess, type ComponentId } from "@/lib/layout-points/release"
 
 /**
  * Latest links. Redirect (302, never cached as permanent) to the immutable,
@@ -17,7 +17,9 @@ export async function GET(request: Request, { params }: { params: Promise<{ comp
     return NextResponse.redirect(base, { status: 302, headers: { "Cache-Control": "no-store" } })
   }
 
-  const release = currentRelease(component as ComponentId)
+  // Only a free public release has a public file. A paid beta is delivered
+  // through the purchase, so its Latest link never reveals the file URL.
+  const release = downloadAccess() === "public" ? currentRelease(component as ComponentId) : null
   if (!release) {
     base.searchParams.set("error", "unavailable")
     return NextResponse.redirect(base, { status: 302, headers: { "Cache-Control": "no-store" } })

@@ -64,7 +64,7 @@ export default function ChangelogPage() {
           </h2>
           {list.length === 0 ? (
             <div className="mt-8 max-w-3xl border-l-2 border-amber-300 pl-5">
-              <p className="text-2xl font-semibold tracking-[-0.03em]">No public release yet.</p>
+              <p className="text-2xl font-semibold tracking-[-0.03em]">No release yet.</p>
               <p className="mt-4 leading-relaxed text-zinc-300">
                 Internal development builds are not published. The first public version will be listed here with its
                 release date, SHA-256 checksums and notes for both components.{" "}

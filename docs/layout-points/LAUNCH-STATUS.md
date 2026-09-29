@@ -1,6 +1,6 @@
 # Layout Points + Datum Label Studio: launch status
 
-Status as of 2026-09-29: **website complete in preview, public release blocked.** The pages show "Join the release list". No file, checkout or production-ready claim is exposed.
+Status as of 2026-09-29: **website approved for publication in release-list mode; paid beta sales and downloads blocked.** The pages show "Join the release list". No file, checkout or production-ready claim is exposed.
 
 ## Route map
 
@@ -22,29 +22,39 @@ Status as of 2026-09-29: **website complete in preview, public release blocked.*
 - `lib/layout-points/release.ts`: validation. Downloads stay hidden unless approved, all gates pass, product facts are confirmed and both releases validate (Developer ID, notarised and stapled, clean tag, immutable HTTPS URL, verified Vectorworks versions, not 0.1.21).
 - `lib/layout-points/product-facts.ts`: docs details that must be checked against the release build.
 
-## Gate status (0 of 21 passed)
+## Owner decisions (2026-09-29)
 
-All gates in the manifest are `blocked`. The ones that need you:
+| Decision | Answer |
+|---|---|
+| Commercial model | **Paid beta.** Checkout stays closed until real entitlement is built and tested, and a price is set |
+| Publisher | **Technically Creative LLC**, bundle identifier **`agency.tc.datumlabelstudio`** |
+| Support inbox | **info@tc.agency** (security reports via `/security`) |
+| Mac support | **Apple silicon only** |
+| Website merge and publish | **Approved.** The site goes live in release-list mode. No files or checkout are exposed |
+| Apple Developer credentials | Owner to enrol; see the Apple checklist in the paperwork set |
+| Legal text | Drafts produced for the paid beta; owner reads before they go live and before the first sale |
 
-| Decision or input | Why it blocks | Default if you say nothing |
-|---|---|---|
-| Free public beta or paid | Decides checkout, entitlement, terms and schema offers | Free public beta (see below) |
-| Publisher legal name and bundle identifier | Signing identity and Studio data paths | Technically Creative LLC, `agency.tc.datumlabelstudio` |
-| Apple Developer credentials | Developer ID Application and Installer certificates, notarytool profile | None. Cannot proceed without them |
-| Support inbox | Where support and release-list mail goes | `info@tc.agency` (existing contact inbox). Override with `LAYOUT_POINTS_SUPPORT_EMAIL` |
-| Apple silicon only or Universal | Page copy and test matrix | Apple silicon only (already true, no extra test cost) |
-| Legal text approval | EULA and third-party notices drafts in this folder | Not published until approved |
-| Final approval to publish | `publication.approved` | Stays false |
+Release approval (`publication.approved` in the manifest) stays **false**. It is a per-release sign-off given once a signed, notarised, tested build exists, not a blanket approval now.
 
-## Commercial recommendation
+## Gate status (3 of 21 passed)
 
-- **Blind spot:** selling now means building entitlement, refunds and download protection for a product with zero verified Vectorworks versions and no physical print acceptance. Support cost will land before revenue does.
-- **Recommendation:** ship a free public beta first, time-boxed (for example 90 days), with the release list as the funnel. Price the 1.0 once the acceptance matrix and real support volume are known. Reuse the Power Symbols Shopify flow for 1.0 rather than a new provider.
-- **Why:** the release gates (signing, notarisation, host matrix, physical print) are the same either way; paid adds entitlement engineering, refund and webhook testing, and legal exposure on "fitness for purpose" for a survey-adjacent tool. Free beta gets field evidence faster and lets you quote real compatibility.
-- **Risk:** beta users anchor on free. Mitigate by stating the beta end date and 1.0 pricing intent on the download page.
-- **Confidence:** medium. I do not know your target volume or whether this is a lead magnet for TC services, which changes the answer.
+Passed: commercial model, architecture labelling, support ownership. Still blocked, and who owns them:
 
-Legal, tax and insurance flags: a paid tool used for set-out on live sites increases liability exposure; the EULA draft disclaims survey accuracy but have counsel confirm it for Michigan and for customers outside the US. Sales tax on digital goods varies by state and country; Shopify can collect it, a custom checkout cannot without extra work. Check that your professional liability or E&O cover extends to software products.
+| Blocker | Owner |
+|---|---|
+| Apple Developer Program enrolment, Developer ID Application and Installer certificates | Owner (Account Holder), then release engineering |
+| Bundle identifier built into Datum Label Studio | Release engineering |
+| Clean tags, new public version, hardened runtime, signing, notarisation, Gatekeeper verification | Release engineering |
+| Layout Points rebuilt clean, internal checksums verified, guided installer | Release engineering |
+| Vectorworks host matrix, end-to-end physical print, evidence | QA |
+| EULA, terms of sale, notices, asset rights | Owner (read and approve drafts) |
+| Paid entitlement in both apps, protected delivery, and payment-state tests | Engineering |
+| Price | Owner |
+| Hosted bytes match approved checksums | Release engineering |
+
+## Paid beta delivery (to build before checkout opens)
+
+Reuse the Power Symbols pattern already in this repo (`app/api/power-symbols/shopify/orders-paid`, `lib/power-symbols-license.ts`): Shopify order webhook, signed licence bound to the order and email, private download link by email. The manifest now models access: a paid beta never shows the file URL publicly (`downloadAccess()` returns `purchase` only with a price and a live checkout URL), and the Latest links never redirect to a file unless the release is a free public one. Still to build: the Layout Points webhook, licence issue and revocation on refund, protected download route with private storage, quick-start email, and tests for paid, refunded, duplicate webhook, failed payment and expired access.
 
 ## Product facts to confirm before publication
 

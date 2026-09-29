@@ -48,18 +48,21 @@ export function ReleaseListForm() {
     return (
       <div role="status" className="border border-[#00D26A] bg-black p-7 md:p-9">
         <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#00D26A]">On the list</p>
-        <p className="mt-4 text-2xl font-semibold tracking-[-0.03em]">
-          We will email you when the public release is ready.
-        </p>
+        <p className="mt-4 text-2xl font-semibold tracking-[-0.03em]">We will email you when the paid beta opens.</p>
         <p className="mt-3 max-w-xl leading-relaxed text-zinc-300">
-          One message when signed, notarised builds are published. Nothing else.
+          One message when signed, notarised builds go on sale. Nothing else.
         </p>
       </div>
     )
   }
 
   return (
-    <form onSubmit={submit} data-clarity-mask="true" className="grid grid-cols-1 min-w-0 gap-5 sm:grid-cols-2" noValidate={false}>
+    <form
+      onSubmit={submit}
+      data-clarity-mask="true"
+      className="grid grid-cols-1 min-w-0 gap-5 sm:grid-cols-2"
+      noValidate={false}
+    >
       <div>
         <label htmlFor="lp-list-email" className={fieldLabel}>
           Email
@@ -97,7 +100,7 @@ export function ReleaseListForm() {
       <label className="flex cursor-pointer items-start gap-3 border border-zinc-800 bg-zinc-950 p-4 text-sm leading-relaxed text-zinc-300 sm:col-span-2">
         <input name="consent" value="yes" type="checkbox" required className="mt-1 size-4 shrink-0 accent-[#00D26A]" />
         <span>
-          Email me about the public release of Layout Points and Datum Label Studio. Unsubscribe at any time. See the{" "}
+          Email me when the Layout Points and Datum Label Studio paid beta opens. Unsubscribe at any time. See the{" "}
           <a href="/privacy-policy" className="text-white underline underline-offset-4 hover:text-[#00D26A]">
             privacy policy
           </a>

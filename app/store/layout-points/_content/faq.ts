@@ -22,7 +22,7 @@ export function getFaqs(): Faq[] {
     {
       id: "internet",
       q: "Does it need an internet connection?",
-      a: "No. Layout Points and Datum Label Studio both work offline once installed. You need a connection only to download them. Neither product uploads your drawings, coordinates or field packages. If licensing is ever added, any activation step will be documented here before that release ships.",
+      a: "Day-to-day use is offline: neither product uploads your drawings, coordinates or field packages. You need a connection to buy and download them. The paid beta includes a licence, and if activating it needs a connection, that will be stated here before the beta goes on sale.",
     },
     {
       id: "vectorworks-versions",

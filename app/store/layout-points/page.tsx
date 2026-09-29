@@ -231,12 +231,12 @@ export default function LayoutPointsPage() {
             >
               {released
                 ? `Mac workflow · ${manifest.publication.releaseLabel ?? "Available"}`
-                : "Public release in preparation"}
+                : "Paid beta in preparation"}
             </p>
             <p className="mt-5 text-xl font-semibold tracking-[-0.03em]">
               {released
                 ? "Two components, one field package."
-                : "Downloads open when signed, notarised builds pass release testing."}
+                : "The paid beta opens when signed, notarised builds pass release testing."}
             </p>
             <p className="mt-3 leading-relaxed text-zinc-400">
               No upload. No duplicate coordinate entry. Built for production teams working offline.
@@ -378,7 +378,9 @@ export default function LayoutPointsPage() {
 
       {/* 4. What the checks prove */}
       <section id="checks" className="scroll-mt-24 border-t border-zinc-800" aria-labelledby="checks-heading">
-        <div className={`${container} grid grid-cols-1 gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]`}>
+        <div
+          className={`${container} grid grid-cols-1 gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]`}
+        >
           <div>
             <CueLabel index="03" className={eyebrow}>
               WHAT THE CHECKS PROVE
@@ -454,7 +456,9 @@ export default function LayoutPointsPage() {
         className="scroll-mt-24 border-t border-zinc-800"
         aria-labelledby="availability-heading"
       >
-        <div className={`${container} grid grid-cols-1 gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]`}>
+        <div
+          className={`${container} grid grid-cols-1 gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]`}
+        >
           <div>
             <CueLabel index="05" className={eyebrow}>
               {released ? "GET THE WORKFLOW" : "RELEASE LIST"}
@@ -465,7 +469,7 @@ export default function LayoutPointsPage() {
             <p data-reveal="fade" className="mt-6 max-w-md leading-relaxed text-zinc-400">
               {released
                 ? "Download both components, check the checksums, and run your first field package with the sample job."
-                : "The public release ships when both components are signed, notarised and have passed host and physical print testing. Join the list and we will email you once, when it is ready."}
+                : "The paid beta opens when both components are signed, notarised and have passed host and physical print testing. Join the list and we will email you once, when it opens."}
             </p>
             <p className="mt-6 font-mono text-[11px] uppercase leading-relaxed tracking-[0.14em] text-zinc-400">
               {compatibilityLine().join(" · ")}
@@ -496,7 +500,9 @@ export default function LayoutPointsPage() {
 
       {/* 7. FAQ */}
       <section id="faq" className="scroll-mt-24 border-t border-zinc-800 bg-zinc-950" aria-labelledby="faq-heading">
-        <div className={`${container} grid grid-cols-1 gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,0.6fr)_minmax(0,1.4fr)]`}>
+        <div
+          className={`${container} grid grid-cols-1 gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,0.6fr)_minmax(0,1.4fr)]`}
+        >
           <div>
             <CueLabel index="06" className={eyebrow}>
               FAQ
