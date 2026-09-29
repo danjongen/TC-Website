@@ -5,45 +5,10 @@ import Image from "next/image"
 import Link from "next/link"
 import { m, useMotionValue, useMotionValueEvent, useScroll, useTransform } from "framer-motion"
 import { CueLabel } from "@/components/motion/cue-label"
+import { RenderLabel } from "./render-label"
+import { PROJECTS, type WorkProject } from "@/lib/work"
 
 const GREEN = "#00D26A"
-
-const CASE_STUDY = "/insights/ufo-pod-touring-control-infrastructure"
-
-const PROJECTS = [
-  {
-    title: "Into The Millennium",
-    client: "Backstreet Boys",
-    role: "Automation, Power & Data Systems",
-    image: "/images/bsb-live-02.jpg",
-    href: CASE_STUDY,
-    index: "001",
-  },
-  {
-    title: "Sphere, Las Vegas",
-    client: "Backstreet Boys",
-    role: "Video Systems Integration",
-    image: "/images/bsb-live-04.jpg",
-    href: CASE_STUDY,
-    index: "002",
-  },
-  {
-    title: "Flying Stage Element",
-    client: "Backstreet Boys",
-    role: "Wireless Power & Control",
-    image: "/images/bsb-live-01.jpg",
-    href: CASE_STUDY,
-    index: "003",
-  },
-  {
-    title: "Show Control",
-    client: "Backstreet Boys",
-    role: "Three-Layer Timecode Redundancy",
-    image: "/images/bsb-live-03.jpg",
-    href: CASE_STUDY,
-    index: "004",
-  },
-]
 
 const pad3 = (n: number) => String(n).padStart(3, "0")
 const TOTAL = pad3(PROJECTS.length)
@@ -78,48 +43,42 @@ function isKeyboardFocus(e: FocusEvent<HTMLElement>) {
 
 type CardFocusHandler = (card: HTMLElement) => void
 
-function ProjectCard({ project, onCardFocus }: { project: (typeof PROJECTS)[number]; onCardFocus?: CardFocusHandler }) {
-  const ref = useRef<HTMLDivElement>(null)
-  // per-card parallax: image drifts inside its frame as the card crosses the viewport.
-  // Reduced motion is handled in CSS (motion-reduce:transform-none! beats framer's inline
-  // transform), so server and client markup match on first render.
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] })
-  const imageY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"])
-
+function ProjectCard({ project, index, onCardFocus }: { project: WorkProject; index: number; onCardFocus?: CardFocusHandler }) {
+  const { image } = project
   return (
     <Link
       href={project.href}
       data-cursor="hover"
       data-cursor-label="VIEW"
       onFocus={onCardFocus ? (e) => isKeyboardFocus(e) && onCardFocus(e.currentTarget) : undefined}
-      className="group block shrink-0 snap-start focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#00D26A]"
+      className="group block w-[85vw] shrink-0 snap-start focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00D26A] md:w-[56vw]"
     >
-      <div ref={ref} className="relative h-[70vh] w-[85vw] overflow-hidden md:h-[75vh] md:w-[60vw]">
-        {/* morph source for the page transition: flies into the case study hero */}
-        <div data-vt-source="media" className="absolute inset-0 overflow-hidden">
-          <m.div style={{ y: imageY }} className="absolute inset-[-14%] motion-reduce:transform-none!">
-            <Image
-              src={project.image}
-              alt={`${project.title}, ${project.client}`}
-              fill
-              sizes="(max-width: 768px) 85vw, 60vw"
-              className="object-cover transition-[scale,filter] duration-600 ease-expo group-hover:scale-[1.04] group-hover:brightness-110 group-focus-visible:scale-[1.04] group-focus-visible:brightness-110"
-            />
-          </m.div>
-        </div>
-        <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-black/80 to-transparent" />
-        <div className="absolute bottom-0 left-0 p-8 md:p-12">
-          <p className="mb-3 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
-            <span className="tabular-nums">
-              {project.index} / {TOTAL}
-            </span>
-            <span>{project.role.toUpperCase()}</span>
-          </p>
-          <h3 data-vt-source="title" className="text-3xl font-bold tracking-[-0.03em] text-white md:text-5xl">
-            {project.title}
-          </h3>
-          <p className="mt-2 text-zinc-400">{project.client}</p>
-        </div>
+      {/* landscape frame at the image's own 16:9, so the approved framing is shown whole.
+          Morph source for the page transition: flies into the destination hero. */}
+      <div data-vt-source={project.morph ? "media" : undefined} className="relative aspect-[16/9] overflow-hidden bg-zinc-950">
+        <Image
+          src={image.src}
+          alt={image.alt}
+          fill
+          sizes="(max-width: 768px) 85vw, 56vw"
+          className="object-cover transition-[scale,filter] duration-600 ease-expo group-hover:scale-[1.03] group-hover:brightness-110 group-focus-visible:scale-[1.03] group-focus-visible:brightness-110 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+        />
+      </div>
+      <div className="pt-6">
+        <p className="mb-3 flex min-h-[22px] flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+          <span className="tabular-nums">
+            {pad3(index + 1)} / {TOTAL}
+          </span>
+          {image.label === "RENDER" && <RenderLabel />}
+          {project.role && <span>{project.role.toUpperCase()}</span>}
+        </p>
+        <h3
+          data-vt-source={project.morph ? "title" : undefined}
+          className="text-3xl font-bold tracking-[-0.03em] text-white transition-colors duration-300 ease-expo group-hover:text-[#00D26A] md:text-5xl"
+        >
+          {project.title}
+        </h3>
+        {project.client && <p className="mt-2 text-zinc-400">{project.client}</p>}
       </div>
     </Link>
   )
@@ -144,7 +103,7 @@ function PortfolioCard({ onCardFocus }: { onCardFocus?: CardFocusHandler }) {
       href="/portfolio"
       data-cursor="hover"
       onFocus={onCardFocus ? (e) => isKeyboardFocus(e) && onCardFocus(e.currentTarget) : undefined}
-      className="group flex h-[70vh] w-[60vw] shrink-0 snap-start items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#00D26A] md:h-[75vh] md:w-[35vw]"
+      className="group flex h-[47.8vw] w-[60vw] shrink-0 snap-start items-center justify-center self-start border border-zinc-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#00D26A] md:h-[31.5vw] md:w-[30vw]"
     >
       <span className="font-mono text-base tracking-[0.25em] text-zinc-400 transition-colors duration-300 ease-expo group-hover:text-white group-focus-visible:text-white">
         FULL PORTFOLIO →
@@ -219,10 +178,10 @@ export function ProjectsGallery() {
         aria-label="Featured projects"
       >
         <GalleryHeader />
-        <div className="mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-6 [-webkit-overflow-scrolling:touch]">
-          {PROJECTS.map((p) => (
-            <div key={p.index} className="snap-start">
-              <ProjectCard project={p} />
+        <div className="mt-14 flex snap-x snap-mandatory scroll-px-6 gap-6 overflow-x-auto px-6 pb-6 [-webkit-overflow-scrolling:touch]">
+          {PROJECTS.map((p, i) => (
+            <div key={p.slug} className="snap-start">
+              <ProjectCard project={p} index={i} />
             </div>
           ))}
           <PortfolioCard />
@@ -235,15 +194,15 @@ export function ProjectsGallery() {
     <section data-cue="02" data-cue-label="SELECTED WORK" className="relative bg-black" aria-label="Featured projects">
       <GalleryHeader />
 
-      <div ref={trackRef} className="relative h-[260vh]">
+      <div ref={trackRef} className="relative h-[220vh]">
         {/* overflow: clip (not hidden) so focusing an off-screen card cannot scroll this frame sideways */}
         <div
           ref={frameRef}
           className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden supports-[overflow:clip]:overflow-clip"
         >
-          <m.div ref={rowRef} style={{ x }} className="flex w-max gap-8 px-6 md:px-[8vw]">
-            {PROJECTS.map((p) => (
-              <ProjectCard key={p.index} project={p} onCardFocus={scrollToCard} />
+          <m.div ref={rowRef} style={{ x }} className="flex w-max items-start gap-8 px-6 md:px-[8vw]">
+            {PROJECTS.map((p, i) => (
+              <ProjectCard key={p.slug} project={p} index={i} onCardFocus={scrollToCard} />
             ))}
             <PortfolioCard onCardFocus={scrollToCard} />
           </m.div>
