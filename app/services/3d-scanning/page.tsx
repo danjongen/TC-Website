@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { StationCaseLink } from "@/components/v2/station-case-link"
 import { CueLabel } from "@/components/motion/cue-label"
 import { ArrowLeft, Scan, Map, Ruler, Plane, Target } from "lucide-react"
 import { ServiceAccordion } from "@/components/v2/service-accordion"
@@ -237,6 +238,8 @@ export default function ScanningPage() {
             </div>
           </div>
         </section>
+
+        <StationCaseLink className="mb-24" />
 
         {/* CTA */}
         <section>

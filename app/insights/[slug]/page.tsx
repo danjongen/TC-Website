@@ -6,6 +6,8 @@ import Link from "next/link"
 import { ArrowLeft, Share2, Linkedin, Twitter } from "lucide-react"
 import { BreadcrumbSchema, ArticleSchema } from "@/components/structured-data"
 import { notFound } from "next/navigation"
+import { RenderLabel } from "@/components/v2/render-label"
+import { STATION_IMAGES, type WorkImage } from "@/lib/work"
 
 // Static post data (in production, this would come from a CMS)
 const posts: Record<
@@ -20,8 +22,45 @@ const posts: Record<
     date: string
     author: string
     role: string
+    /** Full-frame hero: shown at its own ratio instead of the default 21:9 crop. */
+    hero?: WorkImage
+    /** Images placed in the body with a "[[figure:key]]" line. */
+    figures?: Record<string, WorkImage>
+    ogImage?: { url: string; width: number; height: number }
   }
 > = {
+  "michigan-central-station-scan-to-event-plan": {
+    title: "Michigan Central Station: From station scan to event plan.",
+    excerpt:
+      "We used a 3D scan of Michigan Central Station to build a detailed venue model, create renders for an upcoming event and produce accurate CAD plans.",
+    content: [
+      "Michigan Central Station in Detroit is a historic building with vaulted ceilings, stone columns and detailed architecture throughout. Planning an event inside a space like that starts with knowing exactly what is there.",
+      "## Starting From the Scan",
+      "The project began with a 3D scan of the station. The scan gave us a measured record of the building as it stands today, so the planning work started from the real architecture rather than from assumptions about it.",
+      "## Building the Venue Model",
+      "From the scan, we built a detailed 3D model of the venue, covering the Grand Hall and the South Concourse. That model became the base for everything that followed, so the renders and the plans describe the same spaces.",
+      "## Output One: Event Renders",
+      "With the venue modelled, we created renders of the planned event in both spaces. They show the stage, screens, seating and camera positions inside the station's own architecture, long before anything is installed. That gives everyone involved a shared picture of the event while there is still time to change it.",
+      "[[figure:southConcourse]]",
+      "[[figure:grandHallStage]]",
+      "## Output Two: Accurate CAD Plans",
+      "The same model was used to produce accurate CAD plans of the event spaces. Because the plans are drawn from the modelled station rather than estimated, the production team has a reliable basis for layout and coordination inside the building.",
+      "## Where the Project Stands",
+      "The event is upcoming. Every image on this page is a render from the venue model, not a photograph of the finished event.",
+    ],
+    image: STATION_IMAGES.grandHallWide.src,
+    hero: STATION_IMAGES.grandHallWide,
+    figures: {
+      southConcourse: STATION_IMAGES.southConcourse,
+      grandHallStage: STATION_IMAGES.grandHallStage,
+    },
+    ogImage: { url: "/og/mcs-grand-hall.jpg", width: 1200, height: 675 },
+    category: "Case Study",
+    readTime: "3 min read",
+    date: "September 29, 2026",
+    author: "Daniel Jongen",
+    role: "Executive Technical Producer",
+  },
   "ufo-pod-touring-control-infrastructure": {
     title: "Powering a Flying Stage Element in an RF Nightmare",
     excerpt:
@@ -104,6 +143,16 @@ const posts: Record<
 
 type Params = Promise<{ slug: string }>
 
+function FigureCaption({ image }: { image: WorkImage }) {
+  if (!image.label && !image.caption) return null
+  return (
+    <figcaption className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+      {image.label === "RENDER" && <RenderLabel />}
+      {image.caption && <span>{image.caption}</span>}
+    </figcaption>
+  )
+}
+
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { slug } = await params
   const post = posts[slug]
@@ -112,23 +161,29 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     return { title: "Post Not Found" }
   }
 
+  const og = post.ogImage ?? { url: post.image, width: 1200, height: 630 }
+  const metaTitle = post.title.replace(/\.$/, "")
+
   return {
-    title: `${post.title} | TC Agency Insights`,
+    title: `${metaTitle} | TC Agency Insights`,
     description: post.excerpt,
     openGraph: {
-      title: post.title,
+      title: metaTitle,
       description: post.excerpt,
       url: `https://tc.agency/insights/${slug}`,
       type: "article",
       publishedTime: post.date,
       authors: [post.author],
-      images: [{ url: post.image, width: 1200, height: 630, alt: post.title }],
+      images: [{ ...og, alt: post.hero?.alt ?? metaTitle }],
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
+      title: metaTitle,
       description: post.excerpt,
-      images: [post.image],
+      images: [og.url],
+    },
+    alternates: {
+      canonical: `https://tc.agency/insights/${slug}`,
     },
   }
 }
@@ -224,10 +279,28 @@ export default async function InsightPost({ params }: { params: Params }) {
       {/* Featured Image */}
       <section className="pb-[10vh]">
         <div className="container mx-auto px-6">
-          {/* morph destination: the homepage gallery card image lands here */}
-          <div data-reveal="resolve" data-vt="media" className="relative aspect-[21/9] max-w-5xl mx-auto overflow-hidden">
-            <Image src={post.image || "/placeholder.svg"} alt={post.title} fill className="object-cover" priority />
-          </div>
+          {post.hero ? (
+            <figure className="max-w-5xl mx-auto">
+              {/* morph destination; full frame at the image's own ratio, never cropped */}
+              <div data-vt="media" className="overflow-hidden">
+                <Image
+                  src={post.hero.src}
+                  width={post.hero.width}
+                  height={post.hero.height}
+                  alt={post.hero.alt}
+                  priority
+                  sizes="(min-width: 1072px) 1024px, calc(100vw - 48px)"
+                  className="block h-auto w-full"
+                />
+              </div>
+              <FigureCaption image={post.hero} />
+            </figure>
+          ) : (
+            /* morph destination: the homepage gallery card image lands here */
+            <div data-reveal="resolve" data-vt="media" className="relative aspect-[21/9] max-w-5xl mx-auto overflow-hidden">
+              <Image src={post.image || "/placeholder.svg"} alt={post.title} fill className="object-cover" priority />
+            </div>
+          )}
         </div>
       </section>
 
@@ -236,6 +309,26 @@ export default async function InsightPost({ params }: { params: Params }) {
         <div className="container mx-auto px-6">
           <article className="max-w-2xl mx-auto">
             {post.content.map((paragraph, index) => {
+              const figure = paragraph.match(/^\[\[figure:(\w+)\]\]$/)
+              if (figure) {
+                const image = post.figures?.[figure[1]]
+                if (!image) return null
+                return (
+                  <figure key={index} className="my-12 lg:-mx-24 xl:-mx-40">
+                    <div data-reveal="fade">
+                      <Image
+                        src={image.src}
+                        width={image.width}
+                        height={image.height}
+                        alt={image.alt}
+                        sizes="(min-width: 1280px) 992px, (min-width: 1024px) 864px, (min-width: 768px) 672px, calc(100vw - 48px)"
+                        className="block h-auto w-full"
+                      />
+                    </div>
+                    <FigureCaption image={image} />
+                  </figure>
+                )
+              }
               if (paragraph.startsWith("## ")) {
                 return (
                   <h2

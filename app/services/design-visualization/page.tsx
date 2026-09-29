@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { StationCaseLink } from "@/components/v2/station-case-link"
 import { CueLabel } from "@/components/motion/cue-label"
 import {
   ArrowLeft,
@@ -277,6 +278,8 @@ export default function DesignVisualizationPage() {
               ))}
             </div>
           </section>
+
+          <StationCaseLink className="mb-24" />
 
           {/* Cross-links */}
           <section className="mb-24">
