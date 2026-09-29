@@ -1,0 +1,244 @@
+/*
+ * Layout Points motion.
+ *
+ * Follows docs/MOTION.md: the server HTML is the final state, motion is
+ * layered on top, expo easing everywhere, transform and opacity for anything
+ * that moves (clip-path only for one-shot reveals), and nothing runs under
+ * prefers-reduced-motion.
+ *
+ * Two triggers:
+ *   .lp-autoplay           load-in sequence that runs from first paint (hero)
+ *   .lp-seq[data-seq=play]  scroll sequence armed by <Sequence> while off screen
+ *
+ * Each step element carries its own delay in --d (ms as a time value).
+ */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Armed sequences hold their steps hidden until the viewport reaches them. */
+  .lp-seq[data-seq="armed"] .lp-s {
+    opacity: 0;
+  }
+
+  .lp-autoplay .lp-pop,
+  .lp-seq[data-seq="play"] .lp-pop {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: lp-pop 600ms var(--ease-expo) var(--d, 0ms) both;
+  }
+
+  .lp-autoplay .lp-ping,
+  .lp-seq[data-seq="play"] .lp-ping {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: lp-ping 900ms var(--ease-expo) var(--d, 0ms) both;
+  }
+
+  .lp-autoplay .lp-fade,
+  .lp-seq[data-seq="play"] .lp-fade {
+    animation: lp-fade 600ms var(--ease-expo) var(--d, 0ms) both;
+  }
+
+  .lp-autoplay .lp-row,
+  .lp-seq[data-seq="play"] .lp-row {
+    animation: lp-row 600ms var(--ease-expo) var(--d, 0ms) both;
+  }
+
+  .lp-autoplay .lp-draw,
+  .lp-seq[data-seq="play"] .lp-draw {
+    stroke-dasharray: 1;
+    animation: lp-draw 600ms var(--ease-expo) var(--d, 0ms) both;
+  }
+
+  /* A signal travels the local handoff between panels. */
+  .lp-autoplay .lp-signal {
+    animation: lp-signal-y 600ms var(--ease-in-out) var(--d, 0ms) both;
+  }
+  @media (min-width: 1024px) {
+    .lp-autoplay .lp-signal {
+      animation-name: lp-signal-x;
+    }
+  }
+
+  /* The label feeds out of the printer slot. */
+  .lp-autoplay .lp-feed {
+    transform-box: view-box;
+    animation: lp-feed 800ms var(--ease-expo) var(--d, 0ms) both;
+  }
+
+  /* The datum crosshair locks on. */
+  .lp-autoplay .lp-lock,
+  .lp-seq[data-seq="play"] .lp-lock {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: lp-lock 500ms var(--ease-expo) var(--d, 0ms) both;
+  }
+
+  /* Package verified: one green flash, then it settles. */
+  .lp-autoplay .lp-verify {
+    animation: lp-verify 900ms var(--ease-expo) var(--d, 0ms) both;
+  }
+
+  /* Calibration: the corrected frame moves from the measured print to centre. */
+  .lp-seq[data-seq="play"] .lp-correct {
+    transform-box: view-box;
+    animation: lp-correct 900ms var(--ease-expo) var(--d, 0ms) both;
+  }
+
+  /* Process strip: each stage lights as the signal passes. */
+  .lp-seq[data-seq="play"] .lp-stage {
+    animation: lp-stage 600ms var(--ease-expo) var(--d, 0ms) both;
+  }
+  .lp-seq[data-seq="play"] .lp-track {
+    transform-origin: left center;
+    animation: lp-track 2000ms var(--ease-in-out) var(--d, 0ms) both;
+  }
+
+  /* Datum picker: the crosshair glides to the chosen position. */
+  .lp-glide {
+    transition: transform var(--dur-reveal) var(--ease-expo);
+  }
+
+  /* Datum picker: a fresh ping each time the datum moves. */
+  .lp-ping-now {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: lp-ping 900ms var(--ease-expo) 200ms both;
+  }
+
+  /* Store card: the datum target breathes on hover. */
+  .group:hover .lp-hover-ping {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: lp-ping 900ms var(--ease-expo) both;
+  }
+}
+
+@keyframes lp-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+@keyframes lp-ping {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  10% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.6);
+  }
+}
+
+@keyframes lp-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes lp-row {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+}
+
+@keyframes lp-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes lp-signal-x {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateX(-1.25rem);
+  }
+  8% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateX(1.25rem);
+  }
+}
+
+@keyframes lp-signal-y {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(-0.9rem);
+  }
+  8% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(0.9rem);
+  }
+}
+
+@keyframes lp-feed {
+  from {
+    transform: translateY(-150px);
+  }
+}
+
+@keyframes lp-lock {
+  from {
+    opacity: 0;
+    transform: scale(2.4) rotate(45deg);
+  }
+}
+
+@keyframes lp-verify {
+  0% {
+    opacity: 0;
+    background-color: rgb(0 210 106 / 0);
+  }
+  30% {
+    opacity: 1;
+    background-color: rgb(0 210 106 / 0.28);
+  }
+}
+
+@keyframes lp-correct {
+  0%,
+  25% {
+    opacity: 0;
+    transform: translate(-7px, 4px) scale(1.01);
+  }
+  45% {
+    opacity: 1;
+    transform: translate(-7px, 4px) scale(1.01);
+  }
+}
+
+@keyframes lp-stage {
+  from {
+    color: rgb(113 113 122);
+    border-color: rgb(39 39 42);
+  }
+  40% {
+    color: #00d26a;
+    border-color: #00d26a;
+  }
+}
+
+@keyframes lp-track {
+  from {
+    transform: scaleX(0);
+  }
+}

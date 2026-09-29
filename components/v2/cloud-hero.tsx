@@ -7,40 +7,19 @@ import { m, AnimatePresence, useScroll, useTransform, useMotionValueEvent, useRe
 import Link from "next/link"
 import { DUR, EASE_EXPO } from "@/lib/motion"
 import type { PointCloudHandles } from "./point-cloud"
+import { DISPERSE_END, HERO_SLIDES, canRunCloud, heroSlide } from "./hero-signal"
 
 const GREEN = "#00D26A"
 
 // The WebGL cloud loads after first paint, never on the server
 const PointCloud = dynamic(() => import("./point-cloud").then((mod) => mod.PointCloud), { ssr: false })
 
-const SLIDES = [
-  { src: "/images/bsb-live-06-cloud.jpg", caption: "BACKSTREET BOYS / SPHERE, LAS VEGAS" },
-  { src: "/images/bsb-live-02-cloud.jpg", caption: "INTO THE MILLENNIUM / AUTOMATION & POWER" },
-  { src: "/images/bsb-live-04-cloud.jpg", caption: "SPHERE RESIDENCY / VIDEO SYSTEMS" },
-]
-
+const SLIDES = HERO_SLIDES
 const IMAGES = SLIDES.map((s) => s.src)
 
 const pad2 = (n: number) => String(n).padStart(2, "0")
 
-/** Scroll progress at which the cloud is fully dispersed: 128svh of 200svh, when the curtain's 28vh gradient edge (app/page.tsx) has passed. */
-const DISPERSE_END = 0.64
 const disperse = (v: number) => Math.min(1, v / DISPERSE_END)
-
-type NavigatorHints = Navigator & {
-  deviceMemory?: number
-  connection?: { saveData?: boolean }
-}
-
-/** The cloud runs on any device that can afford it, phones included. */
-function canRunCloud() {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false
-  const nav = navigator as NavigatorHints
-  if (nav.connection?.saveData) return false
-  if ((nav.hardwareConcurrency ?? 8) < 4) return false
-  if ((nav.deviceMemory ?? 8) < 4) return false
-  return true
-}
 
 /**
  * Homepage hero. The section is two viewports tall with a pinned stage; the
@@ -81,7 +60,7 @@ export function CloudHero() {
   const chromeOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0])
 
   // The curtain covers the viewport at progress 0.5 (100svh of scroll), but its
-  // gradient edge still shows the stage until about 0.64, so the particles keep
+  // gradient edge still shows the stage until 0.7, so the particles keep
   // streaming toward the camera through that edge and finish dispersing (and
   // stop rendering) just as it passes.
   useMotionValueEvent(scrollYProgress, "change", (v) => {
@@ -97,8 +76,11 @@ export function CloudHero() {
   }, [scrollYProgress])
   const onSlide = useCallback((i: number) => setSlide(i), [])
 
+  // the embers (ember-engine.ts) take their colours from this photo
+  useEffect(() => heroSlide.set(slide), [slide])
+
   return (
-    <section ref={sectionRef} className="relative h-[200svh] bg-black">
+    <section ref={sectionRef} data-hero className="relative h-[200svh] bg-black">
       <div className="sticky top-0 h-svh overflow-hidden">
         {/* poster renders immediately; the point cloud fades in over it when ready */}
         <Image

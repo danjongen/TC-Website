@@ -174,7 +174,7 @@ export function ProjectsGallery() {
       <section
         data-cue="02"
         data-cue-label="SELECTED WORK"
-        className="relative bg-black pb-[10vh]"
+        className="relative pb-[10vh]"
         aria-label="Featured projects"
       >
         <GalleryHeader />
@@ -191,7 +191,7 @@ export function ProjectsGallery() {
   }
 
   return (
-    <section data-cue="02" data-cue-label="SELECTED WORK" className="relative bg-black" aria-label="Featured projects">
+    <section data-cue="02" data-cue-label="SELECTED WORK" className="relative" aria-label="Featured projects">
       <GalleryHeader />
 
       <div ref={trackRef} className="relative h-[220vh]">

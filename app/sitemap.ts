@@ -84,6 +84,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    ...["", "/download", "/docs", "/changelog", "/support"].map((path) => ({
+      url: `${baseUrl}/store/layout-points${path}`,
+      lastModified: new Date(),
+      changeFrequency: (path === "/changelog" ? "weekly" : "monthly") as "weekly" | "monthly",
+      priority: path === "" ? 0.8 : 0.6,
+    })),
     // Service pages
     {
       url: `${baseUrl}/services/executive-consulting`,
