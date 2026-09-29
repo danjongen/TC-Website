@@ -109,8 +109,7 @@ Use it only for scroll-linked values (`useScroll`, `useTransform`) and orchestra
 
 ## Homepage specifics
 
-- **Hero** (`components/v2/station-hero.tsx`): the headline rises in (`tc-load-rise`), then the Michigan Central Station render sits below it as the lead visual. The render is static and always shows its full 16:9 frame; its label and copy sit below the image, never over it. No particle effect, no pinned stage, no curtain.
-- **Point cloud** (`components/v2/cloud-hero.tsx`, `point-cloud.tsx`): the previous hero, kept in the repo but no longer mounted. Raw WebGL, 60k points on phones and 230k on desktop, skipped for reduced motion, Save-Data and low-memory devices. Do not put it over the station render.
+- **Hero**: WebGL point cloud (raw WebGL, no three.js). It assembles, morphs between three shots, and disperses as the next section rises over it like a curtain. The grid takes the viewport's shape, so phones get every point on screen, with a 60k-point budget (230k on desktop) and dot size scaled to keep the original density. It stops rendering whenever it is covered, off screen, or the tab is hidden. It is skipped for reduced motion, Save-Data, and devices with fewer than 4 cores or 4GB of memory (they keep the poster photo).
 - **Selected Work** (`components/v2/projects-gallery.tsx`): three landscape cards at 16:9 with titles below, scrubbed sideways by a pinned track on fine pointers and a native snap row on touch or reduced motion. Cards that link to a case study morph into its hero; a card that lands mid-page (Northline) uses the plain wipe.
 - **HUD** (`components/motion/show-hud.tsx`): scroll-scrubbed timecode on the right edge, one pixel of scroll equals one frame at 30fps, with the active cue. Sections opt in with `data-cue="02" data-cue-label="SELECTED WORK"`.
 
