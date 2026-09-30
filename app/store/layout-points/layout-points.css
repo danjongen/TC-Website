@@ -3,20 +3,31 @@
  *
  * Follows docs/MOTION.md: the server HTML is the final state, motion is
  * layered on top, expo easing everywhere, transform and opacity for anything
- * that moves (clip-path only for one-shot reveals), and nothing runs under
+ * that moves (clip path only for one shot reveals), and nothing runs under
  * prefers-reduced-motion.
  *
  * Two triggers:
  *   .lp-run:not([data-run=rest])  the hero print run, playing from first paint
  *   .lp-seq[data-seq=play]        scroll sequence armed by <Sequence> while off screen
  *
- * Each step element carries its own delay in --d (ms as a time value).
+ * Each step element carries its own delay in --d (ms as a time value), and an
+ * optional duration in --dur. Keyframes never read custom properties and never
+ * set their own timing function: every segment inherits the shorthand's token.
  */
 
-/* Print run: final-state bases, outside the media query so they hold under reduced motion and at rest. */
+/* Print run at lg: the vertical scene draws 1.224px per unit, so the accent strokes cap at 1.35u (1.65px). */
+@media (min-width: 1024px) and (max-width: 1279.98px) {
+  .lp-geo-y [data-lp-accent] {
+    stroke-width: 1.35;
+  }
+}
+
+/* Print run: final state bases, outside the media query so they hold under reduced motion and at rest. */
 .lp-run .lp-off,
-.lp-run .lp-glow-out,
-.lp-run .lp-sh-out {
+.lp-run .lp-out,
+.lp-run .lp-blip,
+.lp-run .lp-cut,
+.lp-run .lp-reg {
   opacity: 0;
 }
 
@@ -26,24 +37,60 @@
     opacity: 0;
   }
 
-  /* Print run: armed waits for the landing to be in view; hold freezes it off screen. */
-  .lp-run:is([data-run="armed"], [data-run="hold"]) * {
+  /*
+   * Print run: armed waits for the landing to be in view; hold freezes it off screen.
+   * Only the animated classes are matched, so flipping data-run restyles them and not
+   * every node in the figure.
+   */
+  .lp-run:is([data-run="armed"], [data-run="hold"])
+    :is(
+      .lp-on,
+      .lp-off,
+      .lp-in,
+      .lp-out,
+      .lp-fade,
+      .lp-fade-up,
+      .lp-draw,
+      .lp-acquire,
+      .lp-lock,
+      .lp-ping,
+      .lp-blip,
+      .lp-grade,
+      .lp-cut,
+      .lp-adv,
+      .lp-turn,
+      .lp-tear,
+      .lp-carry,
+      .lp-lift,
+      .lp-descend,
+      .lp-reg,
+      .lp-lean,
+      .lp-roll,
+      .lp-seg
+    ) {
     animation-play-state: paused !important;
   }
 
   /*
    * Print run fill: backwards. Every keyframe ends on the base style, so once a step
-   * ends it holds the final frame with no effect left in play, and the no-JS end frame
+   * ends it holds the final frame with no effect left in play, and the no JS end frame
    * paints exactly like the rest frame. The sentinel keeps both so hydration can read
    * how far the run got.
    */
 
-  /* Print run discrete switches: 1 ms, expo token. */
+  /* Discrete switches: 1 ms, finishing exactly on the beat. */
   .lp-run:not([data-run="rest"]) .lp-on {
-    animation: lp-on 1ms var(--ease-expo) var(--d, 0ms) backwards;
+    animation: lp-on 1ms var(--ease-expo) calc(var(--d, 0ms) - 1ms) backwards;
   }
   .lp-run:not([data-run="rest"]) .lp-off {
-    animation: lp-off 1ms var(--ease-expo) var(--d, 0ms) backwards;
+    animation: lp-off 1ms var(--ease-expo) calc(var(--d, 0ms) - 1ms) backwards;
+  }
+  /* Print line: on over micro, off over ui. */
+  .lp-run:not([data-run="rest"]) .lp-in {
+    animation: lp-on var(--dur-micro) var(--ease-expo) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-out {
+    animation: lp-off var(--dur-ui) var(--ease-expo) var(--d) backwards;
   }
 
   .lp-seq[data-seq="play"] .lp-pop {
@@ -51,21 +98,11 @@
     transform-origin: center;
     animation: lp-pop 600ms var(--ease-expo) var(--d, 0ms) both;
   }
-  .lp-run:not([data-run="rest"]) .lp-pop {
-    transform-box: fill-box;
-    transform-origin: center;
-    animation: lp-pop 600ms var(--ease-expo) var(--d, 0ms) backwards;
-  }
 
   .lp-seq[data-seq="play"] .lp-ping {
     transform-box: fill-box;
     transform-origin: center;
     animation: lp-ping 900ms var(--ease-expo) var(--d, 0ms) both;
-  }
-  .lp-run:not([data-run="rest"]) .lp-ping {
-    transform-box: fill-box;
-    transform-origin: center;
-    animation: lp-ping 900ms var(--ease-expo) var(--d, 0ms) backwards;
   }
 
   .lp-seq[data-seq="play"] .lp-fade {
@@ -74,14 +111,16 @@
   .lp-run:not([data-run="rest"]) .lp-fade {
     animation: lp-fade 600ms var(--ease-expo) var(--d, 0ms) backwards;
   }
+  .lp-run:not([data-run="rest"]) .lp-fade-up {
+    animation: lp-fade-up 500ms var(--ease-expo) var(--d, 0ms) backwards;
+  }
 
   .lp-seq[data-seq="play"] .lp-draw {
-    stroke-dasharray: 1;
     animation: lp-draw 600ms var(--ease-expo) var(--d, 0ms) both;
   }
   .lp-run:not([data-run="rest"]) .lp-draw {
-    stroke-dasharray: 1;
-    animation: lp-draw 600ms var(--ease-expo) var(--d, 0ms) backwards;
+    animation: lp-draw var(--dur, 600ms) var(--ease-expo) var(--d, 0ms)
+      backwards;
   }
   .lp-run:not([data-run="rest"]) [data-lp-sentinel] {
     animation-fill-mode: both;
@@ -93,67 +132,102 @@
     transform-origin: center;
     animation: lp-lock 500ms var(--ease-expo) var(--d, 0ms) both;
   }
-  .lp-run:not([data-run="rest"]) .lp-lock {
+
+  /* Print run pivots: plan points and keys settle down onto their centre, the reticle closes, one ping. */
+  .lp-run:not([data-run="rest"]) :is(.lp-acquire, .lp-lock, .lp-ping) {
     transform-box: fill-box;
     transform-origin: center;
-    animation: lp-lock 500ms var(--ease-expo) var(--d, 0ms) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-acquire {
+    animation: lp-acquire 400ms var(--ease-expo) var(--d, 0ms) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-lock {
+    animation: lp-lock var(--dur-ui) var(--ease-expo) var(--d, 0ms) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-ping {
+    animation: lp-ping 700ms var(--ease-expo) var(--d, 0ms) backwards;
   }
 
-  /* Print-head glow: on at 800 (150 ms), off at 3440 (300 ms). */
-  .lp-run:not([data-run="rest"]) .lp-glow-in {
-    animation: lp-on var(--dur-micro) var(--ease-expo) var(--d) backwards;
+  /* Plan blips and print line flashes, the floor grade, and the cut flash. */
+  .lp-run:not([data-run="rest"]) .lp-blip {
+    animation: lp-blip var(--dur) var(--ease-expo) var(--d) backwards;
   }
-  .lp-run:not([data-run="rest"]) .lp-glow-out {
-    animation: lp-off var(--dur-ui) var(--ease-expo) var(--d) backwards;
+  .lp-run:not([data-run="rest"]) .lp-grade {
+    animation: lp-grade var(--dur) var(--ease-expo) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-cut {
+    animation: lp-cut 240ms var(--ease-in-out) var(--d) backwards;
   }
 
-  /* Scene movers pivot in view-box px; transform-origin is an inline style from geometry.ts. */
+  /* Scene movers pivot in view box px; transform origin is an inline style from geometry.ts. */
   .lp-run:not([data-run="rest"])
-    :is(.lp-adv, .lp-turn, .lp-tear, .lp-carry, .lp-peel, .lp-descend, .lp-square, .lp-sh-in, .lp-sh-out) {
+    :is(
+      .lp-adv,
+      .lp-turn,
+      .lp-tear,
+      .lp-carry,
+      .lp-lift,
+      .lp-descend,
+      .lp-reg
+    ) {
     transform-box: view-box;
   }
 
-  /* Mechanical sweeps: in-out. Advances at 900/1560/2220/2880, 560 ms each. Tear at 3600, 600 ms. */
+  /* Mechanical sweeps: in out. Advances at 900, 1540, 2180 and 2820, 520 ms each. */
   .lp-run:not([data-run="rest"]) .lp-geo-x .lp-adv {
-    animation: lp-adv-x 560ms var(--ease-in-out) var(--d) backwards;
+    animation: lp-adv-x 520ms var(--ease-in-out) var(--d) backwards;
   }
   .lp-run:not([data-run="rest"]) .lp-geo-y .lp-adv {
-    animation: lp-adv-y 560ms var(--ease-in-out) var(--d) backwards;
+    animation: lp-adv-y 520ms var(--ease-in-out) var(--d) backwards;
   }
   .lp-run:not([data-run="rest"]) .lp-geo-x .lp-turn {
-    animation: lp-turn-x 560ms var(--ease-in-out) var(--d) backwards;
+    animation: lp-turn-x 520ms var(--ease-in-out) var(--d) backwards;
   }
   .lp-run:not([data-run="rest"]) .lp-geo-y .lp-turn {
-    animation: lp-turn-y 560ms var(--ease-in-out) var(--d) backwards;
-  }
-  .lp-run:not([data-run="rest"]) .lp-geo-x .lp-tear {
-    animation: lp-tear-x 600ms var(--ease-expo) var(--d) backwards;
-  }
-  .lp-run:not([data-run="rest"]) .lp-geo-y .lp-tear {
-    animation: lp-tear-y 600ms var(--ease-expo) var(--d) backwards;
+    animation: lp-turn-y 520ms var(--ease-in-out) var(--d) backwards;
   }
 
-  /* Hand moves: expo. Peel 4300 (300 ms), carry 4600 (900 ms), descend 5500 (500 ms), square 5900 (500 ms). */
+  /* Hand moves: expo. Tear 3880 (500 ms), lift 4560 (300 ms), carry 4840 (900 ms), descend 6080 (300 ms). */
+  .lp-run:not([data-run="rest"]) .lp-geo-x .lp-tear {
+    animation: lp-tear-x 500ms var(--ease-expo) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-geo-y .lp-tear {
+    animation: lp-tear-y 500ms var(--ease-expo) var(--d) backwards;
+  }
   .lp-run:not([data-run="rest"]) .lp-geo-x .lp-carry {
     animation: lp-carry-x 900ms var(--ease-expo) var(--d) backwards;
   }
   .lp-run:not([data-run="rest"]) .lp-geo-y .lp-carry {
     animation: lp-carry-y 900ms var(--ease-expo) var(--d) backwards;
   }
-  .lp-run:not([data-run="rest"]) .lp-peel {
-    animation: lp-peel var(--dur-ui) var(--ease-expo) var(--d) backwards;
+  .lp-run:not([data-run="rest"]) .lp-lift {
+    animation: lp-lift var(--dur-ui) var(--ease-expo) var(--d) backwards;
   }
   .lp-run:not([data-run="rest"]) .lp-descend {
-    animation: lp-descend 500ms var(--ease-expo) var(--d) backwards;
+    animation: lp-descend var(--dur-ui) var(--ease-expo) var(--d) backwards;
   }
-  .lp-run:not([data-run="rest"]) .lp-square {
-    animation: lp-square 500ms var(--ease-expo) var(--d) backwards;
+  .lp-run:not([data-run="rest"]) .lp-geo-x .lp-reg {
+    animation: lp-reg 900ms var(--ease-expo) var(--d) backwards;
   }
-  .lp-run:not([data-run="rest"]) .lp-sh-in {
-    animation: lp-sh-in var(--dur-ui) var(--ease-expo) var(--d) backwards;
+  .lp-run:not([data-run="rest"]) .lp-geo-y .lp-reg {
+    animation: lp-reg-y 900ms var(--ease-expo) var(--d) backwards;
   }
-  .lp-run:not([data-run="rest"]) .lp-sh-out {
-    animation: lp-sh-out 500ms var(--ease-expo) var(--d) backwards;
+
+  /* The camera: one composited HTML wrapper per scene, 5580 for 1600 ms. */
+  .lp-run:not([data-run="rest"]) .lp-geo-x .lp-lean {
+    animation: lp-lean-x 1600ms var(--ease-expo) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-geo-y .lp-lean {
+    animation: lp-lean-y 1600ms var(--ease-expo) var(--d) backwards;
+  }
+
+  /* Header: odometer rolls and the progress rule. */
+  .lp-run:not([data-run="rest"]) .lp-roll {
+    animation: lp-roll var(--dur-ui) var(--ease-expo) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-seg {
+    transform-origin: left;
+    animation: lp-seg var(--dur) var(--ease-in-out) var(--d) backwards;
   }
 
   /* Calibration: the corrected frame moves from the measured print to centre. */
@@ -218,19 +292,83 @@
   }
 }
 
+@keyframes lp-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+/* pathLength 1: the dash pattern lives here, so nothing is left on the element at rest. */
 @keyframes lp-draw {
   from {
+    stroke-dasharray: 1;
     stroke-dashoffset: 1;
   }
   to {
+    stroke-dasharray: 1;
     stroke-dashoffset: 0;
+  }
+}
+
+/* Settles down onto the point like an instrument reticle. */
+@keyframes lp-acquire {
+  from {
+    opacity: 0;
+    transform: scale(1.6);
   }
 }
 
 @keyframes lp-lock {
   from {
     opacity: 0;
-    transform: scale(2.4) rotate(45deg);
+    transform: scale(1.35);
+  }
+}
+
+/* Up by 15 percent and held to 45 percent: full from 96 to 288 ms of the 640 ms plan blip, so advance plus 160 reads at peak. */
+@keyframes lp-blip {
+  0% {
+    opacity: 0;
+  }
+  15%,
+  45% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* GRADE: 800 for 3760 ms, ending on the peel at 4560. */
+@keyframes lp-grade {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  10%,
+  90% {
+    opacity: 0.75;
+  }
+}
+
+/* pathLength 1 beside the tear bar: draws by 40 percent (96 ms), holds to 75 percent, then fades by torn at 3880. */
+@keyframes lp-cut {
+  0% {
+    opacity: 1;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  40%,
+  75% {
+    opacity: 1;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    opacity: 0;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
   }
 }
 
@@ -282,7 +420,7 @@
   }
 }
 
-/* Literal per-layout distances. The node test checks each against geometry.ts. */
+/* Literal per layout distances. The node test checks each against geometry.ts. */
 /* desktop pitch = 168 + 14 */
 @keyframes lp-adv-x {
   from {
@@ -304,88 +442,128 @@
   }
 }
 
-/* 110 / r66 rad */
+/* 110 / r84 rad */
 @keyframes lp-turn-y {
   from {
-    transform: rotate(-95.5deg);
+    transform: rotate(-75deg);
   }
 }
 
+/* tearShift 8 downstream, one segment */
 @keyframes lp-tear-x {
-  0% {
+  from {
     transform: translateX(-8px);
-    animation-timing-function: var(--ease-in-out);
-  }
-  30% {
-    transform: translateX(-2px) rotate(-1.2deg);
-    animation-timing-function: var(--ease-expo);
-  }
-  100% {
-    transform: none;
   }
 }
 
+/* tearShift 8 downstream, one segment */
 @keyframes lp-tear-y {
-  0% {
+  from {
     transform: translateY(-8px);
-    animation-timing-function: var(--ease-in-out);
-  }
-  30% {
-    transform: translateY(-2px) rotate(1.2deg);
-    animation-timing-function: var(--ease-expo);
-  }
-  100% {
-    transform: none;
   }
 }
 
-/* mark (800,330) minus rest datum (404,60) */
+/* mark (586,336) minus rest datum (404,46) */
 @keyframes lp-carry-x {
   from {
-    transform: translate(-396px, -270px);
+    transform: translate(-182px, -290px);
   }
 }
 
-/* mark (258,350) minus rest datum (86,72) */
+/* mark (256,350) minus rest datum (86,72) */
 @keyframes lp-carry-y {
   from {
-    transform: translate(-172px, -278px);
+    transform: translate(-170px, -278px);
   }
 }
 
-/* with the held descend and square poses: identity before 4300 */
-@keyframes lp-peel {
+/* 1 / LIFT: with the held descend pose the label is identity before the peel */
+@keyframes lp-lift {
   from {
-    transform: rotate(3deg) scale(0.9434);
+    transform: scale(0.9615);
   }
 }
 
+/* LIFT 1.04 about the datum */
 @keyframes lp-descend {
   from {
-    transform: scale(1.06);
+    transform: scale(1.04);
   }
 }
 
-@keyframes lp-square {
-  from {
-    transform: rotate(-3deg);
-  }
-}
-
-@keyframes lp-sh-in {
-  from {
+/* REG_DUR 900 from regist 5580: closed by 40 percent, held to hit 6380 (88.9 percent), gone at 6480 */
+@keyframes lp-reg {
+  0% {
     opacity: 0;
-    transform: translate(-10px, -14px);
+    transform: scale(1.08);
   }
-}
-
-@keyframes lp-sh-out {
-  from {
+  40% {
     opacity: 1;
-    transform: translate(10px, 14px);
+    transform: none;
   }
-  to {
+  89% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
     opacity: 0;
     transform: none;
+  }
+}
+
+/* as lp-reg, from 1.04: the mobile corners (x 336 about the mark at 256) stay inside the 340 view */
+@keyframes lp-reg-y {
+  0% {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  40% {
+    opacity: 1;
+    transform: none;
+  }
+  89% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}
+
+/* LEAN_DUR 1600 from regist 5580: peak at hit 6380 (50 percent), release from merge 6780 (75 percent); desktop lean 1.04 */
+@keyframes lp-lean-x {
+  0%,
+  100% {
+    transform: none;
+  }
+  50%,
+  75% {
+    transform: scale(1.04);
+  }
+}
+
+/* as lp-lean-x; mobile lean 1.03 */
+@keyframes lp-lean-y {
+  0%,
+  100% {
+    transform: none;
+  }
+  50%,
+  75% {
+    transform: scale(1.03);
+  }
+}
+
+/* one odometer row: line height 1.2 */
+@keyframes lp-roll {
+  from {
+    transform: translateY(1.2em);
+  }
+}
+
+@keyframes lp-seg {
+  from {
+    transform: scaleX(0);
   }
 }

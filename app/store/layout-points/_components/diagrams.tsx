@@ -180,7 +180,7 @@ export function LabelStyles() {
           aria-label={`Control label ${control.id}, fixed yellow and black style, datum at the centre.`}
           className="mt-4 block h-auto max-w-full"
         >
-          <LabelFace label={control} width={w} height={h} radius={4} />
+          <LabelFace label={control} width={w} height={h} radius={2} />
         </svg>
       </div>
       <div className="bg-black p-6">
@@ -195,7 +195,7 @@ export function LabelStyles() {
           aria-label={`Layout label ${layout.id}, Staging department colour, datum at the top edge.`}
           className="mt-4 block h-auto max-w-full"
         >
-          <LabelFace label={layout} width={w} height={h} radius={4} />
+          <LabelFace label={layout} width={w} height={h} radius={2} />
         </svg>
       </div>
       <figcaption className="bg-black px-6 py-3 font-mono text-[10px] uppercase tracking-[0.14em] text-zinc-400 sm:col-span-2">

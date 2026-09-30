@@ -1,5 +1,5 @@
-// PLACEHOLDER FACE. Drawn from known facts only: department name and colour,
-// point ID, E/N/Z coordinates, highlighted exact-datum target, fixed CONTROL style.
+// PLACEHOLDER FACE. Drawn from known facts only: department name and colour chip,
+// point ID, E/N/Z coordinates, highlighted exact datum target, fixed CONTROL style.
 // Replace the body with the exported Datum Label Studio design; keep these exports.
 //
 // Server-safe: no client directive, no hooks, no ids, no animation. It renders one
@@ -48,18 +48,21 @@ export const LABEL_DESIGN: { source: LabelDesignSource; caption: string } = {
 }
 
 // Fixed CONTROL style. The LabelData type has no way to change it.
-const CONTROL_FACE = "#facc15"
-const LAYOUT_FACE = "#fafafa"
-const INK = "#000"
+const CONTROL_FACE = "#FACC15"
+const CONTROL_INK = "#000"
+// Layout stock: the Power Symbols cream paper, near black ink, a warm grey for meta text.
+const LAYOUT_FACE = "#F3F0E8"
+const INK = "#0B0B0B"
+const META = "#6B675E"
 const HIGHLIGHT = "#00D26A"
 
 const r2 = (v: number) => Math.round(v * 100) / 100
 
 export function LabelFace({ label, x = 0, y = 0, width, height, radius = 0, title }: LabelFaceProps): JSX.Element {
-  const f = faceLayout(label.datum, width, height)
-  const t = f.target
   const control = label.kind === "control"
-  const rr = Math.min(radius, f.band.h)
+  const f = faceLayout(label.datum, width, height, { chip: !control })
+  const t = f.target
+  const ink = control ? CONTROL_INK : INK
   const inset = f.border.inset + f.border.width / 2
   const a11y = title ? { role: "img" as const } : { "aria-hidden": true as const }
 
@@ -75,48 +78,56 @@ export function LabelFace({ label, x = 0, y = 0, width, height, radius = 0, titl
           height={r2(height - inset * 2)}
           rx={r2(Math.max(0, radius - inset))}
           fill="none"
-          stroke={INK}
+          stroke={CONTROL_INK}
           strokeWidth={r2(f.border.width)}
         />
-      ) : (
-        <path
-          d={`M0 ${rr}A${rr} ${rr} 0 0 1 ${rr} 0H${width - rr}A${rr} ${rr} 0 0 1 ${width} ${rr}V${r2(f.band.h)}H0Z`}
+      ) : f.chip ? (
+        <rect
+          x={r2(f.chip.x)}
+          y={r2(f.chip.y)}
+          width={r2(f.chip.size)}
+          height={r2(f.chip.size)}
           fill={label.department.colour}
+          stroke={INK}
+          strokeWidth={r2(f.chip.stroke)}
         />
-      )}
-      {f.rows.map((row) => (
-        <text
-          key={row.key}
-          x={r2(f.textX)}
-          y={r2(row.y)}
-          fontSize={r2(row.size)}
-          fontWeight={row.bold ? 700 : 400}
-          textAnchor={f.anchor}
-          letterSpacing={0}
-          fill={INK}
-          className="font-mono"
-        >
-          {rowText(label, row.key)}
-        </text>
-      ))}
-      {control ? null : (
-        <circle
-          cx={t.x}
-          cy={t.y}
-          r={r2(t.highlight)}
-          fill="none"
-          stroke={HIGHLIGHT}
-          strokeWidth={r2(t.highlightStroke)}
-        />
-      )}
+      ) : null}
+      {f.rows.map((row) => {
+        const text = rowText(label, row.key)
+        const axis = !control && (row.key === "e" || row.key === "n" || row.key === "z")
+        const cut = text.indexOf(" ")
+        return (
+          <text
+            key={row.key}
+            x={r2(row.x)}
+            y={r2(row.y)}
+            fontSize={r2(row.size)}
+            fontWeight={row.bold ? 700 : 400}
+            textAnchor={f.anchor}
+            letterSpacing={row.track ? `${row.track}em` : 0}
+            fill={row.key === "dept" && !control ? META : ink}
+            className="font-mono"
+          >
+            {axis ? (
+              <>
+                <tspan fill={META}>{text.slice(0, cut)}</tspan>
+                {text.slice(cut)}
+              </>
+            ) : (
+              text
+            )}
+          </text>
+        )
+      })}
+      {control ? null : <circle cx={t.x} cy={t.y} r={r2(t.highlight)} fill={HIGHLIGHT} />}
       <path
         d={`M${r2(t.x - t.arm)} ${t.y}H${r2(t.x + t.arm)}M${t.x} ${r2(t.y - t.arm)}V${r2(t.y + t.arm)}`}
         fill="none"
-        stroke={INK}
+        stroke={ink}
         strokeWidth={r2(t.stroke)}
       />
-      <circle cx={t.x} cy={t.y} r={r2(t.ring)} fill="none" stroke={INK} strokeWidth={r2(t.stroke)} />
-      <circle data-part="datum-dot" cx={t.x} cy={t.y} r={r2(t.dot)} fill={INK} />
+      <circle cx={t.x} cy={t.y} r={r2(t.ring)} fill="none" stroke={ink} strokeWidth={r2(t.stroke)} />
+      <circle data-part="datum-dot" cx={t.x} cy={t.y} r={r2(t.dot)} fill={ink} />
     </svg>
   )
 }
