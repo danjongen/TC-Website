@@ -12,8 +12,8 @@ import { DatumPicker } from "./_components/datum-picker"
 import { CalibrationDiagram, LabelStyles, ProcessStrip } from "./_components/diagrams"
 import { EvidenceFigure } from "./_components/evidence-figure"
 import { FaqList } from "./_components/faq-list"
-import { HandoffSequence } from "./_components/handoff-sequence"
 import { breadcrumbJsonLd, JsonLd, PRODUCT_URL, productJsonLd, softwareJsonLd } from "./_components/json-ld"
+import { PrintRun } from "./_components/print-run/print-run"
 import { ReleaseListForm } from "./_components/release-list-form"
 import { TrackMount, TrackOnView, TrackedLink } from "./_components/track"
 import { container, eyebrow, primaryButton, secondaryButton, sectionHeading, textLink } from "./_components/ui"
@@ -266,7 +266,7 @@ export default function LayoutPointsPage() {
         </div>
 
         <div className="mt-10 md:mt-12">
-          <HandoffSequence />
+          <PrintRun />
         </div>
         <div className="mt-10">
           <ProcessStrip />
@@ -527,7 +527,7 @@ export default function LayoutPointsPage() {
           <p className="max-w-5xl text-sm leading-relaxed text-zinc-400">
             Layout Points and Datum Label Studio prepare layout data and labels from your drawing. They do not replace
             survey control, a qualified surveyor or checking a known distance on site. Vectorworks is a trademark of
-            Vectorworks, Inc. Leica and iCON are trademarks of Leica Geosystems AG. Technically Creative is not
+            Vectorworks, Inc. Leica and iCON are trademarks of Leica Geosystems AG. Technically Creative LLC is not
             affiliated with, endorsed or certified by either company.
           </p>
         </div>

@@ -3,15 +3,33 @@
  *
  * Follows docs/MOTION.md: the server HTML is the final state, motion is
  * layered on top, expo easing everywhere, transform and opacity for anything
- * that moves (clip-path only for one-shot reveals), and nothing runs under
+ * that moves (clip path only for one shot reveals), and nothing runs under
  * prefers-reduced-motion.
  *
  * Two triggers:
- *   .lp-autoplay           load-in sequence that runs from first paint (hero)
- *   .lp-seq[data-seq=play]  scroll sequence armed by <Sequence> while off screen
+ *   .lp-run:not([data-run=rest])  the hero print run, playing from first paint
+ *   .lp-seq[data-seq=play]        scroll sequence armed by <Sequence> while off screen
  *
- * Each step element carries its own delay in --d (ms as a time value).
+ * Each step element carries its own delay in --d (ms as a time value), and an
+ * optional duration in --dur. Keyframes never read custom properties and never
+ * set their own timing function: every segment inherits the shorthand's token.
  */
+
+/* Print run at lg: the vertical scene draws 1.224px per unit, so the accent strokes cap at 1.35u (1.65px). */
+@media (min-width: 1024px) and (max-width: 1279.98px) {
+  .lp-geo-y [data-lp-accent] {
+    stroke-width: 1.35;
+  }
+}
+
+/* Print run: final state bases, outside the media query so they hold under reduced motion and at rest. */
+.lp-run .lp-off,
+.lp-run .lp-out,
+.lp-run .lp-blip,
+.lp-run .lp-cut,
+.lp-run .lp-reg {
+  opacity: 0;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   /* Armed sequences hold their steps hidden until the viewport reaches them. */
@@ -19,63 +37,201 @@
     opacity: 0;
   }
 
-  .lp-autoplay .lp-pop,
+  /*
+   * Print run: armed waits for the landing to be in view; hold freezes it off screen.
+   * Only the animated classes are matched, so flipping data-run restyles them and not
+   * every node in the figure.
+   */
+  .lp-run:is([data-run="armed"], [data-run="hold"])
+    :is(
+      .lp-on,
+      .lp-off,
+      .lp-in,
+      .lp-out,
+      .lp-fade,
+      .lp-fade-up,
+      .lp-draw,
+      .lp-acquire,
+      .lp-lock,
+      .lp-ping,
+      .lp-blip,
+      .lp-grade,
+      .lp-cut,
+      .lp-adv,
+      .lp-turn,
+      .lp-tear,
+      .lp-carry,
+      .lp-lift,
+      .lp-descend,
+      .lp-reg,
+      .lp-lean,
+      .lp-roll,
+      .lp-seg
+    ) {
+    animation-play-state: paused !important;
+  }
+
+  /*
+   * Print run fill: backwards. Every keyframe ends on the base style, so once a step
+   * ends it holds the final frame with no effect left in play, and the no JS end frame
+   * paints exactly like the rest frame. The sentinel keeps both so hydration can read
+   * how far the run got.
+   */
+
+  /* Discrete switches: 1 ms, finishing exactly on the beat. */
+  .lp-run:not([data-run="rest"]) .lp-on {
+    animation: lp-on 1ms var(--ease-expo) calc(var(--d, 0ms) - 1ms) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-off {
+    animation: lp-off 1ms var(--ease-expo) calc(var(--d, 0ms) - 1ms) backwards;
+  }
+  /* Print line: on over micro, off over ui. */
+  .lp-run:not([data-run="rest"]) .lp-in {
+    animation: lp-on var(--dur-micro) var(--ease-expo) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-out {
+    animation: lp-off var(--dur-ui) var(--ease-expo) var(--d) backwards;
+  }
+
   .lp-seq[data-seq="play"] .lp-pop {
     transform-box: fill-box;
     transform-origin: center;
     animation: lp-pop 600ms var(--ease-expo) var(--d, 0ms) both;
   }
 
-  .lp-autoplay .lp-ping,
   .lp-seq[data-seq="play"] .lp-ping {
     transform-box: fill-box;
     transform-origin: center;
     animation: lp-ping 900ms var(--ease-expo) var(--d, 0ms) both;
   }
 
-  .lp-autoplay .lp-fade,
   .lp-seq[data-seq="play"] .lp-fade {
     animation: lp-fade 600ms var(--ease-expo) var(--d, 0ms) both;
   }
-
-  .lp-autoplay .lp-row,
-  .lp-seq[data-seq="play"] .lp-row {
-    animation: lp-row 600ms var(--ease-expo) var(--d, 0ms) both;
+  .lp-run:not([data-run="rest"]) .lp-fade {
+    animation: lp-fade 600ms var(--ease-expo) var(--d, 0ms) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-fade-up {
+    animation: lp-fade-up 500ms var(--ease-expo) var(--d, 0ms) backwards;
   }
 
-  .lp-autoplay .lp-draw,
   .lp-seq[data-seq="play"] .lp-draw {
-    stroke-dasharray: 1;
     animation: lp-draw 600ms var(--ease-expo) var(--d, 0ms) both;
   }
-
-  /* A signal travels the local handoff between panels. */
-  .lp-autoplay .lp-signal {
-    animation: lp-signal-y 600ms var(--ease-in-out) var(--d, 0ms) both;
+  .lp-run:not([data-run="rest"]) .lp-draw {
+    animation: lp-draw var(--dur, 600ms) var(--ease-expo) var(--d, 0ms)
+      backwards;
   }
-  @media (min-width: 1024px) {
-    .lp-autoplay .lp-signal {
-      animation-name: lp-signal-x;
-    }
-  }
-
-  /* The label feeds out of the printer slot. */
-  .lp-autoplay .lp-feed {
-    transform-box: view-box;
-    animation: lp-feed 800ms var(--ease-expo) var(--d, 0ms) both;
+  .lp-run:not([data-run="rest"]) [data-lp-sentinel] {
+    animation-fill-mode: both;
   }
 
   /* The datum crosshair locks on. */
-  .lp-autoplay .lp-lock,
   .lp-seq[data-seq="play"] .lp-lock {
     transform-box: fill-box;
     transform-origin: center;
     animation: lp-lock 500ms var(--ease-expo) var(--d, 0ms) both;
   }
 
-  /* Package verified: one green flash, then it settles. */
-  .lp-autoplay .lp-verify {
-    animation: lp-verify 900ms var(--ease-expo) var(--d, 0ms) both;
+  /* Print run pivots: plan points and keys settle down onto their centre, the reticle closes, one ping. */
+  .lp-run:not([data-run="rest"]) :is(.lp-acquire, .lp-lock, .lp-ping) {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .lp-run:not([data-run="rest"]) .lp-acquire {
+    animation: lp-acquire 400ms var(--ease-expo) var(--d, 0ms) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-lock {
+    animation: lp-lock var(--dur-ui) var(--ease-expo) var(--d, 0ms) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-ping {
+    animation: lp-ping 700ms var(--ease-expo) var(--d, 0ms) backwards;
+  }
+
+  /* Plan blips and print line flashes, the floor grade, and the cut flash. */
+  .lp-run:not([data-run="rest"]) .lp-blip {
+    animation: lp-blip var(--dur) var(--ease-expo) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-grade {
+    animation: lp-grade var(--dur) var(--ease-expo) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-cut {
+    animation: lp-cut 240ms var(--ease-in-out) var(--d) backwards;
+  }
+
+  /* Scene movers pivot in view box px; transform origin is an inline style from geometry.ts. */
+  .lp-run:not([data-run="rest"])
+    :is(
+      .lp-adv,
+      .lp-turn,
+      .lp-tear,
+      .lp-carry,
+      .lp-lift,
+      .lp-descend,
+      .lp-reg
+    ) {
+    transform-box: view-box;
+  }
+
+  /* Mechanical sweeps: in out. Advances at 900, 1540, 2180 and 2820, 520 ms each. */
+  .lp-run:not([data-run="rest"]) .lp-geo-x .lp-adv {
+    animation: lp-adv-x 520ms var(--ease-in-out) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-geo-y .lp-adv {
+    animation: lp-adv-y 520ms var(--ease-in-out) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-geo-x .lp-turn {
+    animation: lp-turn-x 520ms var(--ease-in-out) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-geo-y .lp-turn {
+    animation: lp-turn-y 520ms var(--ease-in-out) var(--d) backwards;
+  }
+
+  /* Hand moves: expo. Tear 3880 (500 ms), lift 4560 (300 ms), carry 4840 (900 ms), descend 6080 (300 ms). */
+  .lp-run:not([data-run="rest"]) .lp-geo-x .lp-tear {
+    animation: lp-tear-x 500ms var(--ease-expo) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-geo-y .lp-tear {
+    animation: lp-tear-y 500ms var(--ease-expo) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-geo-x .lp-carry {
+    animation: lp-carry-x 900ms var(--ease-expo) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-geo-y .lp-carry {
+    animation: lp-carry-y 900ms var(--ease-expo) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-lift {
+    animation: lp-lift var(--dur-ui) var(--ease-expo) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-descend {
+    animation: lp-descend var(--dur-ui) var(--ease-expo) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-geo-x .lp-reg {
+    animation: lp-reg 900ms var(--ease-expo) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-geo-y .lp-reg {
+    animation: lp-reg-y 900ms var(--ease-expo) var(--d) backwards;
+  }
+
+  /* The camera: one composited HTML wrapper per scene, 5580 for 1600 ms. */
+  /* Composite the leaning scene only while the run plays, so the lean does not re-raster every frame. */
+  .lp-run[data-run="play"] .lp-lean {
+    will-change: transform;
+  }
+  .lp-run:not([data-run="rest"]) .lp-geo-x .lp-lean {
+    animation: lp-lean-x 1600ms var(--ease-expo) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-geo-y .lp-lean {
+    animation: lp-lean-y 1600ms var(--ease-expo) var(--d) backwards;
+  }
+
+  /* Header: odometer rolls and the progress rule. */
+  .lp-run:not([data-run="rest"]) .lp-roll {
+    animation: lp-roll var(--dur-ui) var(--ease-expo) var(--d) backwards;
+  }
+  .lp-run:not([data-run="rest"]) .lp-seg {
+    transform-origin: left;
+    animation: lp-seg var(--dur) var(--ease-in-out) var(--d) backwards;
   }
 
   /* Calibration: the corrected frame moves from the measured print to centre. */
@@ -140,77 +296,83 @@
   }
 }
 
-@keyframes lp-row {
+@keyframes lp-fade-up {
   from {
     opacity: 0;
-    transform: translateX(-12px);
+    transform: translateY(4px);
   }
 }
 
+/* pathLength 1: the dash pattern lives here, so nothing is left on the element at rest. */
 @keyframes lp-draw {
   from {
+    stroke-dasharray: 1;
     stroke-dashoffset: 1;
   }
   to {
+    stroke-dasharray: 1;
     stroke-dashoffset: 0;
   }
 }
 
-@keyframes lp-signal-x {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) translateX(-1.25rem);
-  }
-  8% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    transform: translate(-50%, -50%) translateX(1.25rem);
-  }
-}
-
-@keyframes lp-signal-y {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) translateY(-0.9rem);
-  }
-  8% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    transform: translate(-50%, -50%) translateY(0.9rem);
-  }
-}
-
-@keyframes lp-feed {
+/* Settles down onto the point like an instrument reticle. */
+@keyframes lp-acquire {
   from {
-    transform: translateY(-150px);
+    opacity: 0;
+    transform: scale(1.6);
   }
 }
 
 @keyframes lp-lock {
   from {
     opacity: 0;
-    transform: scale(2.4) rotate(45deg);
+    transform: scale(1.35);
   }
 }
 
-@keyframes lp-verify {
+/* Up by 15 percent and held to 45 percent: full from 96 to 288 ms of the 640 ms plan blip, so advance plus 160 reads at peak. */
+@keyframes lp-blip {
   0% {
     opacity: 0;
-    background-color: rgb(0 210 106 / 0);
   }
-  30% {
+  15%,
+  45% {
     opacity: 1;
-    background-color: rgb(0 210 106 / 0.28);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* GRADE: 800 for 3760 ms, ending on the peel at 4560. */
+@keyframes lp-grade {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  10%,
+  90% {
+    opacity: 0.75;
+  }
+}
+
+/* pathLength 1 beside the tear bar: draws by 40 percent (96 ms), holds to 75 percent, then fades by torn at 3880. */
+@keyframes lp-cut {
+  0% {
+    opacity: 1;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  40%,
+  75% {
+    opacity: 1;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    opacity: 0;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
   }
 }
 
@@ -238,6 +400,173 @@
 }
 
 @keyframes lp-track {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+/* Print run keyframes. Every --d comes from T in print-run/geometry.ts. */
+@keyframes lp-on {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes lp-off {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Literal per layout distances. The node test checks each against geometry.ts. */
+/* desktop pitch = 168 + 14 */
+@keyframes lp-adv-x {
+  from {
+    transform: translateX(-126px);
+  }
+}
+
+/* mobile pitch = 100 + 10 */
+@keyframes lp-adv-y {
+  from {
+    transform: translateY(-110px);
+  }
+}
+
+/* 182 / r60 rad */
+@keyframes lp-turn-x {
+  from {
+    transform: rotate(-120.3deg);
+  }
+}
+
+/* 110 / r84 rad */
+@keyframes lp-turn-y {
+  from {
+    transform: rotate(-108.7deg);
+  }
+}
+
+/* tearShift 8 downstream, one segment */
+@keyframes lp-tear-x {
+  from {
+    transform: translateX(-8px);
+  }
+}
+
+/* tearShift 8 downstream, one segment */
+@keyframes lp-tear-y {
+  from {
+    transform: translateY(-8px);
+  }
+}
+
+/* mark (586,336) minus rest datum (404,46) */
+@keyframes lp-carry-x {
+  from {
+    transform: translate(-210px, -290px);
+  }
+}
+
+/* mark (256,350) minus rest datum (86,72) */
+@keyframes lp-carry-y {
+  from {
+    transform: translate(-170px, -278px);
+  }
+}
+
+/* 1 / LIFT: with the held descend pose the label is identity before the peel */
+@keyframes lp-lift {
+  from {
+    transform: scale(0.9615);
+  }
+}
+
+/* LIFT 1.04 about the datum */
+@keyframes lp-descend {
+  from {
+    transform: scale(1.04);
+  }
+}
+
+/* REG_DUR 900 from regist 5580: closed by 40 percent, held to hit 6380 (88.9 percent), gone at 6480 */
+@keyframes lp-reg {
+  0% {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+  40% {
+    opacity: 1;
+    transform: none;
+  }
+  89% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}
+
+/* as lp-reg, from 1.04: the mobile corners (x 336 about the mark at 256) stay inside the 340 view */
+@keyframes lp-reg-y {
+  0% {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  40% {
+    opacity: 1;
+    transform: none;
+  }
+  89% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}
+
+/* LEAN_DUR 1600 from regist 5580: peak at hit 6380 (50 percent), release from merge 6780 (75 percent); desktop lean 1.04 */
+@keyframes lp-lean-x {
+  0%,
+  100% {
+    transform: none;
+  }
+  50%,
+  75% {
+    transform: scale(1.04);
+  }
+}
+
+/* as lp-lean-x; mobile lean 1.03 */
+@keyframes lp-lean-y {
+  0%,
+  100% {
+    transform: none;
+  }
+  50%,
+  75% {
+    transform: scale(1.03);
+  }
+}
+
+/* one odometer row: line height 1.2 */
+@keyframes lp-roll {
+  from {
+    transform: translateY(1.2em);
+  }
+}
+
+@keyframes lp-seg {
   from {
     transform: scaleX(0);
   }

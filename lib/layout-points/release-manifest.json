@@ -90,6 +90,12 @@
       "owner": "release engineering"
     },
     {
+      "id": "vectorworks-credentials",
+      "label": "Vectorworks-issued credentials file for each supported Vectorworks version (2026 and later disable locked or SDK plug-ins without one)",
+      "status": "blocked",
+      "owner": "release engineering"
+    },
+    {
       "id": "host-matrix",
       "label": "Vectorworks host acceptance matrix complete for every claimed version",
       "status": "blocked",
