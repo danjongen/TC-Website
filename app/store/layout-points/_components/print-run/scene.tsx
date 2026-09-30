@@ -594,7 +594,7 @@ export function Scene({ geo, idPrefix }: { geo: Geometry; idPrefix: string }) {
         cx={geo.roll.cx}
         cy={geo.roll.cy}
         r={geo.roll.r}
-        fill={P.liner}
+        fill={P.sheet}
         stroke={P.line}
         strokeWidth={S.fine}
       />

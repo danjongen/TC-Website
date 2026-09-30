@@ -214,6 +214,10 @@
   }
 
   /* The camera: one composited HTML wrapper per scene, 5580 for 1600 ms. */
+  /* Composite the leaning scene only while the run plays, so the lean does not re-raster every frame. */
+  .lp-run[data-run="play"] .lp-lean {
+    will-change: transform;
+  }
   .lp-run:not([data-run="rest"]) .lp-geo-x .lp-lean {
     animation: lp-lean-x 1600ms var(--ease-expo) var(--d) backwards;
   }
