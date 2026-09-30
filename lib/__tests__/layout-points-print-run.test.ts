@@ -9,20 +9,18 @@ import test from "node:test";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 
+import { datumPoint } from "../../app/store/layout-points/_components/label/datum";
 import {
-  DATUM_POSITIONS,
-  datumPoint,
-} from "../../app/store/layout-points/_components/label/datum";
-import {
-  faceLayout,
-  GLYPH_ADVANCE,
-  GLYPH_ASCENT,
-  GLYPH_DESCENT,
-  rowBox,
-  rowText,
-  TARGET_FOOTPRINT,
+  faceTexts,
+  formatImperial,
+  formatMetres,
+  FRAME,
+  MONO_ADVANCE,
+  RING,
+  textBox,
 } from "../../app/store/layout-points/_components/label/face-layout";
 import {
+  FACE,
   LABEL_DESIGN,
   LABEL_STOCK,
   LabelFace,
@@ -106,6 +104,11 @@ function pathPoints(d: string): { x: number; y: number }[] {
 }
 
 /** Glyph box of one line of Space Mono, as getBBox reports it. */
+// Scene annotations are Space Mono: advance, and ascent and descent as getBBox reports them.
+const GLYPH_ADVANCE = 0.612;
+const GLYPH_ASCENT = 1.109;
+const GLYPH_DESCENT = 0.355;
+
 function monoBox(
   x: number,
   y: number,
@@ -138,7 +141,7 @@ for (const [name, geo] of LAYOUTS) {
   });
 
   test(`${name}: strip slots sit one pitch apart in print order`, () => {
-    const order = [...RUN].reverse(); // STG-003 nearest the tear bar, CTL-01 farthest
+    const order = [...RUN].reverse(); // L042 nearest the tear bar, CP01 farthest
     order.forEach((id, i) => {
       assert.equal(
         along(geo, geo.slots[id]),
@@ -161,10 +164,10 @@ for (const [name, geo] of LAYOUTS) {
     assert.equal(hero - geo.tearShift, geo.printLine + geo.label.gap);
     assert.equal(geo.tearBar, geo.printLine + geo.label.gap / 2);
     assert.equal(stripTrail(geo), geo.tearBar + geo.tearShift);
-    // Leading torn edge half a gap past CTL-01, and at t = 0 it rests on the tear bar.
+    // Leading torn edge half a gap past CP01, and at t = 0 it rests on the tear bar.
     assert.equal(
       geo.tornEdge,
-      along(geo, geo.slots["CTL-01"]) + alongSize(geo) + geo.label.gap / 2,
+      along(geo, geo.slots["CP01"]) + alongSize(geo) + geo.label.gap / 2,
     );
     assert.equal(
       geo.tornEdge - geo.tearShift - T.advance.length * geo.label.pitch,
@@ -179,7 +182,7 @@ for (const [name, geo] of LAYOUTS) {
         across(geo, geo.nextBlank) +
           (geo.axis === "x" ? geo.label.h : geo.label.w),
     );
-    // The whole strip, CTL-01 included, is inside the view at rest.
+    // The whole strip, CP01 included, is inside the view at rest.
     assert.ok(geo.tornEdge <= (geo.axis === "x" ? geo.view.w : geo.view.h));
   });
 
@@ -515,130 +518,120 @@ test("timeline locks to the ka chunk grid and ends at T.rest", () => {
 
 const labels: LabelData[] = [...Object.values(SAMPLE)];
 
-test("no text box meets the target footprint for all nine datums at aspect 1.5", () => {
-  const h = 100;
-  const w = h * LABEL_STOCK.aspect;
-  assert.equal(TARGET_FOOTPRINT, 0.09);
-  for (const base of labels) {
-    for (const pos of DATUM_POSITIONS) {
-      const label = { ...base, datum: pos.id } as LabelData;
-      const f = faceLayout(pos.id, w, h, { chip: label.kind === "layout" });
-      assert.equal(
-        f.chip === null,
-        label.kind === "control",
-        "chip on layout labels only",
+test("unit columns print as the owner's design board prints them", () => {
+  assert.equal(formatMetres("12.345"), "+012.345 m");
+  assert.equal(formatMetres("-6.789"), "-006.789 m");
+  assert.equal(formatMetres("1.2"), "+001.200 m");
+  assert.equal(formatImperial("12.345"), `+40' 06"`);
+  assert.equal(formatImperial("-6.789"), `-22' 03 1/4"`);
+  assert.equal(formatImperial("1.2"), `+03' 11 1/4"`);
+  assert.equal(formatImperial("0.3048"), `+01' 00"`, "twelve inches carry to a foot");
+  assert.equal(formatImperial("0.000"), `+00' 00"`);
+});
+
+// Condensed advance per em, a ceiling over every glyph the faces print.
+const COND_ADVANCE = 0.52;
+
+test("face text stays on the card, clear of the ring and of each other", () => {
+  for (const label of labels) {
+    const d = datumPoint(label.datum, { x: 0, y: 0, width: 1, height: 1 });
+    const boxes = faceTexts(label).map((t) => ({
+      t,
+      b: textBox(t, t.family === "mono" ? MONO_ADVANCE : COND_ADVANCE),
+    }));
+    for (const { t, b } of boxes) {
+      assert.ok(
+        b.x0 >= FRAME && b.x1 <= 1 - FRAME && b.y0 >= FRAME && b.y1 <= 1 - FRAME,
+        `${label.id} ${t.key} on the card: ${JSON.stringify(b)}`,
       );
-      const t = datumPoint(pos.id, { x: 0, y: 0, width: w, height: h });
-      assert.deepEqual({ x: f.target.x, y: f.target.y }, t);
-      near(
-        f.target.arm,
-        TARGET_FOOTPRINT * h,
-        1e-9,
-        "the target arm is the footprint",
-      );
-      const fp = TARGET_FOOTPRINT * h;
-      for (const row of f.rows) {
-        const b = rowBox(f, row, rowText(label, row.key));
-        const hit =
-          b.x0 < t.x + fp &&
-          b.x1 > t.x - fp &&
-          b.y0 < t.y + fp &&
-          b.y1 > t.y - fp;
-        assert.ok(
-          !hit,
-          `${base.id} row ${row.key} overlaps the ${pos.id} target`,
-        );
-        assert.ok(
-          b.x0 >= 0 && b.x1 <= w,
-          `${base.id} row ${row.key} inside the stock in x at ${pos.id}`,
-        );
-        assert.ok(
-          b.y0 >= 0 && b.y1 <= h,
-          `${base.id} row ${row.key} inside the stock in y at ${pos.id}`,
-        );
-      }
+      const clear =
+        b.y0 >= d.y + RING.outer || b.x1 <= d.x - RING.outer || b.x0 >= d.x + RING.outer;
+      assert.ok(clear, `${label.id} ${t.key} clear of the exact point ring`);
     }
+    for (let i = 0; i < boxes.length; i++)
+      for (let j = i + 1; j < boxes.length; j++) {
+        const [p, q] = [boxes[i].b, boxes[j].b];
+        const hit = p.x0 < q.x1 && q.x0 < p.x1 && p.y0 < q.y1 && q.y0 < p.y1;
+        assert.ok(!hit, `${label.id}: ${boxes[i].t.key} meets ${boxes[j].t.key}`);
+      }
   }
+});
+
+test("faces use only the loaded weights", () => {
+  const loaded = { mono: [500, 700], cond: [600, 800] };
+  for (const label of labels)
+    for (const t of faceTexts(label))
+      assert.ok(loaded[t.family].includes(t.weight), `${label.id} ${t.key} ${t.family} ${t.weight}`);
 });
 
 /** textContent of every <text> element, tags stripped. */
 function texts(html: string): string[] {
   return Array.from(html.matchAll(/<text\b[^>]*>([\s\S]*?)<\/text>/g), (m) =>
-    m[1].replace(/<[^>]+>/g, ""),
+    m[1].replace(/<[^>]+>/g, "").replace(/&#x27;/g, "'").replace(/&quot;/g, '"'),
   );
 }
 
 function face(label: LabelData): string {
   return renderToStaticMarkup(
-    createElement(LabelFace, { label, width: 168, height: 112, radius: 2 }),
+    createElement(LabelFace, { label, width: 112, height: 112, radius: 2 }),
   );
 }
 
 const count = (html: string, re: RegExp) => (html.match(re) ?? []).length;
 
-test("label face prints only the known facts, verbatim", () => {
+test("label face prints the sample facts in the board's format", () => {
   const html = renderToStaticMarkup(
     createElement(
       "svg",
       null,
       labels.map((label) =>
-        createElement(LabelFace, {
-          key: label.id,
-          label,
-          width: 150,
-          height: 100,
-        }),
+        createElement(LabelFace, { key: label.id, label, width: 100, height: 100 }),
       ),
     ),
   );
   const all = texts(html);
-  for (const fact of ["E 17.600", "N -10.700", "CONTROL", "RIGGING"]) {
+  for (const fact of [
+    "L042",
+    "CP01",
+    "+017.600 m",
+    "-010.700 m",
+    `+57' 09"`,
+    "LX",
+    "LIGHTING",
+    "EXACT POINT",
+    "PT 04/04",
+    "26-DEMO-01",
+    "CONTROL POINT: DO NOT DISTURB",
+    "DS TRUSS FOOT",
+  ]) {
     assert.ok(all.includes(fact), `${fact} printed`);
   }
   assert.ok(!/\bid="/.test(html), "no ids in LabelFace");
+  assert.ok(!all.some((t) => t.includes("BSB")), "no client project codes");
 });
 
-test("label faces: cream stock, one chip, one green disc; CONTROL stays yellow and black", () => {
-  const stg = face(SAMPLE["STG-003"]);
-  const rig = face(SAMPLE["RIG-012"]);
-  const ctl = face(SAMPLE["CTL-01"]);
-  assert.equal(count(stg, /#00D26A/gi), 2, "STG-003: chip and disc");
-  assert.equal(count(rig, /#38BDF8/gi), 1, "RIG-012: one chip");
-  assert.equal(count(rig, /#00D26A/gi), 1, "RIG-012: one disc");
-  assert.equal(count(ctl, /#00D26A/gi), 0, "CTL-01: no green");
-  assert.equal(count(ctl, /#FACC15/gi), 1, "CTL-01: yellow stock");
-  for (const html of [stg, rig]) {
-    assert.ok(html.includes('fill="#F3F0E8"'), "cream stock");
-    assert.equal(
-      count(html, /<tspan fill="#6B675E">/g),
-      3,
-      "E, N and Z axis letters in meta",
-    );
-  }
-  assert.equal(count(ctl, /#6B675E/gi), 0, "no meta grey on CONTROL");
-  // No full width colour band: no rect as wide as the face in a department colour.
-  assert.ok(
-    !/<rect[^>]*width="168"[^>]*fill="#(00D26A|38BDF8)"/i.test(stg + rig),
-    "no band",
-  );
-  // CONTROL border is 0.015h, out at 0.025h, so the rows keep a 0.04h margin inside it.
-  assert.ok(
-    ctl.includes(`stroke-width="${Math.round(0.015 * 112 * 100) / 100}"`),
-    "CONTROL border 0.015h",
-  );
+test("label faces: department colour frame, CONTROL stays hazard yellow and black", () => {
+  const lx = face(SAMPLE.L042);
+  const ctl = face(SAMPLE.CP01);
+  assert.equal(count(lx, /#2D6FED/gi), 2, "frame and LX code");
+  assert.equal(count(lx, /#00D26A/gi), 0, "no site green on a printed face");
+  assert.equal(count(ctl, /#2D6FED/gi), 0, "CONTROL takes no department colour");
+  assert.equal(count(ctl, new RegExp(FACE.hazard, "gi")), 3, "stock, ring sector, alert text");
+  assert.equal(count(lx, /data-part="datum-dot"/g), 1, "one exact point");
+  assert.equal(LABEL_STOCK.aspect, 1, "square stock");
 });
 
 test("caption follows LABEL_DESIGN.source", () => {
-  assert.equal(LABEL_DESIGN.source, "placeholder");
-  assert.equal(LABEL_DESIGN.caption, "Label layout is illustrative.");
-  LABEL_DESIGN.source = "datum-label-studio";
+  assert.equal(LABEL_DESIGN.source, "datum-label-studio");
+  assert.equal(
+    LABEL_DESIGN.caption,
+    "Label design from Datum Label Studio, shown with sample data.",
+  );
+  LABEL_DESIGN.source = "placeholder";
   try {
-    assert.equal(
-      LABEL_DESIGN.caption,
-      "Label layout from a Datum Label Studio export.",
-    );
+    assert.equal(LABEL_DESIGN.caption, "Label layout is illustrative.");
   } finally {
-    LABEL_DESIGN.source = "placeholder";
+    LABEL_DESIGN.source = "datum-label-studio";
   }
 });
 
@@ -661,13 +654,13 @@ test("scene markup stays within budget and truth rules", () => {
     assert.equal(count(html, /data-lp-payoff/g), 1);
     assert.equal(
       count(html, /#00D26A/gi),
-      15,
-      "green inventory: 8 in the scene, 7 in the faces",
+      8,
+      "green inventory: 8 in the scene, none in the faces",
     );
     assert.equal(
-      count(html, /#38BDF8/gi),
-      1,
-      "#38BDF8 only in the RIG-012 chip",
+      count(html, /#2D6FED/gi),
+      8,
+      "Lighting blue: frame and code on four Lighting faces",
     );
     assert.equal(
       count(html, /<text\b[^>]*class="[^"]*\bfont-sans\b/g),

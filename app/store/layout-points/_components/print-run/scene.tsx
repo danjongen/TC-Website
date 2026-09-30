@@ -5,7 +5,7 @@
 
 import type { CSSProperties, ReactNode } from "react";
 
-import { LabelFace } from "../label/label-face";
+import { FACE, LabelFace } from "../label/label-face";
 import {
   bubbleLeader,
   cornersPath,
@@ -44,12 +44,12 @@ import {
 /** The ping: 11 dots on a 24 point circle, 15 to 165 degrees above the deck edge. The offset skips the dot on the edge. */
 const PING_DOTS = `${"0 1 ".repeat(10)}0 14`;
 
-/** Fixed control yellow, the same as the printed CONTROL stock. */
-const CONTROL = "#FACC15";
+/** Fixed control yellow, the same as the printed CONTROL hazard frame. */
+const CONTROL = FACE.hazard;
 
 export const SCENE_TITLE = "Print run to floor mark";
 export const SCENE_DESC =
-  "Diagram of a label print run. A printer prints four labels from a roll: CTL-01, a yellow and black control label with its datum at the centre; STG-001, Staging, datum at the bottom right corner; RIG-012, Rigging, datum at the left edge; STG-003, Staging, datum at the top edge. The strip is torn off. STG-003 is peeled from the liner, leaving an empty window, and placed on the floor with its exact datum on the surveyed mark at E 17.600 N -8.200, where the drawing's deck edge and setting-out line cross. A key plan shows the same sample points, and the floor detail is drawn not to scale. The roll is drawn as a schematic symbol.";
+  "Diagram of a label print run. A printer prints four square labels from a roll, each with its exact point at the top centre: CP01, a control label in a yellow and black hazard frame marked do not disturb; then L011, L020 and L042, Lighting layout labels in a blue frame. The strip is torn off. L042 is peeled from the liner, leaving an empty window, and placed on the floor with its exact point on the surveyed mark at E 17.600 N -8.200, where the drawing's deck edge and setting-out line cross. A key plan shows the same sample points, and the floor detail is drawn not to scale. The roll is drawn as a schematic symbol.";
 
 type Vars = CSSProperties & { "--dur"?: string };
 
@@ -164,17 +164,17 @@ export function Scene({ geo, idPrefix }: { geo: Geometry; idPrefix: string }) {
   const leader = bubbleLeader(geo);
   const controls: { id: PlanId; e: string; n: string }[] = [
     {
-      id: "CTL-01",
-      e: SAMPLE["CTL-01"].coords.e,
-      n: SAMPLE["CTL-01"].coords.n,
+      id: "CP01",
+      e: SAMPLE["CP01"].coords.e,
+      n: SAMPLE["CP01"].coords.n,
     },
     {
-      id: "CTL-02",
-      e: PLAN_ONLY["CTL-02"].coords.e,
-      n: PLAN_ONLY["CTL-02"].coords.n,
+      id: "CP02",
+      e: PLAN_ONLY["CP02"].coords.e,
+      n: PLAN_ONLY["CP02"].coords.n,
     },
   ];
-  const layoutPoints: RunId[] = ["STG-001", "RIG-012", "STG-003"];
+  const layoutPoints: RunId[] = ["L011", "L020", "L042"];
 
   const planId = (id: PlanId, t: number) => {
     const p = plan.ids[id];
@@ -807,7 +807,7 @@ export function Scene({ geo, idPrefix }: { geo: Geometry; idPrefix: string }) {
         fill={P.text}
         style={d(T.calloutA + 80)}
       >
-        STG-003 in the drawing
+        L042 in the drawing
       </text>
       <path
         className="lp-acquire"

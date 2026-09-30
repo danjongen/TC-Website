@@ -164,10 +164,10 @@ export function ProcessStrip() {
 
 /** Control label versus a department layout label. */
 export function LabelStyles() {
-  const w = 240
+  const w = 280
   const h = w / LABEL_STOCK.aspect
-  const control = SAMPLE["CTL-01"]
-  const layout = SAMPLE["STG-003"]
+  const control = SAMPLE.CP01
+  const layout = SAMPLE.L042
   return (
     <figure className="grid grid-cols-1 gap-px border border-zinc-800 bg-zinc-800 sm:grid-cols-2">
       <div className="bg-black p-6">
@@ -177,10 +177,10 @@ export function LabelStyles() {
           height={h}
           viewBox={`0 0 ${w} ${h}`}
           role="img"
-          aria-label={`Control label ${control.id}, fixed yellow and black style, datum at the centre.`}
+          aria-label={`Control label ${control.id}: a fixed yellow and black hazard frame, marked control point, do not disturb, with the exact point at the top centre.`}
           className="mt-4 block h-auto max-w-full"
         >
-          <LabelFace label={control} width={w} height={h} radius={2} />
+          <LabelFace label={control} width={w} height={h} />
         </svg>
       </div>
       <div className="bg-black p-6">
@@ -192,14 +192,14 @@ export function LabelStyles() {
           height={h}
           viewBox={`0 0 ${w} ${h}`}
           role="img"
-          aria-label={`Layout label ${layout.id}, Staging department colour, datum at the top edge.`}
+          aria-label={`Layout label ${layout.id}: a Lighting department frame in blue, the ID in large type, metric and imperial coordinates, and the exact point at the top centre.`}
           className="mt-4 block h-auto max-w-full"
         >
-          <LabelFace label={layout} width={w} height={h} radius={2} />
+          <LabelFace label={layout} width={w} height={h} />
         </svg>
       </div>
       <figcaption className="bg-black px-6 py-3 font-mono text-[10px] uppercase tracking-[0.14em] text-zinc-400 sm:col-span-2">
-        Diagram. Department names and colours are yours to set. Control labels cannot be restyled.{" "}
+        Department names and colours are yours to set. Control labels cannot be restyled.{" "}
         {LABEL_DESIGN.caption}
       </figcaption>
     </figure>

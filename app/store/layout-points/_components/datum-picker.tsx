@@ -30,7 +30,7 @@ export function DatumPicker() {
           <rect x={LABEL.x} y={LABEL.y} width={LABEL.w} height={LABEL.h} fill="#fafafa" />
           <rect x={LABEL.x} y={LABEL.y} width={LABEL.w} height="7" fill="#00D26A" />
           <text x={LABEL.x + 14} y={LABEL.y + 36} fontSize="16" fontWeight="700" fill="#000" className="font-mono">
-            STG-003
+            L042
           </text>
           {DATUM_POSITIONS.map((p) => (
             <circle

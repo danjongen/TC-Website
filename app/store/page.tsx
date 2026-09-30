@@ -279,7 +279,7 @@ export default function StorePage() {
                   <rect x="40" y="20" width="240" height="130" fill="#fafafa" />
                   <rect x="40" y="20" width="240" height="8" fill="#00D26A" />
                   <text x="56" y="56" fontSize="18" fontWeight="700" fill="#000" className="font-mono">
-                    STG-003
+                    L042
                   </text>
                   <g stroke="#000" strokeWidth="2" fill="none">
                     <circle cx="160" cy="95" r="10" />

@@ -3,77 +3,79 @@ import path from "node:path";
 
 import { ImageResponse } from "next/og";
 
+import { faceTexts, type FaceText } from "./_components/label/face-layout";
+import { FACE, FAMILY_NAME, LabelFace } from "./_components/label/label-face";
+import { HERO, SAMPLE } from "./_components/print-run/geometry";
+
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt =
-  "Layout Points + Datum Label Studio. From Vectorworks datum to physical datum. A label with a green exact-datum target on a survey grid.";
+  "Layout Points + Datum Label Studio. From Vectorworks datum to physical datum. A square Lighting layout label, L042, with its exact point at the top centre, on a survey grid.";
 
 const GREEN = "#00D26A";
 
-// The label matches LabelFace: cream stock, a Staging chip, the ID in Space Mono 700,
-// meta axis letters, and STG-003's exact datum on the top edge (sample datum tc).
-const PAPER = "#F3F0E8";
-const INK = "#0B0B0B";
-const META = "#6B675E";
-const CARD = { right: 84, top: 150, w: 360, h: 240 };
-const H = CARD.h;
-const TX = 0.08 * H;
-const DX = CARD.w / 2;
-const STROKE = 0.009 * H;
-const RING = 0.055 * H + STROKE / 2; // outer edge of the ring stroke
+// The label is LabelFace itself (graphics only) with the type set here from faceTexts,
+// so the share card cannot drift from the page. Sample data: the hero point.
+const LABEL = SAMPLE[HERO];
+const S = 380;
+const CARD = { right: 84, top: 110 };
+/** Baseline below the line box top at line height 1: half leading plus ascent, per family. */
+const BASELINE = { cond: 0.9, mono: 0.875 } as const;
 
-/** One face row placed by its baseline. Space Mono at line height 1 puts the baseline 0.88em below the box top. */
-function Row({
-  baseline,
-  size,
-  left = TX,
-  color = INK,
-  bold = false,
-  track = 0.04,
-  axis,
-  children,
-}: {
-  baseline: number;
-  size: number;
-  left?: number;
-  color?: string;
-  bold?: boolean;
-  track?: number;
-  axis?: string;
-  children: string;
-}) {
+function tone(t: FaceText["tone"]): string {
+  if (t === "meta") return FACE.meta;
+  if (t === "alert") return FACE.hazard;
+  if (t === "dept" && LABEL.kind === "layout") return LABEL.department.colour;
+  return FACE.ink;
+}
+
+function FaceType({ t }: { t: FaceText }) {
+  const size = t.size * S;
+  const top = t.y * S - BASELINE[t.family] * size;
+  const place =
+    t.anchor === "start"
+      ? { left: t.x * S }
+      : t.anchor === "end"
+        ? { right: S - t.x * S }
+        : { left: 0, width: S, justifyContent: "center" };
   return (
     <div
       style={{
         position: "absolute",
-        left,
-        top: baseline - 0.88 * size,
-        fontSize: size,
-        lineHeight: 1,
-        fontWeight: bold ? 700 : 400,
-        letterSpacing: track * size,
-        color,
-        whiteSpace: "pre",
+        top,
+        ...place,
         display: "flex",
+        fontFamily: FAMILY_NAME[t.family],
+        fontSize: size,
+        fontWeight: t.weight,
+        lineHeight: 1,
+        letterSpacing: t.track * size,
+        color: tone(t.tone),
+        whiteSpace: "pre",
       }}
     >
-      {axis ? <span style={{ color: META }}>{`${axis} `}</span> : null}
-      <span>{children}</span>
+      {t.text}
     </div>
   );
 }
 
 /**
- * Share card. Survey grid, a printed label with its exact-datum target, and
- * the product line. Drawn, not a screenshot, so it never overstates what
+ * Share card. Survey grid, the Datum Label Studio label face with sample data,
+ * and the product line. Drawn, not a screenshot, so it never overstates what
  * the app shows.
  */
 export default async function Image() {
   const fontDir = path.join(process.cwd(), "public/fonts");
-  const [mono, monoBold] = await Promise.all([
-    readFile(path.join(fontDir, "SpaceMono-Regular.ttf")),
-    readFile(path.join(fontDir, "SpaceMono-Bold.ttf")),
-  ]);
+  const [mono, monoBold, condSemi, condExtra, plexMedium, plexBold] = await Promise.all(
+    [
+      "SpaceMono-Regular.ttf",
+      "SpaceMono-Bold.ttf",
+      "BarlowCondensed-SemiBold.ttf",
+      "BarlowCondensed-ExtraBold.ttf",
+      "IBMPlexMono-Medium.ttf",
+      "IBMPlexMono-Bold.ttf",
+    ].map((f) => readFile(path.join(fontDir, f))),
+  );
   const grid = Array.from({ length: 20 }, (_, i) => i);
   return new ImageResponse(
     <div
@@ -176,114 +178,21 @@ export default async function Image() {
           position: "absolute",
           right: CARD.right,
           top: CARD.top,
-          width: CARD.w,
-          height: CARD.h,
-          background: PAPER,
-          borderRadius: 3,
-          overflow: "hidden",
+          width: S,
+          height: S,
           display: "flex",
         }}
       >
-        {/* Staging chip: top on the department cap height, bottom on its baseline. */}
-        <div
-          style={{
-            position: "absolute",
-            left: TX,
-            top: 0.1 * H,
-            width: 0.07 * H,
-            height: 0.07 * H,
-            background: GREEN,
-            border: `${0.006 * H}px solid ${INK}`,
-            boxSizing: "border-box",
-            display: "flex",
-          }}
-        />
-        <Row
-          baseline={0.17 * H}
-          size={0.1 * H}
-          left={TX + 0.1 * H}
-          color={META}
-        >
-          STAGING
-        </Row>
-        <Row baseline={0.345 * H} size={0.145 * H} bold track={0}>
-          STG-003
-        </Row>
-        <Row baseline={0.64 * H} size={0.1 * H} axis="E">
-          17.600
-        </Row>
-        <Row baseline={0.77 * H} size={0.1 * H} axis="N">
-          -8.200
-        </Row>
-        <Row baseline={0.9 * H} size={0.1 * H} axis="Z">
-          0.000
-        </Row>
-        {/* Exact datum on the top edge: the card clips it to a half target, as the face does. */}
-        <div
-          style={{
-            position: "absolute",
-            left: DX - 0.08 * H,
-            top: -0.08 * H,
-            width: 0.16 * H,
-            height: 0.16 * H,
-            borderRadius: 0.16 * H,
-            background: GREEN,
-            display: "flex",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: DX - 0.09 * H,
-            top: -STROKE / 2,
-            width: 0.18 * H,
-            height: STROKE,
-            background: INK,
-            display: "flex",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: DX - STROKE / 2,
-            top: -0.09 * H,
-            width: STROKE,
-            height: 0.18 * H,
-            background: INK,
-            display: "flex",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: DX - RING,
-            top: -RING,
-            width: RING * 2,
-            height: RING * 2,
-            borderRadius: RING * 2,
-            border: `${STROKE}px solid ${INK}`,
-            boxSizing: "border-box",
-            display: "flex",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: DX - 0.014 * H,
-            top: -0.014 * H,
-            width: 0.028 * H,
-            height: 0.028 * H,
-            borderRadius: 0.028 * H,
-            background: INK,
-            display: "flex",
-          }}
-        />
+        <LabelFace label={LABEL} width={S} height={S} bare />
+        {faceTexts(LABEL).map((t) => (
+          <FaceType key={t.key} t={t} />
+        ))}
       </div>
       <div
         style={{
           position: "absolute",
           right: CARD.right,
-          top: CARD.top + CARD.h + 24,
+          top: CARD.top + S + 22,
           color: "#a1a1aa",
           fontSize: 18,
           letterSpacing: 2,
@@ -298,6 +207,10 @@ export default async function Image() {
       fonts: [
         { name: "Space Mono", data: mono, weight: 400, style: "normal" },
         { name: "Space Mono", data: monoBold, weight: 700, style: "normal" },
+        { name: FAMILY_NAME.cond, data: condSemi, weight: 600, style: "normal" },
+        { name: FAMILY_NAME.cond, data: condExtra, weight: 800, style: "normal" },
+        { name: FAMILY_NAME.mono, data: plexMedium, weight: 500, style: "normal" },
+        { name: FAMILY_NAME.mono, data: plexBold, weight: 700, style: "normal" },
       ],
     },
   );

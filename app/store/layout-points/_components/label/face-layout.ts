@@ -1,155 +1,150 @@
-// Pure placeholder layout maths for LabelFace, shared with the node test.
-// Every length is a fraction of the stock height h (placeholder stock w = 1.5h).
+// Pure layout maths for LabelFace, shared with the node test. The face reproduces the
+// Datum Label Studio carrier design (board 7a, AXIS-01 interior inside the datum frame
+// carrier): a square stock, a department colour frame (hazard stripes for CONTROL),
+// a white card, and the exact point at the top centre of the stock.
+// Every length is a fraction of the stock side S, measured from the owner's design board.
 
-import { datumFraction, datumPoint, type DatumPosition } from "./datum";
 import type { LabelData } from "./label-face";
 
-/** Space Mono advance per em, used by the overlap test. */
-export const GLYPH_ADVANCE = 0.612;
-/** Space Mono ascent per em, as getBBox reports it. */
-export const GLYPH_ASCENT = 1.109;
-/** Space Mono descent per em, as getBBox reports it. */
-export const GLYPH_DESCENT = 0.355;
+/** Frame depth: the card sits this far in from every cut edge. */
+export const FRAME = 0.092;
+/** Exact point ring: outer and inner radius about the datum. */
+export const RING = { outer: 0.115, inner: 0.062 } as const;
+/** Text margin inside the card: rows start and end 0.042 S in from the card. */
+export const TEXT_X0 = 0.134;
+export const TEXT_X1 = 0.866;
 
-export type RowKey = "dept" | "id" | "e" | "n" | "z";
+/** IBM Plex Mono advance per em. */
+export const MONO_ADVANCE = 0.6;
+/** Cap height per em, both families. */
+export const CAP = 0.7;
 
-/** One printed row. x is the anchor, track is letter spacing in em. */
-export type FaceRow = {
-  key: RowKey;
+export type FaceText = {
+  key: string;
   x: number;
-  y: number;
+  y: number; // baseline
   size: number;
-  bold: boolean;
-  track: number;
+  anchor: "start" | "middle" | "end";
+  family: "cond" | "mono";
+  weight: 500 | 600 | 700 | 800; // loaded: mono 500 and 700, condensed 600 and 800 (the test holds this)
+  track: number; // em
+  tone: "ink" | "meta" | "dept" | "alert";
+  text: string;
 };
 
-export type FaceChip = {
-  size: number;
-  gap: number;
-  stroke: number;
-  x: number;
-  y: number;
-};
-
-export type FaceLayout = {
-  anchor: "start" | "end";
-  textX: number;
-  chip: FaceChip | null;
-  border: { inset: number; width: number };
-  rows: FaceRow[];
-  target: {
-    x: number;
-    y: number;
-    arm: number;
-    ring: number;
-    highlight: number; // filled disc radius
-    dot: number;
-    stroke: number;
-  };
-};
-
-const MARGIN = 0.08;
-const ROWS: {
-  key: RowKey;
-  y: number;
-  size: number;
-  bold: boolean;
-  track: number;
-}[] = [
-  { key: "dept", y: 0.17, size: 0.1, bold: false, track: 0.04 },
-  { key: "id", y: 0.345, size: 0.145, bold: true, track: 0 },
-  { key: "e", y: 0.64, size: 0.1, bold: false, track: 0.04 },
-  { key: "n", y: 0.77, size: 0.1, bold: false, track: 0.04 },
-  { key: "z", y: 0.9, size: 0.1, bold: false, track: 0.04 },
-];
-
-/** The target footprint half size: datum plus or minus this, in h. Equals the target arm. */
-export const TARGET_FOOTPRINT = 0.09;
-
-export function faceLayout(
-  datum: DatumPosition,
-  width: number,
-  height: number,
-  opts: { chip: boolean } = { chip: true },
-): FaceLayout {
-  const h = height;
-  const f = datumFraction(datum);
-  // Text keeps to the side away from the datum: end anchored when the datum is on the left.
-  const anchor = f.x === 0 ? "end" : "start";
-  const t = datumPoint(datum, { x: 0, y: 0, width, height });
-  const textX = anchor === "end" ? width - MARGIN * h : MARGIN * h;
-  // The chip square sits on the department row: top on the cap height, bottom on the baseline.
-  const chip: FaceChip | null = opts.chip
-    ? {
-        size: 0.07 * h,
-        gap: 0.03 * h,
-        stroke: 0.006 * h,
-        x: anchor === "end" ? width - 0.15 * h : 0.08 * h,
-        y: 0.1 * h,
-      }
-    : null;
-  const deptShift = chip ? (anchor === "end" ? -0.1 * h : 0.1 * h) : 0;
-  return {
-    anchor,
-    textX,
-    chip,
-    // Out at 0.025h and 0.015h wide: the inner edge sits at 0.04h, half the 0.08h text margin, so the rows breathe.
-    border: { inset: 0.025 * h, width: 0.015 * h },
-    rows: ROWS.map((r) => ({
-      key: r.key,
-      x: r.key === "dept" ? textX + deptShift : textX,
-      y: r.y * h,
-      size: r.size * h,
-      bold: r.bold,
-      track: r.track,
-    })),
-    target: {
-      x: t.x,
-      y: t.y,
-      arm: TARGET_FOOTPRINT * h,
-      ring: 0.055 * h,
-      highlight: 0.08 * h,
-      dot: 0.014 * h,
-      stroke: 0.009 * h,
-    },
-  };
+/** Metres, printed as the label prints them: sign, three integer digits, three decimals. */
+export function formatMetres(value: string): string {
+  const v = Number(value);
+  const sign = v < 0 ? "-" : "+";
+  const [i, f = ""] = Math.abs(v).toFixed(3).split(".");
+  return `${sign}${i.padStart(3, "0")}.${f} m`;
 }
 
-/** The text a row prints. Coordinate strings are printed verbatim. */
-export function rowText(label: LabelData, key: RowKey): string {
-  switch (key) {
-    case "dept":
-      return label.kind === "control"
-        ? "CONTROL"
-        : label.department.name.toUpperCase();
-    case "id":
-      return label.id;
-    case "e":
-      return `E ${label.coords.e}`;
-    case "n":
-      return `N ${label.coords.n}`;
-    case "z":
-      return `Z ${label.coords.z}`;
-  }
+const QUARTERS = ["", " 1/4", " 1/2", " 3/4"];
+
+/** Feet and inches to the nearest quarter inch, as the label prints them. */
+export function formatImperial(value: string): string {
+  const v = Number(value);
+  const sign = v < 0 ? "-" : "+";
+  let q = Math.round((Math.abs(v) / 0.0254) * 4); // quarter inches
+  const feet = Math.floor(q / 48);
+  q -= feet * 48;
+  const inches = Math.floor(q / 4);
+  return `${sign}${String(feet).padStart(2, "0")}' ${String(inches).padStart(2, "0")}${QUARTERS[q % 4]}"`;
 }
 
-/**
- * The getBBox of a row: advance plus letter spacing per glyph, ascent over and descent
- * under the baseline. The department box includes the chip and its gap on the chip side.
- */
-export function rowBox(layout: FaceLayout, row: FaceRow, text: string) {
-  const w = text.length * (GLYPH_ADVANCE + row.track) * row.size;
-  let x0 = layout.anchor === "end" ? row.x - w : row.x;
-  let x1 = x0 + w;
-  if (row.key === "dept" && layout.chip) {
-    const extra = layout.chip.size + layout.chip.gap;
-    if (layout.anchor === "end") x1 += extra;
-    else x0 -= extra;
+/** Both rules run TEXT_X0 to TEXT_X1. */
+export const RULES = { top: 0.577, bottom: 0.827, width: 0.0022 } as const;
+
+/** The CONTROL alert bar, between the top rule and the note. */
+export const ALERT_BAR = { y0: 0.581, y1: 0.652 } as const;
+
+/** Axis marks: white bands across the frame on the stock centrelines, a black line down each. */
+export const AXIS = { band: 0.04, line: 0.005 } as const;
+
+/** Hazard stripes: backslash diagonals, period along x, black first at the phase. */
+export const HAZARD = { period: 0.0787, phase: -0.013 } as const;
+
+/** Every printed string on the face, placed in S units. */
+export function faceTexts(label: LabelData): FaceText[] {
+  const control = label.kind === "control";
+  const t = (
+    key: string,
+    x: number,
+    y: number,
+    size: number,
+    text: string,
+    o: Partial<Pick<FaceText, "anchor" | "family" | "weight" | "track" | "tone">> = {},
+  ): FaceText => ({
+    key,
+    x,
+    y,
+    size,
+    text,
+    anchor: o.anchor ?? "start",
+    family: o.family ?? "mono",
+    weight: o.weight ?? 700,
+    track: o.track ?? 0,
+    tone: o.tone ?? "ink",
+  });
+  const [n, of] = label.seq;
+  const pt = `PT ${String(n).padStart(2, "0")}/${String(of).padStart(2, "0")}`;
+  const out: FaceText[] = [
+    t("project", TEXT_X0, 0.153, 0.022, label.project, { weight: 700 }),
+    t("exact", 0.5, 0.144, 0.019, "EXACT POINT", { anchor: "middle", family: "cond", weight: 600, track: 0.38 }),
+    t("seq", TEXT_X1, 0.153, 0.022, pt, { anchor: "end", weight: 700 }),
+    t("id", 0.5, 0.504, 0.354, label.id, { anchor: "middle", family: "cond", weight: 800, track: -0.025 }),
+  ];
+  const rows = control ? [0.738, 0.778, 0.819] : [0.714, 0.754, 0.796];
+  if (control) {
+    out.push(
+      t("alert", 0.5, 0.634, 0.04, "CONTROL POINT: DO NOT DISTURB", {
+        anchor: "middle",
+        family: "cond",
+        weight: 800,
+        tone: "alert",
+        track: 0.02,
+      }),
+      t("note", TEXT_X0, 0.692, 0.0155, "NOTE: FIXED SURVEY REFERENCE", { weight: 500, track: 0.15, tone: "meta" }),
+    );
+  } else {
+    out.push(
+      t("dept-code", TEXT_X0, 0.634, 0.039, label.department.code, { family: "cond", weight: 800, tone: "dept" }),
+      t("dept", TEXT_X0 + 0.047, 0.63, 0.0186, label.department.name.toUpperCase(), {
+        family: "cond",
+        weight: 600,
+        track: 0.45,
+      }),
+      t("note-key", TEXT_X1, 0.619, 0.0155, "NOTE", { anchor: "end", weight: 500, track: 0.15, tone: "meta" }),
+      t("note", TEXT_X1, 0.651, 0.0246, label.note, { anchor: "end", weight: 700 }),
+    );
   }
-  return {
-    x0,
-    x1,
-    y0: row.y - GLYPH_ASCENT * row.size,
-    y1: row.y + GLYPH_DESCENT * row.size,
-  };
+  const axes = [
+    ["e", label.coords.e],
+    ["n", label.coords.n],
+    ["z", label.coords.z],
+  ] as const;
+  axes.forEach(([axis, v], i) => {
+    out.push(
+      t(`${axis}-axis`, TEXT_X0, rows[i], 0.0277, axis.toUpperCase(), { weight: 500, tone: "meta" }),
+      t(`${axis}-m`, 0.195, rows[i], 0.0277, formatMetres(v)),
+      t(`${axis}-ft`, 0.43, rows[i], 0.0277, formatImperial(v)),
+    );
+  });
+  out.push(
+    t("src", TEXT_X0, 0.863, 0.0175, `SRC ${label.src}`, { weight: 500 }),
+    t("rev", TEXT_X1, 0.863, 0.0175, control ? `CTRL / SURVEY CONTROL · REV ${label.rev}` : `REV ${label.rev}`, {
+      anchor: "end",
+      weight: 500,
+    }),
+  );
+  return out;
+}
+
+/** Mono boxes are exact from the advance; condensed boxes use the caller's advance. */
+export function textBox(f: FaceText, advance = MONO_ADVANCE) {
+  const n = f.text.length;
+  const w = (n * advance + Math.max(0, n - 1) * f.track) * f.size;
+  const x0 = f.anchor === "start" ? f.x : f.anchor === "end" ? f.x - w : f.x - w / 2;
+  return { x0, x1: x0 + w, y0: f.y - CAP * f.size, y1: f.y };
 }

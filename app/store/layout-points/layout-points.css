@@ -428,7 +428,7 @@
 /* desktop pitch = 168 + 14 */
 @keyframes lp-adv-x {
   from {
-    transform: translateX(-182px);
+    transform: translateX(-126px);
   }
 }
 
@@ -442,14 +442,14 @@
 /* 182 / r60 rad */
 @keyframes lp-turn-x {
   from {
-    transform: rotate(-173.8deg);
+    transform: rotate(-120.3deg);
   }
 }
 
 /* 110 / r84 rad */
 @keyframes lp-turn-y {
   from {
-    transform: rotate(-75deg);
+    transform: rotate(-108.7deg);
   }
 }
 
@@ -470,7 +470,7 @@
 /* mark (586,336) minus rest datum (404,46) */
 @keyframes lp-carry-x {
   from {
-    transform: translate(-182px, -290px);
+    transform: translate(-210px, -290px);
   }
 }
 

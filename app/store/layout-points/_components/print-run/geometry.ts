@@ -5,59 +5,70 @@
 import { datumPoint } from "../label/datum";
 import type { LabelData } from "../label/label-face";
 
-export type RunId = "STG-003" | "RIG-012" | "STG-001" | "CTL-01";
-export type PlanId = RunId | "CTL-02";
+export type RunId = "L042" | "L020" | "L011" | "CP01";
+export type PlanId = RunId | "CP02";
 
-// Sample drawing. Sanitised coordinates, preformatted as exported, Z 0.000.
+// Sample drawing. Sanitised coordinates in metres as exported, Z 0.000. One department
+// (Lighting, the colour on the owner's design board) plus CONTROL. PT is the print sequence.
+const LIGHTING = { code: "LX", name: "Lighting", colour: "#2D6FED" } as const;
+const JOB_FACE = { project: "26-DEMO-01", src: "DEMO-SET", rev: "B", datum: "tc" } as const;
+
 export const SAMPLE: Record<RunId, LabelData> = {
-  "CTL-01": {
+  CP01: {
+    ...JOB_FACE,
     kind: "control",
-    id: "CTL-01",
+    id: "CP01",
+    seq: [1, 4],
     coords: { e: "9.400", n: "-10.700", z: "0.000" },
-    datum: "c",
   },
-  "STG-001": {
+  L011: {
+    ...JOB_FACE,
     kind: "layout",
-    id: "STG-001",
-    department: { name: "Staging", colour: "#00D26A" },
+    id: "L011",
+    seq: [2, 4],
+    department: LIGHTING,
+    note: "US DECK CORNER",
     coords: { e: "11.000", n: "-2.200", z: "0.000" },
-    datum: "br",
   },
-  "RIG-012": {
+  L020: {
+    ...JOB_FACE,
     kind: "layout",
-    id: "RIG-012",
-    department: { name: "Rigging", colour: "#38BDF8" },
+    id: "L020",
+    seq: [3, 4],
+    department: LIGHTING,
+    note: "SR TOWER BASE",
     coords: { e: "20.000", n: "-5.200", z: "0.000" },
-    datum: "ml",
   },
-  "STG-003": {
+  L042: {
+    ...JOB_FACE,
     kind: "layout",
-    id: "STG-003",
-    department: { name: "Staging", colour: "#00D26A" },
+    id: "L042",
+    seq: [4, 4],
+    department: LIGHTING,
+    note: "DS TRUSS FOOT",
     coords: { e: "17.600", n: "-8.200", z: "0.000" },
-    datum: "tc",
   },
 };
 
 /** Plan only, never printed. */
 export const PLAN_ONLY = {
-  "CTL-02": {
+  "CP02": {
     kind: "control",
-    id: "CTL-02",
+    id: "CP02",
     coords: { e: "20.600", n: "-0.700", z: "0.000" },
   },
 } as const;
 
-/** Print order. CTL-01 prints first and rests farthest down the strip. */
+/** Print order. CP01 prints first and rests farthest down the strip. */
 export const RUN: readonly RunId[] = [
-  "CTL-01",
-  "STG-001",
-  "RIG-012",
-  "STG-003",
+  "CP01",
+  "L011",
+  "L020",
+  "L042",
 ];
 
 /** The hero point. */
-export const HERO: RunId = "STG-003";
+export const HERO: RunId = "L042";
 
 /** Sample drawing extents in drawing units (E and N). */
 export const DRAWING = {
@@ -87,7 +98,7 @@ export const PALETTE = {
   text: "#FAFAFA", // hero plan ID, bubble letters, legend statements, plan blips
   go: "#00D26A", // datum lineage and live state only (10.43:1)
   liner: "#18181B", // web liner fill
-  paper: "#F3F0E8", // blank stock, the same cream as the printed faces
+  paper: "#FFFFFF", // blank stock, the same white as the printed card
 } as const;
 
 // Timeline in ms from first paint. Every --d in the scene and header comes from here.
@@ -95,7 +106,7 @@ export const PALETTE = {
 export const T = {
   planDraw: 0,
   controls: 120,
-  points: [200, 280, 360] as const, // STG-001, RIG-012, STG-003 in the plan, 80 ms stagger
+  points: [200, 280, 360] as const, // L011, L020, L042 in the plan, 80 ms stagger
   ring: 520,
   bubble: 600,
   floorBubble: 680,
@@ -281,7 +292,7 @@ const OVERSPRAY: [number, number][] = [
 export const DESKTOP: Geometry = {
   axis: "x",
   view: { w: 1200, h: 480 },
-  label: { w: 168, h: 112, r: 2, gap: 14, pitch: 182 },
+  label: { w: 112, h: 112, r: 2, gap: 14, pitch: 126 },
   roll: {
     cx: 66,
     cy: 102,
@@ -297,18 +308,18 @@ export const DESKTOP: Geometry = {
   tearBar: 305,
   offRollMin: 66,
   slots: {
-    "STG-003": { x: 320, y: 46 },
-    "RIG-012": { x: 502, y: 46 },
-    "STG-001": { x: 684, y: 46 },
-    "CTL-01": { x: 866, y: 46 },
+    L042: { x: 320, y: 46 },
+    L020: { x: 446, y: 46 },
+    L011: { x: 572, y: 46 },
+    CP01: { x: 698, y: 46 },
   },
-  nextBlank: { x: 130, y: 46 },
-  tornEdge: 1041,
+  nextBlank: { x: 186, y: 46 },
+  tornEdge: 817,
   tearShift: 8,
   tooth: 3,
-  tearOrigin: { x: 1041, y: 102 },
+  tearOrigin: { x: 817, y: 102 },
   mark: { x: 586, y: 336, arm: 22 },
-  landed: { x: 502, y: 336 },
+  landed: { x: 530, y: 336 },
   reticle: { r: 15, gap: 24 },
   bench: { x: 0, y: 0, w: 1200, h: 200 },
   rule: { x1: 0, y1: 200, x2: 1200, y2: 200 },
@@ -334,11 +345,11 @@ export const DESKTOP: Geometry = {
     dash: [8, 3, 1.5, 3],
     bubble: { x: 242, y: 430, r: 8 },
     ids: {
-      "CTL-01": { x: 76, y: 444, anchor: "start" },
-      "CTL-02": { x: 242, y: 274, anchor: "end" },
-      "STG-001": { x: 82, y: 292, anchor: "end" },
-      "RIG-012": { x: 253, y: 350, anchor: "start" },
-      "STG-003": { x: 190, y: 416, anchor: "end" },
+      "CP01": { x: 76, y: 444, anchor: "start" },
+      "CP02": { x: 242, y: 274, anchor: "end" },
+      "L011": { x: 82, y: 292, anchor: "end" },
+      "L020": { x: 253, y: 350, anchor: "start" },
+      "L042": { x: 190, y: 416, anchor: "end" },
     },
   },
   deck: { x0: 320, x1: 852, y0: 228, y1: 336, breaks: [320, 852], zig: 250 },
@@ -383,44 +394,44 @@ export const DESKTOP: Geometry = {
 export const MOBILE: Geometry = {
   axis: "y",
   view: { w: 340, h: 516 },
-  label: { w: 150, h: 100, r: 2, gap: 10, pitch: 110 },
+  label: { w: 100, h: 100, r: 2, gap: 10, pitch: 110 },
   roll: {
     cx: 86,
-    cy: -52,
-    r: 84,
+    cy: -26,
+    r: 58,
     core: 16,
-    outer: 80,
+    outer: 54,
     turns: 5,
     phase: Math.PI / 2,
-    notch: [76, 84],
+    notch: [50, 58],
   },
-  web: { c0: 6, c1: 166 },
+  web: { c0: 31, c1: 141 },
   printLine: 54,
   tearBar: 59,
-  offRollMin: -52,
+  offRollMin: -26,
   slots: {
-    "STG-003": { x: 11, y: 72 },
-    "RIG-012": { x: 11, y: 182 },
-    "STG-001": { x: 11, y: 292 },
-    "CTL-01": { x: 11, y: 402 },
+    L042: { x: 36, y: 72 },
+    L020: { x: 36, y: 182 },
+    L011: { x: 36, y: 292 },
+    CP01: { x: 36, y: 402 },
   },
-  nextBlank: { x: 11, y: -46 },
+  nextBlank: { x: 36, y: -46 },
   tornEdge: 507,
   tearShift: 8,
   tooth: 3,
   tearOrigin: { x: 86, y: 507 },
   mark: { x: 256, y: 350, arm: 18 },
-  landed: { x: 181, y: 350 },
+  landed: { x: 206, y: 350 },
   reticle: { r: 13, gap: 24 },
   bench: { x: 0, y: 0, w: 172, h: 516 },
   rule: { x1: 174, y1: 68, x2: 174, y2: 516 },
-  printer: { box: { x: 2, y: 30, w: 168, h: 34 }, arm: 8 },
-  head: { at: 54, c0: 6, c1: 166, tick: 0 },
+  printer: { box: { x: 27, y: 30, w: 118, h: 34 }, arm: 8 },
+  head: { at: 54, c0: 31, c1: 141, tick: 0 },
   flashExt: 6,
-  tearTeeth: { c0: 2, c1: 170, amp: 1.5, step: 3 },
-  cut: { c0: 6, c1: 170, offset: 2.5 },
+  tearTeeth: { c0: 27, c1: 145, amp: 1.5, step: 3 },
+  cut: { c0: 31, c1: 145, offset: 2.5 },
   feed: "M188 44V62M184.5 58.5L188 62L191.5 58.5",
-  printerLeader: "M173 34.5H180",
+  printerLeader: "M148 34.5H180",
   plan: {
     box: { x: 184, y: 72, w: 152, h: 116 },
     ox: 183,
@@ -435,7 +446,7 @@ export const MOBILE: Geometry = {
     dash: [6, 2.5, 1.2, 2.5],
     bubble: { x: 318, y: 172, r: 7 },
     ids: {
-      "STG-003": { x: 262, y: 176, anchor: "end" },
+      "L042": { x: 262, y: 176, anchor: "end" },
     },
   },
   deck: { x0: 184, x1: 336, y0: 282, y1: 350, breaks: [], zig: 316 },
@@ -477,7 +488,6 @@ export const MOBILE: Geometry = {
     statement: 12,
   },
   stroke: { accent: 1.5, hair: 1, fine: 0.75 },
-  // Mark at x 256, not 258: at 1.03 the right registration corner (x 336) peaks at 338.4 in a 340 view.
   lean: { scale: 1.03 },
 };
 
