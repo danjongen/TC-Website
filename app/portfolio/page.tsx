@@ -7,7 +7,7 @@ import Link from "next/link"
 import { BreadcrumbSchema } from "@/components/structured-data"
 import { CueLabel } from "@/components/motion/cue-label"
 import { RenderLabel } from "@/components/v2/render-label"
-import { BSB_CASE_STUDY, GERMANY_IMAGES, PROJECTS, STATION_CASE_STUDY, STATION_IMAGES, type WorkImage } from "@/lib/work"
+import { BSB_CASE_STUDY, HOMECOMING_IMAGES, PROJECTS, STATION_CASE_STUDY, STATION_IMAGES, type WorkImage } from "@/lib/work"
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -141,19 +141,48 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Backstreet Boys / Germany */}
-      <section id="backstreet-boys-germany" aria-labelledby="germany-title" className="scroll-mt-28 pb-[14vh]">
+      {/* Backstreet Boys: Into The Millennium, Homecoming */}
+      <section id="backstreet-boys-homecoming" aria-labelledby="homecoming-title" className="scroll-mt-28 pb-[14vh]">
         <div className="container mx-auto px-6">
-          <ProjectHeader index="01" id="germany-title" title="Backstreet Boys / Germany">
-            <p data-reveal="fade" className="mt-6 text-lg leading-relaxed text-zinc-400 max-w-xl">
-              Stadium show in Düsseldorf. Comms, structure and LED systems.
+          <ProjectHeader index="01" id="homecoming-title" title="Backstreet Boys: Into The Millennium – Homecoming">
+            <p data-reveal="fade" className="mt-4 font-mono text-xs tracking-[0.2em] text-zinc-400">
+              TECHNICAL DIRECTION, SITE COORDINATION AND PRODUCTION INFRASTRUCTURE | DÜSSELDORF, GERMANY
             </p>
+            <div data-reveal="fade" className="mt-6 space-y-4 text-lg leading-relaxed text-zinc-400 max-w-xl">
+              <p>
+                For the Backstreet Boys’ Into The Millennium – Homecoming stadium production, Technically Creative
+                supported the work that brought the show from planning and rehearsal into the venue.
+              </p>
+              <p>
+                Daniel’s role spanned technical direction and site coordination, connecting the practical needs of
+                production, staging, automation, audio and the venue. The work included survey and set-out
+                coordination, cross-vendor geometry, venue interfaces and the production network supporting the show.
+              </p>
+              <p>
+                A 100Gb backbone and ST 2110 distribution were installed to support Show Orchestrator. Alongside the
+                wider team, Technically Creative coordinated venue connectivity, production Wi-Fi and the network
+                services needed across the build and rehearsal environment. RF planning and licensing were coordinated
+                ahead of opening, with the production team monitoring for interference during rehearsals and the first
+                show.
+              </p>
+              <p>
+                The result was a coordinated technical infrastructure supporting a complex stadium production, from
+                early planning through rehearsal and into the Düsseldorf run.
+              </p>
+            </div>
           </ProjectHeader>
-          <WorkFigure image={GERMANY_IMAGES.beams} sizes="(min-width: 1536px) 1488px, calc(100vw - 48px)" priority />
+          <WorkFigure image={HOMECOMING_IMAGES.beams} sizes="(min-width: 1536px) 1488px, calc(100vw - 48px)" priority />
           <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-4">
-            <WorkFigure image={GERMANY_IMAGES.stadium} sizes="(max-width: 768px) calc(100vw - 48px), 33vw" />
-            <WorkFigure image={GERMANY_IMAGES.mainStage} sizes="(max-width: 768px) calc(100vw - 48px), 33vw" />
-            <WorkFigure image={GERMANY_IMAGES.phoneLights} sizes="(max-width: 768px) calc(100vw - 48px), 33vw" />
+            {[
+              HOMECOMING_IMAGES.arena,
+              HOMECOMING_IMAGES.redLight,
+              HOMECOMING_IMAGES.cardington,
+              HOMECOMING_IMAGES.stadium,
+              HOMECOMING_IMAGES.mainStage,
+              HOMECOMING_IMAGES.phoneLights,
+            ].map((image) => (
+              <WorkFigure key={image.src} image={image} sizes="(max-width: 768px) calc(100vw - 48px), 33vw" />
+            ))}
           </div>
         </div>
       </section>

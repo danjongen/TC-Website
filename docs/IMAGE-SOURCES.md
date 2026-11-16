@@ -12,6 +12,9 @@ Web masters for the homepage lead, the Selected Work cards, the portfolio and th
 | DE3442 | `bsb-germany-stadium.jpg` | Drive `1ZtqP7BEIkH4fATcDl8Jjaltl705EoRCT` (IMG_3442) | 5712 x 4284 | 0, 600, 5712, 3813 | Photo |
 | DE3538 | `bsb-germany-main-stage.jpg` | Drive `1esNCOYdFwlEumEjja_G00GfaWEkwwXW-` (IMG_3538) | 4284 x 5712 | 0, 3300, 4284, 5710 | Photo |
 | DEea23 | `bsb-germany-phone-lights.jpg` (1600 x 900) | Drive `18DV-C9N4XAAx5I7y39N5hiFz_gZSKmf_` | 1600 x 1200 | 0, 150, 1600, 1050 | Photo |
+| IG1007 | `bsb-homecoming-arena.jpg` (1080 x 608) | Daniel's Instagram export, BSB-Homecoming-Dusseldorf-Arena | 1080 x 810 | 0, 60, 1080, 668 | Photo |
+| IG1006 | `bsb-homecoming-red-light.jpg` (1080 x 608) | Daniel's Instagram export, BSB-Homecoming-Dusseldorf-Red-Light | 1080 x 1350 | 0, 330, 1080, 938 | Photo |
+| IG0906 | `bsb-homecoming-cardington.jpg` (1080 x 608) | Daniel's Instagram export, BSB-Homecoming-Cardington-Systems-Test | 1080 x 667 | 0, 30, 1080, 638 | Photo |
 | TC001 | `bsb-sphere-platform.jpg` | `public/images/66a0205.jpg` (unchanged) | 4200 x 2801 | 0, 219, 4200, 2581 | Photo |
 
 Social card: `public/og/mcs-grand-hall.jpg` (FA005, 1200 x 675, full frame).

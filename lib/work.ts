@@ -19,19 +19,39 @@ const frame = { width: 2400, height: 1350 }
 export const STATION_CASE_STUDY = "/insights/michigan-central-station-scan-to-event-plan"
 export const BSB_CASE_STUDY = "/insights/ufo-pod-touring-control-infrastructure"
 
-/** Backstreet Boys stadium show in Germany. Daniel's own photos from the show; sources in docs/IMAGE-SOURCES.md. */
-export const GERMANY_IMAGES = {
+/** Backstreet Boys: Into The Millennium, Homecoming. Daniel's own photos; sources in docs/IMAGE-SOURCES.md. */
+const small = { width: 1080, height: 608 }
+
+export const HOMECOMING_IMAGES = {
   beams: {
     src: "/images/work/bsb-germany-beams.jpg",
     ...frame,
     alt: "Stadium roof lit by a wide fan of white searchlight beams above the Backstreet Boys on stage, with a packed floor of fans holding up phones.",
-    caption: "BACKSTREET BOYS / STADIUM, GERMANY",
+    caption: "HOMECOMING / DÜSSELDORF",
+  },
+  arena: {
+    src: "/images/work/bsb-homecoming-arena.jpg",
+    ...small,
+    alt: "Rows of pale blue beams fanning out above the Backstreet Boys on stage, with the five members on a wide LED wall and fans in the foreground.",
+    caption: "SHOW / DÜSSELDORF",
+  },
+  redLight: {
+    src: "/images/work/bsb-homecoming-red-light.jpg",
+    ...small,
+    alt: "Stadium washed in red light, with a tight cluster of white beams rising from the stage above the Backstreet Boys.",
+    caption: "SHOW / DÜSSELDORF",
+  },
+  cardington: {
+    src: "/images/work/bsb-homecoming-cardington.jpg",
+    ...small,
+    alt: "The full Homecoming stage set up inside a large hangar for a systems test, with LED walls, lighting rig and lifts in place and crew on the deck.",
+    caption: "SYSTEMS TEST / CARDINGTON",
   },
   stadium: {
     src: "/images/work/bsb-germany-stadium.jpg",
     ...frame,
     alt: "Elevated view across a full stadium during the Backstreet Boys show, with the PA hang and stage structure on the right and beams crossing the floor.",
-    caption: "BACKSTREET BOYS / STADIUM, GERMANY",
+    caption: "STADIUM / PA AND STRUCTURE",
   },
   mainStage: {
     src: "/images/work/bsb-germany-main-stage.jpg",
@@ -86,12 +106,12 @@ export type WorkProject = {
 
 export const PROJECTS: WorkProject[] = [
   {
-    slug: "backstreet-boys-germany",
-    title: "Backstreet Boys / Germany",
-    client: "Stadium show, Düsseldorf",
-    role: "Comms, Structure & LED Systems",
-    href: "/portfolio#backstreet-boys-germany",
-    image: GERMANY_IMAGES.beams,
+    slug: "backstreet-boys-homecoming",
+    title: "Backstreet Boys: Into The Millennium – Homecoming",
+    client: "Düsseldorf, Germany",
+    role: "Technical direction, site coordination and production infrastructure",
+    href: "/portfolio#backstreet-boys-homecoming",
+    image: HOMECOMING_IMAGES.beams,
   },
   {
     slug: "backstreet-boys-sphere",
