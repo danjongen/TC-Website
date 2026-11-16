@@ -19,6 +19,35 @@ const frame = { width: 2400, height: 1350 }
 export const STATION_CASE_STUDY = "/insights/michigan-central-station-scan-to-event-plan"
 export const BSB_CASE_STUDY = "/insights/ufo-pod-touring-control-infrastructure"
 
+/** Backstreet Boys stadium show in Germany. Daniel's own photos from the show; sources in docs/IMAGE-SOURCES.md. */
+export const GERMANY_IMAGES = {
+  beams: {
+    src: "/images/work/bsb-germany-beams.jpg",
+    ...frame,
+    alt: "Stadium roof lit by a wide fan of white searchlight beams above the Backstreet Boys on stage, with a packed floor of fans holding up phones.",
+    caption: "BACKSTREET BOYS / STADIUM, GERMANY",
+  },
+  stadium: {
+    src: "/images/work/bsb-germany-stadium.jpg",
+    ...frame,
+    alt: "Elevated view across a full stadium during the Backstreet Boys show, with the PA hang and stage structure on the right and beams crossing the floor.",
+    caption: "BACKSTREET BOYS / STADIUM, GERMANY",
+  },
+  mainStage: {
+    src: "/images/work/bsb-germany-main-stage.jpg",
+    ...frame,
+    alt: "Backstreet Boys on the main stage in front of a wide LED wall, under rows of blue beams and warm stadium roof trusses.",
+    caption: "MAIN STAGE / LED AND LIGHTING",
+  },
+  phoneLights: {
+    src: "/images/work/bsb-germany-phone-lights.jpg",
+    width: 1600,
+    height: 900,
+    alt: "Stadium bowl filled with phone lights during the Backstreet Boys show, with the band on a lit B stage in the middle of the floor.",
+    caption: "B STAGE / CROWD",
+  },
+} satisfies Record<string, WorkImage>
+
 export const STATION_IMAGES = {
   grandHallWide: {
     src: "/images/work/mcs-grand-hall-wide.jpg",
@@ -56,6 +85,14 @@ export type WorkProject = {
 }
 
 export const PROJECTS: WorkProject[] = [
+  {
+    slug: "backstreet-boys-germany",
+    title: "Backstreet Boys / Germany",
+    client: "Stadium show, Düsseldorf",
+    role: "Comms, Structure & LED Systems",
+    href: "/portfolio#backstreet-boys-germany",
+    image: GERMANY_IMAGES.beams,
+  },
   {
     slug: "backstreet-boys-sphere",
     title: "Backstreet Boys / Sphere",

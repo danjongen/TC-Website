@@ -7,7 +7,7 @@ import Link from "next/link"
 import { BreadcrumbSchema } from "@/components/structured-data"
 import { CueLabel } from "@/components/motion/cue-label"
 import { RenderLabel } from "@/components/v2/render-label"
-import { BSB_CASE_STUDY, PROJECTS, STATION_CASE_STUDY, STATION_IMAGES, type WorkImage } from "@/lib/work"
+import { BSB_CASE_STUDY, GERMANY_IMAGES, PROJECTS, STATION_CASE_STUDY, STATION_IMAGES, type WorkImage } from "@/lib/work"
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -141,10 +141,27 @@ export default function PortfolioPage() {
         </div>
       </section>
 
+      {/* Backstreet Boys / Germany */}
+      <section id="backstreet-boys-germany" aria-labelledby="germany-title" className="scroll-mt-28 pb-[14vh]">
+        <div className="container mx-auto px-6">
+          <ProjectHeader index="01" id="germany-title" title="Backstreet Boys / Germany">
+            <p data-reveal="fade" className="mt-6 text-lg leading-relaxed text-zinc-400 max-w-xl">
+              Stadium show in Düsseldorf. Comms, structure and LED systems.
+            </p>
+          </ProjectHeader>
+          <WorkFigure image={GERMANY_IMAGES.beams} sizes="(min-width: 1536px) 1488px, calc(100vw - 48px)" priority />
+          <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-4">
+            <WorkFigure image={GERMANY_IMAGES.stadium} sizes="(max-width: 768px) calc(100vw - 48px), 33vw" />
+            <WorkFigure image={GERMANY_IMAGES.mainStage} sizes="(max-width: 768px) calc(100vw - 48px), 33vw" />
+            <WorkFigure image={GERMANY_IMAGES.phoneLights} sizes="(max-width: 768px) calc(100vw - 48px), 33vw" />
+          </div>
+        </div>
+      </section>
+
       {/* Backstreet Boys / Sphere */}
       <section id="backstreet-boys-sphere" aria-labelledby="bsb-title" className="scroll-mt-28 pb-[14vh]">
         <div className="container mx-auto px-6">
-          <ProjectHeader index="01" id="bsb-title" title="Backstreet Boys / Sphere">
+          <ProjectHeader index="02" id="bsb-title" title="Backstreet Boys / Sphere">
             <p data-reveal="fade" className="mt-6 text-lg leading-relaxed text-zinc-400 max-w-xl">
               Production engineering and technical direction for the Backstreet Boys Into The Millennium residency at
               Sphere, Las Vegas. Read the full story in our Insights.
@@ -158,7 +175,7 @@ export default function PortfolioPage() {
             </Link>
           </ProjectHeader>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {gallery.map((item, i) => (
+            {gallery.map((item) => (
               <div
                 key={item.image}
                 data-reveal="resolve"
@@ -170,7 +187,6 @@ export default function PortfolioPage() {
                   fill
                   className="object-cover transition-transform duration-600 ease-expo group-hover:scale-[1.03]"
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  priority={i === 0}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                 <div className="absolute bottom-5 left-5">
@@ -185,7 +201,7 @@ export default function PortfolioPage() {
       {/* Michigan Central Station */}
       <section id="michigan-central-station" aria-labelledby="mcs-title" className="scroll-mt-28 pb-[14vh]">
         <div className="container mx-auto px-6">
-          <ProjectHeader index="02" id="mcs-title" title="Michigan Central Station: From station scan to event plan.">
+          <ProjectHeader index="03" id="mcs-title" title="Michigan Central Station: From station scan to event plan.">
             <p data-reveal="fade" className="mt-6 text-lg leading-relaxed text-zinc-400 max-w-xl">
               We used a 3D scan of Michigan Central Station to build a detailed venue model, create renders for an
               upcoming event and produce accurate CAD plans.
@@ -209,7 +225,7 @@ export default function PortfolioPage() {
       {/* Northline Heritage Project */}
       <section id="northline-heritage" aria-labelledby="northline-title" className="scroll-mt-28 pb-[14vh]">
         <div className="container mx-auto px-6">
-          <ProjectHeader index="03" id="northline-title" title={northline.title} />
+          <ProjectHeader index="04" id="northline-title" title={northline.title} />
           <WorkFigure image={northline.image} sizes="(min-width: 1536px) 1488px, calc(100vw - 48px)" />
         </div>
       </section>
