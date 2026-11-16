@@ -53,6 +53,18 @@ const nextConfig = {
     ]
   },
 
+  // Install landing pages (guest Wi-Fi "you're online" pages) are plain static
+  // files in /public/installs so they skip the site layout, cookie banner and
+  // third-party tags. Map the clean URL to the file.
+  async rewrites() {
+    return [
+      {
+        source: '/installs/:site',
+        destination: '/installs/:site/index.html',
+      },
+    ]
+  },
+
   async redirects() {
     return [
       {
