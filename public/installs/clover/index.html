@@ -59,6 +59,19 @@ h1 {
   font-size: clamp(2.1rem, 9vw, 2.75rem); line-height: 1.08; text-wrap: balance;
 }
 h1 em { font-style: italic; color: var(--leaf); }
+.go {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; max-width: 20rem; box-sizing: border-box; margin-top: 10px;
+  padding: 16px 22px; border-radius: 999px;
+  background: var(--gold); color: var(--ink);
+  font-family: var(--sans); font-weight: 600; font-size: 1.05rem; text-decoration: none;
+  box-shadow: 0 1px 0 rgba(43,63,46,.15);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.go:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(43,63,46,.15); }
+.go:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.go svg { width: 18px; height: 18px; flex: none; }
+@media (prefers-reduced-motion: reduce) { .go { transition: none; } .go:hover { transform: none; } }
 .tc a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .fine { margin: 0; font-size: .82rem; color: var(--muted); }
 .tc {
@@ -97,7 +110,7 @@ body::before {
 .slot { width: 112px; height: 112px; }
 .slot svg { width: 100%; height: 100%; display: block; }
 .js .slot svg { visibility: hidden; }
-.stage { display: none; }
+.stage { display: none; pointer-events: none; }
 .js .stage { display: block; }
 
 /* Hand-off from UniFi's success screen.
@@ -138,15 +151,16 @@ body::before {
 /* 1.7s: the clover glides up (script) while the page fills in around it. */
 .stage .mark.moving { transition: transform .7s cubic-bezier(.65,0,.35,1); }
 body::before { opacity: 0; animation: wash .9s ease 1.7s forwards; }
-h1, .fine, .tc { animation: rise .6s cubic-bezier(.2,.8,.2,1) both; }
+h1, .go, .fine, .tc { animation: rise .6s cubic-bezier(.2,.8,.2,1) both; }
 h1 { animation-delay: 1.85s; }
-.fine { animation-delay: 2s; }
-.tc { animation-delay: 2.15s; }
-.home { animation-delay: 2.2s; }
+.go { animation-delay: 2.05s; }
+.fine { animation-delay: 2.2s; }
+.tc { animation-delay: 2.35s; }
+.home { animation-delay: 2.4s; }
 
 @media (prefers-reduced-motion: reduce) {
   .stage .checks, .stage .succ { display: none; }
-  .stage *, body::before, h1, .fine, .tc, .home { animation: none !important; transition: none !important; opacity: 1; }
+  .stage *, body::before, h1, .go, .fine, .tc, .home { animation: none !important; transition: none !important; opacity: 1; }
 }
 </style>
 </head>
@@ -167,6 +181,10 @@ h1 { animation-delay: 1.85s; }
       </svg>
     </div>
     <h1>You're online <em>at Clover.</em></h1>
+    <a class="go" href="https://www.google.com">
+      Continue to Google
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
     <p class="fine">Your access lasts 1 hour. Reconnect anytime.</p>
   </section>
 
