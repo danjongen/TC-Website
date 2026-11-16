@@ -8,10 +8,9 @@ Web masters for the homepage lead, the Selected Work cards, the portfolio and th
 | FA001 | `mcs-south-concourse.jpg` | Drive `1ISRxmrncgV9kT2WwaJReouQznL-UDyFE` | 4000 x 2250 | Full frame | Render |
 | FA006 | `mcs-grand-hall-stage.jpg` | Drive `1lfXQHxz8VaCoXxwT8KFeh0UjQGh6secs` | 4000 x 2250 | Full frame | Render |
 | NH-17 | `northline-heritage-hall.jpg` | Drive `1ChSlKkSiB8ki2cHtDeV_PSU0LCe4RdXW` | 4400 x 3000 | 0, 60, 4400, 2535 | Render |
-| DE3442 | `bsb-germany-stadium.jpg` | Drive `1ZtqP7BEIkH4fATcDl8Jjaltl705EoRCT` (IMG_3442) | 5712 x 4284 | 0, 600, 5712, 3813 | Photo |
-| DE3538 | `bsb-germany-main-stage.jpg` | Drive `1esNCOYdFwlEumEjja_G00GfaWEkwwXW-` (IMG_3538) | 4284 x 5712 | 0, 3300, 4284, 5710 | Photo |
-| DE3491 | `bsb-homecoming-lasers.jpg` | Drive `1rJhe7unhEReboMG9eDpyH1I39zmFPd3N` (IMG_3491) | 5712 x 4284 | 0, 750, 5712, 3963 | Photo |
 | IG1007 | `bsb-homecoming-arena.jpg` (1080 x 608) | Daniel's Instagram export, BSB-Homecoming-Dusseldorf-Arena | 1080 x 810 | 0, 60, 1080, 668 | Photo |
+| BSB-1 | `bsb-homecoming-hoverboards.jpg` (1920 x 1080) | BSB-1.webp, sent by Daniel; photographer not known, no credit line | 1920 x 1280 | 0, 60, 1920, 1140 | Photo |
+| BSB-5 | `bsb-homecoming-full-bowl.jpg` (1920 x 1080) | BSB-5.webp, sent by Daniel; photographer not known, no credit line | 1920 x 1280 | 0, 110, 1920, 1190 | Photo |
 | DE3769 | `bsb-homecoming-red-light.jpg` | Drive `1G1yvz-EgZTjbArBiV2iAKGH8yDvTHt9Z` (IMG_3769, original of the Instagram red light post) | 4284 x 5712 | 0, 1800, 4284, 4210 | Photo |
 | IG0906 | `bsb-homecoming-cardington.jpg` (1080 x 608) | Daniel's Instagram export, BSB-Homecoming-Cardington-Systems-Test | 1080 x 667 | 0, 30, 1080, 638 | Photo |
 | TC001 | `bsb-sphere-platform.jpg` | `public/images/66a0205.jpg` (unchanged) | 4200 x 2801 | 0, 219, 4200, 2581 | Photo |
