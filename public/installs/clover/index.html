@@ -14,7 +14,7 @@
 @font-face { font-family: "Lora"; font-style: italic; font-weight: 400 700; font-display: swap; src: url(/installs/fonts/lora-italic-latin.woff2) format("woff2"); }
 @font-face { font-family: "Hanken Grotesk"; font-style: normal; font-weight: 100 900; font-display: swap; src: url(/installs/fonts/hanken-grotesk-latin.woff2) format("woff2"); }
 @font-face { font-family: "Geist Mono"; font-style: normal; font-weight: 100 900; font-display: swap; src: url(/installs/fonts/geist-mono-latin.woff2) format("woff2"); }
-/* Layout: one centred column. Clover's world on top (cream, clover, serif), TC credit as a quiet mono line at the foot. Single light look by design. */
+/* Layout: one centred column. A Clover-coloured check (gold glow, leaf disc, cream tick) on top, TC credit as a quiet mono line at the foot. Single light look by design. */
 :root {
   --cream: #ECEFE1;
   --glow: #F6E7BE;
@@ -54,31 +54,13 @@ body {
   text-align: center;
 }
 .hero { display: flex; flex-direction: column; align-items: center; gap: 14px; max-width: 26rem; }
-.mark { width: 96px; height: 96px; }
-.status {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--mono); font-size: 11px; font-weight: 500;
-  letter-spacing: .14em; text-transform: uppercase; color: var(--leaf);
-}
-.status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #63D18F; box-shadow: 0 0 0 3px rgba(99,209,143,.2); }
+.mark { width: 112px; height: 112px; }
 h1 {
   margin: 0; font-family: var(--serif); font-weight: 500;
   font-size: clamp(2.1rem, 9vw, 2.75rem); line-height: 1.08; text-wrap: balance;
 }
 h1 em { font-style: italic; color: var(--leaf); }
-.sub { margin: 0; font-size: 1rem; line-height: 1.5; color: var(--muted); }
-.go {
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-  width: 100%; max-width: 20rem; box-sizing: border-box;
-  padding: 16px 22px; border-radius: 999px;
-  background: var(--gold); color: var(--ink);
-  font-family: var(--sans); font-weight: 600; font-size: 1.05rem; text-decoration: none;
-  box-shadow: 0 1px 0 rgba(43,63,46,.15);
-  transition: transform .15s ease, box-shadow .15s ease;
-}
-.go:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(43,63,46,.15); }
-.go:focus-visible, .tc a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-.go svg { width: 18px; height: 18px; }
+.tc a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .fine { margin: 0; font-size: .82rem; color: var(--muted); }
 .tc {
   width: 100%; max-width: 20rem; box-sizing: border-box;
@@ -104,34 +86,24 @@ h1 em { font-style: italic; color: var(--leaf); }
   border: 1px solid rgba(43,63,46,.18); background: rgba(236,239,225,.7);
   color: var(--ink); text-decoration: none;
   font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
-  animation: rise .6s cubic-bezier(.2,.8,.2,1) 1.45s both;
+  animation: rise .6s cubic-bezier(.2,.8,.2,1) 1.2s both;
 }
 .home:hover { border-color: var(--ink); }
 .home:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { .home { animation: none; } }
-/* Animate on: clover grows in, leaves unfold, then content rises in sequence */
+/* Animate on: gold glow and leaf disc pop, the check draws, then text rises */
 @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @keyframes pop { 0% { opacity: 0; transform: scale(.6); } 70% { transform: scale(1.04); } 100% { opacity: 1; transform: scale(1); } }
-@keyframes leaf { from { transform: rotate(var(--r)) scale(0); } to { transform: rotate(var(--r)) scale(1); } }
-@keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(99,209,143,.45); } 100% { box-shadow: 0 0 0 8px rgba(99,209,143,0); } }
-.mark .glow { transform-origin: 150px 138px; animation: pop .6s cubic-bezier(.2,.8,.2,1) both; }
-.mark .stem { stroke-dasharray: 90; animation: draw .5s ease-out .25s both; }
-@keyframes draw { from { stroke-dashoffset: 90; } to { stroke-dashoffset: 0; } }
-.mark .lf { transform-origin: 150px 150px; animation: leaf .55s cubic-bezier(.2,.9,.25,1.15) both; }
-.mark .l1 { --r: 0deg; animation-delay: .35s; }
-.mark .l2 { --r: 120deg; animation-delay: .45s; }
-.mark .l3 { --r: -120deg; animation-delay: .55s; }
-.status, h1, .sub, .go, .fine, .tc { animation: rise .6s cubic-bezier(.2,.8,.2,1) both; }
-.status { animation-delay: .75s; }
-.status::before { animation: ping 1.6s ease-out 1.2s 2; }
-h1 { animation-delay: .85s; }
-.sub { animation-delay: .95s; }
-.go { animation-delay: 1.1s; }
-.fine { animation-delay: 1.2s; }
-.tc { animation-delay: 1.35s; }
+@keyframes draw { from { stroke-dashoffset: 64; } to { stroke-dashoffset: 0; } }
+.mark .glow { transform-origin: 60px 60px; animation: pop .6s cubic-bezier(.2,.8,.2,1) both; }
+.mark .disc { transform-origin: 60px 60px; animation: pop .5s cubic-bezier(.2,.8,.2,1) .15s both; }
+.mark .tick { stroke-dasharray: 64; animation: draw .45s cubic-bezier(.65,0,.35,1) .45s both; }
+h1, .fine, .tc { animation: rise .6s cubic-bezier(.2,.8,.2,1) both; }
+h1 { animation-delay: .8s; }
+.fine { animation-delay: .95s; }
+.tc { animation-delay: 1.1s; }
 @media (prefers-reduced-motion: reduce) {
-  .go { transition: none; } .go:hover { transform: none; }
-  .mark *, .status, .status::before, h1, .sub, .go, .fine, .tc { animation: none !important; }
+  .mark *, h1, .fine, .tc { animation: none !important; }
 }
 </style>
 </head>
@@ -142,23 +114,14 @@ h1 { animation-delay: .85s; }
 </nav>
 <main class="wrap">
   <section class="hero">
-    <svg class="mark" viewBox="0 0 300 300" role="img" aria-label="Clover Community Preschool clover">
-      <circle class="glow" cx="150" cy="138" r="118" fill="#F6E7BE"/>
-      <path class="stem" d="M150 150 C150 182 144 204 151 232" fill="none" stroke="#557A4C" stroke-width="7" stroke-linecap="round"/>
-      <g class="lf l1" style="transform: rotate(0deg)"><path transform="translate(100 55)" d="M50 95 C20 70 0 50 0 30 C0 12 14 0 30 0 C40 0 48 6 50 14 C52 6 60 0 70 0 C86 0 100 12 100 30 C100 50 80 70 50 95 Z" fill="#6F9560"/></g>
-      <g class="lf l2" style="transform: rotate(120deg)"><path transform="translate(100 55)" d="M50 95 C20 70 0 50 0 30 C0 12 14 0 30 0 C40 0 48 6 50 14 C52 6 60 0 70 0 C86 0 100 12 100 30 C100 50 80 70 50 95 Z" fill="#557A4C"/></g>
-      <g class="lf l3" style="transform: rotate(-120deg)"><path transform="translate(100 55)" d="M50 95 C20 70 0 50 0 30 C0 12 14 0 30 0 C40 0 48 6 50 14 C52 6 60 0 70 0 C86 0 100 12 100 30 C100 50 80 70 50 95 Z" fill="#86A86E"/></g>
+    <svg class="mark" viewBox="0 0 120 120" role="img" aria-label="Connected">
+      <circle class="glow" cx="60" cy="60" r="58" fill="#F6E7BE"/>
+      <circle class="disc" cx="60" cy="60" r="44" fill="#557A4C"/>
+      <path class="tick" d="M40 61 L54 75 L81 46" fill="none" stroke="#ECEFE1" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
-    <span class="status">Connected</span>
     <h1>You're online <em>at Clover.</em></h1>
-    <p class="sub">Welcome to Clover Community Preschool guest Wi-Fi.</p>
+    <p class="fine">Your access lasts 1 hour. Reconnect anytime.</p>
   </section>
-
-  <a class="go" href="https://www.google.com">
-    Continue to Google
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-  </a>
-  <p class="fine">Your access lasts 1 hour. Reconnect anytime.</p>
 
   <aside class="tc" aria-label="Wi-Fi sponsor">
     <span class="label">Guest Wi-Fi donated by</span>
