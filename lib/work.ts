@@ -19,7 +19,7 @@ const frame = { width: 2400, height: 1350 }
 export const STATION_CASE_STUDY = "/insights/michigan-central-station-scan-to-event-plan"
 export const BSB_CASE_STUDY = "/insights/ufo-pod-touring-control-infrastructure"
 
-/** Backstreet Boys: Into The Millennium, Homecoming. Daniel's own photos; sources in docs/IMAGE-SOURCES.md. */
+/** Backstreet Boys: Into The Millennium, Homecoming. Show photos; sources and credits in docs/IMAGE-SOURCES.md. */
 const small = { width: 1080, height: 608 }
 
 export const HOMECOMING_IMAGES = {
