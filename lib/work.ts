@@ -23,12 +23,6 @@ export const BSB_CASE_STUDY = "/insights/ufo-pod-touring-control-infrastructure"
 const small = { width: 1080, height: 608 }
 
 export const HOMECOMING_IMAGES = {
-  beams: {
-    src: "/images/work/bsb-germany-beams.jpg",
-    ...frame,
-    alt: "Stadium roof lit by a wide fan of white searchlight beams above the Backstreet Boys on stage, with a packed floor of fans holding up phones.",
-    caption: "HOMECOMING / DÜSSELDORF",
-  },
   arena: {
     src: "/images/work/bsb-homecoming-arena.jpg",
     ...small,
@@ -111,7 +105,7 @@ export const PROJECTS: WorkProject[] = [
     client: "Düsseldorf, Germany",
     role: "Technical direction, site coordination and production infrastructure",
     href: "/portfolio#backstreet-boys-homecoming",
-    image: HOMECOMING_IMAGES.beams,
+    image: HOMECOMING_IMAGES.arena,
   },
   {
     slug: "backstreet-boys-sphere",

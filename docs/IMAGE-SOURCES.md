@@ -8,7 +8,6 @@ Web masters for the homepage lead, the Selected Work cards, the portfolio and th
 | FA001 | `mcs-south-concourse.jpg` | Drive `1ISRxmrncgV9kT2WwaJReouQznL-UDyFE` | 4000 x 2250 | Full frame | Render |
 | FA006 | `mcs-grand-hall-stage.jpg` | Drive `1lfXQHxz8VaCoXxwT8KFeh0UjQGh6secs` | 4000 x 2250 | Full frame | Render |
 | NH-17 | `northline-heritage-hall.jpg` | Drive `1ChSlKkSiB8ki2cHtDeV_PSU0LCe4RdXW` | 4400 x 3000 | 0, 60, 4400, 2535 | Render |
-| DE3488 | `bsb-germany-beams.jpg` | Drive `15NrDGIwraLF5tAd-iJa-vQtLhqKrm12x` (IMG_3488, BSB Germany - Internal/Pics) | 5712 x 4284 | 0, 950, 5712, 4163 | Photo |
 | DE3442 | `bsb-germany-stadium.jpg` | Drive `1ZtqP7BEIkH4fATcDl8Jjaltl705EoRCT` (IMG_3442) | 5712 x 4284 | 0, 600, 5712, 3813 | Photo |
 | DE3538 | `bsb-germany-main-stage.jpg` | Drive `1esNCOYdFwlEumEjja_G00GfaWEkwwXW-` (IMG_3538) | 4284 x 5712 | 0, 3300, 4284, 5710 | Photo |
 | DEea23 | `bsb-germany-phone-lights.jpg` (1600 x 900) | Drive `18DV-C9N4XAAx5I7y39N5hiFz_gZSKmf_` | 1600 x 1200 | 0, 150, 1600, 1050 | Photo |
