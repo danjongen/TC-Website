@@ -141,34 +141,10 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Michigan Central Station */}
-      <section id="michigan-central-station" aria-labelledby="mcs-title" className="scroll-mt-28 pb-[14vh]">
-        <div className="container mx-auto px-6">
-          <ProjectHeader index="01" id="mcs-title" title="Michigan Central Station: From station scan to event plan.">
-            <p data-reveal="fade" className="mt-6 text-lg leading-relaxed text-zinc-400 max-w-xl">
-              We used a 3D scan of Michigan Central Station to build a detailed venue model, create renders for an
-              upcoming event and produce accurate CAD plans.
-            </p>
-            <Link
-              data-reveal="fade"
-              href={STATION_CASE_STUDY}
-              className="mt-7 -mb-1 inline-block py-1 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo hover:text-[#00D26A]"
-            >
-              EXPLORE THE PROJECT →
-            </Link>
-          </ProjectHeader>
-          <WorkFigure image={STATION_IMAGES.grandHallWide} sizes="(min-width: 1536px) 1488px, calc(100vw - 48px)" priority />
-          <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-4">
-            <WorkFigure image={STATION_IMAGES.southConcourse} sizes="(max-width: 768px) calc(100vw - 48px), 50vw" />
-            <WorkFigure image={STATION_IMAGES.grandHallStage} sizes="(max-width: 768px) calc(100vw - 48px), 50vw" />
-          </div>
-        </div>
-      </section>
-
       {/* Backstreet Boys / Sphere */}
       <section id="backstreet-boys-sphere" aria-labelledby="bsb-title" className="scroll-mt-28 pb-[14vh]">
         <div className="container mx-auto px-6">
-          <ProjectHeader index="02" id="bsb-title" title="Backstreet Boys / Sphere">
+          <ProjectHeader index="01" id="bsb-title" title="Backstreet Boys / Sphere">
             <p data-reveal="fade" className="mt-6 text-lg leading-relaxed text-zinc-400 max-w-xl">
               Production engineering and technical direction for the Backstreet Boys Into The Millennium residency at
               Sphere, Las Vegas. Read the full story in our Insights.
@@ -182,7 +158,7 @@ export default function PortfolioPage() {
             </Link>
           </ProjectHeader>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {gallery.map((item) => (
+            {gallery.map((item, i) => (
               <div
                 key={item.image}
                 data-reveal="resolve"
@@ -194,6 +170,7 @@ export default function PortfolioPage() {
                   fill
                   className="object-cover transition-transform duration-600 ease-expo group-hover:scale-[1.03]"
                   sizes="(max-width: 768px) 100vw, 50vw"
+                  priority={i === 0}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                 <div className="absolute bottom-5 left-5">
@@ -201,6 +178,30 @@ export default function PortfolioPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Michigan Central Station */}
+      <section id="michigan-central-station" aria-labelledby="mcs-title" className="scroll-mt-28 pb-[14vh]">
+        <div className="container mx-auto px-6">
+          <ProjectHeader index="02" id="mcs-title" title="Michigan Central Station: From station scan to event plan.">
+            <p data-reveal="fade" className="mt-6 text-lg leading-relaxed text-zinc-400 max-w-xl">
+              We used a 3D scan of Michigan Central Station to build a detailed venue model, create renders for an
+              upcoming event and produce accurate CAD plans.
+            </p>
+            <Link
+              data-reveal="fade"
+              href={STATION_CASE_STUDY}
+              className="mt-7 -mb-1 inline-block py-1 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo hover:text-[#00D26A]"
+            >
+              EXPLORE THE PROJECT →
+            </Link>
+          </ProjectHeader>
+          <WorkFigure image={STATION_IMAGES.grandHallWide} sizes="(min-width: 1536px) 1488px, calc(100vw - 48px)" />
+          <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-4">
+            <WorkFigure image={STATION_IMAGES.southConcourse} sizes="(max-width: 768px) calc(100vw - 48px), 50vw" />
+            <WorkFigure image={STATION_IMAGES.grandHallStage} sizes="(max-width: 768px) calc(100vw - 48px), 50vw" />
           </div>
         </div>
       </section>

@@ -57,15 +57,6 @@ export type WorkProject = {
 
 export const PROJECTS: WorkProject[] = [
   {
-    slug: "michigan-central-station",
-    title: "Michigan Central Station",
-    client: "Detroit, Michigan",
-    role: "3D Scan, Venue Model, Renders & CAD Plans",
-    href: STATION_CASE_STUDY,
-    image: STATION_IMAGES.grandHallWide,
-    morph: true,
-  },
-  {
     slug: "backstreet-boys-sphere",
     title: "Backstreet Boys / Sphere",
     client: "Into The Millennium, Las Vegas",
@@ -77,6 +68,15 @@ export const PROJECTS: WorkProject[] = [
       ...frame,
       alt: "The five Backstreet Boys performing on a flying blue stage platform in front of a lit grid of screens at Sphere, Las Vegas.",
     },
+  },
+  {
+    slug: "michigan-central-station",
+    title: "Michigan Central Station",
+    client: "Detroit, Michigan",
+    role: "3D Scan, Venue Model, Renders & CAD Plans",
+    href: STATION_CASE_STUDY,
+    image: STATION_IMAGES.grandHallWide,
+    morph: true,
   },
   {
     slug: "northline-heritage",
