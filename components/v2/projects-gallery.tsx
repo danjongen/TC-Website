@@ -194,7 +194,7 @@ export function ProjectsGallery() {
     <section data-cue="02" data-cue-label="SELECTED WORK" className="relative" aria-label="Featured projects">
       <GalleryHeader />
 
-      <div ref={trackRef} className="relative h-[220vh]">
+      <div ref={trackRef} className="relative h-[290vh]">
         {/* overflow: clip (not hidden) so focusing an off-screen card cannot scroll this frame sideways */}
         <div
           ref={frameRef}

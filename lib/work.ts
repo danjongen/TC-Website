@@ -19,6 +19,48 @@ const frame = { width: 2400, height: 1350 }
 export const STATION_CASE_STUDY = "/insights/michigan-central-station-scan-to-event-plan"
 export const BSB_CASE_STUDY = "/insights/ufo-pod-touring-control-infrastructure"
 
+/** Backstreet Boys: Into The Millennium, Homecoming. Daniel's own photos; sources in docs/IMAGE-SOURCES.md. */
+const small = { width: 1080, height: 608 }
+
+export const HOMECOMING_IMAGES = {
+  lasers: {
+    src: "/images/work/bsb-homecoming-lasers.jpg",
+    ...frame,
+    alt: "Blue lasers and a gold pyro crown over the Homecoming stage, framed by the stadium roof trusses, with a packed floor holding up phones.",
+    caption: "HOMECOMING / DÜSSELDORF",
+  },
+  arena: {
+    src: "/images/work/bsb-homecoming-arena.jpg",
+    ...small,
+    alt: "Rows of pale blue beams fanning out above the Backstreet Boys on stage, with the five members on a wide LED wall and fans in the foreground.",
+    caption: "SHOW / DÜSSELDORF",
+  },
+  redLight: {
+    src: "/images/work/bsb-homecoming-red-light.jpg",
+    ...frame,
+    alt: "Stadium washed in red light, with a tight cross of white beams rising from the stage and the five Backstreet Boys on the LED wall.",
+    caption: "SHOW / DÜSSELDORF",
+  },
+  cardington: {
+    src: "/images/work/bsb-homecoming-cardington.jpg",
+    ...small,
+    alt: "The full Homecoming stage set up inside a large hangar for a systems test, with LED walls, lighting rig and lifts in place and crew on the deck.",
+    caption: "SYSTEMS TEST / CARDINGTON",
+  },
+  stadium: {
+    src: "/images/work/bsb-germany-stadium.jpg",
+    ...frame,
+    alt: "Elevated view across a full stadium during the Backstreet Boys show, with the PA hang and stage structure on the right and beams crossing the floor.",
+    caption: "STADIUM / PA AND STRUCTURE",
+  },
+  mainStage: {
+    src: "/images/work/bsb-germany-main-stage.jpg",
+    ...frame,
+    alt: "Backstreet Boys on the main stage in front of a wide LED wall, under rows of blue beams and warm stadium roof trusses.",
+    caption: "MAIN STAGE / LED AND LIGHTING",
+  },
+} satisfies Record<string, WorkImage>
+
 export const STATION_IMAGES = {
   grandHallWide: {
     src: "/images/work/mcs-grand-hall-wide.jpg",
@@ -57,13 +99,12 @@ export type WorkProject = {
 
 export const PROJECTS: WorkProject[] = [
   {
-    slug: "michigan-central-station",
-    title: "Michigan Central Station",
-    client: "Detroit, Michigan",
-    role: "3D Scan, Venue Model, Renders & CAD Plans",
-    href: STATION_CASE_STUDY,
-    image: STATION_IMAGES.grandHallWide,
-    morph: true,
+    slug: "backstreet-boys-homecoming",
+    title: "Backstreet Boys: Into The Millennium – Homecoming",
+    client: "Düsseldorf, Germany",
+    role: "Technical direction, site coordination and production infrastructure",
+    href: "/portfolio#backstreet-boys-homecoming",
+    image: HOMECOMING_IMAGES.lasers,
   },
   {
     slug: "backstreet-boys-sphere",
@@ -77,6 +118,15 @@ export const PROJECTS: WorkProject[] = [
       ...frame,
       alt: "The five Backstreet Boys performing on a flying blue stage platform in front of a lit grid of screens at Sphere, Las Vegas.",
     },
+  },
+  {
+    slug: "michigan-central-station",
+    title: "Michigan Central Station",
+    client: "Detroit, Michigan",
+    role: "3D Scan, Venue Model, Renders & CAD Plans",
+    href: STATION_CASE_STUDY,
+    image: STATION_IMAGES.grandHallWide,
+    morph: true,
   },
   {
     slug: "northline-heritage",
