@@ -5,10 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
 <title>Clover Guest Wi-Fi | Technically Creative</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;1,500&family=Hanken+Grotesk:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap">
+<link rel="preload" href="/installs/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/installs/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/installs/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+/* Fonts are self-hosted (same domain, no Google round trips) so the page paints fast on a fresh guest connection. OFL-licensed. */
+@font-face { font-family: "Lora"; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/installs/fonts/lora-latin.woff2) format("woff2"); }
+@font-face { font-family: "Lora"; font-style: italic; font-weight: 400 700; font-display: swap; src: url(/installs/fonts/lora-italic-latin.woff2) format("woff2"); }
+@font-face { font-family: "Hanken Grotesk"; font-style: normal; font-weight: 100 900; font-display: swap; src: url(/installs/fonts/hanken-grotesk-latin.woff2) format("woff2"); }
+@font-face { font-family: "Geist Mono"; font-style: normal; font-weight: 100 900; font-display: swap; src: url(/installs/fonts/geist-mono-latin.woff2) format("woff2"); }
 /* Layout: one centred column. Clover's world on top (cream, clover, serif), TC credit as a quiet mono line at the foot. Single light look by design. */
 :root {
   --cream: #ECEFE1;

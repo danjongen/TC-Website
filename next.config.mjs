@@ -50,6 +50,20 @@ const nextConfig = {
           },
         ],
       },
+      {
+        // Self-hosted fonts for install pages: fingerprint-free names, so cache hard.
+        source: '/installs/fonts/:file*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
+        // Install pages: let phones reuse a recent copy instantly while refreshing in the background.
+        source: '/installs/:site',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=300, stale-while-revalidate=86400' },
+        ],
+      },
     ]
   },
 
