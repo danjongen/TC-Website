@@ -23,6 +23,12 @@ export const BSB_CASE_STUDY = "/insights/ufo-pod-touring-control-infrastructure"
 const small = { width: 1080, height: 608 }
 
 export const HOMECOMING_IMAGES = {
+  lasers: {
+    src: "/images/work/bsb-homecoming-lasers.jpg",
+    ...frame,
+    alt: "Blue lasers and a gold pyro crown over the Homecoming stage, framed by the stadium roof trusses, with a packed floor holding up phones.",
+    caption: "HOMECOMING / DÜSSELDORF",
+  },
   arena: {
     src: "/images/work/bsb-homecoming-arena.jpg",
     ...small,
@@ -31,8 +37,8 @@ export const HOMECOMING_IMAGES = {
   },
   redLight: {
     src: "/images/work/bsb-homecoming-red-light.jpg",
-    ...small,
-    alt: "Stadium washed in red light, with a tight cluster of white beams rising from the stage above the Backstreet Boys.",
+    ...frame,
+    alt: "Stadium washed in red light, with a tight cross of white beams rising from the stage and the five Backstreet Boys on the LED wall.",
     caption: "SHOW / DÜSSELDORF",
   },
   cardington: {
@@ -52,13 +58,6 @@ export const HOMECOMING_IMAGES = {
     ...frame,
     alt: "Backstreet Boys on the main stage in front of a wide LED wall, under rows of blue beams and warm stadium roof trusses.",
     caption: "MAIN STAGE / LED AND LIGHTING",
-  },
-  phoneLights: {
-    src: "/images/work/bsb-germany-phone-lights.jpg",
-    width: 1600,
-    height: 900,
-    alt: "Stadium bowl filled with phone lights during the Backstreet Boys show, with the band on a lit B stage in the middle of the floor.",
-    caption: "B STAGE / CROWD",
   },
 } satisfies Record<string, WorkImage>
 
@@ -105,7 +104,7 @@ export const PROJECTS: WorkProject[] = [
     client: "Düsseldorf, Germany",
     role: "Technical direction, site coordination and production infrastructure",
     href: "/portfolio#backstreet-boys-homecoming",
-    image: HOMECOMING_IMAGES.arena,
+    image: HOMECOMING_IMAGES.lasers,
   },
   {
     slug: "backstreet-boys-sphere",

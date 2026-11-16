@@ -171,14 +171,14 @@ export default function PortfolioPage() {
               </p>
             </div>
           </ProjectHeader>
-          <WorkFigure image={HOMECOMING_IMAGES.arena} sizes="(min-width: 1536px) 1488px, calc(100vw - 48px)" priority />
+          <WorkFigure image={HOMECOMING_IMAGES.lasers} sizes="(min-width: 1536px) 1488px, calc(100vw - 48px)" priority />
           <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-4">
-            {[HOMECOMING_IMAGES.redLight, HOMECOMING_IMAGES.cardington].map((image) => (
+            {[HOMECOMING_IMAGES.redLight, HOMECOMING_IMAGES.arena].map((image) => (
               <WorkFigure key={image.src} image={image} sizes="(max-width: 768px) calc(100vw - 48px), 50vw" />
             ))}
           </div>
           <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-4">
-            {[HOMECOMING_IMAGES.stadium, HOMECOMING_IMAGES.mainStage, HOMECOMING_IMAGES.phoneLights].map((image) => (
+            {[HOMECOMING_IMAGES.cardington, HOMECOMING_IMAGES.stadium, HOMECOMING_IMAGES.mainStage].map((image) => (
               <WorkFigure key={image.src} image={image} sizes="(max-width: 768px) calc(100vw - 48px), 33vw" />
             ))}
           </div>
