@@ -19,15 +19,23 @@ const frame = { width: 2400, height: 1350 }
 export const STATION_CASE_STUDY = "/insights/michigan-central-station-scan-to-event-plan"
 export const BSB_CASE_STUDY = "/insights/ufo-pod-touring-control-infrastructure"
 
-/** Backstreet Boys: Into The Millennium, Homecoming. Daniel's own photos; sources in docs/IMAGE-SOURCES.md. */
+/** Backstreet Boys: Into The Millennium, Homecoming. Show photos; sources and credits in docs/IMAGE-SOURCES.md. */
 const small = { width: 1080, height: 608 }
 
 export const HOMECOMING_IMAGES = {
-  lasers: {
-    src: "/images/work/bsb-homecoming-lasers.jpg",
-    ...frame,
-    alt: "Blue lasers and a gold pyro crown over the Homecoming stage, framed by the stadium roof trusses, with a packed floor holding up phones.",
+  hoverboards: {
+    src: "/images/work/bsb-homecoming-hoverboards.jpg",
+    width: 1920,
+    height: 1080,
+    alt: "The five Backstreet Boys flying on hoverboards on the flying rig in front of a blue LED wall.",
     caption: "HOMECOMING / DÜSSELDORF",
+  },
+  fullBowl: {
+    src: "/images/work/bsb-homecoming-full-bowl.jpg",
+    width: 1920,
+    height: 1080,
+    alt: "The full stadium bowl under the roof trusses, with lasers fanning over the crowd and pyro along the stage front.",
+    caption: "SHOW / DÜSSELDORF",
   },
   arena: {
     src: "/images/work/bsb-homecoming-arena.jpg",
@@ -46,18 +54,6 @@ export const HOMECOMING_IMAGES = {
     ...small,
     alt: "The full Homecoming stage set up inside a large hangar for a systems test, with LED walls, lighting rig and lifts in place and crew on the deck.",
     caption: "SYSTEMS TEST / CARDINGTON",
-  },
-  stadium: {
-    src: "/images/work/bsb-germany-stadium.jpg",
-    ...frame,
-    alt: "Elevated view across a full stadium during the Backstreet Boys show, with the PA hang and stage structure on the right and beams crossing the floor.",
-    caption: "STADIUM / PA AND STRUCTURE",
-  },
-  mainStage: {
-    src: "/images/work/bsb-germany-main-stage.jpg",
-    ...frame,
-    alt: "Backstreet Boys on the main stage in front of a wide LED wall, under rows of blue beams and warm stadium roof trusses.",
-    caption: "MAIN STAGE / LED AND LIGHTING",
   },
 } satisfies Record<string, WorkImage>
 
@@ -104,7 +100,7 @@ export const PROJECTS: WorkProject[] = [
     client: "Düsseldorf, Germany",
     role: "Technical direction, site coordination and production infrastructure",
     href: "/portfolio#backstreet-boys-homecoming",
-    image: HOMECOMING_IMAGES.lasers,
+    image: HOMECOMING_IMAGES.hoverboards,
   },
   {
     slug: "backstreet-boys-sphere",
