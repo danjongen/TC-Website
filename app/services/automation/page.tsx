@@ -16,6 +16,9 @@ export const metadata: Metadata = {
     "TC Agency",
     "Technically Creative",
   ],
+  alternates: {
+    canonical: "https://www.tc.agency/services/workflow-automation",
+  },
 }
 
 export default function AutomationPage() {
