@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: "Design & Visualization | Technical Drafting & 3D Rendering | TC Agency",
     description:
       "From concept to production-ready blueprint. 3D CAD modeling, photorealistic rendering, and technical drafting that eliminates guesswork and reduces change orders.",
-    url: "https://tc.agency/services/design-visualization",
+    url: "https://www.tc.agency/services/design-visualization",
     type: "website",
     images: [
       {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   alternates: {
-    canonical: "https://tc.agency/services/design-visualization",
+    canonical: "https://www.tc.agency/services/design-visualization",
   },
 }
 
@@ -164,15 +164,15 @@ export default function DesignVisualizationPage() {
     <>
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://tc.agency" },
-          { name: "Services", url: "https://tc.agency/capabilities" },
-          { name: "Design & Visualization", url: "https://tc.agency/services/design-visualization" },
+          { name: "Home", url: "https://www.tc.agency" },
+          { name: "Services", url: "https://www.tc.agency/services" },
+          { name: "Design & Visualization", url: "https://www.tc.agency/services/design-visualization" },
         ]}
       />
       <ServicePageSchema
         name="Design & Visualization"
         description="Production design visualization, 3D CAD modeling, photorealistic rendering, and technical drafting for live events and complex productions."
-        url="https://tc.agency/services/design-visualization"
+        url="https://www.tc.agency/services/design-visualization"
       />
 
       <main className="min-h-screen bg-black pt-24 pb-16">

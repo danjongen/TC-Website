@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Accessibility Statement | TC Agency",
     description: "TC Agency is committed to digital accessibility. Learn about our WCAG 2.1 AA compliance efforts.",
-    url: "https://tc.agency/accessibility",
+    url: "https://www.tc.agency/accessibility",
   },
 }
 

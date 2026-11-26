@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     title: "Services",
     description:
       "Full-spectrum production engineering. Every technical discipline under one roof, working as a unified system.",
-    url: "https://tc.agency/services",
+    url: "https://www.tc.agency/services",
     siteName: "TC Agency",
     images: [
       {
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     images: ["/images/dsf3815.jpg"],
   },
   alternates: {
-    canonical: "https://tc.agency/services",
+    canonical: "https://www.tc.agency/services",
   },
 }
 

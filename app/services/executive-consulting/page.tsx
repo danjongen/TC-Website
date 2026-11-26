@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: "Executive & Strategic Consulting | TC Agency",
     description:
       "High-level production and technical strategy for shows and programs that demand clarity, reliability, and senior leadership. Decision frameworks, risk control, and operational alignment.",
-    url: "https://tc.agency/services/executive-consulting",
+    url: "https://www.tc.agency/services/executive-consulting",
     type: "website",
     images: [
       {
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     images: ["/og/consulting.jpg"],
   },
   alternates: {
-    canonical: "https://tc.agency/services/executive-consulting",
+    canonical: "https://www.tc.agency/services/executive-consulting",
   },
 }
 
@@ -167,15 +167,15 @@ export default function ExecutiveConsultingPage() {
     <>
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://tc.agency" },
-          { name: "Services", url: "https://tc.agency/capabilities" },
-          { name: "Executive & Strategic Consulting", url: "https://tc.agency/services/executive-consulting" },
+          { name: "Home", url: "https://www.tc.agency" },
+          { name: "Services", url: "https://www.tc.agency/services" },
+          { name: "Executive & Strategic Consulting", url: "https://www.tc.agency/services/executive-consulting" },
         ]}
       />
       <ServicePageSchema
         name="Executive & Strategic Consulting"
         description="Senior production leadership and strategic consulting for high-stakes environments. Decision frameworks, risk mitigation, vendor strategy, budget intelligence, and cross-department alignment for complex global productions."
-        url="https://tc.agency/services/executive-consulting"
+        url="https://www.tc.agency/services/executive-consulting"
       />
       <main className="min-h-screen bg-black pt-24 pb-16">
         <div className="container mx-auto px-6">

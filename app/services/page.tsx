@@ -189,8 +189,8 @@ export default function CapabilitiesPage() {
       <ServiceSchema services={servicesForSchema} />
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://tc.agency" },
-          { name: "Services", url: "https://tc.agency/services" },
+          { name: "Home", url: "https://www.tc.agency" },
+          { name: "Services", url: "https://www.tc.agency/services" },
         ]}
       />
 

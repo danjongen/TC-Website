@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Global Privacy Policy | TC Agency",
     description: "TC Agency global privacy policy covering GDPR, CCPA, PIPEDA, and international data protection.",
-    url: "https://tc.agency/privacy-policy",
+    url: "https://www.tc.agency/privacy-policy",
   },
 }
 

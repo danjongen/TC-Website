@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "Our Approach",
     description:
       "Every project follows the same rigorous methodology. No surprises, no guesswork. Just predictable, excellent results.",
-    url: "https://tc.agency/approach",
+    url: "https://www.tc.agency/approach",
     siteName: "TC Agency",
     images: [
       {
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     images: ["/images/dsf3917.jpg"],
   },
   alternates: {
-    canonical: "https://tc.agency/approach",
+    canonical: "https://www.tc.agency/approach",
   },
 }
 
@@ -97,8 +97,8 @@ export default function ApproachPage() {
     <main className="min-h-screen bg-black text-white">
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://tc.agency" },
-          { name: "Approach", url: "https://tc.agency/approach" },
+          { name: "Home", url: "https://www.tc.agency" },
+          { name: "Approach", url: "https://www.tc.agency/approach" },
         ]}
       />
 

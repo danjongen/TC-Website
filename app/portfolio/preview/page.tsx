@@ -57,8 +57,8 @@ export default async function PortfolioPreviewPage({
 
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://tc.agency" },
-          { name: "Portfolio", url: "https://tc.agency/portfolio" },
+          { name: "Home", url: "https://www.tc.agency" },
+          { name: "Portfolio", url: "https://www.tc.agency/portfolio" },
         ]}
       />
       {projects.map((project) => (
@@ -66,7 +66,7 @@ export default async function PortfolioPreviewPage({
           key={project.slug}
           name={project.title}
           description={`${project.role} for ${project.client}`}
-          image={`https://tc.agency${project.image}`}
+          image={`https://www.tc.agency${project.image}`}
           client={project.client}
           datePublished={`${project.year}-01-01`}
         />

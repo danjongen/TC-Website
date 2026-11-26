@@ -73,7 +73,7 @@ export async function subscribeToNewsletter(formData: FormData) {
                     <!-- CTA Button -->
                     <tr>
                       <td style="padding-bottom: 50px;">
-                        <a href="https://tc.agency" style="display: inline-block; padding: 14px 32px; background-color: #ffffff; color: #000000; text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: 0.5px;">
+                        <a href="https://www.tc.agency" style="display: inline-block; padding: 14px 32px; background-color: #ffffff; color: #000000; text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: 0.5px;">
                           EXPLORE TC AGENCY
                         </a>
                       </td>
@@ -92,7 +92,7 @@ export async function subscribeToNewsletter(formData: FormData) {
                           You're receiving this because you subscribed at tc.agency
                         </p>
                         <p style="margin: 0;">
-                          <a href="https://tc.agency/unsubscribe?email=${encodeURIComponent(email)}" style="font-size: 12px; color: #666; text-decoration: underline;">
+                          <a href="https://www.tc.agency/unsubscribe?email=${encodeURIComponent(email)}" style="font-size: 12px; color: #666; text-decoration: underline;">
                             Unsubscribe
                           </a>
                         </p>

@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "System Integration | Production Network Engineering | TC Agency",
     description:
       "One system, one interface, zero gaps. TC Agency engineers fully integrated production networks that unify every protocol, vendor, and subsystem in your live environment.",
-    url: "https://tc.agency/services/system-integration",
+    url: "https://www.tc.agency/services/system-integration",
     type: "website",
     images: [
       {
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   alternates: {
-    canonical: "https://tc.agency/services/system-integration",
+    canonical: "https://www.tc.agency/services/system-integration",
   },
 }
 
@@ -153,15 +153,15 @@ export default function SystemIntegrationPage() {
     <>
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://tc.agency" },
-          { name: "Services", url: "https://tc.agency/capabilities" },
-          { name: "System Integration", url: "https://tc.agency/services/system-integration" },
+          { name: "Home", url: "https://www.tc.agency" },
+          { name: "Services", url: "https://www.tc.agency/services" },
+          { name: "System Integration", url: "https://www.tc.agency/services/system-integration" },
         ]}
       />
       <ServicePageSchema
         name="System Integration"
         description="Production network engineering and system integration for live events. Protocol translation, redundancy planning, real-time monitoring, and multi-vendor unification across OSC, MIDI, DMX, sACN, Art-Net, NDI, and Dante."
-        url="https://tc.agency/services/system-integration"
+        url="https://www.tc.agency/services/system-integration"
       />
 
       <main className="min-h-screen bg-black pt-24 pb-16">

@@ -7,18 +7,18 @@ export function SchemaOrgGraph() {
     "@graph": [
       {
         "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
-        "@id": "https://tc.agency/#organization",
+        "@id": "https://www.tc.agency/#organization",
         name: "Technically Creative LLC",
         legalName: "Technically Creative LLC",
         alternateName: ["TC Agency", "TC", "Tech Creative"],
-        url: "https://tc.agency/",
+        url: "https://www.tc.agency/",
         logo: {
           "@type": "ImageObject",
-          url: "https://tc.agency/og-image.png",
+          url: "https://www.tc.agency/og-image.png",
           width: 1200,
           height: 630,
         },
-        image: "https://tc.agency/og-image.png",
+        image: "https://www.tc.agency/og-image.png",
         description:
           "Technically Creative delivers premium production engineering, technical direction, and production management for global brands and artists, led by Executive Technical Producer Daniel Jongen.",
         email: "info@tc.agency",
@@ -31,7 +31,7 @@ export function SchemaOrgGraph() {
         priceRange: "$$$",
         areaServed: "Worldwide",
         sameAs: ["https://www.linkedin.com/company/technicallycreative"],
-        founder: { "@id": "https://tc.agency/#danieljongen" },
+        founder: { "@id": "https://www.tc.agency/#danieljongen" },
         knowsAbout: [
           "Technical Direction",
           "Corporate Technical Direction",
@@ -66,14 +66,14 @@ export function SchemaOrgGraph() {
       },
       {
         "@type": "Person",
-        "@id": "https://tc.agency/#danieljongen",
+        "@id": "https://www.tc.agency/#danieljongen",
         name: "Daniel Jongen",
         jobTitle: ["Executive Technical Producer", "Technical Director", "Production Engineer", "Production Manager"],
         description:
           "Executive Technical Producer Daniel Jongen leads high-stakes technical direction, production engineering, and production management for global brands, tours, and immersive experiences.",
-        image: "https://tc.agency/daniel-headshot.jpg",
-        url: "https://tc.agency/about",
-        worksFor: { "@id": "https://tc.agency/#organization" },
+        image: "https://www.tc.agency/daniel-headshot.jpg",
+        url: "https://www.tc.agency/about",
+        worksFor: { "@id": "https://www.tc.agency/#organization" },
         sameAs: ["https://www.linkedin.com/in/danieljongen"],
         nationality: "Australian",
         knowsAbout: [
@@ -91,12 +91,12 @@ export function SchemaOrgGraph() {
       },
       {
         "@type": "WebSite",
-        "@id": "https://tc.agency/#website",
+        "@id": "https://www.tc.agency/#website",
         name: "TC Agency",
-        url: "https://tc.agency",
+        url: "https://www.tc.agency",
         description:
           "Technical Direction and Production Engineering for entertainment, automotive, and tech industries.",
-        publisher: { "@id": "https://tc.agency/#organization" },
+        publisher: { "@id": "https://www.tc.agency/#organization" },
         inLanguage: "en-US",
       },
       {
@@ -155,18 +155,18 @@ export function ProfessionalServiceSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "@id": "https://tc.agency/#professionalservice",
+    "@id": "https://www.tc.agency/#professionalservice",
     name: "TC Production Engineering",
     legalName: "Technically Creative LLC",
     alternateName: ["TC Agency", "Technically Creative", "TC", "tc.agency"],
-    url: "https://tc.agency",
+    url: "https://www.tc.agency",
     logo: {
       "@type": "ImageObject",
-      url: "https://tc.agency/og-image.png",
+      url: "https://www.tc.agency/og-image.png",
       width: 1200,
       height: 630,
     },
-    image: "https://tc.agency/og-image.png",
+    image: "https://www.tc.agency/og-image.png",
     description:
       "TC is a production engineering firm specializing in automation, network infrastructure, and risk mitigation for non-repeatable, high-stakes projects.",
     slogan: "Systems & Rigor for High-Stakes Events",
@@ -249,7 +249,7 @@ export function ProfessionalServiceSchema() {
     sameAs: ["https://www.linkedin.com/company/technicallycreative"],
     parentOrganization: {
       "@type": "Organization",
-      "@id": "https://tc.agency/#organization",
+      "@id": "https://www.tc.agency/#organization",
       name: "Technically Creative LLC",
       legalName: "Technically Creative LLC",
     },

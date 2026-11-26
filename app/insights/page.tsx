@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Insights",
     description: "Technical insights, case studies, and industry perspectives on production engineering.",
-    url: "https://tc.agency/insights",
+    url: "https://www.tc.agency/insights",
     siteName: "TC Agency",
     type: "website",
   },
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     description: "Technical insights and case studies from the production engineering experts.",
   },
   alternates: {
-    canonical: "https://tc.agency/insights",
+    canonical: "https://www.tc.agency/insights",
   },
 }
 
@@ -73,8 +73,8 @@ export default function InsightsPage() {
     <main className="min-h-screen bg-black text-white">
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://tc.agency" },
-          { name: "Insights", url: "https://tc.agency/insights" },
+          { name: "Home", url: "https://www.tc.agency" },
+          { name: "Insights", url: "https://www.tc.agency/insights" },
         ]}
       />
 
