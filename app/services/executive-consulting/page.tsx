@@ -181,7 +181,7 @@ export default function ExecutiveConsultingPage() {
         <div className="container mx-auto px-6">
           {/* Breadcrumb */}
           <Link
-            href="/capabilities"
+            href="/services"
             className="-mt-1 mb-7 inline-flex items-center gap-2 py-1 text-sm text-muted-foreground transition-colors duration-300 ease-expo hover:text-white"
           >
             <ArrowLeft className="w-4 h-4" />

@@ -51,7 +51,7 @@ export default function NotFound() {
             <nav className="flex flex-wrap items-center justify-center gap-6">
               <Link
                 data-reveal="fade"
-                href="/capabilities"
+                href="/services"
                 className="-my-1 py-1 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo hover:text-white"
               >
                 SERVICES
