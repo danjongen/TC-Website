@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     description: "TC Agency terms of service and conditions of use.",
     url: "https://www.tc.agency/terms-of-service",
   },
+  alternates: {
+    canonical: "https://www.tc.agency/terms-of-service",
+  },
 }
 
 export default function TermsOfService() {

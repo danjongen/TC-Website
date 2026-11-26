@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     description: "Learn how TC Agency uses cookies and tracking technologies on tc.agency.",
     url: "https://www.tc.agency/cookie-policy",
   },
+  alternates: {
+    canonical: "https://www.tc.agency/cookie-policy",
+  },
 }
 
 export default function CookiePolicy() {
