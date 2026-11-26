@@ -42,6 +42,9 @@ export function Footer() {
               <Link href="/about" className={linkClass}>
                 About TC Agency
               </Link>
+              <Link href="/how-we-work" className={linkClass}>
+                How We Work
+              </Link>
               <Link href="/about#daniel-jongen" className={linkClass}>
                 Meet Daniel Jongen
               </Link>
