@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     description: "TC Agency does not sell or share your personal information. Learn about your CCPA/CPRA rights.",
     url: "https://www.tc.agency/do-not-sell",
   },
+  alternates: {
+    canonical: "https://www.tc.agency/do-not-sell",
+  },
 }
 
 export default function DoNotSell() {

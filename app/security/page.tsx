@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     description: "Learn how TC Agency protects your data with technical and organizational security measures.",
     url: "https://www.tc.agency/security",
   },
+  alternates: {
+    canonical: "https://www.tc.agency/security",
+  },
 }
 
 export default function Security() {

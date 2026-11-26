@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     description: "TC Agency is committed to digital accessibility. Learn about our WCAG 2.1 AA compliance efforts.",
     url: "https://www.tc.agency/accessibility",
   },
+  alternates: {
+    canonical: "https://www.tc.agency/accessibility",
+  },
 }
 
 export default function Accessibility() {

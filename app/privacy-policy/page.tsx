@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     description: "TC Agency global privacy policy covering GDPR, CCPA, PIPEDA, and international data protection.",
     url: "https://www.tc.agency/privacy-policy",
   },
+  alternates: {
+    canonical: "https://www.tc.agency/privacy-policy",
+  },
 }
 
 export default function PrivacyPolicy() {
