@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     "TC Agency",
     "Technically Creative",
   ],
+  alternates: {
+    canonical: "https://www.tc.agency/services/3d-scanning",
+  },
 }
 
 export default function ScanningPage() {
