@@ -40,7 +40,7 @@ export const revalidate = 86400 // 24 hours
 export default function AboutPage() {
   const expertise = [
     { name: "Technical Direction", href: "/services/technical-direction" },
-    { name: "Production Engineering", href: "/capabilities" },
+    { name: "Production Engineering", href: "/services" },
     { name: "Production Management", href: "/services/production-management" },
     { name: "Automation Systems", href: "/services/workflow-automation" },
     { name: "LED Systems", href: "/services/system-integration" },
