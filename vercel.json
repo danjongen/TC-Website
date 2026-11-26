@@ -138,6 +138,11 @@
       "source": "/capabilities",
       "destination": "/services",
       "permanent": true
+    },
+    {
+      "source": "/how-we-work",
+      "destination": "/approach",
+      "permanent": true
     }
   ]
 }
