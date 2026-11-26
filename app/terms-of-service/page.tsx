@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Terms of Service | TC Agency",
     description: "TC Agency terms of service and conditions of use.",
-    url: "https://tc.agency/terms-of-service",
+    url: "https://www.tc.agency/terms-of-service",
   },
 }
 

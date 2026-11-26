@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Cookie Policy | TC Agency",
     description: "Learn how TC Agency uses cookies and tracking technologies on tc.agency.",
-    url: "https://tc.agency/cookie-policy",
+    url: "https://www.tc.agency/cookie-policy",
   },
 }
 

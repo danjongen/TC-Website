@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     title: "Aerial Surveying | Drone Mapping & Photogrammetry | TC Agency",
     description:
       "FAA Part 107 certified drone operations for venue documentation, site analysis, and production planning. Photogrammetry, thermal imaging, and orthomosaic mapping.",
-    url: "https://tc.agency/services/aerial-surveying",
+    url: "https://www.tc.agency/services/aerial-surveying",
     type: "website",
     images: [
       {
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   alternates: {
-    canonical: "https://tc.agency/services/aerial-surveying",
+    canonical: "https://www.tc.agency/services/aerial-surveying",
   },
 }
 
@@ -155,15 +155,15 @@ export default function AerialSurveyingPage() {
     <>
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://tc.agency" },
-          { name: "Services", url: "https://tc.agency/capabilities" },
-          { name: "Aerial Surveying", url: "https://tc.agency/services/aerial-surveying" },
+          { name: "Home", url: "https://www.tc.agency" },
+          { name: "Services", url: "https://www.tc.agency/services" },
+          { name: "Aerial Surveying", url: "https://www.tc.agency/services/aerial-surveying" },
         ]}
       />
       <ServicePageSchema
         name="Aerial Surveying"
         description="FAA Part 107 certified drone-based aerial surveying for venue documentation, site analysis, and production planning. Photogrammetry, thermal imaging, orthomosaic mapping, and volumetric analysis."
-        url="https://tc.agency/services/aerial-surveying"
+        url="https://www.tc.agency/services/aerial-surveying"
       />
 
       <main className="min-h-screen bg-black pt-24 pb-16">

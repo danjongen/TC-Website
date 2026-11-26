@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "About TC Agency | Production Engineering for High-Stakes Events",
     description:
       "Learn about TC Agency and Executive Technical Producer Daniel Jongen. Engineering-grade systems for global events, tours, and productions.",
-    url: "https://tc.agency/about",
+    url: "https://www.tc.agency/about",
     images: [
       {
         url: "/og-image.png",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     description: "Learn about TC Agency and Executive Technical Producer Daniel Jongen.",
   },
   alternates: {
-    canonical: "https://tc.agency/about",
+    canonical: "https://www.tc.agency/about",
   },
 }
 
@@ -78,8 +78,8 @@ export default function AboutPage() {
     <div className="min-h-screen bg-black text-white">
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://tc.agency" },
-          { name: "About", url: "https://tc.agency/about" },
+          { name: "Home", url: "https://www.tc.agency" },
+          { name: "About", url: "https://www.tc.agency/about" },
         ]}
       />
 

@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: "Production Management | Live Event Production | TC Agency",
     description:
       "End-to-end production management for live events, tours, and installations. Timeline control, budget tracking, logistics coordination, and stakeholder communication.",
-    url: "https://tc.agency/services/production-management",
+    url: "https://www.tc.agency/services/production-management",
     type: "website",
     images: [
       {
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   alternates: {
-    canonical: "https://tc.agency/services/production-management",
+    canonical: "https://www.tc.agency/services/production-management",
   },
 }
 
@@ -158,15 +158,15 @@ export default function ProductionManagementPage() {
     <>
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://tc.agency" },
-          { name: "Services", url: "https://tc.agency/services" },
-          { name: "Production Management", url: "https://tc.agency/services/production-management" },
+          { name: "Home", url: "https://www.tc.agency" },
+          { name: "Services", url: "https://www.tc.agency/services" },
+          { name: "Production Management", url: "https://www.tc.agency/services/production-management" },
         ]}
       />
       <ServicePageSchema
         name="Production Management"
         description="End-to-end production management for live events, tours, and installations. Timeline control, budget tracking, logistics coordination, and stakeholder communication."
-        url="https://tc.agency/services/production-management"
+        url="https://www.tc.agency/services/production-management"
       />
 
       <main className="min-h-screen bg-black pt-24 pb-16">

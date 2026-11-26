@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Our Mission",
     description: "Engineering calm into chaos. We bring systematic precision to high-stakes live production.",
-    url: "https://tc.agency/mission",
+    url: "https://www.tc.agency/mission",
     siteName: "TC Agency",
     images: [
       {
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     images: ["/images/dsf3815.jpg"],
   },
   alternates: {
-    canonical: "https://tc.agency/mission",
+    canonical: "https://www.tc.agency/mission",
   },
 }
 
@@ -54,8 +54,8 @@ export default function MissionPage() {
     <main className="min-h-screen bg-black text-white">
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://tc.agency" },
-          { name: "Mission", url: "https://tc.agency/mission" },
+          { name: "Home", url: "https://www.tc.agency" },
+          { name: "Mission", url: "https://www.tc.agency/mission" },
         ]}
       />
 

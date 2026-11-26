@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: "Custom Fabrication | Production Hardware Engineering | TC Agency",
     description:
       "Custom-engineered hardware for productions that require solutions that don't exist yet. From concept through delivery.",
-    url: "https://tc.agency/services/custom-fabrication",
+    url: "https://www.tc.agency/services/custom-fabrication",
     type: "website",
     images: [
       {
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   alternates: {
-    canonical: "https://tc.agency/services/custom-fabrication",
+    canonical: "https://www.tc.agency/services/custom-fabrication",
   },
 }
 
@@ -130,15 +130,15 @@ export default function CustomFabricationPage() {
     <main className="min-h-screen bg-black pt-24 pb-16">
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://tc.agency" },
-          { name: "Services", url: "https://tc.agency/capabilities" },
-          { name: "Custom Fabrication", url: "https://tc.agency/services/custom-fabrication" },
+          { name: "Home", url: "https://www.tc.agency" },
+          { name: "Services", url: "https://www.tc.agency/services" },
+          { name: "Custom Fabrication", url: "https://www.tc.agency/services/custom-fabrication" },
         ]}
       />
       <ServicePageSchema
         name="Custom Fabrication"
         description="Custom-engineered hardware for productions that require solutions that don't exist yet. CNC machining, 3D printing, cable assembly, structural engineering, and rapid prototyping."
-        url="https://tc.agency/services/custom-fabrication"
+        url="https://www.tc.agency/services/custom-fabrication"
       />
 
       <div className="container mx-auto px-6">

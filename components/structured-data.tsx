@@ -5,18 +5,18 @@ export function OrganizationSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://tc.agency/#organization",
+    "@id": "https://www.tc.agency/#organization",
     name: "TC Agency",
     legalName: "Technically Creative LLC",
     alternateName: ["Technically Creative", "TC", "tc.agency", "TC Production Engineering"],
-    url: "https://tc.agency",
+    url: "https://www.tc.agency",
     logo: {
       "@type": "ImageObject",
-      url: "https://tc.agency/og-image.png",
+      url: "https://www.tc.agency/og-image.png",
       width: 1200,
       height: 630,
     },
-    image: "https://tc.agency/og-image.png",
+    image: "https://www.tc.agency/og-image.png",
     description:
       "TC Agency (tc.agency) is Technically Creative: production engineering, technical direction, and live event automation for high-stakes shows worldwide.",
     email: "info@tc.agency",
@@ -55,10 +55,10 @@ export function LocalBusinessSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "@id": "https://tc.agency/#localbusiness",
+    "@id": "https://www.tc.agency/#localbusiness",
     name: "TC Agency | Technically Creative",
-    image: "https://tc.agency/og-image.png",
-    url: "https://tc.agency",
+    image: "https://www.tc.agency/og-image.png",
+    url: "https://www.tc.agency",
     email: "info@tc.agency",
     address: {
       "@type": "PostalAddress",
@@ -99,10 +99,10 @@ export function ServiceSchema({ services }: { services: { name: string; descript
         name: service.name,
         description: service.description,
         provider: {
-          "@id": "https://tc.agency/#organization",
+          "@id": "https://www.tc.agency/#organization",
         },
         areaServed: "Worldwide",
-        url: service.url || "https://tc.agency/services",
+        url: service.url || "https://www.tc.agency/services",
       },
     })),
   }
@@ -114,12 +114,12 @@ export function WebsiteSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://tc.agency/#website",
-    url: "https://tc.agency",
+    "@id": "https://www.tc.agency/#website",
+    url: "https://www.tc.agency",
     name: "TC Agency | Technically Creative",
     description: "Production engineering, technical direction, and live event automation for high-stakes events.",
     publisher: {
-      "@id": "https://tc.agency/#organization",
+      "@id": "https://www.tc.agency/#organization",
     },
     inLanguage: "en-US",
   }
@@ -179,10 +179,10 @@ export function ProjectSchema({
     description,
     image,
     creator: {
-      "@id": "https://tc.agency/#organization",
+      "@id": "https://www.tc.agency/#organization",
     },
     provider: {
-      "@id": "https://tc.agency/#organization",
+      "@id": "https://www.tc.agency/#organization",
     },
     about: client,
     datePublished,
@@ -206,7 +206,7 @@ export function ServicePageSchema({
     name,
     description,
     provider: {
-      "@id": "https://tc.agency/#organization",
+      "@id": "https://www.tc.agency/#organization",
     },
     areaServed: "Worldwide",
     url,
@@ -237,7 +237,7 @@ export function ArticleSchema({
     description,
     image: {
       "@type": "ImageObject",
-      url: `https://tc.agency${image}`,
+      url: `https://www.tc.agency${image}`,
       width: 1200,
       height: 630,
     },
@@ -246,10 +246,10 @@ export function ArticleSchema({
     author: {
       "@type": "Person",
       name: "Daniel Jongen",
-      url: "https://tc.agency/about",
+      url: "https://www.tc.agency/about",
     },
     publisher: {
-      "@id": "https://tc.agency/#organization",
+      "@id": "https://www.tc.agency/#organization",
     },
     mainEntityOfPage: {
       "@type": "WebPage",

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Security & Data Protection Statement | TC Agency",
     description: "Learn how TC Agency protects your data with technical and organizational security measures.",
-    url: "https://tc.agency/security",
+    url: "https://www.tc.agency/security",
   },
 }
 

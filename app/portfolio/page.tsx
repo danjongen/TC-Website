@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Portfolio",
     description: "Selected work from the world's most demanding live productions.",
-    url: "https://tc.agency/portfolio",
+    url: "https://www.tc.agency/portfolio",
     siteName: "TC Agency",
     images: [{ url: "/images/bsb-live-06.jpg", width: 1200, height: 630, alt: "Technically Creative selected work" }],
     type: "website",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: ["/images/bsb-live-06.jpg"],
   },
   alternates: {
-    canonical: "https://tc.agency/portfolio",
+    canonical: "https://www.tc.agency/portfolio",
   },
 }
 
@@ -101,8 +101,8 @@ export default function PortfolioPage() {
     <main className="min-h-screen bg-black text-white">
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://tc.agency" },
-          { name: "Portfolio", url: "https://tc.agency/portfolio" },
+          { name: "Home", url: "https://www.tc.agency" },
+          { name: "Portfolio", url: "https://www.tc.agency/portfolio" },
         ]}
       />
 

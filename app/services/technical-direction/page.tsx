@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: "Technical Direction | TC Agency",
     description:
       "Single point of technical accountability for complex live events, tours, and installations. Engineering rigor applied to every production system.",
-    url: "https://tc.agency/services/technical-direction",
+    url: "https://www.tc.agency/services/technical-direction",
     type: "website",
     images: [
       {
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     images: ["/og/technical-direction.jpg"],
   },
   alternates: {
-    canonical: "https://tc.agency/services/technical-direction",
+    canonical: "https://www.tc.agency/services/technical-direction",
   },
 }
 
@@ -148,15 +148,15 @@ export default function TechnicalDirectionPage() {
     <main className="min-h-screen bg-black pt-24 pb-16">
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://tc.agency" },
-          { name: "Services", url: "https://tc.agency/capabilities" },
-          { name: "Technical Direction", url: "https://tc.agency/services/technical-direction" },
+          { name: "Home", url: "https://www.tc.agency" },
+          { name: "Services", url: "https://www.tc.agency/services" },
+          { name: "Technical Direction", url: "https://www.tc.agency/services/technical-direction" },
         ]}
       />
       <ServicePageSchema
         name="Technical Direction"
         description="Single point of technical accountability for complex live events, tours, and installations. End-to-end technical leadership with engineering rigor applied to every production system."
-        url="https://tc.agency/services/technical-direction"
+        url="https://www.tc.agency/services/technical-direction"
       />
 
       <div className="container mx-auto px-6">

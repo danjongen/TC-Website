@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Daniel Jongen | Executive Technical Producer | TC Agency",
     description:
       "15+ years in live production and technical direction. 200+ productions across 30+ countries for Fortune 500 brands and global touring artists.",
-    url: "https://tc.agency/about-daniel",
+    url: "https://www.tc.agency/about-daniel",
     siteName: "TC Agency",
     images: [
       {
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
       "15+ years in live production and technical direction. 200+ productions across 30+ countries.",
   },
   alternates: {
-    canonical: "https://tc.agency/about-daniel",
+    canonical: "https://www.tc.agency/about-daniel",
   },
 }
 

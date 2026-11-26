@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "Automation & AI Operations | TC Agency",
     description:
       "Automated workflows, operations systems, and AI-powered business tools. The same systems we built to run our own business, now available for yours.",
-    url: "https://tc.agency/services/automation-ops",
+    url: "https://www.tc.agency/services/automation-ops",
     type: "website",
     images: [
       {
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   alternates: {
-    canonical: "https://tc.agency/services/automation-ops",
+    canonical: "https://www.tc.agency/services/automation-ops",
   },
 }
 
@@ -157,15 +157,15 @@ export default function AutomationOpsPage() {
     <main className="min-h-screen bg-black pt-24 pb-16">
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://tc.agency" },
-          { name: "Services", url: "https://tc.agency/capabilities" },
-          { name: "Automation & AI Operations", url: "https://tc.agency/services/automation-ops" },
+          { name: "Home", url: "https://www.tc.agency" },
+          { name: "Services", url: "https://www.tc.agency/services" },
+          { name: "Automation & AI Operations", url: "https://www.tc.agency/services/automation-ops" },
         ]}
       />
       <ServicePageSchema
         name="Automation & AI Operations"
         description="Automated workflows, operations systems, and AI-powered business tools for e-commerce and service businesses. One-time setup, ongoing results."
-        url="https://tc.agency/services/automation-ops"
+        url="https://www.tc.agency/services/automation-ops"
       />
 
       <div className="container mx-auto px-6">

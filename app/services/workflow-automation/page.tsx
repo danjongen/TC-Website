@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     title: "Workflow Automation | Production Systems Engineering | TC Agency",
     description:
       "Custom automation systems that eliminate manual tasks, reduce errors, and create repeatable production workflows for live events and broadcast.",
-    url: "https://tc.agency/services/workflow-automation",
+    url: "https://www.tc.agency/services/workflow-automation",
     type: "website",
     images: [
       {
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   alternates: {
-    canonical: "https://tc.agency/services/workflow-automation",
+    canonical: "https://www.tc.agency/services/workflow-automation",
   },
 }
 
@@ -161,15 +161,15 @@ export default function WorkflowAutomationPage() {
     <>
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://tc.agency" },
-          { name: "Services", url: "https://tc.agency/capabilities" },
-          { name: "Workflow Automation", url: "https://tc.agency/services/workflow-automation" },
+          { name: "Home", url: "https://www.tc.agency" },
+          { name: "Services", url: "https://www.tc.agency/services" },
+          { name: "Workflow Automation", url: "https://www.tc.agency/services/workflow-automation" },
         ]}
       />
       <ServicePageSchema
         name="Workflow Automation"
         description="Custom automation systems that eliminate manual tasks, reduce errors, and create repeatable production workflows for live events and broadcast."
-        url="https://tc.agency/services/workflow-automation"
+        url="https://www.tc.agency/services/workflow-automation"
       />
 
       <main className="min-h-screen bg-black pt-24 pb-16">

@@ -170,7 +170,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     openGraph: {
       title: metaTitle,
       description: post.excerpt,
-      url: `https://tc.agency/insights/${slug}`,
+      url: `https://www.tc.agency/insights/${slug}`,
       type: "article",
       publishedTime: post.date,
       authors: [post.author],
@@ -183,7 +183,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       images: [og.url],
     },
     alternates: {
-      canonical: `https://tc.agency/insights/${slug}`,
+      canonical: `https://www.tc.agency/insights/${slug}`,
     },
   }
 }
@@ -204,9 +204,9 @@ export default async function InsightPost({ params }: { params: Params }) {
     <main className="min-h-screen bg-black text-white">
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://tc.agency" },
-          { name: "Insights", url: "https://tc.agency/insights" },
-          { name: post.title, url: `https://tc.agency/insights/${slug}` },
+          { name: "Home", url: "https://www.tc.agency" },
+          { name: "Insights", url: "https://www.tc.agency/insights" },
+          { name: post.title, url: `https://www.tc.agency/insights/${slug}` },
         ]}
       />
       <ArticleSchema
@@ -214,7 +214,7 @@ export default async function InsightPost({ params }: { params: Params }) {
         description={post.excerpt}
         image={post.image}
         datePublished={post.date}
-        url={`https://tc.agency/insights/${slug}`}
+        url={`https://www.tc.agency/insights/${slug}`}
       />
 
       <Navbar />

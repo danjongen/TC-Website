@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Do Not Sell or Share My Personal Information | TC Agency",
     description: "TC Agency does not sell or share your personal information. Learn about your CCPA/CPRA rights.",
-    url: "https://tc.agency/do-not-sell",
+    url: "https://www.tc.agency/do-not-sell",
   },
 }
 
