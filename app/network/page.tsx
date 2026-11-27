@@ -9,7 +9,7 @@ import { Placeholder } from "@/components/network/placeholder"
 export const dynamic = "force-static"
 export const revalidate = 86400
 
-const TITLE = "Network Installation | UniFi Design, Install and Management | TC Agency"
+const TITLE = "Network Installation | UniFi Design, Install and Management"
 const DESCRIPTION =
   "UniFi network design, installation and management for offices, schools, studios and venues in Metro Detroit. Show-grade engineering, a full handover pack and one accountable engineer."
 

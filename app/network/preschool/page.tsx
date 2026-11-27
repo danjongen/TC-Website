@@ -9,7 +9,7 @@ import { Fill, Placeholder } from "@/components/network/placeholder"
 export const dynamic = "force-static"
 export const revalidate = 86400
 
-const TITLE = "Case Study: Community Preschool Network | TC Agency"
+const TITLE = "Case Study: Community Preschool Network"
 const DESCRIPTION =
   "A UniFi network, classroom Wi-Fi, branded guest Wi-Fi and UniFi Talk phones for a Metro Detroit community preschool, designed, installed and donated by TC."
 

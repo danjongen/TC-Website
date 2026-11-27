@@ -10,7 +10,7 @@ import { BSB_CASE_STUDY, HOMECOMING_IMAGES } from "@/lib/work"
 export const dynamic = "force-static"
 export const revalidate = 86400
 
-const TITLE = "Touring Network Credits | Show-Critical Networks | TC Agency"
+const TITLE = "Touring Network Credits | Show-Critical Networks"
 const DESCRIPTION =
   "Show-critical production networks for the Backstreet Boys at Sphere, Las Vegas, and the Homecoming stadium shows in Düsseldorf. The engineering behind TC's network installs."
 
