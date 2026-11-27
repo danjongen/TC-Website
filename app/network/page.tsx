@@ -5,7 +5,6 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { BreadcrumbSchema, ServicePageSchema } from "@/components/structured-data"
 import { CueLabel } from "@/components/motion/cue-label"
-import { Fill, Placeholder } from "@/components/network/placeholder"
 import { RenderLabel } from "@/components/v2/render-label"
 
 export const dynamic = "force-static"
@@ -51,8 +50,8 @@ export const metadata: Metadata = {
 const SURVEY_HREF = "/contact?source=network-survey#contact-form"
 const BID_HREF = "/contact?source=network-survey#contact-form"
 
-// Capability statement content. Only facts on record go in `value`; anything
-// unconfirmed stays a <Fill> so the page never claims a registration TC lacks.
+// Capability statement content. Only confirmed facts go here. Add CAGE, NAICS,
+// SPIN, insurance and business type once each is confirmed; never a guess.
 const competencies = [
   "Network design: gateway, switching, VLANs and firewall rules",
   "Wi-Fi survey, access point placement and tuning",
@@ -74,15 +73,9 @@ const pastPerformance = [
   "Backstreet Boys Homecoming, Düsseldorf: 100Gb production backbone",
 ]
 
-const companyData: { label: string; value?: string; fill?: string }[] = [
+const companyData: { label: string; value: string }[] = [
   { label: "LEGAL NAME", value: "Technically Creative L.L.C." },
   { label: "UEI", value: "C7ASAEBBP3N6" },
-  { label: "SAM.GOV", fill: "STATUS ONCE ACTIVE" },
-  { label: "CAGE CODE", fill: "PENDING DLA ASSIGNMENT" },
-  { label: "NAICS", fill: "CODES AS REGISTERED IN SAM" },
-  { label: "E-RATE SPIN", fill: "USAC SPIN, IF ISSUED" },
-  { label: "INSURANCE", fill: "GL / AUTO / WC LIMITS PER COI" },
-  { label: "BUSINESS TYPE", fill: "E.G. SMALL BUSINESS, AS SELF-CERTIFIED" },
 ]
 
 
@@ -192,15 +185,23 @@ function RenderFigure({
 }
 
 /**
- * Reference photography for the network section. None of these are shown as TC installs:
- * every caption carries ILLUSTRATIVE until project ownership and rights are confirmed.
+ * Network photography. TC's own photos carry a plain caption; third-party stock
+ * (anything with a credit) is labelled ILLUSTRATIVE and never shown as a TC install.
  */
-function PhotoCaption({ caption, credit }: { caption: string; credit?: { name: string; href: string } }) {
+function PhotoCaption({
+  caption,
+  credit,
+}: {
+  caption: string
+  credit?: { name: string; href: string }
+}) {
   return (
     <figcaption className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-zinc-800 px-4 py-3 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
-      <span className="inline-block border border-zinc-700 px-2 py-1 text-[10px] leading-none tracking-[0.25em] text-zinc-300">
-        ILLUSTRATIVE
-      </span>
+      {credit && (
+        <span className="inline-block border border-zinc-700 px-2 py-1 text-[10px] leading-none tracking-[0.25em] text-zinc-300">
+          ILLUSTRATIVE
+        </span>
+      )}
       <span>{caption}</span>
       {credit && (
         <a href={credit.href} target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white">
@@ -423,12 +424,6 @@ export default function NetworkPage() {
                 sizes="(min-width: 1024px) 50vw, calc(100vw - 48px)"
               />
             </div>
-            <div className="mt-12">
-              <Placeholder
-                label="HANDOVER PACK SAMPLE"
-                note="A redacted page from a real handover pack: rack elevation or IP plan, client name and addresses blurred."
-              />
-            </div>
           </div>
         </section>
 
@@ -467,12 +462,6 @@ export default function NetworkPage() {
                 </p>
                 <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 group-hover:text-[#00D26A]">SEE THE WORK →</span>
               </Link>
-            </div>
-            <div className="mt-8">
-              <Placeholder
-                label="CLIENT QUOTE"
-                note="One or two sentences from the preschool director, with their OK to use name and title."
-              />
             </div>
           </div>
         </section>
@@ -517,29 +506,19 @@ export default function NetworkPage() {
                     <li key={p}>{p}</li>
                   ))}
                 </ul>
-                <div className="mt-6">
-                  <Placeholder
-                    label="REFERENCES"
-                    note="Public bids usually ask for three references with name, title, email and phone. Add only people who have agreed to be listed."
-                  />
-                </div>
               </div>
             </div>
 
-            <dl className="grid border-l border-zinc-800 sm:grid-cols-2 lg:grid-cols-4">
+            <dl className="grid border-l border-zinc-800 sm:grid-cols-2">
               {companyData.map((d) => (
                 <div key={d.label} className="border-b border-r border-zinc-800 p-6">
                   <dt className="mb-3 font-mono text-[11px] tracking-[0.2em] text-zinc-500">{d.label}</dt>
-                  <dd className="text-base text-white">{d.value ?? <Fill>{d.fill ?? "TO CONFIRM"}</Fill>}</dd>
+                  <dd className="font-mono text-base tracking-[0.08em] text-white">{d.value}</dd>
                 </div>
               ))}
             </dl>
 
-            <div className="mt-8 grid gap-6 md:grid-cols-2">
-              <Placeholder
-                label="CAPABILITY STATEMENT PDF"
-                note="One-page PDF of this section for bid packs and vendor portals. Build it once the codes, insurance and references above are confirmed."
-              />
+            <div className="mt-8 max-w-2xl">
               <div className="flex flex-col justify-center border border-zinc-800 p-6">
                 <p className="mb-4 font-mono text-[11px] tracking-[0.2em] text-zinc-500">CONTACT</p>
                 <p className="mb-6 text-base leading-relaxed text-zinc-400">

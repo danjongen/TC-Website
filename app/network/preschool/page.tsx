@@ -4,7 +4,6 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { BreadcrumbSchema } from "@/components/structured-data"
 import { CueLabel } from "@/components/motion/cue-label"
-import { Fill, Placeholder } from "@/components/network/placeholder"
 
 export const dynamic = "force-static"
 export const revalidate = 86400
@@ -29,7 +28,7 @@ export const metadata: Metadata = {
   },
 }
 
-const specs: { label: string; value?: string; fill?: string }[] = [
+const specs: { label: string; value: string }[] = [
   { label: "GATEWAY", value: "UniFi Dream Machine SE" },
   { label: "SWITCHING", value: "USW Pro Max 16 PoE" },
   { label: "ACCESS POINTS", value: "3 (2 × U7 Lite, 1 × nanoHD)" },
@@ -92,23 +91,7 @@ export default function PreschoolCaseStudyPage() {
                 A Metro Detroit community preschool needed reliable Wi-Fi for staff, a separate network for families
                 and visitors, and a working phone line. TC designed, installed and donated the whole system.
               </p>
-              <div className="mt-8 max-w-2xl">
-                <Placeholder
-                  label="CLIENT NAME"
-                  note="School name stays out until the director approves it. If approved, add it here and to the title."
-                />
-              </div>
             </div>
-          </div>
-        </section>
-
-        <section className="pb-[12vh]">
-          <div className="container mx-auto px-6">
-            <Placeholder
-              label="LEAD PHOTO"
-              aspect="aspect-[16/9]"
-              note="Finished rack or a ceiling AP in a classroom. No children, faces or school signage."
-            />
           </div>
         </section>
 
@@ -127,9 +110,6 @@ export default function PreschoolCaseStudyPage() {
                   <p>
                     Staff devices on a private network. Families and visitors kept off it entirely. A phone number that
                     rings where it should. All of it manageable without anyone on site who knows networking.
-                  </p>
-                  <p>
-                    Before: <Fill>WHAT WAS THERE BEFORE, E.G. CONSUMER ROUTER, DEAD SPOTS</Fill>.
                   </p>
                 </div>
               </div>
@@ -163,7 +143,7 @@ export default function PreschoolCaseStudyPage() {
               {specs.map((sp) => (
                 <div key={sp.label} className="border-b border-r border-zinc-800 p-6">
                   <dt className="mb-3 font-mono text-[11px] tracking-[0.2em] text-zinc-500">{sp.label}</dt>
-                  <dd className="text-lg text-white">{sp.value ?? <Fill>{sp.fill ?? "TO CONFIRM"}</Fill>}</dd>
+                  <dd className="text-lg text-white">{sp.value}</dd>
                 </div>
               ))}
             </dl>
@@ -206,11 +186,6 @@ export default function PreschoolCaseStudyPage() {
                   can reconnect anytime.
                 </p>
               </div>
-              <Placeholder
-                label="SPLASH PAGE ON A PHONE"
-                aspect="aspect-[4/5]"
-                note="Screenshot of the guest splash page on a phone. Hide the school name if not yet approved."
-              />
             </div>
           </div>
         </section>
@@ -227,25 +202,11 @@ export default function PreschoolCaseStudyPage() {
                   Documented to touring standard.
                 </h2>
                 <p className="max-w-xl text-lg leading-relaxed text-zinc-400">
-                  The school holds the admin account and the handover pack: rack elevation, IP and VLAN plan, access
-                  point map, patch schedule and a runbook. TC monitors it remotely.
+                  Every cable run tested before handover, and the whole system watched remotely through UniFi Site
+                  Manager, so faults surface before staff notice them.
                 </p>
               </div>
-              <Placeholder
-                label="BEFORE AND AFTER"
-                aspect="aspect-[4/3]"
-                note="Photo pair: the old setup next to the finished rack."
-              />
             </div>
-          </div>
-        </section>
-
-        <section className="pb-[12vh]">
-          <div className="container mx-auto px-6">
-            <Placeholder
-              label="DIRECTOR QUOTE"
-              note="One or two sentences from the school director, with their name and title only if approved."
-            />
           </div>
         </section>
 
