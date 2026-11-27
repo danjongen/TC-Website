@@ -29,6 +29,24 @@ export const metadata: Metadata = {
   },
 }
 
+const specs: { label: string; value?: string; fill?: string }[] = [
+  { label: "GATEWAY", value: "UniFi Dream Machine SE" },
+  { label: "SWITCHING", value: "USW Pro Max 16 PoE" },
+  { label: "ACCESS POINTS", value: "3 (2 × U7 Lite, 1 × nanoHD)" },
+  { label: "NETWORKS", value: "Staff and guest, isolated" },
+  { label: "CLIENTS DAY ONE", value: "About 20 devices" },
+  { label: "PHONES", value: "UniFi Talk, Touch Pro handset" },
+  { label: "RECORDING", value: "UniFi NVR, 18 TB" },
+  { label: "POWER", value: "CyberPower UPS, rolling rack" },
+]
+
+const tuning = [
+  "2.4 GHz transmit power lowered so devices don't cling to a distant access point.",
+  "A 12 Mbps minimum data rate, so slow legacy connections can't drag the whole room down.",
+  "Band steering to push capable devices onto 5 GHz.",
+  "Every cable run tested before handover.",
+]
+
 const scope = [
   { label: "NETWORK", value: "UniFi gateway and managed switching" },
   { label: "WI-FI", value: "Classroom and office coverage, staff and guest separated" },
@@ -142,24 +160,32 @@ export default function PreschoolCaseStudyPage() {
               System figures
             </h2>
             <dl className="grid border-l border-t border-zinc-800 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                ["FLOOR AREA", "SQ FT"],
-                ["ACCESS POINTS", "COUNT AND MODEL"],
-                ["SWITCHING", "MODEL AND PORTS"],
-                ["NETWORKS", "VLAN COUNT"],
-                ["GATEWAY", "MODEL"],
-                ["CLIENTS DAY ONE", "COUNT"],
-                ["PHONES", "HANDSETS"],
-                ["INSTALLED", "MONTH YEAR"],
-              ].map(([label, fill]) => (
-                <div key={label} className="border-b border-r border-zinc-800 p-6">
-                  <dt className="mb-3 font-mono text-[11px] tracking-[0.2em] text-zinc-500">{label}</dt>
-                  <dd className="text-lg text-white">
-                    <Fill>{fill}</Fill>
-                  </dd>
+              {specs.map((sp) => (
+                <div key={sp.label} className="border-b border-r border-zinc-800 p-6">
+                  <dt className="mb-3 font-mono text-[11px] tracking-[0.2em] text-zinc-500">{sp.label}</dt>
+                  <dd className="text-lg text-white">{sp.value ?? <Fill>{sp.fill ?? "TO CONFIRM"}</Fill>}</dd>
                 </div>
               ))}
             </dl>
+            <div className="mt-12 grid gap-12 lg:grid-cols-2">
+              <div>
+                <h3 className="mb-6 text-2xl font-semibold tracking-[-0.02em] md:text-3xl">Tuned, not just switched on.</h3>
+                <ul className="border-t border-zinc-800">
+                  {tuning.map((t) => (
+                    <li key={t} className="border-b border-zinc-800 py-5 text-base leading-relaxed text-zinc-400">
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 className="mb-6 text-2xl font-semibold tracking-[-0.02em] md:text-3xl">Next phase.</h3>
+                <p className="max-w-xl text-lg leading-relaxed text-zinc-400">
+                  The recorder and storage are in. UniFi Protect cameras and door access are being added on the
+                  same network, so security, phones and Wi-Fi share one dashboard.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 

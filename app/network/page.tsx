@@ -5,7 +5,7 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { BreadcrumbSchema, ServicePageSchema } from "@/components/structured-data"
 import { CueLabel } from "@/components/motion/cue-label"
-import { Placeholder } from "@/components/network/placeholder"
+import { Fill, Placeholder } from "@/components/network/placeholder"
 import { RenderLabel } from "@/components/v2/render-label"
 
 export const dynamic = "force-static"
@@ -49,6 +49,42 @@ export const metadata: Metadata = {
 }
 
 const SURVEY_HREF = "/contact?source=network-survey#contact-form"
+const BID_HREF = "/contact?source=network-survey#contact-form"
+
+// Capability statement content. Only facts on record go in `value`; anything
+// unconfirmed stays a <Fill> so the page never claims a registration TC lacks.
+const competencies = [
+  "Network design: gateway, switching, VLANs and firewall rules",
+  "Wi-Fi survey, access point placement and tuning",
+  "Structured cabling, racks and patching",
+  "UniFi Protect cameras, door access and UniFi Talk phones",
+  "Remote monitoring and managed support",
+]
+
+const differentiators = [
+  "One accountable engineer from survey to handover",
+  "A drawn design and a fixed quote before work starts",
+  "Handover pack with every job: rack elevation, IP plan, AP map, runbook",
+  "Engineering standard from show-critical touring networks",
+]
+
+const pastPerformance = [
+  "Community preschool, Metro Detroit: full UniFi network, Wi-Fi, guest portal and phones",
+  "Backstreet Boys at Sphere, Las Vegas: 60 GHz show-control network",
+  "Backstreet Boys Homecoming, Düsseldorf: 100Gb production backbone",
+]
+
+const companyData: { label: string; value?: string; fill?: string }[] = [
+  { label: "LEGAL NAME", value: "Technically Creative L.L.C." },
+  { label: "UEI", value: "C7ASAEBBP3N6" },
+  { label: "SAM.GOV", fill: "STATUS ONCE ACTIVE" },
+  { label: "CAGE CODE", fill: "PENDING DLA ASSIGNMENT" },
+  { label: "NAICS", fill: "CODES AS REGISTERED IN SAM" },
+  { label: "E-RATE SPIN", fill: "USAC SPIN, IF ISSUED" },
+  { label: "INSURANCE", fill: "GL / AUTO / WC LIMITS PER COI" },
+  { label: "BUSINESS TYPE", fill: "E.G. SMALL BUSINESS, AS SELF-CERTIFIED" },
+]
+
 
 const audiences = [
   { label: "OFFICES", desc: "Fast, segmented Wi-Fi and wired networks for teams of five to fifty." },
@@ -118,6 +154,10 @@ const faqs = [
     a: "Yes. Structured cabling, terminations and testing are scoped as part of design and build, and every run is labelled and documented.",
   },
   {
+    q: "Do you take public and E-Rate work?",
+    a: "Yes. We bid school E-Rate Category 2 work and public RFPs for Wi-Fi, cabling and switching. Vendor details for evaluators are in the capability statement above.",
+  },
+  {
     q: "Where do you work?",
     a: "Installs across Metro Detroit. Event and touring networks wherever the show goes.",
   },
@@ -151,6 +191,63 @@ function RenderFigure({
   )
 }
 
+/**
+ * Reference photography for the network section. None of these are shown as TC installs:
+ * every caption carries ILLUSTRATIVE until project ownership and rights are confirmed.
+ */
+function PhotoCaption({ caption, credit }: { caption: string; credit?: { name: string; href: string } }) {
+  return (
+    <figcaption className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-zinc-800 px-4 py-3 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+      <span className="inline-block border border-zinc-700 px-2 py-1 text-[10px] leading-none tracking-[0.25em] text-zinc-300">
+        ILLUSTRATIVE
+      </span>
+      <span>{caption}</span>
+      {credit && (
+        <a href={credit.href} target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white">
+          PHOTO: {credit.name.toUpperCase()}
+        </a>
+      )}
+    </figcaption>
+  )
+}
+
+function PhotoFigure({
+  src,
+  width,
+  height,
+  alt,
+  caption,
+  credit,
+  context,
+}: {
+  src: string
+  width: number
+  height: number
+  alt: string
+  caption: string
+  credit?: { name: string; href: string }
+  /** Show the whole frame (no crop) inside a fixed-height cool panel. */
+  context?: boolean
+}) {
+  return (
+    <figure data-reveal="fade" className="self-start border border-zinc-800 bg-[#121923]">
+      <div className={context ? "flex items-center justify-center bg-[#0b1017]" : ""}>
+        <Image
+          src={src}
+          width={width}
+          height={height}
+          alt={alt}
+          sizes="(min-width: 768px) 50vw, calc(100vw - 48px)"
+          className={`block h-auto [filter:brightness(1.1)_contrast(1.035)_saturate(.83)] ${
+            context ? "max-h-[460px] w-auto max-w-full object-contain" : "w-full"
+          }`}
+        />
+      </div>
+      <PhotoCaption caption={caption} credit={credit} />
+    </figure>
+  )
+}
+
 export default function NetworkPage() {
   return (
     <div className="min-h-screen bg-black text-white">
@@ -172,35 +269,67 @@ export default function NetworkPage() {
         {/* Hero */}
         <section className="pb-[12vh]">
           <div className="container mx-auto px-6">
-            <div className="max-w-4xl">
-              <CueLabel className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">NETWORK</CueLabel>
-              <h1
-                data-vt="title"
-                data-reveal="rise"
-                className="w-fit mb-8 max-w-3xl text-5xl font-semibold tracking-[-0.03em] text-white md:text-7xl"
-              >
-                Networks built to show standard.
-              </h1>
-              <p data-reveal="fade" className="mb-10 max-w-2xl text-lg leading-relaxed text-zinc-400 md:text-xl">
-                UniFi design, install and management for offices, schools, studios and venues across Metro Detroit.
-                From the team that builds show-critical systems for the Backstreet Boys at Sphere and in stadiums.
-              </p>
-              <Link
-                href={SURVEY_HREF}
-                className="inline-block bg-white px-6 py-4 font-mono text-xs tracking-[0.2em] text-black transition-opacity duration-300 ease-expo hover:opacity-80"
-              >
-                BOOK_A_SITE_SURVEY
-              </Link>
+            <div className="grid overflow-hidden border border-zinc-800 bg-[#0b1017] lg:grid-cols-2">
+              <div className="flex flex-col justify-center p-6 md:p-12 lg:p-16">
+                <CueLabel className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">NETWORK</CueLabel>
+                <h1
+                  data-vt="title"
+                  data-reveal="rise"
+                  className="w-fit mb-8 max-w-3xl text-5xl font-semibold tracking-[-0.03em] text-white md:text-7xl"
+                >
+                  Networks built to show standard.
+                </h1>
+                <p data-reveal="fade" className="mb-10 max-w-xl text-lg leading-relaxed text-zinc-400 md:text-xl">
+                  UniFi design, install and management for offices, schools, studios and venues across Metro Detroit.
+                  From the team that builds show-critical systems for the Backstreet Boys at Sphere and in stadiums.
+                </p>
+                <Link
+                  href={SURVEY_HREF}
+                  className="inline-block w-fit bg-white px-6 py-4 font-mono text-xs tracking-[0.2em] text-black transition-opacity duration-300 ease-expo hover:opacity-80"
+                >
+                  BOOK_A_SITE_SURVEY
+                </Link>
+              </div>
+              <figure className="flex flex-col bg-[#060a10]">
+                <div className="flex flex-1 items-center justify-center">
+                  <Image
+                    src="/images/network/photo-02-full-rack.jpg"
+                    width={1508}
+                    height={2048}
+                    alt="A complete network rack, from the top rails down to the battery backup at the bottom."
+                    sizes="(min-width: 1024px) 50vw, calc(100vw - 48px)"
+                    priority
+                    className="block h-auto max-h-[440px] w-auto max-w-full object-contain lg:max-h-[620px] [filter:brightness(1.13)_contrast(1.04)_saturate(.93)]"
+                  />
+                </div>
+                <PhotoCaption caption="FULL RACK" />
+              </figure>
             </div>
-            <div className="mt-16">
-              <RenderFigure
-                src="/images/network/render-rack.jpg"
-                width={1672}
-                height={941}
-                alt="A dressed network rack: gateway, PoE switch and patch panel with colour-coded, velcro-bundled patch cables."
-                caption="RACK / GATEWAY, SWITCHING, PATCH"
-                sizes="(min-width: 1536px) 1488px, calc(100vw - 48px)"
-                priority
+
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
+              <PhotoFigure
+                src="/images/network/photo-08-wall-rack.jpg"
+                width={1075}
+                height={1463}
+                alt="A small wall-mounted network rack fixed between timber studs, with cabling running in beside it."
+                caption="WALL RACK / IN CONTEXT"
+                context
+              />
+              <PhotoFigure
+                src="/images/network/photo-01-port-macro.jpg"
+                width={2048}
+                height={1365}
+                alt="Close-up of white Ethernet plugs seated in switch ports, one blue link light lit."
+                caption="DETAIL / PORTS"
+                context
+              />
+              <PhotoFigure
+                src="/images/network/photo-03-fiber-pexels.jpg"
+                width={2048}
+                height={1362}
+                alt="Aqua fibre patch cables routed into a patch panel."
+                caption="DETAIL / FIBRE"
+                credit={{ name: "Brett Sayles / Pexels", href: "https://www.pexels.com/photo/plastic-connectors-in-electronic-switch-on-server-4657256/" }}
               />
             </div>
           </div>
@@ -215,16 +344,6 @@ export default function NetworkPage() {
             <h2 id="audience-heading" className="mb-10 max-w-2xl text-3xl font-semibold tracking-[-0.03em] md:text-5xl">
               Small sites that can&apos;t go down.
             </h2>
-            <div className="mb-10">
-              <RenderFigure
-                src="/images/network/render-venue-ap.jpg"
-                width={1672}
-                height={941}
-                alt="A ceiling-mounted Wi-Fi access point on a steel beam above an empty music venue, stage lit and ready before doors."
-                caption="VENUE / GUEST WI-FI"
-                sizes="(min-width: 1536px) 1488px, calc(100vw - 48px)"
-              />
-            </div>
             <div className="grid border-l border-t border-zinc-800 sm:grid-cols-2 lg:grid-cols-4">
               {audiences.map((a) => (
                 <article key={a.label} data-reveal="fade" className="border-b border-r border-zinc-800 p-8">
@@ -355,10 +474,89 @@ export default function NetworkPage() {
           </div>
         </section>
 
+        {/* Capability statement: what public-sector and E-Rate evaluators check */}
+        <section id="capability" aria-labelledby="capability-heading" className="scroll-mt-32 pb-[14vh]">
+          <div className="container mx-auto px-6">
+            <CueLabel index="05" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+              CAPABILITY_STATEMENT
+            </CueLabel>
+            <div className="mb-10 grid gap-6 lg:grid-cols-2">
+              <h2 id="capability-heading" className="max-w-xl text-3xl font-semibold tracking-[-0.03em] md:text-5xl">
+                For public bids and E-Rate.
+              </h2>
+              <p data-reveal="fade" className="max-w-xl text-lg leading-relaxed text-zinc-400">
+                Company data for school, municipal and federal evaluators: what we do, how we differ, where we have done
+                it and how to register us as a vendor.
+              </p>
+            </div>
+
+            <div className="grid border-l border-t border-zinc-800 lg:grid-cols-3">
+              <div className="border-b border-r border-zinc-800 p-8">
+                <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-300">CORE_COMPETENCIES</p>
+                <ul className="space-y-3 text-base leading-relaxed text-zinc-400">
+                  {competencies.map((c) => (
+                    <li key={c}>{c}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="border-b border-r border-zinc-800 p-8">
+                <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-300">DIFFERENTIATORS</p>
+                <ul className="space-y-3 text-base leading-relaxed text-zinc-400">
+                  {differentiators.map((d) => (
+                    <li key={d}>{d}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="border-b border-r border-zinc-800 p-8">
+                <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-300">PAST_PERFORMANCE</p>
+                <ul className="space-y-3 text-base leading-relaxed text-zinc-400">
+                  {pastPerformance.map((p) => (
+                    <li key={p}>{p}</li>
+                  ))}
+                </ul>
+                <div className="mt-6">
+                  <Placeholder
+                    label="REFERENCES"
+                    note="Public bids usually ask for three references with name, title, email and phone. Add only people who have agreed to be listed."
+                  />
+                </div>
+              </div>
+            </div>
+
+            <dl className="grid border-l border-zinc-800 sm:grid-cols-2 lg:grid-cols-4">
+              {companyData.map((d) => (
+                <div key={d.label} className="border-b border-r border-zinc-800 p-6">
+                  <dt className="mb-3 font-mono text-[11px] tracking-[0.2em] text-zinc-500">{d.label}</dt>
+                  <dd className="text-base text-white">{d.value ?? <Fill>{d.fill ?? "TO CONFIRM"}</Fill>}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
+              <Placeholder
+                label="CAPABILITY STATEMENT PDF"
+                note="One-page PDF of this section for bid packs and vendor portals. Build it once the codes, insurance and references above are confirmed."
+              />
+              <div className="flex flex-col justify-center border border-zinc-800 p-6">
+                <p className="mb-4 font-mono text-[11px] tracking-[0.2em] text-zinc-500">CONTACT</p>
+                <p className="mb-6 text-base leading-relaxed text-zinc-400">
+                  Daniel Jongen, Founder. Bid documents, vendor forms and pre-bid walkthroughs.
+                </p>
+                <Link
+                  href={BID_HREF}
+                  className="inline-block w-fit bg-white px-6 py-4 font-mono text-xs tracking-[0.2em] text-black transition-opacity duration-300 ease-expo hover:opacity-80"
+                >
+                  SEND_BID_DOCUMENTS
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Process */}
         <section aria-labelledby="process-heading" className="pb-[14vh]">
           <div className="container mx-auto px-6">
-            <CueLabel index="05" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+            <CueLabel index="06" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
               PROCESS
             </CueLabel>
             <h2 id="process-heading" className="sr-only">
@@ -379,7 +577,7 @@ export default function NetworkPage() {
         {/* FAQ */}
         <section aria-labelledby="faq-heading" className="pb-[14vh]">
           <div className="container mx-auto px-6">
-            <CueLabel index="06" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+            <CueLabel index="07" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
               FAQ
             </CueLabel>
             <h2 id="faq-heading" className="sr-only">
@@ -405,7 +603,7 @@ export default function NetworkPage() {
         <section className="pb-[16vh]">
           <div className="container mx-auto px-6">
             <div className="max-w-2xl border-t border-zinc-800 pt-12">
-              <CueLabel index="07" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+              <CueLabel index="08" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
                 START
               </CueLabel>
               <h2 className="mb-6 text-3xl font-semibold tracking-[-0.03em] text-white md:text-5xl">
