@@ -45,7 +45,7 @@ const articles = [
     excerpt:
       "Ten shows at Merkur Spiel-Arena. A 100Gb touring network, live security, a records archive and crew Wi-Fi that held with 48,000 in the stadium.",
     category: "Case Study",
-    readTime: "6 min read",
+    readTime: "7 min read",
     date: "November 2026",
   },
   {
