@@ -38,11 +38,13 @@ export function ContactForm() {
   const [state, formAction] = useActionState(submitContactForm, null)
   const router = useRouter()
   const searchParams = useSearchParams()
+  const sourceParam = searchParams.get("source")
   const source =
-    searchParams.get("source") === "power-symbols-beta"
-      ? "power-symbols-beta"
+    sourceParam === "power-symbols-beta" || sourceParam === "network-survey"
+      ? sourceParam
       : ""
   const isPowerSymbolsBeta = source === "power-symbols-beta"
+  const isNetworkSurvey = source === "network-survey"
   // time-trap: bots submit instantly; humans take seconds.
   // Elapsed time is measured entirely on the client clock and written at
   // submit time, so server/client clock skew can never block a human.
@@ -103,6 +105,17 @@ export function ContactForm() {
         </div>
       )}
 
+      {isNetworkSurvey && (
+        <div data-reveal="fade" className="border border-zinc-800 bg-zinc-900/40 p-5">
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-300">
+            Network / site survey request
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+            Tell us the type of building, roughly how big it is, what is going wrong today and when you need it fixed.
+          </p>
+        </div>
+      )}
+
       {/* Name */}
       <div data-reveal="fade">
         <label htmlFor="name" className="block text-sm font-medium text-zinc-300 mb-2">
@@ -147,7 +160,9 @@ export function ContactForm() {
           placeholder={
             isPowerSymbolsBeta
               ? "Tell us how you use Vectorworks and what you would like to test..."
-              : "Tell us about your project..."
+              : isNetworkSurvey
+                ? "Building type, approximate square footage, what isn't working, and your timeline..."
+                : "Tell us about your project..."
           }
         />
       </div>
