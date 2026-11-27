@@ -5,8 +5,8 @@ import { useEffect, useState, type ReactNode } from "react"
 /**
  * Homecoming case study timeline.
  * Past phases come from the production record. Future entries are only
- * shows publicly announced and on sale on backstreetboys.com/events
- * (checked 27 Nov 2026) that TC is working on.
+ * stadium-production shows on general sale on backstreetboys.com/events
+ * (checked 27 Nov 2026). Sphere is a separate show and is not listed.
  * The NOW marker is computed in the browser, so the page never goes stale.
  */
 
@@ -26,7 +26,7 @@ const DELIVERED: Entry[] = [
     end: "2026-07-13",
     when: "28 JUN TO 13 JUL",
     label: "ROCK_LITITZ",
-    detail: "Test builds and production rehearsals, alongside the Sphere load-in in Las Vegas.",
+    detail: "Test builds and production rehearsals, alongside the separate Sphere load-in in Las Vegas.",
   },
   { start: "2026-09-01", when: "01 SEP", label: "CARDINGTON", detail: "First site day. Markout and steel." },
   { start: "2026-09-07", end: "2026-09-16", when: "07 TO 16 SEP", label: "REHEARSALS", detail: "Band on site. Three sessions a day, programming overnight." },
@@ -37,18 +37,11 @@ const DELIVERED: Entry[] = [
 
 const NEXT: Entry[] = [
   {
-    start: "2026-12-26",
-    end: "2027-01-02",
-    when: "26 DEC 2026 TO 02 JAN 2027",
-    label: "SPHERE_LAS_VEGAS",
-    detail: "Six shows across the New Year.",
-  },
-  {
     start: "2027-02-12",
     end: "2027-03-07",
     when: "12 FEB TO 07 MAR 2027",
     label: "ROGERS_CENTRE_TORONTO",
-    detail: "Twelve stadium shows.",
+    detail: "Twelve shows. The stadium production, next stop.",
   },
 ]
 
@@ -122,7 +115,7 @@ export function HomecomingTimeline() {
       rows.push(
         <li key="next-label" className="grid grid-cols-[1.25rem_1fr] gap-x-4 pb-6 pt-2 md:gap-x-6">
           <span aria-hidden="true" />
-          <p className="font-mono text-[11px] tracking-[0.2em] text-[#686A66]">[ 02 / ANNOUNCED_ON_SALE ]</p>
+          <p className="font-mono text-[11px] tracking-[0.2em] text-[#686A66]">[ 02 / NEXT_STADIUM_ON_SALE ]</p>
         </li>,
       )
     }
@@ -134,7 +127,7 @@ export function HomecomingTimeline() {
     <figure className="my-12 border border-[#1A1A1A] bg-[#0C0C0C] p-6 md:p-10 lg:-mx-24 xl:-mx-40" data-reveal="fade">
       <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4">
         <p className="font-mono text-[11px] tracking-[0.2em] text-[#A8A6A0]">[ HOMECOMING_TIMELINE ]</p>
-        <p className="font-mono text-[11px] tracking-[0.2em] text-[#686A66]">LITITZ / CARDINGTON / DÜSSELDORF / NEXT</p>
+        <p className="font-mono text-[11px] tracking-[0.2em] text-[#686A66]">LITITZ / CARDINGTON / DÜSSELDORF / TORONTO</p>
       </div>
       <p className="mb-6 font-mono text-[11px] tracking-[0.2em] text-[#686A66]">[ 01 / DELIVERED_2026 ]</p>
       <ol className="relative">
