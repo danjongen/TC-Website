@@ -219,6 +219,7 @@ function PhotoFigure({
   caption,
   credit,
   context,
+  className = "",
 }: {
   src: string
   width: number
@@ -228,9 +229,10 @@ function PhotoFigure({
   credit?: { name: string; href: string }
   /** Show the whole frame (no crop) inside a fixed-height cool panel. */
   context?: boolean
+  className?: string
 }) {
   return (
-    <figure data-reveal="fade" className="self-start border border-zinc-800 bg-[#121923]">
+    <figure data-reveal="fade" className={`self-start border border-zinc-800 bg-[#121923] ${className}`}>
       <div className={context ? "flex items-center justify-center bg-[#0b1017]" : ""}>
         <Image
           src={src}
@@ -314,6 +316,7 @@ export default function NetworkPage() {
                 alt="A small wall-mounted network rack fixed between timber studs, with cabling running in beside it."
                 caption="WALL RACK / IN CONTEXT"
                 context
+                className="md:row-span-2"
               />
               <PhotoFigure
                 src="/images/network/photo-01-port-macro.jpg"
