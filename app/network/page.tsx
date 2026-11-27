@@ -485,7 +485,7 @@ export default function NetworkPage() {
             </CueLabel>
             <div className="mb-10 grid gap-6 lg:grid-cols-2">
               <h2 id="capability-heading" className="max-w-xl text-3xl font-semibold tracking-[-0.03em] md:text-5xl">
-                For public bids and E-Rate.
+                For public and E&#8209;Rate bids.
               </h2>
               <p data-reveal="fade" className="max-w-xl text-lg leading-relaxed text-zinc-400">
                 Company data for school, municipal and federal evaluators: what we do, how we differ, where we have done
