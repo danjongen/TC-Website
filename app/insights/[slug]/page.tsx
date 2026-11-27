@@ -7,6 +7,7 @@ import { ArrowLeft, Share2, Linkedin, Twitter } from "lucide-react"
 import { BreadcrumbSchema, ArticleSchema } from "@/components/structured-data"
 import { notFound } from "next/navigation"
 import { RenderLabel } from "@/components/v2/render-label"
+import { HomecomingTimeline } from "@/components/v2/homecoming-timeline"
 import { HOMECOMING_IMAGES, STATION_IMAGES, type WorkImage } from "@/lib/work"
 
 // Static post data (in production, this would come from a CMS)
@@ -68,8 +69,8 @@ const posts: Record<
       "## The Field Book",
       "Every deployment runs from a shared field book: a fibre register with permanent run IDs and colour bands, a patch schedule for both ends of every cable, an append-only change log with verification and rollback, and repeatable checks for load-in, pre-show and strike.",
       "[[figure:cardington]]",
-      "## The Schedule",
-      "- April: comms design starts.\n- May: network racks and touring cases specified and ordered.\n- Late June to mid-July: test builds and production rehearsals at Rock Lititz, Pennsylvania, alongside the Sphere load-in in Las Vegas.\n- 1 September: first site day at Cardington. Markout and steel.\n- 7 September: the band arrive. Rehearsals run to 16 September, three sessions a day, with programming overnight.\n- 23 September: production load-in, Düsseldorf.\n- 25 September: show 1.\n- 7 October: show 10.\n- 8 October: load-out.",
+      "## The Timeline",
+      "[[timeline:homecoming]]",
       "[[figure:fullBowl]]",
       "## The Result",
       "The production loaded into Düsseldorf on 23 September and opened two days later. All ten shows ran as scheduled.",
@@ -370,6 +371,7 @@ export default async function InsightPost({ params }: { params: Params }) {
         <div className="container mx-auto px-6">
           <article className="max-w-2xl mx-auto">
             {post.content.map((paragraph, index) => {
+              if (paragraph === "[[timeline:homecoming]]") return <HomecomingTimeline key={index} />
               const figure = paragraph.match(/^\[\[figure:(\w+)\]\]$/)
               if (figure) {
                 const image = post.figures?.[figure[1]]
