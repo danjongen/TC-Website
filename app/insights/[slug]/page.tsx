@@ -7,7 +7,7 @@ import { ArrowLeft, Share2, Linkedin, Twitter } from "lucide-react"
 import { BreadcrumbSchema, ArticleSchema } from "@/components/structured-data"
 import { notFound } from "next/navigation"
 import { RenderLabel } from "@/components/v2/render-label"
-import { STATION_IMAGES, type WorkImage } from "@/lib/work"
+import { HOMECOMING_IMAGES, STATION_IMAGES, type WorkImage } from "@/lib/work"
 
 // Static post data (in production, this would come from a CMS)
 const posts: Record<
@@ -29,6 +29,46 @@ const posts: Record<
     ogImage?: { url: string; width: number; height: number }
   }
 > = {
+  "backstreet-boys-homecoming-dusseldorf": {
+    title: "Homecoming: A stadium show, from a UK hangar to Düsseldorf.",
+    excerpt:
+      "Ten shows at Merkur Spiel-Arena. A full production rehearsed at Cardington, then rebuilt in Düsseldorf under German rigging and automation rules.",
+    content: [
+      "In autumn 2026 the Backstreet Boys took Into The Millennium back to Germany, the country that gave them their first platinum record. Homecoming ran for ten shows at Merkur Spiel-Arena in Düsseldorf, from 25 September to 7 October 2026.",
+      "Technically Creative supported the work that took the show from planning and rehearsal into the venue. Daniel's role covered technical direction and site coordination, connecting the needs of production, staging, automation, audio and the venue.",
+      "## The Brief",
+      "One production, two buildings. The full show was built and rehearsed in Hangar 2 at Cardington Studios in Bedford, UK, then loaded out and rebuilt in a stadium with a retractable roof, under German regulation, a week later.",
+      "## The Constraints",
+      "- Half the hoist capacity. German rules derate hoists by half: a one-tonne hoist works at 500 kg. Automation was derated to match, so rig weights were reworked inside that envelope.\n- Five performers in the air. A flying system carries all five members from upstage of the video wall, over the lighting rig, to the B stage. It needed current certification, an emergency plan and sign-off by a German engineer on the build.\n- A roof that opens. The show plan opens the stadium roof for the end of the show in good weather, which gave the stage structure an outdoor load case.\n- A rehearsal site on generators. Cardington is a closed hangar with no show power, so the rehearsal build ran on temporary generation.\n- RF in two countries. Licensing for the UK and Germany, a large LED wall and a full stadium all share the same spectrum.",
+      "## What We Did",
+      "**Survey and geometry.** Survey and set-out coordination, cross-vendor geometry and venue interfaces, so staging, rigging, automation and audio built to the same layout in both buildings.",
+      "**Production network.** A 100Gb backbone and SMPTE ST 2110 distribution supporting Show Orchestrator. Alongside the wider team, we coordinated venue connectivity, production Wi-Fi and the network services needed across the build and rehearsal environment, with a field book for load-in, show operation, handover and recovery.",
+      "**RF.** Planning and licensing coordinated ahead of opening, with the production team monitoring for interference during rehearsals and the first show.",
+      "**Compliance.** Coordination of the documentation and sign-off needed for German rules across automation, rigging and structure.",
+      "**Rehearsal site.** Power, truck access, load-in sequence and labor planning for the Cardington build.",
+      "[[figure:cardington]]",
+      "## The Schedule",
+      "- 1 September: first site day at Cardington. Markout and steel.\n- 7 September: the band arrive. Rehearsals run to 16 September, three sessions a day, with programming overnight.\n- 23 September: production load-in, Düsseldorf.\n- 25 September: show 1.\n- 7 October: show 10.\n- 8 October: load-out.",
+      "[[figure:fullBowl]]",
+      "## The Result",
+      "The production loaded into Düsseldorf on 23 September and opened two days later. All ten shows ran as scheduled.",
+      "The work behind it was coordination: one layout, one network and one set of approvals carried from a hangar in England to a stadium in Germany.",
+      "[[figure:redLight]]",
+    ],
+    image: HOMECOMING_IMAGES.hoverboards.src,
+    hero: HOMECOMING_IMAGES.hoverboards,
+    figures: {
+      cardington: HOMECOMING_IMAGES.cardington,
+      fullBowl: HOMECOMING_IMAGES.fullBowl,
+      redLight: HOMECOMING_IMAGES.redLight,
+    },
+    ogImage: { url: HOMECOMING_IMAGES.hoverboards.src, width: 1920, height: 1080 },
+    category: "Case Study",
+    readTime: "4 min read",
+    date: "November 27, 2026",
+    author: "Daniel Jongen",
+    role: "Executive Technical Producer",
+  },
   "michigan-central-station-scan-to-event-plan": {
     title: "Michigan Central Station: From station scan to event plan.",
     excerpt:

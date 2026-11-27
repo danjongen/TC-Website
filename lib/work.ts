@@ -18,6 +18,7 @@ const frame = { width: 2400, height: 1350 }
 
 export const STATION_CASE_STUDY = "/insights/michigan-central-station-scan-to-event-plan"
 export const BSB_CASE_STUDY = "/insights/ufo-pod-touring-control-infrastructure"
+export const HOMECOMING_CASE_STUDY = "/insights/backstreet-boys-homecoming-dusseldorf"
 
 /** Backstreet Boys: Into The Millennium, Homecoming. Show photos; sources and credits in docs/IMAGE-SOURCES.md. */
 const small = { width: 1080, height: 608 }
@@ -99,7 +100,8 @@ export const PROJECTS: WorkProject[] = [
     title: "Backstreet Boys: Into The Millennium – Homecoming",
     client: "Düsseldorf, Germany",
     role: "Technical direction, site coordination and production infrastructure",
-    href: "/portfolio#backstreet-boys-homecoming",
+    href: HOMECOMING_CASE_STUDY,
+    morph: true,
     image: HOMECOMING_IMAGES.hoverboards,
   },
   {

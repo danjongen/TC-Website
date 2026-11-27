@@ -40,6 +40,15 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    slug: "backstreet-boys-homecoming-dusseldorf",
+    title: "Homecoming: A stadium show, from a UK hangar to Düsseldorf.",
+    excerpt:
+      "Ten shows at Merkur Spiel-Arena. A full production rehearsed at Cardington, then rebuilt in Düsseldorf under German rigging and automation rules.",
+    category: "Case Study",
+    readTime: "4 min read",
+    date: "November 2026",
+  },
+  {
     slug: "michigan-central-station-scan-to-event-plan",
     title: "Michigan Central Station: From station scan to event plan.",
     excerpt:
