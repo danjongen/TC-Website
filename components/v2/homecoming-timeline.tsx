@@ -39,7 +39,7 @@ const NEXT: Entry[] = [
   {
     start: "2026-12-26",
     end: "2027-01-02",
-    when: "26 DEC TO 02 JAN",
+    when: "26 DEC 2026 TO 02 JAN 2027",
     label: "SPHERE_LAS_VEGAS",
     detail: "Six shows across the New Year.",
   },
