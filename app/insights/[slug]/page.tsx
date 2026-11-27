@@ -7,7 +7,8 @@ import { ArrowLeft, Share2, Linkedin, Twitter } from "lucide-react"
 import { BreadcrumbSchema, ArticleSchema } from "@/components/structured-data"
 import { notFound } from "next/navigation"
 import { RenderLabel } from "@/components/v2/render-label"
-import { STATION_IMAGES, type WorkImage } from "@/lib/work"
+import { HomecomingTimeline } from "@/components/v2/homecoming-timeline"
+import { HOMECOMING_IMAGES, STATION_IMAGES, type WorkImage } from "@/lib/work"
 
 // Static post data (in production, this would come from a CMS)
 const posts: Record<
@@ -29,6 +30,67 @@ const posts: Record<
     ogImage?: { url: string; width: number; height: number }
   }
 > = {
+  "backstreet-boys-homecoming-dusseldorf": {
+    title: "Homecoming: A stadium show, from a UK hangar to Düsseldorf.",
+    excerpt:
+      "Ten shows at Merkur Spiel-Arena. A 100Gb touring network, live security, a records archive and crew Wi-Fi that held with 48,000 in the stadium.",
+    content: [
+      "In autumn 2026 the Backstreet Boys took Into The Millennium back to Germany, the country that gave them their first platinum record. Homecoming ran for ten shows at Merkur Spiel-Arena in Düsseldorf, from 25 September to 7 October 2026.",
+      "Technically Creative supported the work that took the show from planning and rehearsal into the venue. Daniel's role covered technical direction and site coordination, connecting the needs of production, staging, automation, audio and the venue.",
+      "## The Brief",
+      "One production, three buildings. Pre-production started in the spring: systems designed and specified, then built and tested at Rock Lititz in Pennsylvania, while TC was also loading in the band's separate Sphere show in Las Vegas. The full show was then built and rehearsed in Hangar 2 at Cardington Studios in Bedford, UK, loaded out, and rebuilt a week later in a stadium with a retractable roof, under German regulation.",
+      "## The Constraints",
+      "- Half the hoist capacity. German rules derate hoists by half: a one-tonne hoist works at 500 kg. Automation was derated to match, so rig weights were reworked inside that envelope.\n- Five performers in the air. A flying system carries all five members from upstage of the video wall, over the lighting rig, to the B stage. It needed current certification, an emergency plan and sign-off by a German engineer on the build.\n- A roof that opens. The show plan opens the stadium roof for the end of the show in good weather, which gave the stage structure an outdoor load case.\n- A rehearsal site on generators. Cardington is a closed hangar with no show power, so the rehearsal build ran on temporary generation.\n- RF in two countries. Licensing for the UK and Germany, a large LED wall and a full stadium all share the same spectrum.",
+      "## What We Did",
+      "Technically Creative ran technical direction across every department, from pre-production in Lititz through to the Düsseldorf run, while running a second, separate deployment at Sphere. The scope:",
+      "**Technical direction and site coordination.** One point of coordination between production, staging, automation, audio, video, lighting, special effects and the venue, from Lititz to Düsseldorf.",
+      "**Pre-production, spring to summer.** Comms design from April. Network racks and touring cases specified and ordered in May. Test builds and production rehearsals at Rock Lititz to bring LED, rigging, network and comms up together, in parallel with the load-in of the separate Sphere show in Las Vegas. Then everything shipped to Cardington.",
+      "**Survey, CAD and geometry.** Survey and set-out, cross-vendor geometry and venue interfaces, so every department built to the same layout at Cardington and in Düsseldorf.",
+      "**Structure and rigging.** Coordination with the structure team on delay tower and PA positions, and with rigging and lighting to bring hoists, pods and trusses inside the German derating.",
+      "**Automation and flying.** Coordination of the documentation, tests and engineer sign-off for the B-stage lifts and the performer flying system under German rules.",
+      "**Comms.** Riedel Bolero design: 65 beltpacks and 15 panels, with Dante distribution out to the departments and four-wire links for camera and follow spot ops.",
+      "**LED.** Specification of the ROE Vanish V8T wall, built from FidoLED exports.",
+      "**Pyro and special effects.** Pyro coordination across rehearsal and the run.",
+      "**Power.** Power planning for the Cardington build on temporary generation, with draw figures by department.",
+      "**RF.** Planning and licensing for the UK and Germany, with interference monitoring through rehearsals and the first show.",
+      "**Production network, crew Wi-Fi, security and archive.** Designed, deployed and operated by TC. Detail below.",
+      "**Logistics and schedule.** Truck access, load-in sequence, labor calls and the rehearsal schedule for the Cardington build and the move to Düsseldorf.",
+      "## The Network",
+      "A touring UniFi leaf/spine fabric built to move between buildings unchanged. A UDM Beast gateway and an Enterprise fibre spine sit in the core rack, with eight 10G PoE leaf switches out at the racks and workstations.",
+      "- Backbone: 100Gb, with SMPTE ST 2110 distribution for Show Orchestrator on separate A and B paths and PTP timing across the switches.\n- Segmentation: one VLAN per service. Management, show control, lighting, Dante primary and secondary, video, ST 2110 A and B, cameras, IT and storage, and crew Wi-Fi each run on their own network, with a quarantine VLAN kept off every trunk.\n- Port profiles: trunk, camera, access point and management profiles applied per port, read back at both ends after every repatch.\n- Firmware: a hold per switch class for the tour. No blanket updates mid-run.",
+      "## Crew Wi-Fi",
+      "Crew Wi-Fi ran on its own VLAN, isolated from production except for the services crew needed. High-density access points covered the working positions, with a dedicated show-manager network kept separate from the shared uplinks.",
+      "It held up with 48,000 people in the stadium, every phone in the bowl competing for the same spectrum.",
+      "## Security and Incident Response",
+      "A camera network on its own VLAN gave production a live view of the crowd and the working areas. AI PTZ cameras sat around the stage and workstations, with fixed cameras at the workboxes.",
+      "- Live view: real-time crowd monitoring for production and incident response during the show.\n- Detection: person events flagged and searchable after the fact.\n- Recording: continuous to an on-rig recorder, at 2K and 30 fps with 90-day retention on the workbox cameras.",
+      "## Records Archive",
+      "An on-rig NAS on its own IT network served as the archive for production records, kept apart from the show and camera networks.",
+      "## The Field Book",
+      "Every deployment runs from a shared field book: a fibre register with permanent run IDs and colour bands, a patch schedule for both ends of every cable, an append-only change log with verification and rollback, and repeatable checks for load-in, pre-show and strike.",
+      "[[figure:cardington]]",
+      "## The Timeline",
+      "[[timeline:homecoming]]",
+      "[[figure:fullBowl]]",
+      "## The Result",
+      "The production loaded into Düsseldorf on 23 September and opened two days later. All ten shows ran as scheduled.",
+      "The work behind it was coordination: one layout, one network and one set of approvals carried from Lititz, through a hangar in England, to a stadium in Germany.",
+      "[[figure:redLight]]",
+    ],
+    image: HOMECOMING_IMAGES.hoverboards.src,
+    hero: HOMECOMING_IMAGES.hoverboards,
+    figures: {
+      cardington: HOMECOMING_IMAGES.cardington,
+      fullBowl: HOMECOMING_IMAGES.fullBowl,
+      redLight: HOMECOMING_IMAGES.redLight,
+    },
+    ogImage: { url: HOMECOMING_IMAGES.hoverboards.src, width: 1920, height: 1080 },
+    category: "Case Study",
+    readTime: "7 min read",
+    date: "November 27, 2026",
+    author: "Daniel Jongen",
+    role: "Executive Technical Producer",
+  },
   "michigan-central-station-scan-to-event-plan": {
     title: "Michigan Central Station: From station scan to event plan.",
     excerpt:
@@ -309,6 +371,7 @@ export default async function InsightPost({ params }: { params: Params }) {
         <div className="container mx-auto px-6">
           <article className="max-w-2xl mx-auto">
             {post.content.map((paragraph, index) => {
+              if (paragraph === "[[timeline:homecoming]]") return <HomecomingTimeline key={index} />
               const figure = paragraph.match(/^\[\[figure:(\w+)\]\]$/)
               if (figure) {
                 const image = post.figures?.[figure[1]]

@@ -40,6 +40,15 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    slug: "backstreet-boys-homecoming-dusseldorf",
+    title: "Homecoming: A stadium show, from a UK hangar to Düsseldorf.",
+    excerpt:
+      "Ten shows at Merkur Spiel-Arena. A 100Gb touring network, live security, a records archive and crew Wi-Fi that held with 48,000 in the stadium.",
+    category: "Case Study",
+    readTime: "7 min read",
+    date: "November 2026",
+  },
+  {
     slug: "michigan-central-station-scan-to-event-plan",
     title: "Michigan Central Station: From station scan to event plan.",
     excerpt:

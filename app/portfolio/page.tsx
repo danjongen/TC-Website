@@ -7,7 +7,7 @@ import Link from "next/link"
 import { BreadcrumbSchema } from "@/components/structured-data"
 import { CueLabel } from "@/components/motion/cue-label"
 import { RenderLabel } from "@/components/v2/render-label"
-import { BSB_CASE_STUDY, HOMECOMING_IMAGES, PROJECTS, STATION_CASE_STUDY, STATION_IMAGES, type WorkImage } from "@/lib/work"
+import { BSB_CASE_STUDY, HOMECOMING_CASE_STUDY, HOMECOMING_IMAGES, PROJECTS, STATION_CASE_STUDY, STATION_IMAGES, type WorkImage } from "@/lib/work"
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -170,6 +170,13 @@ export default function PortfolioPage() {
                 early planning through rehearsal and into the Düsseldorf run.
               </p>
             </div>
+            <Link
+              data-reveal="fade"
+              href={HOMECOMING_CASE_STUDY}
+              className="mt-7 -mb-1 inline-block py-1 font-mono text-xs tracking-[0.2em] text-zinc-400 transition-colors duration-300 ease-expo hover:text-[#00D26A]"
+            >
+              READ THE CASE STUDY →
+            </Link>
           </ProjectHeader>
           <WorkFigure image={HOMECOMING_IMAGES.hoverboards} sizes="(min-width: 1536px) 1488px, calc(100vw - 48px)" priority />
           <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-4">
