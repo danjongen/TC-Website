@@ -43,9 +43,9 @@ const articles = [
     slug: "backstreet-boys-homecoming-dusseldorf",
     title: "Homecoming: A stadium show, from a UK hangar to Düsseldorf.",
     excerpt:
-      "Ten shows at Merkur Spiel-Arena. A full production rehearsed at Cardington, then rebuilt in Düsseldorf under German rigging and automation rules.",
+      "Ten shows at Merkur Spiel-Arena. A 100Gb touring network, live security, a records archive and crew Wi-Fi that held with 48,000 in the stadium.",
     category: "Case Study",
-    readTime: "4 min read",
+    readTime: "6 min read",
     date: "November 2026",
   },
   {
