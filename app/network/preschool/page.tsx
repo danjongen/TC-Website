@@ -1,0 +1,236 @@
+import type { Metadata } from "next"
+import Link from "next/link"
+import { Navbar } from "@/components/navbar"
+import { Footer } from "@/components/footer"
+import { BreadcrumbSchema } from "@/components/structured-data"
+import { CueLabel } from "@/components/motion/cue-label"
+
+export const dynamic = "force-static"
+export const revalidate = 86400
+
+const TITLE = "Case Study: Community Preschool Network"
+const DESCRIPTION =
+  "A UniFi network, classroom Wi-Fi, branded guest Wi-Fi and UniFi Talk phones for a Metro Detroit community preschool, designed, installed and donated by TC."
+
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "https://www.tc.agency/network/preschool",
+    siteName: "TC Agency - Technically Creative",
+    type: "article",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Community preschool network case study" }],
+  },
+  alternates: {
+    canonical: "https://www.tc.agency/network/preschool",
+  },
+}
+
+const specs: { label: string; value: string }[] = [
+  { label: "GATEWAY", value: "UniFi Dream Machine SE" },
+  { label: "SWITCHING", value: "USW Pro Max 16 PoE" },
+  { label: "ACCESS POINTS", value: "3 (2 × U7 Lite, 1 × nanoHD)" },
+  { label: "NETWORKS", value: "Staff and guest, isolated" },
+  { label: "CLIENTS DAY ONE", value: "About 20 devices" },
+  { label: "PHONES", value: "UniFi Talk, Touch Pro handset" },
+  { label: "RECORDING", value: "UniFi NVR, 18 TB" },
+  { label: "POWER", value: "CyberPower UPS, rolling rack" },
+]
+
+const tuning = [
+  "2.4 GHz transmit power lowered so devices don't cling to a distant access point.",
+  "A 12 Mbps minimum data rate, so slow legacy connections can't drag the whole room down.",
+  "Band steering to push capable devices onto 5 GHz.",
+  "Every cable run tested before handover.",
+]
+
+const scope = [
+  { label: "NETWORK", value: "UniFi gateway and managed switching" },
+  { label: "WI-FI", value: "Classroom and office coverage, staff and guest separated" },
+  { label: "GUEST", value: "Isolated guest network with a branded splash page" },
+  { label: "PHONES", value: "UniFi Talk for the school's main number" },
+  { label: "MANAGEMENT", value: "Remote monitoring through UniFi Site Manager" },
+]
+
+export default function PreschoolCaseStudyPage() {
+  return (
+    <div className="min-h-screen bg-black text-white">
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.tc.agency" },
+          { name: "Network", url: "https://www.tc.agency/network" },
+          { name: "Community preschool", url: "https://www.tc.agency/network/preschool" },
+        ]}
+      />
+
+      <Navbar />
+
+      <main id="main-content" className="pt-40 md:pt-48">
+        <section className="pb-[12vh]">
+          <div className="container mx-auto px-6">
+            <Link
+              href="/network"
+              className="mb-10 inline-block font-mono text-xs tracking-[0.2em] text-zinc-500 transition-colors duration-300 ease-expo hover:text-white"
+            >
+              ← NETWORK
+            </Link>
+            <div className="max-w-4xl">
+              <CueLabel className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+                CASE 01 / PERMANENT INSTALL
+              </CueLabel>
+              <h1
+                data-vt="title"
+                data-reveal="rise"
+                className="w-fit mb-8 max-w-3xl text-5xl font-semibold tracking-[-0.03em] text-white md:text-7xl"
+              >
+                A preschool network, built like a show rack.
+              </h1>
+              <p data-reveal="fade" className="max-w-2xl text-lg leading-relaxed text-zinc-400 md:text-xl">
+                A Metro Detroit community preschool needed reliable Wi-Fi for staff, a separate network for families
+                and visitors, and a working phone line. TC designed, installed and donated the whole system.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Brief */}
+        <section aria-labelledby="brief-heading" className="pb-[12vh]">
+          <div className="container mx-auto px-6">
+            <div className="grid gap-12 lg:grid-cols-2">
+              <div>
+                <CueLabel index="01" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+                  BRIEF
+                </CueLabel>
+                <h2 id="brief-heading" className="mb-6 text-3xl font-semibold tracking-[-0.03em] md:text-4xl">
+                  What had to work.
+                </h2>
+                <div className="max-w-xl space-y-4 text-lg leading-relaxed text-zinc-400">
+                  <p>
+                    Staff devices on a private network. Families and visitors kept off it entirely. A phone number that
+                    rings where it should. All of it manageable without anyone on site who knows networking.
+                  </p>
+                </div>
+              </div>
+              <div>
+                <CueLabel index="02" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+                  SCOPE
+                </CueLabel>
+                <ul className="border-t border-zinc-800">
+                  {scope.map((s) => (
+                    <li key={s.label} className="flex flex-col gap-1 border-b border-zinc-800 py-5 md:flex-row md:gap-8">
+                      <span className="w-40 shrink-0 font-mono text-[11px] tracking-[0.2em] text-zinc-300">{s.label}</span>
+                      <span className="text-base text-zinc-400">{s.value}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Specs */}
+        <section aria-labelledby="specs-heading" className="pb-[12vh]">
+          <div className="container mx-auto px-6">
+            <CueLabel index="03" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+              SYSTEM
+            </CueLabel>
+            <h2 id="specs-heading" className="sr-only">
+              System figures
+            </h2>
+            <dl className="grid border-l border-t border-zinc-800 sm:grid-cols-2 lg:grid-cols-4">
+              {specs.map((sp) => (
+                <div key={sp.label} className="border-b border-r border-zinc-800 p-6">
+                  <dt className="mb-3 font-mono text-[11px] tracking-[0.2em] text-zinc-500">{sp.label}</dt>
+                  <dd className="text-lg text-white">{sp.value}</dd>
+                </div>
+              ))}
+            </dl>
+            <div className="mt-12 grid gap-12 lg:grid-cols-2">
+              <div>
+                <h3 className="mb-6 text-2xl font-semibold tracking-[-0.02em] md:text-3xl">Tuned, not just switched on.</h3>
+                <ul className="border-t border-zinc-800">
+                  {tuning.map((t) => (
+                    <li key={t} className="border-b border-zinc-800 py-5 text-base leading-relaxed text-zinc-400">
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 className="mb-6 text-2xl font-semibold tracking-[-0.02em] md:text-3xl">Next phase.</h3>
+                <p className="max-w-xl text-lg leading-relaxed text-zinc-400">
+                  The recorder and storage are in. UniFi Protect cameras and door access are being added on the
+                  same network, so security, phones and Wi-Fi share one dashboard.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Guest Wi-Fi */}
+        <section aria-labelledby="guest-heading" className="pb-[12vh]">
+          <div className="container mx-auto px-6">
+            <div className="grid gap-12 lg:grid-cols-2">
+              <div>
+                <CueLabel index="04" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+                  GUEST_WI-FI
+                </CueLabel>
+                <h2 id="guest-heading" className="mb-6 text-3xl font-semibold tracking-[-0.03em] md:text-4xl">
+                  A front door in the school&apos;s colours.
+                </h2>
+                <p className="max-w-xl text-lg leading-relaxed text-zinc-400">
+                  Guests join an isolated network and land on a splash page built to the school&apos;s brand. Self-hosted
+                  fonts and a single static file, so it paints fast on a fresh connection. Access lasts an hour, and guests
+                  can reconnect anytime.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Handover */}
+        <section aria-labelledby="handover-heading" className="pb-[12vh]">
+          <div className="container mx-auto px-6">
+            <div className="grid gap-12 lg:grid-cols-2">
+              <div>
+                <CueLabel index="05" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+                  HANDOVER
+                </CueLabel>
+                <h2 id="handover-heading" className="mb-6 text-3xl font-semibold tracking-[-0.03em] md:text-4xl">
+                  Documented to touring standard.
+                </h2>
+                <p className="max-w-xl text-lg leading-relaxed text-zinc-400">
+                  Every cable run tested before handover, and the whole system watched remotely through UniFi Site
+                  Manager, so faults surface before staff notice them.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="pb-[16vh]">
+          <div className="container mx-auto px-6">
+            <div className="max-w-2xl border-t border-zinc-800 pt-12">
+              <CueLabel index="06" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-zinc-400">
+                NEXT CUE
+              </CueLabel>
+              <h2 className="mb-6 text-3xl font-semibold tracking-[-0.03em] text-white md:text-5xl">
+                Need the same for your building?
+              </h2>
+              <Link
+                href="/contact?source=network-survey#contact-form"
+                className="inline-block bg-white px-6 py-4 font-mono text-xs tracking-[0.2em] text-black transition-opacity duration-300 ease-expo hover:opacity-80"
+              >
+                BOOK_A_SITE_SURVEY
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  )
+}

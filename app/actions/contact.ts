@@ -34,10 +34,10 @@ export async function submitContactForm(
     budget: (formData.get("budget") as string)?.trim() || "",
     timeline: (formData.get("timeline") as string)?.trim() || "",
     message: (formData.get("message") as string)?.trim() || "",
-    source:
-      (formData.get("source") as string)?.trim() === "power-symbols-beta"
-        ? "power-symbols-beta"
-        : "",
+    source: (() => {
+      const value = (formData.get("source") as string)?.trim()
+      return value === "power-symbols-beta" || value === "network-survey" ? value : ""
+    })(),
     honeypot: formData.get("company_website") as string, // Honeypot field
     formElapsedMs: Number(formData.get("form_elapsed_ms") || 0),
     turnstileToken: formData.get("cf-turnstile-response") as string,
@@ -170,7 +170,9 @@ export async function submitContactForm(
   const inquiryLabel =
     data.source === "power-symbols-beta"
       ? "Power Symbols Beta Request"
-      : "New Contact Form Submission"
+      : data.source === "network-survey"
+        ? "Network Site Survey Request"
+        : "New Contact Form Submission"
 
   const emailText = `
 ${inquiryLabel} - TC Agency
@@ -217,7 +219,9 @@ Processing:   ${Date.now() - startTime}ms
       subject:
         data.source === "power-symbols-beta"
           ? `${subjectPrefix}Power Symbols beta request: ${data.name}`
-          : `${subjectPrefix}New Inquiry: ${data.name}${data.company ? ` from ${data.company}` : ""}`,
+          : data.source === "network-survey"
+            ? `${subjectPrefix}Network site survey request: ${data.name}`
+            : `${subjectPrefix}New Inquiry: ${data.name}${data.company ? ` from ${data.company}` : ""}`,
       text: emailText,
     })
 
